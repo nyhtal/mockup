@@ -1,3 +1,50 @@
 @import "tailwindcss" source(none);
 @source "../../../dist/__SITE__";
 @source not "../../../dist/__SITE__/assets";
+
+/* The two progressive-enhancement variants of bylaw 06: JS present (set by enhance.js) and scroll-driven animation support. */
+@custom-variant js (&:where([data-js], [data-js] *));
+@custom-variant sda {
+  @supports (animation-timeline: view()) {
+    @slot;
+  }
+}
+
+/* @brand */
+
+/* @fonts */
+
+@theme {
+  --animate-reveal: reveal var(--reveal-duration) var(--ease-smooth) both;
+  --animate-reveal-start: reveal-start var(--reveal-duration) var(--ease-smooth) both;
+  --animate-drop: drop 200ms var(--ease-smooth) both;
+  --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
+  --animate-fade: fade 200ms ease-out both;
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(var(--reveal-distance)); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes reveal-start {
+    from { opacity: 0; transform: translateX(calc(var(--reveal-distance) * -1)); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes drop {
+    from { opacity: 0; transform: translateY(-0.5rem); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* Exception list (R-PREC-07): cross-document view transitions, motion-safe only. */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}

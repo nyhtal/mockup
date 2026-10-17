@@ -3,6 +3,7 @@ import { mkdirSync, readFileSync, writeFileSync, rmSync, cpSync, existsSync, rea
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadSite } from "./lib/site.js";
+import { brandTokens } from "./lib/theme.js";
 
 export function parseArgs(argv) {
   const i = argv.indexOf("--site");
@@ -41,7 +42,9 @@ export async function build({ site }) {
   await eleventy.write();
   checkLocaleCoverage(dist, siteConfig);
 
-  const css = readFileSync("engine/theme/app.css", "utf8").replaceAll("__SITE__", site);
+  const css = readFileSync("engine/theme/app.css", "utf8")
+    .replaceAll("__SITE__", site)
+    .replace("/* @brand */", brandTokens(siteConfig.brand || {}));
   mkdirSync("engine/theme/.tmp", { recursive: true });
   writeFileSync("engine/theme/.tmp/app.css", css);
   mkdirSync(`${dist}/assets`, { recursive: true });
