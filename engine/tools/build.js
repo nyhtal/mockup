@@ -6,6 +6,7 @@ import { loadSite } from "./lib/site.js";
 import { brandTokens } from "./lib/theme.js";
 import { fontPlan, copyFonts } from "./build-fonts.js";
 import { injectSprites } from "./build-icons.js";
+import { generateImages } from "./build-images.js";
 
 export function parseArgs(argv) {
   const i = argv.indexOf("--site");
@@ -57,6 +58,8 @@ export async function build({ site }) {
   mkdirSync(`${dist}/assets`, { recursive: true });
   const tailwind = path.join("node_modules", "@tailwindcss", "cli", "dist", "index.mjs");
   execFileSync(process.execPath, [tailwind, "-i", "engine/theme/.tmp/app.css", "-o", `${dist}/assets/app.css`, "--minify"], { stdio: "inherit" });
+
+  await generateImages(dist, siteConfig.brand || {});
 
   for (const f of ["fonts", "images", "icons"]) {
     const src = `sites/${site}/assets/${f}`;

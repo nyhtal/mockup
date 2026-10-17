@@ -1,0 +1,17 @@
+{#
+  name: wordmark
+  purpose: A text logo rendered as inline SVG for the site, customers and partners (R-ASSET-08).
+  anatomy: svg[role=img] > title + text
+  variants: site (brand colour, h-8) | mono (ink-muted, h-6; logo clouds)
+  states: none
+  spacing: caller sets height via opts.class (h-6|h-8); width scales with the text
+  motion: none
+  keyboard: not focusable (wrap in <a> for the site logo)
+  a11y: role="img" with a <title> equal to the name
+  i18n: the name is not translated
+  content limits: name ≤ 24 characters; opts = { variant: "site"|"mono", class }
+#}
+{% macro wordmark(name, opts={}) %}
+{%- set mono = opts.variant == "mono" -%}
+<svg role="img" class="{{ 'h-6 fill-ink-muted' if mono else 'h-8 fill-brand-700' }} w-auto{% if opts.class %} {{ opts.class }}{% endif %}" viewBox="0 0 {{ (name | length) * 13 + 8 }} 32"><title>{{ name }}</title><text x="4" y="23" font-size="22" font-weight="700" letter-spacing="-0.5">{{ name }}</text></svg>
+{% endmacro %}

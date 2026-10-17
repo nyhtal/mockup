@@ -1,0 +1,26 @@
+{#
+  name: picture
+  purpose: Responsive placeholder image in AVIF + WebP with reserved space (R-HTML-12, R-PERF-05, R-ASSET-06).
+  anatomy: picture > source[avif] + source[webp] + img[width height alt loading|fetchpriority decoding]
+  variants: priority (the page's LCP image: fetchpriority=high, eager) | default (lazy)
+  states: none
+  spacing: none; the caller wraps it in an aspect box (R-LAY-10) via opts.class e.g. "aspect-video w-full object-cover rounded-xl"
+  motion: none
+  keyboard: not focusable
+  a11y: img.alt is required: a sentence for informative images, "" for decorative (R-CONT-16)
+  i18n: alt comes from the page's locale content
+  content limits: img = { slug, ratio: "16:9"|"4:3"|"3:2"|"1:1"|"21:9", alt, max: 480|768|1200|1600 }; opts = { priority, sizes, class }
+#}
+{% macro picture(img, opts={}) %}
+{%- set ratio = (img.ratio or "16:9") | replace(":", "x") -%}
+{%- set parts = (img.ratio or "16:9").split(":") -%}
+{%- set max = img.max or 1600 -%}
+{%- set widths = [480, 768, 1200, 1600] -%}
+{%- set sizes = opts.sizes or "100vw" -%}
+{%- set h = ((max * parts[1]) / parts[0]) | round -%}
+<picture>
+<source type="image/avif" srcset="{% for w in widths %}{% if w <= max %}{% if not loop.first %}, {% endif %}/assets/images/{{ img.slug }}-{{ ratio }}-{{ w }}.avif {{ w }}w{% endif %}{% endfor %}" sizes="{{ sizes }}">
+<source type="image/webp" srcset="{% for w in widths %}{% if w <= max %}{% if not loop.first %}, {% endif %}/assets/images/{{ img.slug }}-{{ ratio }}-{{ w }}.webp {{ w }}w{% endif %}{% endfor %}" sizes="{{ sizes }}">
+<img src="/assets/images/{{ img.slug }}-{{ ratio }}-480.webp" width="{{ max }}" height="{{ h }}" alt="{{ img.alt }}"{% if opts.priority %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async"{% if opts.class %} class="{{ opts.class }}"{% endif %}>
+</picture>
+{% endmacro %}

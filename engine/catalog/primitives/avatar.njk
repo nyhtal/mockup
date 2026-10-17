@@ -1,0 +1,18 @@
+{#
+  name: avatar
+  purpose: Initials on a brand-coloured disc instead of a photo (R-ASSET-07).
+  anatomy: svg[aria-hidden] > circle + text
+  variants: size-12 (cards, default) | size-24 (profile pages) | size-8 (bylines)
+  states: none
+  spacing: shrink-0; caller adds gap-*
+  motion: none
+  keyboard: not focusable
+  a11y: aria-hidden; the person's name is always adjacent visible text
+  i18n: initials are the first letters of the first two words of the name as written in the locale
+  content limits: name is required; opts = { size }
+#}
+{% macro avatar(name, opts={}) %}
+{%- set words = (name | trim).split(" ") -%}
+{%- set initials = (words[0] | first | upper) + ((words[1] | first | upper) if words.length > 1 else "") -%}
+<svg aria-hidden="true" class="{{ opts.size or 'size-12' }} shrink-0" viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" class="fill-brand-100"/><text x="24" y="24" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="600" class="fill-brand-800">{{ initials }}</text></svg>
+{% endmacro %}
