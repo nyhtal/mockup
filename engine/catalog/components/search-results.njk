@@ -17,7 +17,7 @@
 {%- set h = "h" + (opts.level or 2) -%}
 <div data-component="search-results">
 {%- if r.items.length %}
-<p class="text-sm text-ink-muted">{{ r.items.length }} {{ "ui.resultsFor" | t }} “{{ r.query }}”</p>
+<p class="text-sm text-ink-muted">{{ ("ui.resultsFor" | t) | replace("{count}", r.items.length) | replace("{query}", r.query) }}</p>
 <ol class="mt-6 space-y-6">
 {%- for item in r.items %}
 <li>

@@ -22,7 +22,8 @@ const FIXTURES = {
   "safe-motion.html": page('<h1 class="mt-4 motion-safe:animate-fade motion-safe:transition">A</h1>'),
   "arbitrary-length.html": page('<h1 class="mt-4 p-[13px] [animation-timeline:view()]">A</h1>'),
   "hash-link.html": page('<h1>A</h1><a href="#">x</a><a href="javascript:void(0)">y</a>'),
-  "img-attrs.html": page('<h1>A</h1><img src="/assets/images/a-16x9-480.webp" alt=""><img src="/b.webp" width="1" height="1" alt="" fetchpriority="high" loading="lazy">'),
+  "img-attrs.html": page('<h1>A</h1><img src="/assets/images/a-16x9-480.webp" alt=""><img src="/b.webp" width="1" height="1" alt="" fetchpriority="high" loading="lazy"><img src="/c.webp" width="1" height="1" alt="">'),
+  "img-ok.html": page('<h1>A</h1><img src="/a.webp" width="1" height="1" alt="" loading="lazy" decoding="async"><img src="/b.webp" width="1" height="1" alt="" fetchpriority="high" decoding="async">'),
   "meta-length.html": `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>${"x".repeat(70)}</title><meta name="description" content="short"></head><body><h1>A</h1></body></html>`,
   "head-order.html": `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="/assets/app.css"><meta name="viewport" content="width=device-width"><title>t</title><meta name="description" content="${DESC}"><link rel="canonical" href="https://example.com/"></head><body><h1>A</h1></body></html>`,
   "escaped-classes.html": page('<h1 class="mt-4 md:ps-4 [animation-timeline:view()] motion-safe:sda:animate-reveal 2xl:px-8 1/2">A</h1>'),
@@ -73,9 +74,11 @@ test("safe motion and arbitrary properties pass the new checks", async () => {
   assert.deepEqual((await run(ctx("safe-motion.html"))).findings, []);
 });
 
-test("img-attrs flags a missing width/height and lazy on a priority image, once each", async () => {
+test("img-attrs flags missing width/height, lazy on a priority image, and a non-priority image that is not lazy", async () => {
   const r = await run(ctx("img-attrs.html"));
-  assert.deepEqual(checks(r), ["consistency/img-attrs", "consistency/img-attrs"]);
+  assert.deepEqual(checks(r), ["consistency/img-attrs", "consistency/img-attrs", "consistency/img-attrs", "consistency/img-attrs"]);
+  assert.match(r.findings[3].message, /loading="lazy"/);
+  assert.deepEqual((await run(ctx("img-ok.html"))).findings, []);
 });
 
 test("head-order reports the first tag out of order and meta-length reports the title and the description", async () => {

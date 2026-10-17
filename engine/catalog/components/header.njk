@@ -2,7 +2,7 @@
   name: header
   purpose: Site header: logo, primary navigation, locale switcher, search, primary CTA, mobile menu button (R-LAY-07, R-SEC-05).
   anatomy: header[sticky] > div.container > a(logo) + nav-menu + div(actions: locale-switcher, search link, CTA, menu button)
-  variants: default (surface with blur) | transparent (over a media hero: absolute, no border; opts.variant)
+  variants: none in v1 (a transparent-over-hero variant was removed: its children hard-code ink colours and nothing offsets main; add it with the R-COL-08 overlay when a page needs it)
   states: current page in nav; menus open via popovers
   spacing: h-16, container, gap-6
   motion: none on the bar itself (R-MOT-11); popovers animate
@@ -15,7 +15,7 @@
 {% from "components/nav-menu.njk" import navMenu %}
 {% from "components/locale-switcher.njk" import localeSwitcher %}
 {% macro header(site, locale, currentUrl, alternates, opts={}) %}
-<header class="{{ 'absolute inset-x-0 top-0 z-10 h-16 text-ink-inverse' if opts.variant == 'transparent' else 'sticky top-0 z-10 h-16 border-b border-line bg-surface/90 backdrop-blur' }} print:static print:border-0" data-component="header" data-variant="{{ opts.variant or 'default' }}">
+<header class="sticky top-0 z-10 h-16 border-b border-line bg-surface/90 backdrop-blur print:static print:border-0" data-component="header">
 <div class="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-6 px-4 sm:px-6 lg:px-8">
 <a href="/{{ locale }}/" class="inline-flex shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name) }}</a>
 {{ navMenu(site.nav, locale, currentUrl) }}

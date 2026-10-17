@@ -18,9 +18,11 @@ test("brandTokens wipes the palette and defines roles with light-dark() in sRGB 
   assert.match(css, /--color-accent-600: #[0-9a-f]{6};/);
   assert.match(css, /--color-surface: light-dark\(#[0-9a-f]{6}, #[0-9a-f]{6}\);/);
   assert.doesNotMatch(css, /oklch\(/, "computed oklch() colours are misread by axe-core; tokens ship as hex");
-  for (const role of ["surface-alt", "surface-raised", "ink", "ink-muted", "ink-inverse", "line", "line-strong", "focus", "success", "success-soft", "success-strong", "warning", "warning-soft", "warning-strong", "danger", "danger-soft", "danger-strong"]) {
+  for (const role of ["surface-alt", "surface-raised", "ink", "ink-muted", "ink-brand", "line", "line-strong", "focus", "success", "success-soft", "success-strong", "warning", "warning-soft", "warning-strong", "danger", "danger-soft", "danger-strong"]) {
     assert.match(css, new RegExp(`--color-${role}: light-dark\\(`), role);
   }
+  // ink-inverse sits on brand backgrounds, which do not change with the scheme, so it is fixed (R-COL-01, R-COL-03).
+  assert.match(css, /--color-ink-inverse: #[0-9a-f]{6};/);
   assert.match(css, /--radius-md: 0\.5rem;/);
   assert.match(css, /--reveal-distance: 16px;/);
   assert.match(css, /--reveal-duration: 300ms;/);
@@ -58,11 +60,19 @@ test("contrast follows WCAG 2", () => {
   assert.ok(Math.abs(contrast("#767676", "#ffffff") - 4.54) < 0.05);
 });
 
-test("text roles reach 4.5:1 on every surface in both schemes for every hue", () => {
+test("text roles reach 4.5:1 on every surface, inverse text 4.5:1 on brand backgrounds, and UI lines 3:1, in both schemes for every hue", () => {
   for (const hue of [0, 30, 90, 160, 250, 300, 359]) {
-    const fails = contrastFailures({ ...brand, hue });
+    const fails = contrastFailures({ ...brand, hue, accentHue: (hue + 90) % 360 });
     assert.deepEqual(fails, [], `hue ${hue}: ${JSON.stringify(fails)}`);
   }
+});
+
+test("contrastFailures checks the inverse and boundary pairs in the dark scheme too", () => {
+  const checked = contrastFailures.pairs.map((p) => p.join("/"));
+  for (const pair of ["ink-inverse/brand-600", "ink-inverse/brand-700", "ink-inverse/accent-600", "brand-800/brand-50", "line-strong/surface", "line-strong/surface-raised"]) {
+    assert.ok(checked.includes(pair), `${pair} is checked`);
+  }
+  assert.deepEqual(contrastFailures.schemes, ["light", "dark"]);
 });
 
 test("system font gives a system stack and no fallback family", () => {

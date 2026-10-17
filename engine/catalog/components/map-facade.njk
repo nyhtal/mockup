@@ -18,6 +18,6 @@
 <div data-component="map-facade">
 <div class="overflow-hidden rounded-xl">{{ picture({ slug: m.slug or "map", ratio: "21:9", alt: "", max: 1200 }, { sizes: "(min-width: 80rem) 80rem, 100vw", class: "aspect-[21/9] w-full object-cover" }) }}</div>
 <address class="mt-4 text-base not-italic leading-relaxed text-ink-muted">{{ m.address }}</address>
-{%- if m.mapsUrl %}<p class="mt-2">{{ link("Open in maps", m.mapsUrl, { external: true }) }}</p>{% endif %}
+{%- if m.mapsUrl %}<p class="mt-2">{{ link("ui.openInMaps" | t, m.mapsUrl, { external: true }) }}</p>{% endif %}
 </div>
 {% endmacro %}

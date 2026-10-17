@@ -11,7 +11,7 @@
 {% macro shell(name, s, ctx, opts={}) %}
 {%- set pad = "py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24" -%}
 {%- set surface = s.surface or ctx.surface or "bg-surface" -%}
-{%- set inverse = surface == "bg-brand-700" or surface == "bg-ink" -%}
+{%- set inverse = surface == "bg-brand-700" -%}
 <section class="{{ pad }} {{ surface }}{% if inverse %} text-ink-inverse{% endif %}{{ revealClasses(ctx.reveal and not opts.noReveal) }}"{% if ctx.reveal and not opts.noReveal %} data-reveal{% endif %} data-component="{{ name }}"{% if s.variant %} data-variant="{{ s.variant }}"{% endif %}{% if s.anchor %} id="{{ s.anchor }}"{% endif %}{% if not s.title and s.label %} aria-label="{{ s.label }}"{% endif %}>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 {%- if s.title or s.eyebrow or s.lede %}

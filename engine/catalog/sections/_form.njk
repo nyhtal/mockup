@@ -15,7 +15,7 @@
 {%- else %}{{ field(fld) }}{% endif %}
 {%- endfor %}
 {%- if f.consent %}{{ field(f.consent) }}{% endif %}
-<div hidden><label for="{{ f.id or 'form' }}-website">Website</label><input type="text" id="{{ f.id or 'form' }}-website" name="website" tabindex="-1" autocomplete="off"></div>
+<div hidden><label for="{{ f.id or 'form' }}-website">{{ "ui.website" | t }}</label><input type="text" id="{{ f.id or 'form' }}-website" name="website" tabindex="-1" autocomplete="off"></div>
 {%- if f.privacyHref %}<p class="text-sm text-ink-muted">{{ "ui.privacyNote" | t }} <a href="{{ f.privacyHref }}" class="underline underline-offset-4 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.privacyPolicy" | t }}</a></p>{% endif %}
 <div>{{ button(f.submit, { type: "submit" }) }}</div>
 </form>

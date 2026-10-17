@@ -3,7 +3,7 @@
 Purpose: which role colour goes where, how much contrast is required, and how dark mode and states behave, so colour never has to be chosen on a page. Sources: WCAG 2.2 SC 1.4.3, 1.4.11, 1.4.1; https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark.
 
 ### R-COL-01 Role usage
-MUST. Backgrounds use `bg-surface` (page), `bg-surface-alt` (alternate sections), `bg-surface-raised` (cards, popovers, dialogs). Text uses `text-ink` (body, headings), `text-ink-muted` (secondary), `text-ink-inverse` (on brand or dark media). Borders use `border-line` and `border-line-strong` for inputs. Primary actions use `bg-brand-600 text-ink-inverse hover:bg-brand-700`; secondary actions use `border-line-strong text-ink hover:bg-surface-alt`.
+MUST. Backgrounds use `bg-surface` (page), `bg-surface-alt` (alternate sections), `bg-surface-raised` (cards, popovers, dialogs). Text uses `text-ink` (body, headings), `text-ink-muted` (secondary), `text-ink-brand` (eyebrows, links and icons in the brand colour on surfaces), `text-ink-inverse` (on brand backgrounds and dark media; it is the same light value in both schemes because brand backgrounds do not change with the scheme). Borders use `border-line` and `border-line-strong` for inputs. Primary actions use `bg-brand-600 text-ink-inverse hover:bg-brand-700`; secondary actions use `border-line-strong text-ink hover:bg-surface-alt`.
 Why: A page author should never pick a colour, only a role.
 Gate: manual: checklists/new-component.md
 

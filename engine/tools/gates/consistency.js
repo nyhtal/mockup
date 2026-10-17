@@ -124,7 +124,10 @@ export async function run(ctx) {
       const src = img.getAttribute("src") || "";
       if (!img.hasAttribute("alt")) add("img-attrs", `img ${src} has no alt attribute (R-HTML-12)`);
       if (!img.hasAttribute("width") || !img.hasAttribute("height")) add("img-attrs", `img ${src} lacks width/height (R-HTML-12)`);
-      if (img.getAttribute("fetchpriority") === "high" && img.getAttribute("loading") === "lazy") add("img-attrs", `img ${src} is both priority and lazy (R-HTML-12)`);
+      const priority = img.getAttribute("fetchpriority") === "high";
+      const lazy = img.getAttribute("loading") === "lazy";
+      if (priority && lazy) add("img-attrs", `img ${src} is both priority and lazy (R-HTML-12)`);
+      if (!priority && !lazy) add("img-attrs", `img ${src} is neither the LCP image (fetchpriority="high") nor loading="lazy" (R-HTML-12)`);
     }
 
     const head = root.querySelector("head");

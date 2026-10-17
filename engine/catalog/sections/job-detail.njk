@@ -11,10 +11,10 @@
 {% call shell("job-detail", s, ctx, { center: false, noReveal: true }) %}
 <div class="grid gap-12 lg:grid-cols-3">
 <dl class="space-y-4 text-base">
-<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("users", { size: "size-4", class: "text-ink-brand" }) }}Team</dt><dd class="ms-6">{{ s.team }}</dd></div>
-<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("map-pin", { size: "size-4", class: "text-ink-brand" }) }}Location</dt><dd class="ms-6">{{ s.location }}</dd></div>
-<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("clock", { size: "size-4", class: "text-ink-brand" }) }}Type</dt><dd class="ms-6">{{ s.employment }}</dd></div>
-{%- if s.posted %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("calendar", { size: "size-4", class: "text-ink-brand" }) }}Posted</dt><dd class="ms-6"><time datetime="{{ s.postedIso }}">{{ s.posted }}</time></dd></div>{% endif %}
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("users", { size: "size-4", class: "text-ink-brand" }) }}{{ "ui.team" | t }}</dt><dd class="ms-6">{{ s.team }}</dd></div>
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("map-pin", { size: "size-4", class: "text-ink-brand" }) }}{{ "ui.location" | t }}</dt><dd class="ms-6">{{ s.location }}</dd></div>
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("clock", { size: "size-4", class: "text-ink-brand" }) }}{{ "ui.type" | t }}</dt><dd class="ms-6">{{ s.employment }}</dd></div>
+{%- if s.posted %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("calendar", { size: "size-4", class: "text-ink-brand" }) }}{{ "ui.posted" | t }}</dt><dd class="ms-6"><time datetime="{{ s.postedIso }}">{{ s.posted }}</time></dd></div>{% endif %}
 </dl>
 <div class="lg:col-span-2">{{ prose(s.body) }}</div>
 </div>

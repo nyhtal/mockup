@@ -49,3 +49,19 @@ test("generateImages renders missing files at the right size and skips existing 
   assert.equal(second.skipped, 3);
   assert.deepEqual(readFileSync(avif), bytes);
 });
+
+test("two fresh builds encode byte-identical images (Review Focus 4)", { timeout: 120000 }, async () => {
+  const dirs = [0, 1].map(() => mkdtempSync(path.join(tmpdir(), "images-twice-")));
+  try {
+    for (const d of dirs) {
+      mkdirSync(path.join(d, "en"));
+      writeFileSync(path.join(d, "en", "index.html"), page('<img src="/assets/images/twice-1x1-480.avif" alt="" width="480" height="480">'));
+      assert.equal((await generateImages(d, { hue: 250, accentHue: 160 })).generated, 1);
+    }
+    const [a, b] = dirs.map((d) => readFileSync(path.join(d, "assets", "images", "twice-1x1-480.avif")));
+    assert.ok(a.length > 100);
+    assert.deepEqual(a, b);
+  } finally {
+    for (const d of dirs) rmSync(d, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
+  }
+});

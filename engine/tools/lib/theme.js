@@ -15,6 +15,8 @@ const MOTION = { calm: [8, 200, 0], standard: [16, 300, 60], expressive: [24, 50
 const ROLE_MUTED = { light: 46, dark: 72 };
 /** Lightness of ink-brand (brand-coloured text: eyebrows, links, icons on surfaces) per scheme. */
 const ROLE_BRAND_TEXT = { light: 40, dark: 78 };
+/** Lightness of line-strong (input and secondary-button borders): must reach 3:1 on surfaces (WCAG 1.4.11). */
+const ROLE_LINE_STRONG = { light: 60, dark: 62 };
 
 /** Approved fonts (R-TYPO-01) with the fontsource package and metric overrides for the local fallback (R-TYPO-02). */
 export const FONTS = {
@@ -58,9 +60,9 @@ ${ld("surface-alt", oklch(96.5, 0.005, h), oklch(22, 0.012, h))}
 ${ld("surface-raised", oklch(100, 0, h), oklch(26, 0.014, h))}
 ${ld("ink", oklch(20, 0.02, h), oklch(95, 0.01, h))}
 ${ld("ink-muted", oklch(ROLE_MUTED.light, 0.02, h), oklch(ROLE_MUTED.dark, 0.015, h))}
-${ld("ink-inverse", oklch(99, 0.002, h), oklch(16, 0.01, h))}
+  --color-ink-inverse: ${oklch(99, 0.002, h)};
 ${ld("line", oklch(90, 0.01, h), oklch(32, 0.015, h))}
-${ld("line-strong", oklch(78, 0.015, h), oklch(42, 0.02, h))}
+${ld("line-strong", oklch(ROLE_LINE_STRONG.light, 0.015, h), oklch(ROLE_LINE_STRONG.dark, 0.02, h))}
 ${ld("focus", oklch(48, 0.17, h), oklch(76, 0.11, h))}
 ${ld("ink-brand", oklch(ROLE_BRAND_TEXT.light, 0.14, h), oklch(ROLE_BRAND_TEXT.dark, 0.11, h))}
 ${state("success", 150)}
@@ -116,26 +118,39 @@ export function contrast(a, b) {
 /** The role colour values as hex per scheme, so contrast can be checked at the token level (R-COL-03). */
 export function roleHex(brand) {
   const h = Number(brand.hue) || 0;
+  const a = Number(brand.accentHue ?? brand.hue) || 0;
   const px = (l, c, hue) => oklchToHex(l / 100, c, hue);
+  const fixed = { "ink-inverse": px(99, 0.002, h), "brand-50": px(L[0], C[0], h), "brand-100": px(L[1], C[1], h), "brand-600": px(L[6], C[6], h), "brand-700": px(L[7], C[7], h), "brand-800": px(L[8], C[8], h), "accent-600": px(L[6], C[6], a) };
   return {
-    light: { surface: px(99, 0.002, h), "surface-alt": px(96.5, 0.005, h), "surface-raised": px(100, 0, h), ink: px(20, 0.02, h), "ink-muted": px(ROLE_MUTED.light, 0.02, h), "ink-inverse": px(99, 0.002, h), "ink-brand": px(ROLE_BRAND_TEXT.light, 0.14, h), "brand-600": px(L[6], C[6], h), "brand-700": px(L[7], C[7], h), "brand-100": px(L[1], C[1], h), "brand-800": px(L[8], C[8], h) },
-    dark: { surface: px(18, 0.01, h), "surface-alt": px(22, 0.012, h), "surface-raised": px(26, 0.014, h), ink: px(95, 0.01, h), "ink-muted": px(ROLE_MUTED.dark, 0.015, h), "ink-inverse": px(16, 0.01, h), "ink-brand": px(ROLE_BRAND_TEXT.dark, 0.11, h), "brand-600": px(L[6], C[6], h), "brand-700": px(L[7], C[7], h), "brand-100": px(L[1], C[1], h), "brand-800": px(L[8], C[8], h) },
+    light: { ...fixed, surface: px(99, 0.002, h), "surface-alt": px(96.5, 0.005, h), "surface-raised": px(100, 0, h), ink: px(20, 0.02, h), "ink-muted": px(ROLE_MUTED.light, 0.02, h), "ink-brand": px(ROLE_BRAND_TEXT.light, 0.14, h), "line-strong": px(ROLE_LINE_STRONG.light, 0.015, h) },
+    dark: { ...fixed, surface: px(18, 0.01, h), "surface-alt": px(22, 0.012, h), "surface-raised": px(26, 0.014, h), ink: px(95, 0.01, h), "ink-muted": px(ROLE_MUTED.dark, 0.015, h), "ink-brand": px(ROLE_BRAND_TEXT.dark, 0.11, h), "line-strong": px(ROLE_LINE_STRONG.dark, 0.02, h) },
   };
 }
 
-/** Pairs that must reach 4.5:1 in both schemes; returns the ones that do not. */
+/** [fg, bg, minimum ratio]: text pairs need 4.5:1, UI boundaries 3:1 (R-COL-03), checked in BOTH schemes. */
+const CONTRAST_PAIRS = [
+  ["ink", "surface", 4.5], ["ink", "surface-alt", 4.5], ["ink", "surface-raised", 4.5],
+  ["ink-muted", "surface", 4.5], ["ink-muted", "surface-alt", 4.5], ["ink-muted", "surface-raised", 4.5],
+  ["ink-brand", "surface", 4.5], ["ink-brand", "surface-alt", 4.5], ["ink-brand", "surface-raised", 4.5],
+  ["ink-inverse", "brand-600", 4.5], ["ink-inverse", "brand-700", 4.5], ["ink-inverse", "accent-600", 4.5],
+  ["brand-800", "brand-100", 4.5], ["brand-800", "brand-50", 4.5],
+  ["line-strong", "surface", 3], ["line-strong", "surface-alt", 3], ["line-strong", "surface-raised", 3],
+];
+
+/** Pairs below their minimum in either scheme. */
 export function contrastFailures(brand) {
-  const pairs = [["ink", "surface"], ["ink", "surface-alt"], ["ink", "surface-raised"], ["ink-muted", "surface"], ["ink-muted", "surface-alt"], ["ink-muted", "surface-raised"], ["ink-brand", "surface"], ["ink-brand", "surface-alt"], ["ink-brand", "surface-raised"], ["brand-800", "brand-100"]];
-  const inverse = [["ink-inverse", "brand-600"], ["ink-inverse", "brand-700"]];
   const out = [];
-  for (const scheme of ["light", "dark"]) {
+  for (const scheme of contrastFailures.schemes) {
     const r = roleHex(brand)[scheme];
-    for (const [fg, bg] of pairs) { const c = contrast(r[fg], r[bg]); if (c < 4.5) out.push({ scheme, fg, bg, ratio: Math.round(c * 100) / 100 }); }
+    for (const [fg, bg, min] of CONTRAST_PAIRS) {
+      const c = contrast(r[fg], r[bg]);
+      if (c < min) out.push({ scheme, fg, bg, ratio: Math.round(c * 100) / 100, min });
+    }
   }
-  const light = roleHex(brand).light;
-  for (const [fg, bg] of inverse) { const c = contrast(light[fg], light[bg]); if (c < 4.5) out.push({ scheme: "both", fg, bg, ratio: Math.round(c * 100) / 100 }); }
   return out;
 }
+contrastFailures.pairs = CONTRAST_PAIRS.map(([fg, bg]) => [fg, bg]);
+contrastFailures.schemes = ["light", "dark"];
 
 /** theme-color values: brand-600 for light, brand-400 for dark. */
 export function themeColors(brand) {

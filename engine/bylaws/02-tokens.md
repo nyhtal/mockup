@@ -18,7 +18,7 @@ Why: A fixed scale keeps hierarchy legible and translations predictable.
 Gate: consistency/no-arbitrary-lengths
 
 ### R-TOK-04 Colour roles, not hues
-MUST. Pages use only role colours: `brand-50…950`, `accent-50…950`, `surface`, `surface-alt`, `surface-raised`, `ink`, `ink-muted`, `ink-inverse`, `line`, `line-strong`, `focus`, `success`, `warning`, `danger` (each state colour with `-soft` and `-strong`). Tailwind's named palettes (`gray-900`, `blue-500`) are not used in pages.
+MUST. Pages use only role colours: `brand-50…950`, `accent-50…950`, `surface`, `surface-alt`, `surface-raised`, `ink`, `ink-muted`, `ink-brand`, `ink-inverse`, `line`, `line-strong`, `focus`, `success`, `warning`, `danger` (each state colour with `-soft` and `-strong`). Tailwind's named palettes (`gray-900`, `blue-500`) are not used in pages.
 Why: Roles let a brief change hues without touching a single class.
 Gate: manual: checklists/new-component.md
 

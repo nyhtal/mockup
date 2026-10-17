@@ -22,7 +22,7 @@
 <div class="grow">{{ field({ type: "email", name: "email", id: "newsletter-email", label: ("ui.emailLabel" | t), required: true, autocomplete: "email", placeholder: "alex@company.com" }) }}</div>
 {{ button(s.form.submit, { type: "submit" }) }}
 </div>
-<div hidden><label for="newsletter-website">Website</label><input type="text" id="newsletter-website" name="website" tabindex="-1" autocomplete="off"></div>
+<div hidden><label for="newsletter-website">{{ "ui.website" | t }}</label><input type="text" id="newsletter-website" name="website" tabindex="-1" autocomplete="off"></div>
 {%- if s.form.privacyHref %}<p class="mt-3 text-center text-sm text-ink-muted">{{ "ui.privacyNote" | t }} <a href="{{ s.form.privacyHref }}" class="underline underline-offset-4 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.privacyPolicy" | t }}</a></p>{% endif %}
 </form>
 {% endcall %}

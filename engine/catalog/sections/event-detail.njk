@@ -11,9 +11,9 @@
 {% call shell("event-detail", s, ctx, { center: false, noReveal: true }) %}
 <div class="grid gap-12 lg:grid-cols-3">
 <dl class="space-y-4 text-base">
-<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("calendar", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.date if s.labels else "Date" }}</dt><dd class="ms-6"><time datetime="{{ s.dateIso }}">{{ s.date }}</time>{% if s.time %}, {{ s.time }}{% endif %}</dd></div>
-<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("map-pin", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.location if s.labels else "Location" }}</dt><dd class="ms-6">{{ s.location }}</dd></div>
-{%- if s.format %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("users", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.format if s.labels else "Format" }}</dt><dd class="ms-6">{{ s.format }}</dd></div>{% endif %}
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("calendar", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.date if s.labels else ("ui.date" | t) }}</dt><dd class="ms-6"><time datetime="{{ s.dateIso }}">{{ s.date }}</time>{% if s.time %}, {{ s.time }}{% endif %}</dd></div>
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("map-pin", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.location if s.labels else ("ui.location" | t) }}</dt><dd class="ms-6">{{ s.location }}</dd></div>
+{%- if s.format %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("users", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.format if s.labels else ("ui.format" | t) }}</dt><dd class="ms-6">{{ s.format }}</dd></div>{% endif %}
 </dl>
 <div class="lg:col-span-2">{{ prose(s.body) }}</div>
 </div>

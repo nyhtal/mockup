@@ -16,7 +16,7 @@
 <div class="lg:col-span-2">
 <p class="flex items-center gap-2">{{ badge(s.fileType or "PDF", { tone: "brand" }) }}{% if s.pages %}<span class="text-sm text-ink-muted">{{ s.pages }}</span>{% endif %}</p>
 <div class="mt-4">{{ prose(s.summary) }}</div>
-{%- if s.contents %}<h3 class="mt-8 text-lg font-semibold">{{ s.contentsTitle or "What is inside" }}</h3><ul class="mt-3 list-inside list-disc space-y-1 text-base text-ink-muted">{% for c in s.contents %}<li>{{ c }}</li>{% endfor %}</ul>{% endif %}
+{%- if s.contents %}<h3 class="mt-8 text-lg font-semibold">{{ s.contentsTitle or ("ui.whatIsInside" | t) }}</h3><ul class="mt-3 list-inside list-disc space-y-1 text-base text-ink-muted">{% for c in s.contents %}<li>{{ c }}</li>{% endfor %}</ul>{% endif %}
 {%- if s.cta %}<div class="mt-8">{{ button(s.cta.label, { href: s.cta.href, icon: "download" }) }}</div>{% endif %}
 </div>
 </div>

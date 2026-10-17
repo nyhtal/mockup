@@ -15,7 +15,7 @@
 {% macro tooltip(id, label, text) %}
 <span class="inline-flex items-center gap-1" data-component="tooltip">
 <span>{{ label }}</span>
-<button type="button" popovertarget="{{ id }}" class="inline-flex size-6 items-center justify-center rounded-full text-ink-muted hover:bg-surface-alt hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-4"><use href="#i-info"></use></svg><span class="sr-only">{{ "ui.moreInfo" | t }} {{ label }}</span></button>
+<button type="button" popovertarget="{{ id }}" class="inline-flex size-6 items-center justify-center rounded-full text-ink-muted hover:bg-surface-alt hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-4"><use href="#i-info"></use></svg><span class="sr-only">{{ ("ui.moreInfo" | t) | replace("{label}", label) }}</span></button>
 <span popover="hint" id="{{ id }}" class="m-auto max-w-xs rounded-lg border border-line bg-surface-raised p-3 text-sm text-ink shadow-md opacity-0 open:opacity-100 motion-safe:scale-95 motion-safe:open:scale-100 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:scale-95">{{ text }}</span>
 </span>
 {% endmacro %}

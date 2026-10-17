@@ -5,7 +5,7 @@ Purpose: everything in `<head>` and the discovery files, so search engines and s
 ### R-SEO-01 Head order and completeness
 MUST. The head follows R-HTML-02 exactly and every item in it is present on every page (robots only where noindex applies).
 Why: A missing canonical or description is the most common SEO defect.
-Gate: consistency/head-order
+Gate: lighthouse/mobile/seo
 
 ### R-SEO-02 Canonical
 MUST. `<link rel="canonical">` is the page's own absolute URL on `site.url`, trailing slash included; paginated pages are self-canonical.

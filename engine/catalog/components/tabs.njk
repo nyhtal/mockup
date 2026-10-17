@@ -4,20 +4,21 @@
   anatomy: div[data-component=tabs] > details[name] > summary(label) + div(panel)
   variants: none
   states: open (brand underline on the summary)
-  spacing: summaries px-4 py-3; panel py-6
+  spacing: summaries px-4 py-3; panel py-6, full width under the row
   motion: none
-  keyboard: Tab between summaries, Enter/Space opens; one panel is open at all times because the first has `open`
+  keyboard: Tab between summaries, Enter/Space opens; the first panel starts open (a summary can still close it, which native details allow)
   a11y: no ARIA tab roles; the pattern is announced as disclosures, which screen readers handle natively
   i18n: labels ≤ 18 chars (R-LAY-09)
   content limits: 2–5 tabs
+  layout: at md+ the wrapper is a wrapping flex row and each details contributes its summary and panel as flex items (md:contents); panels take the full width and sort last, so they sit under the row in flow
   data: items = [{ label, body (html), open }]; opts = { group }
 #}
 {% macro tabs(items, opts={}) %}
-<div class="md:relative md:[&>details>summary]:inline-flex" data-component="tabs">
+<div class="md:flex md:flex-wrap md:border-b md:border-line" data-component="tabs">
 {%- for item in items %}
-<details class="group md:static" name="{{ opts.group or 'tabs' }}"{% if item.open or (loop.first and not opts.noneOpen) %} open{% endif %}>
-<summary class="cursor-pointer list-none border-b-2 border-transparent px-4 py-3 font-medium text-ink-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus group-open:border-brand-600 group-open:text-ink">{{ item.label }}</summary>
-<div class="py-6 text-base leading-relaxed md:absolute md:inset-x-0 md:top-12 md:border-t md:border-line">{{ item.body | safe }}</div>
+<details class="group md:contents" name="{{ opts.group or 'tabs' }}"{% if item.open or (loop.first and not opts.noneOpen) %} open{% endif %}>
+<summary class="cursor-pointer list-none border-b-2 border-transparent px-4 py-3 font-medium text-ink-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus group-open:border-brand-600 group-open:text-ink md:-mb-px">{{ item.label }}</summary>
+<div class="py-6 text-base leading-relaxed md:order-last md:w-full md:border-t md:border-line">{{ item.body | safe }}</div>
 </details>
 {%- endfor %}
 </div>

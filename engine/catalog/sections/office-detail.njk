@@ -13,10 +13,10 @@
 <div>
 <address class="space-y-2 text-base not-italic leading-relaxed">
 <p>{{ s.address }}</p>
-{%- if s.phone %}<p><a href="tel:{{ s.phone | replace(' ', '') }}" class="underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.phone }}</a></p>{% endif %}
-{%- if s.email %}<p><a href="mailto:{{ s.email }}" class="underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.email }}</a></p>{% endif %}
+{%- if s.phone %}<p><a href="tel:{{ s.phone | replace(' ', '') }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.phone }}</a></p>{% endif %}
+{%- if s.email %}<p><a href="mailto:{{ s.email }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.email }}</a></p>{% endif %}
 </address>
-{%- if s.hours %}<div class="mt-8">{{ dataTable({ caption: s.hoursCaption or "Opening hours", columns: [s.hoursColumns[0] if s.hoursColumns else "Day", s.hoursColumns[1] if s.hoursColumns else "Hours"], rows: s.hours }, { rowHeaders: true }) }}</div>{% endif %}
+{%- if s.hours %}<div class="mt-8">{{ dataTable({ caption: s.hoursCaption or ("ui.openingHours" | t), columns: [s.hoursColumns[0] if s.hoursColumns else ("ui.day" | t), s.hoursColumns[1] if s.hoursColumns else ("ui.hours" | t)], rows: s.hours }, { rowHeaders: true }) }}</div>{% endif %}
 </div>
 {{ mapFacade(s.map) }}
 </div>

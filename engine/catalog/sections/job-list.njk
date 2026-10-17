@@ -14,7 +14,7 @@
 {%- if s.items and s.items.length %}
 <ul class="grid gap-6 md:grid-cols-2">{% for item in s.items %}{{ card(item | merge({ variant: "job" }), { density: ctx.density }) }}{% endfor %}</ul>
 {%- else %}
-{{ emptyState(s.empty or { icon: "briefcase", title: "No open roles right now", text: "Subscribe to job alerts and we will email you when something opens." }) }}
+{{ emptyState(s.empty or { icon: "briefcase", title: ("ui.noRolesTitle" | t), text: ("ui.noRolesText" | t) }) }}
 {%- endif %}
 {% endcall %}
 {% endmacro %}

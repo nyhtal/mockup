@@ -14,8 +14,14 @@
     "primitivesDesc": "Buttons, fields, badges, icons and pictures in every state."
   },
   "error": {
-    "notFound": { "title": "We can't find that page", "text": "The link may be out of date, or the page may have moved while we were tidying up. Use one of the links below to get back on track." },
-    "server": { "title": "Something went wrong on our side", "text": "Something failed on our side and we have been notified. Please try again in a few minutes, or use one of the links below meanwhile." }
+    "notFound": {
+      "title": "We can't find that page",
+      "text": "The link may be out of date, or the page may have moved while we were tidying up. Use one of the links below to get back on track."
+    },
+    "server": {
+      "title": "Something went wrong on our side",
+      "text": "Something failed on our side and we have been notified. Please try again in a few minutes, or use one of the links below meanwhile."
+    }
   },
   "ui": {
     "required": "(required)",
@@ -31,7 +37,7 @@
     "included": "Included",
     "notIncluded": "Not included",
     "playVideo": "Play video",
-    "videoNote": "In the live site the player loads here, after you choose to play, from",
+    "videoNote": "In the live site the player loads here, after you choose to play, from {provider}.",
     "aboutAuthor": "About the author",
     "share": "Share",
     "shareByEmail": "Share by email",
@@ -44,12 +50,10 @@
     "sectionNav": "Section navigation",
     "apply": "Apply",
     "clearFilters": "Clear filters",
-    "resultsFor": "results for",
+    "resultsFor": "{count} results for “{query}”",
     "noResultsTitle": "Nothing matched that search",
     "noResultsText": "Check the spelling or try a broader term. You can also browse the main sections.",
-    "moreInfo": "More information about",
-    "step": "Step",
-    "of": "of",
+    "moreInfo": "More information about {label}",
     "consentTitle": "Cookie consent",
     "consentText": "We use cookies for analytics and to remember your preferences. You choose which.",
     "consentPolicy": "Read the cookie policy",
@@ -64,7 +68,35 @@
     "emailLabel": "Work email",
     "helpful": "Was this page helpful?",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "emptyTitle": "Nothing here yet",
+    "emptyText": "Check back soon.",
+    "noRolesTitle": "No open roles right now",
+    "noRolesText": "Subscribe to job alerts and we will email you when something opens.",
+    "website": "Website",
+    "download": "Download",
+    "readMore": "Read more",
+    "mostPopular": "Most popular",
+    "feature": "Feature",
+    "recommended": "Recommended",
+    "openInMaps": "Open in maps",
+    "whatIsInside": "What is inside",
+    "openingHours": "Opening hours",
+    "day": "Day",
+    "hours": "Hours",
+    "date": "Date",
+    "location": "Location",
+    "format": "Format",
+    "team": "Team",
+    "type": "Type",
+    "posted": "Posted",
+    "articleDetails": "Article details",
+    "filters": "Filters",
+    "stepOf": "Step {n} of {max}"
   },
-  "footer": { "rights": "All rights reserved.", "engine": "Engine", "company": "Company" }
+  "footer": {
+    "rights": "All rights reserved.",
+    "engine": "Engine",
+    "company": "Company"
+  }
 }

@@ -17,7 +17,7 @@
 {%- endfor %}
 </ul>
 {%- else %}
-{{ emptyState(s.empty or { icon: "info", title: "Nothing here yet", text: "Check back soon." }) }}
+{{ emptyState(s.empty or { icon: "info", title: ("ui.emptyTitle" | t), text: ("ui.emptyText" | t) }) }}
 {%- endif %}
 {% endcall %}
 {% endmacro %}

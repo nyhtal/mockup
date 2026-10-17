@@ -22,7 +22,7 @@
 <li class="flex flex-col rounded-lg border bg-surface-raised p-6 shadow-sm {{ 'border-brand-600' if tier.recommended else 'border-line' }}">
 <div class="flex items-center justify-between gap-3">
 <{{ h }} class="text-xl font-semibold">{{ tier.name }}</{{ h }}>
-{%- if tier.recommended %}{{ badge("Most popular", { tone: "brand" }) }}{% endif %}
+{%- if tier.recommended %}{{ badge("ui.mostPopular" | t, { tone: "brand" }) }}{% endif %}
 </div>
 <p class="mt-4"><span class="text-4xl font-bold tabular-nums">{{ tier.price }}</span>{% if tier.period %} <span class="text-sm text-ink-muted">{{ tier.period }}</span>{% endif %}</p>
 {%- if tier.text %}<p class="mt-2 text-sm text-ink-muted">{{ tier.text }}</p>{% endif %}

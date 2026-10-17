@@ -52,6 +52,19 @@ test("injectSprites gives each page only its own symbols, removes the placeholde
   assert.equal(again.pages, 0, "nothing left to inject on a second run");
 });
 
+test("injecting the same source page twice from scratch gives identical output (Review Focus 4)", () => {
+  const out = [0, 1].map(() => {
+    const d = mkdtempSync(path.join(tmpdir(), "icons-twice-"));
+    writeFileSync(path.join(d, "index.html"), page('<svg aria-hidden="true"><use href="#i-x"></use></svg><svg aria-hidden="true"><use href="#i-check"></use></svg>'));
+    injectSprites(d);
+    const html = readFileSync(path.join(d, "index.html"), "utf8");
+    rmSync(d, { recursive: true, force: true });
+    return html;
+  });
+  assert.equal(out[0], out[1]);
+  assert.match(out[0], /<symbol id="i-check"[\s\S]*<symbol id="i-x"/, "symbols are sorted by name");
+});
+
 test("an unknown icon on a page fails the build naming the page and the icon", () => {
   assert.throws(() => injectSprites(dir, { only: ["c/index.html"] }), /c[\\/]index\.html.*"nope"|"nope".*c[\\/]index\.html/);
 });

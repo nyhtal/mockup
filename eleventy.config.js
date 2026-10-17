@@ -5,6 +5,7 @@ import { loadSite } from "./engine/tools/lib/site.js";
 import { themeColors } from "./engine/tools/lib/theme.js";
 import { fontPlan } from "./engine/tools/build-fonts.js";
 import { engineFiles } from "./engine/tools/lib/engine-files.js";
+import { planSections } from "./engine/tools/lib/sections.js";
 
 const OG_LOCALES = { en: "en_GB", de: "de_DE", ar: "ar_SA", fr: "fr_FR", es: "es_ES", it: "it_IT", nl: "nl_NL", pt: "pt_PT", ja: "ja_JP", zh: "zh_CN" };
 
@@ -122,28 +123,16 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("themeColors", themeColors(site.brand || {}));
   eleventyConfig.addGlobalData("fontPreload", fontPlan(site.brand || {}, site.locales).preload);
   eleventyConfig.addGlobalData("engineFiles", engineFiles(site));
+  eleventyConfig.addGlobalData("buildYear", String(new Date().getUTCFullYear()));
   const samples = JSON.parse(readFileSync(path.join("engine", "catalog", "samples.json"), "utf8"));
   samples.byId = Object.fromEntries(samples.sections.map((s) => [s.id, s]));
   eleventyConfig.addGlobalData("samples", samples);
   // A Nunjucks global, not global data: Eleventy would call a function-valued global datum to compute its value.
   eleventyConfig.addNunjucksGlobal("unknownSection", (type) => { throw new Error(`Unknown section type "${type}" (R-SEC-12): add it to engine/catalog/sections and the dispatcher`); });
 
-  // Resolve section ids, alternate surfaces (R-SEC-06) and mark reveal eligibility (R-SEC-10). Done in JS because
-  // Nunjucks cannot carry state across loop iterations.
-  const MEDIA = new Set(["hero", "cta-band", "page-header", "article-meta", "pagination", "filter-bar", "was-this-helpful"]);
-  const STATIC = new Set(["search-box", "search-results", "person-bio", "download-detail", "event-detail", "job-detail", "prose", "confirmation", "error-state"]);
-  eleventyConfig.addFilter("sectionsPlan", (sections, locale, pageUrl, density, demote = false) => {
-    let surface = "bg-surface";
-    return (sections || []).map((item, i) => {
-      const s = typeof item === "string" ? samples.byId[item] : item;
-      if (!s) throw new Error(`Unknown sample section id "${item}"`);
-      const reveal = i > 0 && !MEDIA.has(s.type) && !STATIC.has(s.type);
-      const step = { s, ctx: { locale, pageUrl, density: density || "comfortable", surface, reveal, index: i, demote: !!demote } };
-      if (MEDIA.has(s.type)) surface = "bg-surface";
-      else if (!s.surface) surface = surface === "bg-surface" ? "bg-surface-alt" : "bg-surface";
-      return step;
-    });
-  });
+  // Section ids → render steps with alternating surfaces, reveal flags and the page context (see lib/sections.js).
+  eleventyConfig.addFilter("sectionsPlan", (sections, locale, pageUrl, density, demote = false, breadcrumbs = []) =>
+    planSections(samples, sections, { locale, pageUrl, density, demote, breadcrumbs }));
 
   eleventyConfig.addGlobalData("eleventyComputed", {
     locale: (data) => data.page.lang || site.defaultLocale,

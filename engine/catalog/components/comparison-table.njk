@@ -19,9 +19,9 @@
 <caption class="sr-only">{{ c.caption }}</caption>
 <thead class="bg-surface-alt">
 <tr>
-<th scope="col" class="px-4 py-3 text-start font-semibold">{{ c.firstColumn or "Feature" }}</th>
+<th scope="col" class="px-4 py-3 text-start font-semibold">{{ c.firstColumn or ("ui.feature" | t) }}</th>
 {%- for col in c.columns %}
-<th scope="col" class="px-4 py-3 text-start font-semibold {{ 'text-ink-brand' if col.recommended }}">{{ col.name }}{% if col.recommended %} <span class="block text-xs font-medium">Recommended</span>{% endif %}</th>
+<th scope="col" class="px-4 py-3 text-start font-semibold {{ 'text-ink-brand' if col.recommended }}">{{ col.name }}{% if col.recommended %} <span class="block text-xs font-medium">{{ "ui.recommended" | t }}</span>{% endif %}</th>
 {%- endfor %}
 </tr>
 </thead>

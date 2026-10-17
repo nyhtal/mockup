@@ -22,8 +22,8 @@
 {%- if s.aside and (s.aside.address or s.aside.email or s.aside.phone) %}
 <address class="mt-6 space-y-2 text-base not-italic leading-relaxed">
 {%- if s.aside.address %}<p>{{ s.aside.address }}</p>{% endif %}
-{%- if s.aside.email %}<p><a href="mailto:{{ s.aside.email }}" class="underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.aside.email }}</a></p>{% endif %}
-{%- if s.aside.phone %}<p><a href="tel:{{ s.aside.phone | replace(' ', '') }}" class="underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.aside.phone }}</a></p>{% endif %}
+{%- if s.aside.email %}<p><a href="mailto:{{ s.aside.email }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.aside.email }}</a></p>{% endif %}
+{%- if s.aside.phone %}<p><a href="tel:{{ s.aside.phone | replace(' ', '') }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.aside.phone }}</a></p>{% endif %}
 </address>
 {%- endif %}
 </div>
