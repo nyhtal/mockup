@@ -16,6 +16,13 @@ export function vnuPath() {
   return existsSync(p) ? p : null;
 }
 
+/** The bundled Java runtime plus the module flag the launcher uses; lets callers skip the shell. */
+export function vnuCommand() {
+  if (!vnuPath()) return null;
+  const java = path.join(DIR, "vnu-runtime-image", "bin", process.platform === "win32" ? "java.exe" : "java");
+  return { command: java, args: ["-m", "vnu/nu.validator.client.SimpleCommandLineValidator"] };
+}
+
 export async function setup() {
   if (vnuPath()) return vnuPath();
   mkdirSync(DIR, { recursive: true });

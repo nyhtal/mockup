@@ -1,20 +1,19 @@
 import { spawnSync } from "node:child_process";
 import path from "node:path";
-import { vnuPath } from "../setup-vnu.js";
+import { vnuCommand } from "../setup-vnu.js";
 import { pagesFor } from "../lib/html.js";
 
 export const id = "html";
 
 /** Nu HTML Checker: zero errors and zero warnings on every page. */
 export async function run(ctx) {
-  const vnu = vnuPath();
+  const vnu = vnuCommand();
   if (!vnu) {
     return { id, ok: false, findings: [{ file: "-", message: "Nu checker not installed; run npm run setup", check: "html/installed" }] };
   }
   const files = pagesFor(ctx).map((f) => path.resolve(f));
-  const r = spawnSync(vnu, ["--format", "json", "--stdout", "--exit-zero-always", ...files], {
+  const r = spawnSync(vnu.command, [...vnu.args, "--format", "json", "--stdout", "--exit-zero-always", ...files], {
     encoding: "utf8",
-    shell: process.platform === "win32",
     maxBuffer: 64 * 1024 * 1024,
   });
   if (r.error) throw r.error;

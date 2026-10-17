@@ -2,6 +2,27 @@ import { I18nPlugin } from "@11ty/eleventy";
 import { readFileSync } from "node:fs";
 import { loadSite } from "./engine/tools/lib/site.js";
 
+/** One JSON-LD @graph per page: shared #organization and #website nodes plus the page node. */
+export function schemaJson(site, data) {
+  const org = `${site.url}/#organization`;
+  const web = `${site.url}/#website`;
+  const lang = data.page.lang || site.defaultLocale;
+  const graph = [
+    { "@type": "Organization", "@id": org, name: site.name, url: `${site.url}/` },
+    { "@type": "WebSite", "@id": web, url: `${site.url}/`, name: site.name, publisher: { "@id": org }, inLanguage: lang },
+    {
+      "@type": data.pageType === "home" ? "WebPage" : "WebPage",
+      "@id": site.url + data.page.url,
+      url: site.url + data.page.url,
+      name: data.title,
+      description: data.description,
+      isPartOf: { "@id": web },
+      inLanguage: lang,
+    },
+  ];
+  return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replaceAll("<", "\\u003c");
+}
+
 export default function (eleventyConfig) {
   const siteName = process.env.SITE || "reference";
   const { site, siteDir } = loadSite(siteName);
@@ -14,6 +35,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("eleventyComputed", {
     locale: (data) => data.page.lang || site.defaultLocale,
     dir: (data) => ((site.rtl || []).includes(data.page.lang) ? "rtl" : "ltr"),
+    canonical: (data) => site.url + data.page.url,
+    schemaJson: (data) => schemaJson(site, data),
   });
   eleventyConfig.addFilter("t", function (key) {
     const lang = this.page?.lang || site.defaultLocale;

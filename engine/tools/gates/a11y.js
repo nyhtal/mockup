@@ -16,10 +16,14 @@ export async function run(ctx) {
       includeWarnings: true,
       chromeLaunchConfig: { executablePath, args: ["--headless=new", "--no-sandbox"] },
     });
-    report.push({ url, issues: result.issues.length });
+    const review = [];
     for (const issue of result.issues) {
-      findings.push({ file: url, message: `${issue.message} (${issue.selector})`, check: `a11y/${issue.code}` });
+      const entry = { file: url, message: `${issue.message} (${issue.selector})`, check: `a11y/${issue.code}` };
+      // axe "incomplete" results (e.g. contrast on oklch() colours it cannot parse) need a human, not a red gate.
+      if (issue.type === "warning" || issue.runnerExtras?.needsFurtherReview) review.push(entry);
+      else findings.push(entry);
     }
+    report.push({ url, issues: result.issues.length - review.length, review });
   }
   return { id, ok: findings.length === 0, findings, report };
 }
