@@ -1,5 +1,8 @@
 {
   "home": { "required": ["Organization", "WebSite", "WebPage"] },
+  "error": { "required": ["Organization", "WebSite", "WebPage"] },
+  "style-guide": { "required": ["Organization", "WebSite", "WebPage"] },
+  "redirect": { "required": ["WebSite"] },
   "generic": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
   "about": { "required": ["Organization", "WebSite", "AboutPage", "BreadcrumbList"] },
   "team": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList", "Person"] },

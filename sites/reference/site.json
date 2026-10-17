@@ -5,6 +5,7 @@
   "defaultLocale": "en",
   "locales": ["en"],
   "rtl": ["ar"],
+  "errorLinks": [],
   "brand": {
     "hue": 250,
     "accentHue": 160,

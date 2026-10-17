@@ -1,0 +1,5 @@
+---
+permalink: /og-manifest.json
+eleventyExcludeFromCollections: true
+---
+[{% for p in collections.all | htmlPages %}{% if not loop.first %},{% endif %}{"slug":{{ p.url | ogSlug | dump | safe }},"title":{{ (p.data.title if p.data.pageType != "home" else site.tagline) | dump | safe }},"site":{{ site.name | dump | safe }}}{% endfor %}]

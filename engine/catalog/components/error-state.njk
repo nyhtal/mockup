@@ -1,0 +1,25 @@
+{#
+  name: error-state
+  purpose: Body of the 404, 500, maintenance and coming-soon pages (R-PAGE-07, R-CONT-15).
+  anatomy: section[data-component=error-state] > eyebrow(code) + h1 + lede + ul(links)
+  variants: none (the code and copy change, the shape does not)
+  states: none
+  spacing: section py-16 md:py-24; links mt-8 flex gap-3
+  motion: none (error pages render in their final state)
+  keyboard: links only
+  a11y: h1 is the page title; the status code is visible text, not an image
+  i18n: title and text come from i18n error.* keys; link labels from nav.* keys
+  content limits: code ≤ 3 chars, title ≤ 60 chars, text ≤ 35 words, links 1–4 (home first)
+#}
+{% macro errorState(e) %}
+<section class="py-16 md:py-24" data-component="error-state">
+<p class="text-sm font-medium uppercase tracking-wide text-brand-700">{{ e.code }}</p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ e.title }}</h1>
+<p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">{{ e.text }}</p>
+<ul class="mt-8 flex flex-wrap gap-3">
+{%- for link in e.links %}
+<li><a href="{{ link.href }}" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 {{ 'bg-brand-600 text-ink-inverse hover:bg-brand-700' if loop.first else 'border border-line-strong text-ink hover:bg-surface-alt' }}">{{ link.label }}</a></li>
+{%- endfor %}
+</ul>
+</section>
+{% endmacro %}

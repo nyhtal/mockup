@@ -1,16 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light-dark scroll-pt-20">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ title }} · {{ site.name }}</title>
-<meta name="description" content="{{ description }}">
-<link rel="canonical" href="{{ canonical }}">
-<meta name="theme-color" content="{{ themeColors.light }}" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="{{ themeColors.dark }}" media="(prefers-color-scheme: dark)">
-{% if fontPreload %}<link rel="preload" href="{{ fontPreload }}" as="font" type="font/woff2" crossorigin>
-{% endif %}<link rel="stylesheet" href="/assets/app.css">
-<script type="application/ld+json">{{ schemaJson | safe }}</script>
+{% include "templates/_head.njk" %}
 </head>
 <body class="bg-surface font-sans text-ink antialiased" data-page="{{ pageType or 'generic' }}">
 <a href="#main" class="sr-only focus:not-sr-only focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "nav.skip" | t }}</a>

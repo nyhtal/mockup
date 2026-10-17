@@ -1,4 +1,27 @@
 {
-  "nav": { "skip": "Skip to content", "home": "Home" },
+  "nav": {
+    "skip": "Skip to content",
+    "home": "Home",
+    "primary": "Main navigation",
+    "footer": "Footer navigation",
+    "breadcrumbs": "Breadcrumbs",
+    "contact": "Contact"
+  },
+  "error": {
+    "notFound": { "title": "We can't find that page", "text": "The link may be out of date, or the page may have moved. Try one of these instead." },
+    "server": { "title": "Something went wrong on our side", "text": "We've been notified and are looking into it. Please try again in a few minutes." }
+  },
+  "ui": {
+    "required": "(required)",
+    "opensNewTab": "(opens in a new tab)",
+    "close": "Close",
+    "menu": "Menu",
+    "search": "Search",
+    "backToTop": "Back to top",
+    "fixFollowing": "Fix the following",
+    "sending": "Sending…",
+    "privacyNote": "We use your details only to answer you. See our privacy policy.",
+    "language": "Language"
+  },
   "footer": { "rights": "All rights reserved." }
 }

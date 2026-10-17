@@ -1,0 +1,9 @@
+---
+eleventyExcludeFromCollections: true
+pagination:
+  data: engineFiles
+  size: 1
+  alias: f
+permalink: "{{ f.path }}"
+---
+{{ f.content | safe }}

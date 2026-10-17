@@ -1,0 +1,26 @@
+---
+permalink: /index.html
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="{{ site.defaultLocale }}" class="scheme-light-dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ site.name }}</title>
+<meta name="description" content="{{ site.tagline }}">
+<meta http-equiv="refresh" content="0; url=/{{ site.defaultLocale }}/">
+<link rel="canonical" href="{{ site.url }}/{{ site.defaultLocale }}/">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/app.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"{{ site.url }}/#website","url":"{{ site.url }}/","name":"{{ site.name }}"}]}</script>
+</head>
+<body class="bg-surface font-sans text-ink antialiased" data-page="redirect">
+<main id="main" class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+<h1 class="text-2xl font-semibold">{{ site.name }}</h1>
+<p class="mt-4"><a href="/{{ site.defaultLocale }}/" class="text-brand-700 underline underline-offset-4">{{ site.name }} ({{ site.defaultLocale }})</a></p>
+</main>
+</body>
+</html>
