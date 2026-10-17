@@ -4,7 +4,10 @@
   "type": "module",
   "config": {
     "vnu": {
-      "win32": { "version": "26.10.12", "sha256": "dbb4ee213299a1bc73d95e1aeec143b67d4fca70f4bbec137beab10bd116ef54" }
+      "win32": {
+        "version": "26.10.12",
+        "sha256": "dbb4ee213299a1bc73d95e1aeec143b67d4fca70f4bbec137beab10bd116ef54"
+      }
     }
   },
   "scripts": {
@@ -23,6 +26,7 @@
     "lighthouse": "^13.5.0",
     "linkinator": "^8.1.0",
     "lucide-static": "^1.59.0",
+    "markdown-it": "^14.1.0",
     "node-html-parser": "^9.0.4",
     "pa11y": "^10.0.0",
     "sharp": "^0.35.5",

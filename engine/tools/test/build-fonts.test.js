@@ -42,3 +42,10 @@ test("copyFonts copies exactly the planned files", () => {
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("preloadFor picks the script's own file per locale: Arabic pages preload the Arabic face, others the Latin one", () => {
+  const plan = fontPlan({ font: "inter" }, ["en", "ar"]);
+  assert.equal(plan.preloadFor("ar"), "/assets/fonts/noto-sans-arabic-arabic-wght-normal.woff2");
+  assert.equal(plan.preloadFor("en"), "/assets/fonts/inter-latin-wght-normal.woff2");
+  assert.equal(fontPlan({ font: "system" }, ["en"]).preloadFor("en"), null);
+});

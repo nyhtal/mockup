@@ -5,7 +5,9 @@ import { loadSite } from "./engine/tools/lib/site.js";
 import { themeColors } from "./engine/tools/lib/theme.js";
 import { fontPlan } from "./engine/tools/build-fonts.js";
 import { engineFiles } from "./engine/tools/lib/engine-files.js";
-import { planSections } from "./engine/tools/lib/sections.js";
+import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
+import { renderMarkdown, tocOf, wordCount } from "./engine/tools/lib/markdown.js";
+import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 
 const OG_LOCALES = { en: "en_GB", de: "de_DE", ar: "ar_SA", fr: "fr_FR", es: "es_ES", it: "it_IT", nl: "nl_NL", pt: "pt_PT", ja: "ja_JP", zh: "zh_CN" };
 
@@ -59,7 +61,9 @@ export function schemaJson(site, data) {
     isPartOf: { "@id": web },
     inLanguage: lang,
   };
-  const graph = [{ "@type": "Organization", "@id": org, name: site.name, url: `${site.url}/` }, website, pageNode];
+  const organization = { "@type": "Organization", "@id": org, name: site.name, url: `${site.url}/`, logo: { "@type": "ImageObject", url: `${site.url}/icon-192.png` } };
+  if (site.contact?.email || site.contact?.phone) organization.contactPoint = { "@type": "ContactPoint", contactType: "customer support", email: site.contact.email, telephone: site.contact.phone, availableLanguage: site.locales };
+  const graph = [organization, website, pageNode];
   if (data.breadcrumbs && data.breadcrumbs.length) {
     const id = `${canonical}#breadcrumb`;
     graph.push({ "@type": "BreadcrumbList", "@id": id, itemListElement: data.breadcrumbs.map((b, i) => ({ "@type": "ListItem", position: i + 1, name: b.name, item: absolute(site, b.url) })) });
@@ -68,8 +72,10 @@ export function schemaJson(site, data) {
   const entityType = ENTITY_TYPES[pageType];
   const list = data.entities || (data.entity ? [data.entity] : []);
   list.forEach((e, i) => {
-    const id = `${canonical}#entity${list.length > 1 ? `-${i + 1}` : ""}`;
-    graph.push({ "@type": e["@type"] || entityType || "Thing", "@id": id, ...absolutise(site, e) });
+    const { schemaNodes = [], ...node } = e;
+    const id = node["@id"] || `${canonical}#entity${list.length > 1 ? `-${i + 1}` : ""}`;
+    graph.push({ "@type": node["@type"] || entityType || "Thing", ...absolutise(site, node), "@id": id });
+    for (const extra of schemaNodes) graph.push(absolutise(site, extra));
     if (list.length === 1) pageNode.mainEntity = { "@id": id };
   });
   // Escape the three characters that could end the script element or start markup inside it.
@@ -111,19 +117,20 @@ export function formatCurrency(n, locale, code, site = {}) {
 
 export default function (eleventyConfig) {
   const siteName = process.env.SITE || "reference";
-  const { site, siteDir } = loadSite(siteName);
-  const strings = Object.fromEntries(
-    site.locales.map((l) => [l, JSON.parse(readFileSync(`engine/i18n/${l}.json`, "utf8"))])
-  );
+  const { site, siteDir, data: siteData, i18n: strings } = loadSite(siteName);
   const t = (locale, key) => key.split(".").reduce((o, k) => (o == null ? o : o[k]), strings[locale]);
   const virtual = (name) => readFileSync(path.join("engine", "catalog", "virtual", name), "utf8");
+  const fonts = fontPlan(site.brand || {}, site.locales);
+  const fmtFor = (locale) => ({ date: (iso) => formatDate(iso, locale, site) });
+  const entityCtx = (locale) => ({ locale, site, entities: siteData[locale]?.entities || {}, fmt: fmtFor(locale) });
+  const detailRecipes = (locale) => siteData[locale]?.pages?.detail || {};
 
   eleventyConfig.addPlugin(I18nPlugin, { defaultLanguage: site.defaultLocale, errorMode: "strict" });
   eleventyConfig.addGlobalData("site", site);
   eleventyConfig.addGlobalData("themeColors", themeColors(site.brand || {}));
-  eleventyConfig.addGlobalData("fontPreload", fontPlan(site.brand || {}, site.locales).preload);
   eleventyConfig.addGlobalData("engineFiles", engineFiles(site));
   eleventyConfig.addGlobalData("buildYear", String(new Date().getUTCFullYear()));
+  eleventyConfig.addGlobalData("siteData", siteData);
   const samples = JSON.parse(readFileSync(path.join("engine", "catalog", "samples.json"), "utf8"));
   samples.byId = Object.fromEntries(samples.sections.map((s) => [s.id, s]));
   eleventyConfig.addGlobalData("samples", samples);
@@ -131,14 +138,57 @@ export default function (eleventyConfig) {
   eleventyConfig.addNunjucksGlobal("unknownSection", (type) => { throw new Error(`Unknown section type "${type}" (R-SEC-12): add it to engine/catalog/sections and the dispatcher`); });
 
   // Section ids → render steps with alternating surfaces, reveal flags and the page context (see lib/sections.js).
-  eleventyConfig.addFilter("sectionsPlan", (sections, locale, pageUrl, density, demote = false, breadcrumbs = []) =>
-    planSections(samples, sections, { locale, pageUrl, density, demote, breadcrumbs }));
+  // Site sections (pages.json `sections`) and entities come from the page's locale; `e` is the page's entity when it has one.
+  eleventyConfig.addFilter("sectionsPlan", function (sections, locale, pageUrl, density, demote = false, breadcrumbs = []) {
+    const lang = locale || site.defaultLocale;
+    return planSections(samples, sections, {
+      locale: lang, pageUrl, density, demote, breadcrumbs,
+      siteSections: siteData[lang]?.pages?.sections || {}, entities: siteData[lang]?.entities || {}, entity: this.ctx?.e,
+      site, fmt: fmtFor(lang), md: renderMarkdown, toc: tocOf,
+    });
+  });
 
   eleventyConfig.addGlobalData("eleventyComputed", {
     locale: (data) => data.page.lang || site.defaultLocale,
     dir: (data) => ((site.rtl || []).includes(data.page.lang) ? "rtl" : "ltr"),
     canonical: (data) => site.url + data.page.url,
     ogImage: (data) => `/assets/og/${ogSlug(data.page.url)}.png`,
+    // Only the page's own script is preloaded (R-I18N-11).
+    fontPreload: (data) => fonts.preloadFor(data.page.lang || site.defaultLocale),
+    feedUrl: (data) => {
+      const lang = data.page.lang || site.defaultLocale;
+      return ["blog", "post", "archive", "author"].includes(data.pageType) && (siteData[lang]?.entities?.posts || []).length ? `/${lang}/feed.xml` : undefined;
+    },
+    // Entity pages: title and meta come from the entity unless the recipe says otherwise; "{e.x}" placeholders are filled.
+    title: (data) => fillPlaceholders(data.title, data.e) || data.e?.title || data.e?.name || data.e?.city,
+    description: (data) => fillPlaceholders(data.description, data.e) || data.e?.description,
+    eyebrow: (data) => fillPlaceholders(data.eyebrow, data.e) || data.e?.eyebrow,
+    lede: (data) => fillPlaceholders(data.lede, data.e) || data.e?.lede,
+    ogType: (data) => data.ogType || (["post", "press-release", "case-study", "doc"].includes(data.pageType) ? "article" : undefined),
+    published: (data) => data.published || data.e?.date,
+    readingTime: (data) => {
+      if (data.readingTime || !data.e?.body || data.layout !== "article.njk") return data.readingTime;
+      const lang = data.page.lang || site.defaultLocale;
+      return (t(lang, "ui.readingTime") || "{n}").replace("{n}", String(Math.max(1, Math.round(wordCount(data.e.body) / 200))));
+    },
+    author: (data) => {
+      if (data.author || !data.e?.author) return data.author;
+      const lang = data.page.lang || site.defaultLocale;
+      const person = (siteData[lang]?.entities?.people || []).find((p) => p.slug === data.e.author);
+      if (!person) throw new Error(`${data.page.url}: author "${data.e.author}" is not in data/${lang}/entities.json people`);
+      return { name: person.name, role: person.role, bio: person.bio ? renderMarkdown(person.bio) : undefined, href: detailRecipes(lang).author ? entityUrl("authors", person.slug, lang) : undefined };
+    },
+    tags: (data) => {
+      if (data.tags || !data.e?.tags) return data.tags;
+      const lang = data.page.lang || site.defaultLocale;
+      const all = siteData[lang]?.entities?.tags || [];
+      return data.e.tags.map((slug) => {
+        const tag = all.find((x) => x.slug === slug);
+        if (!tag) throw new Error(`${data.page.url}: tag "${slug}" is not in data/${lang}/entities.json tags`);
+        return { label: tag.label, href: detailRecipes(lang).archive ? entityUrl("tags", slug, lang) : undefined };
+      });
+    },
+    toc: (data) => (data.toc === true && data.e?.body ? tocOf(data.e.body) : data.toc === true ? undefined : data.toc),
     // Breadcrumbs from the URL; names come from sibling pages' titles when they exist (R-SEO-11, R-SCH-12).
     breadcrumbs: (data) => {
       if (data.breadcrumbs) return data.breadcrumbs;
@@ -147,6 +197,18 @@ export default function (eleventyConfig) {
       const all = data.collections?.all || [];
       const lookup = (url) => all.find((p) => p.url === url)?.data?.title;
       return breadcrumbTrail(data.page.url, lang, lookup, t(lang, "nav.home") || "Home");
+    },
+    // Schema entities: the page's entity (recipe pages) or the list the page type implies (team, locations, …).
+    entity: (data) => {
+      if (data.entity || !data.e || !data.entityKind) return data.entity;
+      return entityNode(data.entityKind, data.e, entityCtx(data.page.lang || site.defaultLocale));
+    },
+    entities: (data) => {
+      if (data.entities || data.e) return data.entities;
+      const lang = data.page.lang || site.defaultLocale;
+      const pricing = (data.sections || []).map((s) => (typeof s === "string" ? siteData[lang]?.pages?.sections?.[s] || samples.byId[s] : s)).find((s) => s?.type === "pricing");
+      const tiers = pricing?.tiers?.map((x) => ({ name: x.name, price: x.amount ?? null, currency: x.currency }));
+      return pageEntities(data.pageType, { url: data.page.url, title: data.title, description: data.description, tiers }, entityCtx(lang));
     },
     schemaJson: (data) => schemaJson(site, data),
   });
@@ -157,6 +219,7 @@ export default function (eleventyConfig) {
     if (value == null) throw new Error(`Missing i18n key "${key}" for locale "${lang}"`);
     return value;
   });
+  eleventyConfig.addFilter("md", renderMarkdown);
   eleventyConfig.addFilter("ogLocale", (lang) => OG_LOCALES[lang] || `${lang}_${lang.toUpperCase()}`);
   // Native language names for switchers (R-I18N-08): never flags, never translated.
   eleventyConfig.addFilter("nativeName", (lang) => {
@@ -173,14 +236,36 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("sitemapPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType && !p.data.noindex));
   // Every locale version of a page including itself, in site.locales order (R-I18N-04).
   // Render-time only: the plugin's locale map is built after computed data runs.
-  eleventyConfig.addFilter("allAlternates", function (url) {
+  const allAlternates = (url) => {
     const lang = (url || "").split("/")[1];
     if (!site.locales.includes(lang)) return [];
     const others = eleventyConfig.getFilter("locale_links").call({ page: { url, lang } }, url) || [];
     const all = [{ lang, url }, ...others.map((o) => ({ lang: o.lang, url: o.url }))];
     return site.locales.map((l) => all.find((a) => a.lang === l)).filter(Boolean);
+  };
+  eleventyConfig.addFilter("allAlternates", allAlternates);
+  // x-default is the default-locale version when it exists; a locale-only page (R-I18N-13) is its own x-default.
+  eleventyConfig.addFilter("xDefaultUrl", (url) => allAlternates(url).find((a) => a.lang === site.defaultLocale)?.url || url);
+  // HTML site map groups: one per top-level section with two or more pages, titled by its index page; single pages join the home group.
+  eleventyConfig.addFilter("sitemapGroups", (all, locale) => {
+    const pages = all.filter((p) => p.url && p.url.startsWith(`/${locale}/`) && p.url.endsWith("/") && p.data.pageType && !p.data.noindex);
+    const bySeg = new Map();
+    for (const p of pages) {
+      const seg = p.url.slice(locale.length + 2).split("/")[0] || "";
+      if (!bySeg.has(seg)) bySeg.set(seg, []);
+      bySeg.get(seg).push({ label: p.data.title, href: p.url, depth: p.url.split("/").length });
+    }
+    const home = [];
+    const groups = [];
+    for (const [seg, links] of bySeg) {
+      links.sort((a, b) => a.depth - b.depth || a.href.localeCompare(b.href));
+      const index = pages.find((p) => p.url === `/${locale}/${seg}/`);
+      if (seg === "" || links.length < 2) home.push(...links);
+      else groups.push({ title: t(locale, `sitemap.${seg}`) || index?.data.title || seg.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase()), links: links.map(({ label, href }) => ({ label, href })) });
+    }
+    home.sort((a, b) => a.depth - b.depth || a.href.localeCompare(b.href));
+    return [{ title: t(locale, "nav.home") || "Home", links: home.map(({ label, href }) => ({ label, href })) }, ...groups];
   });
-  eleventyConfig.addFilter("xDefaultUrl", (url) => url.replace(/^\/[^/]+\//, `/${site.defaultLocale}/`));
 
   eleventyConfig.addPassthroughCopy({ "engine/scripts/enhance.js": "assets/enhance.js" });
 
@@ -209,6 +294,40 @@ export default function (eleventyConfig) {
       const data = { errorCode: code, title: s.title, description: s.text, lang: locale, links };
       eleventyConfig.addTemplate(`${locale}/_engine/${code}.njk`, virtual("error.njk"), { ...data, permalink: `/${locale}/${code}/index.html` });
       if (locale === site.defaultLocale) eleventyConfig.addTemplate(`${locale}/_engine/${code}-root.njk`, virtual("error.njk"), { ...data, permalink: `/${code}.html` });
+    }
+  }
+
+  // Data-driven pages per locale from sites/<name>/data/<locale>/{entities,pages}.json.
+  const matches = (item, where) => Object.entries(where).every(([k, v]) => (Array.isArray(item[k]) ? item[k].includes(v) : item[k] === v));
+  for (const locale of site.locales) {
+    const { entities = {}, pages = {} } = siteData[locale] || {};
+    // Detail pages: one per entity of the recipe's kind (bylaw 09 detail rows; R-SEC-12 data only).
+    for (const [pageType, r] of Object.entries(pages.detail || {})) {
+      const kind = r.kind || r.each;
+      const items = (entities[r.each] || []).filter((e) => !r.where || matches(e, r.where));
+      if (!items.length) continue;
+      eleventyConfig.addTemplate(`${locale}/_engine/detail-${pageType}.njk`, virtual("entity.njk"), {
+        lang: locale, pageType, entityKind: kind, layout: r.layout === "article" ? "article.njk" : "page.njk",
+        items, pagination: { data: "items", size: 1, alias: "e" },
+        permalink: `/${locale}/${ENTITY_INDEX[kind]}/{{ e.slug }}/index.html`,
+        title: r.title, description: r.description, eyebrow: r.eyebrow, lede: r.lede, sections: r.sections || [],
+        toc: r.toc, noindex: r.noindex, conversion: r.conversion,
+      });
+    }
+    // Thank-you pages, one per form (R-PAGE-10): keyed by the form page's path.
+    for (const [form, ty] of Object.entries(pages.thankYou || {})) {
+      eleventyConfig.addTemplate(`${locale}/_engine/thank-you-${form.replace(/\//g, "-")}.njk`, virtual("thank-you.njk"), {
+        lang: locale, title: ty.title, description: ty.description, permalink: `/${locale}/${form}/thank-you/index.html`,
+        sections: [{ type: "page-header", eyebrow: ty.eyebrow, title: ty.title, lede: ty.lede }, { type: "confirmation", title: ty.heading, text: ty.text, next: ty.next, cta: ty.cta }],
+      });
+    }
+    if (pages.sitemap) {
+      eleventyConfig.addTemplate(`${locale}/_engine/sitemap-page.njk`, virtual("sitemap-page.njk"), { lang: locale, ...pages.sitemap, permalink: `/${locale}/sitemap/index.html` });
+    }
+    // Atom feed of the blog (R-SEO-08).
+    const posts = [...(entities.posts || [])].sort((a, b) => (a.date < b.date ? 1 : -1)).map((p) => ({ ...p, authorName: (entities.people || []).find((x) => x.slug === p.author)?.name }));
+    if (posts.length) {
+      eleventyConfig.addTemplate(`${locale}/_engine/feed.njk`, virtual("feed.njk"), { lang: locale, posts, feedTitle: pages.feedTitle || site.tagline || site.name, permalink: `/${locale}/feed.xml` });
     }
   }
 

@@ -1,0 +1,24 @@
+---
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="{{ lang }}">
+<title>{{ site.name }}</title>
+<subtitle>{{ feedTitle }}</subtitle>
+<link href="{{ site.url }}{{ page.url }}" rel="self"/>
+<link href="{{ site.url }}/{{ lang }}/blog/"/>
+<id>{{ site.url }}/{{ lang }}/blog/</id>
+<updated>{{ posts[0].date }}T00:00:00Z</updated>
+{%- for p in posts %}
+<entry>
+<title>{{ p.title }}</title>
+<link href="{{ site.url }}/{{ lang }}/blog/{{ p.slug }}/"/>
+<id>{{ site.url }}/{{ lang }}/blog/{{ p.slug }}/</id>
+<published>{{ p.date }}T00:00:00Z</published>
+<updated>{{ p.modified or p.date }}T00:00:00Z</updated>
+{%- if p.authorName %}<author><name>{{ p.authorName }}</name></author>{% endif %}
+<summary>{{ p.excerpt }}</summary>
+<content type="html">{{ p.body | md }}</content>
+</entry>
+{%- endfor %}
+</feed>

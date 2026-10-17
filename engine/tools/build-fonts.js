@@ -34,7 +34,7 @@ function facesFrom(pkg, subsets) {
  */
 export function fontPlan(brand, locales) {
   const main = resolveFont(brand.font);
-  if (!main) return { faces: [], preload: null, css: "" };
+  if (!main) return { faces: [], preload: null, preloadFor: () => null, css: "" };
   const faces = facesFrom(main.pkg, ["latin", "latin-ext"]);
   for (const [re, subset, pkg] of SCRIPT_SUBSETS) {
     if (!locales.some((l) => re.test(l))) continue;
@@ -49,7 +49,14 @@ export function fontPlan(brand, locales) {
     return `@font-face {\n  font-family: "${family.replace(" Variable", "")} Fallback";\n  src: local("${fallback}");\n  size-adjust: ${m.sizeAdjust};\n  ascent-override: ${m.ascent};\n  descent-override: ${m.descent};\n  line-gap-override: ${m.lineGap};\n}`;
   });
   const latin = faces.find((f) => f.pkg === main.pkg && f.subset === "latin");
-  return { faces, preload: latin ? `/assets/fonts/${latin.file}` : null, css: [...faceCss, ...fallbackCss].join("\n") + "\n" };
+  const fileOf = (f) => (f ? `/assets/fonts/${f.file}` : null);
+  // The one file a page preloads: its own script's face (R-I18N-11), Latin elsewhere.
+  const preloadFor = (locale) => {
+    const script = SCRIPT_SUBSETS.find(([re]) => re.test(locale || ""));
+    const face = script && faces.find((f) => f.subset === script[1]);
+    return fileOf(face || latin);
+  };
+  return { faces, preload: fileOf(latin), preloadFor, css: [...faceCss, ...fallbackCss].join("\n") + "\n" };
 }
 
 export function copyFonts(plan, distDir) {

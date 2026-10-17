@@ -7,7 +7,7 @@ layout: base.njk
 {%- set ctx = { locale: locale, pageUrl: page.url, density: site.brand.density or "comfortable", surface: "bg-surface", reveal: false, index: 0, demote: false } -%}
 {{ section({ type: "page-header", eyebrow: eyebrow, title: title, lede: lede, breadcrumbs: breadcrumbs }, ctx) }}
 {%- if author %}
-{{ section({ type: "article-meta", author: author, date: (date | formatDate), dateIso: (date | isoDate), readingTime: readingTime, tags: tags, share: { url: canonical, title: title } }, ctx) }}
+{{ section({ type: "article-meta", author: author, date: (published | formatDate), dateIso: (published | isoDate), readingTime: readingTime, tags: tags, share: { url: canonical, title: title } }, ctx) }}
 {%- endif %}
 {{ section({ type: "prose", html: content, toc: toc }, ctx) }}
 {%- if author and author.bio %}

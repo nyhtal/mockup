@@ -1,0 +1,4 @@
+{#- Detail page for one entity (service, product, person, job, post, …), generated per locale from a pages.json
+    `detail` recipe. Article layouts render the entity's markdown body as the article; page layouts compose
+    sections from the recipe, where `{ type: "prose", md: "e.body" }` places the body (R-SEC-12). -#}
+{%- if layout == "article.njk" and e.body %}{{ e.body | md | safe }}{% endif %}

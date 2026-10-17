@@ -69,3 +69,16 @@ test("formatting filters follow the locale with Latin digits by default", () => 
   // ICU separates the amount and symbol with a narrow no-break space; compare on plain spaces.
   assert.equal(formatCurrency(1900, "de", "EUR").replace(/[  ]/g, " "), "1.900,00 €");
 });
+
+test("an entity keeps an explicit @id and its schemaNodes join the graph as top-level nodes; the organization carries a logo and, with site contact, a contactPoint", () => {
+  const data = { page: page("/en/blog/one/"), title: "One", description: "d", pageType: "post", breadcrumbs: [{ name: "Home", url: "/en/" }], entity: { "@type": "BlogPosting", "@id": "https://example.com/en/blog/one/#post", headline: "One", author: { "@id": "https://example.com/en/about/team/p/#person" }, schemaNodes: [{ "@type": "Person", "@id": "https://example.com/en/about/team/p/#person", name: "P", url: "/en/about/team/p/" }] } };
+  const g = graphOf(schemaJson({ ...site, contact: { email: "hello@example.com", phone: "+44 1" } }, data));
+  assert.deepEqual(types(g), ["Organization", "WebSite", "WebPage", "BreadcrumbList", "BlogPosting", "Person"]);
+  const post = g.find((n) => n["@type"] === "BlogPosting");
+  assert.equal(post["@id"], "https://example.com/en/blog/one/#post");
+  assert.equal(post.schemaNodes, undefined);
+  assert.deepEqual(g[2].mainEntity, { "@id": post["@id"] });
+  assert.equal(g.find((n) => n["@type"] === "Person").url, "https://example.com/en/about/team/p/");
+  assert.equal(g[0].logo.url, "https://example.com/icon-192.png");
+  assert.equal(g[0].contactPoint.email, "hello@example.com");
+});

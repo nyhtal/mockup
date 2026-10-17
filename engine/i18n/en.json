@@ -92,7 +92,9 @@
     "posted": "Posted",
     "articleDetails": "Article details",
     "filters": "Filters",
-    "stepOf": "Step {n} of {max}"
+    "stepOf": "Step {n} of {max}",
+    "readingTime": "{n} min read",
+    "tags": "Tags"
   },
   "footer": {
     "rights": "All rights reserved.",
