@@ -1,0 +1,16 @@
+{
+  "name": "Northwind Dynamics",
+  "tagline": "Industrial automation, simplified",
+  "url": "https://example.com",
+  "defaultLocale": "en",
+  "locales": ["en"],
+  "rtl": ["ar"],
+  "brand": {
+    "hue": 250,
+    "accentHue": 160,
+    "radius": "soft",
+    "density": "comfortable",
+    "motion": "standard",
+    "font": "inter"
+  }
+}

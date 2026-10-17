@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ dir }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }} · {{ site.name }}</title>
+<meta name="description" content="{{ description }}">
+<link rel="stylesheet" href="/assets/app.css">
+</head>
+<body class="bg-white text-gray-900 antialiased" data-page="{{ pageType or 'generic' }}">
+<a href="#main" class="sr-only focus:not-sr-only">{{ "nav.skip" | t }}</a>
+<main id="main" class="mx-auto max-w-7xl px-4">
+{{ content | safe }}
+</main>
+<script type="module" src="/assets/enhance.js"></script>
+</body>
+</html>

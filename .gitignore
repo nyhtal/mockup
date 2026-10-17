@@ -4,3 +4,5 @@ dist/
 reports/*
 !reports/latest.md
 engine/tools/vnu/
+engine/theme/.tmp/
+.superpowers/
