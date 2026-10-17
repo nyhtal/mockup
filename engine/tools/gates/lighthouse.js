@@ -3,6 +3,7 @@ import lighthouse from "lighthouse";
 import desktopConfig from "lighthouse/core/config/desktop-config.js";
 import * as chromeLauncher from "chrome-launcher";
 import { chromePath, pages } from "../lib/browser.js";
+import { lighthousePages } from "../lib/sampling.js";
 
 export const id = "lighthouse";
 export const CATEGORIES = ["performance", "accessibility", "best-practices", "seo"];
@@ -29,9 +30,11 @@ export async function run(ctx) {
   const profiles = ctx.profiles || ["mobile", "desktop"];
   const findings = [];
   const report = [];
+  // Every default-locale page; one page per page type in every other locale (R-GATE-10).
+  const { sampled, coverage } = lighthousePages(pages(ctx), ctx.site || { defaultLocale: "", locales: [] });
   const chrome = await chromeLauncher.launch({ chromePath: chromePath() || undefined, chromeFlags: ["--headless=new", "--no-first-run"] });
   try {
-    for (const { file, url } of pages(ctx)) {
+    for (const { file, url } of sampled) {
       const noindex = isNoindex(file);
       const categories = noindex ? CATEGORIES.filter((c) => c !== "seo") : CATEGORIES;
       for (const profile of profiles) {
@@ -53,5 +56,5 @@ export async function run(ctx) {
   } finally {
     await chrome.kill();
   }
-  return { id, ok: findings.length === 0, findings, report };
+  return { id, ok: findings.length === 0, findings, report, coverage };
 }

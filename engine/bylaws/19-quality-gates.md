@@ -48,7 +48,7 @@ Why: Automated floor plus a human ceiling.
 Gate: a11y/heading-order
 
 ### R-GATE-10 Lighthouse
-MUST. `lighthouse`: Lighthouse 13 via Node API, local Chrome stable headless, mobile (default simulated throttling) and desktop (bundled desktop config), median of 5 runs per page and profile, 100 in performance, accessibility, best practices and SEO; on pages in the noindex set (R-PAGE-12) the SEO category is skipped and reported as "n/a (noindex)"; Chrome version, throttling profile and run count are recorded in the report.
+MUST. `lighthouse`: Lighthouse 13 via Node API, local Chrome stable headless, mobile (default simulated throttling) and desktop (bundled desktop config), median of 5 runs per page and profile, 100 in performance, accessibility, best practices and SEO; on pages in the noindex set (R-PAGE-12) the SEO category is skipped and reported as "n/a (noindex)"; Chrome version, throttling profile and run count are recorded in the report. Pages measured: every page in the default locale and every root page; in every other locale the first page of each page type (`data-page`), so each locale's text expansion and script are exercised on every template once. The report lists, per locale and page type, which URL stood for it. Every other gate runs on every page.
 Why: The headline promise, measured the same way every time.
 Gate: lighthouse/mobile/performance
 

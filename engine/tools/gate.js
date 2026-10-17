@@ -35,9 +35,9 @@ export async function runGates({ site, skip = [], only = [], runs }) {
   const distDir = `dist/${site}`;
   if (!existsSync(distDir)) throw new Error(`${distDir} not found; run npm run build -- --site ${site}`);
   if (listHtml(distDir).length === 0) throw new Error(`${distDir} contains no pages; nothing to gate`);
-  const { site: siteConfig, siteDir } = loadSite(site);
+  const { site: siteConfig, siteDir, i18n } = loadSite(site);
   const server = await startServer(distDir);
-  const ctx = { distDir, siteDir, site: siteConfig, engineDir: "engine", baseUrl: server.url, gateChecks: GATE_CHECKS, runs };
+  const ctx = { distDir, siteDir, site: siteConfig, i18n, engineDir: "engine", baseUrl: server.url, gateChecks: GATE_CHECKS, runs };
   const results = [];
   try {
     for (const gate of GATES) {
@@ -70,6 +70,10 @@ export function formatReport({ site, results }) {
     const first = lh.report[0];
     lines.push("", "## Lighthouse", "", `Chrome ${first.chrome} · ${first.runs} runs per page and profile, median reported · mobile: ${lh.report.find((p) => p.profile === "mobile")?.throttling || "-"} · desktop: ${lh.report.find((p) => p.profile === "desktop")?.throttling || "-"}`, "", "| Page | Profile | Perf | A11y | BP | SEO |", "|---|---|---|---|---|---|");
     for (const p of lh.report) lines.push(`| ${p.url.replace(/^https?:\/\/[^/]+/, "")} | ${p.profile} | ${p.scores.performance} | ${p.scores.accessibility} | ${p.scores["best-practices"]} | ${p.scores.seo} |`);
+    if (lh.coverage?.length) {
+      lines.push("", "## Lighthouse coverage", "", "Every page in the default locale; in every other locale the first page of each page type (R-GATE-10).", "", "| Locale | Page type | Measured on |", "|---|---|---|");
+      for (const c of lh.coverage) lines.push(`| ${c.locale || "root"} | ${c.pageType} | ${c.url.replace(/^https?:\/\/[^/]+/, "")} |`);
+    }
   }
   const bud = results.find((r) => r.id === "budget" && r.report?.length);
   if (bud) {

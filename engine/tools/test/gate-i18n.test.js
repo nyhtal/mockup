@@ -67,3 +67,11 @@ test("an alternate pointing at a missing page is reported", async () => {
   const r = await run(ctx(["en/lonely/index.html"]));
   assert.deepEqual(checks(r).filter((c) => c !== "i18n/keys"), ["i18n/hreflang-target"]);
 });
+
+test("when the context carries merged strings, the keys check compares those instead of the engine files", async () => {
+  const i18n = { en: { nav: { home: "Home", services: "Services" } }, de: { nav: { home: "Start", services: "Leistungen" } } };
+  const r = await run({ ...ctx(["en/index.html", "de/index.html"]), i18n });
+  assert.deepEqual(r.findings.filter((f) => f.check === "i18n/keys"), []);
+  const r2 = await run({ ...ctx(["en/index.html", "de/index.html"]), i18n: { en: i18n.en, de: { nav: { home: "Start" } } } });
+  assert.deepEqual(r2.findings.filter((f) => f.check === "i18n/keys").map((f) => f.message), ['key "nav.services" is missing in de']);
+});

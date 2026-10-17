@@ -48,3 +48,17 @@ test("the report records the benchmark conditions and per-page sizes", () => {
   assert.match(text, /runs: 5|5 runs/);
   assert.match(text, /\| \/en\/ \| 1234 B \| 5678 B \| - B \|/);
 });
+
+test("the report lists Lighthouse coverage per locale and page type", () => {
+  const out = {
+    site: "x",
+    results: [{
+      id: "lighthouse", ok: true, findings: [], ms: 9,
+      report: [{ url: "http://127.0.0.1:1/en/", profile: "mobile", runs: 5, throttling: "simulate (150ms RTT, 1.6Mbps, 4x CPU)", chrome: "142.0.0.0", scores: { performance: 100, accessibility: 100, "best-practices": 100, seo: 100 } }],
+      coverage: [{ locale: "en", pageType: "home", url: "http://127.0.0.1:1/en/" }, { locale: "de", pageType: "post", url: "http://127.0.0.1:1/de/blog/one/" }],
+    }],
+  };
+  const text = formatReport(out);
+  assert.match(text, /## Lighthouse coverage/);
+  assert.match(text, /\| de \| post \| \/de\/blog\/one\/ \|/);
+});

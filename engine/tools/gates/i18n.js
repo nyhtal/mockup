@@ -37,7 +37,8 @@ export async function run(ctx) {
   const i18nDir = ctx.i18nDir || path.join("engine", "i18n");
 
   // 1. Every locale has exactly the default locale's keys.
-  const keysOf = (l) => new Set(flattenKeys(JSON.parse(readFileSync(path.join(i18nDir, `${l}.json`), "utf8"))));
+  // Merged strings (engine + site overlay) when the runner supplies them; the engine files otherwise.
+  const keysOf = (l) => new Set(flattenKeys(ctx.i18n ? ctx.i18n[l] || {} : JSON.parse(readFileSync(path.join(i18nDir, `${l}.json`), "utf8"))));
   const base = keysOf(site.defaultLocale);
   for (const locale of site.locales) {
     if (locale === site.defaultLocale) continue;
