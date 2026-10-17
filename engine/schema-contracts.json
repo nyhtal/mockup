@@ -1,0 +1,4 @@
+{
+  "home": { "required": ["Organization", "WebSite", "WebPage"] },
+  "generic": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] }
+}
