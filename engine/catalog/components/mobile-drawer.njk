@@ -31,7 +31,7 @@
 </ul>
 </details>
 {%- else %}
-<a href="/{{ locale }}{{ item.href }}" class="block min-h-11 rounded-md px-3 py-2.5 font-medium hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'text-brand-700' if currentUrl == '/' + locale + item.href else 'text-ink' }}"{% if currentUrl == "/" + locale + item.href %} aria-current="page"{% endif %}>{{ item.key | t }}</a>
+<a href="/{{ locale }}{{ item.href }}" class="block min-h-11 rounded-md px-3 py-2.5 font-medium hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'text-ink-brand' if currentUrl == '/' + locale + item.href else 'text-ink' }}"{% if currentUrl == "/" + locale + item.href %} aria-current="page"{% endif %}>{{ item.key | t }}</a>
 {%- endif %}
 </li>
 {%- endfor %}

@@ -14,8 +14,8 @@
     "primitivesDesc": "Buttons, fields, badges, icons and pictures in every state."
   },
   "error": {
-    "notFound": { "title": "We can't find that page", "text": "The link may be out of date, or the page may have moved. Try one of these instead." },
-    "server": { "title": "Something went wrong on our side", "text": "We've been notified and are looking into it. Please try again in a few minutes." }
+    "notFound": { "title": "We can't find that page", "text": "The link may be out of date, or the page may have moved while we were tidying up. Use one of the links below to get back on track." },
+    "server": { "title": "Something went wrong on our side", "text": "Something failed on our side and we have been notified. Please try again in a few minutes, or use one of the links below meanwhile." }
   },
   "ui": {
     "required": "(required)",

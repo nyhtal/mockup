@@ -18,7 +18,7 @@
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 {%- if s.breadcrumbs and s.breadcrumbs.length %}<div class="mb-6">{{ breadcrumbs(s.breadcrumbs) }}</div>{% endif %}
 <div class="max-w-3xl">
-{%- if s.eyebrow %}<p class="text-sm font-medium uppercase tracking-wide text-brand-700">{{ s.eyebrow }}</p>{% endif %}
+{%- if s.eyebrow %}<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">{{ s.eyebrow }}</p>{% endif %}
 {%- set h = "h2" if ctx.demote else "h1" -%}
 <{{ h }} class="{{ 'mt-2' if s.eyebrow }} text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ s.title }}</{{ h }}>
 {%- if s.lede %}<p class="mt-4 text-lg md:text-xl text-ink-muted">{{ s.lede }}</p>{% endif %}

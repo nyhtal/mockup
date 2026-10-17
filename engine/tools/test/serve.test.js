@@ -32,6 +32,15 @@ test("serves assets with their type and a long cache lifetime", async () => {
   assert.equal(res.headers.get("cache-control"), "public, max-age=31536000");
 });
 
+test("text assets are gzip-compressed when the client accepts it, and plain otherwise", async () => {
+  const gz = await fetch(`${server.url}/assets/app.css`, { headers: { "accept-encoding": "gzip" } });
+  assert.equal(gz.headers.get("content-encoding"), "gzip");
+  assert.equal(await gz.text(), "a{}", "fetch transparently decodes the body");
+  const plain = await fetch(`${server.url}/assets/app.css`, { headers: { "accept-encoding": "identity" } });
+  assert.equal(plain.headers.get("content-encoding"), null);
+  assert.equal(plain.headers.get("content-length"), "3");
+});
+
 test("returns the 404 page with status 404 for a missing path", async () => {
   const res = await fetch(`${server.url}/nope/`);
   assert.equal(res.status, 404);

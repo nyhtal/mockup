@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { brandTokens, oklchToHex, themeColors } from "../lib/theme.js";
+import { brandTokens, oklchToHex, themeColors, contrast, contrastFailures } from "../lib/theme.js";
 
 const brand = { hue: 250, accentHue: 160, radius: "soft", motion: "standard", font: "inter" };
 
@@ -11,12 +11,13 @@ test("oklchToHex converts known colours", () => {
   assert.match(red, /^#f[ef]0[0-4]0[0-4]$/);
 });
 
-test("brandTokens wipes the palette and defines roles with light-dark()", () => {
+test("brandTokens wipes the palette and defines roles with light-dark() in sRGB hex", () => {
   const css = brandTokens(brand);
   assert.match(css, /--color-\*: initial;/);
-  for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) assert.match(css, new RegExp(`--color-brand-${step}: oklch\\(`));
-  assert.match(css, /--color-accent-600: oklch\(/);
-  assert.match(css, /--color-surface: light-dark\(oklch\([^)]*\), oklch\([^)]*\)\);/);
+  for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) assert.match(css, new RegExp(`--color-brand-${step}: #[0-9a-f]{6};`));
+  assert.match(css, /--color-accent-600: #[0-9a-f]{6};/);
+  assert.match(css, /--color-surface: light-dark\(#[0-9a-f]{6}, #[0-9a-f]{6}\);/);
+  assert.doesNotMatch(css, /oklch\(/, "computed oklch() colours are misread by axe-core; tokens ship as hex");
   for (const role of ["surface-alt", "surface-raised", "ink", "ink-muted", "ink-inverse", "line", "line-strong", "focus", "success", "success-soft", "success-strong", "warning", "warning-soft", "warning-strong", "danger", "danger-soft", "danger-strong"]) {
     assert.match(css, new RegExp(`--color-${role}: light-dark\\(`), role);
   }
@@ -32,8 +33,9 @@ test("hue 0, hue 360 and accent equal to brand still give valid distinct scales"
     const css = brandTokens({ ...brand, hue, accentHue: hue });
     assert.doesNotMatch(css, /NaN|undefined/);
     // R-TOK-06: lightness 97…20 for steps 50…950, so 600 is 48% and 500 is 56%.
-    assert.match(css, new RegExp(`--color-brand-600: oklch\\(48% 0\\.17 ${hue}\\)`));
-    assert.match(css, new RegExp(`--color-accent-600: oklch\\(48% 0\\.17 ${hue}\\)`));
+    const expected = oklchToHex(0.48, 0.17, hue);
+    assert.match(css, new RegExp(`--color-brand-600: ${expected};`));
+    assert.match(css, new RegExp(`--color-accent-600: ${expected};`));
   }
 });
 
@@ -49,6 +51,18 @@ test("radius and motion presets map to the bylaw values", () => {
   assert.match(brandTokens({ ...brand, radius: "round" }), /--radius-xl: 2rem;/);
   assert.match(brandTokens({ ...brand, motion: "calm" }), /--reveal-distance: 8px;[\s\S]*--reveal-duration: 200ms;[\s\S]*--reveal-stagger: 0ms;/);
   assert.match(brandTokens({ ...brand, motion: "expressive" }), /--reveal-distance: 24px;[\s\S]*--reveal-duration: 500ms;[\s\S]*--reveal-stagger: 90ms;/);
+});
+
+test("contrast follows WCAG 2", () => {
+  assert.equal(Math.round(contrast("#000000", "#ffffff")), 21);
+  assert.ok(Math.abs(contrast("#767676", "#ffffff") - 4.54) < 0.05);
+});
+
+test("text roles reach 4.5:1 on every surface in both schemes for every hue", () => {
+  for (const hue of [0, 30, 90, 160, 250, 300, 359]) {
+    const fails = contrastFailures({ ...brand, hue });
+    assert.deepEqual(fails, [], `hue ${hue}: ${JSON.stringify(fails)}`);
+  }
 });
 
 test("system font gives a system stack and no fallback family", () => {

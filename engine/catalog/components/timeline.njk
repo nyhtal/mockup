@@ -17,8 +17,8 @@
 <ol class="relative space-y-8 border-s border-line ps-8" data-component="timeline">
 {%- for item in items %}
 <li class="relative">
-<span aria-hidden="true" class="absolute -start-[2.3rem] top-1.5 size-4 rounded-full border-2 border-surface bg-brand-600"></span>
-<time datetime="{{ item.dateIso }}" class="text-sm font-medium text-brand-700">{{ item.date }}</time>
+<span aria-hidden="true" class="absolute -start-10 top-1.5 size-4 rounded-full border-2 border-surface bg-brand-600"></span>
+<time datetime="{{ item.dateIso }}" class="text-sm font-medium text-ink-brand">{{ item.date }}</time>
 <{{ h }} class="mt-1 text-lg font-semibold">{{ item.title }}</{{ h }}>
 <p class="mt-1 text-base leading-relaxed text-ink-muted">{{ item.text }}</p>
 </li>

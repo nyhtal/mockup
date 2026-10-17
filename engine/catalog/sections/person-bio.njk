@@ -15,7 +15,7 @@
 <p class="text-lg text-ink-muted">{{ s.role }}</p>
 <div class="mt-6">{{ prose(s.bio) }}</div>
 {%- if s.links and s.links.length %}
-<ul class="mt-6 flex flex-wrap gap-4">{% for l in s.links %}<li><a href="{{ l.href }}" class="text-sm font-medium text-brand-700 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ l.label }}</a></li>{% endfor %}</ul>
+<ul class="mt-6 flex flex-wrap gap-4">{% for l in s.links %}<li><a href="{{ l.href }}" class="text-sm font-medium text-ink-brand underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ l.label }}</a></li>{% endfor %}</ul>
 {%- endif %}
 </div>
 </div>

@@ -5,7 +5,7 @@ Purpose: everything in `<head>` and the discovery files, so search engines and s
 ### R-SEO-01 Head order and completeness
 MUST. The head follows R-HTML-02 exactly and every item in it is present on every page (robots only where noindex applies).
 Why: A missing canonical or description is the most common SEO defect.
-Gate: lighthouse/mobile/seo
+Gate: consistency/head-order
 
 ### R-SEO-02 Canonical
 MUST. `<link rel="canonical">` is the page's own absolute URL on `site.url`, trailing slash included; paginated pages are self-canonical.
@@ -28,7 +28,7 @@ Why: X does not fall back to OG for the card type.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SEO-06 Social image
-MUST. Each page's social image is generated at build time (bylaw 17): 1200×630, brand gradient, page title in the site font, site name, no photos; the home page uses the site's default image.
+MUST. Each page's social image is generated at build time (bylaw 17): 1200×630, brand gradient, page title and site name in a system sans-serif (the renderer cannot load the site's web font), no photos; the home page uses the site's tagline as its title.
 Why: Every shared link gets a legible, branded preview without design work.
 Gate: manual: checklists/pre-delivery.md
 

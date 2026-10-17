@@ -5,7 +5,7 @@ Purpose: the single set of values every utility class on every site draws from. 
 ### R-TOK-01 One spacing base
 MUST. `--spacing` stays at Tailwind's `0.25rem`. All padding, margin, gap and size utilities use the numeric scale; arbitrary lengths (`p-[13px]`) are not allowed.
 Why: One base unit is what makes spacing look consistent without anyone measuring.
-Gate: manual: checklists/new-component.md
+Gate: consistency/no-arbitrary-lengths
 
 ### R-TOK-02 Rhythm steps
 MUST. Vertical spacing between blocks uses only these steps: 2, 4, 6, 8, 12, 16, 24, 32 (`space-y-*`, `gap-*`, `mt-*`, `py-*`). Inside a component, 1, 3 and 5 are also allowed for fine alignment (button padding is `px-5`).
@@ -15,7 +15,7 @@ Gate: manual: checklists/new-component.md
 ### R-TOK-03 Type scale
 MUST. Font sizes come from Tailwind's default `--text-*` scale (`xs` 0.75rem … `6xl` 3.75rem) with their paired line heights. No arbitrary sizes. Bylaw 04 says which element uses which size.
 Why: A fixed scale keeps hierarchy legible and translations predictable.
-Gate: manual: checklists/new-component.md
+Gate: consistency/no-arbitrary-lengths
 
 ### R-TOK-04 Colour roles, not hues
 MUST. Pages use only role colours: `brand-50…950`, `accent-50…950`, `surface`, `surface-alt`, `surface-raised`, `ink`, `ink-muted`, `ink-inverse`, `line`, `line-strong`, `focus`, `success`, `warning`, `danger` (each state colour with `-soft` and `-strong`). Tailwind's named palettes (`gray-900`, `blue-500`) are not used in pages.

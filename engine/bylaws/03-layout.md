@@ -20,7 +20,7 @@ Gate: manual: checklists/new-component.md
 ### R-LAY-04 Logical properties only
 MUST. Direction-dependent utilities are logical: `ps-`, `pe-`, `ms-`, `me-`, `start-`, `end-`, `text-start`, `text-end`, `rounded-s-*`, `rounded-e-*`, `border-s`, `border-e`. Physical `pl-`, `pr-`, `ml-`, `mr-`, `left-`, `right-`, `text-left`, `text-right` are not used. Directional icons flip with `rtl:-scale-x-100`.
 Why: One markup serves LTR and RTL without a second stylesheet.
-Gate: manual: checklists/new-component.md
+Gate: consistency/logical-props
 
 ### R-LAY-05 Minimum viewport and reflow
 MUST. Every page works at 320 px wide and at 400 % browser zoom with no horizontal scrolling and no clipped content.

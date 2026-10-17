@@ -40,7 +40,7 @@ Gate: manual: checklists/new-page.md
 ### R-CONT-08 Title and description
 MUST. Page titles are ≤ 60 characters before the site suffix; meta descriptions are 120–155 characters, one or two full sentences, and contain the page's main noun. Neither repeats the other.
 Why: Search snippets truncate; duplicated text wastes the slot.
-Gate: manual: checklists/new-page.md
+Gate: consistency/meta-length
 
 ### R-CONT-09 Reading level
 SHOULD. Body copy targets a grade-8 reading level: short sentences, common words, one idea per sentence, no nested clauses.

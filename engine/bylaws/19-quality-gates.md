@@ -18,7 +18,7 @@ Why: Validity is the foundation.
 Gate: html/error
 
 ### R-GATE-04 Consistency
-MUST. `consistency`: no inline `style`; exactly one `h1`; no skipped heading levels; unique ids; every class in the HTML exists in the built CSS (escaped variants and arbitrary values included); every `data-component` names a catalog file.
+MUST. `consistency`: no inline `style`; exactly one `h1`; no skipped heading levels; unique ids; every class in the HTML exists in the built CSS (escaped variants and arbitrary values included); every `data-component` names a catalog file; no physical-direction utilities; every animation class under `motion-safe:`; no arbitrary lengths; no `href="#"` or `javascript:` links; every `img` has alt, width and height and is never both priority and lazy; head children in the R-HTML-02 order; title ≤ 60 and description 120–155 characters.
 Why: Catches improvisation mechanically.
 Gate: consistency/class-exists
 
@@ -63,7 +63,7 @@ Why: What automation cannot see still has to be seen.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-GATE-13 Planned checks
-SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `consistency/logical-props` (no physical direction utilities), `consistency/motion-safe` (every animation class under `motion-safe:`), `consistency/role-colors` (no palette colour classes), `budget/contrast` (token-level contrast ratios in both schemes), `consistency/head-order` (R-HTML-02), `consistency/meta-length` (R-HTML-03, R-CONT-08), `consistency/no-hash-links` (R-HTML-09), `consistency/img-attrs` (R-HTML-12), `consistency/no-arbitrary-lengths` (R-TOK-01, R-TOK-03), `consistency/motion-props` (R-MOT-01), `consistency/url-policy` (R-PAGE-02), `consistency/canonical` (R-SEO-02), `consistency/no-hardcoded-strings` (R-CONT-10). They are added as the catalog phase makes their inputs stable.
+SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `budget/contrast` (token-level contrast ratios in both schemes), `consistency/motion-props` (R-MOT-01), `consistency/url-policy` (R-PAGE-02), `consistency/canonical` (R-SEO-02), `consistency/no-hardcoded-strings` (R-CONT-10). Role colours need no check: the theme wipes Tailwind's palette, so a palette class fails `consistency/class-exists`. They are added as the catalog phase makes their inputs stable.
 Why: Honesty about which rules are machine-checked today.
 Gate: manual: checklists/pre-delivery.md
 

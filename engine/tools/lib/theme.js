@@ -11,6 +11,10 @@ const RADIUS = {
   round: ["0.5rem", "1rem", "1.5rem", "2rem", "9999px"],
 };
 const MOTION = { calm: [8, 200, 0], standard: [16, 300, 60], expressive: [24, 500, 90] };
+/** Lightness of ink-muted per scheme; must keep 4.5:1 on every surface (see contrastFailures). */
+const ROLE_MUTED = { light: 46, dark: 72 };
+/** Lightness of ink-brand (brand-coloured text: eyebrows, links, icons on surfaces) per scheme. */
+const ROLE_BRAND_TEXT = { light: 40, dark: 78 };
 
 /** Approved fonts (R-TYPO-01) with the fontsource package and metric overrides for the local fallback (R-TYPO-02). */
 export const FONTS = {
@@ -23,7 +27,9 @@ export const FONTS = {
   system: null,
 };
 
-const oklch = (l, c, h) => `oklch(${l}% ${c} ${h})`;
+// Tokens are emitted as sRGB hex: Chrome keeps oklch() in computed styles and axe-core misreads that form,
+// so hex keeps every contrast checker honest. The design is still done in OKLCH (see oklchToHex).
+const oklch = (l, c, h) => oklchToHex(l / 100, c, h);
 const scale = (name, hue) => STEPS.map((s, i) => `  --color-${name}-${s}: ${oklch(L[i], C[i], hue)};`).join("\n");
 const ld = (name, light, dark) => `  --color-${name}: light-dark(${light}, ${dark});`;
 const state = (name, hue) => [
@@ -51,11 +57,12 @@ ${ld("surface", oklch(99, 0.002, h), oklch(18, 0.01, h))}
 ${ld("surface-alt", oklch(96.5, 0.005, h), oklch(22, 0.012, h))}
 ${ld("surface-raised", oklch(100, 0, h), oklch(26, 0.014, h))}
 ${ld("ink", oklch(20, 0.02, h), oklch(95, 0.01, h))}
-${ld("ink-muted", oklch(46, 0.02, h), oklch(72, 0.015, h))}
+${ld("ink-muted", oklch(ROLE_MUTED.light, 0.02, h), oklch(ROLE_MUTED.dark, 0.015, h))}
 ${ld("ink-inverse", oklch(99, 0.002, h), oklch(16, 0.01, h))}
 ${ld("line", oklch(90, 0.01, h), oklch(32, 0.015, h))}
 ${ld("line-strong", oklch(78, 0.015, h), oklch(42, 0.02, h))}
 ${ld("focus", oklch(48, 0.17, h), oklch(76, 0.11, h))}
+${ld("ink-brand", oklch(ROLE_BRAND_TEXT.light, 0.14, h), oklch(ROLE_BRAND_TEXT.dark, 0.11, h))}
 ${state("success", 150)}
 ${state("warning", 80)}
 ${state("danger", 25)}
@@ -92,6 +99,42 @@ export function oklchToHex(l, c, h) {
     return v <= 0.0031308 ? 12.92 * v : 1.055 * v ** (1 / 2.4) - 0.055;
   });
   return "#" + srgb.map((v) => Math.round(v * 255).toString(16).padStart(2, "0")).join("");
+}
+
+/** WCAG 2 relative luminance of a hex colour. */
+export function luminance(hex) {
+  const c = hex.replace("#", "").match(/.{2}/g).map((h) => parseInt(h, 16) / 255).map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+
+/** WCAG 2 contrast ratio between two hex colours. */
+export function contrast(a, b) {
+  const [l1, l2] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (l1 + 0.05) / (l2 + 0.05);
+}
+
+/** The role colour values as hex per scheme, so contrast can be checked at the token level (R-COL-03). */
+export function roleHex(brand) {
+  const h = Number(brand.hue) || 0;
+  const px = (l, c, hue) => oklchToHex(l / 100, c, hue);
+  return {
+    light: { surface: px(99, 0.002, h), "surface-alt": px(96.5, 0.005, h), "surface-raised": px(100, 0, h), ink: px(20, 0.02, h), "ink-muted": px(ROLE_MUTED.light, 0.02, h), "ink-inverse": px(99, 0.002, h), "ink-brand": px(ROLE_BRAND_TEXT.light, 0.14, h), "brand-600": px(L[6], C[6], h), "brand-700": px(L[7], C[7], h), "brand-100": px(L[1], C[1], h), "brand-800": px(L[8], C[8], h) },
+    dark: { surface: px(18, 0.01, h), "surface-alt": px(22, 0.012, h), "surface-raised": px(26, 0.014, h), ink: px(95, 0.01, h), "ink-muted": px(ROLE_MUTED.dark, 0.015, h), "ink-inverse": px(16, 0.01, h), "ink-brand": px(ROLE_BRAND_TEXT.dark, 0.11, h), "brand-600": px(L[6], C[6], h), "brand-700": px(L[7], C[7], h), "brand-100": px(L[1], C[1], h), "brand-800": px(L[8], C[8], h) },
+  };
+}
+
+/** Pairs that must reach 4.5:1 in both schemes; returns the ones that do not. */
+export function contrastFailures(brand) {
+  const pairs = [["ink", "surface"], ["ink", "surface-alt"], ["ink", "surface-raised"], ["ink-muted", "surface"], ["ink-muted", "surface-alt"], ["ink-muted", "surface-raised"], ["ink-brand", "surface"], ["ink-brand", "surface-alt"], ["ink-brand", "surface-raised"], ["brand-800", "brand-100"]];
+  const inverse = [["ink-inverse", "brand-600"], ["ink-inverse", "brand-700"]];
+  const out = [];
+  for (const scheme of ["light", "dark"]) {
+    const r = roleHex(brand)[scheme];
+    for (const [fg, bg] of pairs) { const c = contrast(r[fg], r[bg]); if (c < 4.5) out.push({ scheme, fg, bg, ratio: Math.round(c * 100) / 100 }); }
+  }
+  const light = roleHex(brand).light;
+  for (const [fg, bg] of inverse) { const c = contrast(light[fg], light[bg]); if (c < 4.5) out.push({ scheme: "both", fg, bg, ratio: Math.round(c * 100) / 100 }); }
+  return out;
 }
 
 /** theme-color values: brand-600 for light, brand-400 for dark. */

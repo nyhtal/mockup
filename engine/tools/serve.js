@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
-import { createReadStream, existsSync, statSync } from "node:fs";
+import { createReadStream, existsSync, statSync, readFileSync } from "node:fs";
+import { gzipSync } from "node:zlib";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { parseArgs } from "./build.js";
@@ -31,9 +32,17 @@ export function startServer(distDir, port = 0) {
     if (!file.startsWith(root + path.sep) && file !== root) return send(res, 404, root);
     if (existsSync(file) && statSync(file).isDirectory()) file = path.join(file, "index.html");
     if (!existsSync(file) || !statSync(file).isFile()) return send(res, 404, root);
-    const headers = { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream", "Content-Length": statSync(file).size };
+    const type = TYPES[path.extname(file)] || "application/octet-stream";
+    const headers = { "Content-Type": type };
     if (urlPath.startsWith("/assets/")) headers["Cache-Control"] = "public, max-age=31536000";
-    res.writeHead(200, headers);
+    // Text assets go out gzip-compressed, as a real host would (R-PERF-11), so Lighthouse sees deployment-like transfer sizes.
+    const compressible = /^(text\/|application\/(json|xml|javascript|manifest))/.test(type) || type === "image/svg+xml";
+    if (compressible && /\bgzip\b/.test(req.headers["accept-encoding"] || "")) {
+      const body = gzipSync(readFileSync(file), { level: 6 });
+      res.writeHead(200, { ...headers, "Content-Encoding": "gzip", "Content-Length": body.length, Vary: "Accept-Encoding" });
+      return res.end(body);
+    }
+    res.writeHead(200, { ...headers, "Content-Length": statSync(file).size });
     createReadStream(file).pipe(res);
   });
   return new Promise((resolve) => {

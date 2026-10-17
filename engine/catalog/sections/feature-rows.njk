@@ -21,7 +21,7 @@
 {%- for item in s.items %}
 <div class="grid items-center gap-12 lg:grid-cols-2">
 <div class="{{ 'lg:order-2' if loop.index is even }}">
-{%- if item.eyebrow %}<p class="text-sm font-medium uppercase tracking-wide text-brand-700">{{ item.eyebrow }}</p>{% endif %}
+{%- if item.eyebrow %}<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">{{ item.eyebrow }}</p>{% endif %}
 <h3 class="{{ 'mt-2' if item.eyebrow }} text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ item.title }}</h3>
 <p class="mt-4 text-base leading-relaxed text-ink-muted">{{ item.text }}</p>
 {%- if item.link %}<div class="mt-6">{{ button(item.link.label, { href: item.link.href, variant: "link", iconEnd: "arrow-right" }) }}</div>{% endif %}

@@ -10,12 +10,12 @@ Gate: i18n/lang-attr
 ### R-HTML-02 Head order
 MUST. `<head>` children appear in this order and nothing else: charset, viewport, title, description, canonical, hreflang alternates (including `x-default`), feed link (where a feed exists), robots (only when `noindex`), theme-color (light and dark via `media`), icon links, font preload, stylesheet, Open Graph and Twitter meta, the JSON-LD script. The module script is the last child of `body`, not in `head`.
 Why: A fixed order makes diffs readable, puts render-critical tags first and keeps the single JSON-LD block findable.
-Gate: manual: checklists/new-page.md
+Gate: consistency/head-order
 
 ### R-HTML-03 Title and description
 MUST. `<title>` follows `{Page title} · {Site name}` (home: `{Site name} · {Tagline}`) and is at most 60 characters. `<meta name="description">` is 120–155 characters of plain text.
 Why: Both are shown in search results and truncated beyond these lengths.
-Gate: manual: checklists/new-page.md
+Gate: consistency/meta-length
 
 ### R-HTML-04 Exactly one h1
 MUST. Each page has exactly one `h1`, which is the page's name, and heading levels never skip downward (h2 → h4 is a violation).
@@ -45,7 +45,7 @@ Gate: manual: checklists/new-component.md
 ### R-HTML-09 Buttons act, links go
 MUST. `<button type="button|submit">` for actions and `<a href>` for navigation. `href="#"` and `javascript:` are never used. A control that opens a popover is a `button` with `popovertarget`; one that opens a dialog is a `button` with `command="show-modal"`.
 Why: Each element brings the right keyboard behaviour for free.
-Gate: manual: checklists/new-component.md
+Gate: consistency/no-hash-links
 
 ### R-HTML-10 Component roots
 MUST. The root element of every catalog component and section carries `data-component="<catalog-file-name>"`. No other element carries `data-component`.
@@ -60,7 +60,7 @@ Gate: consistency/dup-id
 ### R-HTML-12 Images
 MUST. Every `img` has `alt` (empty for decorative images), `width`, `height`, and `loading="lazy"` unless it is the page's LCP image, which has `fetchpriority="high"` and no lazy attribute. Raster images sit in `<picture>` with AVIF and WebP sources.
 Why: Missing dimensions cause layout shift; lazy-loading the hero costs LCP.
-Gate: manual: checklists/new-component.md
+Gate: consistency/img-attrs
 
 ### R-HTML-13 Inline SVG icons
 MUST. Icons are `<svg aria-hidden="true" class="size-5 ..."><use href="#i-<name>"></use></svg>` from the sprite, next to visible text or, in icon-only controls, an `sr-only` label.

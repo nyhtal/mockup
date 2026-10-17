@@ -10,7 +10,7 @@ Gate: manual: checklists/new-component.md
 ### R-MOT-02 Everything under motion-safe
 MUST. Every `animate-*`, `transition-*` and `starting:` utility is prefixed `motion-safe:`. With `prefers-reduced-motion: reduce` the page shows final states instantly, including no fades.
 Why: WCAG 2.3.3 and vestibular safety; "reduce" means reduce, not "fade instead".
-Gate: manual: checklists/pre-delivery.md
+Gate: consistency/motion-safe
 
 ### R-MOT-03 Budget
 MUST. At most three elements animate in at once (staggered children count as one group of at most six items, 60–90 ms apart per the motion preset). Travel ≤ 24 px. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons.
@@ -23,7 +23,7 @@ Why: Lighthouse, crawlers and browsers without support must see the full page.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-MOT-05 The reveal pattern
-MUST. A section or card that reveals on scroll uses exactly: `motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]` and, for the script fallback, `motion-safe:js:not-data-revealed:opacity-0 motion-safe:js:transition motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth motion-safe:js:data-revealed:opacity-100`. The LCP element and anything above the fold never carries reveal classes.
+MUST. A section or card that reveals on scroll uses exactly: `motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]` and, for the script fallback, `motion-safe:js:not-data-revealed:opacity-0 motion-safe:js:transition motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth motion-safe:js:data-revealed:opacity-100` plus the `data-reveal` attribute the script observes. The LCP element and anything above the fold never carries reveal classes.
 Why: One exact string keeps reveals identical and keeps the hero out of the animation.
 Gate: manual: checklists/new-component.md
 
