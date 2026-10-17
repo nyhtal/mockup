@@ -1,4 +1,22 @@
 {
   "home": { "required": ["Organization", "WebSite", "WebPage"] },
-  "generic": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] }
+  "generic": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
+  "about": { "required": ["Organization", "WebSite", "AboutPage", "BreadcrumbList"] },
+  "team": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList", "Person"] },
+  "person": { "required": ["Organization", "WebSite", "ProfilePage", "BreadcrumbList", "Person"] },
+  "locations": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList", "Place"] },
+  "office": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Place"] },
+  "collection": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
+  "service": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Service"] },
+  "product": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Product"] },
+  "pricing": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Product", "Offer"] },
+  "article": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Article"] },
+  "blog": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList", "Blog"] },
+  "post": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "BlogPosting", "Person"] },
+  "event": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Event"] },
+  "faq": { "required": ["Organization", "WebSite", "FAQPage", "BreadcrumbList"] },
+  "news": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "NewsArticle"] },
+  "job": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "JobPosting"] },
+  "contact": { "required": ["Organization", "WebSite", "ContactPage", "BreadcrumbList", "ContactPoint"] },
+  "search": { "required": ["Organization", "WebSite", "SearchResultsPage", "BreadcrumbList"] }
 }
