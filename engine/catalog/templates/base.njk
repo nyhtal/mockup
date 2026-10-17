@@ -8,7 +8,8 @@
 <link rel="canonical" href="{{ canonical }}">
 <meta name="theme-color" content="{{ themeColors.light }}" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="{{ themeColors.dark }}" media="(prefers-color-scheme: dark)">
-<link rel="stylesheet" href="/assets/app.css">
+{% if fontPreload %}<link rel="preload" href="{{ fontPreload }}" as="font" type="font/woff2" crossorigin>
+{% endif %}<link rel="stylesheet" href="/assets/app.css">
 <script type="application/ld+json">{{ schemaJson | safe }}</script>
 </head>
 <body class="bg-surface font-sans text-ink antialiased" data-page="{{ pageType or 'generic' }}">

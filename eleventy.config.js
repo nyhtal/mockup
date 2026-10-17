@@ -2,6 +2,7 @@ import { I18nPlugin } from "@11ty/eleventy";
 import { readFileSync } from "node:fs";
 import { loadSite } from "./engine/tools/lib/site.js";
 import { themeColors } from "./engine/tools/lib/theme.js";
+import { fontPlan } from "./engine/tools/build-fonts.js";
 
 /** One JSON-LD @graph per page: shared #organization and #website nodes plus the page node. */
 export function schemaJson(site, data) {
@@ -35,6 +36,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(I18nPlugin, { defaultLanguage: site.defaultLocale, errorMode: "strict" });
   eleventyConfig.addGlobalData("site", site);
   eleventyConfig.addGlobalData("themeColors", themeColors(site.brand || {}));
+  eleventyConfig.addGlobalData("fontPreload", fontPlan(site.brand || {}, site.locales).preload);
   eleventyConfig.addGlobalData("eleventyComputed", {
     locale: (data) => data.page.lang || site.defaultLocale,
     dir: (data) => ((site.rtl || []).includes(data.page.lang) ? "rtl" : "ltr"),

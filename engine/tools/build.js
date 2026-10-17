@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadSite } from "./lib/site.js";
 import { brandTokens } from "./lib/theme.js";
+import { fontPlan, copyFonts } from "./build-fonts.js";
 
 export function parseArgs(argv) {
   const i = argv.indexOf("--site");
@@ -42,9 +43,12 @@ export async function build({ site }) {
   await eleventy.write();
   checkLocaleCoverage(dist, siteConfig);
 
+  const fonts = fontPlan(siteConfig.brand || {}, siteConfig.locales);
+  copyFonts(fonts, dist);
   const css = readFileSync("engine/theme/app.css", "utf8")
     .replaceAll("__SITE__", site)
-    .replace("/* @brand */", brandTokens(siteConfig.brand || {}));
+    .replace("/* @brand */", brandTokens(siteConfig.brand || {}))
+    .replace("/* @fonts */", fonts.css);
   mkdirSync("engine/theme/.tmp", { recursive: true });
   writeFileSync("engine/theme/.tmp/app.css", css);
   mkdirSync(`${dist}/assets`, { recursive: true });
