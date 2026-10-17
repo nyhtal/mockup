@@ -4,6 +4,4 @@ pageType: error
 noindex: true
 ---
 {% from "components/error-state.njk" import errorState %}
-{%- set links = [{ href: "/" + locale + "/", label: "nav.home" | t }] -%}
-{%- for link in site.errorLinks %}{% set links = links.concat([{ href: "/" + locale + link.href, label: link.key | t }]) %}{% endfor -%}
 {{ errorState({ code: errorCode, title: title, text: description, links: links }) }}

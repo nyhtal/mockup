@@ -61,7 +61,7 @@ export async function generateOgImages(distDir, brand = {}) {
 }
 
 /** The aspect ratios a page may declare (R-LAY-10). */
-export const RATIOS = { "16x9": [16, 9], "4x3": [4, 3], "3x2": [3, 2], "1x1": [1, 1], "21x9": [21, 9] };
+export const RATIOS = { "16x9": [16, 9], "4x3": [4, 3], "3x2": [3, 2], "1x1": [1, 1], "21x9": [21, 9], "3x4": [3, 4] };
 export const WIDTHS = [480, 768, 1200, 1600];
 const NAME = /^\/assets\/images\/([a-z0-9]+(?:-[a-z0-9]+)*)-(\d+x\d+)-(\d+)\.(avif|webp)$/;
 

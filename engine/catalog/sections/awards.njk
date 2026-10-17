@@ -1,0 +1,29 @@
+{#
+  name: awards
+  purpose: Awards and certifications as a row of badges with names (R-SCH-08: never fabricated as schema; visible text only).
+  anatomy: shell > ul.flex > li(icon disc + name + year)
+  variants: none
+  states: none
+  spacing: gap-8 centred
+  motion: reveals
+  keyboard: none
+  a11y: text names; icons aria-hidden
+  i18n: none
+  content limits: 3–8 items; name ≤ 40 chars
+  data: s = { title, items: [{ name, year, icon }] }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "primitives/icon.njk" import icon %}
+{% macro render(s, ctx) %}
+{% call shell("awards", s, ctx) %}
+<ul class="flex flex-wrap justify-center gap-8">
+{%- for item in s.items %}
+<li class="flex w-40 flex-col items-center text-center">
+<span class="inline-flex size-14 items-center justify-center rounded-full bg-accent-100 text-accent-800">{{ icon(item.icon or "award", { size: "size-6" }) }}</span>
+<p class="mt-3 text-sm font-medium">{{ item.name }}</p>
+{%- if item.year %}<p class="text-xs text-ink-muted">{{ item.year }}</p>{% endif %}
+</li>
+{%- endfor %}
+</ul>
+{% endcall %}
+{% endmacro %}

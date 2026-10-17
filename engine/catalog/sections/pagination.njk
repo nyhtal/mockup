@@ -1,0 +1,12 @@
+{#
+  name: pagination (section)
+  purpose: Pagination row under an index grid.
+  anatomy: section(no title) > container > pagination component
+  data: s = { current, prev, next, pages }
+#}
+{% from "components/pagination.njk" import pagination %}
+{% macro render(s, ctx) %}
+<section class="py-8 {{ s.surface or 'bg-surface' }}" aria-label="{{ s.label or ('ui.pagination' | t) }}" data-component="pagination">
+<div class="mx-auto flex w-full max-w-7xl justify-center px-4 sm:px-6 lg:px-8">{{ pagination(s) }}</div>
+</section>
+{% endmacro %}

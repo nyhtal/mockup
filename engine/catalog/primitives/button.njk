@@ -2,7 +2,7 @@
   name: button
   purpose: Every action and call-to-action control (R-COMP-05, R-HTML-09).
   anatomy: a[href] | button[type] > (icon) + label + (iconEnd) + (sr-only new-tab hint)
-  variants: primary (one per view) | secondary | ghost | link; sizes sm | md | lg
+  variants: primary (one per view) | secondary | ghost | link | inverse and inverse-outline (on brand or gradient backgrounds only); sizes sm | md | lg
   states: default, hover, focus-visible (ring), active, disabled (opacity-60, cursor-not-allowed), pending (opts.pending: spinner + "Sending…", disabled)
   spacing: min-h-11 px-5 (md); gap-2 between icon and label
   motion: motion-safe:transition-colors duration-150
@@ -21,7 +21,9 @@
   primary: "bg-brand-600 text-ink-inverse hover:bg-brand-700 active:bg-brand-800",
   secondary: "border border-line-strong text-ink hover:bg-surface-alt active:bg-surface-alt",
   ghost: "text-ink hover:bg-surface-alt active:bg-surface-alt",
-  link: "min-h-0 px-0 text-brand-700 underline-offset-4 hover:underline"
+  link: "min-h-0 px-0 text-brand-700 underline-offset-4 hover:underline",
+  inverse: "bg-surface-raised text-brand-800 hover:bg-surface-alt active:bg-surface-alt",
+  "inverse-outline": "border border-ink-inverse/70 text-ink-inverse hover:bg-ink-inverse/10 active:bg-ink-inverse/15"
 } -%}
 {%- set classes = base + " " + (sizes[size] if variant != "link" else "") + " " + variants[variant] + (" " + opts.class if opts.class else "") -%}
 {%- set iconClass = "size-5" if size != "sm" else "size-4" -%}

@@ -1,0 +1,22 @@
+{#
+  name: job-detail
+  purpose: One role: facts, description, responsibilities, requirements (R-SCH-07 JobPosting).
+  anatomy: shell(center false) > grid > dl(div > dt(icon + label) + dd) + prose
+  data: s = { team, location, employment, posted, postedIso, body (html) }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/prose.njk" import prose %}
+{% from "primitives/icon.njk" import icon %}
+{% macro render(s, ctx) %}
+{% call shell("job-detail", s, ctx, { center: false, noReveal: true }) %}
+<div class="grid gap-12 lg:grid-cols-3">
+<dl class="space-y-4 text-base">
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("users", { size: "size-4", class: "text-brand-700" }) }}Team</dt><dd class="ms-6">{{ s.team }}</dd></div>
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("map-pin", { size: "size-4", class: "text-brand-700" }) }}Location</dt><dd class="ms-6">{{ s.location }}</dd></div>
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("clock", { size: "size-4", class: "text-brand-700" }) }}Type</dt><dd class="ms-6">{{ s.employment }}</dd></div>
+{%- if s.posted %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("calendar", { size: "size-4", class: "text-brand-700" }) }}Posted</dt><dd class="ms-6"><time datetime="{{ s.postedIso }}">{{ s.posted }}</time></dd></div>{% endif %}
+</dl>
+<div class="lg:col-span-2">{{ prose(s.body) }}</div>
+</div>
+{% endcall %}
+{% endmacro %}

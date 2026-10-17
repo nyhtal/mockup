@@ -1,0 +1,8 @@
+{#
+  name: resources-latest
+  purpose: Latest three posts or resources on the home page.
+  anatomy: cardGrid(article, 3) with cta to the index
+  data: s = { eyebrow, title, items: [...], cta }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("resources-latest", s, ctx, "article", 3) }}{% endmacro %}

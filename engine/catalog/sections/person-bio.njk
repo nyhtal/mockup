@@ -1,0 +1,23 @@
+{#
+  name: person-bio
+  purpose: Profile page body for a leader or author (R-SCH-07 Person).
+  anatomy: shell(center false) > grid > avatar + div(role + bio + links)
+  data: s = { name, role, bio (html), email, links: [{ label, href }] }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "primitives/avatar.njk" import avatar %}
+{% from "components/prose.njk" import prose %}
+{% macro render(s, ctx) %}
+{% call shell("person-bio", s, ctx, { center: false, noReveal: true }) %}
+<div class="grid gap-8 md:grid-cols-4">
+<div>{{ avatar(s.name, { size: "size-24" }) }}</div>
+<div class="md:col-span-3">
+<p class="text-lg text-ink-muted">{{ s.role }}</p>
+<div class="mt-6">{{ prose(s.bio) }}</div>
+{%- if s.links and s.links.length %}
+<ul class="mt-6 flex flex-wrap gap-4">{% for l in s.links %}<li><a href="{{ l.href }}" class="text-sm font-medium text-brand-700 underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ l.label }}</a></li>{% endfor %}</ul>
+{%- endif %}
+</div>
+</div>
+{% endcall %}
+{% endmacro %}

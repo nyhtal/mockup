@@ -1,0 +1,8 @@
+{#
+  name: download-cards
+  purpose: Whitepapers, media kit files, investor reports.
+  anatomy: cardGrid(download, 3)
+  data: s = { title, lede, items: [{ type, pages, title, text, href }] }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("download-cards", s, ctx, "download", 3) }}{% endmacro %}

@@ -1,0 +1,8 @@
+{#
+  name: office-cards
+  purpose: Locations, 2–6 offices (R-SEC-03, R-I18N-14).
+  anatomy: cardGrid(office, 3)
+  data: s = { eyebrow, title, items: [{ title: city, address, phone, href }] }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("office-cards", s, ctx, "office", 3) }}{% endmacro %}

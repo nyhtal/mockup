@@ -60,6 +60,8 @@
     "consentNecessary": "Necessary (always on)",
     "consentAnalytics": "Analytics",
     "consentMarketing": "Marketing",
+    "privacyPolicy": "Privacy policy",
+    "emailLabel": "Work email",
     "helpful": "Was this page helpful?",
     "yes": "Yes",
     "no": "No"

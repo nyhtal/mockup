@@ -1,0 +1,29 @@
+{#
+  name: feature-grid
+  purpose: 3–6 features with icon, title and text (R-SEC-03, R-SEC-04).
+  anatomy: shell > ul.grid > li(icon + h3 + p)
+  variants: none
+  states: none
+  spacing: gap-8; 3 columns at lg
+  motion: items stagger
+  keyboard: none unless items carry href (then card links)
+  a11y: list; icons aria-hidden
+  i18n: none
+  content limits: title ≤ 6 words; text ≤ 40 words
+  data: s = { eyebrow, title, lede, items: [{ icon, title, text, href }], cta }
+#}
+{% from "sections/_shell.njk" import shell, stagger %}
+{% from "primitives/icon.njk" import icon %}
+{% macro render(s, ctx) %}
+{% call shell("feature-grid", s, ctx) %}
+<ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+{%- for item in s.items %}
+<li class="{{ stagger(loop.index0) }}">
+<span class="inline-flex size-12 items-center justify-center rounded-md bg-brand-100 text-brand-800">{{ icon(item.icon or "zap", { size: "size-6" }) }}</span>
+<h3 class="mt-4 text-xl font-semibold">{% if item.href %}<a href="{{ item.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
+<p class="mt-2 text-base leading-relaxed text-ink-muted">{{ item.text }}</p>
+</li>
+{%- endfor %}
+</ul>
+{% endcall %}
+{% endmacro %}

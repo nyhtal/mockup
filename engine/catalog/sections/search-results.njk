@@ -1,0 +1,11 @@
+{#
+  name: search-results (section)
+  purpose: Static results list on the search page.
+  anatomy: shell(center false) > search-results component
+  data: s = { query, items: [...], cta }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/search-results.njk" import searchResults %}
+{% macro render(s, ctx) %}
+{% call shell("search-results", s, ctx, { center: false, noReveal: true }) %}<div class="max-w-3xl">{{ searchResults(s) }}</div>{% endcall %}
+{% endmacro %}

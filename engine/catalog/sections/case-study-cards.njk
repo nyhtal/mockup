@@ -1,0 +1,8 @@
+{#
+  name: case-study-cards
+  purpose: Customer stories, 3 or 6 cards (R-SEC-03).
+  anatomy: cardGrid(case-study, 3)
+  data: s = { eyebrow, title, lede, items: [{ company, metricValue, metricLabel, quote, title, href }], cta }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("case-study-cards", s, ctx, "case-study", 3) }}{% endmacro %}

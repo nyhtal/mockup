@@ -1,0 +1,28 @@
+{#
+  name: faq-groups
+  purpose: The FAQ page body: several titled groups of questions (R-PAGE inventory: faq).
+  anatomy: shell > div.space-y > div(h3 group title + accordion)
+  variants: none
+  states: per accordion
+  spacing: groups space-y-16; max-w-3xl
+  motion: reveals
+  keyboard: summaries
+  a11y: group titles h3, questions h4
+  i18n: none
+  content limits: 2–6 groups
+  data: s = { title, lede, groups: [{ title, items }] }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/accordion.njk" import accordion %}
+{% macro render(s, ctx) %}
+{% call shell("faq-groups", s, ctx) %}
+<div class="mx-auto max-w-3xl space-y-16">
+{%- for g in s.groups %}
+<div>
+<h3 class="text-xl md:text-2xl font-semibold">{{ g.title }}</h3>
+<div class="mt-6">{{ accordion(g.items, { variant: "faq", group: "faq-" + loop.index, level: 4 }) }}</div>
+</div>
+{%- endfor %}
+</div>
+{% endcall %}
+{% endmacro %}

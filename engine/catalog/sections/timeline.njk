@@ -1,0 +1,21 @@
+{#
+  name: timeline
+  purpose: Company history or roadmap, 4–8 milestones (R-SEC-03).
+  anatomy: shell(center false) > timeline component
+  variants: none
+  states: none
+  spacing: max-w-3xl
+  motion: reveals
+  keyboard: none
+  a11y: ordered list with <time>
+  i18n: none
+  content limits: 4–8 items
+  data: s = { eyebrow, title, lede, items: [{ date, dateIso, title, text }] }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/timeline.njk" import timeline %}
+{% macro render(s, ctx) %}
+{% call shell("timeline", s, ctx, { center: false }) %}
+<div class="max-w-3xl">{{ timeline(s.items) }}</div>
+{% endcall %}
+{% endmacro %}

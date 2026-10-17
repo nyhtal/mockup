@@ -1,0 +1,8 @@
+{#
+  name: related-items
+  purpose: Three related detail pages at the end of a detail page (R-SEO-10).
+  anatomy: cardGrid(variant from s.cardVariant, 3)
+  data: s = { title, cardVariant, items: [...] }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("related-items", s, ctx, s.cardVariant or "service", 3) }}{% endmacro %}

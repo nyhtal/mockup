@@ -3,7 +3,7 @@
 Purpose: Lighthouse 100 on performance by construction: budgets, one stylesheet, one tiny script, self-hosted fonts and images, nothing external, no layout shift, and a recorded benchmark. Sources: https://developer.chrome.com/docs/lighthouse/performance/performance-scoring, https://developer.chrome.com/blog/lighthouse-13-0, https://web.dev/articles/optimize-lcp, https://web.dev/articles/cls, https://web.dev/articles/font-best-practices.
 
 ### R-PERF-01 Budgets
-MUST. Per page, uncompressed: HTML ≤ 50 KB, CSS ≤ 80 KB (one purged stylesheet for the whole site; about 12 KB over Brotli), JS ≤ 2 KB, total mobile download ≤ 300 KB (`engine/budgets.json`), counted as: the HTML, every stylesheet and script, one candidate per image element (the smallest width that covers a 720 CSS px screen, from the first `<source>`), and every font file whose `unicode-range` matches text on the page. The hero image ≤ 120 KB at its largest source.
+MUST. Per page, uncompressed: HTML ≤ 50 KB, CSS ≤ 80 KB (one purged stylesheet for the whole site; about 12 KB over Brotli), JS ≤ 2 KB, total mobile download ≤ 300 KB (`engine/budgets.json`; the noindex style-guide pages, which render about twenty sections each, get HTML ≤ 100 KB and total ≤ 400 KB via `overrides`), counted as: the HTML, every stylesheet and script, one candidate per image element (the smallest width that covers a 720 CSS px screen, from the first `<source>`), and every font file whose `unicode-range` matches text on the page. The hero image ≤ 120 KB at its largest source.
 Why: Budgets make performance a build failure instead of a review comment.
 Gate: budget/page
 

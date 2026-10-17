@@ -1,0 +1,31 @@
+{#
+  name: _shell (helper, not a section)
+  purpose: The section skeleton every section uses (R-SEC-01, R-SEC-06, R-SEC-10, R-TOK-15, R-LAY-02): padding by density, surface, container, eyebrow + h2 + lede, body via caller, optional CTA, reveal classes below the fold.
+  usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}
+  ctx: { locale, pageUrl, density, surface, reveal, index }
+#}
+{% from "primitives/button.njk" import button %}
+{% macro revealClasses(on) %}{% if on %} motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%] motion-safe:js:not-data-revealed:opacity-0 motion-safe:js:transition motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth motion-safe:js:data-revealed:opacity-100{% endif %}{% endmacro %}
+{% macro stagger(i) %}{% if i > 0 and i < 6 %} motion-safe:sda:[animation-delay:calc(var(--reveal-stagger)*{{ i }})]{% endif %}{% endmacro %}
+{% macro shell(name, s, ctx, opts={}) %}
+{%- set pad = "py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24" -%}
+{%- set surface = s.surface or ctx.surface or "bg-surface" -%}
+{%- set inverse = surface == "bg-brand-700" or surface == "bg-ink" -%}
+<section class="{{ pad }} {{ surface }}{% if inverse %} text-ink-inverse{% endif %}{{ revealClasses(ctx.reveal and not opts.noReveal) }}"{% if ctx.reveal and not opts.noReveal %} data-reveal{% endif %} data-component="{{ name }}"{% if s.variant %} data-variant="{{ s.variant }}"{% endif %}{% if s.anchor %} id="{{ s.anchor }}"{% endif %}{% if not s.title and s.label %} aria-label="{{ s.label }}"{% endif %}>
+<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+{%- if s.title or s.eyebrow or s.lede %}
+<div class="{{ 'mx-auto max-w-3xl text-center' if opts.center !== false else 'max-w-3xl' }}">
+{%- if s.eyebrow %}<p class="text-sm font-medium uppercase tracking-wide {{ 'text-ink-inverse/80' if inverse else 'text-brand-700' }}">{{ s.eyebrow }}</p>{% endif %}
+{%- if s.title %}<h2 class="{{ 'mt-2' if s.eyebrow }} text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>{% endif %}
+{%- if s.lede %}<p class="mt-4 text-lg md:text-xl {{ 'text-ink-inverse/80' if inverse else 'text-ink-muted' }}">{{ s.lede }}</p>{% endif %}
+</div>
+{%- endif %}
+<div class="{{ 'mt-12 md:mt-16' if (s.title or s.eyebrow or s.lede) }}">
+{{ caller() }}
+</div>
+{%- if s.cta %}
+<div class="mt-12 {{ 'text-center' if opts.center !== false }}">{{ button(s.cta.label, { href: s.cta.href, variant: s.cta.variant or "secondary", iconEnd: "arrow-right" }) }}</div>
+{%- endif %}
+</div>
+</section>
+{% endmacro %}

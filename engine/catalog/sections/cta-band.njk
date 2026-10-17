@@ -1,0 +1,29 @@
+{#
+  name: cta-band
+  purpose: The page's one call-to-action band, near the end (R-SEC-05, R-COL-09).
+  anatomy: section[data-component=cta-band] > container > h2 + p + buttons
+  variants: none
+  states: none
+  spacing: py-16 md:py-24; centred; gradient background
+  motion: reveals
+  keyboard: buttons
+  a11y: inverse text on the gradient meets contrast (brand-700 base)
+  i18n: none
+  content limits: title ≤ 60 chars; text ≤ 20 words; one primary (+ one secondary)
+  data: s = { title, text, primary: {label, href}, secondary: {label, href} }
+#}
+{% from "sections/_shell.njk" import revealClasses %}
+{% from "primitives/button.njk" import button %}
+{% macro render(s, ctx) %}
+{%- set pad = "py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24" -%}
+<section class="{{ pad }} bg-linear-to-br from-brand-700 via-brand-600 to-accent-600 text-ink-inverse{{ revealClasses(ctx.reveal) }}"{% if ctx.reveal %} data-reveal{% endif %} data-component="cta-band">
+<div class="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>
+{%- if s.text %}<p class="mx-auto mt-4 max-w-2xl text-lg text-ink-inverse/85">{{ s.text }}</p>{% endif %}
+<div class="mt-8 flex flex-wrap justify-center gap-3">
+{{ button(s.primary.label, { href: s.primary.href, variant: "inverse" }) }}
+{%- if s.secondary %}{{ button(s.secondary.label, { href: s.secondary.href, variant: "inverse-outline" }) }}{% endif %}
+</div>
+</div>
+</section>
+{% endmacro %}

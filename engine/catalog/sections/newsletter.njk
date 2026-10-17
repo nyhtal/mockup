@@ -1,0 +1,29 @@
+{#
+  name: newsletter
+  purpose: One-field subscribe form (R-FORM-01, R-FORM-10).
+  anatomy: shell > form(email field + submit) + privacy note
+  variants: none
+  states: none
+  spacing: max-w-xl centred; inline on sm
+  motion: reveals
+  keyboard: input then button
+  a11y: visible label; the note links to the privacy page
+  i18n: ui.privacyNote
+  content limits: one field
+  data: s = { title, lede, form: { action, submit, privacyHref } }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "primitives/field.njk" import field %}
+{% from "primitives/button.njk" import button %}
+{% macro render(s, ctx) %}
+{% call shell("newsletter", s, ctx) %}
+<form method="get" action="{{ s.form.action }}" class="mx-auto max-w-xl">
+<div class="flex flex-col gap-3 sm:flex-row sm:items-end">
+<div class="grow">{{ field({ type: "email", name: "email", id: "newsletter-email", label: ("ui.emailLabel" | t), required: true, autocomplete: "email", placeholder: "alex@company.com" }) }}</div>
+{{ button(s.form.submit, { type: "submit" }) }}
+</div>
+<div hidden><label for="newsletter-website">Website</label><input type="text" id="newsletter-website" name="website" tabindex="-1" autocomplete="off"></div>
+{%- if s.form.privacyHref %}<p class="mt-3 text-center text-sm text-ink-muted">{{ "ui.privacyNote" | t }} <a href="{{ s.form.privacyHref }}" class="underline underline-offset-4 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.privacyPolicy" | t }}</a></p>{% endif %}
+</form>
+{% endcall %}
+{% endmacro %}

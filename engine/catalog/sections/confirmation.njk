@@ -1,0 +1,20 @@
+{#
+  name: confirmation
+  purpose: Thank-you page body: what happened, what happens next, one next step (R-FORM-12, R-PAGE-10).
+  anatomy: shell > icon + text + button
+  data: s = { title, text, next, cta: { label, href } }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "primitives/icon.njk" import icon %}
+{% from "primitives/button.njk" import button %}
+{% macro render(s, ctx) %}
+{% call shell("confirmation", s | merge({ title: null, cta: null, label: s.title }), ctx, { noReveal: true }) %}
+<div class="mx-auto max-w-xl text-center">
+<span class="inline-flex size-16 items-center justify-center rounded-full bg-success-soft text-success-strong">{{ icon("circle-check", { size: "size-6" }) }}</span>
+<h2 class="mt-6 text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>
+<p class="mt-4 text-lg text-ink-muted">{{ s.text }}</p>
+{%- if s.next %}<p class="mt-2 text-base text-ink-muted">{{ s.next }}</p>{% endif %}
+{%- if s.cta %}<div class="mt-8">{{ button(s.cta.label, { href: s.cta.href, variant: "secondary" }) }}</div>{% endif %}
+</div>
+{% endcall %}
+{% endmacro %}

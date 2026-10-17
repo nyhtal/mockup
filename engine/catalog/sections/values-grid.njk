@@ -1,0 +1,29 @@
+{#
+  name: values-grid
+  purpose: Mission and values: 3–6 short statements with icons (R-SEC-03).
+  anatomy: shell > ul.grid > li(icon + h3 + p)
+  variants: none
+  states: none
+  spacing: gap-8; 3 columns
+  motion: stagger
+  keyboard: none
+  a11y: list
+  i18n: none
+  content limits: title ≤ 4 words, text ≤ 30 words
+  data: s = { eyebrow, title, lede, items: [{ icon, title, text }] }
+#}
+{% from "sections/_shell.njk" import shell, stagger %}
+{% from "primitives/icon.njk" import icon %}
+{% macro render(s, ctx) %}
+{% call shell("values-grid", s, ctx) %}
+<ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+{%- for item in s.items %}
+<li class="rounded-lg border border-line bg-surface-raised p-6{{ stagger(loop.index0) }}">
+<span class="inline-flex size-10 items-center justify-center rounded-full bg-accent-100 text-accent-800">{{ icon(item.icon or "heart") }}</span>
+<h3 class="mt-4 text-lg font-semibold">{{ item.title }}</h3>
+<p class="mt-2 text-sm leading-relaxed text-ink-muted">{{ item.text }}</p>
+</li>
+{%- endfor %}
+</ul>
+{% endcall %}
+{% endmacro %}

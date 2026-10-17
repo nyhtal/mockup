@@ -1,0 +1,142 @@
+{#
+  name: _render (dispatcher, not a section)
+  purpose: Map a section's `type` to its macro (R-SEC-12). An unknown type fails the build.
+  usage: {% from "sections/_render.njk" import section %}{{ section(s, ctx) }}
+#}
+{% from "sections/hero.njk" import render as hero %}
+{% from "sections/page-header.njk" import render as pageHeader %}
+{% from "sections/logo-cloud.njk" import render as logoCloud %}
+{% from "sections/feature-grid.njk" import render as featureGrid %}
+{% from "sections/feature-rows.njk" import render as featureRows %}
+{% from "sections/stats.njk" import render as stats %}
+{% from "sections/testimonials.njk" import render as testimonials %}
+{% from "sections/cta-band.njk" import render as ctaBand %}
+{% from "sections/newsletter.njk" import render as newsletter %}
+{% from "sections/contact-form.njk" import render as contactForm %}
+{% from "sections/team-grid.njk" import render as teamGrid %}
+{% from "sections/team-preview.njk" import render as teamPreview %}
+{% from "sections/person-bio.njk" import render as personBio %}
+{% from "sections/office-cards.njk" import render as officeCards %}
+{% from "sections/office-detail.njk" import render as officeDetail %}
+{% from "sections/map-facade.njk" import render as mapFacade %}
+{% from "sections/service-cards.njk" import render as serviceCards %}
+{% from "sections/product-cards.njk" import render as productCards %}
+{% from "sections/industry-cards.njk" import render as industryCards %}
+{% from "sections/pricing.njk" import render as pricing %}
+{% from "sections/comparison.njk" import render as comparison %}
+{% from "sections/faq-groups.njk" import render as faqGroups %}
+{% from "sections/faq.njk" import render as faq %}
+{% from "sections/steps.njk" import render as steps %}
+{% from "sections/timeline.njk" import render as timeline %}
+{% from "sections/values-grid.njk" import render as valuesGrid %}
+{% from "sections/awards.njk" import render as awards %}
+{% from "sections/case-study-cards.njk" import render as caseStudyCards %}
+{% from "sections/article-cards.njk" import render as articleCards %}
+{% from "sections/press-cards.njk" import render as pressCards %}
+{% from "sections/download-cards.njk" import render as downloadCards %}
+{% from "sections/download-detail.njk" import render as downloadDetail %}
+{% from "sections/gated-form.njk" import render as gatedForm %}
+{% from "sections/event-cards.njk" import render as eventCards %}
+{% from "sections/event-detail.njk" import render as eventDetail %}
+{% from "sections/registration-form.njk" import render as registrationForm %}
+{% from "sections/speakers.njk" import render as speakers %}
+{% from "sections/job-list.njk" import render as jobList %}
+{% from "sections/job-detail.njk" import render as jobDetail %}
+{% from "sections/apply-form.njk" import render as applyForm %}
+{% from "sections/benefits-grid.njk" import render as benefitsGrid %}
+{% from "sections/integration-grid.njk" import render as integrationGrid %}
+{% from "sections/resource-tabs.njk" import render as resourceTabs %}
+{% from "sections/glossary-list.njk" import render as glossaryList %}
+{% from "sections/help-categories.njk" import render as helpCategories %}
+{% from "sections/search-box.njk" import render as searchBox %}
+{% from "sections/search-results.njk" import render as searchResults %}
+{% from "sections/sitemap-list.njk" import render as sitemapList %}
+{% from "sections/prose.njk" import render as prose %}
+{% from "sections/article-meta.njk" import render as articleMeta %}
+{% from "sections/author-box.njk" import render as authorBox %}
+{% from "sections/related-items.njk" import render as relatedItems %}
+{% from "sections/related-articles.njk" import render as relatedArticles %}
+{% from "sections/media-contact.njk" import render as mediaContact %}
+{% from "sections/media-kit-cta.njk" import render as mediaKitCta %}
+{% from "sections/contact-card.njk" import render as contactCard %}
+{% from "sections/badges.njk" import render as badges %}
+{% from "sections/image-gallery.njk" import render as imageGallery %}
+{% from "sections/confirmation.njk" import render as confirmation %}
+{% from "sections/error-state.njk" import render as errorState %}
+{% from "sections/resources-latest.njk" import render as resourcesLatest %}
+{% from "sections/pagination.njk" import render as pagination %}
+{% from "sections/filter-bar.njk" import render as filterBar %}
+{% from "sections/was-this-helpful.njk" import render as wasThisHelpful %}
+{% from "sections/preferences-form.njk" import render as preferencesForm %}
+{% from "sections/unsubscribe-form.njk" import render as unsubscribeForm %}
+{% macro section(s, ctx) %}
+{%- set t = s.type -%}
+{%- if t == "hero" %}{{ hero(s, ctx) }}
+{%- elif t == "page-header" %}{{ pageHeader(s, ctx) }}
+{%- elif t == "logo-cloud" %}{{ logoCloud(s, ctx) }}
+{%- elif t == "feature-grid" %}{{ featureGrid(s, ctx) }}
+{%- elif t == "feature-rows" %}{{ featureRows(s, ctx) }}
+{%- elif t == "stats" %}{{ stats(s, ctx) }}
+{%- elif t == "testimonials" %}{{ testimonials(s, ctx) }}
+{%- elif t == "cta-band" %}{{ ctaBand(s, ctx) }}
+{%- elif t == "newsletter" %}{{ newsletter(s, ctx) }}
+{%- elif t == "contact-form" %}{{ contactForm(s, ctx) }}
+{%- elif t == "team-grid" %}{{ teamGrid(s, ctx) }}
+{%- elif t == "team-preview" %}{{ teamPreview(s, ctx) }}
+{%- elif t == "person-bio" %}{{ personBio(s, ctx) }}
+{%- elif t == "office-cards" %}{{ officeCards(s, ctx) }}
+{%- elif t == "office-detail" %}{{ officeDetail(s, ctx) }}
+{%- elif t == "map-facade" %}{{ mapFacade(s, ctx) }}
+{%- elif t == "service-cards" %}{{ serviceCards(s, ctx) }}
+{%- elif t == "product-cards" %}{{ productCards(s, ctx) }}
+{%- elif t == "industry-cards" %}{{ industryCards(s, ctx) }}
+{%- elif t == "pricing" %}{{ pricing(s, ctx) }}
+{%- elif t == "comparison" %}{{ comparison(s, ctx) }}
+{%- elif t == "faq-groups" %}{{ faqGroups(s, ctx) }}
+{%- elif t == "faq" %}{{ faq(s, ctx) }}
+{%- elif t == "steps" %}{{ steps(s, ctx) }}
+{%- elif t == "timeline" %}{{ timeline(s, ctx) }}
+{%- elif t == "values-grid" %}{{ valuesGrid(s, ctx) }}
+{%- elif t == "awards" %}{{ awards(s, ctx) }}
+{%- elif t == "case-study-cards" %}{{ caseStudyCards(s, ctx) }}
+{%- elif t == "article-cards" %}{{ articleCards(s, ctx) }}
+{%- elif t == "press-cards" %}{{ pressCards(s, ctx) }}
+{%- elif t == "download-cards" %}{{ downloadCards(s, ctx) }}
+{%- elif t == "download-detail" %}{{ downloadDetail(s, ctx) }}
+{%- elif t == "gated-form" %}{{ gatedForm(s, ctx) }}
+{%- elif t == "event-cards" %}{{ eventCards(s, ctx) }}
+{%- elif t == "event-detail" %}{{ eventDetail(s, ctx) }}
+{%- elif t == "registration-form" %}{{ registrationForm(s, ctx) }}
+{%- elif t == "speakers" %}{{ speakers(s, ctx) }}
+{%- elif t == "job-list" %}{{ jobList(s, ctx) }}
+{%- elif t == "job-detail" %}{{ jobDetail(s, ctx) }}
+{%- elif t == "apply-form" %}{{ applyForm(s, ctx) }}
+{%- elif t == "benefits-grid" %}{{ benefitsGrid(s, ctx) }}
+{%- elif t == "integration-grid" %}{{ integrationGrid(s, ctx) }}
+{%- elif t == "resource-tabs" %}{{ resourceTabs(s, ctx) }}
+{%- elif t == "glossary-list" %}{{ glossaryList(s, ctx) }}
+{%- elif t == "help-categories" %}{{ helpCategories(s, ctx) }}
+{%- elif t == "search-box" %}{{ searchBox(s, ctx) }}
+{%- elif t == "search-results" %}{{ searchResults(s, ctx) }}
+{%- elif t == "sitemap-list" %}{{ sitemapList(s, ctx) }}
+{%- elif t == "prose" %}{{ prose(s, ctx) }}
+{%- elif t == "article-meta" %}{{ articleMeta(s, ctx) }}
+{%- elif t == "author-box" %}{{ authorBox(s, ctx) }}
+{%- elif t == "related-items" %}{{ relatedItems(s, ctx) }}
+{%- elif t == "related-articles" %}{{ relatedArticles(s, ctx) }}
+{%- elif t == "media-contact" %}{{ mediaContact(s, ctx) }}
+{%- elif t == "media-kit-cta" %}{{ mediaKitCta(s, ctx) }}
+{%- elif t == "contact-card" %}{{ contactCard(s, ctx) }}
+{%- elif t == "badges" %}{{ badges(s, ctx) }}
+{%- elif t == "image-gallery" %}{{ imageGallery(s, ctx) }}
+{%- elif t == "confirmation" %}{{ confirmation(s, ctx) }}
+{%- elif t == "error-state" %}{{ errorState(s, ctx) }}
+{%- elif t == "resources-latest" %}{{ resourcesLatest(s, ctx) }}
+{%- elif t == "pagination" %}{{ pagination(s, ctx) }}
+{%- elif t == "filter-bar" %}{{ filterBar(s, ctx) }}
+{%- elif t == "was-this-helpful" %}{{ wasThisHelpful(s, ctx) }}
+{%- elif t == "preferences-form" %}{{ preferencesForm(s, ctx) }}
+{%- elif t == "unsubscribe-form" %}{{ unsubscribeForm(s, ctx) }}
+{%- else %}{{ unknownSection(t) }}
+{%- endif %}
+{% endmacro %}

@@ -1,0 +1,28 @@
+{#
+  name: page-header
+  purpose: Top of every interior page: breadcrumbs, eyebrow, h1, lede (R-SEC-08).
+  anatomy: section[data-component=page-header] > container > breadcrumbs + eyebrow + h1 + lede (+ meta)
+  variants: none
+  states: none
+  spacing: py-12 md:py-16; h1 mt-2; lede mt-4
+  motion: none (contains the h1: R-SEC-10)
+  keyboard: breadcrumb links
+  a11y: the only h1 on the page
+  i18n: none
+  content limits: h1 ≤ 60 chars; lede ≤ 35 words
+  data: s = { eyebrow, title, lede, breadcrumbs: [{name,url}] }
+#}
+{% from "components/breadcrumbs.njk" import breadcrumbs %}
+{% macro render(s, ctx) %}
+<section class="py-12 md:py-16 {{ s.surface or 'bg-surface' }}" data-component="page-header">
+<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+{%- if s.breadcrumbs and s.breadcrumbs.length %}<div class="mb-6">{{ breadcrumbs(s.breadcrumbs) }}</div>{% endif %}
+<div class="max-w-3xl">
+{%- if s.eyebrow %}<p class="text-sm font-medium uppercase tracking-wide text-brand-700">{{ s.eyebrow }}</p>{% endif %}
+{%- set h = "h2" if ctx.demote else "h1" -%}
+<{{ h }} class="{{ 'mt-2' if s.eyebrow }} text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ s.title }}</{{ h }}>
+{%- if s.lede %}<p class="mt-4 text-lg md:text-xl text-ink-muted">{{ s.lede }}</p>{% endif %}
+</div>
+</div>
+</section>
+{% endmacro %}

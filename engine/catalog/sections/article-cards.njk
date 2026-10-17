@@ -1,0 +1,8 @@
+{#
+  name: article-cards
+  purpose: Blog index and resource listings, 12 per page (R-PAGE-11).
+  anatomy: cardGrid(article, 3) + optional pagination via the pagination section
+  data: s = { title, items: [{ image, eyebrow, title, text, date, dateIso, href }] }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("article-cards", s, ctx, "article", 3) }}{% endmacro %}

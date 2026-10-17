@@ -1,0 +1,28 @@
+{#
+  name: benefits-grid
+  purpose: Careers benefits, 4–8 items (R-SEC-03).
+  anatomy: shell > ul.grid > li(icon + h3 + p)
+  variants: none
+  states: none
+  spacing: gap-6; 4 columns at lg
+  motion: stagger
+  keyboard: none
+  a11y: list
+  i18n: none
+  content limits: title ≤ 4 words; text ≤ 20 words
+  data: s = { eyebrow, title, lede, items: [{ icon, title, text }] }
+#}
+{% from "sections/_shell.njk" import shell, stagger %}
+{% from "primitives/icon.njk" import icon %}
+{% macro render(s, ctx) %}
+{% call shell("benefits-grid", s, ctx) %}
+<ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+{%- for item in s.items %}
+<li class="flex gap-4{{ stagger(loop.index0) }}">
+<span class="mt-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md bg-brand-100 text-brand-800">{{ icon(item.icon or "check", { size: "size-4" }) }}</span>
+<div><h3 class="font-semibold">{{ item.title }}</h3><p class="mt-1 text-sm leading-relaxed text-ink-muted">{{ item.text }}</p></div>
+</li>
+{%- endfor %}
+</ul>
+{% endcall %}
+{% endmacro %}

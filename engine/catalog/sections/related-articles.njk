@@ -1,0 +1,8 @@
+{#
+  name: related-articles
+  purpose: Three related posts at the end of an article.
+  anatomy: cardGrid(article, 3)
+  data: s = { title, items: [...] }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("related-articles", s, ctx, "article", 3) }}{% endmacro %}

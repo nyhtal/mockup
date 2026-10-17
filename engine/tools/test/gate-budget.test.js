@@ -77,6 +77,16 @@ test("a referenced asset that does not exist is a finding, not zero bytes", asyn
   assert.deepEqual(r.findings.map((f) => f.check), ["budget/missing-asset"]);
 });
 
+test("an override applies to pages whose path contains its key and leaves other pages on the defaults", async () => {
+  const b = { ...budgets, html: 10, overrides: { "/style-guide/": { html: 51200 } } };
+  mkdirSync(path.join(dir, "en", "style-guide"), { recursive: true });
+  writeFileSync(path.join(dir, "en", "style-guide", "index.html"), page('<link rel="stylesheet" href="/assets/app.css">'));
+  const guide = await run({ distDir: dir, only: ["en/style-guide/index.html"], budgets: b });
+  assert.ok(!guide.findings.some((f) => f.check === "budget/html"), "override lifts the html budget on the style guide");
+  const normal = await run(ctx("ok.html", b));
+  assert.ok(normal.findings.some((f) => f.check === "budget/html"), "defaults still apply elsewhere");
+});
+
 test("each budget is enforced by its own check", async () => {
   const r = await run(ctx("ok.html", { html: 10, css: 10, js: 0, page: 10, mobileWidth: 720 }));
   assert.deepEqual(r.findings.map((f) => f.check).sort(), ["budget/css", "budget/html", "budget/js", "budget/page"]);

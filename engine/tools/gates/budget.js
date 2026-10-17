@@ -71,13 +71,21 @@ export function loadBudgets() {
   return JSON.parse(readFileSync("engine/budgets.json", "utf8"));
 }
 
+/** Budgets for one page: the defaults, overridden for pages whose path contains an `overrides` key (e.g. "/style-guide/"). */
+export function budgetsFor(base, file) {
+  const p = file.replace(/\\/g, "/");
+  const key = Object.keys(base.overrides || {}).find((k) => p.includes(k));
+  return key ? { ...base, ...base.overrides[key] } : base;
+}
+
 export async function run(ctx) {
-  const budgets = ctx.budgets || loadBudgets();
-  const mobileWidth = budgets.mobileWidth || 720;
+  const base = ctx.budgets || loadBudgets();
+  const mobileWidth = base.mobileWidth || 720;
   const findings = [];
   const report = [];
 
   for (const file of pagesFor(ctx)) {
+    const budgets = budgetsFor(base, file);
     const add = (check, message) => findings.push({ file, message, check: `budget/${check}` });
     const html = statSync(file).size;
     if (html > budgets.html) add("html", `${html} B > ${budgets.html} B`);

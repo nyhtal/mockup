@@ -1,0 +1,16 @@
+{#
+  name: sitemap-list
+  purpose: HTML site map: grouped links to every indexable page (R-PAGE inventory: sitemap).
+  anatomy: shell(center false) > div.grid > div(h3 + ul)
+  data: s = { groups: [{ title, links: [{ label, href }] }] }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% macro render(s, ctx) %}
+{% call shell("sitemap-list", s, ctx, { center: false }) %}
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+{%- for g in s.groups %}
+<div><h3 class="text-sm font-semibold uppercase tracking-wide">{{ g.title }}</h3><ul class="mt-3 space-y-2 text-sm">{% for l in g.links %}<li><a href="{{ l.href }}" class="text-ink-muted hover:text-ink hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ l.label }}</a></li>{% endfor %}</ul></div>
+{%- endfor %}
+</div>
+{% endcall %}
+{% endmacro %}

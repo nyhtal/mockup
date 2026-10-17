@@ -1,0 +1,11 @@
+---
+layout: base.njk
+---
+{#- Sections-driven page (R-SEC-06 alternation, R-SEC-10 reveal below the fold, R-SEC-12 data only).
+    Front matter: sections: [ "sample-id" | { type, … } ]; demote: true turns section h1s into h2s (style guide only).
+    Any template body renders before the sections. -#}
+{% from "sections/_render.njk" import section %}
+{{ content | safe }}
+{%- for step in sections | sectionsPlan(locale, page.url, site.brand.density, demote) %}
+{{ section(step.s, step.ctx) }}
+{%- endfor %}

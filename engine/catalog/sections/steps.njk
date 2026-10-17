@@ -1,0 +1,21 @@
+{#
+  name: steps
+  purpose: How it works, 3–5 steps (R-SEC-03).
+  anatomy: shell > steps component (horizontal on md)
+  variants: horizontal | vertical
+  states: none
+  spacing: per component
+  motion: reveals
+  keyboard: none
+  a11y: ordered list
+  i18n: none
+  content limits: 3–5 steps
+  data: s = { eyebrow, title, lede, items: [{ title, text }], variant }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/steps.njk" import steps %}
+{% macro render(s, ctx) %}
+{% call shell("steps", s, ctx) %}
+{{ steps(s.items, { variant: s.variant or "horizontal" }) }}
+{% endcall %}
+{% endmacro %}

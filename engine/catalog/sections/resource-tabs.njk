@@ -1,0 +1,30 @@
+{#
+  name: resource-tabs
+  purpose: Resource hub: disclosure tabs for guides, webinars and downloads, each a small card grid (R-COMP-10).
+  anatomy: shell > div[data-component=tabs-like] > details[name=resources] > summary(label) + div(ul.grid of cards)
+  variants: none
+  states: open tab (brand underline); the first tab is open
+  spacing: summaries px-4 py-3; panel py-6
+  motion: reveals
+  keyboard: summaries
+  a11y: native disclosures; each card has its heading
+  i18n: labels ≤ 18 chars
+  content limits: 2–5 tabs, ≤ 6 items each
+  data: s = { title, lede, tabs: [{ label, variant, items: [...] }] }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/card.njk" import card %}
+{% macro render(s, ctx) %}
+{% call shell("resource-tabs", s, ctx) %}
+<div class="md:relative md:[&>details>summary]:inline-flex">
+{%- for tab in s.tabs %}
+<details class="group md:static" name="resources"{% if loop.first %} open{% endif %}>
+<summary class="cursor-pointer list-none border-b-2 border-transparent px-4 py-3 font-medium text-ink-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus group-open:border-brand-600 group-open:text-ink">{{ tab.label }}</summary>
+<div class="py-6 md:absolute md:inset-x-0 md:top-12 md:border-t md:border-line">
+<ul class="grid gap-6 md:grid-cols-3">{% for item in tab.items %}{{ card(item | merge({ variant: tab.variant or "article" }), { density: ctx.density }) }}{% endfor %}</ul>
+</div>
+</details>
+{%- endfor %}
+</div>
+{% endcall %}
+{% endmacro %}

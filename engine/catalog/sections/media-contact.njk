@@ -1,0 +1,21 @@
+{#
+  name: media-contact
+  purpose: Press contact block on news pages and the media kit.
+  anatomy: shell(center false) > card-like address block
+  data: s = { title, name, role, email, phone }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "primitives/avatar.njk" import avatar %}
+{% macro render(s, ctx) %}
+{% call shell("media-contact", s, ctx, { center: false }) %}
+<div class="flex max-w-xl gap-4 rounded-lg border border-line bg-surface-raised p-6">
+{{ avatar(s.name) }}
+<address class="not-italic">
+<p class="font-semibold">{{ s.name }}</p>
+<p class="text-sm text-ink-muted">{{ s.role }}</p>
+<p class="mt-2 text-sm"><a href="mailto:{{ s.email }}" class="underline underline-offset-4 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.email }}</a></p>
+{%- if s.phone %}<p class="text-sm"><a href="tel:{{ s.phone | replace(' ', '') }}" class="underline underline-offset-4 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.phone }}</a></p>{% endif %}
+</address>
+</div>
+{% endcall %}
+{% endmacro %}

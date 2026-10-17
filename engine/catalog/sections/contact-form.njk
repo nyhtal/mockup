@@ -1,0 +1,36 @@
+{#
+  name: contact-form
+  purpose: The contact, demo and quote forms: text column plus the form (R-FORM-*).
+  anatomy: shell(center false) > grid > div(text, contact details) + div(form card)
+  variants: none
+  states: error example via s.form.errors
+  spacing: grid gap-12 lg:grid-cols-5 (2 text + 3 form)
+  motion: reveals
+  keyboard: form controls in order
+  a11y: the form card has an h3; contact details in <address>
+  i18n: ui.privacyNote
+  content limits: ≤ 8 fields
+  data: s = { eyebrow, title, lede, aside: { text, address, email, phone }, form: {…} }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "sections/_form.njk" import formBody %}
+{% macro render(s, ctx) %}
+{% call shell("contact-form", s, ctx, { center: false }) %}
+<div class="grid gap-12 lg:grid-cols-5">
+<div class="lg:col-span-2">
+{%- if s.aside and s.aside.text %}<p class="text-base leading-relaxed text-ink-muted">{{ s.aside.text }}</p>{% endif %}
+{%- if s.aside and (s.aside.address or s.aside.email or s.aside.phone) %}
+<address class="mt-6 space-y-2 text-base not-italic leading-relaxed">
+{%- if s.aside.address %}<p>{{ s.aside.address }}</p>{% endif %}
+{%- if s.aside.email %}<p><a href="mailto:{{ s.aside.email }}" class="underline underline-offset-4 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.aside.email }}</a></p>{% endif %}
+{%- if s.aside.phone %}<p><a href="tel:{{ s.aside.phone | replace(' ', '') }}" class="underline underline-offset-4 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.aside.phone }}</a></p>{% endif %}
+</address>
+{%- endif %}
+</div>
+<div class="rounded-xl border border-line bg-surface-raised p-6 shadow-sm lg:col-span-3 md:p-8">
+{%- if s.form.title %}<h3 class="text-xl font-semibold">{{ s.form.title }}</h3>{% endif %}
+<div class="{{ 'mt-6' if s.form.title }}">{{ formBody(s.form, ctx) }}</div>
+</div>
+</div>
+{% endcall %}
+{% endmacro %}

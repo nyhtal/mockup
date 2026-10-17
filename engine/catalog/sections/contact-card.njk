@@ -1,0 +1,21 @@
+{#
+  name: contact-card
+  purpose: A named contact (investor relations, security team) with email.
+  anatomy: shell(center false) > address card
+  data: s = { title, name, role, email, text }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "primitives/avatar.njk" import avatar %}
+{% macro render(s, ctx) %}
+{% call shell("contact-card", s, ctx, { center: false }) %}
+<div class="flex max-w-xl gap-4 rounded-lg border border-line bg-surface-raised p-6">
+{{ avatar(s.name) }}
+<address class="not-italic">
+<p class="font-semibold">{{ s.name }}</p>
+<p class="text-sm text-ink-muted">{{ s.role }}</p>
+{%- if s.text %}<p class="mt-2 text-sm leading-relaxed">{{ s.text }}</p>{% endif %}
+<p class="mt-2 text-sm"><a href="mailto:{{ s.email }}" class="underline underline-offset-4 hover:text-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.email }}</a></p>
+</address>
+</div>
+{% endcall %}
+{% endmacro %}

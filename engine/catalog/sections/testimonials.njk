@@ -1,0 +1,32 @@
+{#
+  name: testimonials
+  purpose: One, three or a scrollable row of customer quotes (R-SEC-03, R-COMP-11).
+  anatomy: shell > testimonial (single) | ul.grid (grid) | ul.snap carousel (carousel)
+  variants: single | grid | carousel
+  states: none
+  spacing: grid gap-6; carousel gap-6 with snap-x
+  motion: group reveal; the carousel never autoplays
+  keyboard: carousel items are reachable because the figure contains no controls; the scroll container is focusable
+  a11y: figures with figcaptions; carousel is a list in a focusable scroll region
+  i18n: none
+  content limits: single 1, grid 3, carousel ≤ 6
+  data: s = { eyebrow, title, items: [testimonial data], variant }
+#}
+{% from "sections/_shell.njk" import shell, stagger %}
+{% from "components/testimonial.njk" import testimonial %}
+{% macro render(s, ctx) %}
+{%- set variant = s.variant or ("single" if s.items.length == 1 else "grid") -%}
+{% call shell("testimonials", s, ctx) %}
+{%- if variant == "single" %}
+{{ testimonial(s.items[0]) }}
+{%- elif variant == "carousel" %}
+<ul class="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 scroll-ps-4 [scrollbar-width:thin]" tabindex="0">
+{%- for item in s.items %}<li class="w-80 shrink-0 snap-start">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
+</ul>
+{%- else %}
+<ul class="grid gap-6 md:grid-cols-3">
+{%- for item in s.items %}<li class="{{ stagger(loop.index0) }}">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
+</ul>
+{%- endif %}
+{% endcall %}
+{% endmacro %}

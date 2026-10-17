@@ -1,0 +1,11 @@
+{#
+  name: author-box (section)
+  purpose: Author aside at the end of an article.
+  anatomy: shell(no title) > author-box component
+  data: s = { author: { name, role, bio, href } }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/author-box.njk" import authorBox %}
+{% macro render(s, ctx) %}
+{% call shell("author-box", s, ctx, { center: false }) %}<div class="max-w-3xl">{{ authorBox(s.author) }}</div>{% endcall %}
+{% endmacro %}

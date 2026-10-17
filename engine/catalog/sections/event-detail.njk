@@ -1,0 +1,21 @@
+{#
+  name: event-detail
+  purpose: Date, time, place and description of one event (R-SCH-07 Event).
+  anatomy: shell(center false) > grid > dl(div > dt(icon + label) + dd) + prose
+  data: s = { date, dateIso, time, location, format, body (html), labels: { date, location, format } }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/prose.njk" import prose %}
+{% from "primitives/icon.njk" import icon %}
+{% macro render(s, ctx) %}
+{% call shell("event-detail", s, ctx, { center: false, noReveal: true }) %}
+<div class="grid gap-12 lg:grid-cols-3">
+<dl class="space-y-4 text-base">
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("calendar", { size: "size-4", class: "text-brand-700" }) }}{{ s.labels.date if s.labels else "Date" }}</dt><dd class="ms-6"><time datetime="{{ s.dateIso }}">{{ s.date }}</time>{% if s.time %}, {{ s.time }}{% endif %}</dd></div>
+<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("map-pin", { size: "size-4", class: "text-brand-700" }) }}{{ s.labels.location if s.labels else "Location" }}</dt><dd class="ms-6">{{ s.location }}</dd></div>
+{%- if s.format %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("users", { size: "size-4", class: "text-brand-700" }) }}{{ s.labels.format if s.labels else "Format" }}</dt><dd class="ms-6">{{ s.format }}</dd></div>{% endif %}
+</dl>
+<div class="lg:col-span-2">{{ prose(s.body) }}</div>
+</div>
+{% endcall %}
+{% endmacro %}

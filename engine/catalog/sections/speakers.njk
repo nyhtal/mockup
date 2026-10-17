@@ -1,0 +1,8 @@
+{#
+  name: speakers
+  purpose: Event speakers, 1–6 people.
+  anatomy: cardGrid(team, 3)
+  data: s = { title, items: [{ name, role }] }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("speakers", s, ctx, "team", 3) }}{% endmacro %}

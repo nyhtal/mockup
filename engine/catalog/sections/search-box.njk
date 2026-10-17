@@ -1,0 +1,11 @@
+{#
+  name: search-box (section)
+  purpose: Large search form on the search and help pages.
+  anatomy: shell > search-box(hero)
+  data: s = { title, lede }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/search-box.njk" import searchBox %}
+{% macro render(s, ctx) %}
+{% call shell("search-box", s, ctx, { noReveal: true }) %}<div class="mx-auto max-w-2xl">{{ searchBox(ctx.locale, { variant: "hero", id: "q-page" }) }}</div>{% endcall %}
+{% endmacro %}

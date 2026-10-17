@@ -1,0 +1,20 @@
+{#
+  name: job-list
+  purpose: Open roles with a filter bar; empty state when none (R-SEC-11, R-PAGE-11).
+  anatomy: shell(center false) > filter-bar + ul.grid(job cards) | empty-state
+  data: s = { title, lede, filters: {…}, items: [{ title, team, location, type, href }], empty: {…} }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/filter-bar.njk" import filterBar %}
+{% from "components/card.njk" import card %}
+{% from "components/empty-state.njk" import emptyState %}
+{% macro render(s, ctx) %}
+{% call shell("job-list", s, ctx, { center: false }) %}
+{%- if s.filters %}<div class="mb-8">{{ filterBar(s.filters) }}</div>{% endif %}
+{%- if s.items and s.items.length %}
+<ul class="grid gap-6 md:grid-cols-2">{% for item in s.items %}{{ card(item | merge({ variant: "job" }), { density: ctx.density }) }}{% endfor %}</ul>
+{%- else %}
+{{ emptyState(s.empty or { icon: "briefcase", title: "No open roles right now", text: "Subscribe to job alerts and we will email you when something opens." }) }}
+{%- endif %}
+{% endcall %}
+{% endmacro %}

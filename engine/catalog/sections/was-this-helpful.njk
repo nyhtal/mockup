@@ -1,0 +1,12 @@
+{#
+  name: was-this-helpful (section)
+  purpose: Feedback row at the end of help articles.
+  anatomy: section(no title) > container > was-this-helpful component
+  data: s = {}
+#}
+{% from "components/was-this-helpful.njk" import wasThisHelpful %}
+{% macro render(s, ctx) %}
+<section class="py-8 {{ s.surface or 'bg-surface' }}" aria-label="{{ 'ui.helpful' | t }}" data-component="was-this-helpful">
+<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">{{ wasThisHelpful(ctx.pageUrl) }}</div>
+</section>
+{% endmacro %}

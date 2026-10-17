@@ -1,0 +1,8 @@
+{#
+  name: team-grid
+  purpose: Leadership or team listing, 4–12 people (R-SEC-03, R-ASSET-07).
+  anatomy: cardGrid(team, 4)
+  data: s = { eyebrow, title, lede, items: [{ name, role, href }] }
+#}
+{% from "sections/_grid.njk" import cardGrid %}
+{% macro render(s, ctx) %}{{ cardGrid("team-grid", s, ctx, "team", 4) }}{% endmacro %}

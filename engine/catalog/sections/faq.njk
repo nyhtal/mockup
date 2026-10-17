@@ -1,0 +1,21 @@
+{#
+  name: faq
+  purpose: One group of 4–10 questions (R-SEC-03, R-COMP-10); the FAQ page uses faq-groups.
+  anatomy: shell > accordion(faq)
+  variants: none
+  states: per accordion
+  spacing: max-w-3xl centred
+  motion: reveals
+  keyboard: summaries
+  a11y: questions are h3 inside summaries
+  i18n: none
+  content limits: 4–10 items; question ≤ 80 chars; answer ≤ 80 words
+  data: s = { eyebrow, title, lede, items: [{ title, body }], group }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/accordion.njk" import accordion %}
+{% macro render(s, ctx) %}
+{% call shell("faq", s, ctx) %}
+<div class="mx-auto max-w-3xl">{{ accordion(s.items, { variant: "faq", group: s.group or "faq", level: 3 }) }}</div>
+{% endcall %}
+{% endmacro %}

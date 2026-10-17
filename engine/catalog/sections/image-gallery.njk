@@ -1,0 +1,11 @@
+{#
+  name: image-gallery (section)
+  purpose: Captioned pictures on culture and press pages.
+  anatomy: shell > image-gallery component
+  data: s = { title, lede, items: [{ slug, ratio, alt, caption }] }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "components/image-gallery.njk" import gallery %}
+{% macro render(s, ctx) %}
+{% call shell("image-gallery", s, ctx) %}{{ gallery(s.items) }}{% endcall %}
+{% endmacro %}

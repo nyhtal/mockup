@@ -1,0 +1,16 @@
+{#
+  name: media-kit-cta
+  purpose: Small banner linking to the media kit from the news index.
+  anatomy: section > container > flex(text + button)
+  data: s = { title, text, cta: { label, href } }
+#}
+{% from "sections/_shell.njk" import shell %}
+{% from "primitives/button.njk" import button %}
+{% macro render(s, ctx) %}
+{% call shell("media-kit-cta", s | merge({ title: null, cta: null, label: s.title }), ctx) %}
+<div class="flex flex-col items-start gap-6 rounded-xl border border-line bg-surface-raised p-8 md:flex-row md:items-center md:justify-between">
+<div><h2 class="text-xl md:text-2xl font-semibold">{{ s.title }}</h2><p class="mt-2 text-base text-ink-muted">{{ s.text }}</p></div>
+{{ button(s.cta.label, { href: s.cta.href, variant: "secondary", icon: "download" }) }}
+</div>
+{% endcall %}
+{% endmacro %}
