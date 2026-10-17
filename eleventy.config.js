@@ -11,7 +11,7 @@ export function schemaJson(site, data) {
     { "@type": "Organization", "@id": org, name: site.name, url: `${site.url}/` },
     { "@type": "WebSite", "@id": web, url: `${site.url}/`, name: site.name, publisher: { "@id": org }, inLanguage: lang },
     {
-      "@type": data.pageType === "home" ? "WebPage" : "WebPage",
+      "@type": "WebPage",
       "@id": site.url + data.page.url,
       url: site.url + data.page.url,
       name: data.title,
@@ -20,7 +20,8 @@ export function schemaJson(site, data) {
       inLanguage: lang,
     },
   ];
-  return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replaceAll("<", "\\u003c");
+  // Escape the three characters that could end the script element or start markup inside it.
+  return JSON.stringify({ "@context": "https://schema.org", "@graph": graph }).replace(/[<>&]/g, (c) => ({ "<": "\\u003c", ">": "\\u003e", "&": "\\u0026" }[c]));
 }
 
 export default function (eleventyConfig) {

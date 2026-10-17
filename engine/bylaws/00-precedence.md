@@ -30,12 +30,12 @@ Gate: manual: checklists/pre-delivery.md
 ### R-PREC-06 Catalog verbatim
 MUST. Pages are composed from catalog sections and components without editing their markup or classes. A new need is met by adding a variant to the catalog, never by improvising on a page.
 Why: Consistency is a property of the catalog, not of individual pages.
-Gate: consistency/component-known
+Gate: manual: checklists/new-page.md
 
 ### R-PREC-07 The CSS exception list
 MUST. `engine/theme/app.css` contains only: `@import "tailwindcss"`, `@source` lines, one `@theme` block (with its `@keyframes`), `@custom-variant` lines, `@font-face` blocks for the site's fonts, and the `@view-transition` block wrapped in `@media (prefers-reduced-motion: no-preference)`. No `@apply`, no `@layer components`, no selectors, no inline `style`.
 Why: The whole look must be expressible in utilities so pages stay portable and the purge stays small.
-Gate: consistency/inline-style
+Gate: manual: checklists/pre-delivery.md
 
 ### R-PREC-08 The JS allowance
 MUST. The only runtime script is `engine/scripts/enhance.js`, an ES module of at most 2048 bytes minified with no dependencies, loaded once with `type="module"`. Every behaviour in it is feature-detected and every page works with the script absent.

@@ -5,17 +5,17 @@ Purpose: the single set of values every utility class on every site draws from. 
 ### R-TOK-01 One spacing base
 MUST. `--spacing` stays at Tailwind's `0.25rem`. All padding, margin, gap and size utilities use the numeric scale; arbitrary lengths (`p-[13px]`) are not allowed.
 Why: One base unit is what makes spacing look consistent without anyone measuring.
-Gate: consistency/class-exists
+Gate: manual: checklists/new-component.md
 
 ### R-TOK-02 Rhythm steps
-MUST. Vertical spacing between blocks uses only these steps: 2, 4, 6, 8, 12, 16, 24, 32 (`space-y-*`, `gap-*`, `mt-*`, `py-*`). Inside a component, 1 and 3 are also allowed for fine alignment.
+MUST. Vertical spacing between blocks uses only these steps: 2, 4, 6, 8, 12, 16, 24, 32 (`space-y-*`, `gap-*`, `mt-*`, `py-*`). Inside a component, 1, 3 and 5 are also allowed for fine alignment (button padding is `px-5`).
 Why: Eight steps are enough for any layout and few enough to look deliberate.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-03 Type scale
 MUST. Font sizes come from Tailwind's default `--text-*` scale (`xs` 0.75rem … `6xl` 3.75rem) with their paired line heights. No arbitrary sizes. Bylaw 04 says which element uses which size.
 Why: A fixed scale keeps hierarchy legible and translations predictable.
-Gate: consistency/class-exists
+Gate: manual: checklists/new-component.md
 
 ### R-TOK-04 Colour roles, not hues
 MUST. Pages use only role colours: `brand-50…950`, `accent-50…950`, `surface`, `surface-alt`, `surface-raised`, `ink`, `ink-muted`, `ink-inverse`, `line`, `line-strong`, `focus`, `success`, `warning`, `danger` (each state colour with `-soft` and `-strong`). Tailwind's named palettes (`gray-900`, `blue-500`) are not used in pages.
@@ -23,7 +23,7 @@ Why: Roles let a brief change hues without touching a single class.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-05 Roles carry both schemes
-MUST. Every role token is defined with `light-dark(<light>, <dark>)` and `<html>` carries `scheme-light-dark`. Pages never use the `dark:` variant.
+MUST. Every role token is defined with `light-dark(<light>, <dark>)` and `<html>` carries `scheme-light-dark`. Pages never use the `dark:` variant. Fallback: browsers older than Chrome 123, Safari 17.5 or Firefox 120 (all before mid-2024) ignore `light-dark()` and render the browser's default colours (black text, transparent backgrounds), which stays readable; `light-dark()` becomes Baseline Widely available on 2026-11-13. This overrides spec §4.4 (recorded in DECISIONS D7).
 Why: Dark mode becomes a token concern instead of a class on every element; it follows the OS as D7 requires.
 Gate: manual: checklists/new-component.md
 
@@ -43,7 +43,7 @@ Why: Three elevations are enough; more creates visual noise.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-09 Z-index scale
-MUST. `z-10` sticky header and sub-nav, `z-20` dropdowns that are not popovers, `z-30` drawers that are not popovers, `z-40` reserved, `z-50` toasts. Popovers and dialogs use the top layer and carry no `z-*`.
+MUST. `z-10` sticky header and sub-nav, `z-50` toasts. No other `z-*` is used: dropdowns, menus, drawers, tooltips and dialogs are popovers or dialogs (R-COMP-09), which live in the top layer and carry no `z-*`.
 Why: Stacking bugs come from ad-hoc values.
 Gate: manual: checklists/new-component.md
 
@@ -53,7 +53,7 @@ Why: One container width makes every section line up.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-11 Durations and easings
-MUST. Durations are `duration-150` (hover, focus), `duration-200` (dropdown, popover), `duration-300` (dialog, drawer, page transition) and `duration-500` (scroll reveals). Easings are `ease-out` for entrances and `ease-in-out` for movement; `--ease-smooth: cubic-bezier(0.22, 1, 0.36, 1)` is the only custom easing.
+MUST. Durations are `duration-150` (hover, focus), `duration-200` (dropdown, popover), `duration-300` (dialog, drawer, page transition) and `duration-(--reveal-duration)` (scroll reveals, set by the motion preset in R-TOK-12). Easings are `ease-out` for entrances and `ease-in-out` for movement; `--ease-smooth: cubic-bezier(0.22, 1, 0.36, 1)` is the only custom easing.
 Why: Four durations and two curves make motion feel like one system.
 Gate: manual: checklists/new-component.md
 

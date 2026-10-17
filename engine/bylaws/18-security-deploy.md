@@ -10,7 +10,7 @@ Gate: manual: checklists/pre-delivery.md
 ### R-DEPLOY-02 JSON-LD under CSP
 MUST. The JSON-LD block needs no CSP exception because browsers do not execute `application/ld+json`; the policy above has no `'unsafe-inline'`.
 Why: Correctness of the CSP claim.
-Gate: schema/single-block
+Gate: manual: checklists/pre-delivery.md
 
 ### R-DEPLOY-03 Facades and CSP
 MUST. When a facade loads a third-party iframe after a click, the site's `DECISIONS.md` lists the provider origin to add to `frame-src`; the shipped CSP stays `frame-src 'none'` until then.
@@ -20,7 +20,7 @@ Gate: manual: checklists/pre-delivery.md
 ### R-DEPLOY-04 Error pages
 MUST. `/404.html` and `/500.html` exist at the output root (R-PAGE-07), and the deployment maps 404 and 5xx to them; the static server used by the gate does the same for 404.
 Why: Hosts look for root error pages by name.
-Gate: links/broken
+Gate: manual: checklists/pre-delivery.md
 
 ### R-DEPLOY-05 Redirects
 MUST. `_redirects` (and `redirects.json`) map `/` → `/<default-locale>/` (301 where the host supports it; the root HTML page from R-PAGE-08 covers hosts that do not), non-slash URLs to slash URLs, and nothing else.

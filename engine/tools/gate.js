@@ -3,8 +3,9 @@ import { execSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadSite } from "./lib/site.js";
+import { listHtml } from "./lib/html.js";
 import { startServer } from "./serve.js";
-import { vnuPath } from "./setup-vnu.js";
+import { installedVersion } from "./setup-vnu.js";
 import * as bylaws from "./gates/bylaws.js";
 import * as html from "./gates/html.js";
 import * as consistency from "./gates/consistency.js";
@@ -18,6 +19,8 @@ import * as lighthouse from "./gates/lighthouse.js";
 /** Gate order: cheap and offline first, browser-driven last. */
 export const GATES = [bylaws, html, consistency, schema, budget, i18n, links, a11y, lighthouse];
 export const GATE_IDS = GATES.map((g) => g.id);
+/** gate id → the check names it can emit; the bylaws gate validates every `Gate:` line against this. */
+export const GATE_CHECKS = Object.fromEntries(GATES.map((g) => [g.id, g.checks]));
 
 export function parseArgs(argv) {
   const get = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : undefined; };
@@ -31,9 +34,10 @@ const sh = (cmd) => { try { return execSync(cmd, { encoding: "utf8", stdio: ["ig
 export async function runGates({ site, skip = [], only = [], runs }) {
   const distDir = `dist/${site}`;
   if (!existsSync(distDir)) throw new Error(`${distDir} not found; run npm run build -- --site ${site}`);
+  if (listHtml(distDir).length === 0) throw new Error(`${distDir} contains no pages; nothing to gate`);
   const { site: siteConfig, siteDir } = loadSite(site);
   const server = await startServer(distDir);
-  const ctx = { distDir, siteDir, site: siteConfig, engineDir: "engine", baseUrl: server.url, gateIds: GATE_IDS, runs };
+  const ctx = { distDir, siteDir, site: siteConfig, engineDir: "engine", baseUrl: server.url, gateChecks: GATE_CHECKS, runs };
   const results = [];
   try {
     for (const gate of GATES) {
@@ -49,7 +53,8 @@ export async function runGates({ site, skip = [], only = [], runs }) {
 }
 
 export function formatReport({ site, results }) {
-  const vnu = vnuPath() ? sh(`"${vnuPath()}" --version`) : "not installed";
+  let vnu = "not installed";
+  try { vnu = installedVersion() || vnu; } catch { /* keep */ }
   const lines = [
     `# Gate report: ${site}`,
     "",
@@ -60,13 +65,19 @@ export function formatReport({ site, results }) {
     "|---|---|---|---|",
     ...results.map((r) => `| ${r.id} | ${r.skipped ? "skipped" : r.ok ? "pass" : "FAIL"} | ${r.findings.length} | ${r.ms ? `${(r.ms / 1000).toFixed(1)}s` : "-"} |`),
   ];
-  const lh = results.find((r) => r.id === "lighthouse" && r.report);
+  const lh = results.find((r) => r.id === "lighthouse" && r.report?.length);
   if (lh) {
-    lines.push("", "## Lighthouse medians", "", "| Page | Profile | Perf | A11y | BP | SEO |", "|---|---|---|---|---|---|");
+    const first = lh.report[0];
+    lines.push("", "## Lighthouse", "", `Chrome ${first.chrome} · ${first.runs} runs per page and profile, median reported · mobile: ${lh.report.find((p) => p.profile === "mobile")?.throttling || "-"} · desktop: ${lh.report.find((p) => p.profile === "desktop")?.throttling || "-"}`, "", "| Page | Profile | Perf | A11y | BP | SEO |", "|---|---|---|---|---|---|");
     for (const p of lh.report) lines.push(`| ${p.url.replace(/^https?:\/\/[^/]+/, "")} | ${p.profile} | ${p.scores.performance} | ${p.scores.accessibility} | ${p.scores["best-practices"]} | ${p.scores.seo} |`);
   }
-  const a11y = results.find((r) => r.id === "a11y" && r.report);
-  const review = a11y ? a11y.report.flatMap((p) => p.review) : [];
+  const bud = results.find((r) => r.id === "budget" && r.report?.length);
+  if (bud) {
+    lines.push("", "## Page weight", "", "| Page | HTML | Total (mobile) |", "|---|---|---|");
+    for (const p of bud.report) lines.push(`| ${"/" + path.relative(`dist/${site}`, p.file).replace(/\\/g, "/").replace(/index\.html$/, "")} | ${p.html} B | ${p.total} B |`);
+  }
+  const ax = results.find((r) => r.id === "a11y" && r.report);
+  const review = ax ? ax.report.flatMap((p) => p.review) : [];
   if (review.length) {
     lines.push("", "## Needs human review (axe incomplete)", "");
     for (const f of review) lines.push(`- \`${f.check}\` ${f.file} — ${f.message}`);

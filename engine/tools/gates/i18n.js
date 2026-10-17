@@ -3,6 +3,7 @@ import path from "node:path";
 import { pagesFor, parse } from "../lib/html.js";
 
 export const id = "i18n";
+export const checks = ["keys", "lang-attr", "x-default", "hreflang-target", "hreflang-reciprocal"];
 
 /** Dotted key paths of a nested object, sorted. */
 export function flattenKeys(obj, prefix = "") {

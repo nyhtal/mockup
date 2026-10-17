@@ -5,7 +5,7 @@ Purpose: every form on every site has the same field anatomy, validation behavio
 ### R-FORM-01 Method and destination
 MUST. Forms use `method="get"` and `action="/<locale>/<form-slug>/thank-you/"`; the thank-you page reads nothing from the query string but exists for every form (R-PAGE-10). No form posts anywhere.
 Why: A clickable flow with no server and no leaked data.
-Gate: links/broken
+Gate: manual: checklists/new-component.md
 
 ### R-FORM-02 Field anatomy
 MUST. Every field is the `field` primitive: `<div data-component="field">` containing `<label for>` (visible, with "(required)" when required), the control, optional help text `<p id="…-help">`, and an error text `<p id="…-error">` (rendered only in the error state), with `aria-describedby` on the control naming the help and error ids that exist.
@@ -60,7 +60,7 @@ Gate: manual: checklists/new-component.md
 ### R-FORM-12 Success page
 MUST. The thank-you page confirms what happened ("We received your request"), says what happens next and when, and offers one next step; it is `noindex`.
 Why: Closure for the user; no indexable duplicate.
-Gate: links/broken
+Gate: manual: checklists/new-page.md
 
 ### R-FORM-13 Layout
 MUST. Fields stack with `space-y-6`; short related fields (postal code and city) sit in `grid md:grid-cols-2 gap-6`; labels sit above controls, never beside or inside them; placeholder text is an example, never the label.

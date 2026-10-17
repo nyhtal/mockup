@@ -97,7 +97,7 @@ One command: `npm run build -- --site reference`. Output is `dist/reference/`, d
 ### 4.4 Styling and tokens
 
 - `engine/theme/app.css` is the only CSS source. It contains: `@import "tailwindcss"`, `@source` pointers to the catalog and site content, one `@theme` block (full custom theme via `--*: initial` is **not** used; we override namespaces selectively so Tailwind's spacing math and preflight remain), `@keyframes` inside `@theme` tied to `--animate-*` tokens, `@custom-variant` lines for `sda` (scroll-driven animation support) and `js` (JS present), and the 5-line exception block.
-- Brand injection: a site's `site.json` brand values are written into the `@theme` block by the build (`--color-brand-*`, `--font-sans`, `--radius-*`), so a site never edits CSS. Colour tokens are **roles** (`brand`, `accent`, `surface`, `ink`, `muted`, `line`, `success`, `warning`, `danger`) mapped to OKLCH scales; dark mode remaps roles under `dark:`.
+- Brand injection: a site's `site.json` brand values are written into the `@theme` block by the build (`--color-brand-*`, `--font-sans`, `--radius-*`), so a site never edits CSS. Colour tokens are **roles** (`brand`, `accent`, `surface`, `ink`, `muted`, `line`, `success`, `warning`, `danger`) mapped to OKLCH scales; each role token carries both schemes via `light-dark()` (decided during implementation, DECISIONS D7), so pages use no `dark:` classes.
 - No `@apply`, no `@layer components`, no selectors, no inline styles. A gate greps the built HTML and CSS for violations.
 
 ### 4.5 Motion system
@@ -137,7 +137,7 @@ Motion presets (`calm`, `standard`, `expressive`) are three sets of token values
 
 ### 4.9 Head and metadata
 
-Fixed order in the shell: charset, viewport, title, description, canonical, hreflang set, robots (only when non-default), theme-color (light and dark), favicon links, preload font, stylesheet, OG and Twitter meta, JSON-LD, then the module script. Title pattern `{Page} · {Company}`, home `{Company} · {Tagline}`. OG image per page is a generated 1200×630 placeholder with the page title.
+Fixed order in the shell: charset, viewport, title, description, canonical, hreflang set, robots (only when non-default), theme-color (light and dark), favicon links, preload font, stylesheet, OG and Twitter meta, JSON-LD. The module script is the last child of `body`. Title pattern `{Page} · {Company}`, home `{Company} · {Tagline}`. OG image per page is a generated 1200×630 placeholder with the page title.
 
 ## 5. Toolchain (pinned at implementation)
 
@@ -173,7 +173,8 @@ Baseline core set: Chrome, Edge, Firefox, Safari (desktop and mobile). Tailwind 
 | Scroll-driven animations | Chrome 115, Safari 26, Firefox 161 | Yes, `@supports`-gated | IO script, else static |
 | `@view-transition` | Limited (no Firefox) | Yes, exception list | Normal navigation |
 | Anchor positioning | Newly available but partial in Safari 26 | **No** in v1 | n/a |
-| `dialog closedby`, `text-wrap: pretty`, `light-dark()`, `field-sizing` | Limited or no gain | **No** in v1 | n/a |
+| `light-dark()` | Newly available (Chrome 123, Safari 17.5, Firefox 120); widely from 2026-11-13 | Yes, in colour role tokens (changed during implementation, see DECISIONS D7) | Browser default colours |
+| `dialog closedby`, `text-wrap: pretty`, `field-sizing` | Limited or no gain | **No** in v1 | n/a |
 
 ## 7. Error handling
 

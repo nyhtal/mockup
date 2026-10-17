@@ -3,14 +3,20 @@ import path from "node:path";
 import { pagesFor, parse } from "../lib/html.js";
 
 export const id = "consistency";
+export const checks = ["inline-style", "single-h1", "heading-order", "dup-id", "class-exists", "component-known"];
 
 /** Marker classes Tailwind never emits CSS for but which variants depend on. */
 const NOOP = /^(group|peer)(\/[\w-]+)?$/;
 
+/** Undo CSS identifier escaping: `\:` → `:`, `\32 ` → `2`, `\[` → `[`. */
+export function unescapeCss(ident) {
+  return ident.replace(/\\([0-9a-fA-F]{1,6}) ?|\\(.)/g, (m, hex, ch) => (hex ? String.fromCodePoint(parseInt(hex, 16)) : ch));
+}
+
 /** Set of class names a built Tailwind file defines, with CSS escaping undone. */
 export function classesInCss(css) {
   const set = new Set();
-  for (const m of css.matchAll(/\.((?:\\.|[A-Za-z0-9_-])+)/g)) set.add(m[1].replace(/\\(.)/g, "$1"));
+  for (const m of css.matchAll(/\.((?:\\[0-9a-fA-F]{1,6} ?|\\.|[A-Za-z0-9_-])+)/g)) set.add(unescapeCss(m[1]));
   return set;
 }
 

@@ -5,7 +5,7 @@ Purpose: WCAG 2.2 AA on every page, built in by the catalog and verified by axe 
 ### R-A11Y-01 Conformance target
 MUST. Every page meets WCAG 2.2 Level AA. Automated checks are a floor; the manual list in R-A11Y-20 is the ceiling.
 Why: AA is the legal baseline under the European Accessibility Act and most procurement rules.
-Gate: a11y/wcag2aa
+Gate: manual: checklists/pre-delivery.md
 
 ### R-A11Y-02 Skip link
 MUST. The first focusable element is `<a href="#main" class="sr-only focus:not-sr-only …">` with the "Skip to content" string; `main` has `id="main"` and `tabindex="-1"` is not needed because `main` is a landmark target.
@@ -13,7 +13,7 @@ Why: WCAG 2.4.1 Bypass Blocks.
 Gate: a11y/bypass
 
 ### R-A11Y-03 Focus visible, never obscured
-MUST. The focus ring in R-COL-04 is present on every control, and no sticky element (header, sub-nav, toast, cookie banner) can cover a focused element (R-LAY-07).
+MUST. The focus ring in R-COL-04 is present on every control, and no sticky element (header, sub-nav, toast, cookie banner) can cover a focused element: `<html>` carries `scroll-pt-20` (R-LAY-07) so focus scrolling clears the header.
 Why: WCAG 2.4.7 and 2.4.11.
 Gate: manual: checklists/pre-delivery.md
 
@@ -38,7 +38,7 @@ Why: WCAG 2.5.8.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-A11Y-08 Contrast
-MUST. R-COL-03 contrast ratios hold in both colour schemes and over media (R-COL-08); the axe "needs review" contrast list in `reports/latest.md` is checked by hand against the token values.
+MUST. R-COL-03 contrast ratios hold in both colour schemes and over media (R-COL-08); axe measures `oklch()` colours; the contrast items it still marks incomplete (text over gradients, images or overlays it cannot resolve) are listed in `reports/latest.md` and checked by hand.
 Why: WCAG 1.4.3 and 1.4.11; axe cannot read `oklch()` and `light-dark()` yet.
 Gate: manual: checklists/pre-delivery.md
 

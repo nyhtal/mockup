@@ -45,10 +45,10 @@ Gate: links/broken
 ### R-GATE-09 Accessibility
 MUST. `a11y`: axe via pa11y, WCAG 2.2 AA tags, zero violations on every page; "incomplete" results are listed under "Needs human review" and resolved by the manual checklist before delivery.
 Why: Automated floor plus a human ceiling.
-Gate: a11y/wcag2aa
+Gate: a11y/heading-order
 
 ### R-GATE-10 Lighthouse
-MUST. `lighthouse`: Lighthouse 13 via Node API, local Chrome stable headless, mobile (default simulated throttling) and desktop (bundled desktop config), median of 5 runs per page and profile, 100 in performance, accessibility, best practices and SEO; versions and conditions recorded in the report.
+MUST. `lighthouse`: Lighthouse 13 via Node API, local Chrome stable headless, mobile (default simulated throttling) and desktop (bundled desktop config), median of 5 runs per page and profile, 100 in performance, accessibility, best practices and SEO; on pages in the noindex set (R-PAGE-12) the SEO category is skipped and reported as "n/a (noindex)"; Chrome version, throttling profile and run count are recorded in the report.
 Why: The headline promise, measured the same way every time.
 Gate: lighthouse/mobile/performance
 
@@ -63,7 +63,7 @@ Why: What automation cannot see still has to be seen.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-GATE-13 Planned checks
-SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `consistency/logical-props` (no physical direction utilities), `consistency/motion-safe` (every animation class under `motion-safe:`), `consistency/role-colors` (no palette colour classes), `budget/contrast` (token-level contrast ratios in both schemes). They are added as the catalog phase makes their inputs stable.
+SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `consistency/logical-props` (no physical direction utilities), `consistency/motion-safe` (every animation class under `motion-safe:`), `consistency/role-colors` (no palette colour classes), `budget/contrast` (token-level contrast ratios in both schemes), `consistency/head-order` (R-HTML-02), `consistency/meta-length` (R-HTML-03, R-CONT-08), `consistency/no-hash-links` (R-HTML-09), `consistency/img-attrs` (R-HTML-12), `consistency/no-arbitrary-lengths` (R-TOK-01, R-TOK-03), `consistency/motion-props` (R-MOT-01), `consistency/url-policy` (R-PAGE-02), `consistency/canonical` (R-SEO-02), `consistency/no-hardcoded-strings` (R-CONT-10). They are added as the catalog phase makes their inputs stable.
 Why: Honesty about which rules are machine-checked today.
 Gate: manual: checklists/pre-delivery.md
 

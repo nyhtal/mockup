@@ -13,8 +13,15 @@ export function chromePath() {
   return candidates.find((p) => existsSync(p)) || null;
 }
 
-/** URLs of the pages a gate should visit: ctx.only or every HTML page under distDir. */
+/** Pages a gate should visit as { file, url }: ctx.only or every HTML page under distDir. */
+export function pages(ctx) {
+  const files = ctx.only ? ctx.only.map((f) => path.join(ctx.distDir, f)) : listHtml(ctx.distDir);
+  return files.map((file) => {
+    const rel = path.relative(ctx.distDir, file).replace(/\\/g, "/");
+    return { file, url: ctx.baseUrl + "/" + rel.replace(/index\.html$/, "") };
+  });
+}
+
 export function pageUrls(ctx) {
-  const files = ctx.only || listHtml(ctx.distDir).map((f) => path.relative(ctx.distDir, f));
-  return files.map((f) => ctx.baseUrl + "/" + f.replace(/\\/g, "/").replace(/index\.html$/, ""));
+  return pages(ctx).map((p) => p.url);
 }

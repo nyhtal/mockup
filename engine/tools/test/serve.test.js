@@ -28,7 +28,8 @@ test("serves assets with their type and a long cache lifetime", async () => {
   const res = await fetch(`${server.url}/assets/app.css`);
   assert.equal(res.status, 200);
   assert.match(res.headers.get("content-type"), /^text\/css/);
-  assert.equal(res.headers.get("cache-control"), "public, max-age=31536000, immutable");
+  // No `immutable`: asset names are not content-hashed, so a redeploy must be able to replace them.
+  assert.equal(res.headers.get("cache-control"), "public, max-age=31536000");
 });
 
 test("returns the 404 page with status 404 for a missing path", async () => {

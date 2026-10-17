@@ -5,7 +5,7 @@ Purpose: rich, smooth motion that costs nothing in Lighthouse and respects users
 ### R-MOT-01 Compositor properties only
 MUST. Animations and transitions change only `opacity` and `transform` (plus `color`, `background-color`, `border-color`, `text-decoration-color` for hover states). Nothing animates `height`, `width`, `margin`, `padding`, `top`, `left` or `box-shadow`.
 Why: Layout-affecting animation causes jank and layout shift.
-Gate: lighthouse/mobile/performance
+Gate: manual: checklists/new-component.md
 
 ### R-MOT-02 Everything under motion-safe
 MUST. Every `animate-*`, `transition-*` and `starting:` utility is prefixed `motion-safe:`. With `prefers-reduced-motion: reduce` the page shows final states instantly, including no fades.
@@ -23,12 +23,12 @@ Why: Lighthouse, crawlers and browsers without support must see the full page.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-MOT-05 The reveal pattern
-MUST. A section or card that reveals on scroll uses exactly: `motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]` and, for the script fallback, `motion-safe:js:not-data-revealed:opacity-0 motion-safe:js:transition motion-safe:js:duration-500 motion-safe:js:ease-smooth motion-safe:js:data-revealed:opacity-100`. The LCP element and anything above the fold never carries reveal classes.
+MUST. A section or card that reveals on scroll uses exactly: `motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]` and, for the script fallback, `motion-safe:js:not-data-revealed:opacity-0 motion-safe:js:transition motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth motion-safe:js:data-revealed:opacity-100`. The LCP element and anything above the fold never carries reveal classes.
 Why: One exact string keeps reveals identical and keeps the hero out of the animation.
 Gate: manual: checklists/new-component.md
 
 ### R-MOT-06 Overlay entrances
-MUST. Popovers use `motion-safe:transition-discrete motion-safe:transition-[opacity,transform] motion-safe:duration-200 motion-safe:ease-out opacity-0 open:opacity-100 motion-safe:-translate-y-2 motion-safe:open:translate-y-0 motion-safe:starting:open:opacity-0 motion-safe:starting:open:-translate-y-2`. Dialogs use the same with `scale-95`/`open:scale-100` and `duration-300`, and the backdrop fades via `backdrop:` utilities.
+MUST. Popovers use `motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-200 motion-safe:ease-out opacity-0 open:opacity-100 motion-safe:-translate-y-2 motion-safe:open:translate-y-0 motion-safe:starting:open:opacity-0 motion-safe:starting:open:-translate-y-2`. Dialogs use the same with `scale-95`/`open:scale-100` and `duration-300`, and the backdrop fades via `backdrop:` utilities.
 Why: Native overlays animate in and out with no script.
 Gate: manual: checklists/new-component.md
 
@@ -55,7 +55,7 @@ Gate: budget/js
 ### R-MOT-11 No motion on load above the fold
 MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state.
 Why: Load animation delays LCP and reads as slowness.
-Gate: lighthouse/mobile/performance
+Gate: manual: checklists/new-page.md
 
 ### R-MOT-12 Carousels do not move by themselves
 MUST. Scroll-snap carousels have no autoplay and no JS; scrolling is the only motion.

@@ -15,7 +15,7 @@ Gate: manual: checklists/new-site.md
 ### R-ASSET-03 Icon sprite
 MUST. Icons come from `lucide-static` (ISC, licence file copied to `engine/LICENSES.md`); `engine/tools/build-icons.js` builds a per-page sprite of `<symbol id="i-<name>">` elements from the allow-list in `engine/icons.json` (about 60 names); pages reference them per R-HTML-13. No other icon source.
 Why: One visual language and zero icon requests.
-Gate: budget/html
+Gate: manual: checklists/new-site.md
 
 ### R-ASSET-04 Fonts
 MUST. Fonts are copied from `@fontsource-variable/<name>/files/` for the subsets a site's locales need (`latin`, `latin-ext`, `arabic`, …) into `/assets/fonts/`; `@font-face` declarations in `app.css` (exception list) use `font-display: swap`, `unicode-range` per subset and the metric overrides from R-TYPO-02. Licences (OFL 1.1) are recorded in `engine/LICENSES.md`.
@@ -50,12 +50,12 @@ Gate: budget/missing-asset
 ### R-ASSET-10 Social images
 MUST. `/assets/og/<page-slug>.png` (1200×630, PNG for platform compatibility, ≤ 150 KB) generated per page with the brand gradient, page title and site name; `og:image:alt` is "{Page title} · {Site name}".
 Why: Every link preview branded and legible.
-Gate: budget/missing-asset
+Gate: manual: checklists/pre-delivery.md
 
 ### R-ASSET-11 Theme colour
 MUST. `<meta name="theme-color" content="<brand-600 light>" media="(prefers-color-scheme: light)">` and the dark counterpart are present; values are hex (not oklch) for browser support.
 Why: Mobile browser chrome matches the brand.
-Gate: html/error
+Gate: manual: checklists/new-site.md
 
 ### R-ASSET-12 Licences file
 MUST. `engine/LICENSES.md` lists every third-party asset source (Lucide, each font) with licence name and link; a site's `DECISIONS.md` notes any brief-supplied asset and its rights.

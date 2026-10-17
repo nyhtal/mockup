@@ -10,7 +10,7 @@ Gate: lighthouse/mobile/seo
 ### R-SEO-02 Canonical
 MUST. `<link rel="canonical">` is the page's own absolute URL on `site.url`, trailing slash included; paginated pages are self-canonical.
 Why: Duplicate URLs (with and without slash, http and https) must resolve to one.
-Gate: schema/absolute-url
+Gate: manual: checklists/new-page.md
 
 ### R-SEO-03 Robots
 MUST. `<meta name="robots" content="noindex">` appears only on the pages in R-PAGE-12; indexable pages carry no robots meta. `robots.txt` allows everything and names the sitemap.
@@ -30,7 +30,7 @@ Gate: manual: checklists/pre-delivery.md
 ### R-SEO-06 Social image
 MUST. Each page's social image is generated at build time (bylaw 17): 1200×630, brand gradient, page title in the site font, site name, no photos; the home page uses the site's default image.
 Why: Every shared link gets a legible, branded preview without design work.
-Gate: budget/missing-asset
+Gate: manual: checklists/pre-delivery.md
 
 ### R-SEO-07 Sitemap
 MUST. `sitemap.xml` at the root lists every indexable page in every locale with `lastmod` (ISO date) and hreflang alternates (R-I18N-15); pages in R-PAGE-12 are excluded.
@@ -50,7 +50,7 @@ Gate: manual: checklists/new-page.md
 ### R-SEO-10 Internal linking
 MUST. Every page is reachable within three clicks from the home page; every detail page links to its index and to three related items; the footer links to every core page group.
 Why: Crawl depth and orphan pages decide what gets indexed.
-Gate: links/broken
+Gate: manual: checklists/pre-delivery.md
 
 ### R-SEO-11 Breadcrumbs
 MUST. Every non-home page shows breadcrumbs that mirror the URL path and emits a matching `BreadcrumbList` (bylaw 13).
@@ -70,7 +70,7 @@ Gate: links/external
 ### R-SEO-14 Language and region signals agree
 MUST. `html lang`, `og:locale`, `inLanguage` in JSON-LD, the locale folder and the hreflang entry for the page all name the same locale.
 Why: Conflicting signals make search pick the wrong version.
-Gate: i18n/lang-attr
+Gate: manual: checklists/new-page.md
 
 ## Checklist
 

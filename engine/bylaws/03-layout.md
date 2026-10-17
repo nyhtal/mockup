@@ -33,7 +33,7 @@ Why: Lines over 75 characters are hard to read.
 Gate: manual: checklists/new-component.md
 
 ### R-LAY-07 Sticky header
-MUST. The header is `sticky top-0 z-10` with a fixed height of `h-16`; every in-page anchor target carries `scroll-mt-20` so sticky chrome never covers it; focused elements are never hidden under the header (WCAG 2.4.11).
+MUST. The header is `sticky top-0 z-10` with a fixed height of `h-16`, and `<html>` carries `scroll-pt-20` so everything scrolled into view (anchor targets and keyboard focus alike) clears the header (WCAG 2.4.11). No per-target `scroll-mt-*` is needed.
 Why: Sticky chrome that hides targets breaks keyboard navigation and anchors.
 Gate: manual: checklists/pre-delivery.md
 

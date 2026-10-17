@@ -2,6 +2,7 @@ import { LinkChecker } from "linkinator";
 import { pageUrls } from "../lib/browser.js";
 
 export const id = "links";
+export const checks = ["broken", "external"];
 
 /** Crawl from every page: broken internal links fail; external links fail unless allow-listed. */
 export async function run(ctx) {

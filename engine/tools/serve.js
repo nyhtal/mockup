@@ -32,7 +32,7 @@ export function startServer(distDir, port = 0) {
     if (existsSync(file) && statSync(file).isDirectory()) file = path.join(file, "index.html");
     if (!existsSync(file) || !statSync(file).isFile()) return send(res, 404, root);
     const headers = { "Content-Type": TYPES[path.extname(file)] || "application/octet-stream", "Content-Length": statSync(file).size };
-    if (urlPath.startsWith("/assets/")) headers["Cache-Control"] = "public, max-age=31536000, immutable";
+    if (urlPath.startsWith("/assets/")) headers["Cache-Control"] = "public, max-age=31536000";
     res.writeHead(200, headers);
     createReadStream(file).pipe(res);
   });

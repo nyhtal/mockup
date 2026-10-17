@@ -18,7 +18,7 @@ Why: The page node ties content nodes to the site.
 Gate: schema/contract
 
 ### R-SCH-04 Stable ids and resolvable references
-MUST. Nodes that are referenced carry an `@id` that is an absolute URL (`{canonical}#breadcrumb`, `{site.url}/about/team/jane-doe/#person`); references are `{"@id": …}` objects and every reference resolves to a node in the same graph or to another page's canonical with a fragment.
+MUST. Nodes that are referenced carry an `@id` that is an absolute URL (`{canonical}#breadcrumb`, `{site.url}/about/team/jane-doe/#person`); references are `{"@id": …}` objects and every reference resolves to a node in the same graph; cross-page references are not used.
 Why: Dangling references are silent errors in every validator.
 Gate: schema/ref-resolves
 
@@ -50,12 +50,12 @@ Gate: manual: checklists/new-page.md
 ### R-SCH-10 Dates and languages
 MUST. Dates are ISO 8601 (`2026-10-17` or `2026-10-17T09:00:00+01:00`); `inLanguage` is the page's BCP 47 tag.
 Why: Consumers parse these literally.
-Gate: schema/contract
+Gate: manual: checklists/new-page.md
 
 ### R-SCH-11 Escaping
-MUST. The JSON is emitted with `<` escaped as `<` (and `>` and `&` likewise) so no content can close the script element.
+MUST. The JSON is emitted with `<`, `>` and `&` escaped as `\u003c`, `\u003e` and `\u0026` so no content can close the script element.
 Why: A `</script>` inside a quote would end the block and break the page.
-Gate: schema/parse
+Gate: manual: checklists/pre-delivery.md
 
 ### R-SCH-12 Breadcrumbs
 MUST. `BreadcrumbList` items are `ListItem` with `position`, `name` and `item` (absolute URL), ending at the current page; the visible breadcrumb shows the same names.

@@ -31,3 +31,10 @@ test("build produces the reference home page and css", () => {
   assert.match(html, /<html lang="en" dir="ltr">/);
   assert.match(html, /<link rel="stylesheet" href="\/assets\/app.css">/);
 });
+
+test("the stylesheet is compiled from the built pages only, not from docs or bylaws", () => {
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  // `p-[13px]` appears in bylaw 02 as a forbidden example and nowhere in any page.
+  assert.doesNotMatch(css, /p-\\\[13px\\\]/);
+  assert.match(css, /\.text-4xl\{/, "classes used on the page are present");
+});

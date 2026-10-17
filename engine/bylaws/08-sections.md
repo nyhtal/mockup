@@ -5,12 +5,12 @@ Purpose: the building blocks of a page, their anatomy and their content limits, 
 ### R-SEC-01 Section anatomy
 MUST. A section is `<section class="py-16 md:py-24 bg-surface|bg-surface-alt" data-component="<name>">` containing the container, then an optional eyebrow, an `h2`, an optional lede, the body, and an optional single CTA. Order never changes.
 Why: Same skeleton, same rhythm, every section.
-Gate: html/info
+Gate: manual: checklists/new-component.md
 
 ### R-SEC-02 One h2 per section
 MUST. Each section has exactly one `h2`; items inside use `h3`. Sections without a visible title (logo cloud, CTA band) carry `aria-label` instead of an empty heading.
 Why: The outline stays flat and predictable.
-Gate: consistency/heading-order
+Gate: manual: checklists/new-page.md
 
 ### R-SEC-03 Content limits
 MUST. Feature grid 3–6 items; alternating feature rows 2–4; stats 3–4; logo cloud 5–8; testimonials 1–3 (carousel up to 6); FAQ 4–10; steps 3–5; timeline 4–8; team 4–12; pricing 2–4 tiers; case-study cards 3 or 6; related items 3; office cards 2–6; job list 1–20 with pagination beyond.
@@ -35,7 +35,7 @@ Gate: manual: checklists/new-page.md
 ### R-SEC-07 Hero
 MUST. Variants: `centered`, `split` (text + media), `video` (facade), `form` (text + short form), `stats` (text + 3 stats). The hero contains the page's `h1`, a lede, one primary and one secondary button, and the LCP image (`fetchpriority="high"`). It never animates on load (R-MOT-11).
 Why: The hero is the LCP and the first impression; it is the most constrained section.
-Gate: lighthouse/mobile/performance
+Gate: manual: checklists/new-page.md
 
 ### R-SEC-08 Page header
 MUST. Non-home pages that are not landing pages start with the `page-header` section (breadcrumbs, eyebrow, `h1`, lede) instead of a hero.

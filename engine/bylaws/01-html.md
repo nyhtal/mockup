@@ -8,14 +8,14 @@ Why: Language and direction drive hyphenation, screen-reader voice and layout mi
 Gate: i18n/lang-attr
 
 ### R-HTML-02 Head order
-MUST. `<head>` children appear in this order and nothing else: charset, viewport, title, description, canonical, hreflang alternates (including `x-default`), robots (only when `noindex`), theme-color (light and dark via `media`), icon links, font preload, stylesheet, Open Graph and Twitter meta, the JSON-LD script.
+MUST. `<head>` children appear in this order and nothing else: charset, viewport, title, description, canonical, hreflang alternates (including `x-default`), feed link (where a feed exists), robots (only when `noindex`), theme-color (light and dark via `media`), icon links, font preload, stylesheet, Open Graph and Twitter meta, the JSON-LD script. The module script is the last child of `body`, not in `head`.
 Why: A fixed order makes diffs readable, puts render-critical tags first and keeps the single JSON-LD block findable.
-Gate: html/error
+Gate: manual: checklists/new-page.md
 
 ### R-HTML-03 Title and description
 MUST. `<title>` follows `{Page title} · {Site name}` (home: `{Site name} · {Tagline}`) and is at most 60 characters. `<meta name="description">` is 120–155 characters of plain text.
 Why: Both are shown in search results and truncated beyond these lengths.
-Gate: lighthouse/mobile/seo
+Gate: manual: checklists/new-page.md
 
 ### R-HTML-04 Exactly one h1
 MUST. Each page has exactly one `h1`, which is the page's name, and heading levels never skip downward (h2 → h4 is a violation).
@@ -28,7 +28,7 @@ Why: Landmarks are how keyboard and screen-reader users move around a page.
 Gate: a11y/landmark-one-main
 
 ### R-HTML-06 Sections start with a heading
-MUST. Every `section` and `article` begins with a heading element. Grouping that needs no heading uses `div`.
+MUST. Every `section` and `article` begins with a heading element, except a `section` that carries `aria-label` as its name (R-SEC-02), which the Nu checker accepts without a heading. Grouping that needs neither uses `div`.
 Why: The Nu checker warns on headingless sections, and a sectioning element without a heading is meaningless in the outline.
 Gate: html/info
 
@@ -40,12 +40,12 @@ Gate: html/info
 ### R-HTML-08 Allowed ARIA
 MUST. ARIA attributes are limited to: `aria-label` on `nav`, `section` without visible heading text and icon-only buttons; `aria-current="page"` on the active nav link; `aria-describedby` linking an input to its help or error text; `aria-hidden="true"` on decorative SVG; `aria-live="polite"` on toast and status regions; `aria-expanded` only where the Popover API cannot express the state. Anything else needs a DECISIONS entry.
 Why: Native semantics first; every ARIA attribute is a promise that must be kept with behaviour.
-Gate: a11y/aria-allowed-attr
+Gate: manual: checklists/new-component.md
 
 ### R-HTML-09 Buttons act, links go
 MUST. `<button type="button|submit">` for actions and `<a href>` for navigation. `href="#"` and `javascript:` are never used. A control that opens a popover is a `button` with `popovertarget`; one that opens a dialog is a `button` with `command="show-modal"`.
 Why: Each element brings the right keyboard behaviour for free.
-Gate: links/broken
+Gate: manual: checklists/new-component.md
 
 ### R-HTML-10 Component roots
 MUST. The root element of every catalog component and section carries `data-component="<catalog-file-name>"`. No other element carries `data-component`.
@@ -60,12 +60,12 @@ Gate: consistency/dup-id
 ### R-HTML-12 Images
 MUST. Every `img` has `alt` (empty for decorative images), `width`, `height`, and `loading="lazy"` unless it is the page's LCP image, which has `fetchpriority="high"` and no lazy attribute. Raster images sit in `<picture>` with AVIF and WebP sources.
 Why: Missing dimensions cause layout shift; lazy-loading the hero costs LCP.
-Gate: a11y/image-alt
+Gate: manual: checklists/new-component.md
 
 ### R-HTML-13 Inline SVG icons
 MUST. Icons are `<svg aria-hidden="true" class="size-5 ..."><use href="#i-<name>"></use></svg>` from the sprite, next to visible text or, in icon-only controls, an `sr-only` label.
 Why: One sprite, cacheable, no font, and never an unnamed control.
-Gate: a11y/button-name
+Gate: manual: checklists/new-component.md
 
 ### R-HTML-14 Dates and addresses
 MUST. Dates are `<time datetime="YYYY-MM-DD">` with locale-formatted text. Postal contact details are in `<address>`; `address` is never used for author bylines.
@@ -83,7 +83,7 @@ Why: External requests cost Lighthouse points and surprise users.
 Gate: links/external
 
 ### R-HTML-17 Tab order follows source order
-MUST. No `tabindex` greater than 0. `tabindex="-1"` only on the skip-link target and honeypot inputs.
+MUST. No `tabindex` greater than 0. `tabindex="-1"` only on the form error summary (R-FORM-06) and honeypot inputs; `main` needs none because it is a landmark target.
 Why: Visual order equals DOM order equals focus order.
 Gate: a11y/tabindex
 

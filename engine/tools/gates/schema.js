@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { pagesFor, parse, jsonLd } from "../lib/html.js";
 
 export const id = "schema";
+export const checks = ["parse", "single-block", "graph", "contract", "ref-resolves", "absolute-url"];
 
 /** Properties whose string values must be absolute URLs. */
 const URL_KEYS = new Set(["url", "image", "logo", "sameAs", "contentUrl", "thumbnailUrl", "item", "embedUrl"]);

@@ -7,13 +7,14 @@ import { run, classesInCss } from "../gates/consistency.js";
 
 const CSS =
   ".mt-4{margin-top:1rem}.md\\:ps-4{padding-inline-start:1rem}.\\[animation-timeline\\:view\\(\\)\\]{animation-timeline:view()}" +
-  ".sda\\:animate-reveal{animation:var(--animate-reveal)}.text-lg{font-size:1.125rem}";
+  ".sda\\:animate-reveal{animation:var(--animate-reveal)}.text-lg{font-size:1.125rem}" +
+  ".\\32 xl\\:px-8{padding-inline:2rem}.\\31 \\/2{width:50%}";
 
 const page = (body) => `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>t</title></head><body>${body}</body></html>`;
 
 const FIXTURES = {
   "ok.html": page('<h1 class="mt-4">A</h1><h2 class="text-lg">B</h2><div data-component="hero-split"></div>'),
-  "escaped-classes.html": page('<h1 class="mt-4 md:ps-4 [animation-timeline:view()] sda:animate-reveal">A</h1>'),
+  "escaped-classes.html": page('<h1 class="mt-4 md:ps-4 [animation-timeline:view()] sda:animate-reveal 2xl:px-8 1/2">A</h1>'),
   "noop-classes.html": page('<h1 class="group peer group/card">A</h1>'),
   "inline-style.html": page('<h1 style="color:red">A</h1>'),
   "two-h1.html": page("<h1>A</h1><h1>B</h1>"),
@@ -39,6 +40,8 @@ test("classesInCss unescapes Tailwind selectors", () => {
   assert.ok(set.has("md:ps-4"));
   assert.ok(set.has("[animation-timeline:view()]"));
   assert.ok(set.has("sda:animate-reveal"));
+  assert.ok(set.has("2xl:px-8"), "hex escape \\32 followed by a space decodes to the digit 2");
+  assert.ok(set.has("1/2"), "hex escape \\31 decodes to the digit 1");
 });
 
 test("a clean page passes", async () => {

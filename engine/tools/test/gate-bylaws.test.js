@@ -56,7 +56,12 @@ before(() => {
 });
 after(() => rmSync(dir, { recursive: true, force: true }));
 
-const gateIds = ["html", "consistency", "schema", "budget", "i18n", "lighthouse", "a11y", "links", "bylaws"];
+const gateChecks = {
+  html: ["error", "info"],
+  consistency: ["single-h1", "class-exists"],
+  budget: ["css"],
+  bylaws: ["format"],
+};
 
 test("parseRules extracts id, level, why and gate", () => {
   const rules = parseRules(GOOD);
@@ -65,13 +70,20 @@ test("parseRules extracts id, level, why and gate", () => {
 });
 
 test("a well-formed bylaw file has no findings", async () => {
-  const r = await run({ bylawsDir: dir, only: ["01-html.md"], gateIds });
+  const r = await run({ bylawsDir: dir, only: ["01-html.md"], gateChecks });
   assert.equal(r.id, "bylaws");
   assert.deepEqual(r.findings, []);
 });
 
+test("a Gate line naming a check the gate does not export is reported", async () => {
+  writeFileSync(path.join(dir, "03-x.md"), "# x\n\n### R-X-01 Bad check\nMUST. x.\nWhy: y.\nGate: consistency/no-such-check\n");
+  const r = await run({ bylawsDir: dir, only: ["03-x.md"], gateChecks });
+  assert.deepEqual(r.findings.map((f) => f.check), ["bylaws/gate-ref"]);
+  assert.match(r.findings[0].message, /consistency\/no-such-check/);
+});
+
 test("format, unknown gate, numbering gap and duplicate id are each reported", async () => {
-  const r = await run({ bylawsDir: dir, gateIds });
+  const r = await run({ bylawsDir: dir, only: ["01-html.md", "02-tokens.md"], gateChecks });
   const byCheck = Object.groupBy(r.findings, (f) => f.check);
   assert.equal(byCheck["bylaws/format"].length, 1, "R-TOK-01 lacks MUST/SHOULD");
   assert.equal(byCheck["bylaws/gate-ref"].length, 1, "R-TOK-02 names nonsense gate");

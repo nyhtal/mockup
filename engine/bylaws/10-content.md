@@ -30,7 +30,7 @@ Gate: manual: checklists/new-page.md
 ### R-CONT-06 Link text
 MUST. Link text describes the destination ("See pricing", "Read the Northwind case study") and is unique within a page. "Here", "this", "read more" and bare URLs are not link text.
 Why: Screen-reader users navigate by link lists; crawlers weigh anchor text.
-Gate: a11y/link-name
+Gate: manual: checklists/new-page.md
 
 ### R-CONT-07 Forbidden words
 MUST. These words do not appear: leverage, synergy, cutting-edge, best-in-class, world-class, seamless, robust, utilize, solutions (as a noun on its own), innovative, disrupt, lorem, ipsum, "click here", "please note", very, really, just.
@@ -40,7 +40,7 @@ Gate: manual: checklists/new-page.md
 ### R-CONT-08 Title and description
 MUST. Page titles are ≤ 60 characters before the site suffix; meta descriptions are 120–155 characters, one or two full sentences, and contain the page's main noun. Neither repeats the other.
 Why: Search snippets truncate; duplicated text wastes the slot.
-Gate: lighthouse/mobile/seo
+Gate: manual: checklists/new-page.md
 
 ### R-CONT-09 Reading level
 SHOULD. Body copy targets a grade-8 reading level: short sentences, common words, one idea per sentence, no nested clauses.
@@ -50,7 +50,7 @@ Gate: manual: checklists/new-page.md
 ### R-CONT-10 Microcopy keys
 MUST. All UI strings (skip link, nav labels, button labels, form labels, help text, error messages, empty states, 404 copy, pagination, "opens in new tab") live in `engine/i18n/<locale>.json` under the keys listed in `engine/i18n/_template.json` and are used via the `t` filter. No UI string is typed into a template.
 Why: One place to translate; one place to keep wording consistent.
-Gate: i18n/keys
+Gate: manual: checklists/new-component.md
 
 ### R-CONT-11 Fictional, plausible, marked
 MUST. Every company, person, customer, figure and quote is invented. Figures are plausible for the industry and never cite a real company, award body or regulator. Each site's `DECISIONS.md` carries the line "All names, figures and quotes on this site are fictional."

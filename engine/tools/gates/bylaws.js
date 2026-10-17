@@ -2,6 +2,7 @@ import { readdirSync, readFileSync, existsSync } from "node:fs";
 import path from "node:path";
 
 export const id = "bylaws";
+export const checks = ["format", "gate-ref", "numbering", "unique-id"];
 
 const HEADING = /^### (R-[A-Z0-9]+-(\d{2})) (.+)$/;
 
@@ -24,10 +25,10 @@ export function parseRules(markdown) {
   return rules;
 }
 
-/** Each bylaw rule: MUST/SHOULD first line, Why, a Gate that exists, contiguous numbering, unique ids. */
+/** Each rule: MUST/SHOULD first line, Why, a Gate naming an exported check (or a checklist), contiguous numbering per area, unique ids. */
 export async function run(ctx) {
   const dir = ctx.bylawsDir || path.join("engine", "bylaws");
-  const gateIds = new Set(ctx.gateIds || []);
+  const gateChecks = ctx.gateChecks || {};
   const findings = [];
   const seen = new Map();
   if (!existsSync(dir)) return { id, ok: true, findings, report: { rules: 0 } };
@@ -38,14 +39,20 @@ export async function run(ctx) {
     const add = (check, line, message) => findings.push({ file, line, message, check: `bylaws/${check}` });
     const next = new Map(); // area → next expected number within this file
     for (const r of parseRules(readFileSync(file, "utf8"))) {
+      count++;
       const area = r.id.slice(0, -3);
       const expected = next.get(area) || 1;
-      count++;
       if (!r.level) add("format", r.line, `${r.id}: first line must start with MUST. or SHOULD.`);
       if (!r.why) add("format", r.line, `${r.id}: missing "Why:" line`);
       if (!r.gate) add("format", r.line, `${r.id}: missing "Gate:" line`);
       else if (/^manual: checklists\/[\w-]+\.md$/.test(r.gate)) { /* manual check */ }
-      else if (!gateIds.has(r.gate.split("/")[0]) || !r.gate.includes("/")) add("gate-ref", r.line, `${r.id}: unknown gate "${r.gate}"`);
+      else {
+        const [gate, ...rest] = r.gate.split("/");
+        const check = rest.join("/");
+        const known = gateChecks[gate];
+        const ok = known && (known.includes(check) || known.some((c) => c.endsWith("/*") && check.startsWith(c.slice(0, -1))));
+        if (!ok) add("gate-ref", r.line, `${r.id}: "${r.gate}" is not a check any gate exports`);
+      }
       const n = Number(r.id.slice(-2));
       if (n !== expected) add("numbering", r.line, `${r.id}: expected number ${String(expected).padStart(2, "0")}`);
       next.set(area, n + 1);

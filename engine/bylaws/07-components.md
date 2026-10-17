@@ -25,12 +25,12 @@ Gate: manual: checklists/new-component.md
 ### R-COMP-05 Buttons
 MUST. Variants: `primary`, `secondary`, `ghost`, `link`. Classes include `inline-flex items-center justify-center gap-2 min-h-11 px-5 rounded-md font-medium` plus the variant's colours and the focus ring. Labels are verb-first (bylaw 10) and never "Click here". Icon-only buttons have an `sr-only` label and `size-11`.
 Why: 44 px minimum height clears WCAG 2.5.8 with margin; verb-first labels read as actions.
-Gate: a11y/button-name
+Gate: manual: checklists/new-component.md
 
 ### R-COMP-06 Links in components
 MUST. Card titles are the card's link (`<a>` wrapping the heading text, with `after:absolute after:inset-0` on a `relative` card to make the whole card clickable). Link text is unique per page and describes the destination; "Read more" is allowed only as `<span aria-hidden="true">` decoration after a descriptive link.
 Why: Screen-reader link lists must make sense; whole-card click without nesting interactive elements.
-Gate: a11y/link-name
+Gate: manual: checklists/new-component.md
 
 ### R-COMP-07 Heading level is a parameter
 MUST. Components that render a heading take its level as a parameter (default `h3` inside sections, `h2` for section titles) and never hard-code `h2`.
@@ -60,7 +60,7 @@ Gate: manual: checklists/new-component.md
 ### R-COMP-12 Facades
 MUST. Video and map embeds are facades: a poster image, a play or "Open map" button, and the iframe markup inside a `<dialog>` or `<template>` so no third-party request happens until the user acts. The facade states the provider and that it loads external content.
 Why: Embeds destroy Lighthouse and need consent; facades defer both.
-Gate: links/external
+Gate: manual: checklists/new-component.md
 
 ### R-COMP-13 Icons
 MUST. Icons come from the sprite allow-list in bylaw 17, sized `size-4` (inline), `size-5` (buttons, nav) or `size-6` (feature grids), always `aria-hidden="true"`.

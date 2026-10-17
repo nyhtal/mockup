@@ -10,7 +10,7 @@ Gate: manual: checklists/new-site.md
 ### R-PAGE-02 URL policy
 MUST. URLs are `/<locale>/<slug>/` with lower-case hyphenated slugs, trailing slash, no file extension, at most three segments below the locale. Detail pages live under their index (`/en/services/<slug>/`). Slugs are translated per locale via `site.json` `slugs` when the brief asks; otherwise the default-locale slug is reused.
 Why: Predictable URLs, clean hreflang, no redirect chains.
-Gate: i18n/hreflang-reciprocal
+Gate: manual: checklists/new-page.md
 
 ### R-PAGE-03 One primary conversion per page
 MUST. Each page declares `conversion` in front matter (demo, contact, download, apply, subscribe, none); the header CTA and the CTA band both point at it.
@@ -20,7 +20,7 @@ Gate: manual: checklists/new-page.md
 ### R-PAGE-04 Meta contract
 MUST. Each page type has a title pattern and a description pattern (table below); breadcrumbs reflect the URL path; the OG image is the generated social image for that page (bylaw 17).
 Why: Search snippets and shares look uniform.
-Gate: lighthouse/mobile/seo
+Gate: manual: checklists/new-page.md
 
 ### R-PAGE-05 Schema contract
 MUST. Each page type emits the JSON-LD graph named in the table; the schema gate enforces the required types.
@@ -40,7 +40,7 @@ Gate: manual: checklists/pre-delivery.md
 ### R-PAGE-08 Root redirect
 MUST. `/index.html` at the output root is a valid page that sends the visitor to the default locale with `<meta http-equiv="refresh" content="0; url=/<default>/">` and a visible link; it carries `noindex`.
 Why: Static hosts cannot negotiate language; the root must still resolve.
-Gate: links/broken
+Gate: manual: checklists/pre-delivery.md
 
 ### R-PAGE-09 Style guide
 MUST. `/<locale>/style-guide/` exists with `noindex` and shows every catalog entry used on the site (R-COMP-16).
@@ -50,7 +50,7 @@ Gate: manual: checklists/pre-delivery.md
 ### R-PAGE-10 Thank-you pages
 MUST. Every form has its own thank-you page (`/<locale>/<form-slug>/thank-you/`) with `noindex`, a confirmation of what happened and one next step.
 Why: GET forms need a destination, and users need confirmation.
-Gate: links/broken
+Gate: manual: checklists/new-page.md
 
 ### R-PAGE-11 Pagination and archives
 MUST. Index pages paginate at 12 items with `rel="prev"`/`rel="next"` links in the body, page numbers in the URL (`/en/blog/page/2/`), and `noindex` on tag archives.
@@ -58,7 +58,7 @@ Why: Keeps index pages light and avoids duplicate-content archives.
 Gate: manual: checklists/new-page.md
 
 ### R-PAGE-12 Noindex set
-MUST. These pages carry `<meta name="robots" content="noindex">` and are excluded from the sitemap: root redirect, style guide, thank-you pages, search results, tag archives, 404, 500, maintenance, coming soon.
+MUST. These pages carry `<meta name="robots" content="noindex">` and are excluded from the sitemap: root redirect, style guide, thank-you pages, search results, tag archives, 404, 500, maintenance, coming soon. Lighthouse's SEO category is not scored for them (its is-crawlable audit fails by design); the other three categories still must reach 100 (R-GATE-10).
 Why: Utility pages must not compete in search.
 Gate: manual: checklists/pre-delivery.md
 

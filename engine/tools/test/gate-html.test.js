@@ -13,6 +13,22 @@ test("html gate passes a valid page", { skip }, async () => {
   assert.equal(r.ok, true);
 });
 
+test("html gate fails loudly when the checker cannot run, instead of passing on no output", async () => {
+  // "--" stops Node parsing the gate's own flags (--format …) as Node options.
+  const broken = { command: process.execPath, args: ["-e", "process.stderr.write('boom'); process.exit(3)", "--"] };
+  const r = await run({ distDir: fixtures, only: ["valid.html"], vnu: broken });
+  assert.equal(r.ok, false);
+  assert.deepEqual(r.findings.map((f) => f.check), ["html/tool"]);
+  assert.match(r.findings[0].message, /exit 3|boom/);
+});
+
+test("html gate fails when the checker prints something that is not JSON", async () => {
+  const garbage = { command: process.execPath, args: ["-e", "process.stdout.write('<html>oops')", "--"] };
+  const r = await run({ distDir: fixtures, only: ["valid.html"], vnu: garbage });
+  assert.equal(r.ok, false);
+  assert.deepEqual(r.findings.map((f) => f.check), ["html/tool"]);
+});
+
 test("html gate fails on a Nu warning, not only errors", { skip }, async () => {
   const r = await run({ distDir: fixtures, only: ["section-no-heading.html"] });
   assert.equal(r.ok, false);
