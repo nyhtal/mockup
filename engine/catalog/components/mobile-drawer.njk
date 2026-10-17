@@ -1,0 +1,52 @@
+{#
+  name: mobile-drawer
+  purpose: Navigation panel below lg, opened from the header's menu button (R-COMP-09, R-LAY-12).
+  anatomy: div[popover]#drawer > header(close button) + nav[aria-label] > details[name=mobile-nav] groups or links + locale links + CTA
+  variants: none
+  states: open (popover), group open (details)
+  spacing: w-80 panel, p-6, space-y-2 lists
+  motion: slides in from the inline-end edge with the popover pattern (translate-x)
+  keyboard: Escape closes (native); Tab cycles inside; the close button is first
+  a11y: the panel is a popover so light-dismiss works; groups are native details; nav is labelled
+  i18n: slides from the end edge in both directions thanks to end-0/translate-x with rtl flip
+  content limits: same items as nav-menu
+#}
+{% macro mobileDrawer(items, locale, currentUrl, cta, alternates) %}
+<div popover id="drawer" class="fixed inset-y-0 end-0 start-auto m-0 h-full max-h-none w-80 max-w-full border-0 border-s border-line bg-surface-raised p-0 text-ink shadow-lg opacity-0 open:opacity-100 motion-safe:translate-x-4 motion-safe:open:translate-x-0 rtl:motion-safe:-translate-x-4 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:translate-x-4 lg:hidden" data-component="mobile-drawer">
+<div class="flex h-16 items-center justify-between border-b border-line px-4">
+<span class="font-semibold">{{ "ui.menu" | t }}</span>
+<button type="button" popovertarget="drawer" popovertargetaction="hide" class="inline-flex size-11 items-center justify-center rounded-md hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-5"><use href="#i-x"></use></svg><span class="sr-only">{{ "ui.close" | t }}</span></button>
+</div>
+<nav aria-label="{{ 'nav.primary' | t }}" class="overflow-y-auto p-4">
+<ul class="space-y-1">
+{%- for item in items %}
+<li>
+{%- if item.children %}
+<details name="mobile-nav" class="group">
+<summary class="flex min-h-11 cursor-pointer list-none items-center justify-between rounded-md px-3 font-medium hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ item.key | t }}<svg aria-hidden="true" class="size-4 motion-safe:transition-transform motion-safe:duration-150 group-open:rotate-180"><use href="#i-chevron-down"></use></svg></summary>
+<ul class="mt-1 space-y-1 ps-3">
+{%- for child in item.children %}
+<li><a href="/{{ locale }}{{ child.href }}" class="block min-h-11 rounded-md px-3 py-2.5 text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"{% if currentUrl == "/" + locale + child.href %} aria-current="page"{% endif %}>{{ child.key | t }}</a></li>
+{%- endfor %}
+</ul>
+</details>
+{%- else %}
+<a href="/{{ locale }}{{ item.href }}" class="block min-h-11 rounded-md px-3 py-2.5 font-medium hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'text-brand-700' if currentUrl == '/' + locale + item.href else 'text-ink' }}"{% if currentUrl == "/" + locale + item.href %} aria-current="page"{% endif %}>{{ item.key | t }}</a>
+{%- endif %}
+</li>
+{%- endfor %}
+</ul>
+{%- if alternates.length > 1 %}
+<p class="mt-6 px-3 text-sm font-medium text-ink-muted">{{ "ui.language" | t }}</p>
+<ul class="mt-1 space-y-1">
+{%- for alt in alternates %}
+<li><a href="{{ alt.url }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}" class="block min-h-11 rounded-md px-3 py-2.5 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"{% if alt.lang == locale %} aria-current="true"{% endif %}>{{ alt.lang | nativeName }}</a></li>
+{%- endfor %}
+</ul>
+{%- endif %}
+{%- if cta %}
+<div class="mt-6 px-3"><a href="/{{ locale }}{{ cta.href }}" class="inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-brand-600 px-5 font-medium text-ink-inverse hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150">{{ cta.key | t }}</a></div>
+{%- endif %}
+</nav>
+</div>
+{% endmacro %}

@@ -12,11 +12,12 @@ test("a different slug gives a different picture", () => {
   assert.notEqual(placeholderSvg(base), placeholderSvg({ ...base, slug: "team-office" }));
 });
 
-test("the SVG is sized to the request, uses the brand hues and contains no text", () => {
+test("the SVG is sized to the request, uses hex colours the renderer understands, follows the brand hues and contains no text", () => {
   const svg = placeholderSvg(base);
   assert.match(svg, /^<svg xmlns="http:\/\/www\.w3\.org\/2000\/svg" width="480" height="270" viewBox="0 0 480 270">/);
-  assert.match(svg, /oklch\([^)]*250\)/);
-  assert.match(svg, /oklch\([^)]*160\)/);
+  assert.doesNotMatch(svg, /oklch\(/, "librsvg renders oklch() as black");
+  assert.match(svg, /fill="#[0-9a-f]{6}"/);
+  assert.notEqual(svg, placeholderSvg({ ...base, hue: 30 }), "a different brand hue changes the colours");
   assert.doesNotMatch(svg, /<text/);
   assert.ok((svg.match(/<(circle|rect)/g) || []).length >= 4);
 });

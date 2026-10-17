@@ -13,6 +13,7 @@
 #}
 {% macro errorState(e) %}
 <section class="py-16 md:py-24" data-component="error-state">
+<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-brand-700">{{ e.code }}</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ e.title }}</h1>
 <p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">{{ e.text }}</p>
@@ -21,5 +22,6 @@
 <li><a href="{{ link.href }}" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 {{ 'bg-brand-600 text-ink-inverse hover:bg-brand-700' if loop.first else 'border border-line-strong text-ink hover:bg-surface-alt' }}">{{ link.label }}</a></li>
 {%- endfor %}
 </ul>
+</div>
 </section>
 {% endmacro %}

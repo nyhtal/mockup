@@ -1,7 +1,9 @@
 /**
  * Deterministic abstract placeholder art (R-ASSET-05): brand-hue gradient plus a few translucent shapes,
  * seeded by the image slug so a rebuild never changes a committed-looking image. No text, no faces.
+ * Colours are emitted as hex because sharp's SVG renderer (librsvg) does not understand oklch().
  */
+import { oklchToHex } from "./theme.js";
 
 /** FNV-1a 32-bit hash of a string → non-negative integer. */
 export function seed(str) {
@@ -26,6 +28,7 @@ function rng(s) {
 }
 
 const f = (n) => Math.round(n * 10) / 10;
+const hex = (l, c, h) => oklchToHex(l / 100, c, h);
 
 export function placeholderSvg({ slug, width, height, hue = 250, accentHue = 160 }) {
   const r = rng(seed(slug));
@@ -39,7 +42,7 @@ export function placeholderSvg({ slug, width, height, hue = 250, accentHue = 160
     const h = r() > 0.5 ? hue : accentHue;
     const l = dark ? 40 + r() * 35 : 55 + r() * 35;
     const c = 0.06 + r() * 0.12;
-    const fill = `oklch(${f(l)}% ${f(c * 100) / 100} ${h})`;
+    const fill = hex(l, c, h);
     const op = f(0.25 + r() * 0.45);
     if (r() > 0.45) {
       const rad = (0.12 + r() * 0.35) * Math.min(width, height);
@@ -51,6 +54,6 @@ export function placeholderSvg({ slug, width, height, hue = 250, accentHue = 160
     }
   }
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">` +
-    `<defs><linearGradient id="g" gradientTransform="rotate(${angle} 0.5 0.5)"><stop offset="0" stop-color="oklch(${f(l1)}% 0.06 ${hue})"/><stop offset="1" stop-color="oklch(${f(l2)}% 0.08 ${accentHue})"/></linearGradient></defs>` +
+    `<defs><linearGradient id="g" gradientTransform="rotate(${angle} 0.5 0.5)"><stop offset="0" stop-color="${hex(l1, 0.06, hue)}"/><stop offset="1" stop-color="${hex(l2, 0.08, accentHue)}"/></linearGradient></defs>` +
     `<rect width="${width}" height="${height}" fill="url(#g)"/>${shapes.join("")}</svg>`;
 }

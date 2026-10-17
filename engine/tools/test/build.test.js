@@ -63,6 +63,28 @@ test("engine-owned files and pages are generated", () => {
   assert.match(readFileSync("dist/reference/index.html", "utf8"), /http-equiv="refresh" content="0; url=\/en\/"/);
 });
 
+test("the shell has one header with labelled navigation, a drawer trigger, one main and one footer", () => {
+  const html = readFileSync("dist/reference/en/index.html", "utf8");
+  assert.equal((html.match(/<header/g) || []).length, 1);
+  assert.equal((html.match(/<main/g) || []).length, 1);
+  assert.equal((html.match(/<footer/g) || []).length, 1);
+  assert.match(html, /<nav aria-label="Main navigation"/);
+  assert.match(html, /<nav aria-label="Footer navigation"/);
+  assert.match(html, /<button[^>]*popovertarget="drawer"/);
+  assert.match(html, /<div[^>]*popover[^>]*id="drawer"/);
+  // A single-locale site has nothing to switch to; the switcher appears only with two or more locales (phase 4 covers it).
+  assert.doesNotMatch(html, /popovertarget="locales"/);
+  assert.match(html, /<a href="\/en\/"[^>]*aria-current="page"/);
+});
+
+test("enhance.js ships under 2 KB and only does what bylaw 06 allows", () => {
+  const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
+  assert.ok(Buffer.byteLength(js) <= 2048, `${Buffer.byteLength(js)} B`);
+  assert.match(js, /IntersectionObserver/);
+  assert.match(js, /commandfor/);
+  assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|localStorage|document\.cookie/);
+});
+
 test("the stylesheet is compiled from the built pages only, not from docs or bylaws", () => {
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   // `p-[13px]` appears in bylaw 02 as a forbidden example and nowhere in any page.

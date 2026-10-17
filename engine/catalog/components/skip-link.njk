@@ -1,0 +1,14 @@
+{#
+  name: skip-link
+  purpose: First focusable element; jumps past the header to main (R-HTML-05, R-A11Y-02).
+  anatomy: a[href=#main]
+  variants: none
+  states: visually hidden until focused
+  spacing: fixed at the top-start corner when visible
+  motion: none
+  keyboard: Tab reveals it; Enter moves focus to main
+  a11y: text from nav.skip
+  i18n: nav.skip
+  content limits: none
+#}
+{% macro skipLink() %}<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:start-2 focus:z-50 focus:rounded-md focus:bg-surface-raised focus:px-4 focus:py-2 focus:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-component="skip-link">{{ "nav.skip" | t }}</a>{% endmacro %}

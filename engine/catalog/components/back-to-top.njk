@@ -1,0 +1,14 @@
+{#
+  name: back-to-top
+  purpose: Return to the start of the page content from the end of a long page.
+  anatomy: a[href=#main]
+  variants: none
+  states: hover, focus-visible
+  spacing: sits in the footer's top row
+  motion: smooth scrolling is left to the user's browser setting
+  keyboard: link
+  a11y: visible text, no icon-only
+  i18n: ui.backToTop
+  content limits: none
+#}
+{% macro backToTop() %}<a href="#main" class="inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus print:hidden" data-component="back-to-top"><svg aria-hidden="true" class="size-4"><use href="#i-arrow-up"></use></svg>{{ "ui.backToTop" | t }}</a>{% endmacro %}

@@ -5,7 +5,13 @@
     "primary": "Main navigation",
     "footer": "Footer navigation",
     "breadcrumbs": "Breadcrumbs",
-    "contact": "Contact"
+    "contact": "Contact",
+    "cta": "See the style guide",
+    "styleGuide": "Style guide",
+    "foundations": "Foundations",
+    "foundationsDesc": "Colour roles, type scale, spacing, radius and motion tokens.",
+    "primitives": "Primitives",
+    "primitivesDesc": "Buttons, fields, badges, icons and pictures in every state."
   },
   "error": {
     "notFound": { "title": "We can't find that page", "text": "The link may be out of date, or the page may have moved. Try one of these instead." },
@@ -23,5 +29,5 @@
     "privacyNote": "We use your details only to answer you. See our privacy policy.",
     "language": "Language"
   },
-  "footer": { "rights": "All rights reserved." }
+  "footer": { "rights": "All rights reserved.", "engine": "Engine", "company": "Company" }
 }

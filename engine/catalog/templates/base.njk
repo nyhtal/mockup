@@ -1,13 +1,23 @@
+{% from "components/skip-link.njk" import skipLink %}
+{% from "components/announcement-bar.njk" import announcementBar %}
+{% from "components/header.njk" import header %}
+{% from "components/mobile-drawer.njk" import mobileDrawer %}
+{% from "components/footer.njk" import footer %}
+{%- set alternates = page.url | allAlternates -%}
 <!DOCTYPE html>
 <html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light-dark scroll-pt-20">
 <head>
 {% include "templates/_head.njk" %}
 </head>
 <body class="bg-surface font-sans text-ink antialiased" data-page="{{ pageType or 'generic' }}">
-<a href="#main" class="sr-only focus:not-sr-only focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "nav.skip" | t }}</a>
-<main id="main" class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+{{ skipLink() }}
+{%- if site.announcement %}{{ announcementBar(site.announcement, locale) }}{% endif %}
+{{ header(site, locale, page.url, alternates, { variant: headerVariant }) }}
+{{ mobileDrawer(site.nav, locale, page.url, site.cta, alternates) }}
+<main id="main">
 {{ content | safe }}
 </main>
+{{ footer(site, locale, alternates) }}
 <!--sprite--><script type="module" src="/assets/enhance.js"></script>
 </body>
 </html>

@@ -1,0 +1,27 @@
+{#
+  name: locale-switcher
+  purpose: Switch to the same page in another locale (R-I18N-08).
+  anatomy: button[popovertarget=locales] + div[popover]#locales > ul > li > a[hreflang lang]
+  variants: none
+  states: open; current locale marked with aria-current="true"
+  spacing: panel w-56 p-2
+  motion: popover pattern (R-MOT-06)
+  keyboard: Enter opens; Escape closes; arrow keys are not needed for a short list of links
+  a11y: native language names, never flags; the button names the control with sr-only "Language"
+  i18n: this is the i18n control; names come from the nativeName filter
+  content limits: one entry per locale
+#}
+{% macro localeSwitcher(alternates, locale) %}
+{%- if alternates.length > 1 %}
+<div data-component="locale-switcher">
+<button type="button" popovertarget="locales" class="inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><svg aria-hidden="true" class="size-5 shrink-0"><use href="#i-languages"></use></svg><span class="sr-only">{{ "ui.language" | t }}: </span>{{ locale | nativeName }}</button>
+<div popover id="locales" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-56 rounded-lg border border-line bg-surface-raised p-2 text-ink shadow-md opacity-0 open:opacity-100 motion-safe:-translate-y-2 motion-safe:open:translate-y-0 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:-translate-y-2">
+<ul>
+{%- for alt in alternates %}
+<li><a href="{{ alt.url }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}" class="block min-h-11 rounded-md px-3 py-2.5 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'font-medium text-brand-700' if alt.lang == locale else '' }}"{% if alt.lang == locale %} aria-current="true"{% endif %}>{{ alt.lang | nativeName }}</a></li>
+{%- endfor %}
+</ul>
+</div>
+</div>
+{%- endif %}
+{% endmacro %}

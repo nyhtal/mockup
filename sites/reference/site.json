@@ -2,10 +2,31 @@
   "name": "Northwind Dynamics",
   "tagline": "Industrial automation, simplified",
   "url": "https://example.com",
+  "year": "2026",
   "defaultLocale": "en",
   "locales": ["en"],
   "rtl": ["ar"],
-  "errorLinks": [],
+  "hasSearch": false,
+  "errorLinks": [{ "key": "nav.styleGuide", "href": "/style-guide/" }],
+  "cta": { "key": "nav.cta", "href": "/style-guide/" },
+  "nav": [
+    { "key": "nav.home", "href": "/" },
+    {
+      "key": "nav.styleGuide",
+      "href": "/style-guide/",
+      "children": [
+        { "key": "nav.foundations", "href": "/style-guide/", "descKey": "nav.foundationsDesc" },
+        { "key": "nav.primitives", "href": "/style-guide/primitives/", "descKey": "nav.primitivesDesc" }
+      ]
+    }
+  ],
+  "footer": {
+    "columns": [
+      { "key": "footer.engine", "links": [{ "key": "nav.foundations", "href": "/style-guide/" }, { "key": "nav.primitives", "href": "/style-guide/primitives/" }] },
+      { "key": "footer.company", "links": [{ "key": "nav.home", "href": "/" }] }
+    ],
+    "legal": []
+  },
   "brand": {
     "hue": 250,
     "accentHue": 160,

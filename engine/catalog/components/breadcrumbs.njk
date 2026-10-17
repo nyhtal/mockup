@@ -1,0 +1,25 @@
+{#
+  name: breadcrumbs
+  purpose: Path from home to the current page (R-SEO-11, R-SCH-12).
+  anatomy: nav[aria-label] > ol > li > a | span[aria-current=page], separated by chevrons
+  variants: none
+  states: current item is text, not a link
+  spacing: text-sm, gap-2
+  motion: none
+  keyboard: links only
+  a11y: labelled nav; chevron icons are aria-hidden; last item aria-current="page"
+  i18n: chevrons flip in RTL
+  content limits: 2–4 items; names ≤ 30 chars; the JSON-LD BreadcrumbList mirrors these items
+#}
+{% macro breadcrumbs(items) %}
+<nav aria-label="{{ 'nav.breadcrumbs' | t }}" data-component="breadcrumbs">
+<ol class="flex flex-wrap items-center gap-2 text-sm text-ink-muted">
+{%- for item in items %}
+<li class="flex items-center gap-2">
+{%- if loop.last %}<span aria-current="page" class="text-ink">{{ item.name }}</span>
+{%- else %}<a href="{{ item.url }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ item.name }}</a><svg aria-hidden="true" class="size-4 rtl:-scale-x-100"><use href="#i-chevron-right"></use></svg>{% endif %}
+</li>
+{%- endfor %}
+</ol>
+</nav>
+{% endmacro %}

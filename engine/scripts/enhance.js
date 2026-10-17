@@ -1,1 +1,3 @@
-document.documentElement.dataset.js = "";
+const d=document,h=d.documentElement;h.dataset.js="";
+if(!CSS.supports("animation-timeline: view()")&&"IntersectionObserver"in window){const o=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){e.target.dataset.revealed="";o.unobserve(e.target)}},{rootMargin:"0px 0px -10% 0px"});d.querySelectorAll("[data-reveal]").forEach(el=>o.observe(el))}
+if(!("command"in HTMLButtonElement.prototype))d.addEventListener("click",e=>{const b=e.target.closest("button[commandfor]");if(!b)return;const t=d.getElementById(b.getAttribute("commandfor"));if(!(t instanceof HTMLDialogElement))return;const c=b.getAttribute("command");c==="show-modal"?t.showModal():c==="close"&&t.close()});

@@ -46,5 +46,5 @@ test("the report records the benchmark conditions and per-page sizes", () => {
   assert.match(text, /Chrome 142\.0\.0\.0/);
   assert.match(text, /simulate \(150ms RTT/);
   assert.match(text, /runs: 5|5 runs/);
-  assert.match(text, /\| \/en\/ \| 1234 B? \| 5678/);
+  assert.match(text, /\| \/en\/ \| 1234 B \| 5678 B \| - B \|/);
 });

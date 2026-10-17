@@ -1,0 +1,56 @@
+{#
+  name: footer
+  purpose: Site footer: link columns, help/contact, legal row with locale links (R-SEO-10, R-A11Y-11 consistent help).
+  anatomy: footer > div.container > (back-to-top row) + nav[aria-label=footer] > grid of columns(h2 + ul) + div.legal(© + legal links + locale links)
+  variants: none
+  states: hover/focus on links
+  spacing: py-16, columns gap-8, legal row mt-12 border-t
+  motion: none
+  keyboard: links only
+  a11y: one footer landmark; column headings are h2 (the page's h1 is above); the contact link is always in the first column (consistent help)
+  i18n: column titles and labels via keys; locale links use native names
+  content limits: 2–4 columns, ≤ 8 links each; legal links ≤ 6
+#}
+{% from "components/back-to-top.njk" import backToTop %}
+{% from "primitives/wordmark.njk" import wordmark %}
+{% macro footer(site, locale, alternates) %}
+<footer class="border-t border-line bg-surface-alt" data-component="footer">
+<div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between gap-6">
+<a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name) }}</a>
+{{ backToTop() }}
+</div>
+<nav aria-label="{{ 'nav.footer' | t }}" class="mt-12">
+<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+{%- for col in site.footer.columns %}
+<div>
+<h2 class="text-sm font-semibold uppercase tracking-wide text-ink">{{ col.key | t }}</h2>
+<ul class="mt-4 space-y-3">
+{%- for link in col.links %}
+<li><a href="/{{ locale }}{{ link.href }}" class="text-sm text-ink-muted hover:text-ink hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ link.key | t }}</a></li>
+{%- endfor %}
+</ul>
+</div>
+{%- endfor %}
+</div>
+</nav>
+<div class="mt-12 flex flex-col gap-4 border-t border-line pt-8 text-sm text-ink-muted md:flex-row md:items-center md:justify-between">
+<p>© {{ site.year or "2026" }} {{ site.name }}. {{ "footer.rights" | t }}</p>
+{%- if site.footer.legal.length %}
+<ul class="flex flex-wrap gap-x-6 gap-y-2">
+{%- for link in site.footer.legal %}
+<li><a href="/{{ locale }}{{ link.href }}" class="hover:text-ink hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ link.key | t }}</a></li>
+{%- endfor %}
+</ul>
+{%- endif %}
+{%- if alternates.length > 1 %}
+<ul class="flex flex-wrap gap-x-6 gap-y-2">
+{%- for alt in alternates %}
+<li><a href="{{ alt.url }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}" class="hover:text-ink hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"{% if alt.lang == locale %} aria-current="true"{% endif %}>{{ alt.lang | nativeName }}</a></li>
+{%- endfor %}
+</ul>
+{%- endif %}
+</div>
+</div>
+</footer>
+{% endmacro %}

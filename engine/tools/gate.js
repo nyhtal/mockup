@@ -73,8 +73,8 @@ export function formatReport({ site, results }) {
   }
   const bud = results.find((r) => r.id === "budget" && r.report?.length);
   if (bud) {
-    lines.push("", "## Page weight", "", "| Page | HTML | Total (mobile) |", "|---|---|---|");
-    for (const p of bud.report) lines.push(`| ${"/" + path.relative(`dist/${site}`, p.file).replace(/\\/g, "/").replace(/index\.html$/, "")} | ${p.html} B | ${p.total} B |`);
+    lines.push("", "## Page weight", "", "| Page | HTML | Total (mobile) | Total over gzip |", "|---|---|---|---|");
+    for (const p of bud.report) lines.push(`| ${"/" + path.relative(`dist/${site}`, p.file).replace(/\\/g, "/").replace(/index\.html$/, "")} | ${p.html} B | ${p.total} B | ${p.gzip ?? "-"} B |`);
   }
   const ax = results.find((r) => r.id === "a11y" && r.report);
   const review = ax ? ax.report.flatMap((p) => p.review) : [];

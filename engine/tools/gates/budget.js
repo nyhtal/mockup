@@ -1,4 +1,5 @@
 import { readFileSync, statSync, existsSync } from "node:fs";
+import { gzipSync } from "node:zlib";
 import path from "node:path";
 import { pagesFor, parse } from "../lib/html.js";
 
@@ -81,6 +82,8 @@ export async function run(ctx) {
     const html = statSync(file).size;
     if (html > budgets.html) add("html", `${html} B > ${budgets.html} B`);
     let total = html;
+    // Informational: what the text assets cost over a compressing host (R-PERF-11).
+    let gzip = gzipSync(readFileSync(file), { level: 9 }).length;
     const { root } = parse(file);
     const assets = pageAssets(root, mobileWidth);
     const cssFiles = assets.filter((u) => u.endsWith(".css"));
@@ -93,11 +96,12 @@ export async function run(ctx) {
       if (!existsSync(p)) { add("missing-asset", `${u} not found on disk`); continue; }
       const bytes = statSync(p).size;
       total += bytes;
+      if (/\.(css|m?js|svg)$/.test(u)) gzip += gzipSync(readFileSync(p), { level: 9 }).length; else gzip += bytes;
       if (u.endsWith(".css") && bytes > budgets.css) add("css", `${u} ${bytes} B > ${budgets.css} B`);
       if (/\.m?js$/.test(u) && bytes > budgets.js) add("js", `${u} ${bytes} B > ${budgets.js} B`);
     }
     if (total > budgets.page) add("page", `${total} B > ${budgets.page} B`);
-    report.push({ file, html, total, assets: assets.length });
+    report.push({ file, html, total, gzip, assets: assets.length });
   }
   return { id, ok: findings.length === 0, findings, report };
 }
