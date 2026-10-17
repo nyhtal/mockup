@@ -4,8 +4,9 @@
   "calendar", "clock", "download", "external-link", "play", "file-text", "briefcase", "users",
   "building-2", "factory", "shield-check", "zap", "chart-bar", "settings", "cpu", "layers",
   "star", "quote", "info", "circle-alert", "circle-check", "triangle-alert", "loader-circle", "plus",
-  "minus", "filter", "share-2", "at-sign", "link", "message-circle", "sun", "moon", "languages",
-  "hand-helping", "heart", "thumbs-up", "thumbs-down", "copy", "printer", "tag", "bookmark", "rss", "lock",
-  "eye", "package", "truck", "wrench", "gauge", "chart-line", "trending-up", "award", "leaf", "handshake",
-  "send", "cookie", "accessibility"
+  "minus", "filter", "share-2", "at-sign", "link", "message-circle", "sun", "moon",
+  "languages", "hand-helping", "heart", "thumbs-up", "thumbs-down", "copy", "printer", "tag",
+  "bookmark", "rss", "lock", "eye", "package", "truck", "wrench", "gauge",
+  "chart-line", "trending-up", "award", "leaf", "handshake", "send", "cookie", "accessibility",
+  "sliders-horizontal", "scroll-text", "wifi-off", "database", "wheat", "flask-conical", "car", "book-open"
 ]

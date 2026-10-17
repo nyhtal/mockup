@@ -1,0 +1,53 @@
+{
+  "nav": {
+    "cta": "Book a demo",
+    "services": "Services",
+    "servicesDesc": "Line automation, plant programmes and safety reviews.",
+    "products": "Products",
+    "productsDesc": "Studio, Edge and Cloud: the software behind every line.",
+    "industries": "Industries",
+    "industriesDesc": "Food and beverage, pharmaceutical and automotive plants.",
+    "pricing": "Pricing",
+    "pricingDesc": "Per line, per site or for the whole group.",
+    "customers": "Customers",
+    "resources": "Resources",
+    "blog": "Blog",
+    "blogDesc": "Notes from the plant floor, monthly.",
+    "downloads": "Downloads",
+    "downloadsDesc": "Checklists, guides and calculators.",
+    "events": "Events",
+    "eventsDesc": "Webinars, workshops and where to meet us.",
+    "help": "Help centre",
+    "helpDesc": "How-to guides for engineers and line leads.",
+    "company": "Company",
+    "about": "About us",
+    "aboutDesc": "Who we are and how we work.",
+    "team": "Leadership",
+    "locations": "Locations",
+    "careers": "Careers",
+    "careersDesc": "Open roles in Manchester, Hamburg and Riyadh.",
+    "news": "News",
+    "newsDesc": "Press releases and the media kit.",
+    "contactDesc": "Talk to an engineer within one working day.",
+    "partners": "Partners",
+    "faq": "FAQ",
+    "glossary": "Glossary",
+    "trust": "Trust and security",
+    "sustainability": "Sustainability",
+    "newsletter": "Newsletter",
+    "sitemap": "Site map",
+    "privacy": "Privacy",
+    "cookies": "Cookies",
+    "terms": "Terms",
+    "accessibility": "Accessibility"
+  },
+  "footer": {
+    "offer": "What we do",
+    "resources": "Resources",
+    "more": "More"
+  },
+  "sitemap": {
+    "legal": "Legal",
+    "lp": "Campaign pages"
+  }
+}

@@ -1,9 +1,10 @@
 ---
 layout: page.njk
 pageType: sitemap
+noHeader: true
 ---
 {#- HTML site map (bylaw 09: sitemap): every indexable page of this locale, grouped by top-level section. -#}
 {% from "sections/_render.njk" import section %}
 {%- set ctx = { locale: locale, pageUrl: page.url, density: site.brand.density or "comfortable", surface: "bg-surface", reveal: false, index: 0, demote: false } -%}
 {{ section({ type: "page-header", eyebrow: eyebrow, title: title, lede: lede, breadcrumbs: breadcrumbs }, ctx) }}
-{{ section({ type: "sitemap-list", label: title, groups: collections.all | sitemapGroups(locale) }, ctx | merge({ surface: "bg-surface-alt" })) }}
+{{ section({ type: "sitemap-list", title: ("ui.allPages" | t), groups: collections.all | sitemapGroups(locale) }, ctx | merge({ surface: "bg-surface-alt" })) }}

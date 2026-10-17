@@ -63,3 +63,32 @@ test("a section whose `from` list is empty is dropped when it declares `skipEmpt
   const plan = planSections(samples, [{ type: "faq", from: "e.faq", skipEmpty: true }, { type: "hero", title: "H" }], { ...full, entity: { faq: [] } });
   assert.deepEqual(plan.map((p) => p.s.type), ["hero"]);
 });
+
+test("`into` names the key a `from` list or `md` body lands in, and `{e.path|date}` formats a date", () => {
+  const entity = { tiers: [{ name: "Starter" }], bio: "Bio", posted: "2026-10-06" };
+  const plan = planSections(samples, [{ type: "pricing", from: "e.tiers", into: "tiers" }, { type: "person-bio", md: "e.bio", into: "bio" }, { type: "job-detail", posted: "{e.posted|date}", postedIso: "{e.posted}" }], { ...full, entity });
+  assert.deepEqual(plan[0].s.tiers, entity.tiers);
+  assert.equal(plan[0].s.items, undefined);
+  assert.equal(plan[1].s.bio, "<p>Bio</p>");
+  assert.equal(plan[2].s.posted, "D(2026-10-06)");
+  assert.equal(plan[2].s.postedIso, "2026-10-06");
+});
+
+test("`md` as a map renders several entity fields into named keys", () => {
+  const plan = planSections(samples, [{ type: "download-detail", md: { summary: "e.summary", body: "e.body" }, from: "e.contents", into: "contents" }], { ...full, entity: { summary: "S", body: "B", contents: ["a"] } });
+  assert.equal(plan[0].s.summary, "<p>S</p>");
+  assert.equal(plan[0].s.body, "<p>B</p>");
+  assert.deepEqual(plan[0].s.contents, ["a"]);
+  assert.equal(plan[0].s.html, undefined);
+});
+
+test("a `header` is prepended as a page-header unless the page already opens with a hero or page-header", () => {
+  const header = { eyebrow: "Company", title: "About us", lede: "L" };
+  const plan = planSections(samples, ["grid"], { ...opts, header });
+  assert.deepEqual(plan.map((p) => p.s.type), ["page-header", "feature-grid"]);
+  assert.equal(plan[0].s.title, "About us");
+  assert.equal(plan[0].ctx.reveal, false);
+  assert.deepEqual(planSections(samples, ["hero", "grid"], { ...opts, header }).map((p) => p.s.type), ["hero", "feature-grid"]);
+  assert.deepEqual(planSections(samples, [{ type: "page-header", title: "Own" }], { ...opts, header }).map((p) => p.s.title), ["Own"]);
+  assert.deepEqual(planSections(samples, [], { ...opts, header }).map((p) => p.s.type), ["page-header"]);
+});

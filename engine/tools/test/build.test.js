@@ -15,7 +15,7 @@ test("missing locale content fails the build naming the page", () => {
   copyFileSync("engine/i18n/en.json", "engine/i18n/de.json");
   try {
     assert.throws(() => run({ SITE_LOCALES_OVERRIDE: "en,de" }), (e) => {
-      assert.match(e.stderr, /Locale "de" is missing page \/de\/index\.html/);
+      assert.match(e.stderr, /Locale "de" is missing page \/de\/[a-z/-]*index\.html/);
       return true;
     });
   } finally {
@@ -74,7 +74,8 @@ test("the shell has one header with labelled navigation, a drawer trigger, one m
   assert.match(html, /<div[^>]*popover[^>]*id="drawer"/);
   // A single-locale site has nothing to switch to; the switcher appears only with two or more locales (phase 4 covers it).
   assert.doesNotMatch(html, /popovertarget="locales"/);
-  assert.match(html, /<a href="\/en\/"[^>]*aria-current="page"/);
+  // The current page is marked in the primary navigation (R-A11Y-12): Customers is a plain nav link.
+  assert.match(readFileSync("dist/reference/en/customers/index.html", "utf8"), /<a href="\/en\/customers\/"[^>]*aria-current="page"/);
 });
 
 test("enhance.js ships under 2 KB and only does what bylaw 06 allows", () => {

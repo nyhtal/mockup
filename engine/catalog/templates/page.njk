@@ -3,9 +3,11 @@ layout: base.njk
 ---
 {#- Sections-driven page (R-SEC-06 alternation, R-SEC-10 reveal below the fold, R-SEC-12 data only).
     Front matter: sections: [ "sample-id" | { type, … } ]; demote: true turns section h1s into h2s (style guide only).
-    The page's computed breadcrumbs travel in ctx so page-header can show them (R-SEC-08). Any template body renders before the sections. -#}
+    The page's computed breadcrumbs travel in ctx so page-header can show them (R-SEC-08). Any template body renders before the sections.
+    Pages with a title open with a page-header built from title, eyebrow and lede unless their first section is a hero or page-header. -#}
 {% from "sections/_render.njk" import section %}
 {{ content | safe }}
-{%- for step in sections | sectionsPlan(locale, page.url, site.brand.density, demote, breadcrumbs) %}
+{%- set header = { eyebrow: eyebrow, title: title, lede: lede } if (title and not demote and not noHeader) else null -%}
+{%- for step in sections | sectionsPlan(locale, page.url, site.brand.density, demote, breadcrumbs, header) %}
 {{ section(step.s, step.ctx) }}
 {%- endfor %}

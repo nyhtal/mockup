@@ -1,0 +1,1802 @@
+{
+  "services": [
+    {
+      "slug": "line-automation",
+      "title": "Line automation",
+      "lede": "One production line, described in plain language and running on generated, validated PLC logic within two weeks.",
+      "description": "Line automation from Northwind: describe one production line in plain language and run it on generated, validated PLC logic within two weeks.",
+      "icon": "cpu",
+      "serviceType": "Production line automation",
+      "features": [
+        {
+          "eyebrow": "Describe",
+          "title": "Walk the line with an engineer",
+          "text": "Stations, sensors, actuators and the rules between them, written in plain language your team can read back.",
+          "image": {
+            "slug": "svc-describe",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Generate",
+          "title": "Review the logic like a document",
+          "text": "Northwind produces the PLC program, the HMI screens and the test plan. Your engineers review it before anything runs.",
+          "image": {
+            "slug": "svc-generate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Operate",
+          "title": "Line leads change recipes themselves",
+          "text": "Speeds, volumes and interlocks move within limits your engineers set. Every change is logged with who, when and what.",
+          "image": {
+            "slug": "svc-operate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "steps": [
+        {
+          "title": "Describe the line",
+          "text": "Walk through the stations with an engineer; it takes an afternoon."
+        },
+        {
+          "title": "Generate and review",
+          "text": "Northwind produces the logic; your team reviews it like a document."
+        },
+        {
+          "title": "Commission",
+          "text": "Run factory acceptance tests from the same description."
+        },
+        {
+          "title": "Operate",
+          "text": "Line leads adjust recipes within the limits you set."
+        }
+      ],
+      "stats": [
+        {
+          "value": "9 days",
+          "label": "Median to commission"
+        },
+        {
+          "value": "38%",
+          "label": "Less downtime"
+        },
+        {
+          "value": "1,284",
+          "label": "Lines automated"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Does Northwind replace our PLCs?",
+          "body": "<p>No. It sits beside them and generates the logic they run, so your hardware and safety certification stay in place.</p>"
+        },
+        {
+          "title": "How long does commissioning take?",
+          "body": "<p>Most single lines are live within two weeks, including factory acceptance testing.</p>"
+        },
+        {
+          "title": "Can we edit the generated code?",
+          "body": "<p>You can, but changes to the description are the supported path; edited blocks are flagged in the audit trail.</p>"
+        },
+        {
+          "title": "Which controllers are supported?",
+          "body": "<p>Siemens S7-1200 and S7-1500, Rockwell ControlLogix and CompactLogix, and Beckhoff TwinCAT 3.</p>"
+        }
+      ],
+      "cases": [
+        "alder-foods",
+        "fjord-dairy"
+      ]
+    },
+    {
+      "slug": "plant-programmes",
+      "title": "Plant programmes",
+      "lede": "Every line on a site under one description, one audit trail and one support queue, rolled out line by line.",
+      "description": "Plant programmes put every production line on a site under one description and one audit trail, rolled out line by line with one support queue.",
+      "icon": "factory",
+      "serviceType": "Plant-wide automation programme",
+      "features": [
+        {
+          "eyebrow": "Plan",
+          "title": "Start with the line that hurts most",
+          "text": "We rank lines by downtime cost and changeover frequency, then start where the payback is fastest.",
+          "image": {
+            "slug": "plant-plan",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Roll out",
+          "title": "One line every three weeks",
+          "text": "A standing team describes, generates and commissions on a fixed cadence, so nobody waits for a programmer.",
+          "image": {
+            "slug": "plant-rollout",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Run",
+          "title": "One description for the whole site",
+          "text": "Shared stations, shared recipes and one change log across every line, with site-level reporting.",
+          "image": {
+            "slug": "plant-run",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "steps": [
+        {
+          "title": "Rank the lines",
+          "text": "Downtime cost and changeover frequency decide the order."
+        },
+        {
+          "title": "Pilot one line",
+          "text": "The first line proves the description style and the review process."
+        },
+        {
+          "title": "Roll out on a cadence",
+          "text": "One line every three weeks with a standing team."
+        },
+        {
+          "title": "Hand over",
+          "text": "Your engineers own the descriptions; we stay on the support queue."
+        }
+      ],
+      "stats": [
+        {
+          "value": "3 weeks",
+          "label": "Per additional line"
+        },
+        {
+          "value": "41",
+          "label": "Sites on programmes"
+        },
+        {
+          "value": "99.98%",
+          "label": "Uptime last year"
+        }
+      ],
+      "faq": [
+        {
+          "title": "How many lines can run in parallel?",
+          "body": "<p>Two standing teams can commission two lines every three weeks; larger sites add a third team.</p>"
+        },
+        {
+          "title": "Who owns the descriptions afterwards?",
+          "body": "<p>You do. Descriptions are plain text in your repository and your engineers keep editing them.</p>"
+        },
+        {
+          "title": "What does a programme cost?",
+          "body": "<p>The Plant tier covers every line on a site; the programme fee covers the standing team for the rollout months.</p>"
+        },
+        {
+          "title": "Can lines keep running during the rollout?",
+          "body": "<p>Yes. Each line switches over in a planned window, usually a weekend, after its acceptance test passes.</p>"
+        }
+      ],
+      "cases": [
+        "castor-automotive"
+      ]
+    },
+    {
+      "slug": "safety-reviews",
+      "title": "Safety reviews",
+      "lede": "Generated logic with the evidence assessors ask for: interlock walk-downs, test records and a change log you can export.",
+      "description": "Safety reviews for generated PLC logic: interlock walk-downs, test records and an exportable change log that give assessors the evidence they ask for.",
+      "icon": "shield-check",
+      "serviceType": "Functional safety review",
+      "features": [
+        {
+          "eyebrow": "Walk down",
+          "title": "Every interlock, on the floor",
+          "text": "An assessor and your HSE lead check each interlock in the description against the guard, the sensor and the actuator it protects.",
+          "image": {
+            "slug": "safety-walk",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Evidence",
+          "title": "Test records from the same description",
+          "text": "Acceptance tests, their results and the generated code version are filed together, so the evidence pack writes itself.",
+          "image": {
+            "slug": "safety-evidence",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "steps": [
+        {
+          "title": "Scope the review",
+          "text": "Which lines, which zones, which standard the assessor will apply."
+        },
+        {
+          "title": "Walk the interlocks",
+          "text": "Each interlock is checked on the floor and signed off."
+        },
+        {
+          "title": "File the evidence",
+          "text": "Tests, versions and sign-offs in one exportable pack."
+        }
+      ],
+      "stats": [
+        {
+          "value": "312",
+          "label": "Reviews completed"
+        },
+        {
+          "value": "0",
+          "label": "Findings reopened"
+        },
+        {
+          "value": "2 days",
+          "label": "Typical review"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Do you certify the line?",
+          "body": "<p>No. We prepare the evidence; your assessor or notified body issues the certificate.</p>"
+        },
+        {
+          "title": "Which standards do reviews follow?",
+          "body": "<p>Reviews are structured around the functional safety standard your assessor names in the scoping call.</p>"
+        },
+        {
+          "title": "How long does a review take?",
+          "body": "<p>Two days on site for a single line, plus a week for the evidence pack.</p>"
+        },
+        {
+          "title": "Can we review lines not built with Northwind?",
+          "body": "<p>Yes, with a description written first; the walk-down then works the same way.</p>"
+        }
+      ],
+      "cases": [
+        "brightline-pharma",
+        "castor-automotive"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "slug": "northwind-studio",
+      "title": "Northwind Studio",
+      "lede": "Where engineers write the line description, review the generated logic and run acceptance tests.",
+      "description": "Northwind Studio is where engineers write the line description, review the generated PLC logic as a document and run factory acceptance tests.",
+      "image": {
+        "slug": "product-studio",
+        "ratio": "4:3",
+        "alt": ""
+      },
+      "features": [
+        {
+          "eyebrow": "Write",
+          "title": "A description, not a program",
+          "text": "Stations, rules and recipes in structured plain language, with the glossary your plant already uses.",
+          "image": {
+            "slug": "studio-write",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Review",
+          "title": "Read the logic like a document",
+          "text": "Generated code is shown next to the sentence that produced it; reviewers comment on the sentence.",
+          "image": {
+            "slug": "studio-review",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "capabilities": [
+        {
+          "icon": "file-text",
+          "title": "Structured descriptions",
+          "text": "Templates for stations, interlocks and recipes keep every line readable."
+        },
+        {
+          "icon": "cpu",
+          "title": "Three controller families",
+          "text": "Siemens, Rockwell and Beckhoff from the same description."
+        },
+        {
+          "icon": "shield-check",
+          "title": "Interlock checks",
+          "text": "Every interlock in the description is verified against the generated code."
+        },
+        {
+          "icon": "chart-bar",
+          "title": "Test plans",
+          "text": "Acceptance tests are generated with the logic and run from Studio."
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Starter",
+          "price": "€490",
+          "amount": 490,
+          "currency": "EUR",
+          "period": "per line per month",
+          "text": "One line, one site.",
+          "features": [
+            "Up to 50 tags",
+            "Email support",
+            "Weekly backups"
+          ],
+          "cta": {
+            "label": "Start a trial",
+            "href": "/en/demo/"
+          }
+        },
+        {
+          "name": "Plant",
+          "price": "€1,900",
+          "amount": 1900,
+          "currency": "EUR",
+          "period": "per site per month",
+          "text": "Every line on a site.",
+          "features": [
+            "Unlimited tags",
+            "Phone support in 4 hours",
+            "Daily backups",
+            "Audit trail"
+          ],
+          "cta": {
+            "label": "Talk to sales",
+            "href": "/en/contact/"
+          },
+          "recommended": true
+        }
+      ],
+      "faq": [
+        {
+          "title": "Does Studio run on premise?",
+          "body": "<p>Yes. Studio is a desktop application; descriptions live in your repository.</p>"
+        },
+        {
+          "title": "Which languages does Studio speak?",
+          "body": "<p>English, German and Arabic for the interface; descriptions can use any of them.</p>"
+        },
+        {
+          "title": "Can several engineers edit one description?",
+          "body": "<p>Yes. Descriptions are text files, so your version control handles branches and reviews.</p>"
+        },
+        {
+          "title": "Is there a free trial?",
+          "body": "<p>Thirty days on one line, with an engineer on call for the first week.</p>"
+        }
+      ],
+      "integrations": [
+        "tia-portal",
+        "studio-5000",
+        "twincat"
+      ]
+    },
+    {
+      "slug": "northwind-edge",
+      "title": "Northwind Edge",
+      "lede": "The runtime beside your PLC that keeps recipes within limits, logs every change and buffers data when the network drops.",
+      "description": "Northwind Edge runs beside the PLC: it keeps recipe changes within limits, logs every change with who and when, and buffers data when the network drops.",
+      "image": {
+        "slug": "product-edge",
+        "ratio": "4:3",
+        "alt": ""
+      },
+      "features": [
+        {
+          "eyebrow": "Limits",
+          "title": "Recipes move, interlocks do not",
+          "text": "Line leads adjust speeds and volumes within engineer-set limits; anything outside them needs an engineer.",
+          "image": {
+            "slug": "edge-limits",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Resilience",
+          "title": "Keeps running when the network does not",
+          "text": "Edge buffers the change log and sensor data locally and syncs when the link returns.",
+          "image": {
+            "slug": "edge-resilience",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "capabilities": [
+        {
+          "icon": "sliders-horizontal",
+          "title": "Recipe limits",
+          "text": "Minimum, maximum and step for every value a line lead can change."
+        },
+        {
+          "icon": "scroll-text",
+          "title": "Change log",
+          "text": "Who changed what, when, from which screen; exportable in one click."
+        },
+        {
+          "icon": "wifi-off",
+          "title": "Offline buffer",
+          "text": "Seventy-two hours of data and changes stored locally."
+        },
+        {
+          "icon": "lock",
+          "title": "Signed updates",
+          "text": "Runtime updates are signed and applied in a maintenance window you choose."
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Per line",
+          "price": "€120",
+          "amount": 120,
+          "currency": "EUR",
+          "period": "per line per month",
+          "text": "Included in Plant and Enterprise.",
+          "features": [
+            "Recipe limits",
+            "Change log",
+            "Offline buffer"
+          ],
+          "cta": {
+            "label": "Talk to sales",
+            "href": "/en/contact/"
+          },
+          "recommended": true
+        }
+      ],
+      "faq": [
+        {
+          "title": "What hardware does Edge need?",
+          "body": "<p>An industrial PC with two network ports; we list tested models in the help centre.</p>"
+        },
+        {
+          "title": "Does Edge replace the HMI?",
+          "body": "<p>No. It adds the recipe screens and the change log to the HMI Studio generates.</p>"
+        },
+        {
+          "title": "How is the change log protected?",
+          "body": "<p>Entries are signed and append-only; exports carry a checksum your auditors can verify.</p>"
+        },
+        {
+          "title": "What happens during an update?",
+          "body": "<p>The line keeps running on the PLC; Edge restarts in under a minute in the window you set.</p>"
+        }
+      ],
+      "integrations": [
+        "osisoft-pi"
+      ]
+    },
+    {
+      "slug": "northwind-cloud",
+      "title": "Northwind Cloud",
+      "lede": "Site-level reporting, backups and support access, hosted in the EU with on-premise available for Enterprise.",
+      "description": "Northwind Cloud adds site-level reporting, daily backups and support access to every line, hosted in the EU with on-premise hosting for Enterprise.",
+      "image": {
+        "slug": "product-cloud",
+        "ratio": "4:3",
+        "alt": ""
+      },
+      "features": [
+        {
+          "eyebrow": "Report",
+          "title": "Every line on one page",
+          "text": "Downtime, changeovers and recipe changes per line and per site, with the change log a click away.",
+          "image": {
+            "slug": "cloud-report",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Support",
+          "title": "Engineers who can see what you see",
+          "text": "With your permission, support opens the same description and the same change log you are looking at.",
+          "image": {
+            "slug": "cloud-support",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "capabilities": [
+        {
+          "icon": "chart-bar",
+          "title": "Site reporting",
+          "text": "Downtime and changeover trends per line, exportable to your BI tool."
+        },
+        {
+          "icon": "database",
+          "title": "Backups",
+          "text": "Daily backups of descriptions and change logs, kept for a year."
+        },
+        {
+          "icon": "users",
+          "title": "Support access",
+          "text": "Time-limited, logged access for the support engineer you are talking to."
+        },
+        {
+          "icon": "globe",
+          "title": "EU hosting",
+          "text": "Data stays in the EU; Enterprise can run the whole stack on premise."
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Plant",
+          "price": "€1,900",
+          "amount": 1900,
+          "currency": "EUR",
+          "period": "per site per month",
+          "text": "Every line on a site.",
+          "features": [
+            "Site reporting",
+            "Daily backups",
+            "Support access"
+          ],
+          "cta": {
+            "label": "Talk to sales",
+            "href": "/en/contact/"
+          },
+          "recommended": true
+        },
+        {
+          "name": "Enterprise",
+          "price": "Custom",
+          "period": "per group",
+          "text": "On premise, SSO, named engineer.",
+          "features": [
+            "Everything in Plant",
+            "On-premise hosting",
+            "Single sign-on",
+            "Named support engineer"
+          ],
+          "cta": {
+            "label": "Request a quote",
+            "href": "/en/contact/"
+          }
+        }
+      ],
+      "faq": [
+        {
+          "title": "Where is data stored?",
+          "body": "<p>In the EU by default; Enterprise customers can host the whole stack on premise.</p>"
+        },
+        {
+          "title": "Who can see our data?",
+          "body": "<p>Your users, and a support engineer only while you have granted time-limited access.</p>"
+        },
+        {
+          "title": "How long are backups kept?",
+          "body": "<p>Daily backups for a year; you can export a full archive at any time.</p>"
+        },
+        {
+          "title": "Does Cloud need Edge?",
+          "body": "<p>Reporting needs Edge on each line; backups and support access work with Studio alone.</p>"
+        }
+      ],
+      "integrations": [
+        "osisoft-pi",
+        "tia-portal"
+      ]
+    }
+  ],
+  "industries": [
+    {
+      "slug": "food-and-beverage",
+      "title": "Food and beverage",
+      "lede": "Recipe changes without a maintenance window, allergen changeovers with a log, and hygiene interlocks that never get patched out.",
+      "description": "Northwind for food and beverage plants: recipe changes without a maintenance window, logged allergen changeovers and hygiene interlocks that stay in place.",
+      "icon": "wheat",
+      "serviceType": "Automation for food and beverage lines",
+      "features": [
+        {
+          "eyebrow": "Changeovers",
+          "title": "Allergen changeovers with a record",
+          "text": "Each changeover runs from a recipe with its cleaning steps, and the change log shows who ran it and when.",
+          "image": {
+            "slug": "food-changeover",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Hygiene",
+          "title": "Interlocks live in the description",
+          "text": "Clean-in-place and guard interlocks are part of the line description, so a rewrite can never drop them.",
+          "image": {
+            "slug": "food-hygiene",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "stats": [
+        {
+          "value": "412",
+          "label": "Food lines live"
+        },
+        {
+          "value": "38%",
+          "label": "Less downtime"
+        },
+        {
+          "value": "14 min",
+          "label": "Median changeover"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Can line leads change fill volumes?",
+          "body": "<p>Yes, within limits an engineer sets per product; every change is logged.</p>"
+        },
+        {
+          "title": "Does it handle allergen sequencing?",
+          "body": "<p>Recipes carry their allergen class, and the description can require a cleaning recipe between classes.</p>"
+        },
+        {
+          "title": "What about washdown areas?",
+          "body": "<p>Edge runs on IP66 industrial PCs listed in the help centre; the PLC stays where it is.</p>"
+        },
+        {
+          "title": "How fast is a typical rollout?",
+          "body": "<p>Single filling or packing lines are live within two weeks.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "pharmaceutical",
+      "title": "Pharmaceutical",
+      "lede": "Validation evidence generated from the same description as the logic, with an append-only change log your QA team can export.",
+      "description": "Northwind for pharmaceutical plants: validation evidence generated from the same line description as the logic, plus an append-only change log for QA.",
+      "icon": "flask-conical",
+      "serviceType": "Automation for pharmaceutical lines",
+      "features": [
+        {
+          "eyebrow": "Validate",
+          "title": "Evidence from the description",
+          "text": "Test plans, results and code versions are filed together, so the validation pack follows the logic instead of trailing it.",
+          "image": {
+            "slug": "pharma-validate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Control",
+          "title": "Changes need a reason",
+          "text": "Every recipe change records who, when, what and why; exports carry a checksum QA can verify.",
+          "image": {
+            "slug": "pharma-control",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "stats": [
+        {
+          "value": "96",
+          "label": "Pharma lines live"
+        },
+        {
+          "value": "9 days",
+          "label": "To commission"
+        },
+        {
+          "value": "0",
+          "label": "Audit findings open"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Is the change log append-only?",
+          "body": "<p>Yes. Entries are signed and cannot be edited; corrections are new entries.</p>"
+        },
+        {
+          "title": "Can QA export the evidence pack?",
+          "body": "<p>In one click, as a signed archive with tests, results and code versions.</p>"
+        },
+        {
+          "title": "Does Northwind hold our batch records?",
+          "body": "<p>No. It holds line descriptions and change logs; batch records stay in your MES.</p>"
+        },
+        {
+          "title": "Can we run on premise?",
+          "body": "<p>Yes, with the Enterprise tier.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "automotive",
+      "title": "Automotive",
+      "lede": "Safety zones, robot cells and conveyors under one description, with safety reviews that end without arguments about the PLC code.",
+      "description": "Northwind for automotive plants: safety zones, robot cells and conveyors under one line description, with safety reviews that finish on schedule.",
+      "icon": "car",
+      "serviceType": "Automation for automotive assembly lines",
+      "features": [
+        {
+          "eyebrow": "Zones",
+          "title": "Safety zones you can read",
+          "text": "Light curtains, gates and e-stops are described per zone; the generated safety logic is reviewed sentence by sentence.",
+          "image": {
+            "slug": "auto-zones",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Cells",
+          "title": "Robot cells as stations",
+          "text": "A cell is one station in the description with its handshakes and interlocks; adding a cell is adding a paragraph.",
+          "image": {
+            "slug": "auto-cells",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "stats": [
+        {
+          "value": "58",
+          "label": "Assembly lines live"
+        },
+        {
+          "value": "2 days",
+          "label": "Typical safety review"
+        },
+        {
+          "value": "0",
+          "label": "Findings reopened"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Which safety PLCs are supported?",
+          "body": "<p>Siemens S7-1500F and Rockwell GuardLogix today; Beckhoff TwinSAFE is in pilot.</p>"
+        },
+        {
+          "title": "Do you integrate with robot controllers?",
+          "body": "<p>Handshakes with the common robot controllers are described as station interfaces.</p>"
+        },
+        {
+          "title": "How are zone changes reviewed?",
+          "body": "<p>A changed zone shows its old and new sentences side by side with the generated logic for each.</p>"
+        },
+        {
+          "title": "Can lines be split across halls?",
+          "body": "<p>Yes. A description can span several PLCs; each hall keeps its own.</p>"
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "slug": "priya-natarajan",
+      "name": "Priya Natarajan",
+      "role": "Chief Technology Officer",
+      "posts": true,
+      "bio": "Priya has led controls teams in food, pharma and automotive plants for sixteen years. She founded Northwind after one too many weekends rewriting ladder logic that a line lead could have described in a sentence.\n\nShe speaks about safety-rated generated code at industry events and still commissions one line a year herself.",
+      "description": "Priya Natarajan, Chief Technology Officer of Northwind Dynamics: sixteen years leading controls teams, founder, and still commissioning one line a year.",
+      "authorDescription": "Blog posts by Priya Natarajan, Chief Technology Officer of Northwind Dynamics, on generated PLC logic, the edge runtime and safety-rated code."
+    },
+    {
+      "slug": "jonas-weber",
+      "name": "Jonas Weber",
+      "role": "Chief Executive",
+      "posts": false,
+      "bio": "Jonas ran a packaging plant in Hamburg before joining Northwind, and he still visits one customer plant every week.\n\nHe is responsible for the company, the support promise and the decision that every office answers the phone in its own language.",
+      "description": "Jonas Weber, Chief Executive of Northwind Dynamics: a former plant manager in Hamburg who still visits one customer plant every week."
+    },
+    {
+      "slug": "mei-chen",
+      "name": "Mei Chen",
+      "role": "Head of Safety",
+      "posts": true,
+      "bio": "Mei spent a decade assessing functional safety on assembly lines before building Northwind's safety review practice.\n\nShe wrote the interlock walk-down method every review follows and trains the assessors who run it.",
+      "description": "Mei Chen, Head of Safety at Northwind Dynamics: a decade assessing functional safety, author of the interlock walk-down method every review follows.",
+      "authorDescription": "Blog posts by Mei Chen, Head of Safety at Northwind Dynamics, on reviewing generated PLC code, interlock walk-downs and what assessors ask."
+    },
+    {
+      "slug": "alex-morgan",
+      "name": "Alex Morgan",
+      "role": "Head of Delivery",
+      "posts": true,
+      "bio": "Alex leads the standing teams that describe, generate and commission lines on plant programmes.\n\nBefore Northwind, Alex commissioned filling lines in four countries and kept a notebook of every stoppage; that notebook became the commissioning checklist.",
+      "description": "Alex Morgan, Head of Delivery at Northwind Dynamics: leads the standing teams that describe, generate and commission lines on plant programmes.",
+      "authorDescription": "Blog posts by Alex Morgan, Head of Delivery at Northwind Dynamics, on commissioning lines, recipe limits and what the change log shows."
+    },
+    {
+      "slug": "sofia-lindqvist",
+      "name": "Sofia Lindqvist",
+      "role": "Head of Communications",
+      "posts": false,
+      "bio": "Sofia handles press, the newsletter and the words on this site.\n\nShe joined from a trade publication where she covered automation for eight years.",
+      "description": "Sofia Lindqvist, Head of Communications at Northwind Dynamics: press, the newsletter and the words on this site, after eight years in trade press."
+    }
+  ],
+  "offices": [
+    {
+      "slug": "manchester",
+      "city": "Manchester",
+      "street": "4 Canal Street",
+      "postalCode": "M1 3HE",
+      "country": "GB",
+      "address": "4 Canal Street, Manchester M1 3HE, United Kingdom",
+      "phone": "+44 20 7946 0000",
+      "email": "manchester@example.com",
+      "hours": [
+        [
+          "Monday to Friday",
+          "08:00–18:00"
+        ],
+        [
+          "Saturday",
+          "Closed"
+        ],
+        [
+          "Sunday",
+          "Closed"
+        ]
+      ],
+      "map": {
+        "slug": "map-manchester",
+        "address": "4 Canal Street, Manchester M1 3HE"
+      },
+      "description": "The Manchester office of Northwind Dynamics: headquarters, engineering and the first support line, open Monday to Friday from 08:00 to 18:00.",
+      "lede": "Headquarters, engineering and the first support line.",
+      "team": [
+        "priya-natarajan",
+        "alex-morgan",
+        "sofia-lindqvist"
+      ]
+    },
+    {
+      "slug": "hamburg",
+      "city": "Hamburg",
+      "street": "Speicherstadt 12",
+      "postalCode": "20457",
+      "country": "DE",
+      "address": "Speicherstadt 12, 20457 Hamburg, Germany",
+      "phone": "+49 40 123456",
+      "email": "hamburg@example.com",
+      "hours": [
+        [
+          "Monday to Friday",
+          "08:00–18:00"
+        ],
+        [
+          "Saturday",
+          "Closed"
+        ],
+        [
+          "Sunday",
+          "Closed"
+        ]
+      ],
+      "map": {
+        "slug": "map-hamburg",
+        "address": "Speicherstadt 12, 20457 Hamburg"
+      },
+      "description": "The Hamburg office of Northwind Dynamics: German-language support, the safety review practice and delivery teams for plants across Central Europe.",
+      "lede": "German-language support and the safety review practice.",
+      "team": [
+        "jonas-weber",
+        "mei-chen"
+      ]
+    },
+    {
+      "slug": "riyadh",
+      "city": "Riyadh",
+      "street": "King Fahd Road 88",
+      "postalCode": "12212",
+      "country": "SA",
+      "address": "King Fahd Road 88, Riyadh 12212, Saudi Arabia",
+      "phone": "+966 11 123 4567",
+      "email": "riyadh@example.com",
+      "hours": [
+        [
+          "Sunday to Thursday",
+          "08:00–17:00"
+        ],
+        [
+          "Friday",
+          "Closed"
+        ],
+        [
+          "Saturday",
+          "Closed"
+        ]
+      ],
+      "map": {
+        "slug": "map-riyadh",
+        "address": "King Fahd Road 88, Riyadh 12212"
+      },
+      "description": "The Riyadh office of Northwind Dynamics: Arabic-language support in Gulf hours and delivery teams for food and packaging plants across the region.",
+      "lede": "Arabic-language support in Gulf hours.",
+      "team": [
+        "alex-morgan"
+      ]
+    }
+  ],
+  "jobs": [
+    {
+      "slug": "senior-controls-engineer",
+      "title": "Senior controls engineer",
+      "team": "Engineering",
+      "location": "Manchester or remote",
+      "remote": false,
+      "employment": "Full time",
+      "employmentType": "FULL_TIME",
+      "posted": "2026-10-06",
+      "validThrough": "2026-12-31",
+      "description": "Senior controls engineer at Northwind Dynamics in Manchester or remote: describe lines with customers, review generated logic and commission on site.",
+      "lede": "Describe lines with customers, review generated logic and commission on site.",
+      "body": "## What you will do\n\n- Walk production lines with customer engineers and write the line description with them.\n- Review generated PLC logic and HMI screens before acceptance tests.\n- Commission lines on site, usually one every three weeks.\n- Feed what you learn back into the description templates.\n\n## What we look for\n\n- Eight or more years commissioning PLC-controlled lines.\n- Fluent reading of ladder logic and structured text on Siemens or Rockwell controllers.\n- The patience to explain an interlock to a line lead in one sentence.\n\n## How we work\n\nThe role is based in Manchester with travel to customer plants about one week in three. Remote within the UK is possible after the first six months.",
+      "related": [
+        "safety-assessor",
+        "support-engineer-german"
+      ]
+    },
+    {
+      "slug": "support-engineer-german",
+      "title": "Support engineer (German)",
+      "team": "Support",
+      "location": "Hamburg",
+      "remote": false,
+      "employment": "Full time",
+      "employmentType": "FULL_TIME",
+      "posted": "2026-09-22",
+      "validThrough": "2026-12-15",
+      "description": "Support engineer (German) at Northwind Dynamics in Hamburg: answer plant teams in German, reproduce issues on the test lines and write help centre guides.",
+      "lede": "Answer plant teams in German, reproduce issues on our test lines and write guides.",
+      "body": "## What you will do\n\n- Take first-line calls and emails from German-speaking plants in local hours.\n- Reproduce issues on the Hamburg test lines and hand clear reports to engineering.\n- Write and update help centre guides in German and English.\n\n## What we look for\n\n- Three or more years in technical support or commissioning for industrial automation.\n- Native-level German and working English.\n- A habit of writing down what you found so the next person does not have to find it again.\n\n## How we work\n\nSupport runs 08:00 to 18:00 on weekdays from the Hamburg office. No night shifts; on-call weekends rotate across the team roughly once a quarter.",
+      "related": [
+        "senior-controls-engineer",
+        "technical-writer"
+      ]
+    },
+    {
+      "slug": "safety-assessor",
+      "title": "Safety assessor",
+      "team": "Engineering",
+      "location": "Remote, EU",
+      "remote": true,
+      "employment": "Full time",
+      "employmentType": "FULL_TIME",
+      "posted": "2026-09-15",
+      "validThrough": "2026-11-30",
+      "description": "Safety assessor at Northwind Dynamics, remote within the EU: run interlock walk-downs on customer lines, file evidence packs and train new assessors.",
+      "lede": "Run interlock walk-downs on customer lines and file the evidence packs.",
+      "body": "## What you will do\n\n- Run interlock walk-downs on customer lines with the plant's HSE lead.\n- Assemble evidence packs from tests, versions and sign-offs.\n- Train new assessors in the walk-down method.\n\n## What we look for\n\n- Experience assessing functional safety on production lines.\n- Comfortable reading generated safety logic and explaining it to a plant team.\n- Willing to travel about two weeks a month across the EU.\n\n## How we work\n\nThe role is remote within the EU with travel to plants. Reviews are scheduled a month ahead, so travel is predictable.",
+      "related": [
+        "senior-controls-engineer"
+      ]
+    },
+    {
+      "slug": "technical-writer",
+      "title": "Technical writer",
+      "team": "Product",
+      "location": "Manchester",
+      "remote": false,
+      "employment": "Part time",
+      "employmentType": "PART_TIME",
+      "posted": "2026-10-01",
+      "validThrough": "2026-12-31",
+      "description": "Technical writer at Northwind Dynamics in Manchester, part time: keep the help centre, the description templates and the glossary clear in three languages.",
+      "lede": "Keep the help centre, the templates and the glossary clear in three languages.",
+      "body": "## What you will do\n\n- Own the help centre: guides, reference pages and release notes.\n- Edit the description templates so a new engineer can use them in a day.\n- Keep the glossary consistent across English, German and Arabic with the translators.\n\n## What we look for\n\n- Three or more years writing for engineers or operators.\n- Plain, short sentences by habit.\n- Some familiarity with industrial automation; we will teach the rest.\n\n## How we work\n\nThree days a week in Manchester, with one of them flexible.",
+      "related": [
+        "support-engineer-german"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "slug": "safety-plcs-webinar",
+      "title": "Safety PLCs without the paperwork",
+      "format": "Webinar",
+      "date": "2026-11-12",
+      "time": "10:00",
+      "end": "11:00",
+      "tz": "+00:00",
+      "timeLabel": "10:00–11:00 (UTC)",
+      "location": "Online",
+      "online": true,
+      "description": "Webinar on 12 November 2026: how generated safety logic passes an assessor's review without a line-by-line walkthrough, with a live interlock walk-down.",
+      "lede": "How generated safety logic passes a review without a line-by-line walkthrough.",
+      "body": "Mei Chen walks through a real (anonymised) safety review: the interlock walk-down, the evidence pack and the three questions every assessor asks. Alex Morgan shows how the same description produced the acceptance tests.\n\n## Agenda\n\n- 10:00 The walk-down method, in ten minutes\n- 10:15 A live review of a filling line description\n- 10:40 Questions\n\nYou will get a calendar invitation and the recording afterwards.",
+      "speakers": [
+        "mei-chen",
+        "alex-morgan"
+      ],
+      "faq": [
+        {
+          "title": "Will the recording be available?",
+          "body": "<p>Yes. Everyone who registers gets the recording the next day.</p>"
+        },
+        {
+          "title": "Is the webinar in English?",
+          "body": "<p>Yes, with German and Arabic subtitles on the recording.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "describe-your-first-line",
+      "title": "Describe your first line",
+      "format": "Workshop",
+      "date": "2026-12-03",
+      "time": "09:00",
+      "end": "16:00",
+      "tz": "+00:00",
+      "timeLabel": "09:00–16:00 (UTC)",
+      "location": "Manchester",
+      "online": false,
+      "description": "One-day workshop in Manchester on 3 December 2026: bring a drawing of one production line and leave with a line description and generated logic to review.",
+      "lede": "Bring a drawing of one line; leave with a description and generated logic.",
+      "body": "A hands-on day for two engineers from one plant. Bring a P&ID or a layout drawing of one line. By the end of the day you will have a line description in Studio, generated logic for your controller family and an acceptance test plan to take home.\n\n## Agenda\n\n- 09:00 Stations, sensors and actuators\n- 11:00 Rules and interlocks\n- 13:00 Recipes and limits\n- 15:00 Generate, review, test\n\nLunch is included. Places are limited to six plants.",
+      "speakers": [
+        "alex-morgan",
+        "priya-natarajan"
+      ],
+      "faq": [
+        {
+          "title": "What should we bring?",
+          "body": "<p>A layout drawing or P&ID of one line and a laptop; Studio is installed on the day.</p>"
+        },
+        {
+          "title": "Is there a cost?",
+          "body": "<p>No. The workshop is free for plants with a current trial or subscription.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "northwind-at-sps",
+      "title": "Northwind at the automation fair",
+      "format": "Conference",
+      "date": "2027-01-21",
+      "time": "09:00",
+      "end": "18:00",
+      "tz": "+01:00",
+      "timeLabel": "09:00–18:00 (CET)",
+      "location": "Nuremberg",
+      "online": false,
+      "description": "Meet Northwind in Nuremberg on 21 January 2027: live line descriptions at the stand, a talk on safety-rated generated code and engineers to talk to.",
+      "lede": "Live line descriptions at the stand and a talk on safety-rated generated code.",
+      "body": "Visit the stand to see a line described, generated and tested in twenty minutes, or book a slot with an engineer to talk about your plant.\n\n## At the stand\n\n- Line descriptions on three controller families\n- A safety review walk-down you can try\n- Engineers from Manchester, Hamburg and Riyadh\n\nPriya Natarajan speaks at 14:00 on safety-rated generated code.",
+      "speakers": [
+        "priya-natarajan"
+      ],
+      "faq": []
+    }
+  ],
+  "downloads": [
+    {
+      "slug": "commissioning-checklist",
+      "title": "Commissioning checklist 2026",
+      "fileType": "PDF",
+      "pages": "12 pages",
+      "summary": "Every step from factory acceptance to first production run, as a checklist your team can print and sign. Written by the engineers who commission Northwind lines.",
+      "description": "A 12-page commissioning checklist from factory acceptance to first production run, written by the engineers who commission Northwind production lines.",
+      "lede": "From factory acceptance to first production run, in one printable checklist.",
+      "contents": [
+        "Pre-FAT document review",
+        "Interlock walk-down",
+        "Recipe limit sign-off",
+        "Operator training record"
+      ],
+      "cover": {
+        "slug": "cover-checklist",
+        "ratio": "3:4",
+        "alt": "",
+        "max": 480
+      },
+      "gated": true,
+      "related": [
+        "safety-evidence-guide",
+        "downtime-calculator"
+      ]
+    },
+    {
+      "slug": "safety-evidence-guide",
+      "title": "Safety evidence for generated code",
+      "fileType": "PDF",
+      "pages": "28 pages",
+      "summary": "What assessors look for in generated PLC logic and how to produce it from the line description: test records, versions, sign-offs and the change log.",
+      "description": "A 28-page guide to the safety evidence assessors ask for on generated PLC logic, and how to produce it from the line description and the change log.",
+      "lede": "What assessors look for and how to produce it from the description.",
+      "contents": [
+        "The three questions assessors ask",
+        "Interlock walk-down records",
+        "Evidence pack structure",
+        "Worked example: a filling line"
+      ],
+      "cover": {
+        "slug": "cover-safety",
+        "ratio": "3:4",
+        "alt": "",
+        "max": 480
+      },
+      "gated": true,
+      "related": [
+        "commissioning-checklist"
+      ]
+    },
+    {
+      "slug": "downtime-calculator",
+      "title": "Downtime cost calculator",
+      "fileType": "XLSX",
+      "pages": "1 sheet",
+      "summary": "Enter your line rate, margin and stoppage history; the sheet shows what an hour of unplanned downtime costs and what a 38% reduction is worth.",
+      "description": "A one-sheet calculator: enter your line rate, margin and stoppage history to see what an hour of unplanned downtime costs your plant each year.",
+      "lede": "Put in your line rate; see what an hour of downtime costs.",
+      "contents": [
+        "Line rate and margin inputs",
+        "Stoppage history",
+        "Annual cost of downtime",
+        "Payback at 38% less downtime"
+      ],
+      "cover": {
+        "slug": "cover-calculator",
+        "ratio": "3:4",
+        "alt": "",
+        "max": 480
+      },
+      "gated": false,
+      "related": [
+        "commissioning-checklist"
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "slug": "sensor-logic-at-the-edge",
+      "title": "Why we moved sensor logic to the edge",
+      "eyebrow": "Engineering",
+      "date": "2026-10-03",
+      "modified": "2026-10-05",
+      "author": "priya-natarajan",
+      "tags": [
+        "engineering"
+      ],
+      "excerpt": "Latency, resilience and a smaller attack surface: three reasons sensor logic now runs beside the PLC instead of in the cloud.",
+      "description": "Why Northwind moved sensor logic from the cloud to the edge beside the PLC: lower latency, resilience when the network drops and a smaller attack surface.",
+      "image": {
+        "slug": "post-sensors",
+        "ratio": "16:9",
+        "alt": ""
+      },
+      "related": [
+        "recipe-changes-by-line-leads",
+        "reading-generated-code"
+      ],
+      "body": "Two years ago every sensor reading on a Northwind line went to the cloud before anything acted on it. That worked until it did not: a dairy in Norway lost its uplink for forty minutes and the line kept running, but the change log for those forty minutes was gone.\n\n## Latency\n\nA fill-level check that round-trips to a data centre takes two hundred milliseconds on a good day. A line that fills eighty bottles a minute does not have a good day every day. Running the check on the industrial PC beside the PLC takes under five milliseconds, every time.\n\n## Resilience\n\nEdge now buffers seventy-two hours of readings and changes locally. When the link comes back, the buffer syncs in order, and the change log has no gap. The dairy has had two more outages since; nobody noticed.\n\n## A smaller attack surface\n\nThe PLC no longer needs a route to the internet at all. Edge talks to the PLC on one network port and to Cloud on the other, and nothing on the plant network can reach the controller through us.\n\n## What changed for customers\n\nNothing visible, which was the point. Recipe limits still apply, the change log still exports in one click, and the reporting in Cloud looks the same. The difference shows up only when the network goes away."
+    },
+    {
+      "slug": "recipe-changes-by-line-leads",
+      "title": "Letting line leads change recipes safely",
+      "eyebrow": "Operations",
+      "date": "2026-09-19",
+      "author": "alex-morgan",
+      "tags": [
+        "operations"
+      ],
+      "excerpt": "Limits, logs and the two rules that make it work when the people on the floor adjust speeds and volumes themselves.",
+      "description": "How Northwind lets line leads change recipes without a programmer: engineer-set limits, an append-only change log and two rules that keep it safe.",
+      "image": {
+        "slug": "post-recipes",
+        "ratio": "16:9",
+        "alt": ""
+      },
+      "related": [
+        "sensor-logic-at-the-edge",
+        "reading-generated-code"
+      ],
+      "body": "The most common support call we used to get was not a fault. It was a line lead asking for a fill volume to be changed by two millilitres, and an engineer being pulled off something else to type a number into a PLC.\n\n## Rule one: engineers set the limits\n\nEvery value a line lead can change has a minimum, a maximum and a step, set by an engineer in the line description. Inside those limits, the line lead changes it from the HMI. Outside them, the change needs an engineer, and the screen says so.\n\n## Rule two: everything is logged\n\nEach change records who made it, when, from which screen, and what the old and new values were. The log is append-only and signed. Auditors like it more than the paper sheet it replaced.\n\n## What we saw\n\nAcross the first hundred lines with recipe limits, engineer call-outs for recipe changes fell by nine in ten. Line leads made more changes, smaller ones, and reverted bad ones themselves because the log showed what they had changed.\n\n## Where the limits come from\n\nUsually from the first month of running: engineers look at the log, see which changes line leads keep making, and widen or narrow the limits. The description changes, the logic regenerates, and the HMI follows."
+    },
+    {
+      "slug": "reading-generated-code",
+      "title": "How to read generated PLC code in an afternoon",
+      "eyebrow": "Safety",
+      "date": "2026-09-02",
+      "author": "mei-chen",
+      "tags": [
+        "safety",
+        "engineering"
+      ],
+      "excerpt": "Four questions that get a reviewer through a generated program without reading every rung, and the one place to slow down.",
+      "description": "Four questions that get a reviewer through generated PLC code in an afternoon without reading every rung, and the one place where slowing down pays off.",
+      "image": {
+        "slug": "post-audit",
+        "ratio": "16:9",
+        "alt": ""
+      },
+      "related": [
+        "sensor-logic-at-the-edge",
+        "recipe-changes-by-line-leads"
+      ],
+      "body": "Reviewers used to open a generated program the way they opened a hand-written one: at the top, rung by rung. It took days and found little, because the program is the description in another form. Here is the afternoon version.\n\n## Does every interlock in the description appear in the code?\n\nStudio lists them side by side. If the count matches and each one links to its rung, move on. If one is missing, stop; that is a description error, not a code error.\n\n## Does any rung exist that no sentence produced?\n\nEdited blocks are flagged in the audit trail. A flag means someone changed the code by hand; read that block fully.\n\n## Do the recipe limits match the sheet the line lead signed?\n\nOpen the limits table next to the signed sheet. This is the one place to slow down, because a wrong maximum passes every test and fails on the floor.\n\n## Do the acceptance tests cover each zone?\n\nThe test plan is generated per zone. An empty zone is a description with no rules in it, which is sometimes right and usually not.\n\nFour questions, one afternoon, and a review that assessors accept because the evidence is on the page rather than in someone's memory."
+    }
+  ],
+  "press": [
+    {
+      "slug": "riyadh-office",
+      "title": "Northwind opens Riyadh office",
+      "eyebrow": "Press release",
+      "date": "2026-10-01",
+      "author": "sofia-lindqvist",
+      "excerpt": "Arabic-language support in local hours for Gulf customers, with a delivery team for food and packaging plants.",
+      "description": "Northwind Dynamics opens an office in Riyadh with Arabic-language support in Gulf hours and a delivery team for food and packaging plants in the region.",
+      "body": "Northwind Dynamics opened its third office today on King Fahd Road in Riyadh. The office provides Arabic-language support from 08:00 to 17:00 local time, Sunday to Thursday, and a delivery team for food and packaging plants across the Gulf.\n\n\"Plants in the region asked for support in their own hours and their own language,\" said Jonas Weber, Chief Executive. \"Now they have both.\"\n\nThe Riyadh team starts with eight engineers led by Alex Morgan, Head of Delivery, and will grow to twenty by the end of 2027. Northwind now supports 1,284 lines in 19 countries from Manchester, Hamburg and Riyadh."
+    },
+    {
+      "slug": "thousandth-line",
+      "title": "Thousandth Northwind line goes live",
+      "eyebrow": "Press release",
+      "date": "2026-06-12",
+      "author": "sofia-lindqvist",
+      "excerpt": "A dairy in Norway becomes the thousandth production line running on generated, validated logic.",
+      "description": "A filling line at a dairy in Norway is the thousandth production line to go live on Northwind, running on generated, validated PLC logic after nine days.",
+      "body": "A filling line at Fjord Dairy in Norway went live this week as the thousandth production line running on Northwind, nine days after the line was first described.\n\nThe line fills 80 bottles a minute and runs eleven recipes, all of which line leads adjust within limits set by the plant's engineers.\n\n\"Nine days from description to production is now the median, not the exception,\" said Priya Natarajan, Chief Technology Officer. \"The thousandth line looked like the hundredth. That is the result we wanted.\"\n\nNorthwind lines run in food and beverage, pharmaceutical and automotive plants across 19 countries."
+    },
+    {
+      "slug": "northwind-4",
+      "title": "Northwind 4 released",
+      "eyebrow": "Press release",
+      "date": "2026-03-04",
+      "author": "sofia-lindqvist",
+      "excerpt": "Generated logic for Beckhoff TwinCAT 3 joins Siemens and Rockwell, and the change log becomes append-only across every tier.",
+      "description": "Northwind 4 adds generated logic for Beckhoff TwinCAT 3 alongside Siemens and Rockwell, and makes the recipe change log append-only in every tier.",
+      "body": "Northwind 4 is available today for all customers. The release adds a third controller family, Beckhoff TwinCAT 3, so one line description can now generate logic for Siemens, Rockwell and Beckhoff controllers.\n\nThe recipe change log is append-only in every tier from this release, with signed entries and checksummed exports.\n\n\"Customers asked for Beckhoff and for a log that auditors stop questioning,\" said Priya Natarajan, Chief Technology Officer. \"Both are in 4.\"\n\nExisting descriptions regenerate without changes. Studio, Edge and Cloud update in the maintenance window each plant chooses."
+    }
+  ],
+  "cases": [
+    {
+      "slug": "alder-foods",
+      "company": "Alder Foods",
+      "title": "Alder Foods cuts downtime by 38%",
+      "industry": "food-and-beverage",
+      "metricValue": "38%",
+      "metricLabel": "less unplanned downtime",
+      "quote": "Our line leads fix most stops themselves now.",
+      "quoteName": "Rowan Ashby",
+      "quoteRole": "Plant manager",
+      "excerpt": "Four packing lines described in a month, and the stoppages that used to wait for an engineer now end at the HMI.",
+      "description": "How Alder Foods cut unplanned downtime by 38% on four packing lines by describing them in Northwind and letting line leads change recipes within limits.",
+      "stats": [
+        {
+          "value": "38%",
+          "label": "Less downtime"
+        },
+        {
+          "value": "4",
+          "label": "Lines in one month"
+        },
+        {
+          "value": "9 in 10",
+          "label": "Fewer engineer call-outs"
+        }
+      ],
+      "services": [
+        "line-automation"
+      ],
+      "body": "Alder Foods runs four packing lines at one plant in the north of England. Before Northwind, every recipe change and most stoppages waited for one of two controls engineers.\n\n## The problem\n\nThe lines stopped about twice a shift. Most stops were small: a wrong fill volume, a guard left open after cleaning, a changeover run in the wrong order. Each one waited for an engineer, and the engineers were usually on another line.\n\n## What changed\n\nThe four lines were described in a month, one a week, by Alder's engineers with a Northwind engineer alongside. Recipe limits were set from the first month's change log. Line leads now adjust volumes and speeds at the HMI, and the HMI tells them why a stop happened.\n\n## The result\n\nUnplanned downtime fell by 38% in the first quarter. Engineer call-outs for recipe changes fell by nine in ten. The two engineers spend their time on the next plant."
+    },
+    {
+      "slug": "brightline-pharma",
+      "company": "Brightline Pharma",
+      "title": "Brightline Pharma validates in nine days",
+      "industry": "pharmaceutical",
+      "metricValue": "9 days",
+      "metricLabel": "to commission",
+      "quote": "Validation evidence came out of the same description.",
+      "quoteName": "Dana Okafor",
+      "quoteRole": "Quality lead",
+      "excerpt": "A blister packing line commissioned and validated in nine days, with the evidence pack generated alongside the logic.",
+      "description": "How Brightline Pharma commissioned and validated a blister packing line in nine days, with validation evidence generated from the same line description.",
+      "stats": [
+        {
+          "value": "9 days",
+          "label": "To commission"
+        },
+        {
+          "value": "0",
+          "label": "Open audit findings"
+        },
+        {
+          "value": "1 click",
+          "label": "Evidence export"
+        }
+      ],
+      "services": [
+        "safety-reviews",
+        "line-automation"
+      ],
+      "body": "Brightline Pharma packs tablets into blisters on a line that had been scheduled for a six-week commissioning and validation window.\n\n## The problem\n\nValidation had always trailed commissioning by weeks because the evidence was assembled by hand from screenshots, test sheets and emails.\n\n## What changed\n\nThe line was described in Studio over three days. The acceptance tests were generated from the description, run from Studio and filed with the code version. The change log was append-only from day one.\n\n## The result\n\nThe line was commissioned and validated in nine days. The QA team exported the evidence pack in one click for the first audit, which closed with no findings."
+    },
+    {
+      "slug": "castor-automotive",
+      "company": "Castor Automotive",
+      "title": "Castor Automotive passes its safety review first time",
+      "industry": "automotive",
+      "metricValue": "0",
+      "metricLabel": "safety findings reopened",
+      "quote": "The first safety review where nobody argued about the PLC code.",
+      "quoteName": "Ilse Brandt",
+      "quoteRole": "HSE manager",
+      "excerpt": "Twelve robot cells and three conveyors under one description, and a safety review that finished in two days without a single reopened finding.",
+      "description": "How Castor Automotive put twelve robot cells and three conveyors under one Northwind description and passed its functional safety review in two days.",
+      "stats": [
+        {
+          "value": "2 days",
+          "label": "Safety review"
+        },
+        {
+          "value": "12",
+          "label": "Robot cells"
+        },
+        {
+          "value": "0",
+          "label": "Findings reopened"
+        }
+      ],
+      "services": [
+        "safety-reviews",
+        "plant-programmes"
+      ],
+      "body": "Castor Automotive assembles sub-frames on a line of twelve robot cells and three conveyors in Germany.\n\n## The problem\n\nSafety reviews took a week and ended in arguments about hand-written safety logic that nobody could fully explain.\n\n## What changed\n\nThe line was described zone by zone on a plant programme, one cell every three weeks. Safety logic was generated from the zone descriptions and reviewed sentence by sentence. The interlock walk-down was run with the HSE manager before the assessor arrived.\n\n## The result\n\nThe safety review took two days and closed with no findings reopened. The plant has since described two more lines with its own engineers."
+    }
+  ],
+  "docs": [
+    {
+      "slug": "describe-your-first-line",
+      "title": "Describe your first line",
+      "category": "getting-started",
+      "summary": "From a layout drawing to a generated program in an afternoon.",
+      "description": "A step-by-step guide to describing your first production line in Northwind Studio: stations, sensors, rules, recipes, and generating the first program.",
+      "lede": "From a layout drawing to a generated program in an afternoon.",
+      "body": "## Before you start\n\nYou need Studio installed, a layout drawing or P&ID of the line, and the names your plant uses for its stations.\n\n## Add the stations\n\nCreate one station per machine or process step, in line order. Give each the name on the drawing. A conveyor between two machines is its own station.\n\n## Add sensors and actuators\n\nFor each station, list what it senses and what it moves. Use the template fields: name, type, controller address.\n\n## Write the rules\n\nRules are sentences: \"Start the filler only when the guard is closed and the conveyor is running.\" Interlocks are rules marked as safety rules; they cannot be changed from the HMI.\n\n## Add recipes\n\nA recipe is the set of values the line runs with for one product. For each value, set the minimum, maximum and step a line lead may use.\n\n## Generate and review\n\nChoose the controller family and generate. Studio shows each rung next to the sentence that produced it. Review, then run the generated acceptance tests.",
+      "related": [
+        "connect-a-controller",
+        "change-a-recipe"
+      ]
+    },
+    {
+      "slug": "connect-a-controller",
+      "title": "Connect a controller",
+      "category": "getting-started",
+      "summary": "Addresses, downloads and the first online check for Siemens, Rockwell and Beckhoff.",
+      "description": "How to connect Northwind Studio to a Siemens, Rockwell or Beckhoff controller: addresses, project download, the first online check and common errors.",
+      "lede": "Addresses, downloads and the first online check for each controller family.",
+      "body": "## Choose the controller family\n\nIn the line description, set the controller family and model. Studio generates the project in that family's native format.\n\n## Set the address\n\nEnter the controller's IP address and, for Rockwell, the slot. Studio checks the connection before any download.\n\n## Download the project\n\nDownload from Studio, or export the project and download with the vendor tool. Both paths produce the same code version in the change log.\n\n## First online check\n\nGo online and open the interlock list. Each interlock shows its live state next to its sentence. Walk the line and toggle each guard once.\n\n## Common errors\n\n- Connection refused: the controller is in a different subnet than Studio.\n- Download rejected: the controller is in run mode with protection enabled.\n- Interlock shows unknown: the sensor address does not match the drawing.",
+      "related": [
+        "describe-your-first-line"
+      ]
+    },
+    {
+      "slug": "change-a-recipe",
+      "title": "Change a recipe",
+      "category": "operating",
+      "summary": "What a line lead can change at the HMI, what needs an engineer, and how the log records it.",
+      "description": "How line leads change recipe values at the HMI within engineer-set limits, what needs an engineer instead, and how every change is recorded in the log.",
+      "lede": "What a line lead can change at the HMI and how the log records it.",
+      "body": "## At the HMI\n\nOpen the recipe screen, choose the product and change the value. The screen shows the minimum, maximum and step for that value. Save; the line applies the new value at the next cycle.\n\n## Outside the limits\n\nIf the value you need is outside the limits, the screen says so and names the limit. An engineer widens the limit in the line description; the logic regenerates and the HMI follows.\n\n## The change log\n\nEvery saved change records who, when, which screen, and the old and new values. Open the log from the recipe screen to see the history of the value you are looking at, or export the whole log from Cloud.\n\n## Reverting a change\n\nOpen the log entry and choose revert. The revert is itself a logged change.",
+      "related": [
+        "describe-your-first-line"
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "slug": "engineering",
+      "label": "Engineering",
+      "description": "Blog posts from Northwind engineering: how the generated logic, the edge runtime and the description templates work, written by the people who build them."
+    },
+    {
+      "slug": "operations",
+      "label": "Operations",
+      "description": "Blog posts about running production lines on Northwind: recipe limits, changeovers, line leads and what the change log shows after a few months."
+    },
+    {
+      "slug": "safety",
+      "label": "Safety",
+      "description": "Blog posts on functional safety for generated PLC logic: interlock walk-downs, evidence packs and what assessors ask in a review."
+    }
+  ],
+  "customers": [
+    "Alder Foods",
+    "Brightline Pharma",
+    "Castor Automotive",
+    "Dune Logistics",
+    "Ember Packaging",
+    "Fjord Dairy"
+  ],
+  "testimonials": [
+    {
+      "quote": "Commissioning took nine days instead of six weeks.",
+      "name": "Dana Okafor",
+      "role": "Quality lead",
+      "company": "Brightline Pharma"
+    },
+    {
+      "quote": "The safety review was the first one where nobody argued about the PLC code.",
+      "name": "Ilse Brandt",
+      "role": "HSE manager",
+      "company": "Castor Automotive"
+    },
+    {
+      "quote": "Support answers in minutes and in our language.",
+      "name": "Fatima Al-Sayed",
+      "role": "Operations director",
+      "company": "Dune Logistics"
+    },
+    {
+      "quote": "Our auditors asked for the change log and we exported it in one click.",
+      "name": "Lena Fischer",
+      "role": "Quality lead",
+      "company": "Fjord Dairy"
+    }
+  ],
+  "integrations": [
+    {
+      "slug": "tia-portal",
+      "icon": "layers",
+      "title": "Siemens TIA Portal",
+      "text": "Import tag tables and keep them in sync."
+    },
+    {
+      "slug": "studio-5000",
+      "icon": "cpu",
+      "title": "Rockwell Studio 5000",
+      "text": "Generate add-on instructions and routines."
+    },
+    {
+      "slug": "twincat",
+      "icon": "settings",
+      "title": "Beckhoff TwinCAT",
+      "text": "Structured text with your libraries."
+    },
+    {
+      "slug": "osisoft-pi",
+      "icon": "chart-bar",
+      "title": "OSIsoft PI",
+      "text": "Historian tags from the description."
+    }
+  ],
+  "values": [
+    {
+      "icon": "eye",
+      "title": "Readable first",
+      "text": "If a line lead cannot read it, we have not finished."
+    },
+    {
+      "icon": "shield-check",
+      "title": "Safety is not a feature",
+      "text": "Interlocks live in the description, never in a patch."
+    },
+    {
+      "icon": "hand-helping",
+      "title": "Answer the phone",
+      "text": "A person, in your language, in your hours."
+    }
+  ],
+  "benefits": [
+    {
+      "icon": "calendar",
+      "title": "30 days off",
+      "text": "Plus public holidays, plus your birthday."
+    },
+    {
+      "icon": "heart",
+      "title": "Health cover",
+      "text": "For you and your family from day one."
+    },
+    {
+      "icon": "globe",
+      "title": "Work from anywhere",
+      "text": "Up to eight weeks a year."
+    },
+    {
+      "icon": "wrench",
+      "title": "Lab time",
+      "text": "One day a month on your own automation project."
+    }
+  ],
+  "awards": [
+    {
+      "name": "Automation Product of the Year",
+      "year": "2025",
+      "icon": "award"
+    },
+    {
+      "name": "Safety Innovation Award",
+      "year": "2024",
+      "icon": "shield-check"
+    },
+    {
+      "name": "Best Workplace, North West",
+      "year": "2026",
+      "icon": "heart"
+    }
+  ],
+  "badges": [
+    {
+      "name": "ISO 27001",
+      "text": "Information security management, certified since 2022."
+    },
+    {
+      "name": "SOC 2 Type II",
+      "text": "Annual report available under NDA."
+    },
+    {
+      "name": "IEC 61508",
+      "text": "Functional safety process assessment."
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2019",
+      "dateIso": "2019-01-01",
+      "title": "Founded in Manchester",
+      "text": "Three controls engineers and one food plant that was tired of waiting."
+    },
+    {
+      "date": "2021",
+      "dateIso": "2021-06-01",
+      "title": "First safety-rated release",
+      "text": "Generated logic passed its first independent safety review."
+    },
+    {
+      "date": "2024",
+      "dateIso": "2024-03-01",
+      "title": "Hamburg and Riyadh offices",
+      "text": "Support in German and Arabic, in local hours."
+    },
+    {
+      "date": "2026",
+      "dateIso": "2026-01-01",
+      "title": "1,000 lines live",
+      "text": "Across 19 countries and three industries."
+    }
+  ],
+  "stats": [
+    {
+      "value": "1,284",
+      "label": "Lines automated"
+    },
+    {
+      "value": "38%",
+      "label": "Less downtime"
+    },
+    {
+      "value": "19",
+      "label": "Countries"
+    },
+    {
+      "value": "99.98%",
+      "label": "Uptime last year"
+    }
+  ],
+  "companyStats": [
+    {
+      "value": "140",
+      "label": "People"
+    },
+    {
+      "value": "3",
+      "label": "Offices"
+    },
+    {
+      "value": "2019",
+      "label": "Founded"
+    }
+  ],
+  "faqGroups": [
+    {
+      "title": "For engineers",
+      "items": [
+        {
+          "title": "Which controllers are supported?",
+          "body": "<p>Siemens S7-1200 and S7-1500, Rockwell ControlLogix and CompactLogix, and Beckhoff TwinCAT 3.</p>"
+        },
+        {
+          "title": "Can we edit the generated code?",
+          "body": "<p>You can, but changes to the description are the supported path; edited blocks are flagged in the audit trail.</p>"
+        },
+        {
+          "title": "Where do descriptions live?",
+          "body": "<p>In your repository as text files; Studio reads and writes them like any editor.</p>"
+        },
+        {
+          "title": "How are updates applied?",
+          "body": "<p>Signed updates in a maintenance window you choose; the PLC keeps running throughout.</p>"
+        }
+      ]
+    },
+    {
+      "title": "For plant managers",
+      "items": [
+        {
+          "title": "What does a rollout cost?",
+          "body": "<p>Starter is €490 (EUR) per line per month; a plant programme covers every line on a site for a site fee.</p>"
+        },
+        {
+          "title": "How long until the first line runs?",
+          "body": "<p>Most single lines are live within two weeks, including factory acceptance testing.</p>"
+        },
+        {
+          "title": "Can line operators change recipes?",
+          "body": "<p>Yes, within limits an engineer sets. Every change is logged with who, when and what.</p>"
+        },
+        {
+          "title": "Where is our data stored?",
+          "body": "<p>In the EU by default, on premise with the Enterprise tier.</p>"
+        }
+      ]
+    }
+  ],
+  "faqPricing": [
+    {
+      "title": "Is there a minimum term?",
+      "body": "<p>No. Starter and Plant are monthly and you can cancel any month.</p>"
+    },
+    {
+      "title": "What counts as a line?",
+      "body": "<p>One description running on one or more PLCs that move product from one end to the other.</p>"
+    },
+    {
+      "title": "Do prices include support?",
+      "body": "<p>Yes. Email support in Starter, phone support within four hours in Plant, a named engineer in Enterprise.</p>"
+    },
+    {
+      "title": "Can we switch tiers?",
+      "body": "<p>Any month, in either direction. Descriptions and logs carry over.</p>"
+    }
+  ],
+  "faqTrust": [
+    {
+      "title": "Where is data hosted?",
+      "body": "<p>In the EU, in two regions; Enterprise customers can host on premise.</p>"
+    },
+    {
+      "title": "How do you handle a vulnerability report?",
+      "body": "<p>We acknowledge within two working days and publish a fix note when the fix ships.</p>"
+    },
+    {
+      "title": "Who can access customer data?",
+      "body": "<p>Support engineers only with time-limited access you grant, and every access is logged.</p>"
+    },
+    {
+      "title": "Do you have a security questionnaire ready?",
+      "body": "<p>Yes. Ask the security contact below and we send the current one the same day.</p>"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Description",
+      "definition": "The plain-language model of a line that Northwind generates logic from."
+    },
+    {
+      "term": "Interlock",
+      "definition": "A condition that must hold before an action is allowed, such as a guard being closed before a motor starts."
+    },
+    {
+      "term": "Recipe",
+      "definition": "The set of values a line runs with for one product: speeds, volumes, temperatures."
+    },
+    {
+      "term": "Recipe limit",
+      "definition": "The minimum, maximum and step an engineer allows a line lead to use for one recipe value."
+    },
+    {
+      "term": "Change log",
+      "definition": "The append-only record of who changed which value, when, from where, and what it was before."
+    },
+    {
+      "term": "Station",
+      "definition": "One machine or process step in a line description, with its sensors, actuators and rules."
+    },
+    {
+      "term": "Acceptance test",
+      "definition": "A test generated from the description and run before a line goes into production."
+    },
+    {
+      "term": "Evidence pack",
+      "definition": "The exported set of tests, results, code versions and sign-offs an assessor reviews."
+    }
+  ],
+  "helpCategories": [
+    {
+      "icon": "file-text",
+      "title": "Getting started",
+      "links": [
+        {
+          "label": "Describe your first line",
+          "href": "/en/help/describe-your-first-line/"
+        },
+        {
+          "label": "Connect a controller",
+          "href": "/en/help/connect-a-controller/"
+        }
+      ]
+    },
+    {
+      "icon": "users",
+      "title": "Operating",
+      "links": [
+        {
+          "label": "Change a recipe",
+          "href": "/en/help/change-a-recipe/"
+        },
+        {
+          "label": "Downloads",
+          "href": "/en/resources/downloads/"
+        }
+      ]
+    },
+    {
+      "icon": "shield-check",
+      "title": "Safety",
+      "links": [
+        {
+          "label": "Safety reviews",
+          "href": "/en/services/safety-reviews/"
+        },
+        {
+          "label": "Safety evidence guide",
+          "href": "/en/resources/downloads/safety-evidence-guide/"
+        }
+      ]
+    }
+  ],
+  "searchResults": [
+    {
+      "title": "Safety PLCs without the paperwork",
+      "href": "/en/events/safety-plcs-webinar/",
+      "excerpt": "How generated safety logic passes a review without a line-by-line walkthrough."
+    },
+    {
+      "title": "Safety reviews",
+      "href": "/en/services/safety-reviews/",
+      "excerpt": "Generated logic with the evidence assessors ask for."
+    },
+    {
+      "title": "Safety evidence for generated code",
+      "href": "/en/resources/downloads/safety-evidence-guide/",
+      "excerpt": "What assessors look for and how to produce it from the description."
+    }
+  ]
+}

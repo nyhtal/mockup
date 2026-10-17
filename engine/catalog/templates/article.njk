@@ -9,7 +9,7 @@ layout: base.njk
 {%- if author %}
 {{ section({ type: "article-meta", author: author, date: (published | formatDate), dateIso: (published | isoDate), readingTime: readingTime, tags: tags, share: { url: canonical, title: title } }, ctx) }}
 {%- endif %}
-{{ section({ type: "prose", html: content, toc: toc }, ctx) }}
+{{ section({ type: "prose", html: content, toc: toc, label: title }, ctx) }}
 {%- if author and author.bio %}
 {{ section({ type: "author-box", label: ("ui.aboutAuthor" | t), author: author }, ctx) }}
 {%- endif %}

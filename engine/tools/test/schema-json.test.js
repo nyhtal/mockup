@@ -50,12 +50,18 @@ test("faq and contact page types map to FAQPage and ContactPage", () => {
   assert.equal(graphOf(schemaJson(site, { page: page("/en/contact/"), title: "Contact", description: "d", pageType: "contact" }))[2]["@type"], "ContactPage");
 });
 
-test("breadcrumbTrail builds the path from the url with titles where known and slug names otherwise", () => {
+test("breadcrumbTrail builds the path from the url with page titles; segments without a page are skipped, the page itself falls back to its slug", () => {
   const lookup = (url) => ({ "/en/about/": "About us" }[url]);
   assert.deepEqual(breadcrumbTrail("/en/about/team/", "en", lookup, "Home"), [
     { name: "Home", url: "/en/" },
     { name: "About us", url: "/en/about/" },
     { name: "Team", url: "/en/about/team/" },
+  ]);
+  // /en/blog/tag/ has no page: no crumb may point at a 404 (R-SEO-11, links/broken).
+  assert.deepEqual(breadcrumbTrail("/en/blog/tag/safety/", "en", (url) => ({ "/en/blog/": "Blog", "/en/blog/tag/safety/": "Safety" }[url]), "Home"), [
+    { name: "Home", url: "/en/" },
+    { name: "Blog", url: "/en/blog/" },
+    { name: "Safety", url: "/en/blog/tag/safety/" },
   ]);
   assert.deepEqual(breadcrumbTrail("/en/", "en", lookup, "Home"), []);
 });

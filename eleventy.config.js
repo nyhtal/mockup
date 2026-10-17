@@ -19,7 +19,7 @@ export const PAGE_TYPES = {
   search: "SearchResultsPage",
   faq: "FAQPage",
   collection: "CollectionPage", team: "CollectionPage", locations: "CollectionPage", services: "CollectionPage", products: "CollectionPage",
-  industries: "CollectionPage", partners: "CollectionPage", customers: "CollectionPage", resources: "CollectionPage", blog: "CollectionPage",
+  industries: "CollectionPage", partners: "CollectionPage", customers: "CollectionPage", resources: "CollectionPage", blog: "CollectionPage", "media-kit": "CollectionPage",
   archive: "CollectionPage", downloads: "CollectionPage", events: "CollectionPage", glossary: "CollectionPage", help: "CollectionPage",
   news: "CollectionPage", careers: "CollectionPage", investors: "CollectionPage",
 };
@@ -89,11 +89,13 @@ export function breadcrumbTrail(url, locale, lookup, homeLabel) {
   const segments = url.slice(prefix.length).split("/").filter(Boolean);
   const trail = [{ name: homeLabel, url: prefix }];
   let acc = prefix;
-  for (const seg of segments) {
+  segments.forEach((seg, i) => {
     acc += `${seg}/`;
-    const name = lookup(acc) || seg.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase());
-    trail.push({ name, url: acc });
-  }
+    const title = lookup(acc);
+    // An intermediate segment with no page of its own (blog/tag/, legal/) gets no crumb: nothing may link to a 404.
+    if (!title && i < segments.length - 1) return;
+    trail.push({ name: title || seg.replace(/-/g, " ").replace(/^\w/, (c) => c.toUpperCase()), url: acc });
+  });
   return trail;
 }
 
@@ -139,10 +141,10 @@ export default function (eleventyConfig) {
 
   // Section ids → render steps with alternating surfaces, reveal flags and the page context (see lib/sections.js).
   // Site sections (pages.json `sections`) and entities come from the page's locale; `e` is the page's entity when it has one.
-  eleventyConfig.addFilter("sectionsPlan", function (sections, locale, pageUrl, density, demote = false, breadcrumbs = []) {
+  eleventyConfig.addFilter("sectionsPlan", function (sections, locale, pageUrl, density, demote = false, breadcrumbs = [], header = null) {
     const lang = locale || site.defaultLocale;
     return planSections(samples, sections, {
-      locale: lang, pageUrl, density, demote, breadcrumbs,
+      locale: lang, pageUrl, density, demote, breadcrumbs, header: header || undefined,
       siteSections: siteData[lang]?.pages?.sections || {}, entities: siteData[lang]?.entities || {}, entity: this.ctx?.e,
       site, fmt: fmtFor(lang), md: renderMarkdown, toc: tocOf,
     });
@@ -176,7 +178,9 @@ export default function (eleventyConfig) {
       const lang = data.page.lang || site.defaultLocale;
       const person = (siteData[lang]?.entities?.people || []).find((p) => p.slug === data.e.author);
       if (!person) throw new Error(`${data.page.url}: author "${data.e.author}" is not in data/${lang}/entities.json people`);
-      return { name: person.name, role: person.role, bio: person.bio ? renderMarkdown(person.bio) : undefined, href: detailRecipes(lang).author ? entityUrl("authors", person.slug, lang) : undefined };
+      const recipe = detailRecipes(lang).author;
+      const hasPage = recipe && (!recipe.where || Object.entries(recipe.where).every(([k, v]) => person[k] === v));
+      return { name: person.name, role: person.role, bio: person.bio ? renderMarkdown(person.bio) : undefined, href: hasPage ? entityUrl("authors", person.slug, lang) : undefined };
     },
     tags: (data) => {
       if (data.tags || !data.e?.tags) return data.tags;

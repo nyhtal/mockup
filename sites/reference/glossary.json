@@ -1,0 +1,5 @@
+{
+  "en": ["Northwind", "Northwind Studio", "Northwind Edge", "Northwind Cloud", "control software", "line description", "line lead", "PLC", "interlock", "recipe", "audit trail", "factory acceptance test", "commissioning"],
+  "de": ["Northwind", "Northwind Studio", "Northwind Edge", "Northwind Cloud", "Steuerungssoftware", "Linienbeschreibung", "Linienleiter", "SPS", "Verriegelung", "Rezept", "Änderungsprotokoll", "Werksabnahme", "Inbetriebnahme"],
+  "ar": ["Northwind", "Northwind Studio", "Northwind Edge", "Northwind Cloud", "برمجيات التحكم", "وصف الخط", "قائد الخط", "PLC", "القفل التبادلي", "الوصفة", "سجل التدقيق", "اختبار القبول في المصنع", "التشغيل"]
+}

@@ -94,7 +94,8 @@
     "filters": "Filters",
     "stepOf": "Step {n} of {max}",
     "readingTime": "{n} min read",
-    "tags": "Tags"
+    "tags": "Tags",
+    "allPages": "All pages"
   },
   "footer": {
     "rights": "All rights reserved.",

@@ -103,11 +103,10 @@ const NODES = {
   authors: (e, c) => personNode(e, c),
 };
 
-/** The schema.org node for one entity; `schemaNodes` on it lists extra top-level nodes the page must add. */
+/** The schema.org node for one entity (undefined for kinds with none, such as tags); `schemaNodes` on it lists extra top-level nodes the page must add. */
 export function entityNode(kind, e, ctx) {
   const make = NODES[kind];
-  if (!make) throw new Error(`No schema node for entity kind "${kind}"`);
-  return clean(make(e, ctx));
+  return make ? clean(make(e, ctx)) : undefined;
 }
 
 /** List or singleton entities for index pages that the contract types (bylaw 09): undefined when the page type has none. */
