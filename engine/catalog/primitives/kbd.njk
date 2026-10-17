@@ -1,0 +1,14 @@
+{#
+  name: kbd
+  purpose: A key or shortcut in help text.
+  anatomy: kbd[data-component=kbd]
+  variants: none
+  states: none
+  spacing: inline, px-1.5
+  motion: none
+  keyboard: not focusable
+  a11y: kbd is announced as keyboard input
+  i18n: key names follow the locale's keyboard (Ctrl / Strg)
+  content limits: ≤ 8 chars
+#}
+{% macro kbd(label) %}<kbd class="rounded-sm border border-line-strong bg-surface-alt px-1.5 font-sans text-xs text-ink" data-component="kbd">{{ label }}</kbd>{% endmacro %}

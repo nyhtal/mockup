@@ -1,0 +1,14 @@
+{#
+  name: divider
+  purpose: Thematic break between groups where spacing alone is not enough.
+  anatomy: hr[data-component=divider]
+  variants: none
+  states: none
+  spacing: my-8 by default; opts.class overrides
+  motion: none
+  keyboard: not focusable
+  a11y: hr is announced as a separator
+  i18n: none
+  content limits: none
+#}
+{% macro divider(opts={}) %}<hr class="border-line {{ opts.class or 'my-8' }}" data-component="divider">{% endmacro %}

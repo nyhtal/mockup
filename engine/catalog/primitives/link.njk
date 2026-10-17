@@ -1,0 +1,18 @@
+{#
+  name: link
+  purpose: Inline text link in prose and lists (R-TYPO-08, R-CONT-06, R-HTML-16).
+  anatomy: a[href] > label + (external icon + sr-only hint)
+  variants: prose (underlined at rest; default) | quiet (underline on hover; nav and cards)
+  states: default, hover (brand decoration), focus-visible (ring)
+  spacing: inline
+  motion: motion-safe:transition-colors duration-150
+  keyboard: native
+  a11y: label describes the destination; external links get rel="noopener" and an sr-only "opens in a new tab"
+  i18n: none
+  content limits: label is unique within the page; never "here" or "read more" alone
+#}
+{% from "primitives/icon.njk" import icon %}
+{% macro link(label, href, opts={}) %}
+{%- set quiet = opts.variant == "quiet" -%}
+<a href="{{ href }}" class="{{ 'hover:underline underline-offset-4' if quiet else 'underline underline-offset-4 decoration-line hover:decoration-brand-600' }} text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150{% if opts.class %} {{ opts.class }}{% endif %}"{% if opts.external %} rel="noopener" target="_blank"{% endif %}>{{ label }}{% if opts.external %} {{ icon("external-link", { size: "size-4", class: "inline align-text-bottom" }) }}<span class="sr-only">{{ "ui.opensNewTab" | t }}</span>{% endif %}</a>
+{%- endmacro %}

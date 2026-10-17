@@ -1,0 +1,39 @@
+{#
+  name: button
+  purpose: Every action and call-to-action control (R-COMP-05, R-HTML-09).
+  anatomy: a[href] | button[type] > (icon) + label + (iconEnd) + (sr-only new-tab hint)
+  variants: primary (one per view) | secondary | ghost | link; sizes sm | md | lg
+  states: default, hover, focus-visible (ring), active, disabled (opacity-60, cursor-not-allowed), pending (opts.pending: spinner + "Sending…", disabled)
+  spacing: min-h-11 px-5 (md); gap-2 between icon and label
+  motion: motion-safe:transition-colors duration-150
+  keyboard: native; a for navigation, button for actions, never href="#"
+  a11y: label is visible text; external links add an sr-only "opens in a new tab" and rel="noopener"
+  i18n: label ≤ 25 chars in every locale (R-TYPO-07); icons that point along the reading direction pass rtl:-scale-x-100
+  content limits: verb-first label, 1–4 words (R-CONT-05); opts = { href, variant, size, icon, iconEnd, type, external, disabled, pending, attrs }
+#}
+{% from "primitives/icon.njk" import icon %}
+{% macro button(label, opts={}) %}
+{%- set variant = opts.variant or "primary" -%}
+{%- set size = opts.size or "md" -%}
+{%- set base = "inline-flex items-center justify-center gap-2 rounded-md font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150" -%}
+{%- set sizes = { sm: "min-h-9 px-4 text-sm", md: "min-h-11 px-5", lg: "min-h-12 px-6 text-lg" } -%}
+{%- set variants = {
+  primary: "bg-brand-600 text-ink-inverse hover:bg-brand-700 active:bg-brand-800",
+  secondary: "border border-line-strong text-ink hover:bg-surface-alt active:bg-surface-alt",
+  ghost: "text-ink hover:bg-surface-alt active:bg-surface-alt",
+  link: "min-h-0 px-0 text-brand-700 underline-offset-4 hover:underline"
+} -%}
+{%- set classes = base + " " + (sizes[size] if variant != "link" else "") + " " + variants[variant] + (" " + opts.class if opts.class else "") -%}
+{%- set iconClass = "size-5" if size != "sm" else "size-4" -%}
+{%- if opts.href -%}
+<a href="{{ opts.href }}" class="{{ classes }}" data-component="button" data-variant="{{ variant }}"{% if opts.external %} rel="noopener" target="_blank"{% endif %}{% for k, v in opts.attrs %} {{ k }}="{{ v }}"{% endfor %}>
+{%- if opts.icon %}{{ icon(opts.icon, { size: iconClass }) }}{% endif %}{{ label }}{% if opts.iconEnd %}{{ icon(opts.iconEnd, { size: iconClass, class: "rtl:-scale-x-100" }) }}{% endif %}
+{%- if opts.external %}{{ icon("external-link", { size: "size-4" }) }}<span class="sr-only">{{ "ui.opensNewTab" | t }}</span>{% endif -%}
+</a>
+{%- else -%}
+<button type="{{ opts.type or 'button' }}" class="{{ classes }} disabled:cursor-not-allowed disabled:opacity-60" data-component="button" data-variant="{{ variant }}"{% if opts.disabled or opts.pending %} disabled{% endif %}{% for k, v in opts.attrs %} {{ k }}="{{ v }}"{% endfor %}>
+{%- if opts.pending %}{{ icon("loader-circle", { size: iconClass, class: "motion-safe:animate-spin" }) }}{{ "ui.sending" | t }}
+{%- else %}{% if opts.icon %}{{ icon(opts.icon, { size: iconClass }) }}{% endif %}{{ label }}{% if opts.iconEnd %}{{ icon(opts.iconEnd, { size: iconClass, class: "rtl:-scale-x-100" }) }}{% endif %}{% endif -%}
+</button>
+{%- endif %}
+{% endmacro %}

@@ -1,0 +1,17 @@
+{#
+  name: badge
+  purpose: Short status or category label (R-COL-05, R-TYPO-11).
+  anatomy: span[data-component=badge]
+  variants: tone neutral | brand | success | warning | danger
+  states: none
+  spacing: px-2.5 py-0.5; inline
+  motion: none
+  keyboard: not focusable
+  a11y: text only; a state badge never carries the meaning alone (R-COL-06)
+  i18n: ≤ 2 words
+  content limits: label ≤ 16 chars
+#}
+{% macro badge(label, opts={}) %}
+{%- set tones = { neutral: "bg-surface-alt text-ink-muted", brand: "bg-brand-100 text-brand-800", success: "bg-success-soft text-success-strong", warning: "bg-warning-soft text-warning-strong", danger: "bg-danger-soft text-danger-strong" } -%}
+<span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium uppercase tracking-wide {{ tones[opts.tone or 'neutral'] }}" data-component="badge" data-variant="{{ opts.tone or 'neutral' }}">{{ label }}</span>
+{%- endmacro %}

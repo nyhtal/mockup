@@ -1,0 +1,109 @@
+---
+layout: base.njk
+pageType: style-guide
+noindex: true
+---
+{% from "primitives/button.njk" import button %}
+{% from "primitives/link.njk" import link %}
+{% from "primitives/field.njk" import field %}
+{% from "primitives/badge.njk" import badge %}
+{% from "primitives/tag.njk" import tag %}
+{% from "primitives/divider.njk" import divider %}
+{% from "primitives/kbd.njk" import kbd %}
+{% from "primitives/icon.njk" import icon %}
+{% from "primitives/avatar.njk" import avatar %}
+{% from "primitives/wordmark.njk" import wordmark %}
+{% from "primitives/picture.njk" import picture %}
+<div class="py-16 md:py-24">
+<p class="text-sm font-medium uppercase tracking-wide text-brand-700">Style guide</p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Primitives</h1>
+<p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">Every primitive in every variant and state. Pages never write these elements by hand; they call the macro.</p>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Buttons</h2>
+<div class="mt-8 flex flex-wrap items-center gap-4">
+{{ button("Get started", { href: "/" + locale + "/" }) }}
+{{ button("Talk to sales", { href: "/" + locale + "/", variant: "secondary" }) }}
+{{ button("See pricing", { href: "/" + locale + "/", variant: "ghost" }) }}
+{{ button("Read the story", { href: "/" + locale + "/", variant: "link", iconEnd: "arrow-right" }) }}
+</div>
+<div class="mt-6 flex flex-wrap items-center gap-4">
+{{ button("Download brochure", { icon: "download", size: "sm", variant: "secondary" }) }}
+{{ button("Book a demo", { iconEnd: "arrow-right" }) }}
+{{ button("Request a quote", { size: "lg", variant: "secondary" }) }}
+{{ button("Save changes", { disabled: true }) }}
+{{ button("Send message", { pending: true }) }}
+{{ button("Open the standard", { href: "/" + locale + "/", variant: "link", external: true }) }}
+</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Links</h2>
+<p class="mt-8 max-w-prose text-base leading-relaxed">Prose links are {{ link("underlined at rest", "/" + locale + "/") }} so they can be found without colour. Quiet links {{ link("gain an underline on hover", "/" + locale + "/", { variant: "quiet" }) }} and live in navigation and cards. Links that leave the site say so: {{ link("ISO 10218 overview", "/" + locale + "/", { external: true }) }}.</p>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Fields</h2>
+<form class="mt-8 grid gap-6 md:grid-cols-2" method="get" action="/{{ locale }}/">
+{{ field({ type: "text", name: "name", label: "Full name", required: true, autocomplete: "name", placeholder: "Alex Morgan" }) }}
+{{ field({ type: "email", name: "email", label: "Work email", required: true, autocomplete: "email", help: "We reply from a person, not a bot.", placeholder: "alex@company.com" }) }}
+{{ field({ type: "tel", name: "phone", label: "Phone", autocomplete: "tel", inputmode: "tel", placeholder: "+44 20 7946 0000" }) }}
+{{ field({ type: "url", name: "website", label: "Company website", autocomplete: "url", value: "https://example.com" }) }}
+{{ field({ type: "number", name: "sites", label: "Number of sites", inputmode: "numeric", help: "Factories, plants or warehouses you operate." }) }}
+{{ field({ type: "select", name: "industry", label: "Industry", required: true, options: [{ value: "", label: "Choose an industry" }, { value: "auto", label: "Automotive" }, { value: "food", label: "Food and beverage" }, { value: "pharma", label: "Pharmaceutical" }] }) }}
+{{ field({ type: "email", name: "email-bad", label: "Work email", required: true, autocomplete: "email", value: "alex@", error: "Enter an email address like alex@company.com" }) }}
+{{ field({ type: "text", name: "ref", label: "Reference number", disabled: true, value: "NW-2026-0417" }) }}
+<div class="md:col-span-2">{{ field({ type: "textarea", name: "message", label: "How can we help?", rows: 4, help: "A sentence or two is plenty." }) }}</div>
+{{ field({ type: "file", name: "cv", label: "CV or résumé", accept: ".pdf,.doc,.docx", help: "PDF or Word, up to 5 MB." }) }}
+{{ field({ type: "radio", name: "size", label: "Company size", required: true, options: [{ value: "s", label: "Up to 50 people", checked: true }, { value: "m", label: "50 to 500 people" }, { value: "l", label: "More than 500 people" }] }) }}
+{{ field({ type: "checkbox", name: "updates", label: "Send me product updates by email", value: "yes" }) }}
+{{ field({ type: "switch", name: "beta", label: "Join the beta programme", value: "yes", checked: true }) }}
+<div class="md:col-span-2">{{ button("Send message", { type: "submit" }) }}</div>
+</form>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Badges and tags</h2>
+<div class="mt-8 flex flex-wrap items-center gap-3">
+{{ badge("New") }} {{ badge("Featured", { tone: "brand" }) }} {{ badge("Open", { tone: "success" }) }} {{ badge("Closing soon", { tone: "warning" }) }} {{ badge("Discontinued", { tone: "danger" }) }}
+</div>
+<ul class="mt-6 flex flex-wrap gap-2">
+<li>{{ tag("Automation", "/" + locale + "/") }}</li><li>{{ tag("Safety", "/" + locale + "/") }}</li><li>{{ tag("Case study") }}</li>
+</ul>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Icons, avatars and wordmarks</h2>
+<div class="mt-8 flex flex-wrap items-center gap-6">
+<span class="inline-flex items-center gap-2 text-sm">{{ icon("check", { size: "size-4" }) }} size-4</span>
+<span class="inline-flex items-center gap-2">{{ icon("zap") }} size-5</span>
+<span class="inline-flex items-center gap-2 text-lg">{{ icon("shield-check", { size: "size-6" }) }} size-6</span>
+<span class="inline-flex items-center gap-2">{{ icon("arrow-right", { class: "rtl:-scale-x-100" }) }} flips in RTL</span>
+</div>
+<div class="mt-8 flex flex-wrap items-center gap-6">
+<span class="inline-flex items-center gap-3">{{ avatar("Alex Morgan", { size: "size-8" }) }} Alex Morgan</span>
+<span class="inline-flex items-center gap-3">{{ avatar("Priya Natarajan") }} Priya Natarajan</span>
+<span class="inline-flex items-center gap-3">{{ avatar("Jonas Weber", { size: "size-24" }) }} Jonas Weber</span>
+</div>
+<div class="mt-8 flex flex-wrap items-center gap-8">
+{{ wordmark(site.name) }}
+{{ wordmark("Alder Foods", { variant: "mono" }) }}
+{{ wordmark("Brightline Pharma", { variant: "mono" }) }}
+</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Pictures</h2>
+<div class="mt-8 grid gap-6 md:grid-cols-3">
+<div class="overflow-hidden rounded-lg">{{ picture({ slug: "guide-plant", ratio: "4:3", alt: "", max: 768 }, { sizes: "(min-width: 48rem) 33vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
+<div class="overflow-hidden rounded-lg">{{ picture({ slug: "guide-team", ratio: "3:2", alt: "", max: 768 }, { sizes: "(min-width: 48rem) 33vw, 100vw", class: "aspect-[3/2] w-full object-cover" }) }}</div>
+<div class="overflow-hidden rounded-lg">{{ picture({ slug: "guide-product", ratio: "1:1", alt: "", max: 768 }, { sizes: "(min-width: 48rem) 33vw, 100vw", class: "aspect-square w-full object-cover" }) }}</div>
+</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Divider and keys</h2>
+{{ divider() }}
+<p class="text-base leading-relaxed">Press {{ kbd("/") }} to focus search, {{ kbd("Esc") }} to close a menu.</p>
+</section>
+</div>

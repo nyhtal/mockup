@@ -1,0 +1,88 @@
+---
+layout: base.njk
+pageType: style-guide
+noindex: true
+---
+{%- set roles = ["surface", "surface-alt", "surface-raised", "ink", "ink-muted", "ink-inverse", "line", "line-strong", "focus", "success", "success-soft", "success-strong", "warning", "warning-soft", "warning-strong", "danger", "danger-soft", "danger-strong"] -%}
+<div class="py-16 md:py-24">
+<p class="text-sm font-medium uppercase tracking-wide text-brand-700">Style guide</p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Foundations</h1>
+<p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">The tokens every page draws from: colour roles, type scale, spacing, radius, shadows and motion. Change the brief, not these pages.</p>
+<nav aria-label="Style guide pages" class="mt-8">
+<ul class="flex flex-wrap gap-2">
+<li><a href="/{{ locale }}/style-guide/" aria-current="page" class="inline-flex min-h-9 items-center rounded-md bg-brand-100 px-4 text-sm font-medium text-brand-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Foundations</a></li>
+<li><a href="/{{ locale }}/style-guide/primitives/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Primitives</a></li>
+</ul>
+</nav>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Colour roles</h2>
+<p class="mt-4 max-w-prose text-base leading-relaxed">Each role holds a light and a dark value; the page follows the operating system. The two panels force each scheme.</p>
+<div class="mt-8 grid gap-6 md:grid-cols-2">
+{%- for scheme in ["scheme-light", "scheme-dark"] %}
+<div class="{{ scheme }} rounded-lg border border-line bg-surface p-6 text-ink">
+<h3 class="text-xl md:text-2xl font-semibold">{{ "Light" if scheme == "scheme-light" else "Dark" }}</h3>
+<ul class="mt-4 grid grid-cols-2 gap-3 text-sm">
+{%- for role in roles %}
+<li class="flex items-center gap-3"><span class="size-8 shrink-0 rounded-md border border-line bg-{{ role }}"></span><code>{{ role }}</code></li>
+{%- endfor %}
+</ul>
+<div class="mt-6 grid grid-cols-11 gap-1">
+{%- for step in [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] %}
+<span class="h-8 rounded-sm bg-brand-{{ step }}" title="brand-{{ step }}"></span>
+{%- endfor %}
+{%- for step in [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] %}
+<span class="h-8 rounded-sm bg-accent-{{ step }}" title="accent-{{ step }}"></span>
+{%- endfor %}
+</div>
+</div>
+{%- endfor %}
+</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Type scale</h2>
+<div class="mt-8 space-y-6">
+<p class="text-4xl md:text-5xl font-bold tracking-tight text-balance">Heading one: Industrial automation, simplified</p>
+<p class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Heading two: Built for the people on the floor</p>
+<p class="text-xl md:text-2xl font-semibold">Heading three: Commissioning in days</p>
+<p class="text-lg font-semibold">Heading four: Safety first</p>
+<p class="text-sm font-medium uppercase tracking-wide text-brand-700">Eyebrow: Case study</p>
+<p class="text-lg md:text-xl text-ink-muted">Lede: Northwind replaces hand-written ladder logic with configuration that plant engineers can read and change themselves.</p>
+<p class="max-w-prose text-base leading-relaxed">Body: Lines are capped at sixty-five characters so paragraphs stay readable. Numbers in running text are words below ten and numerals from 10 upward.</p>
+<p class="text-sm text-ink-muted">Small: Last reviewed 17 October 2026</p>
+<p class="text-4xl font-bold tabular-nums">1,284 <span class="text-base font-normal text-ink-muted">Stat value with tabular numerals</span></p>
+</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Spacing, radius and shadow</h2>
+<div class="mt-8 flex flex-wrap items-end gap-4">
+{%- for step in [1, 2, 3, 4, 6, 8, 12, 16, 24, 32] %}
+<div class="flex flex-col items-center gap-2 text-xs text-ink-muted"><span class="w-{{ step }} h-{{ step }} rounded-sm bg-brand-300"></span>{{ step }}</div>
+{%- endfor %}
+</div>
+<div class="mt-8 flex flex-wrap gap-6">
+<div class="size-20 rounded-sm bg-surface-alt border border-line"></div>
+<div class="size-20 rounded-md bg-surface-alt border border-line"></div>
+<div class="size-20 rounded-lg bg-surface-alt border border-line"></div>
+<div class="size-20 rounded-xl bg-surface-alt border border-line"></div>
+<div class="size-20 rounded-full bg-surface-alt border border-line"></div>
+</div>
+<div class="mt-8 flex flex-wrap gap-8">
+<div class="size-24 rounded-lg bg-surface-raised shadow-sm"></div>
+<div class="size-24 rounded-lg bg-surface-raised shadow-md"></div>
+<div class="size-24 rounded-lg bg-surface-raised shadow-lg"></div>
+</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Motion</h2>
+<p class="mt-4 max-w-prose text-base leading-relaxed">Preset <strong>{{ site.brand.motion or "standard" }}</strong>: entrances travel at most the reveal distance over the reveal duration with the smooth easing. Everything animates only under <code>motion-safe</code>; with reduced motion the page simply appears.</p>
+<div class="mt-8 flex flex-wrap gap-6">
+<div class="size-24 rounded-lg bg-brand-600 motion-safe:animate-reveal"></div>
+<div class="size-24 rounded-lg bg-accent-600 motion-safe:animate-scale-in"></div>
+<div class="size-24 rounded-lg bg-brand-300 motion-safe:animate-fade"></div>
+</div>
+</section>
+</div>

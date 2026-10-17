@@ -1,0 +1,62 @@
+{#
+  name: field
+  purpose: One form control with its label, help and error text (R-FORM-02, R-FORM-03, R-FORM-04, R-FORM-05, R-A11Y-10).
+  anatomy: div[data-component=field] > label[for] + control + (p.help#id-help) + (p.error#id-error)
+  variants: types text | email | tel | url | number | search | textarea | select | checkbox | radio (group) | switch | file
+  states: default, focus-visible (ring), user-invalid (danger border), disabled (opacity-60), error (opts.error renders the message and sets aria-describedby), prefilled (value)
+  spacing: label mb-2; help/error mt-2; the form stacks fields with space-y-6 (R-FORM-13)
+  motion: motion-safe:transition-colors on the control border
+  keyboard: native controls only
+  a11y: visible label always; "(required)" in the label text; aria-describedby names only ids that exist; checkbox/radio labels wrap the control
+  i18n: labels, help and errors are content strings; the "(required)" suffix comes from ui.required
+  content limits: label ≤ 40 chars; help ≤ 20 words; error one sentence with the fix (R-CONT-15)
+  data: f = { type, name, id, label, help, error, required, autocomplete, inputmode, placeholder, value, options: [{value,label,checked}], accept, maxSize, rows, disabled, attrs }
+#}
+{% macro field(f) %}
+{%- set id = f.id or f.name -%}
+{%- set type = f.type or "text" -%}
+{%- set describedBy = ((id + "-help ") if f.help else "") + ((id + "-error") if f.error else "") -%}
+{%- set control = "block w-full rounded-md border bg-surface-raised px-3 text-base text-ink placeholder:text-ink-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus disabled:cursor-not-allowed disabled:opacity-60 motion-safe:transition-colors motion-safe:duration-150 user-invalid:border-danger-strong " + ("border-danger-strong" if f.error else "border-line-strong") -%}
+{%- set common -%}name="{{ f.name }}"{% if f.required %} required{% endif %}{% if f.disabled %} disabled{% endif %}{% if f.autocomplete %} autocomplete="{{ f.autocomplete }}"{% endif %}{% if f.inputmode %} inputmode="{{ f.inputmode }}"{% endif %}{% if describedBy %} aria-describedby="{{ describedBy | trim }}"{% endif %}{% for k, v in f.attrs %} {{ k }}="{{ v }}"{% endfor %}{%- endset -%}
+<div data-component="field" data-variant="{{ type }}">
+{%- if type == "checkbox" or type == "switch" %}
+<label class="flex items-start gap-3 text-base text-ink" for="{{ id }}">
+<input type="checkbox" id="{{ id }}" {{ common | safe }}{% if f.value %} value="{{ f.value }}"{% endif %}{% if f.checked %} checked{% endif %}{% if type == "switch" %} role="switch"{% endif %} class="mt-1 size-5 shrink-0 rounded-sm border-line-strong accent-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+<span>{{ f.label }}{% if f.required %} <span class="text-ink-muted">{{ "ui.required" | t }}</span>{% endif %}</span>
+</label>
+{%- elif type == "radio" %}
+<fieldset{% if describedBy %} aria-describedby="{{ describedBy | trim }}"{% endif %}>
+<legend class="mb-2 block text-sm font-medium text-ink">{{ f.label }}{% if f.required %} <span class="text-ink-muted">{{ "ui.required" | t }}</span>{% endif %}</legend>
+<div class="space-y-3">
+{%- for o in f.options %}
+<label class="flex items-start gap-3 text-base text-ink" for="{{ id }}-{{ loop.index }}">
+<input type="radio" id="{{ id }}-{{ loop.index }}" name="{{ f.name }}" value="{{ o.value }}"{% if o.checked %} checked{% endif %}{% if f.required %} required{% endif %} class="mt-1 size-5 shrink-0 border-line-strong accent-brand-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+<span>{{ o.label }}</span>
+</label>
+{%- endfor %}
+</div>
+</fieldset>
+{%- else %}
+<label class="mb-2 block text-sm font-medium text-ink" for="{{ id }}">{{ f.label }}{% if f.required %} <span class="font-normal text-ink-muted">{{ "ui.required" | t }}</span>{% endif %}</label>
+{%- if type == "textarea" %}
+<textarea id="{{ id }}" rows="{{ f.rows or 4 }}" class="{{ control }} py-2" {{ common | safe }}{% if f.placeholder %} placeholder="{{ f.placeholder }}"{% endif %}>{{ f.value }}</textarea>
+{%- elif type == "select" %}
+<select id="{{ id }}" class="{{ control }} min-h-11" {{ common | safe }}>
+{%- for o in f.options %}
+<option value="{{ o.value }}"{% if o.selected or (f.value and f.value == o.value) %} selected{% endif %}>{{ o.label }}</option>
+{%- endfor %}
+</select>
+{%- elif type == "file" %}
+<input type="file" id="{{ id }}" class="{{ control }} min-h-11 py-2 file:me-3 file:rounded-sm file:border-0 file:bg-surface-alt file:px-3 file:py-1 file:text-sm file:font-medium file:text-ink" {{ common | safe }}{% if f.accept %} accept="{{ f.accept }}"{% endif %}>
+{%- else %}
+<input type="{{ type }}" id="{{ id }}" class="{{ control }} min-h-11" {{ common | safe }}{% if f.placeholder %} placeholder="{{ f.placeholder }}"{% endif %}{% if f.value %} value="{{ f.value }}"{% endif %}>
+{%- endif %}
+{%- endif %}
+{%- if f.help %}
+<p id="{{ id }}-help" class="mt-2 text-sm text-ink-muted">{{ f.help }}</p>
+{%- endif %}
+{%- if f.error %}
+<p id="{{ id }}-error" class="mt-2 text-sm text-danger-strong">{{ f.error }}</p>
+{%- endif %}
+</div>
+{% endmacro %}
