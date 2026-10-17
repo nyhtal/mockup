@@ -1,0 +1,28 @@
+{#
+  name: consent-preferences
+  purpose: Per-category consent switches, opened from the consent banner; catalog only (R-DEPLOY-09).
+  anatomy: div[popover]#consent-preferences > h2 + form > field(switch)* + buttons
+  variants: none
+  states: open
+  spacing: w-full max-w-lg p-6
+  motion: popover entrance
+  keyboard: Escape closes; switches are checkboxes with role=switch
+  a11y: "Necessary" is checked and disabled; others unchecked by default
+  i18n: ui.consent* keys
+  content limits: ≤ 5 categories
+#}
+{% from "primitives/field.njk" import field %}
+{% macro consentPreferences(opts={}) %}
+<div popover id="{{ opts.id or 'consent-preferences' }}" class="m-auto w-full max-w-lg rounded-xl border border-line bg-surface-raised p-6 text-ink shadow-lg opacity-0 open:opacity-100 motion-safe:scale-95 motion-safe:open:scale-100 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:scale-95" data-component="consent-preferences">
+<h2 class="text-xl font-semibold">{{ "ui.consentPreferences" | t }}</h2>
+<form method="get" action="{{ opts.action or '#' }}" class="mt-4 space-y-4">
+{{ field({ type: "switch", name: "necessary", label: ("ui.consentNecessary" | t), checked: true, disabled: true, value: "1" }) }}
+{{ field({ type: "switch", name: "analytics", label: ("ui.consentAnalytics" | t), value: "1" }) }}
+{{ field({ type: "switch", name: "marketing", label: ("ui.consentMarketing" | t), value: "1" }) }}
+<div class="flex justify-end gap-2 pt-2">
+<button type="button" popovertarget="{{ opts.id or 'consent-preferences' }}" popovertargetaction="hide" class="inline-flex min-h-11 items-center justify-center rounded-md border border-line-strong px-5 font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.close" | t }}</button>
+<button type="submit" class="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-600 px-5 font-medium text-ink-inverse hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.consentSave" | t }}</button>
+</div>
+</form>
+</div>
+{% endmacro %}

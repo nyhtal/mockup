@@ -1,0 +1,24 @@
+{#
+  name: callout
+  purpose: Highlighted note inside prose or forms (R-COL-05, R-COL-06).
+  anatomy: div[data-component=callout] > icon + div(title? + text)
+  variants: tone info | success | warning | danger
+  states: none
+  spacing: p-4, gap-3
+  motion: none
+  keyboard: none
+  a11y: role="note" for info only; the tone is also carried by the icon and the title word
+  i18n: none
+  content limits: text ≤ 50 words
+  data: c = { tone, title, text (html) }
+#}
+{% from "primitives/icon.njk" import icon %}
+{% macro callout(c) %}
+{%- set tone = c.tone or "info" -%}
+{%- set styles = { info: "border-brand-200 bg-brand-50 text-brand-800", success: "border-success bg-success-soft text-success-strong", warning: "border-warning bg-warning-soft text-warning-strong", danger: "border-danger bg-danger-soft text-danger-strong" } -%}
+{%- set icons = { info: "info", success: "circle-check", warning: "triangle-alert", danger: "circle-alert" } -%}
+<div class="flex gap-3 rounded-lg border p-4 {{ styles[tone] }}"{% if tone == "info" %} role="note"{% endif %} data-component="callout" data-variant="{{ tone }}">
+{{ icon(icons[tone], { class: "mt-0.5" }) }}
+<div class="text-sm leading-relaxed">{% if c.title %}<p class="font-semibold">{{ c.title }}</p>{% endif %}<p>{{ c.text | safe }}</p></div>
+</div>
+{% endmacro %}

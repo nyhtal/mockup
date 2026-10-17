@@ -1,0 +1,23 @@
+{#
+  name: filter-bar
+  purpose: Filter and sort an index page with a GET form (no JS; the page reloads with query parameters) (R-FORM-01).
+  anatomy: form[method=get][data-component=filter-bar] > field(select)* + button(submit) (+ reset link)
+  variants: none
+  states: focus-visible on controls
+  spacing: flex-wrap gap-4 items-end
+  motion: none
+  keyboard: native
+  a11y: every select has a visible label (field primitive)
+  i18n: ui.apply, ui.clearFilters
+  content limits: ≤ 4 filters
+  data: f = { action, filters: [field data], resetHref }
+#}
+{% from "primitives/field.njk" import field %}
+{% from "primitives/button.njk" import button %}
+{% macro filterBar(f) %}
+<form method="get" action="{{ f.action }}" class="flex flex-wrap items-end gap-4" data-component="filter-bar">
+{%- for filter in f.filters %}<div class="min-w-48">{{ field(filter) }}</div>{% endfor %}
+{{ button("ui.apply" | t, { type: "submit", variant: "secondary" }) }}
+{%- if f.resetHref %}<a href="{{ f.resetHref }}" class="inline-flex min-h-11 items-center text-sm text-ink-muted hover:text-ink hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.clearFilters" | t }}</a>{% endif %}
+</form>
+{% endmacro %}

@@ -1,0 +1,20 @@
+{#
+  name: tag-list
+  purpose: Topics of an article or filters applied (R-PAGE-11).
+  anatomy: ul[data-component=tag-list] > li > tag
+  variants: none
+  states: per tag
+  spacing: flex-wrap gap-2
+  motion: none
+  keyboard: links
+  a11y: list of links or text
+  i18n: none
+  content limits: ≤ 8 tags
+  data: tags = [{ label, href }]
+#}
+{% from "primitives/tag.njk" import tag %}
+{% macro tagList(tags) %}
+<ul class="flex flex-wrap gap-2" data-component="tag-list">
+{%- for t in tags %}<li>{{ tag(t.label, t.href) }}</li>{% endfor %}
+</ul>
+{% endmacro %}

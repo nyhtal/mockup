@@ -1,0 +1,16 @@
+{#
+  name: code-block
+  purpose: Preformatted code in documentation pages (no syntax highlighting: no runtime JS, no extra CSS).
+  anatomy: pre[data-component=code-block] > code.language-x
+  variants: none
+  states: none
+  spacing: p-4, overflow-x-auto (R-LAY-08)
+  motion: none
+  keyboard: the pre is focusable (tabindex=0) so keyboard users can scroll it
+  a11y: plain text; language named in the class only
+  i18n: none; code is never translated
+  content limits: ≤ 40 lines
+#}
+{% macro codeBlock(code, lang) %}
+<pre class="overflow-x-auto rounded-lg border border-line bg-surface-alt p-4 text-sm leading-relaxed" tabindex="0" data-component="code-block"><code{% if lang %} class="language-{{ lang }}"{% endif %}>{{ code }}</code></pre>
+{% endmacro %}

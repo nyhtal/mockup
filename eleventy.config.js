@@ -64,6 +64,10 @@ export default function (eleventyConfig) {
     return value;
   });
   eleventyConfig.addFilter("ogLocale", (lang) => OG_LOCALES[lang] || `${lang}_${lang.toUpperCase()}`);
+  // Native language names for switchers (R-I18N-08): never flags, never translated.
+  eleventyConfig.addFilter("nativeName", (lang) => {
+    try { return new Intl.DisplayNames([lang], { type: "language" }).of(lang) || lang; } catch { return lang; }
+  });
   eleventyConfig.addFilter("ogSlug", ogSlug);
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("htmlPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType));
@@ -88,7 +92,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addTemplate("_engine/files.njk", virtual("files.njk"));
   // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, per locale, noindex.
   for (const locale of site.locales) {
-    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"]]) {
+    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"]]) {
       eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, description: `Tokens, primitives, components and sections of ${site.name}, exactly as the catalog renders them.`, permalink: `/${locale}/style-guide/${slug}index.html` });
     }
   }

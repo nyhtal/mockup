@@ -1,0 +1,40 @@
+{#
+  name: comparison-table
+  purpose: Feature-by-tier or product-by-product comparison (R-HTML-18, R-COL-06).
+  anatomy: div.overflow > table[data-component=comparison-table] > caption + thead(th scope=col) + tbody(tr > th scope=row + td(check|x|text))
+  variants: none
+  states: recommended column marked in its header text
+  spacing: cell px-4 py-3; wrapper overflow-x-auto (R-LAY-08)
+  motion: none
+  keyboard: none (scroll container is focusable via tabindex=0 so keyboard users can scroll it)
+  a11y: caption names the table; booleans render an icon plus sr-only "Included"/"Not included"
+  i18n: ui.included / ui.notIncluded keys
+  content limits: ≤ 5 columns, ≤ 15 rows
+  data: c = { caption, columns: [{ name, recommended }], rows: [{ name, cells: [true|false|string] }] }
+#}
+{% from "primitives/icon.njk" import icon %}
+{% macro comparisonTable(c) %}
+<div class="overflow-x-auto rounded-lg border border-line" tabindex="0" data-component="comparison-table">
+<table class="w-full text-start text-sm">
+<caption class="sr-only">{{ c.caption }}</caption>
+<thead class="bg-surface-alt">
+<tr>
+<th scope="col" class="px-4 py-3 text-start font-semibold">{{ c.firstColumn or "Feature" }}</th>
+{%- for col in c.columns %}
+<th scope="col" class="px-4 py-3 text-start font-semibold {{ 'text-brand-700' if col.recommended }}">{{ col.name }}{% if col.recommended %} <span class="block text-xs font-medium">Recommended</span>{% endif %}</th>
+{%- endfor %}
+</tr>
+</thead>
+<tbody>
+{%- for row in c.rows %}
+<tr class="border-t border-line even:bg-surface-alt/50">
+<th scope="row" class="px-4 py-3 text-start font-medium">{{ row.name }}</th>
+{%- for cell in row.cells %}
+<td class="px-4 py-3">{% if cell === true %}{{ icon("check", { size: "size-5", class: "text-success" }) }}<span class="sr-only">{{ "ui.included" | t }}</span>{% elif cell === false %}{{ icon("minus", { size: "size-5", class: "text-ink-muted" }) }}<span class="sr-only">{{ "ui.notIncluded" | t }}</span>{% else %}{{ cell }}{% endif %}</td>
+{%- endfor %}
+</tr>
+{%- endfor %}
+</tbody>
+</table>
+</div>
+{% endmacro %}

@@ -1,0 +1,26 @@
+{#
+  name: author-box
+  purpose: Who wrote the article, at its end (R-SCH-07 author → Person).
+  anatomy: aside[data-component=author-box] > avatar + div(name link + role + bio)
+  variants: none
+  states: hover on the name link
+  spacing: p-6, gap-4
+  motion: none
+  keyboard: the link
+  a11y: aside is labelled by the heading "About the author" (sr-only)
+  i18n: ui.aboutAuthor
+  content limits: bio ≤ 40 words
+  data: a = { name, role, bio, href }
+#}
+{% from "primitives/avatar.njk" import avatar %}
+{% macro authorBox(a) %}
+<aside class="flex gap-4 rounded-lg border border-line bg-surface-alt p-6" aria-labelledby="author-heading" data-component="author-box">
+{{ avatar(a.name, { size: "size-12" }) }}
+<div>
+<h2 id="author-heading" class="sr-only">{{ "ui.aboutAuthor" | t }}</h2>
+<p class="font-semibold">{% if a.href %}<a href="{{ a.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ a.name }}</a>{% else %}{{ a.name }}{% endif %}</p>
+<p class="text-sm text-ink-muted">{{ a.role }}</p>
+{%- if a.bio %}<p class="mt-2 text-sm leading-relaxed">{{ a.bio }}</p>{% endif %}
+</div>
+</aside>
+{% endmacro %}

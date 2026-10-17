@@ -1,0 +1,38 @@
+{#
+  name: data-table
+  purpose: Plain tabular data: specifications, office hours, document lists (R-HTML-18).
+  anatomy: div.overflow[tabindex=0] > table[data-component=data-table] > caption + thead + tbody
+  variants: none
+  states: none
+  spacing: px-4 py-3 cells; zebra rows
+  motion: none
+  keyboard: the scroll wrapper is focusable
+  a11y: caption required; column headers scope=col; first column scope=row when opts.rowHeaders
+  i18n: numbers preformatted; numeric columns right-aligned via opts.numeric (list of column indexes) using text-end
+  content limits: ≤ 6 columns
+  data: t = { caption, columns: [], rows: [[]], numeric: [] }
+#}
+{% macro dataTable(t, opts={}) %}
+<div class="overflow-x-auto rounded-lg border border-line" tabindex="0" data-component="data-table">
+<table class="w-full text-sm">
+<caption class="px-4 py-3 text-start text-sm font-medium text-ink-muted">{{ t.caption }}</caption>
+<thead class="bg-surface-alt">
+<tr>
+{%- for col in t.columns %}
+<th scope="col" class="px-4 py-3 font-semibold {{ 'text-end' if loop.index0 in (t.numeric or []) else 'text-start' }}">{{ col }}</th>
+{%- endfor %}
+</tr>
+</thead>
+<tbody>
+{%- for row in t.rows %}
+<tr class="border-t border-line even:bg-surface-alt/50">
+{%- for cell in row %}
+{%- if loop.first and opts.rowHeaders %}<th scope="row" class="px-4 py-3 text-start font-medium">{{ cell }}</th>
+{%- else %}<td class="px-4 py-3 {{ 'text-end tabular-nums' if loop.index0 in (t.numeric or []) else 'text-start' }}">{{ cell }}</td>{% endif %}
+{%- endfor %}
+</tr>
+{%- endfor %}
+</tbody>
+</table>
+</div>
+{% endmacro %}

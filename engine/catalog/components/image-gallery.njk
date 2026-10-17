@@ -1,0 +1,22 @@
+{#
+  name: image-gallery
+  purpose: Grid of captioned pictures (culture page, press kit).
+  anatomy: ul[data-component=image-gallery] > li > figure > picture + figcaption
+  variants: none
+  states: none
+  spacing: grid gap-6, 2 columns at sm, 3 at md
+  motion: none
+  keyboard: none (no lightbox: it would need JS)
+  a11y: each image has alt; captions are visible text
+  i18n: captions from content
+  content limits: 3–9 images
+  data: images = [{ slug, ratio, alt, caption }]
+#}
+{% from "primitives/picture.njk" import picture %}
+{% macro gallery(images) %}
+<ul class="grid gap-6 sm:grid-cols-2 md:grid-cols-3" data-component="image-gallery">
+{%- for img in images %}
+<li><figure><div class="overflow-hidden rounded-lg">{{ picture(img, { sizes: "(min-width: 48rem) 33vw, (min-width: 40rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>{% if img.caption %}<figcaption class="mt-2 text-sm text-ink-muted">{{ img.caption }}</figcaption>{% endif %}</figure></li>
+{%- endfor %}
+</ul>
+{% endmacro %}

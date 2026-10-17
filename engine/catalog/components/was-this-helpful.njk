@@ -1,0 +1,24 @@
+{#
+  name: was-this-helpful
+  purpose: Yes/no feedback at the end of help articles, as two GET links (no JS).
+  anatomy: div[data-component=was-this-helpful] > p + ul > li > a[href=?helpful=yes|no]
+  variants: none
+  states: hover, focus-visible
+  spacing: gap-2
+  motion: none
+  keyboard: links
+  a11y: visible text with icons
+  i18n: ui.helpful, ui.yes, ui.no
+  content limits: none
+  data: url (the page's own url)
+#}
+{% from "primitives/icon.njk" import icon %}
+{% macro wasThisHelpful(url) %}
+<div class="flex flex-wrap items-center gap-3 rounded-lg border border-line bg-surface-alt p-4" data-component="was-this-helpful">
+<p class="text-sm font-medium">{{ "ui.helpful" | t }}</p>
+<ul class="flex gap-2">
+<li><a href="{{ url }}?helpful=yes" class="inline-flex min-h-11 items-center gap-2 rounded-md border border-line-strong px-4 text-sm font-medium text-ink hover:bg-surface-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ icon("thumbs-up", { size: "size-4" }) }}{{ "ui.yes" | t }}</a></li>
+<li><a href="{{ url }}?helpful=no" class="inline-flex min-h-11 items-center gap-2 rounded-md border border-line-strong px-4 text-sm font-medium text-ink hover:bg-surface-raised focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ icon("thumbs-down", { size: "size-4" }) }}{{ "ui.no" | t }}</a></li>
+</ul>
+</div>
+{% endmacro %}

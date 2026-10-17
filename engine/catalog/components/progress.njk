@@ -1,0 +1,20 @@
+{#
+  name: progress
+  purpose: Determinate progress for multi-step forms ("Step 2 of 4") (R-FORM-07).
+  anatomy: div[data-component=progress] > p(label with numbers) + progress[value max]
+  variants: none
+  states: none
+  spacing: label mb-2
+  motion: none
+  keyboard: none
+  a11y: the native progress element is announced with its value; the label repeats it in words
+  i18n: ui.stepOf → "Step {n} of {max}" assembled from two keys to respect R-I18N-06
+  content limits: max ≤ 6
+  data: value, max, label
+#}
+{% macro progress(value, max, label) %}
+<div data-component="progress">
+<p class="mb-2 flex items-center justify-between text-sm"><span class="font-medium">{{ label }}</span><span class="tabular-nums text-ink-muted">{{ "ui.step" | t }} {{ value }} {{ "ui.of" | t }} {{ max }}</span></p>
+<progress value="{{ value }}" max="{{ max }}" class="h-2 w-full overflow-hidden rounded-full [&::-webkit-progress-bar]:bg-surface-alt [&::-webkit-progress-value]:bg-brand-600 [&::-moz-progress-bar]:bg-brand-600">{{ value }}/{{ max }}</progress>
+</div>
+{% endmacro %}

@@ -1,0 +1,25 @@
+{#
+  name: empty-state
+  purpose: What a list shows when it has nothing: icon, heading, one sentence, one action (R-SEC-11, R-CONT-15).
+  anatomy: div[data-component=empty-state] > icon + h{level} + p + button
+  variants: none
+  states: none
+  spacing: py-12 centred; max-w-md
+  motion: none
+  keyboard: the button
+  a11y: icon aria-hidden; the heading explains the state
+  i18n: copy from content or ui keys
+  content limits: title ≤ 60 chars; text ≤ 25 words
+  data: e = { icon, title, text, cta: { label, href } }
+#}
+{% from "primitives/icon.njk" import icon %}
+{% from "primitives/button.njk" import button %}
+{% macro emptyState(e, opts={}) %}
+{%- set h = "h" + (opts.level or 3) -%}
+<div class="mx-auto max-w-md py-12 text-center" data-component="empty-state">
+<span class="inline-flex size-12 items-center justify-center rounded-full bg-surface-alt text-ink-muted">{{ icon(e.icon or "info", { size: "size-6" }) }}</span>
+<{{ h }} class="mt-4 text-xl font-semibold">{{ e.title }}</{{ h }}>
+<p class="mt-2 text-base leading-relaxed text-ink-muted">{{ e.text }}</p>
+{%- if e.cta %}<div class="mt-6">{{ button(e.cta.label, { href: e.cta.href, variant: "secondary" }) }}</div>{% endif %}
+</div>
+{% endmacro %}

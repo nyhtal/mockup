@@ -1,0 +1,25 @@
+{#
+  name: dialog
+  purpose: Modal for gated content, confirmations and consent preferences (R-COMP-09, R-A11Y-05).
+  anatomy: button[command=show-modal commandfor=id] (caller) + dialog#id > h2 + content + form[method=dialog] > button(close)
+  variants: size sm (max-w-md) | md (max-w-2xl) | lg (max-w-4xl)
+  states: open (backdrop); the first control gets autofocus when opts.autofocusId is given by the caller's content
+  spacing: p-6; footer mt-6 justify-end
+  motion: scale/opacity entrance per R-MOT-06; backdrop fades via backdrop utilities
+  keyboard: Escape closes (native); Tab stays inside (native modal); focus returns to the opener (native)
+  a11y: the dialog is labelled by its heading via aria-labelledby; the close button is the last control
+  i18n: ui.close
+  content limits: one task per dialog
+  data: id, title, content (html), opts = { size, closeLabel }
+#}
+{% macro dialog(id, title, content, opts={}) %}
+{%- set sizes = { sm: "max-w-md", md: "max-w-2xl", lg: "max-w-4xl" } -%}
+<dialog id="{{ id }}" aria-labelledby="{{ id }}-title" class="m-auto w-full {{ sizes[opts.size or 'md'] }} rounded-xl border border-line bg-surface-raised p-6 text-ink shadow-lg backdrop:bg-ink/60 opacity-0 open:opacity-100 motion-safe:scale-95 motion-safe:open:scale-100 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:scale-95" data-component="dialog" data-variant="{{ opts.size or 'md' }}">
+<h2 id="{{ id }}-title" class="text-xl md:text-2xl font-semibold">{{ title }}</h2>
+<div class="mt-4 text-base leading-relaxed">{{ content | safe }}</div>
+<form method="dialog" class="mt-6 flex justify-end"><button type="submit" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-line-strong px-5 font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ opts.closeLabel or ("ui.close" | t) }}</button></form>
+</dialog>
+{% endmacro %}
+{% macro dialogTrigger(id, label, opts={}) %}
+<button type="button" command="show-modal" commandfor="{{ id }}" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 {{ 'bg-brand-600 text-ink-inverse hover:bg-brand-700' if opts.variant != 'secondary' else 'border border-line-strong text-ink hover:bg-surface-alt' }}" data-component="button" data-variant="{{ opts.variant or 'primary' }}">{{ label }}</button>
+{% endmacro %}

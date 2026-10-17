@@ -1,0 +1,24 @@
+{#
+  name: toast
+  purpose: Status message region (R-A11Y-16). In the mockup it is rendered statically as an example; a real app would insert text into it.
+  anatomy: div[role=status][aria-live=polite][data-component=toast] > icon + p (+ a)
+  variants: tone success | info | warning | danger
+  states: none (no auto-dismiss without JS)
+  spacing: fixed bottom-4 end-4 z-50; p-4; max-w-sm
+  motion: motion-safe:animate-drop on first paint of the example
+  keyboard: the optional link
+  a11y: role=status + aria-live=polite; the region exists before any message
+  i18n: none
+  content limits: one sentence
+  data: t = { tone, text, link: { label, href } }
+#}
+{% from "primitives/icon.njk" import icon %}
+{% macro toast(t, opts={}) %}
+{%- set tone = t.tone or "info" -%}
+{%- set icons = { info: "info", success: "circle-check", warning: "triangle-alert", danger: "circle-alert" } -%}
+{%- set colors = { info: "text-brand-700", success: "text-success", warning: "text-warning", danger: "text-danger" } -%}
+<div role="status" aria-live="polite" class="{{ 'fixed bottom-4 end-4 z-50' if not opts.inline }} flex max-w-sm items-start gap-3 rounded-lg border border-line bg-surface-raised p-4 text-sm shadow-lg motion-safe:animate-drop" data-component="toast" data-variant="{{ tone }}">
+{{ icon(icons[tone], { class: colors[tone] + " mt-0.5" }) }}
+<p>{{ t.text }}{% if t.link %} <a href="{{ t.link.href }}" class="font-medium text-brand-700 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ t.link.label }}</a>{% endif %}</p>
+</div>
+{% endmacro %}

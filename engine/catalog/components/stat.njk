@@ -1,0 +1,21 @@
+{#
+  name: stat
+  purpose: One headline figure with its label (R-TYPO-09, R-CONT-11).
+  anatomy: div[data-component=stat] > p.value + p.label (+ badge trend)
+  variants: default | inverse (on brand backgrounds)
+  states: none
+  spacing: value then mt-1 label
+  motion: none (counters are not animated: R-MOT-04)
+  keyboard: none
+  a11y: value and label are plain text in reading order
+  i18n: the value is preformatted per locale by the build (R-I18N-07); label ≤ 4 words
+  content limits: value ≤ 8 chars; 3–4 stats per section (R-SEC-03)
+#}
+{% from "primitives/badge.njk" import badge %}
+{% macro stat(s, opts={}) %}
+<div data-component="stat" data-variant="{{ 'inverse' if opts.inverse else 'default' }}">
+<p class="text-4xl font-bold tabular-nums {{ 'text-ink-inverse' if opts.inverse else 'text-ink' }}">{{ s.value }}</p>
+<p class="mt-1 text-sm {{ 'text-ink-inverse/80' if opts.inverse else 'text-ink-muted' }}">{{ s.label }}</p>
+{%- if s.trend %}<p class="mt-2">{{ badge(s.trend, { tone: "success" }) }}</p>{% endif %}
+</div>
+{% endmacro %}

@@ -1,0 +1,29 @@
+{#
+  name: testimonial
+  purpose: A customer quote with attribution (R-SEC-03: 1–3 per section).
+  anatomy: figure[data-component=testimonial] > blockquote > p + figcaption(avatar + name + role + wordmark)
+  variants: single (large quote, centred) | compact (card-sized, grids and carousels)
+  states: none
+  spacing: single: text-2xl, max-w-3xl; compact: p-6 card
+  motion: none
+  keyboard: none
+  a11y: figure/figcaption pair; quote marks are typographic characters, not icons
+  i18n: quotes use the locale's quotation marks from content
+  content limits: quote ≤ 50 words; name and role ≤ 40 chars each
+  data: t = { quote, name, role, company }
+#}
+{% from "primitives/avatar.njk" import avatar %}
+{% from "primitives/wordmark.njk" import wordmark %}
+{% macro testimonial(t, opts={}) %}
+{%- set single = (opts.variant or "single") == "single" -%}
+<figure class="{{ 'mx-auto max-w-3xl text-center' if single else 'flex h-full flex-col rounded-lg border border-line bg-surface-raised p-6 shadow-sm' }}" data-component="testimonial" data-variant="{{ opts.variant or 'single' }}">
+<blockquote class="{{ 'text-2xl md:text-3xl font-medium tracking-tight text-balance' if single else 'text-base leading-relaxed' }}">
+<p>“{{ t.quote }}”</p>
+</blockquote>
+<figcaption class="mt-6 flex items-center gap-3 {{ 'justify-center' if single else 'mt-auto pt-6' }}">
+{{ avatar(t.name, { size: "size-12" if single else "size-8" }) }}
+<span class="text-start"><span class="block font-medium text-ink">{{ t.name }}</span><span class="block text-sm text-ink-muted">{{ t.role }}{% if t.company %}, {{ t.company }}{% endif %}</span></span>
+{%- if single and t.company %}<span class="ms-4 hidden sm:inline">{{ wordmark(t.company, { variant: "mono" }) }}</span>{% endif %}
+</figcaption>
+</figure>
+{% endmacro %}

@@ -1,0 +1,30 @@
+{#
+  name: sidebar-nav
+  purpose: Section navigation for documentation and help pages.
+  anatomy: nav[aria-label] > ul > li > (h2 group title) + ul > li > a[aria-current]
+  variants: none
+  states: current page (brand, aria-current="page")
+  spacing: space-y-6 groups; links py-2
+  motion: none
+  keyboard: links
+  a11y: labelled nav; group titles are headings
+  i18n: none
+  content limits: ≤ 5 groups × 8 links
+  data: groups = [{ title, links: [{ label, href }] }], currentUrl
+#}
+{% macro sidebarNav(groups, currentUrl, opts={}) %}
+<nav aria-label="{{ opts.label or ('ui.sectionNav' | t) }}" class="lg:sticky lg:top-20" data-component="sidebar-nav">
+<ul class="space-y-6">
+{%- for g in groups %}
+<li>
+<h2 class="text-sm font-semibold uppercase tracking-wide text-ink-muted">{{ g.title }}</h2>
+<ul class="mt-2 space-y-1">
+{%- for l in g.links %}
+<li><a href="{{ l.href }}" class="block rounded-md px-3 py-2 text-sm hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'bg-brand-50 font-medium text-brand-800' if l.href == currentUrl else 'text-ink' }}"{% if l.href == currentUrl %} aria-current="page"{% endif %}>{{ l.label }}</a></li>
+{%- endfor %}
+</ul>
+</li>
+{%- endfor %}
+</ul>
+</nav>
+{% endmacro %}

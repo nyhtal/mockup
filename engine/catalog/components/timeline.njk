@@ -1,0 +1,27 @@
+{#
+  name: timeline
+  purpose: Dated milestones: company history, roadmap (R-SEC-03: 4–8).
+  anatomy: ol[data-component=timeline] > li > time + h{level} + p, with a vertical line on the start side
+  variants: none
+  states: none
+  spacing: ps-8 items, space-y-8, dot at the line
+  motion: none
+  keyboard: none
+  a11y: dates in <time datetime>; ordered list
+  i18n: dates preformatted; the line sits on the start side so it mirrors in RTL
+  content limits: title ≤ 60 chars; text ≤ 40 words
+  data: items = [{ date, dateIso, title, text }]
+#}
+{% macro timeline(items, opts={}) %}
+{%- set h = "h" + (opts.level or 3) -%}
+<ol class="relative space-y-8 border-s border-line ps-8" data-component="timeline">
+{%- for item in items %}
+<li class="relative">
+<span aria-hidden="true" class="absolute -start-[2.3rem] top-1.5 size-4 rounded-full border-2 border-surface bg-brand-600"></span>
+<time datetime="{{ item.dateIso }}" class="text-sm font-medium text-brand-700">{{ item.date }}</time>
+<{{ h }} class="mt-1 text-lg font-semibold">{{ item.title }}</{{ h }}>
+<p class="mt-1 text-base leading-relaxed text-ink-muted">{{ item.text }}</p>
+</li>
+{%- endfor %}
+</ol>
+{% endmacro %}

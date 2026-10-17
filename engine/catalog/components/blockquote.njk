@@ -1,0 +1,19 @@
+{#
+  name: blockquote
+  purpose: Pull quote inside an article (R-TYPO-04).
+  anatomy: figure[data-component=blockquote] > blockquote > p + figcaption
+  variants: none
+  states: none
+  spacing: ps-6 with a brand border on the start side; my-8 in prose
+  motion: none
+  keyboard: none
+  a11y: figure/figcaption
+  i18n: the border sits on the start side
+  content limits: ≤ 50 words
+#}
+{% macro blockquote(q, cite) %}
+<figure class="my-8 border-s-4 border-brand-600 ps-6" data-component="blockquote">
+<blockquote class="text-xl font-medium text-balance"><p>{{ q }}</p></blockquote>
+{%- if cite %}<figcaption class="mt-2 text-sm text-ink-muted">{{ cite }}</figcaption>{% endif %}
+</figure>
+{% endmacro %}

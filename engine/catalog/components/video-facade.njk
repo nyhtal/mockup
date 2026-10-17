@@ -1,0 +1,29 @@
+{#
+  name: video-facade
+  purpose: Poster + play button; the real player loads only after a click, inside a dialog (R-COMP-12, R-DEPLOY-03, R-PERF-06).
+  anatomy: div[data-component=video-facade] > picture(poster) + button[command=show-modal commandfor] + dialog > form[method=dialog] + template(iframe)
+  variants: none
+  states: dialog open (backdrop)
+  spacing: aspect-video poster; play button centred
+  motion: dialog entrance per R-MOT-06
+  keyboard: Enter on the play button opens the dialog; Escape closes (native); focus returns to the button (native)
+  a11y: the button names the video and its length; in the mockup the dialog explains that the provider would load here
+  i18n: ui.playVideo / ui.videoNote
+  content limits: title ≤ 60 chars
+  data: v = { id, title, duration, poster: {slug, ratio, alt}, provider, embedUrl }
+#}
+{% from "primitives/picture.njk" import picture %}
+{% from "primitives/icon.njk" import icon %}
+{% macro videoFacade(v) %}
+<div class="relative overflow-hidden rounded-xl" data-component="video-facade">
+{{ picture(v.poster, { sizes: "(min-width: 64rem) 50vw, 100vw", class: "aspect-video w-full object-cover" }) }}
+<button type="button" command="show-modal" commandfor="video-{{ v.id }}" class="absolute inset-0 flex items-center justify-center bg-ink/30 text-ink-inverse hover:bg-ink/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><span class="inline-flex size-16 items-center justify-center rounded-full bg-surface-raised text-brand-700 shadow-lg">{{ icon("play", { size: "size-6", class: "ms-1" }) }}</span><span class="sr-only">{{ "ui.playVideo" | t }}: {{ v.title }}{% if v.duration %} ({{ v.duration }}){% endif %}</span></button>
+<dialog id="video-{{ v.id }}" class="m-auto w-full max-w-3xl rounded-xl border border-line bg-surface-raised p-6 text-ink shadow-lg backdrop:bg-ink/60 opacity-0 open:opacity-100 motion-safe:scale-95 motion-safe:open:scale-100 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:scale-95">
+<h2 class="text-xl font-semibold">{{ v.title }}</h2>
+<p class="mt-2 text-sm text-ink-muted">{{ "ui.videoNote" | t }} {{ v.provider }}.</p>
+<div class="mt-4 aspect-video rounded-lg bg-surface-alt"></div>
+<template data-embed>{% if v.embedUrl %}<iframe src="{{ v.embedUrl }}" title="{{ v.title }}" allow="autoplay; fullscreen" loading="lazy"></iframe>{% endif %}</template>
+<form method="dialog" class="mt-6 flex justify-end"><button type="submit" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-line-strong px-5 font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.close" | t }}</button></form>
+</dialog>
+</div>
+{% endmacro %}

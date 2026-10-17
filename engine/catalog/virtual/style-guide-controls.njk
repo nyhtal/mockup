@@ -1,0 +1,96 @@
+---
+layout: base.njk
+pageType: style-guide
+noindex: true
+---
+{% from "components/video-facade.njk" import videoFacade %}
+{% from "components/map-facade.njk" import mapFacade %}
+{% from "components/author-box.njk" import authorBox %}
+{% from "components/share-links.njk" import shareLinks %}
+{% from "components/tag-list.njk" import tagList %}
+{% from "components/pagination.njk" import pagination %}
+{% from "components/toc.njk" import toc %}
+{% from "components/sidebar-nav.njk" import sidebarNav %}
+{% from "components/sub-nav.njk" import subNav %}
+{% from "components/filter-bar.njk" import filterBar %}
+{% from "components/search-results.njk" import searchResults %}
+{% from "components/search-box.njk" import searchBox %}
+{% from "components/breadcrumbs.njk" import breadcrumbs %}
+{% from "components/empty-state.njk" import emptyState %}
+{% from "components/skeleton.njk" import skeleton %}
+{% from "components/toast.njk" import toast %}
+{% from "components/dialog.njk" import dialog, dialogTrigger %}
+{% from "components/drawer.njk" import drawer, drawerTrigger %}
+{% from "components/tooltip.njk" import tooltip %}
+{% from "components/progress.njk" import progress %}
+{% from "components/consent-banner.njk" import consentBanner %}
+{% from "components/consent-preferences.njk" import consentPreferences %}
+{% from "components/was-this-helpful.njk" import wasThisHelpful %}
+{% from "components/error-summary.njk" import errorSummary %}
+{% from "components/prose.njk" import prose %}
+{% from "components/announcement-bar.njk" import announcementBar %}
+{%- set sg = "/" + locale + "/style-guide/" -%}
+<div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+<p class="text-sm font-medium uppercase tracking-wide text-brand-700">Style guide</p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Components: navigation, overlays and states</h1>
+<p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">Everything that moves, navigates or reports a state. Overlays are native popovers and dialogs; nothing here needs the script.</p>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Navigation</h2>
+<div class="mt-8">{{ breadcrumbs([{ name: "Home", url: "/" + locale + "/" }, { name: "Style guide", url: sg }, { name: "Controls", url: sg + "controls/" }]) }}</div>
+<div class="mt-8">{{ announcementBar({ text: "Northwind 4 ships on 12 November.", href: "/style-guide/", label: "See what is new" }, locale) }}</div>
+<div class="mt-8 grid gap-8 lg:grid-cols-3">
+<div>{{ sidebarNav([{ title: "Getting started", links: [{ label: "Overview", href: sg }, { label: "Install", href: sg + "primitives/" }] }, { title: "Reference", links: [{ label: "Stations", href: sg + "components/" }, { label: "Recipes", href: sg + "controls/" }] }], sg + "controls/") }}</div>
+<div>{{ toc([{ id: "h-nav", text: "Navigation", level: 2 }, { id: "h-overlays", text: "Overlays", level: 2 }, { id: "h-states", text: "States", level: 2 }, { id: "h-states-empty", text: "Empty", level: 3 }]) }}</div>
+<div>{{ pagination({ current: 2, prev: sg, next: sg + "components/", pages: [{ n: 1, url: sg }, { n: 2 }, { n: 3, url: sg + "components/" }, { n: "…" }, { n: 8, url: sg + "primitives/" }] }) }}</div>
+</div>
+<div class="mt-8">{{ subNav([{ label: "Overview", href: sg }, { label: "Primitives", href: sg + "primitives/" }, { label: "Content", href: sg + "components/" }, { label: "Controls", href: sg + "controls/" }], sg + "controls/", { label: "Style guide pages" }) }}</div>
+<div class="mt-8 flex flex-wrap items-end gap-8">
+{{ searchBox(locale, { id: "q-demo" }) }}
+{{ filterBar({ action: sg + "controls/", filters: [{ type: "select", name: "team", id: "f-team", label: "Team", options: [{ value: "", label: "All teams" }, { value: "eng", label: "Engineering" }, { value: "ops", label: "Operations" }] }, { type: "select", name: "location", id: "f-location", label: "Location", options: [{ value: "", label: "Anywhere" }, { value: "man", label: "Manchester" }, { value: "ham", label: "Hamburg" }] }], resetHref: sg + "controls/" }) }}
+</div>
+<div class="mt-8">{{ tagList([{ label: "Automation", href: sg }, { label: "Safety", href: sg }, { label: "Food and beverage" }]) }}</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Media and article furniture</h2>
+<div class="mt-8 grid gap-8 lg:grid-cols-2">
+{{ videoFacade({ id: "demo", title: "Northwind in four minutes", duration: "4:12", poster: { slug: "video-poster", ratio: "16:9", alt: "", max: 768 }, provider: "YouTube" }) }}
+{{ mapFacade({ slug: "map-manchester", address: "4 Canal Street, Manchester M1 3HE, United Kingdom" }) }}
+</div>
+<div class="mt-8 grid gap-8 lg:grid-cols-2">
+{{ authorBox({ name: "Priya Natarajan", role: "Chief Technology Officer", bio: "Priya has led controls teams in food, pharma and automotive plants for sixteen years.", href: sg }) }}
+<div class="space-y-6">{{ shareLinks({ url: "https://example.com" + sg, title: "Style guide" }) }}{{ wasThisHelpful(sg + "controls/") }}</div>
+</div>
+<div class="mt-8">{{ prose("<h2>Prose sample</h2><p>Article bodies are rendered from markdown and styled by the prose component, so every legal page, post and doc shares one typography. <a href='" + sg + "'>Links are underlined</a>.</p><h3>Lists and quotes</h3><ul><li>One idea per bullet</li><li>Two at most per paragraph</li></ul><blockquote>The best control code is the code nobody has to read.</blockquote><table><thead><tr><th>Station</th><th>Tags</th></tr></thead><tbody><tr><td>Fill</td><td>12</td></tr></tbody></table>") }}</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Overlays</h2>
+<div class="mt-8 flex flex-wrap items-center gap-4">
+{{ dialogTrigger("dialog-demo", "Open a dialog") }}
+{{ drawerTrigger("drawer-demo", "Open a drawer") }}
+{{ tooltip("tip-demo", "Audit trail", "Every change to a recipe is recorded with who made it, when and what changed.") }}
+</div>
+{{ dialog("dialog-demo", "Download the commissioning checklist", "<p>Enter your work email and the checklist opens in a new tab. In this mockup the button simply closes the dialog.</p>", { size: "sm" }) }}
+{{ drawer("drawer-demo", "Filter jobs", "<p>Filters for the jobs list would live here on small screens.</p>") }}
+<div class="mt-8 grid gap-6 md:grid-cols-2">
+<div>{{ toast({ tone: "success", text: "Preferences saved." }, { inline: true }) }}</div>
+<div>{{ toast({ tone: "warning", text: "Your session ends in five minutes.", link: { label: "Stay signed in", href: sg } }, { inline: true }) }}</div>
+</div>
+<div class="mt-8">{{ consentBanner({ inline: true, privacyHref: sg, preferencesId: "consent-demo" }) }}</div>
+{{ consentPreferences({ id: "consent-demo", action: sg + "controls/" }) }}
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">States</h2>
+<div class="mt-8 grid gap-8 md:grid-cols-2">
+<div class="rounded-lg border border-line">{{ emptyState({ icon: "briefcase", title: "No open roles right now", text: "Subscribe to job alerts and we will email you when something opens.", cta: { label: "Subscribe to job alerts", href: sg } }) }}</div>
+<div class="space-y-6">{{ skeleton("card") }}{{ skeleton("text") }}</div>
+</div>
+<div class="mt-8 max-w-xl">{{ progress(2, 4, "Request a demo") }}</div>
+<div class="mt-8 max-w-xl">{{ errorSummary([{ id: "email-bad", message: "Enter an email address like alex@company.com" }, { id: "industry", message: "Choose an industry" }]) }}</div>
+<div class="mt-8">{{ searchResults({ query: "safety", items: [{ title: "Safety PLCs without the paperwork", href: sg, excerpt: "How generated logic passes a TÜV review without a line-by-line walkthrough." }, { title: "Interlock verification", href: sg + "components/", excerpt: "Every interlock in the description is checked against the generated code." }] }) }}</div>
+<div class="mt-8">{{ searchResults({ query: "zzz", items: [], cta: { label: "Browse the style guide", href: sg } }) }}</div>
+</section>
+</div>

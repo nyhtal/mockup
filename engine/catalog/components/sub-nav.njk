@@ -1,0 +1,23 @@
+{#
+  name: sub-nav
+  purpose: Sticky in-page or section navigation under the header (R-LAY-07, R-TOK-09).
+  anatomy: nav[aria-label] > ul(scrollable row) > li > a[aria-current]
+  variants: none
+  states: current (brand underline)
+  spacing: sticky top-16 z-10; h-12; gap-6; overflow-x-auto
+  motion: none
+  keyboard: links; the row scrolls with the focused link into view
+  a11y: labelled nav
+  i18n: labels ≤ 18 chars
+  content limits: ≤ 7 links
+  data: items = [{ label, href }], currentUrl
+#}
+{% macro subNav(items, currentUrl, opts={}) %}
+<nav aria-label="{{ opts.label or ('ui.sectionNav' | t) }}" class="sticky top-16 z-10 border-b border-line bg-surface/90 backdrop-blur print:hidden" data-component="sub-nav">
+<ul class="mx-auto flex h-12 w-full max-w-7xl items-stretch gap-6 overflow-x-auto px-4 sm:px-6 lg:px-8">
+{%- for item in items %}
+<li class="shrink-0"><a href="{{ item.href }}" class="inline-flex h-12 items-center border-b-2 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'border-brand-600 text-ink' if item.href == currentUrl else 'border-transparent text-ink-muted hover:text-ink' }}"{% if item.href == currentUrl %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+{%- endfor %}
+</ul>
+</nav>
+{% endmacro %}

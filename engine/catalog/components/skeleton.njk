@@ -1,0 +1,22 @@
+{#
+  name: skeleton
+  purpose: Loading placeholder shape for a card or text block (the only permitted looping animation: R-MOT-03).
+  anatomy: div[data-component=skeleton][aria-hidden] > blocks
+  variants: card | text
+  states: none
+  spacing: matches the component it stands in for
+  motion: motion-safe:animate-pulse
+  keyboard: none
+  a11y: aria-hidden; a visually hidden "Loading…" text sits next to it in the live region of the caller
+  i18n: none
+  content limits: none
+#}
+{% macro skeleton(kind) %}
+<div aria-hidden="true" class="motion-safe:animate-pulse" data-component="skeleton" data-variant="{{ kind or 'text' }}">
+{%- if kind == "card" %}
+<div class="rounded-lg border border-line bg-surface-raised p-6"><div class="aspect-video rounded-md bg-surface-alt"></div><div class="mt-4 h-5 w-2/3 rounded-sm bg-surface-alt"></div><div class="mt-2 h-4 w-full rounded-sm bg-surface-alt"></div><div class="mt-2 h-4 w-5/6 rounded-sm bg-surface-alt"></div></div>
+{%- else %}
+<div class="h-4 w-full rounded-sm bg-surface-alt"></div><div class="mt-2 h-4 w-11/12 rounded-sm bg-surface-alt"></div><div class="mt-2 h-4 w-4/6 rounded-sm bg-surface-alt"></div>
+{%- endif %}
+</div>
+{% endmacro %}

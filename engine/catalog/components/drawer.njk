@@ -1,0 +1,26 @@
+{#
+  name: drawer
+  purpose: Side panel for secondary content (filters on mobile, details) opened as a popover from the inline-end edge (R-COMP-09).
+  anatomy: button[popovertarget=id] (caller) + div[popover]#id > header(title + close) + content
+  variants: none
+  states: open
+  spacing: w-96 max-w-full; p-6
+  motion: slide from the end edge per R-MOT-06
+  keyboard: Escape closes; light dismiss on click outside (native)
+  a11y: the close button is first; the panel heading is an h2
+  i18n: ui.close; the panel sits at the end edge in both directions
+  content limits: one topic per drawer
+  data: id, title, content (html)
+#}
+{% macro drawer(id, title, content) %}
+<div popover id="{{ id }}" class="fixed inset-y-0 end-0 start-auto m-0 h-full max-h-none w-96 max-w-full border-0 border-s border-line bg-surface-raised p-0 text-ink shadow-lg opacity-0 open:opacity-100 motion-safe:translate-x-4 motion-safe:open:translate-x-0 rtl:motion-safe:-translate-x-4 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:translate-x-4" data-component="drawer">
+<div class="flex h-16 items-center justify-between border-b border-line px-6">
+<h2 class="text-lg font-semibold">{{ title }}</h2>
+<button type="button" popovertarget="{{ id }}" popovertargetaction="hide" class="inline-flex size-11 items-center justify-center rounded-md hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-5"><use href="#i-x"></use></svg><span class="sr-only">{{ "ui.close" | t }}</span></button>
+</div>
+<div class="overflow-y-auto p-6 text-base leading-relaxed">{{ content | safe }}</div>
+</div>
+{% endmacro %}
+{% macro drawerTrigger(id, label) %}
+<button type="button" popovertarget="{{ id }}" class="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-line-strong px-5 font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150" data-component="button" data-variant="secondary">{{ label }}</button>
+{% endmacro %}

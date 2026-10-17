@@ -1,0 +1,25 @@
+{#
+  name: consent-banner
+  purpose: Cookie consent banner, shipped in the catalog only (R-DEPLOY-09): mockups set no cookies, so pages do not render it. Enable it the day a tracker is added, and gate that tracker behind the choice.
+  anatomy: div[role=region][aria-label][data-component=consent-banner] > p + div(buttons: accept, reject, preferences trigger)
+  variants: none
+  states: none (dismissal needs the real consent script)
+  spacing: fixed inset-x-0 bottom-0 z-50; p-4; container inside
+  motion: motion-safe:animate-drop (the example only)
+  keyboard: three buttons; "Reject all" and "Accept all" are equal weight
+  a11y: region labelled "Cookie consent"; buttons are real buttons; nothing is pre-selected
+  i18n: ui.consent* keys
+  content limits: one sentence plus the privacy link
+#}
+{% macro consentBanner(opts={}) %}
+<div role="region" aria-label="{{ 'ui.consentTitle' | t }}" class="{{ 'fixed inset-x-0 bottom-0 z-50' if not opts.inline }} border-t border-line bg-surface-raised p-4 shadow-lg" data-component="consent-banner">
+<div class="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
+<p class="text-sm leading-relaxed">{{ "ui.consentText" | t }} <a href="{{ opts.privacyHref or '#' }}" class="font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.consentPolicy" | t }}</a></p>
+<div class="flex flex-wrap gap-2">
+<button type="button" class="inline-flex min-h-11 items-center justify-center rounded-md border border-line-strong px-5 font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.consentReject" | t }}</button>
+<button type="button" popovertarget="{{ opts.preferencesId or 'consent-preferences' }}" class="inline-flex min-h-11 items-center justify-center rounded-md border border-line-strong px-5 font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.consentPreferences" | t }}</button>
+<button type="button" class="inline-flex min-h-11 items-center justify-center rounded-md bg-brand-600 px-5 font-medium text-ink-inverse hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.consentAccept" | t }}</button>
+</div>
+</div>
+</div>
+{% endmacro %}

@@ -1,0 +1,23 @@
+{#
+  name: error-summary
+  purpose: List of a form's errors with links to the fields, placed before the first field (R-FORM-06, R-A11Y-10).
+  anatomy: div[tabindex=-1][data-component=error-summary] > h2 + ul > li > a[href=#field-id]
+  variants: none
+  states: none (statically rendered example in the mockup)
+  spacing: p-4, mb-8
+  motion: none
+  keyboard: the summary receives focus (tabindex=-1) when a real app shows it; links jump to fields
+  a11y: heading first, then the list; danger colours plus the icon and text carry the meaning
+  i18n: ui.fixFollowing
+  content limits: one line per error
+  data: errors = [{ id, message }]
+#}
+{% from "primitives/icon.njk" import icon %}
+{% macro errorSummary(errors) %}
+<div tabindex="-1" class="mb-8 rounded-lg border border-danger-strong bg-danger-soft p-4 text-danger-strong" data-component="error-summary">
+<h2 class="flex items-center gap-2 text-lg font-semibold">{{ icon("circle-alert") }}{{ "ui.fixFollowing" | t }}</h2>
+<ul class="mt-2 list-inside list-disc space-y-1 text-sm">
+{%- for e in errors %}<li><a href="#{{ e.id }}" class="underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ e.message }}</a></li>{% endfor %}
+</ul>
+</div>
+{% endmacro %}

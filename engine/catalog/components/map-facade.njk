@@ -1,0 +1,23 @@
+{#
+  name: map-facade
+  purpose: Office location without a third-party map: generated placeholder, address and an external "open in maps" link only when the site allow-lists it (R-COMP-12, R-HTML-16).
+  anatomy: div[data-component=map-facade] > picture + address (+ a[external])
+  variants: none
+  states: none
+  spacing: aspect-[21/9] image; address mt-4
+  motion: none
+  keyboard: the link only
+  a11y: the address is in <address>; the picture is decorative (alt="")
+  i18n: address format per office country (R-I18N-14)
+  content limits: none
+  data: m = { slug, address, mapsUrl }
+#}
+{% from "primitives/picture.njk" import picture %}
+{% from "primitives/link.njk" import link %}
+{% macro mapFacade(m) %}
+<div data-component="map-facade">
+<div class="overflow-hidden rounded-xl">{{ picture({ slug: m.slug or "map", ratio: "21:9", alt: "", max: 1200 }, { sizes: "(min-width: 80rem) 80rem, 100vw", class: "aspect-[21/9] w-full object-cover" }) }}</div>
+<address class="mt-4 text-base not-italic leading-relaxed text-ink-muted">{{ m.address }}</address>
+{%- if m.mapsUrl %}<p class="mt-2">{{ link("Open in maps", m.mapsUrl, { external: true }) }}</p>{% endif %}
+</div>
+{% endmacro %}

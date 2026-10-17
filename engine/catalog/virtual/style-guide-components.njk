@@ -1,0 +1,115 @@
+---
+layout: base.njk
+pageType: style-guide
+noindex: true
+---
+{% from "components/card.njk" import card %}
+{% from "components/stat.njk" import stat %}
+{% from "components/testimonial.njk" import testimonial %}
+{% from "components/pricing-table.njk" import pricingTable %}
+{% from "components/comparison-table.njk" import comparisonTable %}
+{% from "components/data-table.njk" import dataTable %}
+{% from "components/accordion.njk" import accordion %}
+{% from "components/tabs.njk" import tabs %}
+{% from "components/steps.njk" import steps %}
+{% from "components/timeline.njk" import timeline %}
+{% from "components/callout.njk" import callout %}
+{% from "components/blockquote.njk" import blockquote %}
+{% from "components/code-block.njk" import codeBlock %}
+{% from "components/image-gallery.njk" import gallery %}
+{%- set sg = "/" + locale + "/style-guide/" -%}
+<div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+<p class="text-sm font-medium uppercase tracking-wide text-brand-700">Style guide</p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Components: content</h1>
+<p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">Cards, figures, tables and disclosure blocks in every variant. Each one is a macro; pages pass data.</p>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Cards</h2>
+<ul class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+{{ card({ variant: "service", icon: "cpu", title: "Control software", text: "Configuration that plant engineers read and change without a programmer.", href: sg, cta: "See the service" }) }}
+{{ card({ variant: "case-study", company: "Alder Foods", metricValue: "38%", metricLabel: "less unplanned downtime", quote: "Our line leads fix most stops themselves now.", title: "Alder Foods cuts downtime", href: sg }) }}
+{{ card({ variant: "team", name: "Priya Natarajan", role: "Chief Technology Officer", href: sg }) }}
+{{ card({ variant: "office", title: "Manchester", address: "4 Canal Street, Manchester M1 3HE, United Kingdom", phone: "+44 20 7946 0000" }) }}
+{{ card({ variant: "download", type: "PDF", pages: "12 pages", title: "Commissioning checklist 2026", text: "Every step from factory acceptance to first production run.", href: sg }) }}
+{{ card({ variant: "event", date: "12 November 2026", dateIso: "2026-11-12", type: "Webinar", title: "Safety PLCs without the paperwork", location: "Online", href: sg }) }}
+{{ card({ variant: "job", title: "Senior controls engineer", team: "Engineering", location: "Manchester or remote", type: "Full time", href: sg }) }}
+{{ card({ variant: "integration", icon: "layers", title: "Siemens TIA Portal", text: "Import tag tables and keep them in sync.", href: sg }) }}
+{{ card({ variant: "article", image: { slug: "post-sensors", ratio: "16:9", alt: "", max: 768 }, eyebrow: "Engineering", date: "3 October 2026", dateIso: "2026-10-03", title: "Why we moved sensor logic to the edge", text: "Latency, resilience and a smaller attack surface.", href: sg }) }}
+</ul>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Stats and testimonials</h2>
+<div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+{{ stat({ value: "1,284", label: "Lines automated" }) }}
+{{ stat({ value: "38%", label: "Less downtime", trend: "+6 pts" }) }}
+{{ stat({ value: "19", label: "Countries" }) }}
+{{ stat({ value: "99.98%", label: "Uptime last year" }) }}
+</div>
+<div class="mt-12">{{ testimonial({ quote: "We stopped waiting for a programmer. The line leads change recipes themselves and the audit trail is better than before.", name: "Jonas Weber", role: "Plant manager", company: "Brightline Pharma" }) }}</div>
+<ul class="mt-12 grid gap-6 md:grid-cols-3">
+<li>{{ testimonial({ quote: "Commissioning took nine days instead of six weeks.", name: "Alex Morgan", role: "Project lead", company: "Alder Foods" }, { variant: "compact" }) }}</li>
+<li>{{ testimonial({ quote: "The safety review was the first one where nobody argued about the PLC code.", name: "Mei Chen", role: "HSE manager", company: "Castor Automotive" }, { variant: "compact" }) }}</li>
+<li>{{ testimonial({ quote: "Support answers in minutes and in our language.", name: "Fatima Al-Sayed", role: "Operations director", company: "Dune Logistics" }, { variant: "compact" }) }}</li>
+</ul>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Pricing and tables</h2>
+<div class="mt-8">{{ pricingTable({ tiers: [
+  { name: "Starter", price: "€490", period: "per line per month", text: "One line, one site.", features: ["Up to 50 tags", "Email support", "Weekly backups"], cta: { label: "Start a trial", href: sg } },
+  { name: "Plant", price: "€1,900", period: "per site per month", text: "Every line on a site.", features: ["Unlimited tags", "Phone support in 4 hours", "Daily backups", "Audit trail"], cta: { label: "Talk to sales", href: sg }, recommended: true },
+  { name: "Enterprise", price: "Custom", text: "Many sites, your terms.", features: ["Everything in Plant", "Dedicated engineer", "On-premise option"], cta: { label: "Request a quote", href: sg } }
+] }) }}</div>
+<div class="mt-12">{{ comparisonTable({ caption: "Feature comparison across tiers", firstColumn: "Feature", columns: [{ name: "Starter" }, { name: "Plant", recommended: true }, { name: "Enterprise" }], rows: [
+  { name: "Tags", cells: ["50", "Unlimited", "Unlimited"] },
+  { name: "Audit trail", cells: [false, true, true] },
+  { name: "On-premise", cells: [false, false, true] },
+  { name: "Support response", cells: ["2 days", "4 hours", "1 hour"] }
+] }) }}</div>
+<div class="mt-12">{{ dataTable({ caption: "Office hours by location", columns: ["Office", "Weekdays", "Saturday", "Lines supported"], rows: [["Manchester", "08:00–18:00", "Closed", "412"], ["Hamburg", "08:00–17:00", "09:00–13:00", "388"], ["Riyadh", "09:00–18:00", "Closed", "97"]], numeric: [3] }, { rowHeaders: true }) }}</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Disclosure, steps and timeline</h2>
+<div class="mt-8">{{ accordion([
+  { title: "Does Northwind replace our PLCs?", body: "<p>No. It sits beside them and generates the logic they run, so your existing hardware and safety certification stay in place.</p>", open: true },
+  { title: "How long does commissioning take?", body: "<p>Most single lines are live within two weeks, including factory acceptance testing.</p>" },
+  { title: "Can line operators change recipes?", body: "<p>Yes, within limits an engineer sets. Every change is logged with who, when and what.</p>" }
+], { variant: "faq", group: "faq-demo" }) }}</div>
+<div class="mt-12">{{ tabs([
+  { label: "Overview", body: "<p>Configuration over code: engineers describe the process and Northwind generates validated logic.</p>" },
+  { label: "Integrations", body: "<p>Siemens, Rockwell and Beckhoff controllers; OPC UA for everything else.</p>" },
+  { label: "Security", body: "<p>Role-based access, signed releases and an audit trail you can export.</p>" }
+], { group: "tabs-demo" }) }}</div>
+<div class="mt-12">{{ steps([
+  { title: "Describe the line", text: "Walk through the stations with an engineer; it takes an afternoon." },
+  { title: "Generate and review", text: "Northwind produces the logic; your team reviews it like a document." },
+  { title: "Commission", text: "Run factory acceptance tests from the same description." },
+  { title: "Operate", text: "Line leads adjust recipes within the limits you set." }
+], { variant: "horizontal" }) }}</div>
+<div class="mt-12">{{ timeline([
+  { date: "2019", dateIso: "2019-01-01", title: "Founded in Manchester", text: "Three controls engineers and one food plant that was tired of waiting." },
+  { date: "2021", dateIso: "2021-06-01", title: "First safety-rated release", text: "Generated logic passed its first TÜV review." },
+  { date: "2024", dateIso: "2024-03-01", title: "Hamburg and Riyadh offices", text: "Support in German and Arabic, in local hours." },
+  { date: "2026", dateIso: "2026-01-01", title: "1,000 lines live", text: "Across 19 countries." }
+]) }}</div>
+</section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Callouts, quotes, code and galleries</h2>
+<div class="mt-8 grid gap-4 md:grid-cols-2">
+{{ callout({ tone: "info", title: "Good to know", text: "Generated logic is versioned; you can roll a line back in one step." }) }}
+{{ callout({ tone: "success", title: "Review passed", text: "All 42 interlocks were verified against the description." }) }}
+{{ callout({ tone: "warning", title: "Check the safety zone", text: "Station 4 has no light curtain in the description." }) }}
+{{ callout({ tone: "danger", title: "Blocked", text: "The description references a tag that no longer exists on the PLC." }) }}
+</div>
+{{ blockquote("The best control code is the code nobody has to read.", "Priya Natarajan, CTO") }}
+{{ codeBlock("station Fill:\n  interlock: lid_closed and not e_stop\n  recipe: volume_ml from recipe.volume\n  timeout: 12 s -> alarm Fill.timeout", "northwind") }}
+<div class="mt-8">{{ gallery([
+  { slug: "culture-floor", ratio: "4:3", alt: "", caption: "The floor in Manchester", max: 768 },
+  { slug: "culture-lab", ratio: "4:3", alt: "", caption: "Test lab", max: 768 },
+  { slug: "culture-team", ratio: "4:3", alt: "", caption: "Hamburg team day", max: 768 }
+]) }}</div>
+</section>
+</div>

@@ -1,0 +1,21 @@
+{#
+  name: tooltip
+  purpose: Short explanation behind an info button. Hover cannot open a popover without JS, so this is a click/Enter disclosure, which is also the WCAG 1.4.13-safe form (R-COMP-09).
+  anatomy: button[popovertarget=id] (icon + sr-only label) + div[popover=hint]#id > p
+  variants: none
+  states: open
+  spacing: panel max-w-xs p-3; positioned near the top-start of the viewport is not possible without anchors, so it is centred (default popover placement) and reads as a small dialog
+  motion: fade/scale per R-MOT-06
+  keyboard: Enter opens, Escape closes, focus returns (native)
+  a11y: the button has an sr-only "More information about {label}"; the panel is plain text
+  i18n: ui.moreInfo
+  content limits: ≤ 25 words
+  data: id, label, text
+#}
+{% macro tooltip(id, label, text) %}
+<span class="inline-flex items-center gap-1" data-component="tooltip">
+<span>{{ label }}</span>
+<button type="button" popovertarget="{{ id }}" class="inline-flex size-6 items-center justify-center rounded-full text-ink-muted hover:bg-surface-alt hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-4"><use href="#i-info"></use></svg><span class="sr-only">{{ "ui.moreInfo" | t }} {{ label }}</span></button>
+<span popover="hint" id="{{ id }}" class="m-auto max-w-xs rounded-lg border border-line bg-surface-raised p-3 text-sm text-ink shadow-md opacity-0 open:opacity-100 motion-safe:scale-95 motion-safe:open:scale-100 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:scale-95">{{ text }}</span>
+</span>
+{% endmacro %}
