@@ -1,0 +1,84 @@
+# 19 Quality gates
+
+Purpose: the exact checks, commands and thresholds that decide whether a site is done. The gates are code in `engine/tools/gates/`; this file is their contract. Every other bylaw's `Gate:` line points here.
+
+### R-GATE-01 The command
+MUST. A site is gated with `npm run build -- --site <name>` followed by `npm run gate -- --site <name>`; the gate exits non-zero on any failing check and writes `reports/latest.md`.
+Why: One command, one report, no interpretation.
+Gate: manual: checklists/pre-delivery.md
+
+### R-GATE-02 Bylaws
+MUST. `bylaws`: every rule file parses, every rule has MUST/SHOULD, Why and Gate lines, every Gate names an existing gate or a checklist, IDs are unique and contiguous per area.
+Why: The rulebook must itself be well-formed.
+Gate: bylaws/format
+
+### R-GATE-03 HTML
+MUST. `html`: the Nu checker (standalone build, `npm run setup`) reports zero errors and zero warnings on every page.
+Why: Validity is the foundation.
+Gate: html/error
+
+### R-GATE-04 Consistency
+MUST. `consistency`: no inline `style`; exactly one `h1`; no skipped heading levels; unique ids; every class in the HTML exists in the built CSS (escaped variants and arbitrary values included); every `data-component` names a catalog file.
+Why: Catches improvisation mechanically.
+Gate: consistency/class-exists
+
+### R-GATE-05 Schema
+MUST. `schema`: one JSON-LD block per page with an `@graph`; required types per page type from `engine/schema-contracts.json`; every `@id` reference resolves; URL-valued properties are absolute.
+Why: Structured data that validates by construction.
+Gate: schema/contract
+
+### R-GATE-06 Budget
+MUST. `budget`: per-page HTML, CSS, JS and total weight within `engine/budgets.json`; every referenced local asset exists.
+Why: Performance as a size contract.
+Gate: budget/page
+
+### R-GATE-07 i18n
+MUST. `i18n`: every locale has exactly the default locale's string keys; `<html lang>` matches the locale folder; every page with alternates has `x-default`; every alternate target exists and links back explicitly.
+Why: Multi-locale correctness is not visible in one locale.
+Gate: i18n/keys
+
+### R-GATE-08 Links
+MUST. `links`: crawl from every page; no broken internal links; no external links except `site.json` `allowedExternal`.
+Why: Dead links and stray third parties are both defects.
+Gate: links/broken
+
+### R-GATE-09 Accessibility
+MUST. `a11y`: axe via pa11y, WCAG 2.2 AA tags, zero violations on every page; "incomplete" results are listed under "Needs human review" and resolved by the manual checklist before delivery.
+Why: Automated floor plus a human ceiling.
+Gate: a11y/wcag2aa
+
+### R-GATE-10 Lighthouse
+MUST. `lighthouse`: Lighthouse 13 via Node API, local Chrome stable headless, mobile (default simulated throttling) and desktop (bundled desktop config), median of 5 runs per page and profile, 100 in performance, accessibility, best practices and SEO; versions and conditions recorded in the report.
+Why: The headline promise, measured the same way every time.
+Gate: lighthouse/mobile/performance
+
+### R-GATE-11 Unit tests
+MUST. `npm test` (Node's test runner over `engine/tools/test/*.test.js`) passes; browser-driven gate tests run with `SMOKE=1 npm test` against a built site.
+Why: The gates are code and must not regress.
+Gate: manual: checklists/pre-delivery.md
+
+### R-GATE-12 Manual checklist
+MUST. `checklists/pre-delivery.md` is completed and its result recorded in `reports/latest.md`, including the R-A11Y-20 checks, the R-SCH-13 Rich Results check and the R-LAY-05 reflow check.
+Why: What automation cannot see still has to be seen.
+Gate: manual: checklists/pre-delivery.md
+
+### R-GATE-13 Planned checks
+SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `consistency/logical-props` (no physical direction utilities), `consistency/motion-safe` (every animation class under `motion-safe:`), `consistency/role-colors` (no palette colour classes), `budget/contrast` (token-level contrast ratios in both schemes). They are added as the catalog phase makes their inputs stable.
+Why: Honesty about which rules are machine-checked today.
+Gate: manual: checklists/pre-delivery.md
+
+## Checklist
+
+- [ ] R-GATE-01 build and gate commands run
+- [ ] R-GATE-02 bylaws lint green
+- [ ] R-GATE-03 Nu 0/0
+- [ ] R-GATE-04 consistency green
+- [ ] R-GATE-05 schema green
+- [ ] R-GATE-06 budgets green
+- [ ] R-GATE-07 i18n green
+- [ ] R-GATE-08 links green
+- [ ] R-GATE-09 axe 0 violations, review list cleared
+- [ ] R-GATE-10 Lighthouse 100 × 4 × 2 profiles
+- [ ] R-GATE-11 npm test green
+- [ ] R-GATE-12 manual checklist recorded
+- [ ] R-GATE-13 planned checks tracked
