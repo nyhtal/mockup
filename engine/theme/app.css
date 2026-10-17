@@ -15,18 +15,22 @@
 /* @fonts */
 
 @theme {
-  --animate-reveal: reveal var(--reveal-duration) var(--ease-smooth) both;
-  --animate-reveal-start: reveal-start var(--reveal-duration) var(--ease-smooth) both;
+  /* forwards, not both: before its scroll range (off-screen) the element keeps its natural opacity,
+     so content is never hidden for readers, crawlers or axe (R-MOT-04). */
+  --animate-reveal: reveal var(--reveal-duration) var(--ease-smooth) forwards;
+  --animate-reveal-start: reveal-start var(--reveal-duration) var(--ease-smooth) forwards;
   --animate-drop: drop 200ms var(--ease-smooth) both;
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
+  /* Section reveals move but never fade: an element partly in view at load would be mid-fade and fail
+     contrast checks, and content must stay readable at every scroll position (R-MOT-04, R-MOT-05). */
   @keyframes reveal {
-    from { opacity: 0; transform: translateY(var(--reveal-distance)); }
-    to { opacity: 1; transform: none; }
+    from { transform: translateY(var(--reveal-distance)); }
+    to { transform: none; }
   }
   @keyframes reveal-start {
-    from { opacity: 0; transform: translateX(calc(var(--reveal-distance) * -1)); }
-    to { opacity: 1; transform: none; }
+    from { transform: translateX(calc(var(--reveal-distance) * -1)); }
+    to { transform: none; }
   }
   @keyframes drop {
     from { opacity: 0; transform: translateY(-0.5rem); }

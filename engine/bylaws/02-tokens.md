@@ -63,7 +63,7 @@ Why: One switch changes the feel of the whole site without touching components.
 Gate: manual: checklists/new-site.md
 
 ### R-TOK-13 Animation tokens
-MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes: `reveal` (opacity 0 → 1, translateY(var(--reveal-distance)) → none), `reveal-start` (same, translateX from the inline-start side), `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1). All animate only `opacity` and `transform`.
+MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes: `reveal` (translateY(var(--reveal-distance)) → none, transform only), `reveal-start` (translateX from the inline-start side, transform only), `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1). All animate only `opacity` and `transform`; the two scroll reveals never touch opacity, because an element partly in view at load would be mid-fade and fail contrast checks.
 Why: Five entrances cover every component; a fixed list keeps the CSS small.
 Gate: manual: checklists/new-component.md
 

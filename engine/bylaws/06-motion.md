@@ -23,7 +23,7 @@ Why: Lighthouse, crawlers and browsers without support must see the full page.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-MOT-05 The reveal pattern
-MUST. A section or card that reveals on scroll uses exactly: `motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]` and, for the script fallback, `motion-safe:js:not-data-revealed:opacity-0 motion-safe:js:transition motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth motion-safe:js:data-revealed:opacity-100` plus the `data-reveal` attribute the script observes. The LCP element and anything above the fold never carries reveal classes.
+MUST. A section or card that reveals on scroll uses exactly: `motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]` and, for the script fallback, `motion-safe:js:not-data-revealed:translate-y-4 motion-safe:js:data-revealed:translate-y-0 motion-safe:js:transition-transform motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth` plus the `data-reveal` attribute the script observes. Both reveal paths move the element and never change its opacity, so content is readable at every scroll position and axe measures real colours (R-MOT-04). The LCP element and anything above the fold never carries reveal classes.
 Why: One exact string keeps reveals identical and keeps the hero out of the animation.
 Gate: manual: checklists/new-component.md
 
