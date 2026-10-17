@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { loadSite } from "./lib/site.js";
 import { brandTokens } from "./lib/theme.js";
 import { fontPlan, copyFonts } from "./build-fonts.js";
+import { injectSprites } from "./build-icons.js";
 
 export function parseArgs(argv) {
   const i = argv.indexOf("--site");
@@ -45,6 +46,8 @@ export async function build({ site }) {
 
   const fonts = fontPlan(siteConfig.brand || {}, siteConfig.locales);
   copyFonts(fonts, dist);
+  // Sprites go in before Tailwind runs so the sprite's `hidden` class is part of the compiled CSS.
+  injectSprites(dist);
   const css = readFileSync("engine/theme/app.css", "utf8")
     .replaceAll("__SITE__", site)
     .replace("/* @brand */", brandTokens(siteConfig.brand || {}))

@@ -14,7 +14,7 @@ test("symbol wraps the icon paths in a <symbol> with the shared stroke attribute
   assert.match(s, /^<symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">/);
   assert.match(s, /<path d="M5 12h14"\s*\/>/);
   assert.match(s, /<path d="m12 5 7 7-7 7"\s*\/>/);
-  assert.doesNotMatch(s, /class=|width=|height=|<!--/);
+  assert.doesNotMatch(s, /\sclass=|\swidth=|\sheight=|<!--/);
   assert.match(s, /<\/symbol>$/);
 });
 
@@ -49,7 +49,7 @@ test("injectSprites gives each page only its own symbols, removes the placeholde
   assert.doesNotMatch(b, /<!--sprite-->|<symbol/);
   const again = injectSprites(dir, { only: ["a/index.html", "b/index.html"] });
   assert.equal(readFileSync(path.join(dir, "a", "index.html"), "utf8"), a, "second run leaves the file identical");
-  assert.equal(again.pages, 2);
+  assert.equal(again.pages, 0, "nothing left to inject on a second run");
 });
 
 test("an unknown icon on a page fails the build naming the page and the icon", () => {

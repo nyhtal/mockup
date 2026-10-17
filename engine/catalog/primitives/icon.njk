@@ -1,0 +1,14 @@
+{#
+  name: icon
+  purpose: One Lucide icon from the per-page sprite (R-HTML-13, R-COMP-13).
+  anatomy: svg[aria-hidden] > use[href=#i-name]
+  variants: size-4 (inline text), size-5 (buttons, nav; default), size-6 (feature grids)
+  states: none (colour follows currentColor)
+  spacing: shrink-0; the caller adds gap-* on the flex parent
+  motion: none; directional icons flip with rtl:-scale-x-100 via opts.class
+  keyboard: not focusable
+  a11y: always aria-hidden; the visible text or an sr-only span next to it carries the meaning
+  i18n: pass "rtl:-scale-x-100" in opts.class for arrows and chevrons that point along the reading direction
+  content limits: name must be in engine/icons.json; the build fails otherwise
+#}
+{% macro icon(name, opts={}) %}<svg aria-hidden="true" class="{{ opts.size or 'size-5' }} shrink-0{% if opts.class %} {{ opts.class }}{% endif %}"><use href="#i-{{ name }}"></use></svg>{% endmacro %}

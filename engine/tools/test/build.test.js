@@ -28,7 +28,7 @@ test("build produces the reference home page and css", () => {
   assert.ok(existsSync("dist/reference/en/index.html"));
   assert.ok(existsSync("dist/reference/assets/app.css"));
   const html = readFileSync("dist/reference/en/index.html", "utf8");
-  assert.match(html, /<html lang="en" dir="ltr">/);
+  assert.match(html, /<html lang="en" dir="ltr" class="scheme-light-dark scroll-pt-20">/);
   assert.match(html, /<link rel="stylesheet" href="\/assets\/app.css">/);
 });
 
