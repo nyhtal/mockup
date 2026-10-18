@@ -71,8 +71,8 @@ export function formatReport({ site, results }) {
     lines.push("", "## Lighthouse", "", `Chrome ${first.chrome} · ${first.runs} runs per page and profile, median reported · mobile: ${lh.report.find((p) => p.profile === "mobile")?.throttling || "-"} · desktop: ${lh.report.find((p) => p.profile === "desktop")?.throttling || "-"}`, "", "| Page | Profile | Perf | A11y | BP | SEO |", "|---|---|---|---|---|---|");
     for (const p of lh.report) lines.push(`| ${p.url.replace(/^https?:\/\/[^/]+/, "")} | ${p.profile} | ${p.scores.performance} | ${p.scores.accessibility} | ${p.scores["best-practices"]} | ${p.scores.seo} |`);
     if (lh.coverage?.length) {
-      lines.push("", "## Lighthouse coverage", "", "Every page in the default locale; in every other locale the first page of each page type (R-GATE-10).", "", "| Locale | Page type | Measured on |", "|---|---|---|");
-      for (const c of lh.coverage) lines.push(`| ${c.locale || "root"} | ${c.pageType} | ${c.url.replace(/^https?:\/\/[^/]+/, "")} |`);
+      lines.push("", "## Lighthouse coverage", "", "Every page in the default locale; in every other locale the first page of each page type (R-GATE-10).", "", "| Locale | Page type | Measured on | Status |", "|---|---|---|---|");
+      for (const c of lh.coverage) lines.push(`| ${c.locale || "root"} | ${c.pageType} | ${c.url.replace(/^https?:\/\/[^/]+/, "")} | ${c.status || "not measured"} |`);
     }
   }
   const bud = results.find((r) => r.id === "budget" && r.report?.length);

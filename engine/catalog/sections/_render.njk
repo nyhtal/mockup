@@ -2,6 +2,7 @@
   name: _render (dispatcher, not a section)
   purpose: Map a section's `type` to its macro (R-SEC-12). An unknown type fails the build.
   usage: {% from "sections/_render.njk" import section with context %}{{ section(s, ctx) }}
+  note: every import is "with context" so the t filter sees the page's language; an argument a caller omits falls through to a page variable of the same name, so page data never uses macro argument names (the entity list is "entityList", the entity "e")
 #}
 {% from "sections/hero.njk" import render as hero with context %}
 {% from "sections/page-header.njk" import render as pageHeader with context %}

@@ -969,7 +969,9 @@
       "related": [
         "safety-assessor",
         "support-engineer-german"
-      ]
+      ],
+      "city": "Manchester",
+      "country": "GB"
     },
     {
       "slug": "support-engineer-german",
@@ -987,7 +989,9 @@
       "related": [
         "senior-controls-engineer",
         "technical-writer"
-      ]
+      ],
+      "city": "Hamburg",
+      "country": "DE"
     },
     {
       "slug": "safety-assessor",
@@ -1001,9 +1005,14 @@
       "validThrough": "2026-11-30",
       "description": "Sicherheitsprüfer (m/w/d) bei Northwind Dynamics, remote in der EU: Verriegelungsbegehungen an Kundenlinien, Nachweispakete ablegen, neue Prüfer ausbilden.",
       "lede": "Verriegelungsbegehungen an Kundenlinien durchführen und die Nachweispakete ablegen.",
-      "body": "## Was Sie tun werden\n\n- Verriegelungsbegehungen an Kundenlinien mit der HSE-Leitung des Werks durchführen.\n- Nachweispakete aus Tests, Versionen und Freigaben zusammenstellen.\n- Neue Prüfer in der Begehungsmethode ausbilden.\n\n## Was wir suchen\n\n- Erfahrung in der Bewertung funktionaler Sicherheit an Produktionslinien.\n- Sicherer Umgang mit generierter Sicherheitslogik und die Fähigkeit, sie einem Werksteam zu erklären.\n- Bereitschaft, etwa zwei Wochen im Monat in der EU zu reisen.\n\n## Wie wir arbeiten\n\nDie Stelle ist remote innerhalb der EU mit Reisen zu Werken. Prüfungen werden einen Monat im Voraus geplant, sodass Reisen planbar sind.",
+      "body": "## Was Sie tun werden\n\n- Verriegelungsbegehungen an Kundenlinien mit der HSE-Leitung des Werks durchführen.\n- Nachweispakete aus Tests, Versionen und Freigaben zusammenstellen.\n- Neue Prüfer in der Begehungsmethode ausbilden.\n\n## Was wir suchen\n\n- Erfahrung in der Bewertung funktionaler Sicherheit an Produktionslinien.\n- Sicherer Umgang mit generierter Sicherheitslogik und die Fähigkeit, sie einem Werksteam zu erklären.\n- Bereitschaft, etwa zwei Wochen im Monat in der EU zu reisen.\n\n## Wie wir arbeiten\n\nDie Stelle ist remote aus Deutschland, Österreich oder den Niederlanden, mit Reisen zu Werken. Prüfungen werden einen Monat im Voraus geplant, sodass Reisen planbar sind.",
       "related": [
         "senior-controls-engineer"
+      ],
+      "applicantCountries": [
+        "Germany",
+        "Austria",
+        "Netherlands"
       ]
     },
     {
@@ -1021,7 +1030,9 @@
       "body": "## Was Sie tun werden\n\n- Das Hilfe-Center verantworten: Anleitungen, Referenzseiten und Versionshinweise.\n- Die Beschreibungsvorlagen so überarbeiten, dass ein neuer Ingenieur sie an einem Tag nutzen kann.\n- Das Glossar mit den Übersetzern über Englisch, Deutsch und Arabisch konsistent halten.\n\n## Was wir suchen\n\n- Drei oder mehr Jahre Schreiben für Ingenieure oder Bediener.\n- Klare, kurze Sätze aus Gewohnheit.\n- Etwas Vertrautheit mit industrieller Automatisierung; den Rest bringen wir Ihnen bei.\n\n## Wie wir arbeiten\n\nDrei Tage pro Woche in Manchester, einer davon flexibel.",
       "related": [
         "support-engineer-german"
-      ]
+      ],
+      "city": "Manchester",
+      "country": "GB"
     }
   ],
   "events": [
@@ -1084,7 +1095,7 @@
       ]
     },
     {
-      "slug": "northwind-at-sps",
+      "slug": "northwind-at-automation-fair",
       "title": "Northwind auf der Automatisierungsmesse",
       "format": "Konferenz",
       "date": "2027-01-21",

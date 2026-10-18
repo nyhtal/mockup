@@ -33,7 +33,12 @@ test("schema nodes carry the fields bylaw 13 names for each kind", () => {
   assert.equal(job["@type"], "JobPosting");
   assert.deepEqual([job.title, job.datePosted, job.validThrough, job.employmentType, job.hiringOrganization], ["J", "2026-10-06", "2026-12-31", "FULL_TIME", org]);
   assert.equal(job.jobLocation["@type"], "Place");
-  assert.equal(entityNode("jobs", { slug: "r", title: "R", posted: "2026-10-06", validThrough: "2026-12-31", employmentType: "FULL_TIME", location: "Remote", remote: true }, ctx).jobLocationType, "TELECOMMUTE");
+  assert.deepEqual(job.jobLocation.address, { "@type": "PostalAddress", addressLocality: "Hamburg" });
+  const onsiteJob = entityNode("jobs", { slug: "o", title: "O", posted: "2026-10-06", validThrough: "2026-12-31", employmentType: "FULL_TIME", location: "Manchester or remote", city: "Manchester", country: "GB" }, ctx);
+  assert.deepEqual(onsiteJob.jobLocation.address, { "@type": "PostalAddress", addressLocality: "Manchester", addressCountry: "GB" });
+  const remote = entityNode("jobs", { slug: "r", title: "R", posted: "2026-10-06", validThrough: "2026-12-31", employmentType: "FULL_TIME", location: "Remote", remote: true, applicantCountries: ["Germany", "Austria"] }, ctx);
+  assert.equal(remote.jobLocationType, "TELECOMMUTE");
+  assert.deepEqual(remote.applicantLocationRequirements, [{ "@type": "Country", name: "Germany" }, { "@type": "Country", name: "Austria" }]);
 
   const ev = entityNode("events", { slug: "e", title: "E", description: "Desc", date: "2026-11-12", time: "10:00", end: "11:00", tz: "+01:00", format: "Webinar", location: "Online", online: true }, ctx);
   assert.equal(ev["@type"], "Event");

@@ -74,7 +74,8 @@ const NODES = {
     "@type": "JobPosting", title: e.title, description: e.description, datePosted: e.posted, validThrough: e.validThrough, employmentType: e.employmentType,
     hiringOrganization: orgRef(c.site), url: entityUrl("jobs", e.slug, c.locale),
     jobLocationType: e.remote ? "TELECOMMUTE" : undefined,
-    jobLocation: e.remote ? undefined : { "@type": "Place", address: { "@type": "PostalAddress", addressLocality: e.location } },
+    applicantLocationRequirements: e.remote && e.applicantCountries ? e.applicantCountries.map((name) => ({ "@type": "Country", name })) : undefined,
+    jobLocation: e.remote ? undefined : { "@type": "Place", address: clean({ "@type": "PostalAddress", addressLocality: e.city || e.location, addressCountry: e.country }) },
   }),
   events: (e, c) => {
     const tz = e.tz || "Z";

@@ -50,7 +50,13 @@
     "sectionNav": "Bereichsnavigation",
     "apply": "Anwenden",
     "clearFilters": "Filter zurücksetzen",
-    "resultsFor": "{count} Treffer für „{query}“",
+    "resultsFor": {
+      "one": "{count} Treffer für „{query}“",
+      "two": "{count} Treffer für „{query}“",
+      "few": "{count} Treffer für „{query}“",
+      "many": "{count} Treffer für „{query}“",
+      "other": "{count} Treffer für „{query}“"
+    },
     "noResultsTitle": "Nichts passt zu dieser Suche",
     "noResultsText": "Prüfen Sie die Schreibweise oder versuchen Sie einen allgemeineren Begriff. Sie können auch die Hauptbereiche durchsehen.",
     "moreInfo": "Mehr Informationen zu {label}",
@@ -93,7 +99,13 @@
     "articleDetails": "Artikeldetails",
     "filters": "Filter",
     "stepOf": "Schritt {n} von {max}",
-    "readingTime": "{n} Min. Lesezeit",
+    "readingTime": {
+      "one": "{n} Min. Lesezeit",
+      "two": "{n} Min. Lesezeit",
+      "few": "{n} Min. Lesezeit",
+      "many": "{n} Min. Lesezeit",
+      "other": "{n} Min. Lesezeit"
+    },
     "tags": "Schlagwörter",
     "allPages": "Alle Seiten"
   },

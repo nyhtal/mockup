@@ -1,6 +1,6 @@
 # Reference site decisions
 
-All names, figures and quotes on this site are fictional. Northwind Dynamics, its customers, people, offices, awards and certifications are invented for the mockup; no real company, person, award body or regulator is referenced.
+All names, figures and quotes on this site are fictional. Northwind Dynamics, its customers, people, offices, awards and certifications are invented for the mockup; no real company, person, award body or regulator is quoted or given figures. The controller families, historians and engineering tools the products integrate with are named as compatibility facts only (R-CONT-11).
 
 ## Brief
 

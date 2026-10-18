@@ -120,7 +120,16 @@ export function formatCurrency(n, locale, code, site = {}) {
 export default function (eleventyConfig) {
   const siteName = process.env.SITE || "reference";
   const { site, siteDir, data: siteData, i18n: strings } = loadSite(siteName);
-  const t = (locale, key) => key.split(".").reduce((o, k) => (o == null ? o : o[k]), strings[locale]);
+  const lookupString = (locale, key) => key.split(".").reduce((o, k) => (o == null ? o : o[k]), strings[locale]);
+  // Plural strings are objects of CLDR forms (one, two, few, many, other); every locale lists every form so the keys gate stays exact.
+  const t = (locale, key, n) => {
+    const v = lookupString(locale, key);
+    if (v && typeof v === "object" && !Array.isArray(v)) {
+      const form = n == null ? "other" : new Intl.PluralRules(locale).select(Number(n));
+      return (v[form] ?? v.other ?? "").replace(/\{(n|count)\}/g, String(n ?? ""));
+    }
+    return v;
+  };
   const virtual = (name) => readFileSync(path.join("engine", "catalog", "virtual", name), "utf8");
   const fonts = fontPlan(site.brand || {}, site.locales);
   const fmtFor = (locale) => ({ date: (iso) => formatDate(iso, locale, site) });
@@ -145,7 +154,7 @@ export default function (eleventyConfig) {
     const lang = locale || site.defaultLocale;
     return planSections(samples, sections, {
       locale: lang, pageUrl, density, demote, breadcrumbs, header: header || undefined,
-      siteSections: siteData[lang]?.pages?.sections || {}, entities: siteData[lang]?.entities || {}, entity: this.ctx?.e,
+      siteSections: siteData[lang]?.pages?.sections || {}, defaultSiteSections: lang === site.defaultLocale ? undefined : siteData[site.defaultLocale]?.pages?.sections || {}, entities: siteData[lang]?.entities || {}, entity: this.ctx?.e,
       site, fmt: fmtFor(lang), md: renderMarkdown, toc: tocOf,
     });
   });
@@ -171,7 +180,7 @@ export default function (eleventyConfig) {
     readingTime: (data) => {
       if (data.readingTime || !data.e?.body || data.layout !== "article.njk") return data.readingTime;
       const lang = data.page.lang || site.defaultLocale;
-      return (t(lang, "ui.readingTime") || "{n}").replace("{n}", String(Math.max(1, Math.round(wordCount(data.e.body) / 200))));
+      return t(lang, "ui.readingTime", Math.max(1, Math.round(wordCount(data.e.body) / 200)));
     },
     author: (data) => {
       if (data.author || !data.e?.author) return data.author;
@@ -218,9 +227,9 @@ export default function (eleventyConfig) {
     schemaJson: (data) => schemaJson(site, data),
   });
 
-  eleventyConfig.addFilter("t", function (key) {
+  eleventyConfig.addFilter("t", function (key, n) {
     const lang = this.ctx?.page?.lang || site.defaultLocale;
-    const value = t(lang, key);
+    const value = t(lang, key, n);
     if (value == null) throw new Error(`Missing i18n key "${key}" for locale "${lang}"`);
     return value;
   });
@@ -318,7 +327,7 @@ export default function (eleventyConfig) {
       if (!items.length) continue;
       eleventyConfig.addTemplate(`${locale}/_engine/detail-${pageType}.njk`, virtual("entity.njk"), {
         lang: locale, pageType, entityKind: kind, layout: r.layout === "article" ? "article.njk" : "page.njk",
-        items, pagination: { data: "items", size: 1, alias: "e", addAllPagesToCollections: true },
+        entityList: items, pagination: { data: "entityList", size: 1, alias: "e", addAllPagesToCollections: true },
         permalink: `/${locale}/${ENTITY_INDEX[kind]}/{{ e.slug }}/index.html`,
         title: r.title, description: r.description, eyebrow: r.eyebrow, lede: r.lede, sections: r.sections || [],
         toc: r.toc, noindex: r.noindex, conversion: r.conversion,
@@ -337,7 +346,7 @@ export default function (eleventyConfig) {
     // Atom feed of the blog (R-SEO-08).
     const posts = [...(entities.posts || [])].sort((a, b) => (a.date < b.date ? 1 : -1)).map((p) => ({ ...p, authorName: (entities.people || []).find((x) => x.slug === p.author)?.name }));
     if (posts.length) {
-      eleventyConfig.addTemplate(`${locale}/_engine/feed.njk`, virtual("feed.njk"), { lang: locale, posts, feedTitle: pages.feedTitle || site.tagline || site.name, permalink: `/${locale}/feed.xml` });
+      eleventyConfig.addTemplate(`${locale}/_engine/feed.njk`, virtual("feed.njk"), { lang: locale, posts, feedTitle: pages.feedTitle || tagline(locale) || site.name, permalink: `/${locale}/feed.xml` });
     }
   }
 

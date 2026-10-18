@@ -969,7 +969,9 @@
       "related": [
         "safety-assessor",
         "support-engineer-german"
-      ]
+      ],
+      "city": "Manchester",
+      "country": "GB"
     },
     {
       "slug": "support-engineer-german",
@@ -987,7 +989,9 @@
       "related": [
         "senior-controls-engineer",
         "technical-writer"
-      ]
+      ],
+      "city": "Hamburg",
+      "country": "DE"
     },
     {
       "slug": "safety-assessor",
@@ -1001,9 +1005,14 @@
       "validThrough": "2026-11-30",
       "description": "Safety assessor at Northwind Dynamics, remote within the EU: run interlock walk-downs on customer lines, file evidence packs and train new assessors.",
       "lede": "Run interlock walk-downs on customer lines and file the evidence packs.",
-      "body": "## What you will do\n\n- Run interlock walk-downs on customer lines with the plant's HSE lead.\n- Assemble evidence packs from tests, versions and sign-offs.\n- Train new assessors in the walk-down method.\n\n## What we look for\n\n- Experience assessing functional safety on production lines.\n- Comfortable reading generated safety logic and explaining it to a plant team.\n- Willing to travel about two weeks a month across the EU.\n\n## How we work\n\nThe role is remote within the EU with travel to plants. Reviews are scheduled a month ahead, so travel is predictable.",
+      "body": "## What you will do\n\n- Run interlock walk-downs on customer lines with the plant's HSE lead.\n- Assemble evidence packs from tests, versions and sign-offs.\n- Train new assessors in the walk-down method.\n\n## What we look for\n\n- Experience assessing functional safety on production lines.\n- Comfortable reading generated safety logic and explaining it to a plant team.\n- Willing to travel about two weeks a month across the EU.\n\n## How we work\n\nThe role is remote from Germany, Austria or the Netherlands, with travel to plants. Reviews are scheduled a month ahead, so travel is predictable.",
       "related": [
         "senior-controls-engineer"
+      ],
+      "applicantCountries": [
+        "Germany",
+        "Austria",
+        "Netherlands"
       ]
     },
     {
@@ -1021,7 +1030,9 @@
       "body": "## What you will do\n\n- Own the help centre: guides, reference pages and release notes.\n- Edit the description templates so a new engineer can use them in a day.\n- Keep the glossary consistent across English, German and Arabic with the translators.\n\n## What we look for\n\n- Three or more years writing for engineers or operators.\n- Plain, short sentences by habit.\n- Some familiarity with industrial automation; we will teach the rest.\n\n## How we work\n\nThree days a week in Manchester, with one of them flexible.",
       "related": [
         "support-engineer-german"
-      ]
+      ],
+      "city": "Manchester",
+      "country": "GB"
     }
   ],
   "events": [
@@ -1084,7 +1095,7 @@
       ]
     },
     {
-      "slug": "northwind-at-sps",
+      "slug": "northwind-at-automation-fair",
       "title": "Northwind at the automation fair",
       "format": "Conference",
       "date": "2027-01-21",

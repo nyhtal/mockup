@@ -50,7 +50,13 @@
     "sectionNav": "",
     "apply": "",
     "clearFilters": "",
-    "resultsFor": "",
+    "resultsFor": {
+      "one": "",
+      "two": "",
+      "few": "",
+      "many": "",
+      "other": ""
+    },
     "noResultsTitle": "",
     "noResultsText": "",
     "moreInfo": "",
@@ -93,7 +99,13 @@
     "articleDetails": "",
     "filters": "",
     "stepOf": "",
-    "readingTime": "",
+    "readingTime": {
+      "one": "",
+      "two": "",
+      "few": "",
+      "many": "",
+      "other": ""
+    },
     "tags": "",
     "allPages": ""
   },

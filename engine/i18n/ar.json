@@ -50,7 +50,13 @@
     "sectionNav": "تنقل القسم",
     "apply": "تطبيق",
     "clearFilters": "مسح عوامل التصفية",
-    "resultsFor": "{count} نتائج لـ «{query}»",
+    "resultsFor": {
+      "one": "نتيجة واحدة لـ «{query}»",
+      "two": "نتيجتان لـ «{query}»",
+      "few": "{count} نتائج لـ «{query}»",
+      "many": "{count} نتيجة لـ «{query}»",
+      "other": "{count} نتيجة لـ «{query}»"
+    },
     "noResultsTitle": "لا توجد نتائج مطابقة لهذا البحث",
     "noResultsText": "تحقق من الإملاء أو جرّب مصطلحًا أعم. يمكنك أيضًا تصفح الأقسام الرئيسية.",
     "moreInfo": "مزيد من المعلومات عن {label}",
@@ -93,7 +99,13 @@
     "articleDetails": "تفاصيل المقال",
     "filters": "عوامل التصفية",
     "stepOf": "الخطوة {n} من {max}",
-    "readingTime": "{n} دقائق قراءة",
+    "readingTime": {
+      "one": "دقيقة واحدة للقراءة",
+      "two": "دقيقتان للقراءة",
+      "few": "{n} دقائق قراءة",
+      "many": "{n} دقيقة قراءة",
+      "other": "{n} دقيقة قراءة"
+    },
     "tags": "الوسوم",
     "allPages": "كل الصفحات"
   },

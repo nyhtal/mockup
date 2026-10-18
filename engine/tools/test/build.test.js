@@ -122,11 +122,11 @@ test("UI strings on German and Arabic pages come from their locale, inside impor
   // The font stack carries the Arabic face so Arabic text is not set in the Latin fallback.
   assert.match(readFileSync("dist/reference/assets/app.css", "utf8"), /"Inter Variable", "Noto Sans Arabic Variable"/);
   // Below sm the header keeps only the wordmark and the menu button; search and languages sit in the drawer (R-LAY-05).
-  assert.match(ar, /popovertarget="locales"[^>]*>[\s\S]*?<span class="hidden sm:inline">/);
+  assert.match(ar, /popovertarget="locales"[^>]*>[\s\S]*?<span class="hidden xl:inline">/);
   assert.match(ar, /data-component="locale-switcher" class="hidden sm:block"/);
   assert.match(ar, /<a href="\/ar\/search\/" class="hidden size-11 sm:inline-flex/);
   assert.match(ar, /id="drawer"[\s\S]*<a href="\/ar\/search\/" class="[^"]*sm:hidden"/);
-  assert.match(ar, /class="h-7 sm:h-8 fill-ink-brand w-auto"/);
+  assert.match(ar, /class="h-7 xl:h-8 fill-ink-brand w-auto"/);
 });
 
 test("every indexable page is in sitemap.xml, every og:image file exists, and the last breadcrumb is the page title (paginated detail pages included)", () => {
@@ -137,4 +137,26 @@ test("every indexable page is in sitemap.xml, every og:image file exists, and th
   assert.ok(existsSync(`dist/reference${og}`), `${og} exists`);
   const crumbs = /data-component="breadcrumbs">([\s\S]*?)<\/nav>/.exec(de)[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
   assert.match(crumbs, /Generierten SPS-Code an einem Nachmittag lesen$/);
+});
+
+
+test("review fixes: German hyphenation and wrapping, Arabic leading and tracking, mirrored card arrow, plural strings, lg header", () => {
+  const de = readFileSync("dist/reference/de/resources/downloads/downtime-calculator/index.html", "utf8");
+  assert.match(de, /<body class="[^"]*hyphens-auto[^"]*wrap-break-word/);
+  const ar = readFileSync("dist/reference/ar/blog/reading-generated-code/index.html", "utf8");
+  assert.match(ar, /<body class="[^"]*\[&_h1\]:leading-snug[^"]*\[&_\*\]:tracking-normal/);
+  assert.match(ar, /<div class="max-w-prose text-base leading-loose/);
+  assert.match(readFileSync("dist/reference/ar/careers/safety-assessor/index.html", "utf8"), /<div class="max-w-prose text-base leading-loose/);
+  assert.doesNotMatch(readFileSync("dist/reference/ar/services/index.html", "utf8"), /→/);
+  assert.match(readFileSync("dist/reference/ar/services/index.html", "utf8"), /#i-arrow-right"[\s\S]{0,40}<\/svg>/);
+  assert.match(readFileSync("dist/reference/en/services/index.html", "utf8"), /rtl:-scale-x-100"><use href="#i-arrow-right">/);
+  // Plural forms (Important 6): Arabic reading time is not "1 دقائق".
+  assert.doesNotMatch(ar, /1 دقائق/);
+  assert.match(ar, /دقيقة واحدة للقراءة|دقيقتان للقراءة|دقائق قراءة|دقيقة قراءة/);
+  assert.match(readFileSync("dist/reference/en/search/index.html", "utf8"), /3 results for/);
+  // Header at lg (Critical 3): label only from xl, wordmark h-7 until xl, CTA never wraps.
+  const en = readFileSync("dist/reference/en/index.html", "utf8");
+  assert.match(en, /<span class="hidden xl:inline">English<\/span>/);
+  assert.match(en, /class="h-7 xl:h-8 fill-ink-brand w-auto"/);
+  assert.match(en, /<a href="\/en\/demo\/" class="hidden min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md/);
 });

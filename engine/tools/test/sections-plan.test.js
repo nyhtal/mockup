@@ -92,3 +92,11 @@ test("a `header` is prepended as a page-header unless the page already opens wit
   assert.deepEqual(planSections(samples, [{ type: "page-header", title: "Own" }], { ...opts, header }).map((p) => p.s.title), ["Own"]);
   assert.deepEqual(planSections(samples, [], { ...opts, header }).map((p) => p.s.type), ["page-header"]);
 });
+
+
+test("a site section id that exists in the default locale but not in this locale fails the build instead of falling back to a catalog sample (R-I18N-12)", () => {
+  const defaultSiteSections = { grid: { type: "feature-grid", title: "English site grid" } };
+  assert.throws(() => planSections(samples, ["grid"], { ...full, siteSections: {}, defaultSiteSections }), /Section "grid" is defined for the default locale but not for "de"/);
+  // Catalog sample ids that no locale redefines still resolve.
+  assert.equal(planSections(samples, ["hero"], { ...full, siteSections: {}, defaultSiteSections })[0].s.type, "hero");
+});

@@ -53,7 +53,7 @@ Why: One place to translate; one place to keep wording consistent.
 Gate: manual: checklists/new-component.md
 
 ### R-CONT-11 Fictional, plausible, marked
-MUST. Every company, person, customer, figure and quote is invented. Figures are plausible for the industry and never cite a real company, award body or regulator. Each site's `DECISIONS.md` carries the line "All names, figures and quotes on this site are fictional."
+MUST. Every company, person, customer, figure and quote is invented. Figures are plausible for the industry and never cite a real company, award body or regulator. Third-party platforms a product interoperates with (controller families, historians, engineering tools) may be named as compatibility facts only: never quoted, endorsed, given figures or made a customer. Each site's `DECISIONS.md` carries the line "All names, figures and quotes on this site are fictional."
 Why: A mockup that reads as real can mislead; one that reads as fake is useless. Plausible and marked is the balance.
 Gate: manual: checklists/new-site.md
 

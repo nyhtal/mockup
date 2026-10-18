@@ -4,7 +4,7 @@
   anatomy: header[sticky] > div.container > a(logo) + nav-menu + div(actions: locale-switcher, search link, CTA, menu button)
   variants: none in v1 (a transparent-over-hero variant was removed: its children hard-code ink colours and nothing offsets main; add it with the R-COL-08 overlay when a page needs it)
   states: current page in nav; menus open via popovers
-  spacing: h-16, container, gap-4 (sm: gap-6); below sm only the wordmark (h-7) and the menu button show, so the bar fits 320 px (R-LAY-05): search and languages live in the drawer there
+  spacing: h-16, container, gap-4 (sm: gap-6); below sm only the wordmark (h-7) and the menu button show, so the bar fits 320 px (R-LAY-05): search and languages live in the drawer there; at lg the nav, an icon-only switcher and a non-wrapping CTA share 960 px with the h-7 wordmark (German fits with ~25 px to spare); labels and h-8 return at xl
   motion: none on the bar itself (R-MOT-11); popovers animate
   keyboard: logo → nav items → locale → search → CTA → menu button
   a11y: one header landmark; the logo link names the site; the menu button has sr-only text; the CTA is hidden below lg (it repeats in the drawer)
@@ -16,8 +16,8 @@
 {% from "components/locale-switcher.njk" import localeSwitcher with context %}
 {% macro header(site, locale, currentUrl, alternates, opts={}) %}
 <header class="sticky top-0 z-10 h-16 border-b border-line bg-surface/90 backdrop-blur print:static print:border-0" data-component="header">
-<div class="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:gap-6 sm:px-6 lg:px-8">
-<a href="/{{ locale }}/" class="inline-flex shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name, { size: "h-7 sm:h-8" }) }}</a>
+<div class="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:gap-6 sm:px-6 lg:gap-4 lg:px-8 xl:gap-6">
+<a href="/{{ locale }}/" class="inline-flex shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name, { size: "h-7 xl:h-8" }) }}</a>
 {{ navMenu(site.nav, locale, currentUrl) }}
 <div class="flex items-center gap-1">
 {{ localeSwitcher(alternates, locale, { class: "hidden sm:block" }) }}
@@ -25,7 +25,7 @@
 <a href="/{{ locale }}/search/" class="hidden size-11 sm:inline-flex items-center justify-center rounded-md text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-5"><use href="#i-search"></use></svg><span class="sr-only">{{ "ui.search" | t }}</span></a>
 {%- endif %}
 {%- if site.cta %}
-<a href="/{{ locale }}{{ site.cta.href }}" class="hidden min-h-11 items-center justify-center gap-2 rounded-md bg-brand-600 px-5 font-medium text-ink-inverse hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 lg:inline-flex">{{ site.cta.key | t }}</a>
+<a href="/{{ locale }}{{ site.cta.href }}" class="hidden min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-brand-600 px-5 font-medium text-ink-inverse hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 lg:inline-flex">{{ site.cta.key | t }}</a>
 {%- endif %}
 <button type="button" popovertarget="drawer" class="inline-flex size-11 items-center justify-center rounded-md text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus lg:hidden"><svg aria-hidden="true" class="size-6"><use href="#i-menu"></use></svg><span class="sr-only">{{ "ui.menu" | t }}</span></button>
 </div>

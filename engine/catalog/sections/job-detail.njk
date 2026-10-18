@@ -16,7 +16,7 @@
 <div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("clock", { size: "size-4", class: "text-ink-brand" }) }}{{ "ui.type" | t }}</dt><dd class="ms-6">{{ s.employment }}</dd></div>
 {%- if s.posted %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("calendar", { size: "size-4", class: "text-ink-brand" }) }}{{ "ui.posted" | t }}</dt><dd class="ms-6"><time datetime="{{ s.postedIso }}">{{ s.posted }}</time></dd></div>{% endif %}
 </dl>
-<div class="lg:col-span-2">{{ prose(s.body) }}</div>
+<div class="lg:col-span-2">{{ prose(s.body, { class: "hyphens-auto" if ctx.locale == "de", loose: ctx.locale == "ar" }) }}</div>
 </div>
 {% endcall %}
 {% endmacro %}

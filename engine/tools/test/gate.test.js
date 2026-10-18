@@ -55,10 +55,11 @@ test("the report lists Lighthouse coverage per locale and page type", () => {
     results: [{
       id: "lighthouse", ok: true, findings: [], ms: 9,
       report: [{ url: "http://127.0.0.1:1/en/", profile: "mobile", runs: 5, throttling: "simulate (150ms RTT, 1.6Mbps, 4x CPU)", chrome: "142.0.0.0", scores: { performance: 100, accessibility: 100, "best-practices": 100, seo: 100 } }],
-      coverage: [{ locale: "en", pageType: "home", url: "http://127.0.0.1:1/en/" }, { locale: "de", pageType: "post", url: "http://127.0.0.1:1/de/blog/one/" }],
+      coverage: [{ locale: "en", pageType: "home", url: "http://127.0.0.1:1/en/", status: "measured" }, { locale: "de", pageType: "post", url: "http://127.0.0.1:1/de/blog/one/", status: "failed: NO_FCP" }],
     }],
   };
   const text = formatReport(out);
   assert.match(text, /## Lighthouse coverage/);
-  assert.match(text, /\| de \| post \| \/de\/blog\/one\/ \|/);
+  assert.match(text, /\| en \| home \| \/en\/ \| measured \|/);
+  assert.match(text, /\| de \| post \| \/de\/blog\/one\/ \| failed: NO_FCP \|/);
 });

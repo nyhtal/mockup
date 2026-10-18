@@ -15,7 +15,7 @@
 <div class="overflow-hidden rounded-xl">{{ picture(s.cover, { sizes: "(min-width: 64rem) 33vw, 100vw", class: "aspect-[3/4] w-full object-cover" }) }}</div>
 <div class="lg:col-span-2">
 <p class="flex items-center gap-2">{{ badge(s.fileType or "PDF", { tone: "brand" }) }}{% if s.pages %}<span class="text-sm text-ink-muted">{{ s.pages }}</span>{% endif %}</p>
-<div class="mt-4">{{ prose(s.summary) }}</div>
+<div class="mt-4">{{ prose(s.summary, { class: "hyphens-auto" if ctx.locale == "de", loose: ctx.locale == "ar" }) }}</div>
 {%- set ch = "h3" if s.title else "h2" -%}
 {%- if s.contents %}<{{ ch }} class="mt-8 text-lg font-semibold">{{ s.contentsTitle or ("ui.whatIsInside" | t) }}</{{ ch }}><ul class="mt-3 list-inside list-disc space-y-1 text-base text-ink-muted">{% for c in s.contents %}<li>{{ c }}</li>{% endfor %}</ul>{% endif %}
 {%- if s.cta %}<div class="mt-8">{{ button(s.cta.label, { href: s.cta.href, icon: "download" }) }}</div>{% endif %}

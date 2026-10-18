@@ -50,6 +50,8 @@ export async function run(ctx) {
         const scores = Object.fromEntries(categories.map((c) => [c, samples[c].length ? median(samples[c]) : 0]));
         if (noindex) scores.seo = "n/a (noindex)";
         report.push({ url, profile, scores, runs, chrome: chromeVersion, throttling });
+        const row = coverage.find((c) => c.url === url);
+        if (row) { const failed = findings.find((f) => f.file === url && f.check === "lighthouse/runtime"); row.status = failed ? `failed: ${failed.message.replace(/^.*?: /, "").split(" ")[0]}` : row.status || "measured"; }
         for (const c of categories) if (scores[c] < 100) findings.push({ file: url, message: `${profile} ${c} median ${scores[c]}/100 over ${runs} run(s)`, check: `lighthouse/${profile}/${c}` });
       }
     }

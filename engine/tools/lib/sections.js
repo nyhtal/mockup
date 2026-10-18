@@ -68,7 +68,7 @@ function expand(raw, opts) {
 }
 
 export function planSections(samples, sections, opts) {
-  const { locale, pageUrl, density, demote = false, breadcrumbs = [], siteSections = {}, header } = opts;
+  const { locale, pageUrl, density, demote = false, breadcrumbs = [], siteSections = {}, defaultSiteSections, header } = opts;
   let surface = "bg-surface";
   const steps = [];
   const list = [...(sections || [])];
@@ -78,6 +78,8 @@ export function planSections(samples, sections, opts) {
     if (!first || !["hero", "page-header"].includes(first.type)) list.unshift({ type: "page-header", eyebrow: header.eyebrow, title: header.title, lede: header.lede });
   }
   for (const item of list) {
+    // A site section the default locale defines must exist in this locale too: no silent fallback to English sample copy (R-I18N-12).
+    if (typeof item === "string" && defaultSiteSections && !siteSections[item] && defaultSiteSections[item]) throw new Error(`Section "${item}" is defined for the default locale but not for "${locale}"`);
     const raw = typeof item === "string" ? siteSections[item] || samples.byId[item] : item;
     if (!raw) throw new Error(`Unknown section id "${item}"`);
     const s = expand(raw, opts);

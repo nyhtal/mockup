@@ -15,7 +15,7 @@
 <div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("map-pin", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.location if s.labels else ("ui.location" | t) }}</dt><dd class="ms-6">{{ s.location }}</dd></div>
 {%- if s.format %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("users", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.format if s.labels else ("ui.format" | t) }}</dt><dd class="ms-6">{{ s.format }}</dd></div>{% endif %}
 </dl>
-<div class="lg:col-span-2">{{ prose(s.body) }}</div>
+<div class="lg:col-span-2">{{ prose(s.body, { class: "hyphens-auto" if ctx.locale == "de", loose: ctx.locale == "ar" }) }}</div>
 </div>
 {% endcall %}
 {% endmacro %}
