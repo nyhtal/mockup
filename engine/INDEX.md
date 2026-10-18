@@ -5,13 +5,22 @@ Read the files in the order listed. Bylaws are numbered rule files in `bylaws/`;
 ## Build a new site from a Site Brief
 
 1. `site-brief/TEMPLATE.md` (the brief's fields and defaults)
-2. `DECISIONS.md` (engine-wide decisions D1–D25)
+2. `DECISIONS.md` (engine-wide decisions D1–D30)
 3. `bylaws/00-precedence.md`
 4. `bylaws/09-pages.md` (inventory and tiers → which pages to create)
 5. `bylaws/02-tokens.md` (brand inputs → `site.json`)
 6. `bylaws/10-content.md` and `bylaws/11-i18n.md` (voice, locales, strings)
 7. `bylaws/08-sections.md` (what each page is made of)
 8. `checklists/new-site.md`
+
+## Where a site's content lives (D30)
+
+- `sites/<name>/site.json`: name, locales, nav, footer, brand, contact; UI labels are keys.
+- `sites/<name>/i18n/<locale>.json`: site-specific UI strings, merged over `engine/i18n/<locale>.json` (same keys in every locale).
+- `sites/<name>/data/<locale>/entities.json`: services, products, industries, people, offices, jobs, events, downloads, posts, press, cases, docs, tags and the small lists (testimonials, customers, stats, faq groups, glossary…); same slugs in every locale.
+- `sites/<name>/data/<locale>/pages.json`: `sections` (site section definitions, referenced by id from pages; `from: "<kind>"` expands entities into cards), `detail` (recipes that generate one page per entity: `each`, `layout`, `sections` with `{e.field}` placeholders), `thankYou`, `sitemap`, `feedTitle`.
+- `sites/<name>/content/<locale>/*.md`: one front-matter file per singular page (`pageType`, `title`, `description`, `eyebrow`, `lede`, `sections`); legal pages carry their markdown body. No markup anywhere in a site.
+- Engine code behind it: `tools/lib/site.js` (loading), `tools/lib/sections.js` (resolver), `tools/lib/entities.js` (cards and schema nodes), `tools/lib/markdown.js`, `tools/lib/sampling.js` (Lighthouse coverage), `catalog/virtual/{entity,thank-you,sitemap-page,feed}.njk`.
 
 ## Add a page to a site
 

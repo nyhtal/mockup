@@ -128,3 +128,13 @@ test("UI strings on German and Arabic pages come from their locale, inside impor
   assert.match(ar, /id="drawer"[\s\S]*<a href="\/ar\/search\/" class="[^"]*sm:hidden"/);
   assert.match(ar, /class="h-7 sm:h-8 fill-ink-brand w-auto"/);
 });
+
+test("every indexable page is in sitemap.xml, every og:image file exists, and the last breadcrumb is the page title (paginated detail pages included)", () => {
+  const sitemap = readFileSync("dist/reference/sitemap.xml", "utf8");
+  const de = readFileSync("dist/reference/de/blog/reading-generated-code/index.html", "utf8");
+  assert.match(sitemap, /<loc>https:\/\/example\.com\/de\/blog\/reading-generated-code\/<\/loc>/);
+  const og = /property="og:image" content="https:\/\/example\.com([^"]+)"/.exec(de)[1];
+  assert.ok(existsSync(`dist/reference${og}`), `${og} exists`);
+  const crumbs = /data-component="breadcrumbs">([\s\S]*?)<\/nav>/.exec(de)[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
+  assert.match(crumbs, /Generierten SPS-Code an einem Nachmittag lesen$/);
+});

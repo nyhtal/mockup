@@ -199,7 +199,8 @@ export default function (eleventyConfig) {
       if (!data.pageType || data.pageType === "home" || data.pageType === "error" || data.pageType === "redirect") return [];
       const lang = data.page.lang || site.defaultLocale;
       const all = data.collections?.all || [];
-      const lookup = (url) => all.find((p) => p.url === url)?.data?.title;
+      // The page's own crumb is its title; other crumbs come from the pages at those URLs (every paginated page is in the collection).
+      const lookup = (url) => (url === data.page.url ? data.title : all.find((p) => p.url === url)?.data?.title);
       return breadcrumbTrail(data.page.url, lang, lookup, t(lang, "nav.home") || "Home");
     },
     // Schema entities: the page's entity (recipe pages) or the list the page type implies (team, locations, …).
@@ -317,7 +318,7 @@ export default function (eleventyConfig) {
       if (!items.length) continue;
       eleventyConfig.addTemplate(`${locale}/_engine/detail-${pageType}.njk`, virtual("entity.njk"), {
         lang: locale, pageType, entityKind: kind, layout: r.layout === "article" ? "article.njk" : "page.njk",
-        items, pagination: { data: "items", size: 1, alias: "e" },
+        items, pagination: { data: "items", size: 1, alias: "e", addAllPagesToCollections: true },
         permalink: `/${locale}/${ENTITY_INDEX[kind]}/{{ e.slug }}/index.html`,
         title: r.title, description: r.description, eyebrow: r.eyebrow, lede: r.lede, sections: r.sections || [],
         toc: r.toc, noindex: r.noindex, conversion: r.conversion,
