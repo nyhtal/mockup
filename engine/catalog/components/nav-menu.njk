@@ -27,7 +27,7 @@
 </ul>
 </div>
 {%- else %}
-<a href="{{ href }}" class="inline-flex min-h-11 items-center rounded-md px-3 text-sm font-medium hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 {{ 'text-ink-brand' if currentUrl == href else 'text-ink' }}"{% if currentUrl == href %} aria-current="page"{% endif %}>{{ item.key | t }}</a>
+<a href="{{ href }}" class="relative inline-flex min-h-11 items-center px-3 text-sm font-medium after:absolute after:inset-x-3 after:bottom-2 after:h-0.5 after:rounded-full after:bg-brand-600 after:scale-x-0 after:origin-left rtl:after:origin-right motion-safe:after:transition-transform motion-safe:after:duration-150 hover:after:scale-x-100 aria-[current=page]:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 hover:text-ink-brand {{ 'text-ink-brand' if currentUrl == href else 'text-ink' }}"{% if currentUrl == href %} aria-current="page"{% endif %}>{{ item.key | t }}</a>
 {%- endif %}
 </li>
 {%- endfor %}

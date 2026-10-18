@@ -1307,13 +1307,6 @@
           "only": "e.integrations",
           "skipEmpty": true
         },
-        {
-          "type": "testimonials",
-          "variant": "single",
-          "label": "Customer quote",
-          "from": "testimonials",
-          "limit": 1
-        },
         "cta-demo"
       ]
     },

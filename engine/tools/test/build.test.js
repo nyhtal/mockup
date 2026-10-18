@@ -149,7 +149,7 @@ test("review fixes: German hyphenation and wrapping, Arabic leading and tracking
   assert.match(readFileSync("dist/reference/ar/careers/safety-assessor/index.html", "utf8"), /<div class="max-w-prose text-base leading-loose/);
   assert.doesNotMatch(readFileSync("dist/reference/ar/services/index.html", "utf8"), /→/);
   assert.match(readFileSync("dist/reference/ar/services/index.html", "utf8"), /#i-arrow-right"[\s\S]{0,40}<\/svg>/);
-  assert.match(readFileSync("dist/reference/en/services/index.html", "utf8"), /rtl:-scale-x-100"><use href="#i-arrow-right">/);
+  assert.match(readFileSync("dist/reference/en/services/index.html", "utf8"), /rtl:-scale-x-100 rtl:group-hover:-translate-x-0\.5"><use href="#i-arrow-right">/);
   // Plural forms (Important 6): Arabic reading time is not "1 دقائق".
   assert.doesNotMatch(ar, /1 دقائق/);
   assert.match(ar, /دقيقة واحدة للقراءة|دقيقتان للقراءة|دقائق قراءة|دقيقة قراءة/);
@@ -180,4 +180,19 @@ test("motion: smooth scrolling, floating back-to-top under sda, staggered item r
   assert.match(css, /--reveal-distance: ?24px/);
   assert.match(css, /@keyframes rise-in/);
   assert.match(css, /@keyframes reveal-end/);
+});
+
+test("micro-interactions: primary buttons lift, press and nudge their arrow (mirrored in RTL); cards warm their border; disclosure chevrons rotate; nav links grow an underline", () => {
+  const en = readFileSync("dist/reference/en/index.html", "utf8");
+  const primary = /<a href="\/en\/demo\/" class="group inline-flex [^"]*"[^>]*data-variant="primary"[^>]*>[\s\S]*?<\/a>/.exec(en)[0];
+  assert.match(primary, /motion-safe:hover:-translate-y-px/);
+  assert.match(primary, /active:scale-\[0\.98\]/);
+  assert.match(primary, /hover:shadow-md/);
+  assert.match(primary, /class="size-5 shrink-0 motion-safe:transition-transform motion-safe:duration-150 group-hover:translate-x-0\.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0\.5"><use href="#i-arrow-right">/);
+  const services = readFileSync("dist/reference/en/services/index.html", "utf8");
+  assert.match(services, /<li class="group relative flex flex-col[^"]*hover:border-brand-300/);
+  assert.match(services, /<span class="mb-4 inline-flex size-12[^"]*group-hover:scale-105/);
+  const faq = readFileSync("dist/reference/en/faq/index.html", "utf8");
+  assert.match(faq, /<summary class="[^"]*"[^>]*>[\s\S]*?group-open:rotate-180/);
+  assert.match(en, /<a href="\/en\/customers\/" class="[^"]*after:scale-x-0 after:origin-left rtl:after:origin-right[^"]*hover:after:scale-x-100/);
 });

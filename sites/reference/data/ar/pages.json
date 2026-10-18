@@ -1284,13 +1284,6 @@
           "only": "e.integrations",
           "skipEmpty": true
         },
-        {
-          "type": "testimonials",
-          "variant": "single",
-          "label": "شهادة عميل",
-          "from": "testimonials",
-          "limit": 1
-        },
         "cta-demo"
       ]
     },

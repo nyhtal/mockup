@@ -37,6 +37,7 @@ Decisions that are not derivable from the code. Each site records its own overri
 | D32 | Rhythm scale written once (DESIGN.md §2, R-LAY-02) and enforced by `consistency/rhythm`; reflow at 320 and 375 px enforced by `a11y/reflow` with puppeteer (already present through pa11y). | 2026-10-18 | bylaws 03, 19 |
 | D33 | Sample video: generated at build time from brand shapes and encoded with `ffmpeg-static` (MP4 + WebM, 1280×720, 8 s), played by a native `<video preload="none">` with a generated poster; no third-party player. | 2026-10-18 | bylaw 17 |
 | D34 | Visual vocabulary (DESIGN.md §4): hero glow and dot grid, eyebrow accent rule, gradient numerals on the stats band, testimonial quote mark, inset CTA panel, logo cloud hover colour, footer hairline. Gradients and accent use are enumerated in R-COL-02 and R-COL-09. | 2026-10-18 | bylaw 05 |
+| D35 | HTML budget for non-Latin scripts: 66 KB via a per-locale `overrides` entry in `budgets.json` (Arabic UTF-8 text is two bytes per character; the same page is about 6 % heavier than its English twin). | 2026-10-18 | R-PERF-01 |
 | D25 | Feature policy for Baseline "Newly available" items: `@starting-style`, `transition-behavior`, Popover API, `<details name>`, `:has()`, container queries, `text-wrap: balance`, `light-dark()` are in; scroll-driven animations only behind `@supports`; anchor positioning, `closedby`, `text-wrap: pretty`, `field-sizing` are out for v1. | 2026-10-17 | spec §6 |
 
 ## Fictional facts in the reference site
