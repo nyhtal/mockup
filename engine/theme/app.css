@@ -4,6 +4,15 @@
 
 /* The two progressive-enhancement variants of bylaw 06: JS present (set by enhance.js) and scroll-driven animation support. */
 @custom-variant js (&:where([data-js], [data-js] *));
+/* The hero backdrop (DESIGN §4, R-COL-09): a brand glow and an accent glow at 40 % alpha over a hairline dot grid, all faded to the surface at the edges. One element, no blur filters. */
+@utility bg-hero-backdrop {
+  background-image:
+    radial-gradient(40rem 24rem at 25% 15%, color-mix(in oklab, light-dark(var(--color-brand-200), var(--color-brand-800)) 40%, transparent), transparent 70%),
+    radial-gradient(32rem 20rem at 80% 90%, color-mix(in oklab, light-dark(var(--color-accent-200), var(--color-accent-800)) 40%, transparent), transparent 70%),
+    radial-gradient(var(--color-line) 1px, transparent 1.5px);
+  background-size: auto, auto, 1.5rem 1.5rem;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
+}
 @custom-variant sda {
   @supports (animation-timeline: view()) {
     @slot;

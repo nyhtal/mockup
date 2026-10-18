@@ -4,7 +4,7 @@
   anatomy: section[data-component=cta-band] > container > h2 + p + buttons
   variants: none
   states: none
-  spacing: py-16 md:py-24; centred; gradient background
+  spacing: py-16 md:py-24; centred; an inset rounded-2xl panel carries the gradient and a radial highlight in the top start corner (R-COL-09)
   motion: reveals
   keyboard: buttons
   a11y: inverse text on the gradient meets contrast (brand-700 base)
@@ -16,13 +16,15 @@
 {% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
 {%- set pad = "py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24" -%}
-<section class="{{ pad }} bg-linear-to-br from-brand-700 via-brand-600 to-accent-600 text-ink-inverse{{ revealClasses(ctx.reveal) }}"{% if ctx.reveal %} data-reveal{% endif %} data-component="cta-band">
-<div class="mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+<section class="{{ pad }} {{ s.surface or ctx.surface or 'bg-surface' }}{{ revealClasses(ctx.reveal) }}"{% if ctx.reveal %} data-reveal{% endif %} data-component="cta-band">
+<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+<div class="relative isolate overflow-hidden rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600 px-6 py-12 text-center text-ink-inverse shadow-xl shadow-brand-900/20 sm:px-12 md:py-16 before:absolute before:-top-32 before:-start-32 before:-z-10 before:size-96 before:rounded-full before:bg-ink-inverse/15 before:blur-3xl">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>
 {%- if s.text %}<p class="mx-auto mt-4 max-w-2xl text-lg text-ink-inverse/85">{{ s.text }}</p>{% endif %}
 <div class="mt-8 flex flex-wrap justify-center gap-3">
 {{ button(s.primary.label, { href: s.primary.href, variant: "inverse" }) }}
 {%- if s.secondary %}{{ button(s.secondary.label, { href: s.secondary.href, variant: "inverse-outline" }) }}{% endif %}
+</div>
 </div>
 </div>
 </section>

@@ -14,7 +14,8 @@
 {% from "components/back-to-top.njk" import backToTop with context %}
 {% from "primitives/wordmark.njk" import wordmark with context %}
 {% macro footer(site, locale, alternates) %}
-<footer class="border-t border-line bg-surface-alt" data-component="footer">
+<footer class="bg-surface-alt" data-component="footer">
+<div class="h-px bg-linear-to-r from-brand-600 to-accent-600" aria-hidden="true"></div>
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 <div class="flex flex-wrap items-center justify-between gap-4">
 <a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name, { size: "h-7 sm:h-8" }) }}</a>

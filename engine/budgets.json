@@ -11,6 +11,12 @@
     },
     "/ar/": {
       "html": 67584
+    },
+    "/en/index.html": {
+      "html": 65536
+    },
+    "/de/index.html": {
+      "html": 65536
     }
   }
 }

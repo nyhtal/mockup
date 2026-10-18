@@ -136,7 +136,7 @@ const CONTRAST_PAIRS = [
   ["ink-muted", "surface", 4.5], ["ink-muted", "surface-alt", 4.5], ["ink-muted", "surface-raised", 4.5],
   ["ink-brand", "surface", 4.5], ["ink-brand", "surface-alt", 4.5], ["ink-brand", "surface-raised", 4.5],
   ["ink-inverse", "brand-600", 4.5], ["ink-inverse", "brand-700", 4.5], ["ink-inverse", "accent-600", 4.5],
-  ["brand-800", "brand-100", 4.5], ["brand-800", "brand-50", 4.5],
+  ["brand-800", "brand-100", 4.5], ["brand-800", "brand-50", 4.5], ["brand-100", "brand-700", 3],
   ["line-strong", "surface", 3], ["line-strong", "surface-alt", 3], ["line-strong", "surface-raised", 3],
 ];
 

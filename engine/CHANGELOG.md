@@ -4,7 +4,7 @@ Semver per R-PREC-05: major = a previously green site now fails a gate; minor = 
 
 ## 0.4.0 — 2026-10-18
 
-Motion and style. `engine/DESIGN.md` records the design intent. Motion presets 12/24/32 px (R-TOK-12); keyframes `reveal-end` and `rise-in` (R-TOK-13); fixed hover vocabulary (R-MOT-07); overlay entrances with `@starting-style` and blurred backdrops (R-MOT-06); header shadow scroll-driven (R-MOT-08); smooth scrolling and floating back-to-top (R-MOT-13); scroll-driven appearance (R-MOT-14). Rhythm scale enforced by `consistency/rhythm` (R-LAY-02); reflow enforced by `a11y/reflow` (R-LAY-05). Button variants and effects (R-COMP-05); native `video` component (R-COMP-12); video budget (R-PERF-17); generated sample clip (R-ASSET-13). Gradients and accent placements enumerated (R-COL-02, R-COL-09). D31–D34.
+Motion and style. `engine/DESIGN.md` records the design intent. Motion presets 12/24/32 px (R-TOK-12); keyframes `reveal-end` and `rise-in` (R-TOK-13); fixed hover vocabulary (R-MOT-07); overlay entrances with `@starting-style` and blurred backdrops (R-MOT-06); header shadow scroll-driven (R-MOT-08); smooth scrolling and floating back-to-top (R-MOT-13); scroll-driven appearance (R-MOT-14). Rhythm scale enforced by `consistency/rhythm` (R-LAY-02); reflow enforced by `a11y/reflow` (R-LAY-05). Button variants and effects (R-COMP-05); native `video` component (R-COMP-12); video budget (R-PERF-17); generated sample clip (R-ASSET-13). Gradients and accent placements enumerated (R-COL-02, R-COL-09). D31–D34. Home pages of Latin-script locales get a 64 KB HTML budget (R-PERF-01, D36).
 
 ## 0.3.0 — 2026-10-17
 

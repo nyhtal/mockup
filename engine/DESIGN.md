@@ -48,7 +48,7 @@ Rules that hold everything above together: compositor properties only (transform
 - **Hero**: a radial brand glow and a second accent glow behind the content at low alpha, a faint dot grid that fades to the surface at the edges, the media in a `rounded-2xl` frame with a hairline ring and a long soft shadow.
 - **Eyebrow**: small caps in the brand colour with a 12 px accent rule before it.
 - **Stats band**: brand-700 surface, numerals in a light gradient from inverse ink to brand-100, labels at 80 % inverse ink.
-- **Testimonial**: a large quote mark in brand-100 behind the first line; the author line with avatar.
+- **Testimonial**: a large quote mark in brand-200 above the first line; the author line with avatar.
 - **CTA**: an inset `rounded-2xl` panel on the gradient (brand-700 → brand-600 → accent-600) with a radial highlight in the top start corner; buttons inverse.
 - **Logo cloud**: monochrome wordmarks in muted ink that take the brand colour on hover.
 - **Cards**: raised surface, hairline border, `rounded-lg`, hover lift.

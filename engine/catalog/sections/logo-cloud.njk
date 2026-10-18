@@ -5,7 +5,7 @@
   variants: none
   states: none
   spacing: py-12; gap-x-12 gap-y-8
-  motion: reveal as one group
+  motion: reveal as one group; wordmarks take the brand colour on hover (150 ms)
   keyboard: none (wordmarks are not links in the mockup)
   a11y: untitled section labelled by s.label; each wordmark has a title
   i18n: label from content
@@ -18,7 +18,7 @@
 {% call shell("logo-cloud", s, ctx) %}
 {%- if s.label %}<p class="text-center text-sm font-medium text-ink-muted">{{ s.label }}</p>{% endif %}
 <ul class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-{%- for name in s.items %}<li>{{ wordmark(name, { variant: "mono" }) }}</li>{% endfor %}
+{%- for name in s.items %}<li>{{ wordmark(name, { variant: "mono", class: "motion-safe:transition-colors motion-safe:duration-150 hover:fill-ink-brand" }) }}</li>{% endfor %}
 </ul>
 {% endcall %}
 {% endmacro %}

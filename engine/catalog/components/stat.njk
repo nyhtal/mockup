@@ -14,7 +14,7 @@
 {% from "primitives/badge.njk" import badge with context %}
 {% macro stat(s, opts={}) %}
 <div data-component="stat" data-variant="{{ 'inverse' if opts.inverse else 'default' }}">
-<p class="text-4xl font-bold tabular-nums {{ 'text-ink-inverse' if opts.inverse else 'text-ink' }}">{{ s.value }}</p>
+<p class="text-4xl font-bold tabular-nums {{ 'text-ink-inverse bg-linear-to-br from-ink-inverse to-brand-100 bg-clip-text supports-[background-clip:text]:text-transparent' if opts.inverse else 'text-ink' }}">{{ s.value }}</p>
 <p class="mt-1 text-sm {{ 'text-ink-inverse/80' if opts.inverse else 'text-ink-muted' }}">{{ s.label }}</p>
 {%- if s.trend %}<p class="mt-2">{{ badge(s.trend, { tone: "success" }) }}</p>{% endif %}
 </div>

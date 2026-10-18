@@ -196,3 +196,19 @@ test("micro-interactions: primary buttons lift, press and nudge their arrow (mir
   assert.match(faq, /<summary class="[^"]*"[^>]*>[\s\S]*?group-open:rotate-180/);
   assert.match(en, /<a href="\/en\/customers\/" class="[^"]*after:scale-x-0 after:origin-left rtl:after:origin-right[^"]*hover:after:scale-x-100/);
 });
+
+test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA panel, logo cloud hover, footer hairline, testimonial quote mark", () => {
+  const en = readFileSync("dist/reference/en/index.html", "utf8");
+  assert.match(en, /<section class="relative isolate overflow-hidden [^"]*"[^>]*data-component="hero"/);
+  assert.match(en, /data-component="hero"[^>]*>\n<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-hero-backdrop"><\/div>/);
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  assert.ok(css.includes(".bg-hero-backdrop{background-image:radial-gradient(40rem 24rem at 25% 15%, light-dark("), "hero backdrop glows in the CSS");
+  assert.ok(css.includes("radial-gradient(var(--color-line) 1px, transparent 1.5px)") && css.includes("mask-image:radial-gradient(#000 20%,#0000 75%)"), "hero backdrop dots and edge mask in the CSS");
+  assert.match(en, /<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/);
+  assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-3 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);
+  assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-hidden rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600/);
+  assert.match(en, /data-component="logo-cloud"[\s\S]*?<svg role="img" class="h-6 fill-ink-muted w-auto motion-safe:transition-colors motion-safe:duration-150 hover:fill-ink-brand"/);
+  assert.match(en, /<footer class="bg-surface-alt" data-component="footer">\n<div class="h-px bg-linear-to-r from-brand-600 to-accent-600" aria-hidden="true"><\/div>/);
+  const svc = readFileSync("dist/reference/en/services/line-automation/index.html", "utf8");
+  assert.match(svc, /data-component="testimonial" data-variant="single">\n<span aria-hidden="true" class="block h-12 select-none text-7xl font-bold leading-none text-brand-200">“<\/span>/);
+});

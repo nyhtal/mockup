@@ -4,7 +4,7 @@
   anatomy: figure[data-component=testimonial] > blockquote > p + figcaption(avatar + name + role + wordmark)
   variants: single (large quote, centred) | compact (card-sized, grids and carousels)
   states: none
-  spacing: single: text-2xl, max-w-3xl; compact: p-6 card
+  spacing: single: a decorative 72 px quote mark in brand-200 (h-12, overflowing) above the text-2xl quote, max-w-3xl; compact: p-6 card
   motion: none
   keyboard: none
   a11y: figure/figcaption pair; quote marks are typographic characters, not icons
@@ -17,6 +17,8 @@
 {% macro testimonial(t, opts={}) %}
 {%- set single = (opts.variant or "single") == "single" -%}
 <figure class="{{ 'mx-auto max-w-3xl text-center' if single else 'flex h-full flex-col rounded-lg border border-line bg-surface-raised p-6 shadow-sm' }}" data-component="testimonial" data-variant="{{ opts.variant or 'single' }}">
+{%- if single %}
+<span aria-hidden="true" class="block h-12 select-none text-7xl font-bold leading-none text-brand-200">“</span>{% endif %}
 <blockquote class="{{ 'text-2xl md:text-3xl font-medium tracking-tight text-balance' if single else 'text-base leading-relaxed' }}">
 <p>“{{ t.quote }}”</p>
 </blockquote>
