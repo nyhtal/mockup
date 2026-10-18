@@ -16,7 +16,7 @@
 {% from "components/testimonial.njk" import testimonial with context %}
 {% macro render(s, ctx) %}
 {%- set variant = s.variant or ("single" if s.items.length == 1 else "grid") -%}
-{% call shell("testimonials", s, ctx) %}
+{% call shell("testimonials", s, ctx, { itemsReveal: ctx.reveal }) %}
 {%- if variant == "single" %}
 {{ testimonial(s.items[0]) }}
 {%- elif variant == "carousel" %}
@@ -25,7 +25,7 @@
 </ul>
 {%- else %}
 <ul class="grid gap-6 md:grid-cols-3">
-{%- for item in s.items %}<li class="{{ stagger(loop.index0) }}">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
+{%- for item in s.items %}<li class="{{ stagger(loop.index0) if ctx.reveal }}">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
 </ul>
 {%- endif %}
 {% endcall %}

@@ -15,10 +15,10 @@
 {% from "sections/_shell.njk" import shell, stagger with context %}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
-{% call shell("benefits-grid", s, ctx) %}
+{% call shell("benefits-grid", s, ctx, { itemsReveal: ctx.reveal }) %}
 <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 {%- for item in s.items %}
-<li class="flex gap-4{{ stagger(loop.index0) }}">
+<li class="flex gap-4{{ stagger(loop.index0) if ctx.reveal }}">
 <span class="mt-1 inline-flex size-8 shrink-0 items-center justify-center rounded-md bg-brand-100 text-brand-800">{{ icon(item.icon or "check", { size: "size-4" }) }}</span>
 <div><h3 class="font-semibold">{{ item.title }}</h3><p class="mt-1 text-sm leading-relaxed text-ink-muted">{{ item.text }}</p></div>
 </li>

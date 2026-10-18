@@ -29,7 +29,7 @@ test("build produces the reference home page and css", () => {
   assert.ok(existsSync("dist/reference/en/index.html"));
   assert.ok(existsSync("dist/reference/assets/app.css"));
   const html = readFileSync("dist/reference/en/index.html", "utf8");
-  assert.match(html, /<html lang="en" dir="ltr" class="scheme-light-dark scroll-pt-20">/);
+  assert.match(html, /<html lang="en" dir="ltr" class="scheme-light-dark scroll-pt-20 motion-safe:scroll-smooth">/);
   assert.match(html, /<link rel="stylesheet" href="\/assets\/app.css">/);
 });
 
@@ -142,9 +142,9 @@ test("every indexable page is in sitemap.xml, every og:image file exists, and th
 
 test("review fixes: German hyphenation and wrapping, Arabic leading and tracking, mirrored card arrow, plural strings, lg header", () => {
   const de = readFileSync("dist/reference/de/resources/downloads/downtime-calculator/index.html", "utf8");
-  assert.match(de, /<body class="[^"]*hyphens-auto[^"]*wrap-break-word/);
+  assert.match(de, /<body id="top" class="[^"]*hyphens-auto[^"]*wrap-break-word/);
   const ar = readFileSync("dist/reference/ar/blog/reading-generated-code/index.html", "utf8");
-  assert.match(ar, /<body class="[^"]*\[&_h1\]:leading-snug[^"]*\[&_\*\]:tracking-normal/);
+  assert.match(ar, /<body id="top" class="[^"]*\[&_h1\]:leading-snug[^"]*\[&_\*\]:tracking-normal/);
   assert.match(ar, /<div class="max-w-prose text-base leading-loose/);
   assert.match(readFileSync("dist/reference/ar/careers/safety-assessor/index.html", "utf8"), /<div class="max-w-prose text-base leading-loose/);
   assert.doesNotMatch(readFileSync("dist/reference/ar/services/index.html", "utf8"), /→/);
@@ -159,4 +159,25 @@ test("review fixes: German hyphenation and wrapping, Arabic leading and tracking
   assert.match(en, /<span class="hidden xl:inline">English<\/span>/);
   assert.match(en, /class="h-7 xl:h-8 fill-ink-brand w-auto"/);
   assert.match(en, /<a href="\/en\/demo\/" class="hidden min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md/);
+});
+
+test("motion: smooth scrolling, floating back-to-top under sda, staggered item reveals without opacity, overlay entrances with blurred backdrops", () => {
+  const html = readFileSync("dist/reference/en/index.html", "utf8");
+  assert.match(html, /<html [^>]*class="[^"]*motion-safe:scroll-smooth/);
+  assert.match(html, /data-component="back-to-top" data-variant="float"/);
+  assert.match(html, /motion-safe:sda:animate-rise-in[^"]*motion-safe:sda:\[animation-timeline:scroll\(\)\]/);
+  // Grid items reveal with a shifted range; sections never hide (no opacity-0 on a section).
+  assert.match(html, /<li class="[^"]*motion-safe:sda:animate-reveal[^"]*motion-safe:sda:\[animation-range:entry_5%_cover_35%\]/);
+  assert.doesNotMatch(html, /<section class="[^"]*opacity-0/);
+  // Header shadow fades in on scroll; feature rows slide from the inline edges.
+  assert.match(html, /<header class="[^"]*motion-safe:sda:after:animate-fade[^"]*motion-safe:sda:after:\[animation-timeline:scroll\(\)\]/);
+  assert.match(html, /motion-safe:sda:animate-reveal-start/);
+  assert.match(html, /motion-safe:sda:animate-reveal-end/);
+  const guide = readFileSync("dist/reference/en/style-guide/controls/index.html", "utf8");
+  assert.match(guide, /<dialog [^>]*class="[^"]*motion-safe:starting:open:backdrop:opacity-0/);
+  assert.match(guide, /id="drawer"[^>]*class="[^"]*motion-safe:translate-x-full[^"]*motion-safe:starting:open:translate-x-full/);
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  assert.match(css, /--reveal-distance: ?24px/);
+  assert.match(css, /@keyframes rise-in/);
+  assert.match(css, /@keyframes reveal-end/);
 });

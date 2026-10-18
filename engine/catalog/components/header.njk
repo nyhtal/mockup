@@ -15,7 +15,7 @@
 {% from "components/nav-menu.njk" import navMenu with context %}
 {% from "components/locale-switcher.njk" import localeSwitcher with context %}
 {% macro header(site, locale, currentUrl, alternates, opts={}) %}
-<header class="sticky top-0 z-10 h-16 border-b border-line bg-surface/90 backdrop-blur print:static print:border-0" data-component="header">
+<header class="sticky top-0 z-10 h-16 border-b border-line bg-surface/90 backdrop-blur after:pointer-events-none after:absolute after:inset-0 after:-z-10 after:shadow-md after:shadow-ink/10 after:opacity-0 motion-safe:sda:after:animate-fade motion-safe:sda:after:[animation-timeline:scroll()] motion-safe:sda:after:[animation-range:0_12rem] print:static print:border-0" data-component="header">
 <div class="mx-auto flex h-16 w-full max-w-7xl items-center justify-between gap-4 px-4 sm:gap-6 sm:px-6 lg:gap-4 lg:px-8 xl:gap-6">
 <a href="/{{ locale }}/" class="inline-flex shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name, { size: "h-7 xl:h-8" }) }}</a>
 {{ navMenu(site.nav, locale, currentUrl) }}

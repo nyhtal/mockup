@@ -6,7 +6,7 @@
   "mobileWidth": 720,
   "overrides": {
     "/style-guide/": {
-      "html": 102400,
+      "html": 112640,
       "page": 409600
     }
   }

@@ -11,4 +11,6 @@
   i18n: ui.backToTop
   content limits: none
 #}
+{#- Floating variant (R-MOT-13, R-MOT-14): rendered only under scroll-driven animation support; rises in over the first 60 vh of scroll, hidden and unfocusable before that. -#}
+{% macro backToTopFloat() %}<a href="#top" class="fixed bottom-6 end-6 z-10 hidden size-11 items-center justify-center rounded-full border border-line bg-surface-raised text-ink shadow-md hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus print:hidden sda:inline-flex motion-safe:sda:animate-rise-in motion-safe:sda:[animation-timeline:scroll()] motion-safe:sda:[animation-range:0_60vh]" data-component="back-to-top" data-variant="float"><svg aria-hidden="true" class="size-5"><use href="#i-arrow-up"></use></svg><span class="sr-only">{{ "ui.backToTop" | t }}</span></a>{% endmacro %}
 {% macro backToTop() %}<a href="#main" class="inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus print:hidden" data-component="back-to-top"><svg aria-hidden="true" class="size-4"><use href="#i-arrow-up"></use></svg>{{ "ui.backToTop" | t }}</a>{% endmacro %}

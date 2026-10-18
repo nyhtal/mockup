@@ -10,7 +10,7 @@ const RADIUS = {
   soft: ["0.25rem", "0.5rem", "0.75rem", "1rem", "9999px"],
   round: ["0.5rem", "1rem", "1.5rem", "2rem", "9999px"],
 };
-const MOTION = { calm: [8, 200, 0], standard: [16, 300, 60], expressive: [24, 500, 90] };
+const MOTION = { calm: [12, 200, 0], standard: [24, 300, 60], expressive: [32, 500, 90] };
 /** Lightness of ink-muted per scheme; must keep 4.5:1 on every surface (see contrastFailures). */
 const ROLE_MUTED = { light: 46, dark: 72 };
 /** Lightness of ink-brand (brand-coloured text: eyebrows, links, icons on surfaces) per scheme. */

@@ -19,6 +19,9 @@
      so content is never hidden for readers, crawlers or axe (R-MOT-04). */
   --animate-reveal: reveal var(--reveal-duration) var(--ease-smooth) forwards;
   --animate-reveal-start: reveal-start var(--reveal-duration) var(--ease-smooth) forwards;
+  --animate-reveal-end: reveal-end var(--reveal-duration) var(--ease-smooth) forwards;
+  /* Scroll-driven appearance of conveniences (floating back-to-top): visibility rides with opacity so the control is never a hidden tab stop (R-MOT-13, R-MOT-14). */
+  --animate-rise-in: rise-in 300ms var(--ease-smooth) both;
   --animate-drop: drop 200ms var(--ease-smooth) both;
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
@@ -31,6 +34,14 @@
   @keyframes reveal-start {
     from { transform: translateX(calc(var(--reveal-distance) * -1)); }
     to { transform: none; }
+  }
+  @keyframes reveal-end {
+    from { transform: translateX(var(--reveal-distance)); }
+    to { transform: none; }
+  }
+  @keyframes rise-in {
+    from { opacity: 0; visibility: hidden; transform: translateY(0.5rem); }
+    to { opacity: 1; visibility: visible; transform: none; }
   }
   @keyframes drop {
     from { opacity: 0; transform: translateY(-0.5rem); }

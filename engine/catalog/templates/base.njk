@@ -3,14 +3,15 @@
 {% from "components/header.njk" import header with context %}
 {% from "components/mobile-drawer.njk" import mobileDrawer with context %}
 {% from "components/footer.njk" import footer with context %}
+{% from "components/back-to-top.njk" import backToTopFloat with context %}
 {%- set alternates = page.url | allAlternates -%}
 <!DOCTYPE html>
-<html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light-dark scroll-pt-20">
+<html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light-dark scroll-pt-20 motion-safe:scroll-smooth">
 <head>
 {% include "templates/_head.njk" %}
 </head>
 {#- Locale typography (R-TYPO-05, R-LAY-05): German hyphenates (long compounds in headings), everything wraps long words; Arabic gets snug headings and no letter-spacing. -#}
-<body class="bg-surface font-sans text-ink antialiased{% if locale == 'de' %} hyphens-auto{% endif %} wrap-break-word{% if locale == 'ar' %} [&_h1]:leading-snug [&_h2]:leading-snug [&_h3]:leading-snug [&_*]:tracking-normal{% endif %}" data-page="{{ pageType or 'generic' }}">
+<body id="top" class="bg-surface font-sans text-ink antialiased{% if locale == 'de' %} hyphens-auto{% endif %} wrap-break-word{% if locale == 'ar' %} [&_h1]:leading-snug [&_h2]:leading-snug [&_h3]:leading-snug [&_*]:tracking-normal{% endif %}" data-page="{{ pageType or 'generic' }}">
 {{ skipLink() }}
 {%- if site.announcement %}{{ announcementBar(site.announcement, locale) }}{% endif %}
 {{ header(site, locale, page.url, alternates, { variant: headerVariant }) }}
@@ -19,6 +20,7 @@
 {{ content | safe }}
 </main>
 {{ footer(site, locale, alternates) }}
+{{ backToTopFloat() }}
 <!--sprite--><script type="module" src="/assets/enhance.js"></script>
 </body>
 </html>

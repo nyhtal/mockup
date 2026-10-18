@@ -24,7 +24,7 @@ test("brandTokens wipes the palette and defines roles with light-dark() in sRGB 
   // ink-inverse sits on brand backgrounds, which do not change with the scheme, so it is fixed (R-COL-01, R-COL-03).
   assert.match(css, /--color-ink-inverse: #[0-9a-f]{6};/);
   assert.match(css, /--radius-md: 0\.5rem;/);
-  assert.match(css, /--reveal-distance: 16px;/);
+  assert.match(css, /--reveal-distance: 24px;/);
   assert.match(css, /--reveal-duration: 300ms;/);
   assert.match(css, /--reveal-stagger: 60ms;/);
   assert.match(css, /--font-sans: "Inter Variable", "Inter Fallback", system-ui, sans-serif;/);
@@ -51,8 +51,8 @@ test("themeColors gives hex values for both schemes", () => {
 test("radius and motion presets map to the bylaw values", () => {
   assert.match(brandTokens({ ...brand, radius: "sharp" }), /--radius-lg: 0;/);
   assert.match(brandTokens({ ...brand, radius: "round" }), /--radius-xl: 2rem;/);
-  assert.match(brandTokens({ ...brand, motion: "calm" }), /--reveal-distance: 8px;[\s\S]*--reveal-duration: 200ms;[\s\S]*--reveal-stagger: 0ms;/);
-  assert.match(brandTokens({ ...brand, motion: "expressive" }), /--reveal-distance: 24px;[\s\S]*--reveal-duration: 500ms;[\s\S]*--reveal-stagger: 90ms;/);
+  assert.match(brandTokens({ ...brand, motion: "calm" }), /--reveal-distance: 12px;[\s\S]*--reveal-duration: 200ms;[\s\S]*--reveal-stagger: 0ms;/);
+  assert.match(brandTokens({ ...brand, motion: "expressive" }), /--reveal-distance: 32px;[\s\S]*--reveal-duration: 500ms;[\s\S]*--reveal-stagger: 90ms;/);
 });
 
 test("contrast follows WCAG 2", () => {

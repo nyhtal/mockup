@@ -13,7 +13,7 @@ Why: WCAG 2.3.3 and vestibular safety; "reduce" means reduce, not "fade instead"
 Gate: consistency/motion-safe
 
 ### R-MOT-03 Budget
-MUST. At most three elements animate in at once (staggered children count as one group of at most eight items, 60–90 ms apart per the motion preset). Travel ≤ 32 px. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons and `animate-spin` on a pending button.
+MUST. At most three elements animate in at once (staggered children count as one group of at most eight items, 60–90 ms apart per the motion preset). Travel ≤ 32 px, except the drawer, which slides its own width from the inline end. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons and `animate-spin` on a pending button.
 Why: Motion beyond this reads as a slideshow and hides content.
 Gate: manual: checklists/new-component.md
 

@@ -8,12 +8,11 @@
 {% from "components/empty-state.njk" import emptyState with context %}
 {% macro cardGrid(name, s, ctx, variant, cols) %}
 {%- set colClass = "md:grid-cols-2" if cols == 2 else ("md:grid-cols-2 lg:grid-cols-4" if cols == 4 else "md:grid-cols-2 lg:grid-cols-3") -%}
-{% call shell(name, s, ctx) %}
+{% call shell(name, s, ctx, { itemsReveal: ctx.reveal }) %}
 {%- if s.items and s.items.length %}
 <ul class="grid gap-6 md:gap-8 {{ colClass }}">
 {%- for item in s.items %}
-{%- set merged = { variant: variant } -%}
-{{ card(item | merge({ variant: item.variant or variant }), { density: ctx.density }) }}
+{{ card(item | merge({ variant: item.variant or variant }), { density: ctx.density, class: stagger(loop.index0) if ctx.reveal }) }}
 {%- endfor %}
 </ul>
 {%- else %}
