@@ -8,7 +8,7 @@ export function pageTypeOf(file) {
 /** Locale folder of a page URL (/de/about/ → "de"), or "" for root pages. */
 function localeOf(url, site) {
   const seg = url.replace(/^https?:\/\/[^/]+/, "").split("/")[1] || "";
-  return site.locales.includes(seg) ? seg : "";
+  return (site.locales || []).includes(seg) ? seg : "";
 }
 
 /**

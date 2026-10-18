@@ -8,7 +8,7 @@ Why: Alignment across sections is what makes a page look designed.
 Gate: manual: checklists/new-component.md
 
 ### R-LAY-02 Section rhythm
-MUST. One rhythm scale (`engine/DESIGN.md` §2) sets every vertical distance: a section is `py-16 md:py-24` (`py-12 md:py-16` compact; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; article meta `py-6`), its heading group then `mt-12 md:mt-16` before the body, grids `gap-6 md:gap-8` (stats `gap-8`, media rows `gap-12`), card internals `mt-2`/`mt-4`/`mt-auto pt-4`, a CTA after the body `mt-12`. Adjacent sections alternate `bg-surface` and `bg-surface-alt` unless a section has its own media background.
+MUST. One rhythm scale (`engine/DESIGN.md` §2) sets every vertical distance: a section is `py-16 md:py-24` (`py-12 md:py-16` compact; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; strips such as article meta, filter bar, pagination and feedback `py-6`), its heading group then `mt-12 md:mt-16` before the body, grids `gap-6 md:gap-8` (stats `gap-8`, media rows `gap-12`), card internals `mt-2`/`mt-4`/`mt-auto pt-4`, a CTA after the body `mt-12`. Adjacent sections alternate `bg-surface` and `bg-surface-alt` unless a section has its own media background.
 Why: Equal vertical rhythm is the cheapest consistency win on a long page, and only a written scale can be checked.
 Gate: consistency/rhythm
 

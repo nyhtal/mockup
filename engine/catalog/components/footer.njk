@@ -16,8 +16,8 @@
 {% macro footer(site, locale, alternates) %}
 <footer class="border-t border-line bg-surface-alt" data-component="footer">
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-<div class="flex items-center justify-between gap-6">
-<a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name) }}</a>
+<div class="flex flex-wrap items-center justify-between gap-4">
+<a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name, { size: "h-7 sm:h-8" }) }}</a>
 {{ backToTop() }}
 </div>
 <nav aria-label="{{ 'nav.footer' | t }}" class="mt-12">

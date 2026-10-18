@@ -19,7 +19,8 @@ before(async () => {
   if (skip) return;
   server = await startServer(distDir);
   fixtures = mkdtempSync(path.join(tmpdir(), "a11y-"));
-  for (const d of ["moderate", "contrast-hex", "contrast-oklch", "noindex", "small-target"]) mkdirSync(path.join(fixtures, d));
+  for (const d of ["moderate", "contrast-hex", "contrast-oklch", "noindex", "small-target", "wide"]) mkdirSync(path.join(fixtures, d));
+  writeFileSync(path.join(fixtures, "wide", "index.html"), page('<main><h1>A</h1><div class="w">too wide</div></main>', "<style>.w{width:600px}</style>"));
   // heading-order and landmark-one-main are "moderate" impact in axe: they must be findings, not review items.
   writeFileSync(path.join(fixtures, "moderate", "index.html"), page("<h1>A</h1><h3>C</h3><p>no main landmark</p>"));
   writeFileSync(path.join(fixtures, "contrast-hex", "index.html"), page('<main><h1>A</h1><p class="x">low contrast</p></main>', "<style>.x{color:#999;background:#fff}</style>"));
@@ -63,6 +64,15 @@ test("a11y gate fails on moderate-impact axe violations (heading order, missing 
   const checks = r.findings.map((f) => f.check);
   assert.ok(checks.includes("a11y/heading-order"), `heading-order in ${checks}`);
   assert.ok(checks.includes("a11y/landmark-one-main"), `landmark-one-main in ${checks}`);
+});
+
+test("a11y gate fails a page that scrolls horizontally at 320 px (reflow)", { skip, timeout: 120000 }, async () => {
+  const r = await a11y.run(fctx(["wide/index.html"]));
+  const reflow = r.findings.filter((f) => f.check === "a11y/reflow");
+  assert.ok(reflow.length >= 1, "reflow finding present");
+  assert.match(reflow[0].message, /at 320 px the document is 6\d\d px wide/);
+  const clean = await a11y.run(fctx(["noindex/index.html"]));
+  assert.deepEqual(clean.findings.filter((f) => f.check === "a11y/reflow"), []);
 });
 
 test("a11y gate runs the WCAG 2.2 target-size rule", { skip, timeout: 120000 }, async () => {

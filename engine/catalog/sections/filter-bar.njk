@@ -6,7 +6,7 @@
 #}
 {% from "components/filter-bar.njk" import filterBar with context %}
 {% macro render(s, ctx) %}
-<section class="py-8 {{ s.surface or 'bg-surface' }}" aria-label="{{ s.label or ('ui.filters' | t) }}" data-component="filter-bar">
+<section class="py-6 {{ s.surface or 'bg-surface' }}" aria-label="{{ s.label or ('ui.filters' | t) }}" data-component="filter-bar">
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">{{ filterBar(s) }}</div>
 </section>
 {% endmacro %}

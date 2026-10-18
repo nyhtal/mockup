@@ -5,8 +5,43 @@ import { pagesFor, parse } from "../lib/html.js";
 export const id = "consistency";
 export const checks = [
   "inline-style", "single-h1", "heading-order", "dup-id", "class-exists", "component-known",
-  "logical-props", "motion-safe", "no-arbitrary-lengths", "no-hash-links", "img-attrs", "head-order", "meta-length",
+  "logical-props", "motion-safe", "no-arbitrary-lengths", "no-hash-links", "img-attrs", "head-order", "meta-length", "rhythm",
 ];
+
+/** The rhythm scale of R-LAY-02 (engine/DESIGN.md §2): allowed section padding pairs and body grid gaps. */
+const PADDINGS = [["py-16", "md:py-24"], ["py-12", "md:py-16"], ["py-16", "md:py-28"], ["py-12", "md:py-20"], ["py-6"]];
+const GAPS = [["gap-6", "md:gap-8"], ["gap-8"], ["gap-6"], ["gap-12"]];
+const has = (classes, pair) => pair.every((c) => classes.includes(c));
+const gapOf = (classes) => classes.filter((c) => /^(md:)?gap-/.test(c)).join(" ");
+
+/** Rhythm findings for one parsed page: sections, heading groups and top-level body grids outside the scale. */
+export function rhythmFindings(root) {
+  const out = [];
+  for (const section of root.querySelectorAll("section[data-component]")) {
+    const name = section.getAttribute("data-component");
+    const classes = (section.getAttribute("class") || "").split(/\s+/);
+    if (!PADDINGS.some((p) => has(classes, p))) out.push(`section "${name}" padding "${classes.filter((c) => /^(md:)?py-/.test(c)).join(" ")}" is not on the rhythm scale (R-LAY-02)`);
+    const container = section.querySelector(":scope > div");
+    if (!container) continue;
+    const children = container.childNodes.filter((n) => n.nodeType === 1);
+    const headingGroup = children.find((d) => d.tagName === "DIV" && d.childNodes.some((c) => c.nodeType === 1 && c.tagName === "H2"));
+    let body = container;
+    if (headingGroup) {
+      const next = children[children.indexOf(headingGroup) + 1];
+      if (next) {
+        const nc = (next.getAttribute("class") || "").split(/\s+/);
+        if (!has(nc, ["mt-12", "md:mt-16"])) out.push(`heading group of "${name}" is followed by "${nc.filter((c) => /^(md:)?mt-/.test(c)).join(" ") || "no top margin"}", expected "mt-12 md:mt-16" (R-LAY-02)`);
+        body = next;
+      }
+    }
+    for (const grid of body.childNodes.filter((n) => n.nodeType === 1)) {
+      const gc = (grid.getAttribute("class") || "").split(/\s+/);
+      if (!gc.includes("grid") && !gc.includes("md:grid")) continue;
+      if (!GAPS.some((g) => has(gc, g))) out.push(`grid in "${name}" uses "${gapOf(gc) || "no gap"}", expected one of ${GAPS.map((g) => `"${g.join(" ")}"`).join(", ")} (R-LAY-02)`);
+    }
+  }
+  return out;
+}
 
 /** Marker classes Tailwind never emits CSS for but which variants depend on. */
 const NOOP = /^(group|peer)(\/[\w-]+)?$/;
@@ -84,6 +119,7 @@ export async function run(ctx) {
 
     const h1s = root.querySelectorAll("h1");
     if (h1s.length !== 1) add("single-h1", `${h1s.length} h1 elements`);
+    for (const m of rhythmFindings(root)) add("rhythm", m);
 
     let prev = 0;
     for (const h of root.querySelectorAll("h1,h2,h3,h4,h5,h6")) {

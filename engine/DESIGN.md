@@ -14,7 +14,7 @@ What the bylaws enforce, written as the taste behind them. Read this before the 
 
 | Distance | Utilities | Where |
 |---|---|---|
-| Section padding | `py-16 md:py-24` (comfortable), `py-12 md:py-16` (compact) | every section; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; article meta `py-6` |
+| Section padding | `py-16 md:py-24` (comfortable), `py-12 md:py-16` (compact) | every section; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; strips (article meta, filter bar, pagination, feedback) `py-6` |
 | Heading group to body | `mt-12 md:mt-16` | every section with a title |
 | Eyebrow to title, title to lede | `mt-2`, `mt-4` | section and page headers |
 | Body items | `gap-6 md:gap-8` (grids), `gap-8` (stats), `gap-12` (media rows) | grids and two-column layouts |

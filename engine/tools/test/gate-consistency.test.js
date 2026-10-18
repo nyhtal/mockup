@@ -106,3 +106,16 @@ for (const [file, check] of [
     assert.equal(r.findings[0].file, path.join(dir, file));
   });
 }
+
+test("rhythm: sections need an allowed padding pair, a heading group needs mt-12 md:mt-16 before the body, and body grids an allowed gap", async () => {
+  const { rhythmFindings } = await import("../gates/consistency.js");
+  const { parse: parseHtml } = await import("node-html-parser");
+  const ok = parseHtml('<section class="py-16 md:py-24 bg-surface" data-component="x"><div class="mx-auto"><div class="max-w-3xl"><h2>T</h2></div><div class="mt-12 md:mt-16"><ul class="grid gap-6 md:gap-8"><li>a</li></ul></div></div></section><section class="border-y py-6 bg-surface" data-component="article-meta"><div></div></section>');
+  assert.deepEqual(rhythmFindings(ok), []);
+  const bad = parseHtml('<section class="py-14 bg-surface" data-component="x"><div class="mx-auto"><div class="max-w-3xl"><h2>T</h2></div><div class="mt-8"><div class="grid gap-5"><p>a</p></div></div></div></section>');
+  const msgs = rhythmFindings(bad);
+  assert.equal(msgs.length, 3, msgs.join(" | "));
+  assert.match(msgs[0], /section "x" padding "py-14"/);
+  assert.match(msgs[1], /heading group of "x" is followed by "mt-8"/);
+  assert.match(msgs[2], /grid in "x" uses "gap-5"/);
+});
