@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, copyFileSync, rmSync } from "node:fs";
+import { existsSync, readFileSync, copyFileSync, rmSync, statSync } from "node:fs";
 
 function run(env = {}) {
   return execFileSync("node", ["engine/tools/build.js", "--site", "reference"], {
@@ -204,11 +204,27 @@ test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA p
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.ok(css.includes(".bg-hero-backdrop{background-image:radial-gradient(40rem 24rem at 25% 15%, light-dark("), "hero backdrop glows in the CSS");
   assert.ok(css.includes("radial-gradient(var(--color-line) 1px, transparent 1.5px)") && css.includes("mask-image:radial-gradient(#000 20%,#0000 75%)"), "hero backdrop dots and edge mask in the CSS");
-  assert.match(en, /<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/);
+  const guide = readFileSync("dist/reference/en/style-guide/sections/index.html", "utf8");
+  assert.match(guide, /data-variant="centered">[\s\S]*?<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/, "centered hero media in a framed rounded-2xl box");
   assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-3 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);
   assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-hidden rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600/);
   assert.match(en, /data-component="logo-cloud"[\s\S]*?<svg role="img" class="h-6 fill-ink-muted w-auto motion-safe:transition-colors motion-safe:duration-150 hover:fill-ink-brand"/);
   assert.match(en, /<footer class="bg-surface-alt" data-component="footer">\n<div class="h-px bg-linear-to-r from-brand-600 to-accent-600" aria-hidden="true"><\/div>/);
   const svc = readFileSync("dist/reference/en/services/line-automation/index.html", "utf8");
   assert.match(svc, /data-component="testimonial" data-variant="single">\n<span aria-hidden="true" class="block h-12 select-none text-7xl font-bold leading-none text-brand-200">“<\/span>/);
+});
+
+test("home hero carries the generated sample clip: native video, poster, preload none, captions per locale, both formats under 1.5 MB", () => {
+  for (const [loc, title] of [["en", "Northwind in eight seconds"], ["de", "Northwind in acht Sekunden"], ["ar", "نورثويند في ثماني ثوانٍ"]]) {
+    const html = readFileSync(`dist/reference/${loc}/index.html`, "utf8");
+    assert.match(html, /data-component="hero" data-variant="video"/, `${loc} hero variant`);
+    assert.match(html, /<video class="aspect-video w-full" controls playsinline preload="none" poster="\/assets\/video\/northwind-sample-poster\.webp" width="1280" height="720">\n<source src="\/assets\/video\/northwind-sample\.webm" type="video\/webm">\n<source src="\/assets\/video\/northwind-sample\.mp4" type="video\/mp4">/, `${loc} video element`);
+    assert.match(html, new RegExp(`<track kind="captions" src="/assets/video/northwind-sample-${loc}\.vtt" srclang="${loc}" data-cue="[^"]+">`), `${loc} captions track`);
+    assert.ok(html.includes(`<span class="font-medium text-ink">${title}</span><span class="tabular-nums text-ink-muted">0:08</span>`), `${loc} title and duration`);
+    assert.match(readFileSync(`dist/reference/assets/video/northwind-sample-${loc}.vtt`, "utf8"), /^WEBVTT\n\n00:00\.000 --> 00:08\.000\n.+\n$/, `${loc} vtt`);
+  }
+  for (const f of ["northwind-sample.mp4", "northwind-sample.webm", "northwind-sample-poster.webp"]) {
+    const size = statSync(`dist/reference/assets/video/${f}`).size;
+    assert.ok(size > 0 && size <= 1.5 * 1024 * 1024, `${f} is ${size} B`);
+  }
 });

@@ -16,7 +16,7 @@ export function seed(str) {
 }
 
 /** mulberry32 PRNG → function returning floats in [0, 1). */
-function rng(s) {
+export function rng(s) {
   let a = s >>> 0;
   return () => {
     a = (a + 0x6d2b79f5) >>> 0;

@@ -17,7 +17,7 @@ npm run setup
 
 | Command | What it does |
 |---|---|
-| `npm run build -- --site <name>` | Builds `sites/<name>/` into `dist/<name>/`: Eleventy pages, locale coverage check, fonts (script faces subset), icon sprites, the theme with the brand tokens, Tailwind, placeholder images, favicons, social images. |
+| `npm run build -- --site <name>` | Builds `sites/<name>/` into `dist/<name>/`: Eleventy pages, locale coverage check, fonts (script faces subset), icon sprites, the theme with the brand tokens, Tailwind, placeholder images, favicons, social images, the sample clip (MP4 + WebM + poster + captions through `ffmpeg-static`, cached under `engine/.cache/video/` so only the first build encodes). |
 | `npm run gate -- --site <name>` | Runs the nine gates against `dist/<name>/` and writes `reports/latest.md`. `--skip lighthouse` while iterating (Lighthouse takes hours on a large site), `--only <gate,gate>` for one gate, `--runs <n>` to change the Lighthouse run count. |
 | `npm run serve -- --site <name>` | Serves `dist/<name>/` on http://127.0.0.1:8080 with the production cache headers and gzip. |
 | `npm test` | The engine's unit tests (`engine/tools/test/`); the browser-driven gate tests need `SMOKE=1` and a built site. |

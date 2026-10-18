@@ -5,6 +5,7 @@ noindex: true
 ---
 {% from "components/video-facade.njk" import videoFacade with context %}
 {% from "components/map-facade.njk" import mapFacade with context %}
+{% from "components/video.njk" import video with context %}
 {% from "components/author-box.njk" import authorBox with context %}
 {% from "components/share-links.njk" import shareLinks with context %}
 {% from "components/tag-list.njk" import tagList with context %}
@@ -57,6 +58,7 @@ noindex: true
 <div class="mt-8 grid gap-8 lg:grid-cols-2">
 {{ videoFacade({ id: "demo", title: "Northwind in four minutes", duration: "4:12", poster: { slug: "video-poster", ratio: "16:9", alt: "", max: 768 }, provider: "YouTube" }) }}
 {{ mapFacade({ slug: "map-manchester", address: "4 Canal Street, Manchester M1 3HE, United Kingdom" }) }}
+{{ video({ slug: "northwind-sample", title: "Northwind in eight seconds", duration: "0:08" }) }}
 </div>
 <div class="mt-8 grid gap-8 lg:grid-cols-2">
 {{ authorBox({ name: "Priya Natarajan", role: "Chief Technology Officer", bio: "Priya has led controls teams in food, pharma and automotive plants for sixteen years.", href: sg }) }}

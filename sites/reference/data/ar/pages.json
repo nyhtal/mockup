@@ -8,7 +8,7 @@
   "sections": {
     "hero-home": {
       "type": "hero",
-      "variant": "centered",
+      "variant": "video",
       "eyebrow": "الأتمتة الصناعية",
       "title": "برمجيات تحكم يستطيع مهندسو مصنعك قراءتها",
       "lede": "تحوّل Northwind وصفًا واضحًا لخط إنتاج إلى منطق PLC متحقق منه، فتستغرق التغييرات ساعات بدل أسابيع ولا ينتظر أحد مبرمجًا.",
@@ -20,11 +20,10 @@
         "label": "شاهد كيف يعمل",
         "href": "/ar/services/line-automation/"
       },
-      "image": {
-        "slug": "hero-automation",
-        "ratio": "16:9",
-        "alt": "أشكال مجردة بألوان العلامة التجارية بدل صورة لأرض المصنع.",
-        "max": 1600
+      "video": {
+        "slug": "northwind-sample",
+        "title": "نورثويند في ثماني ثوانٍ",
+        "duration": "0:08"
       }
     },
     "logo-cloud": {

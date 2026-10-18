@@ -7,6 +7,7 @@ import { brandTokens } from "./lib/theme.js";
 import { fontPlan, copyFonts } from "./build-fonts.js";
 import { injectSprites } from "./build-icons.js";
 import { generateImages, generateFavicons, generateOgImages } from "./build-images.js";
+import { generateVideos } from "./build-video.js";
 
 export function parseArgs(argv) {
   const i = argv.indexOf("--site");
@@ -63,6 +64,7 @@ export async function build({ site }) {
   execFileSync(process.execPath, [tailwind, "-i", "engine/theme/.tmp/app.css", "-o", `${dist}/assets/app.css`, "--minify"], { stdio: "inherit" });
 
   await generateImages(dist, siteConfig.brand || {});
+  await generateVideos(dist, siteConfig.brand || {});
   await generateFavicons(dist, { letter: siteConfig.name.trim()[0], hue: siteConfig.brand?.hue ?? 250 });
   await generateOgImages(dist, siteConfig.brand || {});
 

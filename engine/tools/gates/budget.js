@@ -34,6 +34,9 @@ export function pageAssets(root, mobileWidth = 720) {
     const pick = source ? pickCandidate(source.getAttribute("srcset"), mobileWidth) : img?.getAttribute("srcset") ? pickCandidate(img.getAttribute("srcset"), mobileWidth) : img && local(img.getAttribute("src")) ? clean(img.getAttribute("src")) : null;
     if (pick) urls.add(pick);
   }
+  for (const v of root.querySelectorAll("video[poster]")) {
+    if (local(v.getAttribute("poster"))) urls.add(clean(v.getAttribute("poster")));
+  }
   for (const img of root.querySelectorAll("img")) {
     if (img.closest("picture")) continue;
     const pick = img.getAttribute("srcset") ? pickCandidate(img.getAttribute("srcset"), mobileWidth) : local(img.getAttribute("src")) ? clean(img.getAttribute("src")) : null;

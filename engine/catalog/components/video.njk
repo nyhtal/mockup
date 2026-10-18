@@ -1,0 +1,29 @@
+{#
+  name: video
+  purpose: A self-hosted clip behind the native player; nothing of it loads before play (R-COMP-12, R-PERF-17, R-ASSET-13, R-A11Y-12).
+  anatomy: figure[data-component=video] > div(frame) > video[controls playsinline preload=none poster width height] > source(webm) + source(mp4) + track(captions per page language); figcaption > title + duration, transcript line
+  variants: none
+  states: native player states
+  spacing: aspect-video frame (rounded-2xl, hairline ring, long shadow); caption mt-4; transcript mt-2
+  motion: none
+  keyboard: the native controls
+  a11y: captions track from ui.videoCaption; the same text under the player is the transcript of a clip without speech; the poster is the frame the clip starts on
+  i18n: the title and duration come from the page data per locale; the captions file is written per page language by build-video.js from data-cue
+  content limits: title ≤ 60 chars; duration "m:ss"; the clip itself is ≤ 1.5 MB per format
+  data: v = { slug, title, duration }
+#}
+{% macro video(v, opts={}) %}
+<figure data-component="video"{% if opts.class %} class="{{ opts.class }}"{% endif %}>
+<div class="overflow-hidden rounded-2xl bg-ink ring-1 ring-line shadow-xl shadow-ink/10">
+<video class="aspect-video w-full" controls playsinline preload="none" poster="/assets/video/{{ v.slug }}-poster.webp" width="1280" height="720">
+<source src="/assets/video/{{ v.slug }}.webm" type="video/webm">
+<source src="/assets/video/{{ v.slug }}.mp4" type="video/mp4">
+<track kind="captions" src="/assets/video/{{ v.slug }}-{{ locale }}.vtt" srclang="{{ locale }}" data-cue="{{ 'ui.videoCaption' | t }}">
+</video>
+</div>
+<figcaption class="mt-4 text-sm">
+<span class="flex items-center justify-between gap-4"><span class="font-medium text-ink">{{ v.title }}</span><span class="tabular-nums text-ink-muted">{{ v.duration }}</span></span>
+<span class="mt-2 block text-ink-muted">{{ 'ui.videoCaption' | t }}</span>
+</figcaption>
+</figure>
+{% endmacro %}

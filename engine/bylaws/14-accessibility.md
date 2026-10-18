@@ -58,7 +58,7 @@ Why: WCAG 3.3.7 and 3.2.6 (new in 2.2).
 Gate: manual: checklists/pre-delivery.md
 
 ### R-A11Y-12 Images and media
-MUST. Alt text per R-CONT-16; video facades name the video and state its length; when a video is loaded it has captions and a transcript link; audio has a transcript; charts are images with the data in a table or text alternative.
+MUST. Alt text per R-CONT-16; video facades name the video and state its length; when a video is loaded it has captions and a transcript (a link, or the text itself under the player for a clip without speech); audio has a transcript; charts are images with the data in a table or text alternative.
 Why: WCAG 1.1.1, 1.2.1–1.2.5.
 Gate: a11y/image-alt
 

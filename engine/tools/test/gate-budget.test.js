@@ -98,3 +98,12 @@ test("each budget is enforced by its own check", async () => {
   const r = await run(ctx("ok.html", { html: 10, css: 10, js: 0, page: 10, mobileWidth: 720 }));
   assert.deepEqual(r.findings.map((f) => f.check).sort(), ["budget/css", "budget/html", "budget/js", "budget/page"]);
 });
+
+test("pageAssets counts a video poster, never its sources or captions (R-PERF-17)", () => {
+  const root = parseModule.parse(page("", '<h1>V</h1><video controls playsinline preload="none" poster="/assets/video/clip-poster.webp" width="1280" height="720">' +
+    '<source src="/assets/video/clip.webm" type="video/webm"><source src="/assets/video/clip.mp4" type="video/mp4">' +
+    '<track kind="captions" src="/assets/video/clip-en.vtt" srclang="en"></video>'));
+  const assets = pageAssets(root);
+  assert.ok(assets.includes("/assets/video/clip-poster.webp"), `poster counted in ${assets}`);
+  assert.ok(!assets.some((u) => /\.(mp4|webm|vtt)$/.test(u)), "clip and captions not counted");
+});

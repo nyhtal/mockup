@@ -63,7 +63,7 @@ Why: Mockups get reused; rights must travel with them.
 Gate: manual: checklists/new-site.md
 
 ### R-ASSET-13 Sample video
-MUST. `engine/tools/build-video.js` generates every clip a page declares (`{ "slug", "title", "duration" }`): frames of brand-hue shapes in motion rendered by the placeholder generator, encoded with `ffmpeg-static` to `/assets/video/<slug>.mp4` (H.264, yuv420p) and `<slug>.webm` (VP9), with `<slug>-poster` through the image pipeline; builds are seeded by slug so rebuilds are identical and skipped when the files exist.
+MUST. `engine/tools/build-video.js` generates every clip a page declares (`{ "slug", "title", "duration" }`): frames of brand-hue shapes in motion rendered by the placeholder generator, encoded with `ffmpeg-static` to `/assets/video/<slug>.mp4` (H.264, yuv420p) and `<slug>.webm` (VP9), with `<slug>-poster.webp` from the first frame and one `<slug>-<lang>.vtt` captions file per page language (its cue is `ui.videoCaption`); builds are seeded by slug so rebuilds are identical and skipped when the files exist.
 Why: A real, self-hosted clip proves the video pattern without rights or requests.
 Gate: manual: checklists/new-page.md
 

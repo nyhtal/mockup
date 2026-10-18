@@ -6,3 +6,4 @@ reports/*
 engine/tools/vnu/
 engine/theme/.tmp/
 .superpowers/
+engine/.cache/

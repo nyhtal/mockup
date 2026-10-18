@@ -8,7 +8,7 @@
   "sections": {
     "hero-home": {
       "type": "hero",
-      "variant": "centered",
+      "variant": "video",
       "eyebrow": "Industrielle Automatisierung",
       "title": "Steuerungssoftware, die Ihre Werksingenieure lesen können",
       "lede": "Northwind macht aus einer Klartextbeschreibung einer Produktionslinie geprüfte SPS-Logik, sodass Änderungen Stunden statt Wochen dauern und niemand auf einen Programmierer wartet.",
@@ -20,11 +20,10 @@
         "label": "So funktioniert es",
         "href": "/de/services/line-automation/"
       },
-      "image": {
-        "slug": "hero-automation",
-        "ratio": "16:9",
-        "alt": "Abstrakte Formen in den Markenfarben anstelle eines Fotos einer Produktionshalle.",
-        "max": 1600
+      "video": {
+        "slug": "northwind-sample",
+        "title": "Northwind in acht Sekunden",
+        "duration": "0:08"
       }
     },
     "logo-cloud": {

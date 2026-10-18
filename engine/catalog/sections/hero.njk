@@ -2,7 +2,7 @@
   name: hero
   purpose: The first section of home and landing pages: h1, lede, two buttons, LCP media (R-SEC-07, R-MOT-11, R-PERF-05).
   anatomy: section[data-component=hero data-variant] > container > (grid) text(h1 + lede + buttons) + media | form | stats
-  variants: centered | split (text + picture) | video (text + video facade) | form (text + short form) | stats (text + 3 stats)
+  variants: centered | split (text + picture) | video (text + native video when s.video.slug is set, else a third-party facade) | form (text + short form) | stats (text + 3 stats)
   states: none
   spacing: py-16 md:py-28; grid gap-12; a brand glow, an accent glow and a dot grid sit behind the content (DESIGN §4, R-COL-09)
   motion: none on load; nothing in the hero reveals
@@ -10,12 +10,13 @@
   a11y: the h1 lives here; the picture is the LCP image with fetchpriority=high
   i18n: buttons ≤ 25 chars
   content limits: h1 ≤ 60 chars, lede ≤ 35 words, exactly one primary and one secondary button
-  data: s = { variant, eyebrow, title, lede, primary: {label, href}, secondary: {label, href}, image: {slug, ratio, alt}, video, form: [fields], stats: [{value,label}] }
+  data: s = { variant, eyebrow, title, lede, primary: {label, href}, secondary: {label, href}, image: {slug, ratio, alt}, video: {slug, title, duration} | facade data, form: [fields], stats: [{value,label}] }
 #}
 {% from "primitives/button.njk" import button with context %}
 {% from "primitives/picture.njk" import picture with context %}
 {% from "primitives/field.njk" import field with context %}
 {% from "components/video-facade.njk" import videoFacade with context %}
+{% from "components/video.njk" import video with context %}
 {% from "components/stat.njk" import stat with context %}
 {% macro render(s, ctx) %}
 {%- set variant = s.variant or "centered" -%}
@@ -40,7 +41,7 @@
 {%- if variant == "split" and s.image %}
 <div class="overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink/10">{{ picture(s.image, { priority: true, sizes: "(min-width: 64rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
 {%- elif variant == "video" and s.video %}
-{{ videoFacade(s.video) }}
+{% if s.video.slug %}{{ video(s.video) }}{% else %}{{ videoFacade(s.video) }}{% endif %}
 {%- elif variant == "form" and s.form %}
 <form method="get" action="{{ s.form.action }}" class="rounded-xl border border-line bg-surface-raised p-6 shadow-sm">
 <h2 class="text-xl font-semibold">{{ s.form.title }}</h2>
