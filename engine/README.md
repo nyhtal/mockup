@@ -1,10 +1,10 @@
 # Mockup engine
 
-A rulebook, a catalog and a build that turn a one-page Site Brief into a static, multi-locale corporate website mockup: Tailwind-only markup, no runtime JavaScript library, native overlays and disclosures, schema.org on every page, and nine quality gates (HTML validity, consistency, structured data, page weight, i18n, links, accessibility, Lighthouse). The reference site in `sites/reference/` is Northwind Dynamics, a fictional industrial-automation company, in English, German and Arabic.
+A rulebook, a catalog and a build that turn a one-page Site Brief into a static, multi-locale corporate website mockup: Tailwind-only markup, no runtime JavaScript library, native overlays and disclosures, schema.org on every page, and nine quality gates (bylaws, HTML validity, consistency, structured data, page weight, i18n, links, accessibility, Lighthouse). The reference site in `sites/reference/` is Northwind Dynamics, a fictional industrial-automation company, in English, German and Arabic.
 
 ## Prerequisites
 
-Node 24, a local Chrome (for the accessibility and Lighthouse gates), and once per machine:
+Node 24, a local Chrome (for the accessibility and Lighthouse gates; set `CHROME_PATH` if it is not in the default location), and once per machine (the Nu checker is pinned for Windows in `package.json`; other platforms add their pin):
 
 ```bash
 npm install
@@ -21,9 +21,9 @@ npm run setup
 | `npm run gate -- --site <name>` | Runs the nine gates against `dist/<name>/` and writes `reports/latest.md`. `--skip lighthouse` while iterating (Lighthouse takes hours on a large site), `--only <gate,gate>` for one gate, `--runs <n>` to change the Lighthouse run count. |
 | `npm run serve -- --site <name>` | Serves `dist/<name>/` on http://127.0.0.1:8080 with the production cache headers and gzip. |
 | `npm test` | The engine's unit tests (`engine/tools/test/`); the browser-driven gate tests need `SMOKE=1` and a built site. |
-| `npm run checklists` | Regenerates `engine/checklists/*.md` from the bylaws; the bylaws gate fails when they are out of date. |
+| `npm run checklists` | Regenerates `engine/checklists/*.md` from the bylaws; the bylaws gate fails when a rule is missing from its checklist. Any gate run, including `--only` and `--skip`, rewrites `reports/latest.md`; commit it only after a full run. |
 
-The gate exits non-zero on any finding. Every gate but Lighthouse runs on every page; Lighthouse measures every page in the default locale and one page per page type in each other locale, and the report lists which URL stood for each type.
+The gate exits non-zero on any finding. Every gate but Lighthouse runs on every page; Lighthouse measures every page in the default locale, every root page, and one page per page type in each other locale, and the report lists which URL stood for each type.
 
 ## Repository layout
 

@@ -86,7 +86,7 @@ test("a Gate line naming a check the gate does not export is reported", async ()
 });
 
 test("format, unknown gate, numbering gap and duplicate id are each reported", async () => {
-  const r = await run({ bylawsDir: dir, only: ["01-html.md", "02-tokens.md"], gateChecks });
+  const r = await run({ bylawsDir: dir, only: ["01-html.md", "02-tokens.md"], gateChecks, checklistsDir: path.join(dir, "none") });
   const byCheck = Object.groupBy(r.findings, (f) => f.check);
   assert.equal(byCheck["bylaws/format"].length, 1, "R-TOK-01 lacks MUST/SHOULD");
   assert.equal(byCheck["bylaws/gate-ref"].length, 1, "R-TOK-02 names nonsense gate");
