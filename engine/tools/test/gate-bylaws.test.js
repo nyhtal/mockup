@@ -1,6 +1,6 @@
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { run, parseRules } from "../gates/bylaws.js";
@@ -70,7 +70,10 @@ test("parseRules extracts id, level, why and gate", () => {
 });
 
 test("a well-formed bylaw file has no findings", async () => {
-  const r = await run({ bylawsDir: dir, only: ["01-html.md"], gateChecks });
+  const checklistsDir = path.join(dir, "checklists");
+  mkdirSync(checklistsDir, { recursive: true });
+  writeFileSync(path.join(checklistsDir, "pre-delivery.md"), "- [ ] **R-HTML-03** Keyboard walkthrough\n");
+  const r = await run({ bylawsDir: dir, only: ["01-html.md"], gateChecks, checklistsDir });
   assert.equal(r.id, "bylaws");
   assert.deepEqual(r.findings, []);
 });
@@ -90,4 +93,19 @@ test("format, unknown gate, numbering gap and duplicate id are each reported", a
   assert.equal(byCheck["bylaws/numbering"].length, 1, "R-TOK-04 after R-TOK-02");
   assert.equal(byCheck["bylaws/unique-id"].length, 1, "R-HTML-01 appears twice");
   assert.ok(r.findings.every((f) => f.line > 0));
+});
+
+test("checklist-ref: a rule whose Gate names a checklist fails when the checklist file is missing or does not list the rule id", async () => {
+  const root = mkdtempSync(path.join(tmpdir(), "bylaws-cl-"));
+  try {
+    const bylaws = path.join(root, "bylaws"); const checklists = path.join(root, "checklists");
+    mkdirSync(bylaws); mkdirSync(checklists);
+    writeFileSync(path.join(bylaws, "01-html.md"), GOOD);
+    const missing = await run({ bylawsDir: bylaws, checklistsDir: checklists, gateChecks: { consistency: ["single-h1"], html: ["info"] } });
+    assert.deepEqual(missing.findings.map((f) => f.check), ["bylaws/checklist-ref"]);
+    assert.match(missing.findings[0].message, /R-HTML-03: checklists\/pre-delivery\.md does not exist/);
+    writeFileSync(path.join(checklists, "pre-delivery.md"), "- [ ] **R-HTML-03** Keyboard walkthrough\n");
+    const ok = await run({ bylawsDir: bylaws, checklistsDir: checklists, gateChecks: { consistency: ["single-h1"], html: ["info"] } });
+    assert.deepEqual(ok.findings, []);
+  } finally { rmSync(root, { recursive: true, force: true }); }
 });

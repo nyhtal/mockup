@@ -2,7 +2,7 @@ import { readdirSync, readFileSync, existsSync } from "node:fs";
 import path from "node:path";
 
 export const id = "bylaws";
-export const checks = ["format", "gate-ref", "numbering", "unique-id"];
+export const checks = ["format", "gate-ref", "numbering", "unique-id", "checklist-ref"];
 
 const HEADING = /^### (R-[A-Z0-9]+-(\d{2})) (.+)$/;
 
@@ -29,6 +29,9 @@ export function parseRules(markdown) {
 export async function run(ctx) {
   const dir = ctx.bylawsDir || path.join("engine", "bylaws");
   const gateChecks = ctx.gateChecks || {};
+  const checklistsDir = ctx.checklistsDir || path.join("engine", "checklists");
+  const checklistText = new Map();
+  const checklist = (name) => { if (!checklistText.has(name)) { const f = path.join(checklistsDir, `${name}.md`); checklistText.set(name, existsSync(f) ? readFileSync(f, "utf8") : null); } return checklistText.get(name); };
   const findings = [];
   const seen = new Map();
   if (!existsSync(dir)) return { id, ok: true, findings, report: { rules: 0 } };
@@ -45,7 +48,13 @@ export async function run(ctx) {
       if (!r.level) add("format", r.line, `${r.id}: first line must start with MUST. or SHOULD.`);
       if (!r.why) add("format", r.line, `${r.id}: missing "Why:" line`);
       if (!r.gate) add("format", r.line, `${r.id}: missing "Gate:" line`);
-      else if (/^manual: checklists\/[\w-]+\.md$/.test(r.gate)) { /* manual check */ }
+      else if (/^manual: checklists\/[\w-]+\.md$/.test(r.gate)) {
+        // The checklist is generated from the bylaws (npm run checklists); it must exist and carry this rule (R-GATE-12).
+        const name = /checklists\/([\w-]+)\.md/.exec(r.gate)[1];
+        const text = checklist(name);
+        if (text === null) add("checklist-ref", r.line, `${r.id}: checklists/${name}.md does not exist (run npm run checklists)`);
+        else if (!text.includes(`**${r.id}**`)) add("checklist-ref", r.line, `${r.id}: checklists/${name}.md does not list it (run npm run checklists)`);
+      }
       else {
         const [gate, ...rest] = r.gate.split("/");
         const check = rest.join("/");
