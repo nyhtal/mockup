@@ -1,181 +1,309 @@
 # Gate report: reference
 
-Date: 2026-10-17T22:49:47.773Z  Commit: f1ec51c  OS: win32 x64
+Date: 2026-10-18T00:18:52.939Z  Commit: 9757b14  OS: win32 x64
 Node 24.19.0 · lighthouse 13.5.0 · tailwindcss 4.3.3 · eleventy 3.1.7 · pa11y 10.0.0 · vnu 26.10.12
 
 | Gate | Result | Findings | Time |
 |---|---|---|---|
 | bylaws | pass | 0 | 0.0s |
-| html | pass | 0 | 1.3s |
-| consistency | pass | 0 | 0.1s |
-| schema | pass | 0 | 0.0s |
-| budget | pass | 0 | 0.1s |
-| i18n | pass | 0 | 0.0s |
-| links | pass | 0 | 0.2s |
-| a11y | pass | 0 | 23.2s |
-| lighthouse | pass | 0 | 917.9s |
-
-## Lighthouse
-
-Chrome 155.0.0.0 · 5 runs per page and profile, median reported · mobile: simulate (150ms RTT, 1.6Mbps, 4x CPU) · desktop: simulate (40ms RTT, 10.2Mbps, 1x CPU)
-
-| Page | Profile | Perf | A11y | BP | SEO |
-|---|---|---|---|---|---|
-| /404.html | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /404.html | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /500.html | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /500.html | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/404/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/404/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/500/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/500/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/ | mobile | 100 | 100 | 100 | 100 |
-| /en/ | desktop | 100 | 100 | 100 | 100 |
-| /en/style-guide/components/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/components/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/controls/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/controls/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/primitives/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/primitives/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/sections/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/sections/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/sections-b/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/sections-b/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/sections-c/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/sections-c/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/sections-d/ | mobile | 100 | 100 | 100 | n/a (noindex) |
-| /en/style-guide/sections-d/ | desktop | 100 | 100 | 100 | n/a (noindex) |
-| / | mobile | 100 | 100 | 100 | n/a (noindex) |
-| / | desktop | 100 | 100 | 100 | n/a (noindex) |
+| html | pass | 0 | 3.6s |
+| consistency | pass | 0 | 0.7s |
+| schema | pass | 0 | 0.4s |
+| budget | pass | 0 | 1.2s |
+| i18n | pass | 0 | 1.0s |
+| links | pass | 0 | 1.4s |
+| a11y | skipped | 0 | - |
+| lighthouse | skipped | 0 | - |
 
 ## Page weight
 
 | Page | HTML | Total (mobile) | Total over gzip |
 |---|---|---|---|
-| /404.html | 13724 B | 118242 B | 65558 B |
-| /500.html | 13763 B | 118281 B | 65552 B |
-| /en/404/ | 13921 B | 118439 B | 65586 B |
-| /en/500/ | 13960 B | 118478 B | 65582 B |
-| /en/ | 44179 B | 174540 B | 95536 B |
-| /en/style-guide/components/ | 51697 B | 170448 B | 85440 B |
-| /en/style-guide/controls/ | 51740 B | 163190 B | 78579 B |
-| /en/style-guide/ | 29084 B | 133602 B | 67207 B |
-| /en/style-guide/primitives/ | 38696 B | 153174 B | 78922 B |
-| /en/style-guide/sections/ | 71095 B | 197885 B | 94733 B |
-| /en/style-guide/sections-b/ | 79756 B | 209488 B | 98724 B |
-| /en/style-guide/sections-c/ | 79314 B | 187027 B | 76318 B |
-| /en/style-guide/sections-d/ | 57419 B | 183075 B | 92443 B |
-| / | 1233 B | 102958 B | 60646 B |
-
-## Needs human review (axe incomplete)
-
-- `a11y/color-contrast` http://127.0.0.1:65100/404.html — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/404.html — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/500.html — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/500.html — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/404/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/404/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/500/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/500/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(2) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(3) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(4) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(5) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(6) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(6) > div > div:nth-child(2) > ul > li:nth-child(1) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(6) > div > div:nth-child(2) > ul > li:nth-child(2) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(6) > div > div:nth-child(2) > ul > li:nth-child(3) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(7) > div > div:nth-child(2) > ul > li:nth-child(1) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(7) > div > div:nth-child(2) > ul > li:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(7) > div > div:nth-child(2) > ul > li:nth-child(3) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(9) > div > h2)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(9) > div > p)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(9) > div > div > a:nth-child(2))
-- `a11y/color-contrast` http://127.0.0.1:65100/en/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(4) > ul > li:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(4) > ul > li:nth-child(3) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(5) > div:nth-child(3) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(5) > div:nth-child(3) > figure > figcaption > span:nth-child(3) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(5) > ul > li:nth-child(1) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(5) > ul > li:nth-child(2) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(5) > ul > li:nth-child(3) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/controls/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/controls/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(5) > div:nth-child(3) > aside > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/controls/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(8) > div:nth-child(3) > span:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(8) > div:nth-child(3) > span:nth-child(2) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(8) > div:nth-child(3) > span:nth-child(3) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(8) > div:nth-child(4) > svg:nth-child(1) > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(8) > div:nth-child(4) > svg:nth-child(2) > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > div > section:nth-child(8) > div:nth-child(4) > svg:nth-child(3) > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(8) > div > div > ul > li:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(8) > div > div > ul > li:nth-child(2) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(8) > div > div > ul > li:nth-child(3) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(8) > div > div > ul > li:nth-child(4) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(8) > div > div > ul > li:nth-child(5) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(8) > div > div > ul > li:nth-child(6) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(13) > div > div > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(13) > div > div > figure > figcaption > span:nth-child(3) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(14) > div > div:nth-child(2) > ul > li:nth-child(1) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(14) > div > div:nth-child(2) > ul > li:nth-child(2) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(14) > div > div:nth-child(2) > ul > li:nth-child(3) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(15) > div > div:nth-child(2) > ul > li:nth-child(1) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(15) > div > div:nth-child(2) > ul > li:nth-child(2) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(15) > div > div:nth-child(2) > ul > li:nth-child(3) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(15) > div > div:nth-child(2) > ul > li:nth-child(4) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(16) > div > h2)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(16) > div > p)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(16) > div > div > a:nth-child(2))
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(19) > div > div:nth-child(2) > ul > li:nth-child(1) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(19) > div > div:nth-child(2) > ul > li:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(19) > div > div:nth-child(2) > ul > li:nth-child(3) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(19) > div > div:nth-child(2) > ul > li:nth-child(4) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(20) > div > div:nth-child(2) > ul > li:nth-child(1) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(20) > div > div:nth-child(2) > ul > li:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(20) > div > div:nth-child(2) > ul > li:nth-child(3) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(20) > div > div:nth-child(2) > ul > li:nth-child(4) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > div > div:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(18) > div > div:nth-child(2) > ul > li:nth-child(1) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(18) > div > div:nth-child(2) > ul > li:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(18) > div > div:nth-child(2) > ul > li:nth-child(3) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(8) > div > div:nth-child(2) > ul > li:nth-child(1) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(8) > div > div:nth-child(2) > ul > li:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(3) > div > div:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(4) > div > div > div > aside > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(7) > div > div:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(9) > div > div:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > header > div > a > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(1) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(2) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(3) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(4) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(5) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(2) > div > div > ul > li:nth-child(6) > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(6) > div > div:nth-child(2) > ul > li:nth-child(1) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(6) > div > div:nth-child(2) > ul > li:nth-child(2) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(6) > div > div:nth-child(2) > ul > li:nth-child(3) > figure > figcaption > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(7) > div > div:nth-child(2) > ul > li:nth-child(1) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(7) > div > div:nth-child(2) > ul > li:nth-child(2) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(7) > div > div:nth-child(2) > ul > li:nth-child(3) > div > svg > text)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(9) > div > h2)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(9) > div > p)
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (#main > section:nth-child(9) > div > div > a:nth-child(2))
-- `a11y/color-contrast` http://127.0.0.1:65100/ — Elements must meet minimum color contrast ratio thresholds (https://dequeuniversity.com/rules/axe/4.13/color-contrast?application=axeAPI) (html > body > footer > div > div:nth-child(1) > a:nth-child(1) > svg > text)
+| /404.html | 28733 B | 134088 B | 66890 B |
+| /500.html | 28772 B | 134127 B | 66885 B |
+| /ar/404/ | 33331 B | 191726 B | 120465 B |
+| /ar/500/ | 33202 B | 191597 B | 120450 B |
+| /ar/about/history/ | 37850 B | 196245 B | 121545 B |
+| /ar/about/ | 52608 B | 217273 B | 130125 B |
+| /ar/about/locations/hamburg/ | 40526 B | 201508 B | 124479 B |
+| /ar/about/locations/ | 38415 B | 196810 B | 121414 B |
+| /ar/about/locations/manchester/ | 41560 B | 202343 B | 124328 B |
+| /ar/about/locations/riyadh/ | 39638 B | 201206 B | 125009 B |
+| /ar/about/team/alex-morgan/ | 39130 B | 200808 B | 125311 B |
+| /ar/about/team/ | 41744 B | 200139 B | 121730 B |
+| /ar/about/team/jonas-weber/ | 36770 B | 195165 B | 121338 B |
+| /ar/about/team/mei-chen/ | 38995 B | 201012 B | 125653 B |
+| /ar/about/team/priya-natarajan/ | 39554 B | 201925 B | 126146 B |
+| /ar/about/team/sofia-lindqvist/ | 36801 B | 195196 B | 121243 B |
+| /ar/about/values/ | 38610 B | 197005 B | 121775 B |
+| /ar/blog/author/alex-morgan/ | 38899 B | 200577 B | 125378 B |
+| /ar/blog/author/mei-chen/ | 38746 B | 200763 B | 125671 B |
+| /ar/blog/author/priya-natarajan/ | 39289 B | 201660 B | 126153 B |
+| /ar/blog/ | 42045 B | 211321 B | 133270 B |
+| /ar/blog/reading-generated-code/ | 52529 B | 218183 B | 132092 B |
+| /ar/blog/recipe-changes-by-line-leads/ | 52155 B | 218148 B | 132382 B |
+| /ar/blog/sensor-logic-at-the-edge/ | 52308 B | 217608 B | 131872 B |
+| /ar/blog/tag/engineering/ | 38022 B | 204015 B | 129239 B |
+| /ar/blog/tag/operations/ | 36369 B | 198047 B | 124662 B |
+| /ar/blog/tag/safety/ | 36275 B | 198292 B | 125031 B |
+| /ar/careers/culture/ | 45650 B | 221026 B | 139590 B |
+| /ar/careers/ | 54288 B | 212683 B | 123905 B |
+| /ar/careers/safety-assessor/ | 45873 B | 204268 B | 123118 B |
+| /ar/careers/senior-controls-engineer/ | 47296 B | 205691 B | 123272 B |
+| /ar/careers/support-engineer-german/ | 47472 B | 205867 B | 123319 B |
+| /ar/careers/technical-writer/ | 45698 B | 204093 B | 123151 B |
+| /ar/careers/thank-you/ | 35271 B | 193666 B | 120876 B |
+| /ar/contact/ | 43020 B | 201415 B | 122176 B |
+| /ar/contact/thank-you/ | 35209 B | 193604 B | 120861 B |
+| /ar/customers/alder-foods/ | 44535 B | 202930 B | 123029 B |
+| /ar/customers/brightline-pharma/ | 45593 B | 203988 B | 123132 B |
+| /ar/customers/castor-automotive/ | 45889 B | 204284 B | 123154 B |
+| /ar/customers/ | 44652 B | 203047 B | 122327 B |
+| /ar/demo/ | 45655 B | 204050 B | 122643 B |
+| /ar/demo/thank-you/ | 35251 B | 193646 B | 120878 B |
+| /ar/events/describe-your-first-line/ | 47530 B | 205925 B | 123327 B |
+| /ar/events/ | 39620 B | 198015 B | 121851 B |
+| /ar/events/northwind-at-sps/ | 44179 B | 202574 B | 122882 B |
+| /ar/events/safety-plcs-webinar/ | 47532 B | 205927 B | 123137 B |
+| /ar/events/thank-you/ | 35162 B | 193557 B | 120799 B |
+| /ar/faq/ | 41766 B | 200161 B | 122074 B |
+| /ar/glossary/ | 37006 B | 195401 B | 121553 B |
+| /ar/help/change-a-recipe/ | 41668 B | 200063 B | 122389 B |
+| /ar/help/connect-a-controller/ | 42354 B | 200749 B | 122473 B |
+| /ar/help/describe-your-first-line/ | 43582 B | 201977 B | 122734 B |
+| /ar/help/ | 39198 B | 197593 B | 121671 B |
+| /ar/ | 59934 B | 233291 B | 139676 B |
+| /ar/industries/automotive/ | 46467 B | 210814 B | 128689 B |
+| /ar/industries/food-and-beverage/ | 46817 B | 212218 B | 129748 B |
+| /ar/industries/ | 40442 B | 198837 B | 122115 B |
+| /ar/industries/pharmaceutical/ | 46501 B | 211968 B | 129738 B |
+| /ar/legal/accessibility/ | 36358 B | 194753 B | 121597 B |
+| /ar/legal/cookies/ | 36048 B | 194443 B | 121391 B |
+| /ar/legal/privacy/ | 36537 B | 194932 B | 121723 B |
+| /ar/legal/terms/ | 36158 B | 194553 B | 121657 B |
+| /ar/lp/line-automation-2026/ | 57909 B | 216304 B | 124531 B |
+| /ar/news/ | 38525 B | 196920 B | 121613 B |
+| /ar/news/media-kit/ | 39472 B | 197867 B | 121450 B |
+| /ar/news/northwind-4/ | 42115 B | 200510 B | 122540 B |
+| /ar/news/riyadh-office/ | 42661 B | 201056 B | 122540 B |
+| /ar/news/thousandth-line/ | 42621 B | 201016 B | 122593 B |
+| /ar/newsletter/ | 35982 B | 194377 B | 121225 B |
+| /ar/newsletter/preferences/ | 37168 B | 195563 B | 121241 B |
+| /ar/newsletter/preferences/thank-you/ | 36179 B | 194574 B | 120926 B |
+| /ar/newsletter/thank-you/ | 35429 B | 193824 B | 120899 B |
+| /ar/newsletter/unsubscribe/ | 36375 B | 194770 B | 121204 B |
+| /ar/newsletter/unsubscribe/thank-you/ | 36126 B | 194521 B | 120914 B |
+| /ar/partners/ | 41948 B | 200343 B | 122060 B |
+| /ar/pricing/ | 52557 B | 210952 B | 123432 B |
+| /ar/products/ | 43283 B | 213001 B | 133633 B |
+| /ar/products/northwind-cloud/ | 55710 B | 221671 B | 131582 B |
+| /ar/products/northwind-edge/ | 53436 B | 218366 B | 130551 B |
+| /ar/products/northwind-studio/ | 57047 B | 222643 B | 131615 B |
+| /ar/resources/downloads/commissioning-checklist/ | 44989 B | 206579 B | 126000 B |
+| /ar/resources/downloads/downtime-calculator/ | 43388 B | 204861 B | 125689 B |
+| /ar/resources/downloads/ | 38517 B | 196912 B | 121505 B |
+| /ar/resources/downloads/safety-evidence-guide/ | 43649 B | 205280 B | 125909 B |
+| /ar/resources/downloads/thank-you/ | 36057 B | 194452 B | 120945 B |
+| /ar/resources/ | 43283 B | 201678 B | 122139 B |
+| /ar/search/ | 36537 B | 194932 B | 121211 B |
+| /ar/services/ | 46902 B | 205297 B | 122915 B |
+| /ar/services/line-automation/ | 51845 B | 219128 B | 132495 B |
+| /ar/services/plant-programmes/ | 51808 B | 221171 B | 134493 B |
+| /ar/services/safety-reviews/ | 51692 B | 215447 B | 128833 B |
+| /ar/sitemap/ | 46373 B | 204768 B | 121871 B |
+| /ar/sustainability/ | 45293 B | 209451 B | 128370 B |
+| /ar/trust/ | 45553 B | 203948 B | 122692 B |
+| /de/404/ | 32672 B | 138027 B | 67264 B |
+| /de/500/ | 32856 B | 138211 B | 67286 B |
+| /de/about/history/ | 37279 B | 142634 B | 68267 B |
+| /de/about/ | 51811 B | 163436 B | 76746 B |
+| /de/about/locations/hamburg/ | 39958 B | 147900 B | 71262 B |
+| /de/about/locations/ | 37773 B | 143128 B | 68203 B |
+| /de/about/locations/manchester/ | 40986 B | 148729 B | 71108 B |
+| /de/about/locations/riyadh/ | 39037 B | 147565 B | 71815 B |
+| /de/about/team/alex-morgan/ | 38483 B | 147121 B | 72067 B |
+| /de/about/team/ | 41056 B | 146411 B | 68514 B |
+| /de/about/team/jonas-weber/ | 36147 B | 141502 B | 68140 B |
+| /de/about/team/mei-chen/ | 38379 B | 147356 B | 72414 B |
+| /de/about/team/priya-natarajan/ | 38798 B | 148129 B | 72889 B |
+| /de/about/team/sofia-lindqvist/ | 36242 B | 141597 B | 68085 B |
+| /de/about/values/ | 38018 B | 143373 B | 68502 B |
+| /de/blog/author/alex-morgan/ | 38266 B | 146904 B | 72128 B |
+| /de/blog/author/mei-chen/ | 38181 B | 147158 B | 72456 B |
+| /de/blog/author/priya-natarajan/ | 38569 B | 147900 B | 72938 B |
+| /de/blog/ | 41204 B | 157440 B | 79961 B |
+| /de/blog/reading-generated-code/ | 50717 B | 163331 B | 78637 B |
+| /de/blog/recipe-changes-by-line-leads/ | 50349 B | 163302 B | 78972 B |
+| /de/blog/sensor-logic-at-the-edge/ | 50503 B | 162763 B | 78380 B |
+| /de/blog/tag/engineering/ | 37387 B | 150340 B | 75985 B |
+| /de/blog/tag/operations/ | 35767 B | 144405 B | 71459 B |
+| /de/blog/tag/safety/ | 35690 B | 144667 B | 71799 B |
+| /de/careers/culture/ | 44649 B | 166985 B | 86290 B |
+| /de/careers/ | 53217 B | 158572 B | 70538 B |
+| /de/careers/safety-assessor/ | 44862 B | 150217 B | 69822 B |
+| /de/careers/senior-controls-engineer/ | 46409 B | 151764 B | 69969 B |
+| /de/careers/support-engineer-german/ | 46304 B | 151659 B | 69968 B |
+| /de/careers/technical-writer/ | 44840 B | 150195 B | 69813 B |
+| /de/careers/thank-you/ | 34860 B | 140215 B | 67727 B |
+| /de/contact/ | 42276 B | 147631 B | 68929 B |
+| /de/contact/thank-you/ | 34818 B | 140173 B | 67678 B |
+| /de/customers/alder-foods/ | 43443 B | 148798 B | 69664 B |
+| /de/customers/brightline-pharma/ | 44694 B | 150049 B | 69786 B |
+| /de/customers/castor-automotive/ | 44811 B | 150166 B | 69789 B |
+| /de/customers/ | 43895 B | 149250 B | 69051 B |
+| /de/demo/ | 44800 B | 150155 B | 69361 B |
+| /de/demo/thank-you/ | 34752 B | 140107 B | 67696 B |
+| /de/events/describe-your-first-line/ | 46766 B | 152121 B | 70016 B |
+| /de/events/ | 39013 B | 144368 B | 68632 B |
+| /de/events/northwind-at-sps/ | 43421 B | 148776 B | 69634 B |
+| /de/events/safety-plcs-webinar/ | 46438 B | 151793 B | 69834 B |
+| /de/events/thank-you/ | 34728 B | 140083 B | 67662 B |
+| /de/faq/ | 40793 B | 146148 B | 68734 B |
+| /de/glossary/ | 36074 B | 141429 B | 68261 B |
+| /de/help/change-a-recipe/ | 40937 B | 146292 B | 69152 B |
+| /de/help/connect-a-controller/ | 41519 B | 146874 B | 69209 B |
+| /de/help/describe-your-first-line/ | 42802 B | 148157 B | 69476 B |
+| /de/help/ | 38605 B | 143960 B | 68464 B |
+| /de/ | 58787 B | 179104 B | 86240 B |
+| /de/industries/automotive/ | 45346 B | 156653 B | 75341 B |
+| /de/industries/food-and-beverage/ | 45661 B | 158022 B | 76422 B |
+| /de/industries/ | 39717 B | 145072 B | 68813 B |
+| /de/industries/pharmaceutical/ | 45400 B | 157827 B | 76393 B |
+| /de/legal/accessibility/ | 35642 B | 140997 B | 68382 B |
+| /de/legal/cookies/ | 35021 B | 140376 B | 68131 B |
+| /de/legal/imprint/ | 31005 B | 136360 B | 67778 B |
+| /de/legal/privacy/ | 35754 B | 141109 B | 68477 B |
+| /de/legal/terms/ | 35647 B | 141002 B | 68406 B |
+| /de/lp/line-automation-2026/ | 56914 B | 162269 B | 71126 B |
+| /de/news/ | 37758 B | 143113 B | 68355 B |
+| /de/news/media-kit/ | 38735 B | 144090 B | 68234 B |
+| /de/news/northwind-4/ | 41508 B | 146863 B | 69301 B |
+| /de/news/riyadh-office/ | 41607 B | 146962 B | 69283 B |
+| /de/news/thousandth-line/ | 41710 B | 147065 B | 69299 B |
+| /de/newsletter/ | 35457 B | 140812 B | 68045 B |
+| /de/newsletter/preferences/ | 36425 B | 141780 B | 68031 B |
+| /de/newsletter/preferences/thank-you/ | 35519 B | 140874 B | 67696 B |
+| /de/newsletter/thank-you/ | 34866 B | 140221 B | 67732 B |
+| /de/newsletter/unsubscribe/ | 35617 B | 140972 B | 67974 B |
+| /de/newsletter/unsubscribe/thank-you/ | 35489 B | 140844 B | 67702 B |
+| /de/partners/ | 41346 B | 146701 B | 68797 B |
+| /de/pricing/ | 51228 B | 156583 B | 70039 B |
+| /de/products/ | 42414 B | 159092 B | 80282 B |
+| /de/products/northwind-cloud/ | 54313 B | 167234 B | 78164 B |
+| /de/products/northwind-edge/ | 52191 B | 164081 B | 77169 B |
+| /de/products/northwind-studio/ | 55791 B | 168347 B | 78162 B |
+| /de/resources/downloads/commissioning-checklist/ | 44047 B | 152597 B | 72710 B |
+| /de/resources/downloads/downtime-calculator/ | 42706 B | 151139 B | 72422 B |
+| /de/resources/downloads/ | 37835 B | 143190 B | 68266 B |
+| /de/resources/downloads/safety-evidence-guide/ | 42846 B | 151437 B | 72636 B |
+| /de/resources/downloads/thank-you/ | 35510 B | 140865 B | 67749 B |
+| /de/resources/ | 42740 B | 148095 B | 68916 B |
+| /de/search/ | 35944 B | 141299 B | 67972 B |
+| /de/services/ | 45983 B | 151338 B | 69536 B |
+| /de/services/line-automation/ | 50815 B | 165058 B | 79095 B |
+| /de/services/plant-programmes/ | 50837 B | 167160 B | 81181 B |
+| /de/services/safety-reviews/ | 50364 B | 161079 B | 75456 B |
+| /de/sitemap/ | 45665 B | 151020 B | 68560 B |
+| /de/sustainability/ | 44372 B | 155490 B | 75077 B |
+| /de/trust/ | 44690 B | 150045 B | 69390 B |
+| /en/404/ | 32699 B | 138054 B | 67253 B |
+| /en/500/ | 32738 B | 138093 B | 67248 B |
+| /en/about/history/ | 37161 B | 142516 B | 68150 B |
+| /en/about/ | 51524 B | 163149 B | 76467 B |
+| /en/about/locations/hamburg/ | 39876 B | 147818 B | 71196 B |
+| /en/about/locations/ | 37700 B | 143055 B | 68125 B |
+| /en/about/locations/manchester/ | 40919 B | 148662 B | 71042 B |
+| /en/about/locations/riyadh/ | 38978 B | 147506 B | 71750 B |
+| /en/about/team/alex-morgan/ | 38389 B | 147027 B | 71976 B |
+| /en/about/team/ | 41003 B | 146358 B | 68420 B |
+| /en/about/team/jonas-weber/ | 36072 B | 141427 B | 68069 B |
+| /en/about/team/mei-chen/ | 38253 B | 147230 B | 72312 B |
+| /en/about/team/priya-natarajan/ | 38660 B | 147991 B | 72752 B |
+| /en/about/team/sofia-lindqvist/ | 36182 B | 141537 B | 68026 B |
+| /en/about/values/ | 37978 B | 143333 B | 68401 B |
+| /en/blog/author/alex-morgan/ | 38090 B | 146728 B | 72034 B |
+| /en/blog/author/mei-chen/ | 37953 B | 146930 B | 72341 B |
+| /en/blog/author/priya-natarajan/ | 38367 B | 147698 B | 72775 B |
+| /en/blog/ | 41030 B | 157266 B | 79800 B |
+| /en/blog/reading-generated-code/ | 50352 B | 162966 B | 78355 B |
+| /en/blog/recipe-changes-by-line-leads/ | 49888 B | 162841 B | 78676 B |
+| /en/blog/sensor-logic-at-the-edge/ | 49864 B | 162124 B | 78030 B |
+| /en/blog/tag/engineering/ | 37291 B | 150244 B | 75880 B |
+| /en/blog/tag/operations/ | 35723 B | 144361 B | 71387 B |
+| /en/blog/tag/safety/ | 35531 B | 144508 B | 71715 B |
+| /en/careers/culture/ | 44509 B | 166845 B | 86128 B |
+| /en/careers/ | 52993 B | 158348 B | 70310 B |
+| /en/careers/safety-assessor/ | 44587 B | 149942 B | 69678 B |
+| /en/careers/senior-controls-engineer/ | 46130 B | 151485 B | 69795 B |
+| /en/careers/support-engineer-german/ | 46064 B | 151419 B | 69801 B |
+| /en/careers/technical-writer/ | 44647 B | 150002 B | 69648 B |
+| /en/careers/thank-you/ | 34681 B | 140036 B | 67649 B |
+| /en/contact/ | 42120 B | 147475 B | 68783 B |
+| /en/contact/thank-you/ | 34708 B | 140063 B | 67625 B |
+| /en/customers/alder-foods/ | 43111 B | 148466 B | 69455 B |
+| /en/customers/brightline-pharma/ | 44476 B | 149831 B | 69564 B |
+| /en/customers/castor-automotive/ | 44498 B | 149853 B | 69595 B |
+| /en/customers/ | 43788 B | 149143 B | 68890 B |
+| /en/demo/ | 44691 B | 150046 B | 69209 B |
+| /en/demo/thank-you/ | 34669 B | 140024 B | 67643 B |
+| /en/events/describe-your-first-line/ | 46493 B | 151848 B | 69816 B |
+| /en/events/ | 38848 B | 144203 B | 68502 B |
+| /en/events/northwind-at-sps/ | 43180 B | 148535 B | 69439 B |
+| /en/events/safety-plcs-webinar/ | 46351 B | 151706 B | 69709 B |
+| /en/events/thank-you/ | 34579 B | 139934 B | 67617 B |
+| /en/faq/ | 40556 B | 145911 B | 68548 B |
+| /en/glossary/ | 35884 B | 141239 B | 68116 B |
+| /en/help/change-a-recipe/ | 40622 B | 145977 B | 68950 B |
+| /en/help/connect-a-controller/ | 41274 B | 146629 B | 69043 B |
+| /en/help/describe-your-first-line/ | 42447 B | 147802 B | 69247 B |
+| /en/help/ | 38518 B | 143873 B | 68351 B |
+| /en/ | 58284 B | 178601 B | 85914 B |
+| /en/industries/automotive/ | 45113 B | 156420 B | 75128 B |
+| /en/industries/food-and-beverage/ | 45378 B | 157739 B | 76179 B |
+| /en/industries/ | 39621 B | 144976 B | 68643 B |
+| /en/industries/pharmaceutical/ | 45205 B | 157632 B | 76197 B |
+| /en/legal/accessibility/ | 35357 B | 140712 B | 68195 B |
+| /en/legal/cookies/ | 34865 B | 140220 B | 68012 B |
+| /en/legal/privacy/ | 35414 B | 140769 B | 68255 B |
+| /en/legal/terms/ | 35283 B | 140638 B | 68193 B |
+| /en/lp/line-automation-2026/ | 56477 B | 161832 B | 70848 B |
+| /en/news/ | 37677 B | 143032 B | 68202 B |
+| /en/news/media-kit/ | 38731 B | 144086 B | 68184 B |
+| /en/news/northwind-4/ | 41210 B | 146565 B | 69089 B |
+| /en/news/riyadh-office/ | 41410 B | 146765 B | 69080 B |
+| /en/news/thousandth-line/ | 41509 B | 146864 B | 69109 B |
+| /en/newsletter/ | 35395 B | 140750 B | 67985 B |
+| /en/newsletter/preferences/ | 36337 B | 141692 B | 67987 B |
+| /en/newsletter/preferences/thank-you/ | 35359 B | 140714 B | 67676 B |
+| /en/newsletter/thank-you/ | 34820 B | 140175 B | 67654 B |
+| /en/newsletter/unsubscribe/ | 35612 B | 140967 B | 67947 B |
+| /en/newsletter/unsubscribe/thank-you/ | 35407 B | 140762 B | 67681 B |
+| /en/partners/ | 41256 B | 146611 B | 68676 B |
+| /en/pricing/ | 50874 B | 156229 B | 69817 B |
+| /en/products/ | 42268 B | 158946 B | 80112 B |
+| /en/products/northwind-cloud/ | 53929 B | 166850 B | 77935 B |
+| /en/products/northwind-edge/ | 51885 B | 163775 B | 76875 B |
+| /en/products/northwind-studio/ | 55495 B | 168051 B | 77927 B |
+| /en/resources/downloads/commissioning-checklist/ | 43816 B | 152366 B | 72525 B |
+| /en/resources/downloads/downtime-calculator/ | 42478 B | 150911 B | 72286 B |
+| /en/resources/downloads/ | 37708 B | 143063 B | 68129 B |
+| /en/resources/downloads/safety-evidence-guide/ | 42650 B | 151241 B | 72454 B |
+| /en/resources/downloads/thank-you/ | 35444 B | 140799 B | 67712 B |
+| /en/resources/ | 42565 B | 147920 B | 68769 B |
+| /en/search/ | 35880 B | 141235 B | 67903 B |
+| /en/services/ | 45686 B | 151041 B | 69314 B |
+| /en/services/line-automation/ | 50395 B | 164638 B | 78842 B |
+| /en/services/plant-programmes/ | 50443 B | 166766 B | 80895 B |
+| /en/services/safety-reviews/ | 49987 B | 160702 B | 75239 B |
+| /en/sitemap/ | 45201 B | 150556 B | 68298 B |
+| /en/style-guide/components/ | 66415 B | 186003 B | 86750 B |
+| /en/style-guide/controls/ | 66216 B | 178503 B | 79886 B |
+| /en/style-guide/ | 43730 B | 149085 B | 68553 B |
+| /en/style-guide/primitives/ | 53390 B | 168705 B | 80315 B |
+| /en/style-guide/sections/ | 87657 B | 215284 B | 96130 B |
+| /en/style-guide/sections-b/ | 98415 B | 230949 B | 102861 B |
+| /en/style-guide/sections-c/ | 96434 B | 204984 B | 78300 B |
+| /en/style-guide/sections-d/ | 72146 B | 198639 B | 93782 B |
+| /en/sustainability/ | 44119 B | 155237 B | 74877 B |
+| /en/trust/ | 44331 B | 149686 B | 69163 B |
+| / | 1233 B | 103795 B | 60809 B |

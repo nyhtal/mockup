@@ -1,5 +1,6 @@
-import { readFileSync, mkdirSync, copyFileSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync } from "node:fs";
 import path from "node:path";
+import subsetFont from "subset-font";
 import { FONTS, resolveFont } from "./lib/theme.js";
 
 /** Locale prefix → extra subset and, when the brand font lacks the script, the package that provides it. */
@@ -9,6 +10,25 @@ const SCRIPT_SUBSETS = [
   [/^el\b/, "greek", null],
   [/^vi\b/, "vietnamese", null],
 ];
+
+/**
+ * Script faces are subset at build time to the script's core blocks (no presentation forms, no historic
+ * blocks) and to the weights the catalog uses (400–700): the stock Arabic face is 166 KB, which no page
+ * could carry within the 300 KB budget (R-PERF-01). Latin faces ship as fontsource delivers them.
+ */
+const SUBSET_RANGES = {
+  arabic: "U+0600-06FF, U+0750-077F, U+0870-08FF, U+200C-200F, U+2010-2011, U+2E41",
+};
+const WEIGHTS = { min: 400, max: 700 };
+
+function rangeText(ranges) {
+  let text = "";
+  for (const r of ranges.split(",")) {
+    const [a, b] = r.trim().replace(/^U\+/, "").split("-").map((h) => parseInt(h, 16));
+    for (let c = a; c <= (b ?? a); c++) text += String.fromCodePoint(c);
+  }
+  return text;
+}
 
 const fontsourceDir = (pkg) => path.join("node_modules", "@fontsource-variable", pkg);
 
@@ -22,8 +42,8 @@ function facesFrom(pkg, subsets) {
     if (!file || !file.endsWith("-wght-normal.woff2") || !file.startsWith(`${pkg}-`)) continue;
     const subset = file.slice(pkg.length + 1, -"-wght-normal.woff2".length);
     if (!subsets.includes(subset)) continue;
-    const unicodeRange = /unicode-range:\s*([^;]+);/.exec(body)?.[1].trim();
-    faces.push({ family: FONTS[pkg].family, pkg, file, subset, unicodeRange });
+    const unicodeRange = SUBSET_RANGES[subset] || /unicode-range:\s*([^;]+);/.exec(body)?.[1].trim();
+    faces.push({ family: FONTS[pkg].family, pkg, file, subset, unicodeRange, subsetted: subset in SUBSET_RANGES });
   }
   return faces;
 }
@@ -59,8 +79,13 @@ export function fontPlan(brand, locales) {
   return { faces, preload: fileOf(latin), preloadFor, css: [...faceCss, ...fallbackCss].join("\n") + "\n" };
 }
 
-export function copyFonts(plan, distDir) {
+export async function copyFonts(plan, distDir) {
   const out = path.join(distDir, "assets", "fonts");
   mkdirSync(out, { recursive: true });
-  for (const f of plan.faces) copyFileSync(path.join(fontsourceDir(f.pkg), "files", f.file), path.join(out, f.file));
+  for (const f of plan.faces) {
+    const src = path.join(fontsourceDir(f.pkg), "files", f.file);
+    if (!f.subsetted) { copyFileSync(src, path.join(out, f.file)); continue; }
+    const buf = await subsetFont(readFileSync(src), rangeText(f.unicodeRange), { targetFormat: "woff2", variationAxes: { wght: WEIGHTS } });
+    writeFileSync(path.join(out, f.file), buf);
+  }
 }

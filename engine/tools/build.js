@@ -30,7 +30,10 @@ export function checkLocaleCoverage(dist, site) {
   for (const locale of site.locales) {
     if (locale === site.defaultLocale) continue;
     const have = new Set(htmlPaths(path.join(dist, locale)));
-    for (const p of base) if (!have.has(p)) throw new Error(`Locale "${locale}" is missing page /${locale}/${p.replace(/\\/g, "/")}`);
+    for (const p of base) {
+      if (/^style-guide[\\/]/.test(p)) continue; // default locale only (R-PAGE-09)
+      if (!have.has(p)) throw new Error(`Locale "${locale}" is missing page /${locale}/${p.replace(/\\/g, "/")}`);
+    }
   }
 }
 
@@ -46,7 +49,7 @@ export async function build({ site }) {
   checkLocaleCoverage(dist, siteConfig);
 
   const fonts = fontPlan(siteConfig.brand || {}, siteConfig.locales);
-  copyFonts(fonts, dist);
+  await copyFonts(fonts, dist);
   // Sprites go in before Tailwind runs so the sprite's `hidden` class is part of the compiled CSS.
   injectSprites(dist);
   const css = readFileSync("engine/theme/app.css", "utf8")

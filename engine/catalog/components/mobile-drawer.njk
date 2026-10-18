@@ -40,7 +40,7 @@
 <p class="mt-6 px-3 text-sm font-medium text-ink-muted">{{ "ui.language" | t }}</p>
 <ul class="mt-1 space-y-1">
 {%- for alt in alternates %}
-<li><a href="{{ alt.url }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}" class="block min-h-11 rounded-md px-3 py-2.5 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"{% if alt.lang == locale %} aria-current="true"{% endif %}>{{ alt.lang | nativeName }}</a></li>
+<li><a href="{{ alt.url }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}" class="font-system block min-h-11 rounded-md px-3 py-2.5 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"{% if alt.lang == locale %} aria-current="true"{% endif %}>{{ alt.lang | nativeName }}</a></li>
 {%- endfor %}
 </ul>
 {%- endif %}

@@ -78,7 +78,7 @@ Why: One field anatomy across every form.
 Gate: manual: checklists/new-component.md
 
 ### R-COMP-16 Style-guide page
-MUST. Every site ships `/<locale>/style-guide/` (noindex) showing every primitive, component variant and state in use on that site, built from the same catalog.
+MUST. Every site ships `/<default locale>/style-guide/` (noindex) showing every primitive, component variant and state in use on that site, built from the same catalog.
 Why: It is the regression page for designers and the proof that nothing was improvised.
 Gate: manual: checklists/pre-delivery.md
 

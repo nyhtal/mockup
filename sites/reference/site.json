@@ -4,61 +4,246 @@
   "url": "https://example.com",
   "year": "2026",
   "defaultLocale": "en",
-  "locales": ["en"],
-  "rtl": ["ar"],
+  "locales": [
+    "en",
+    "de",
+    "ar"
+  ],
+  "rtl": [
+    "ar"
+  ],
   "hasSearch": true,
   "voice": "plain",
-  "contact": { "email": "hello@example.com", "phone": "+44 20 7946 0000" },
+  "contact": {
+    "email": "hello@example.com",
+    "phone": "+44 20 7946 0000"
+  },
   "errorLinks": [
-    { "key": "nav.services", "href": "/services/" },
-    { "key": "nav.contact", "href": "/contact/" }
+    {
+      "key": "nav.services",
+      "href": "/services/"
+    },
+    {
+      "key": "nav.contact",
+      "href": "/contact/"
+    }
   ],
-  "cta": { "key": "nav.cta", "href": "/demo/" },
+  "cta": {
+    "key": "nav.cta",
+    "href": "/demo/"
+  },
   "nav": [
     {
       "key": "nav.services",
       "href": "/services/",
       "children": [
-        { "key": "nav.services", "href": "/services/", "descKey": "nav.servicesDesc" },
-        { "key": "nav.products", "href": "/products/", "descKey": "nav.productsDesc" },
-        { "key": "nav.industries", "href": "/industries/", "descKey": "nav.industriesDesc" },
-        { "key": "nav.pricing", "href": "/pricing/", "descKey": "nav.pricingDesc" }
+        {
+          "key": "nav.services",
+          "href": "/services/",
+          "descKey": "nav.servicesDesc"
+        },
+        {
+          "key": "nav.products",
+          "href": "/products/",
+          "descKey": "nav.productsDesc"
+        },
+        {
+          "key": "nav.industries",
+          "href": "/industries/",
+          "descKey": "nav.industriesDesc"
+        },
+        {
+          "key": "nav.pricing",
+          "href": "/pricing/",
+          "descKey": "nav.pricingDesc"
+        }
       ]
     },
-    { "key": "nav.customers", "href": "/customers/" },
+    {
+      "key": "nav.customers",
+      "href": "/customers/"
+    },
     {
       "key": "nav.resources",
       "href": "/resources/",
       "children": [
-        { "key": "nav.blog", "href": "/blog/", "descKey": "nav.blogDesc" },
-        { "key": "nav.downloads", "href": "/resources/downloads/", "descKey": "nav.downloadsDesc" },
-        { "key": "nav.events", "href": "/events/", "descKey": "nav.eventsDesc" },
-        { "key": "nav.help", "href": "/help/", "descKey": "nav.helpDesc" }
+        {
+          "key": "nav.blog",
+          "href": "/blog/",
+          "descKey": "nav.blogDesc"
+        },
+        {
+          "key": "nav.downloads",
+          "href": "/resources/downloads/",
+          "descKey": "nav.downloadsDesc"
+        },
+        {
+          "key": "nav.events",
+          "href": "/events/",
+          "descKey": "nav.eventsDesc"
+        },
+        {
+          "key": "nav.help",
+          "href": "/help/",
+          "descKey": "nav.helpDesc"
+        }
       ]
     },
     {
       "key": "nav.company",
       "href": "/about/",
       "children": [
-        { "key": "nav.about", "href": "/about/", "descKey": "nav.aboutDesc" },
-        { "key": "nav.careers", "href": "/careers/", "descKey": "nav.careersDesc" },
-        { "key": "nav.news", "href": "/news/", "descKey": "nav.newsDesc" },
-        { "key": "nav.contact", "href": "/contact/", "descKey": "nav.contactDesc" }
+        {
+          "key": "nav.about",
+          "href": "/about/",
+          "descKey": "nav.aboutDesc"
+        },
+        {
+          "key": "nav.careers",
+          "href": "/careers/",
+          "descKey": "nav.careersDesc"
+        },
+        {
+          "key": "nav.news",
+          "href": "/news/",
+          "descKey": "nav.newsDesc"
+        },
+        {
+          "key": "nav.contact",
+          "href": "/contact/",
+          "descKey": "nav.contactDesc"
+        }
       ]
     }
   ],
   "footer": {
     "columns": [
-      { "key": "footer.company", "links": [{ "key": "nav.contact", "href": "/contact/" }, { "key": "nav.about", "href": "/about/" }, { "key": "nav.team", "href": "/about/team/" }, { "key": "nav.locations", "href": "/about/locations/" }, { "key": "nav.careers", "href": "/careers/" }, { "key": "nav.news", "href": "/news/" }] },
-      { "key": "footer.offer", "links": [{ "key": "nav.services", "href": "/services/" }, { "key": "nav.products", "href": "/products/" }, { "key": "nav.industries", "href": "/industries/" }, { "key": "nav.pricing", "href": "/pricing/" }, { "key": "nav.partners", "href": "/partners/" }, { "key": "nav.customers", "href": "/customers/" }] },
-      { "key": "footer.resources", "links": [{ "key": "nav.blog", "href": "/blog/" }, { "key": "nav.downloads", "href": "/resources/downloads/" }, { "key": "nav.events", "href": "/events/" }, { "key": "nav.help", "href": "/help/" }, { "key": "nav.faq", "href": "/faq/" }, { "key": "nav.glossary", "href": "/glossary/" }] },
-      { "key": "footer.more", "links": [{ "key": "nav.trust", "href": "/trust/" }, { "key": "nav.sustainability", "href": "/sustainability/" }, { "key": "nav.newsletter", "href": "/newsletter/" }, { "key": "nav.sitemap", "href": "/sitemap/" }, { "key": "nav.styleGuide", "href": "/style-guide/" }] }
+      {
+        "key": "footer.company",
+        "links": [
+          {
+            "key": "nav.contact",
+            "href": "/contact/"
+          },
+          {
+            "key": "nav.about",
+            "href": "/about/"
+          },
+          {
+            "key": "nav.team",
+            "href": "/about/team/"
+          },
+          {
+            "key": "nav.locations",
+            "href": "/about/locations/"
+          },
+          {
+            "key": "nav.careers",
+            "href": "/careers/"
+          },
+          {
+            "key": "nav.news",
+            "href": "/news/"
+          }
+        ]
+      },
+      {
+        "key": "footer.offer",
+        "links": [
+          {
+            "key": "nav.services",
+            "href": "/services/"
+          },
+          {
+            "key": "nav.products",
+            "href": "/products/"
+          },
+          {
+            "key": "nav.industries",
+            "href": "/industries/"
+          },
+          {
+            "key": "nav.pricing",
+            "href": "/pricing/"
+          },
+          {
+            "key": "nav.partners",
+            "href": "/partners/"
+          },
+          {
+            "key": "nav.customers",
+            "href": "/customers/"
+          }
+        ]
+      },
+      {
+        "key": "footer.resources",
+        "links": [
+          {
+            "key": "nav.blog",
+            "href": "/blog/"
+          },
+          {
+            "key": "nav.downloads",
+            "href": "/resources/downloads/"
+          },
+          {
+            "key": "nav.events",
+            "href": "/events/"
+          },
+          {
+            "key": "nav.help",
+            "href": "/help/"
+          },
+          {
+            "key": "nav.faq",
+            "href": "/faq/"
+          },
+          {
+            "key": "nav.glossary",
+            "href": "/glossary/"
+          }
+        ]
+      },
+      {
+        "key": "footer.more",
+        "links": [
+          {
+            "key": "nav.trust",
+            "href": "/trust/"
+          },
+          {
+            "key": "nav.sustainability",
+            "href": "/sustainability/"
+          },
+          {
+            "key": "nav.newsletter",
+            "href": "/newsletter/"
+          },
+          {
+            "key": "nav.sitemap",
+            "href": "/sitemap/"
+          }
+        ]
+      }
     ],
     "legal": [
-      { "key": "nav.privacy", "href": "/legal/privacy/" },
-      { "key": "nav.cookies", "href": "/legal/cookies/" },
-      { "key": "nav.terms", "href": "/legal/terms/" },
-      { "key": "nav.accessibility", "href": "/legal/accessibility/" }
+      {
+        "key": "nav.privacy",
+        "href": "/legal/privacy/"
+      },
+      {
+        "key": "nav.cookies",
+        "href": "/legal/cookies/"
+      },
+      {
+        "key": "nav.terms",
+        "href": "/legal/terms/"
+      },
+      {
+        "key": "nav.accessibility",
+        "href": "/legal/accessibility/"
+      }
     ]
   },
   "brand": {

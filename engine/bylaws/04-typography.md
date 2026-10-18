@@ -3,7 +3,7 @@
 Purpose: which font, size, weight and leading each kind of text uses, so a heading on the careers page looks like a heading on the pricing page. Sources: https://fontsource.org (OFL fonts), https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/size-adjust, https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap.
 
 ### R-TYPO-01 Approved fonts
-MUST. The brief's `font` is one of: `inter`, `figtree`, `ibm-plex-sans`, `source-sans-3`, `noto-sans`, or `system`. Arabic locales add `noto-sans-arabic`; the build only ships the files a site's locales need. Each is the variable `woff2` from `@fontsource-variable/<name>` (OFL 1.1).
+MUST. The brief's `font` is one of: `inter`, `figtree`, `ibm-plex-sans`, `source-sans-3`, `noto-sans`, or `system`. Arabic locales add `noto-sans-arabic`; the build only ships the files a site's locales need. Each is the variable `woff2` from `@fontsource-variable/<name>` (OFL 1.1); Latin faces ship as delivered, script faces are subset at build time to the script's core blocks and the weights the catalog uses (400–700), which takes the Arabic face from 166 KB to 53 KB so an Arabic page fits R-PERF-01.
 Why: Variable fonts give every weight in one file; a short list keeps sites recognisably related.
 Gate: manual: checklists/new-site.md
 

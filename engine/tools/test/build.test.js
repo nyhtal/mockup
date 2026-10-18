@@ -12,16 +12,17 @@ function run(env = {}) {
 }
 
 test("missing locale content fails the build naming the page", () => {
-  copyFileSync("engine/i18n/en.json", "engine/i18n/de.json");
+  copyFileSync("engine/i18n/en.json", "engine/i18n/xx.json");
   try {
-    assert.throws(() => run({ SITE_LOCALES_OVERRIDE: "en,de" }), (e) => {
-      assert.match(e.stderr, /Locale "de" is missing page \/de\/[a-z/-]*index\.html/);
+    assert.throws(() => run({ SITE_LOCALES_OVERRIDE: "en,de,ar,xx" }), (e) => {
+      assert.match(e.stderr, /Locale "xx" is missing page \/xx\/[a-z/-]*index\.html/);
       return true;
     });
   } finally {
-    rmSync("engine/i18n/de.json");
+    rmSync("engine/i18n/xx.json");
   }
 });
+
 
 test("build produces the reference home page and css", () => {
   run();
@@ -72,8 +73,10 @@ test("the shell has one header with labelled navigation, a drawer trigger, one m
   assert.match(html, /<nav aria-label="Footer navigation"/);
   assert.match(html, /<button[^>]*popovertarget="drawer"/);
   assert.match(html, /<div[^>]*popover[^>]*id="drawer"/);
-  // A single-locale site has nothing to switch to; the switcher appears only with two or more locales (phase 4 covers it).
-  assert.doesNotMatch(html, /popovertarget="locales"/);
+  // Three locales: the switcher is present and names languages natively (R-I18N-08).
+  assert.match(html, /popovertarget="locales"/);
+  assert.match(html, /lang="de"[^>]*>Deutsch</);
+  assert.match(html, /lang="ar"[^>]*>العربية</);
   // The current page is marked in the primary navigation (R-A11Y-12): Customers is a plain nav link.
   assert.match(readFileSync("dist/reference/en/customers/index.html", "utf8"), /<a href="\/en\/customers\/"[^>]*aria-current="page"/);
 });
@@ -91,4 +94,19 @@ test("the stylesheet is compiled from the built pages only, not from docs or byl
   // `p-[13px]` appears in bylaw 02 as a forbidden example and nowhere in any page.
   assert.doesNotMatch(css, /p-\\\[13px\\\]/);
   assert.match(css, /\.text-4xl\{/, "classes used on the page are present");
+});
+
+test("three locales: alternates pair the same slug per locale, Arabic pages preload the Arabic face, the style guide exists in the default locale only", () => {
+  const html = readFileSync("dist/reference/de/about/team/mei-chen/index.html", "utf8");
+  assert.match(html, /<link rel="alternate" hreflang="en" href="https:\/\/example\.com\/en\/about\/team\/mei-chen\/">/);
+  assert.match(html, /<link rel="alternate" hreflang="ar" href="https:\/\/example\.com\/ar\/about\/team\/mei-chen\/">/);
+  assert.doesNotMatch(html, /hreflang="en" href="https:\/\/example\.com\/en\/about\/team\/priya/);
+  const ar = readFileSync("dist/reference/ar/index.html", "utf8");
+  assert.match(ar, /<html lang="ar" dir="rtl"/);
+  assert.match(ar, /<link rel="preload" href="\/assets\/fonts\/noto-sans-arabic-arabic-wght-normal\.woff2"/);
+  assert.match(readFileSync("dist/reference/en/index.html", "utf8"), /<link rel="preload" href="\/assets\/fonts\/inter-latin-wght-normal\.woff2"/);
+  // Language names in the switcher render in the system font so no page downloads another script's face for one word (R-PERF-01).
+  assert.match(ar, /lang="de"[^>]*class="[^"]*font-system/);
+  assert.ok(existsSync("dist/reference/en/style-guide/index.html"));
+  assert.ok(!existsSync("dist/reference/de/style-guide/index.html"), "the style guide shows English sample data: one copy, in the default locale (R-PAGE-09)");
 });

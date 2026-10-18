@@ -39,7 +39,8 @@
     "privacy": "Privacy",
     "cookies": "Cookies",
     "terms": "Terms",
-    "accessibility": "Accessibility"
+    "accessibility": "Accessibility",
+    "imprint": "Imprint"
   },
   "footer": {
     "offer": "What we do",
@@ -49,5 +50,8 @@
   "sitemap": {
     "legal": "Legal",
     "lp": "Campaign pages"
+  },
+  "site": {
+    "tagline": "Industrial automation, simplified"
   }
 }

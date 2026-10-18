@@ -224,6 +224,9 @@ export default function (eleventyConfig) {
     return value;
   });
   eleventyConfig.addFilter("md", renderMarkdown);
+  // The tagline in the page's language: the site's string overlay (site.tagline) or site.json's tagline.
+  const tagline = (lang) => t(lang || site.defaultLocale, "site.tagline") || site.tagline;
+  eleventyConfig.addFilter("tagline", tagline);
   eleventyConfig.addFilter("ogLocale", (lang) => OG_LOCALES[lang] || `${lang}_${lang.toUpperCase()}`);
   // Native language names for switchers (R-I18N-08): never flags, never translated.
   eleventyConfig.addFilter("nativeName", (lang) => {
@@ -243,8 +246,10 @@ export default function (eleventyConfig) {
   const allAlternates = (url) => {
     const lang = (url || "").split("/")[1];
     if (!site.locales.includes(lang)) return [];
+    // The plugin groups paginated pages by template, so pick the entry whose path is this page's path in the other locale (shared slugs, R-PAGE-02).
     const others = eleventyConfig.getFilter("locale_links").call({ page: { url, lang } }, url) || [];
-    const all = [{ lang, url }, ...others.map((o) => ({ lang: o.lang, url: o.url }))];
+    const rest = url.slice(lang.length + 1);
+    const all = [{ lang, url }, ...others.filter((o) => o.url === `/${o.lang}${rest}`).map((o) => ({ lang: o.lang, url: o.url }))];
     return site.locales.map((l) => all.find((a) => a.lang === l)).filter(Boolean);
   };
   eleventyConfig.addFilter("allAlternates", allAlternates);
@@ -278,8 +283,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addTemplate("_engine/sitemap.njk", virtual("sitemap.njk"));
   eleventyConfig.addTemplate("_engine/og-manifest.njk", virtual("og-manifest.njk"));
   eleventyConfig.addTemplate("_engine/files.njk", virtual("files.njk"));
-  // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, per locale, noindex.
-  for (const locale of site.locales) {
+  // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, in the default locale only (its sample data is English).
+  for (const locale of [site.defaultLocale]) {
     for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"]]) {
       eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: `/${locale}/style-guide/${slug}index.html` });
     }

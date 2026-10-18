@@ -13,5 +13,5 @@
 #}
 {% macro wordmark(name, opts={}) %}
 {%- set mono = opts.variant == "mono" -%}
-<svg role="img" class="{{ 'h-6 fill-ink-muted' if mono else 'h-8 fill-ink-brand' }} w-auto{% if opts.class %} {{ opts.class }}{% endif %}" viewBox="0 0 {{ (name | length) * 13 + 8 }} 32"><title>{{ name }}</title><text x="4" y="23" font-size="22" font-weight="700" letter-spacing="-0.5">{{ name }}</text></svg>
+<svg role="img" class="{{ 'h-6 fill-ink-muted' if mono else 'h-8 fill-ink-brand' }} w-auto{% if opts.class %} {{ opts.class }}{% endif %}" viewBox="0 0 {{ (name | length) * 13 + 8 }} 32"><title>{{ name }}</title><text x="4" y="23" direction="ltr" font-size="22" font-weight="700" letter-spacing="-0.5">{{ name }}</text></svg>
 {% endmacro %}

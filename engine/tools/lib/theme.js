@@ -78,6 +78,7 @@ ${state("danger", 25)}
   --reveal-stagger: ${stag}ms;
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --font-sans: ${fontSans};
+  --font-system: system-ui, sans-serif;
 }
 `;
 }

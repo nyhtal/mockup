@@ -8,6 +8,7 @@ sections:
   - "landing-hero"
   - "logo-cloud"
   - "feature-grid-home"
+  - "stats-home"
   - "testimonials-home"
   - "landing-faq"
   - "demo-form"

@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, existsSync, rmSync } from "node:fs";
+import { mkdtempSync, existsSync, rmSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fontPlan, copyFonts } from "../build-fonts.js";
@@ -31,11 +31,27 @@ test("system font ships nothing", () => {
   assert.equal(plan.css, "");
 });
 
-test("copyFonts copies exactly the planned files", () => {
+test("script faces are subset at build time: Arabic keeps its core blocks and weights 400–700, so the file is under 100 KB", async () => {
+  const dir = mkdtempSync(path.join(tmpdir(), "fonts-"));
+  try {
+    const plan = fontPlan({ font: "inter" }, ["en", "ar"]);
+    const arabic = plan.faces.find((f) => f.subset === "arabic");
+    assert.equal(arabic.unicodeRange, "U+0600-06FF, U+0750-077F, U+0870-08FF, U+200C-200F, U+2010-2011, U+2E41");
+    assert.match(plan.css, /unicode-range: U\+0600-06FF, U\+0750-077F/);
+    assert.doesNotMatch(plan.css, /U\+FB50-FDFF/);
+    await copyFonts(plan, dir);
+    const size = statSync(path.join(dir, "assets", "fonts", arabic.file)).size;
+    assert.ok(size > 20000 && size < 100000, `subset Arabic face is ${size} B`);
+    // Latin faces ship as fontsource delivers them.
+    assert.equal(statSync(path.join(dir, "assets", "fonts", "inter-latin-wght-normal.woff2")).size, statSync("node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2").size);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test("copyFonts copies exactly the planned files", async () => {
   const dir = mkdtempSync(path.join(tmpdir(), "fonts-"));
   try {
     const plan = fontPlan({ font: "inter" }, ["en"]);
-    copyFonts(plan, dir);
+    await copyFonts(plan, dir);
     for (const f of plan.faces) assert.ok(existsSync(path.join(dir, "assets", "fonts", f.file)), f.file);
     assert.ok(!existsSync(path.join(dir, "assets", "fonts", "inter-cyrillic-wght-normal.woff2")));
   } finally {

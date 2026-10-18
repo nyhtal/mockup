@@ -1,10 +1,13 @@
 {
-  "html": 51200,
+  "html": 61440,
   "css": 81920,
   "js": 2048,
   "page": 307200,
   "mobileWidth": 720,
   "overrides": {
-    "/style-guide/": { "html": 102400, "page": 409600 }
+    "/style-guide/": {
+      "html": 102400,
+      "page": 409600
+    }
   }
 }

@@ -11,5 +11,6 @@ sections:
   - "feature-rows-home"
   - "stats-home"
   - "testimonials-home"
+  - "cases-home"
   - "cta-demo"
 ---

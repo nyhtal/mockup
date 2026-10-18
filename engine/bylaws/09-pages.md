@@ -43,8 +43,8 @@ Why: Static hosts cannot negotiate language; the root must still resolve.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PAGE-09 Style guide
-MUST. `/<locale>/style-guide/` exists with `noindex` and shows every catalog entry used on the site (R-COMP-16).
-Why: Regression page and designer reference.
+MUST. `/<default locale>/style-guide/` exists with `noindex` and shows every catalog entry used on the site (R-COMP-16). It is built once, in the default locale, because its sample data is English; the locale coverage check exempts it, and the site's own pages show the chrome in every other locale.
+Why: Regression page and designer reference; a German URL with English content would be a validator warning and a lie to search engines.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PAGE-10 Thank-you pages

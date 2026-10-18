@@ -1,0 +1,1742 @@
+{
+  "feedTitle": "ملاحظات من أرض المصنع",
+  "sitemap": {
+    "title": "خريطة الموقع",
+    "description": "كل صفحة في موقع Northwind Dynamics في مكان واحد: الخدمات والمنتجات والقطاعات والعملاء والموارد وصفحات الشركة والصفحات القانونية.",
+    "lede": "كل صفحة، مجمّعة حسب القسم."
+  },
+  "sections": {
+    "hero-home": {
+      "type": "hero",
+      "variant": "centered",
+      "eyebrow": "الأتمتة الصناعية",
+      "title": "برمجيات تحكم يستطيع مهندسو مصنعك قراءتها",
+      "lede": "تحوّل Northwind وصفًا واضحًا لخط إنتاج إلى منطق PLC متحقق منه، فتستغرق التغييرات ساعات بدل أسابيع ولا ينتظر أحد مبرمجًا.",
+      "primary": {
+        "label": "احجز عرضًا توضيحيًا",
+        "href": "/ar/demo/"
+      },
+      "secondary": {
+        "label": "شاهد كيف يعمل",
+        "href": "/ar/services/line-automation/"
+      },
+      "image": {
+        "slug": "hero-automation",
+        "ratio": "16:9",
+        "alt": "أشكال مجردة بألوان العلامة التجارية بدل صورة لأرض المصنع.",
+        "max": 1600
+      }
+    },
+    "logo-cloud": {
+      "type": "logo-cloud",
+      "label": "موثوق من مصانع في 19 دولة",
+      "from": "customers"
+    },
+    "feature-grid-home": {
+      "type": "feature-grid",
+      "eyebrow": "لماذا Northwind",
+      "title": "كل ما يحتاجه الخط، ولا شيء يكتبه مبرمج يدويًا",
+      "lede": "صف العملية مرة واحدة. تولّد Northwind المنطق والاختبارات والتوثيق من المصدر نفسه.",
+      "items": [
+        {
+          "icon": "cpu",
+          "title": "منطق PLC مولَّد",
+          "text": "منطق سلمي ونص مهيكل متحقق منهما لوحدات Siemens وRockwell وBeckhoff، من وصف واحد."
+        },
+        {
+          "icon": "shield-check",
+          "title": "سلامة مدمجة",
+          "text": "الأقفال التبادلية والمناطق جزء من الوصف، فلا تُنسى أبدًا عند إعادة الكتابة."
+        },
+        {
+          "icon": "users",
+          "title": "المشغّلون يتحكمون",
+          "text": "يغيّر قادة الخطوط الوصفات ضمن حدود يضعها المهندسون، ويُسجَّل كل تغيير."
+        },
+        {
+          "icon": "file-text",
+          "title": "توثيق مجاني",
+          "text": "خطط الاختبار وحزم الأدلة وسجل التغييرات تخرج من الوصف نفسه."
+        },
+        {
+          "icon": "clock",
+          "title": "أسبوعان، لا ستة",
+          "text": "تعمل معظم الخطوط المنفردة خلال أسبوعين، بما في ذلك اختبار القبول في المصنع."
+        },
+        {
+          "icon": "globe",
+          "title": "دعم بلغتك",
+          "text": "مهندسون في مانشستر وهامبورغ والرياض يردون في ساعات العمل المحلية."
+        }
+      ]
+    },
+    "feature-rows-home": {
+      "type": "feature-rows",
+      "eyebrow": "كيف يعمل",
+      "title": "من الوصف إلى خط يعمل",
+      "items": [
+        {
+          "eyebrow": "الوصف",
+          "title": "تفقّد الخط مع مهندس",
+          "text": "المحطات والمستشعرات والمشغّلات والقواعد بينها، مكتوبة بلغة واضحة يستطيع فريقك قراءتها.",
+          "image": {
+            "slug": "row-describe",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "اطّلع على أتمتة الخطوط",
+            "href": "/ar/services/line-automation/"
+          }
+        },
+        {
+          "eyebrow": "التوليد",
+          "title": "راجع المنطق كما تراجع مستندًا",
+          "text": "تنتج Northwind برنامج PLC وشاشات HMI وخطة الاختبار. يراجعها مهندسوك قبل أن يعمل أي شيء.",
+          "image": {
+            "slug": "row-generate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "استكشف Northwind Studio",
+            "href": "/ar/products/northwind-studio/"
+          }
+        },
+        {
+          "eyebrow": "التشغيل",
+          "title": "قادة الخطوط يغيّرون الوصفات بأنفسهم",
+          "text": "تتحرك السرعات والكميات والأقفال التبادلية ضمن حدود يضعها مهندسوك. يُسجَّل كل تغيير مع من ومتى وماذا.",
+          "image": {
+            "slug": "row-operate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "استكشف Northwind Edge",
+            "href": "/ar/products/northwind-edge/"
+          }
+        }
+      ]
+    },
+    "stats-home": {
+      "type": "stats",
+      "title": "مقاس عبر العملاء",
+      "from": "stats"
+    },
+    "testimonials-home": {
+      "type": "testimonials",
+      "variant": "grid",
+      "eyebrow": "العملاء",
+      "title": "ماذا تقول فرق المصانع",
+      "from": "testimonials",
+      "limit": 3
+    },
+    "cases-home": {
+      "type": "case-study-cards",
+      "eyebrow": "العملاء",
+      "title": "نتائج من أرض المصنع",
+      "from": "cases",
+      "limit": 3,
+      "cta": {
+        "label": "شاهد كل قصص العملاء",
+        "href": "/ar/customers/"
+      }
+    },
+    "latest-posts": {
+      "type": "resources-latest",
+      "eyebrow": "المدونة",
+      "title": "الأحدث من أرض المصنع",
+      "from": "posts",
+      "limit": 3,
+      "cta": {
+        "label": "اقرأ المدونة",
+        "href": "/ar/blog/"
+      }
+    },
+    "cta-demo": {
+      "type": "cta-band",
+      "title": "شاهد خطك موصوفًا في فترة بعد الظهر",
+      "text": "ثلاثون دقيقة مع مهندس. لا شرائح، عمليتك فقط.",
+      "primary": {
+        "label": "احجز عرضًا توضيحيًا",
+        "href": "/ar/demo/"
+      },
+      "secondary": {
+        "label": "تحدث مع المبيعات",
+        "href": "/ar/contact/"
+      }
+    },
+    "cta-careers": {
+      "type": "cta-band",
+      "title": "ابنِ ما يستطيع مهندسو المصانع قراءته",
+      "text": "أربع وظائف شاغرة في الهندسة والدعم والمنتج.",
+      "primary": {
+        "label": "شاهد الوظائف الشاغرة",
+        "href": "/ar/careers/"
+      },
+      "secondary": {
+        "label": "اقرأ عن الحياة في Northwind",
+        "href": "/ar/careers/culture/"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "title": "ملاحظات شهرية من أرض المصنع",
+      "lede": "رسالة واحدة في الشهر: ما شحنّاه وما تعلّمه العملاء، دون عروض بيع.",
+      "form": {
+        "action": "/ar/newsletter/thank-you/",
+        "submit": "اشترك",
+        "privacyHref": "/ar/legal/privacy/"
+      }
+    },
+    "contact-form": {
+      "type": "contact-form",
+      "eyebrow": "اتصل بنا",
+      "title": "تحدث مع مهندس",
+      "lede": "نرد خلال يوم عمل واحد.",
+      "aside": {
+        "text": "تفضّل الاتصال أو الكتابة؟ يتولى مكتب الرياض كل محادثة أولى بالعربية.",
+        "address": "طريق الملك فهد 88، الرياض 12212، المملكة العربية السعودية",
+        "email": "riyadh@example.com",
+        "phone": "+966 11 123 4567"
+      },
+      "form": {
+        "id": "contact",
+        "action": "/ar/contact/thank-you/",
+        "title": "أرسل رسالة",
+        "submit": "أرسل الرسالة",
+        "privacyHref": "/ar/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "c-name",
+                "label": "الاسم الكامل",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "c-email",
+                "label": "البريد الإلكتروني للعمل",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "c-company",
+            "label": "الشركة",
+            "autocomplete": "organization"
+          },
+          {
+            "type": "textarea",
+            "name": "message",
+            "id": "c-message",
+            "label": "كيف يمكننا المساعدة؟",
+            "required": true,
+            "rows": 5
+          }
+        ],
+        "consent": {
+          "type": "checkbox",
+          "name": "updates",
+          "id": "c-updates",
+          "label": "أرسلوا لي تحديثات المنتج عبر البريد الإلكتروني",
+          "value": "yes"
+        }
+      }
+    },
+    "demo-form": {
+      "type": "contact-form",
+      "eyebrow": "عرض توضيحي",
+      "title": "ثلاثون دقيقة مع مهندس",
+      "lede": "أخبرنا عن خط واحد. نحضر مهندسًا شغّل خطًا مثله.",
+      "aside": {
+        "text": "لا شرائح. نصف إحدى محطاتك مباشرة ونعرض المنطق الذي تنتجه.",
+        "address": "طريق الملك فهد 88، الرياض 12212، المملكة العربية السعودية",
+        "email": "riyadh@example.com",
+        "phone": "+966 11 123 4567"
+      },
+      "form": {
+        "id": "demo",
+        "action": "/ar/demo/thank-you/",
+        "title": "أخبرنا عن مصنعك",
+        "submit": "اطلب عرضًا توضيحيًا",
+        "privacyHref": "/ar/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "d-name",
+                "label": "الاسم الكامل",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "d-email",
+                "label": "البريد الإلكتروني للعمل",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "d-company",
+            "label": "الشركة",
+            "required": true,
+            "autocomplete": "organization"
+          },
+          {
+            "type": "select",
+            "name": "industry",
+            "id": "d-industry",
+            "label": "القطاع",
+            "options": [
+              {
+                "value": "",
+                "label": "اختر قطاعًا"
+              },
+              {
+                "value": "food",
+                "label": "الأغذية والمشروبات"
+              },
+              {
+                "value": "pharma",
+                "label": "الأدوية"
+              },
+              {
+                "value": "auto",
+                "label": "السيارات"
+              },
+              {
+                "value": "other",
+                "label": "أخرى"
+              }
+            ]
+          },
+          {
+            "type": "textarea",
+            "name": "line",
+            "id": "d-line",
+            "label": "صف خطًا واحدًا في جملة",
+            "rows": 3
+          }
+        ]
+      }
+    },
+    "gated-form": {
+      "type": "gated-form",
+      "title": "احصل على الملف عبر البريد الإلكتروني",
+      "lede": "نرسل لك الملف ولا شيء آخر إلا إذا طلبت.",
+      "form": {
+        "id": "gate",
+        "action": "/ar/resources/downloads/thank-you/",
+        "submit": "أرسلوا لي الملف",
+        "privacyHref": "/ar/legal/privacy/",
+        "fields": [
+          {
+            "type": "email",
+            "name": "email",
+            "id": "g-email",
+            "label": "البريد الإلكتروني للعمل",
+            "required": true,
+            "autocomplete": "email"
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "g-company",
+            "label": "الشركة",
+            "autocomplete": "organization"
+          }
+        ]
+      }
+    },
+    "registration-form": {
+      "type": "registration-form",
+      "title": "سجّل",
+      "lede": "ستتلقى دعوة تقويم، وللفعاليات عبر الإنترنت، التسجيل بعد ذلك.",
+      "form": {
+        "id": "reg",
+        "action": "/ar/events/thank-you/",
+        "submit": "سجّل",
+        "privacyHref": "/ar/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "r-name",
+                "label": "الاسم الكامل",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "r-email",
+                "label": "البريد الإلكتروني للعمل",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "r-company",
+            "label": "الشركة",
+            "autocomplete": "organization"
+          }
+        ]
+      }
+    },
+    "apply-form": {
+      "type": "apply-form",
+      "title": "تقدّم لهذه الوظيفة",
+      "lede": "سيرة ذاتية وجملة أو اثنتان تكفي. لا حاجة إلى خطاب تغطية.",
+      "form": {
+        "id": "apply",
+        "action": "/ar/careers/thank-you/",
+        "submit": "أرسل الطلب",
+        "privacyHref": "/ar/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "a-name",
+                "label": "الاسم الكامل",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "a-email",
+                "label": "البريد الإلكتروني",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "cv",
+            "id": "a-cv",
+            "label": "السيرة الذاتية",
+            "required": true,
+            "accept": ".pdf,.doc,.docx",
+            "help": "PDF أو Word، حتى 5 ميغابايت."
+          },
+          {
+            "type": "textarea",
+            "name": "note",
+            "id": "a-note",
+            "label": "أي شيء تريد أن نعرفه",
+            "rows": 3
+          }
+        ]
+      }
+    },
+    "preferences-form": {
+      "type": "preferences-form",
+      "title": "تفضيلات البريد الإلكتروني",
+      "lede": "اختر ما نرسله. تُطبَّق التغييرات فورًا.",
+      "form": {
+        "id": "prefs",
+        "action": "/ar/newsletter/preferences/thank-you/",
+        "submit": "احفظ التفضيلات",
+        "fields": [
+          {
+            "type": "switch",
+            "name": "notes",
+            "id": "p-notes",
+            "label": "الملاحظات الشهرية",
+            "checked": true,
+            "value": "1"
+          },
+          {
+            "type": "switch",
+            "name": "events",
+            "id": "p-events",
+            "label": "دعوات الفعاليات",
+            "value": "1"
+          },
+          {
+            "type": "switch",
+            "name": "product",
+            "id": "p-product",
+            "label": "تحديثات المنتج",
+            "checked": true,
+            "value": "1"
+          }
+        ]
+      }
+    },
+    "unsubscribe-form": {
+      "type": "unsubscribe-form",
+      "title": "إلغاء الاشتراك",
+      "lede": "أدخل العنوان الذي نراسلك عليه وسنتوقف.",
+      "form": {
+        "id": "unsub",
+        "action": "/ar/newsletter/unsubscribe/thank-you/",
+        "submit": "ألغِ الاشتراك",
+        "fields": [
+          {
+            "type": "email",
+            "name": "email",
+            "id": "u-email",
+            "label": "البريد الإلكتروني",
+            "required": true,
+            "autocomplete": "email"
+          }
+        ]
+      }
+    },
+    "team-preview": {
+      "type": "team-preview",
+      "title": "القيادة",
+      "from": "people",
+      "limit": 4,
+      "cta": {
+        "label": "تعرّف على الفريق كله",
+        "href": "/ar/about/team/"
+      }
+    },
+    "team-grid": {
+      "type": "team-grid",
+      "eyebrow": "القيادة",
+      "title": "الأشخاص الذين يردون على الهاتف",
+      "from": "people"
+    },
+    "office-cards": {
+      "type": "office-cards",
+      "eyebrow": "المواقع",
+      "title": "ثلاثة مكاتب، قائمة دعم واحدة",
+      "from": "offices"
+    },
+    "service-cards": {
+      "type": "service-cards",
+      "eyebrow": "الخدمات",
+      "title": "ثلاث طرق للعمل معنا",
+      "from": "services"
+    },
+    "product-cards": {
+      "type": "product-cards",
+      "eyebrow": "المنتجات",
+      "title": "البرمجيات خلف كل خط",
+      "from": "products"
+    },
+    "industry-cards": {
+      "type": "industry-cards",
+      "eyebrow": "القطاعات",
+      "title": "مصانع نعرفها من أرضها",
+      "from": "industries"
+    },
+    "pricing": {
+      "type": "pricing",
+      "eyebrow": "الأسعار",
+      "title": "ادفع لكل خط، وألغِ في أي شهر",
+      "tiers": [
+        {
+          "name": "البداية",
+          "price": "490 يورو",
+          "amount": 490,
+          "currency": "EUR",
+          "period": "لكل خط شهريًا",
+          "text": "خط واحد، موقع واحد.",
+          "features": [
+            "حتى 50 علامة",
+            "دعم عبر البريد الإلكتروني",
+            "نسخ احتياطية أسبوعية"
+          ],
+          "cta": {
+            "label": "ابدأ تجربة",
+            "href": "/ar/demo/"
+          }
+        },
+        {
+          "name": "المصنع",
+          "price": "1,900 يورو",
+          "amount": 1900,
+          "currency": "EUR",
+          "period": "لكل موقع شهريًا",
+          "text": "كل خط في الموقع.",
+          "features": [
+            "علامات غير محدودة",
+            "دعم هاتفي خلال 4 ساعات",
+            "نسخ احتياطية يومية",
+            "سجل التدقيق"
+          ],
+          "cta": {
+            "label": "تحدث مع المبيعات",
+            "href": "/ar/contact/"
+          },
+          "recommended": true
+        },
+        {
+          "name": "المؤسسة",
+          "price": "حسب الطلب",
+          "period": "لكل مجموعة",
+          "text": "استضافة محلية وتسجيل دخول موحد ومهندس مخصص.",
+          "features": [
+            "كل ما في باقة المصنع",
+            "استضافة محلية",
+            "تسجيل دخول موحد",
+            "مهندس دعم مخصص"
+          ],
+          "cta": {
+            "label": "اطلب عرض سعر",
+            "href": "/ar/contact/"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "comparison",
+      "title": "قارن الباقات",
+      "table": {
+        "caption": "مقارنة الميزات بين الباقات",
+        "columns": [
+          {
+            "name": "البداية"
+          },
+          {
+            "name": "المصنع",
+            "recommended": true
+          },
+          {
+            "name": "المؤسسة"
+          }
+        ],
+        "rows": [
+          {
+            "name": "العلامات",
+            "cells": [
+              "50",
+              "غير محدودة",
+              "غير محدودة"
+            ]
+          },
+          {
+            "name": "سجل التدقيق",
+            "cells": [
+              false,
+              true,
+              true
+            ]
+          },
+          {
+            "name": "استضافة محلية",
+            "cells": [
+              false,
+              false,
+              true
+            ]
+          },
+          {
+            "name": "زمن استجابة الدعم",
+            "cells": [
+              "يومان",
+              "4 ساعات",
+              "ساعة واحدة"
+            ]
+          }
+        ]
+      }
+    },
+    "faq-pricing": {
+      "type": "faq",
+      "eyebrow": "أسئلة",
+      "title": "قبل أن تختار باقة",
+      "group": "faq-pricing",
+      "from": "faqPricing"
+    },
+    "faq-trust": {
+      "type": "faq",
+      "eyebrow": "أسئلة",
+      "title": "ما تسأله فرق الأمن",
+      "group": "faq-trust",
+      "from": "faqTrust"
+    },
+    "faq-groups": {
+      "type": "faq-groups",
+      "title": "الأسئلة الشائعة",
+      "lede": "مجمّعة حسب من يسألها عادة.",
+      "from": "faqGroups",
+      "into": "groups"
+    },
+    "timeline": {
+      "type": "timeline",
+      "eyebrow": "التاريخ",
+      "title": "سبع سنوات، فكرة واحدة",
+      "from": "timeline"
+    },
+    "values-grid": {
+      "type": "values-grid",
+      "eyebrow": "القيم",
+      "title": "كيف نعمل",
+      "from": "values"
+    },
+    "awards": {
+      "type": "awards",
+      "title": "التقدير",
+      "from": "awards"
+    },
+    "badges": {
+      "type": "badges",
+      "title": "الشهادات",
+      "lede": "مدققة باستقلال، ومجددة كل عام.",
+      "from": "badges"
+    },
+    "benefits-grid": {
+      "type": "benefits-grid",
+      "eyebrow": "المزايا",
+      "title": "ما يأتي مع الوظيفة",
+      "from": "benefits"
+    },
+    "integration-grid": {
+      "type": "integration-grid",
+      "eyebrow": "التكاملات",
+      "title": "يعمل مع ما تشغّله",
+      "from": "integrations"
+    },
+    "about-rows": {
+      "type": "feature-rows",
+      "eyebrow": "من نحن",
+      "title": "بناه أشخاص شغّلوا الخطوط مهنةً",
+      "items": [
+        {
+          "eyebrow": "لماذا",
+          "title": "عطلات كثيرة جدًا في إعادة كتابة المنطق السلمي",
+          "text": "بدأت Northwind بثلاثة مهندسي تحكم ومصنع أغذية واحد سئم انتظار مبرمج لتغيير كمية تعبئة.",
+          "image": {
+            "slug": "about-why",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "كيف",
+          "title": "وصف بدل برنامج",
+          "text": "يستطيع قائد الخط قراءة الوصف. ويستطيع المهندس مراجعة المنطق الذي يولّده. ويستطيع المقيّم رؤية الأدلة التي ينتجها.",
+          "image": {
+            "slug": "about-how",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "company-stats": {
+      "type": "stats",
+      "variant": "plain",
+      "label": "الشركة في لمحة",
+      "from": "companyStats"
+    },
+    "culture-rows": {
+      "type": "feature-rows",
+      "eyebrow": "الحياة في Northwind",
+      "title": "أرض المصنع ومختبرات الاختبار ومكاتب هادئة",
+      "items": [
+        {
+          "eyebrow": "في الموقع",
+          "title": "كل مهندس يزور المصانع",
+          "text": "تقضي فرق التسليم نحو أسبوع من كل ثلاثة على أرض مصانع العملاء. ويذهب الآخرون مرتين في السنة على الأقل.",
+          "image": {
+            "slug": "culture-site",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "في المختبر",
+          "title": "ثلاثة خطوط اختبار في هامبورغ",
+          "text": "يعيد الدعم إنتاج المشكلات على أجهزة حقيقية، ويستطيع أي شخص حجز وقت في المختبر لمشروعه.",
+          "image": {
+            "slug": "culture-lab-row",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "gallery": {
+      "type": "image-gallery",
+      "title": "حول المكاتب",
+      "items": [
+        {
+          "slug": "culture-floor",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "أرض المصنع في مانشستر",
+          "max": 768
+        },
+        {
+          "slug": "culture-lab",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "مختبر الاختبار في هامبورغ",
+          "max": 768
+        },
+        {
+          "slug": "culture-team",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "يوم الفريق في الرياض",
+          "max": 768
+        }
+      ]
+    },
+    "careers-grid": {
+      "type": "feature-grid",
+      "eyebrow": "الوظائف",
+      "title": "لماذا يبقى المهندسون",
+      "items": [
+        {
+          "icon": "wrench",
+          "title": "مصانع حقيقية، خطوط حقيقية",
+          "text": "تشغّل ما تبنيه وتراه يعمل."
+        },
+        {
+          "icon": "users",
+          "title": "فرق ثابتة صغيرة",
+          "text": "أربعة أشخاص يملكون الخط من الوصف إلى التسليم."
+        },
+        {
+          "icon": "book-open",
+          "title": "وقت لتدوين الأمور",
+          "text": "الأدلة والقوالب تُحسب عملًا، لا وقتًا إضافيًا."
+        }
+      ]
+    },
+    "job-list": {
+      "type": "job-list",
+      "title": "الوظائف الشاغرة",
+      "lede": "الهندسة في مانشستر وهامبورغ، والدعم في المكاتب الثلاثة، وعن بُعد حيث تسمح الوظيفة.",
+      "from": "jobs",
+      "filters": {
+        "action": "/ar/careers/",
+        "filters": [
+          {
+            "type": "select",
+            "name": "team",
+            "id": "jl-team",
+            "label": "الفريق",
+            "options": [
+              {
+                "value": "",
+                "label": "كل الفرق"
+              },
+              {
+                "value": "eng",
+                "label": "الهندسة"
+              },
+              {
+                "value": "support",
+                "label": "الدعم"
+              },
+              {
+                "value": "product",
+                "label": "المنتج"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "name": "location",
+            "id": "jl-location",
+            "label": "الموقع",
+            "options": [
+              {
+                "value": "",
+                "label": "أي مكان"
+              },
+              {
+                "value": "man",
+                "label": "مانشستر"
+              },
+              {
+                "value": "ham",
+                "label": "هامبورغ"
+              },
+              {
+                "value": "remote",
+                "label": "عن بُعد"
+              }
+            ]
+          }
+        ],
+        "resetHref": "/ar/careers/"
+      },
+      "empty": {
+        "icon": "info",
+        "title": "لا توجد وظائف شاغرة حاليًا",
+        "text": "اشترك في النشرة البريدية وسنخبرك عندما تتوفر وظيفة."
+      }
+    },
+    "sustainability-rows": {
+      "type": "feature-rows",
+      "eyebrow": "الاستدامة",
+      "title": "هدر أقل، رحلات أقل، خطوط تعيش أطول",
+      "items": [
+        {
+          "eyebrow": "الهدر",
+          "title": "تبديلات لا تتلف دفعة",
+          "text": "خفضت حدود الوصفات والتبديلات المسجَّلة هدر بدء التشغيل على خطوط الأغذية بمقدار الثلث في العام الأول.",
+          "image": {
+            "slug": "sus-waste",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "السفر",
+          "title": "التشغيل من الوصف",
+          "text": "تعمل اختبارات القبول من Studio، فيسافر المهندسون أقل ويحتاج أول تشغيل إنتاجي إلى زيارة واحدة لا ثلاث.",
+          "image": {
+            "slug": "sus-travel",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "sustainability-stats": {
+      "type": "stats",
+      "title": "مقاس في 2025",
+      "items": [
+        {
+          "value": "33%",
+          "label": "هدر بدء تشغيل أقل"
+        },
+        {
+          "value": "2 من 3",
+          "label": "رحلات تشغيل موفَّرة"
+        },
+        {
+          "value": "100%",
+          "label": "طاقة متجددة للمكاتب"
+        }
+      ]
+    },
+    "trust-grid": {
+      "type": "feature-grid",
+      "eyebrow": "الثقة والأمان",
+      "title": "كيف نحفظ أوصافك وسجلاتك آمنة",
+      "items": [
+        {
+          "icon": "lock",
+          "title": "تحديثات موقّعة",
+          "text": "كل تحديث لبيئة التشغيل موقّع؛ وتطبّقه المصانع في نافذتها الخاصة."
+        },
+        {
+          "icon": "scroll-text",
+          "title": "سجلات لا تقبل إلا الإضافة",
+          "text": "لا يمكن تعديل سجلات التغييرات؛ وتحمل الصادرات مجموع تحقق."
+        },
+        {
+          "icon": "globe",
+          "title": "استضافة أوروبية",
+          "text": "منطقتان في الاتحاد الأوروبي افتراضيًا؛ واستضافة محلية لباقة المؤسسة."
+        },
+        {
+          "icon": "users",
+          "title": "وصول تمنحه أنت",
+          "text": "يرى الدعم بياناتك فقط ما دمت تسمح، ويُسجَّل كل وصول."
+        }
+      ]
+    },
+    "security-contact": {
+      "type": "contact-card",
+      "title": "جهة اتصال الأمن",
+      "name": "عمر حداد",
+      "role": "رئيس الأمن",
+      "text": "أبلغ عن ثغرة وسنرد خلال يومي عمل.",
+      "email": "security@example.com"
+    },
+    "media-contact": {
+      "type": "media-contact",
+      "title": "جهة الاتصال الصحفية",
+      "name": "صوفيا ليندكفيست",
+      "role": "رئيسة الاتصال",
+      "email": "press@example.com",
+      "phone": "+44 20 7946 0001"
+    },
+    "media-kit-cta": {
+      "type": "media-kit-cta",
+      "title": "الملف الإعلامي",
+      "text": "الشعارات وصور المنتجات وصور القيادة في تنزيل واحد.",
+      "cta": {
+        "label": "افتح الملف الإعلامي",
+        "href": "/ar/news/media-kit/"
+      }
+    },
+    "media-kit-downloads": {
+      "type": "download-cards",
+      "title": "ملفات الملف الإعلامي",
+      "items": [
+        {
+          "type": "ZIP",
+          "pages": "4 ملفات",
+          "title": "الشعارات",
+          "text": "علامة الكلمة والحرف الأول بصيغتي SVG وPNG، فاتح وداكن.",
+          "href": "/ar/news/media-kit/"
+        },
+        {
+          "type": "ZIP",
+          "pages": "12 ملفًا",
+          "title": "لقطات شاشة المنتجات",
+          "text": "Studio وEdge وCloud بدقة مضاعفة، مع تعليقات.",
+          "href": "/ar/news/media-kit/"
+        },
+        {
+          "type": "ZIP",
+          "pages": "5 ملفات",
+          "title": "صور القيادة",
+          "text": "صور جاهزة للنشر لفريق القيادة.",
+          "href": "/ar/news/media-kit/"
+        }
+      ]
+    },
+    "press-cards": {
+      "type": "press-cards",
+      "title": "البيانات الصحفية",
+      "from": "press"
+    },
+    "article-cards": {
+      "type": "article-cards",
+      "title": "كل التدوينات",
+      "from": "posts"
+    },
+    "download-cards": {
+      "type": "download-cards",
+      "title": "الأدلة والأدوات",
+      "from": "downloads"
+    },
+    "event-cards": {
+      "type": "event-cards",
+      "title": "الفعاليات القادمة",
+      "from": "events",
+      "empty": {
+        "icon": "calendar",
+        "title": "لا فعاليات مجدولة",
+        "text": "اشترك في النشرة البريدية وسنخبرك بالفعالية التالية."
+      }
+    },
+    "case-study-cards": {
+      "type": "case-study-cards",
+      "eyebrow": "العملاء",
+      "title": "نتائج من أرض المصنع",
+      "from": "cases"
+    },
+    "resource-tabs": {
+      "type": "resource-tabs",
+      "title": "الموارد",
+      "lede": "أدلة وفعاليات وأدوات، حسب الصيغة.",
+      "tabs": [
+        {
+          "label": "الأدلة",
+          "variant": "download",
+          "items": [
+            {
+              "type": "PDF",
+              "pages": "12 صفحة",
+              "title": "قائمة تحقق التشغيل 2026",
+              "href": "/ar/resources/downloads/commissioning-checklist/"
+            },
+            {
+              "type": "PDF",
+              "pages": "28 صفحة",
+              "title": "أدلة السلامة للكود المولَّد",
+              "href": "/ar/resources/downloads/safety-evidence-guide/"
+            }
+          ]
+        },
+        {
+          "label": "الفعاليات",
+          "variant": "event",
+          "items": [
+            {
+              "date": "12 نوفمبر 2026",
+              "dateIso": "2026-11-12",
+              "type": "ندوة عبر الإنترنت",
+              "title": "وحدات PLC للسلامة دون أوراق",
+              "location": "عبر الإنترنت",
+              "href": "/ar/events/safety-plcs-webinar/"
+            },
+            {
+              "date": "3 ديسمبر 2026",
+              "dateIso": "2026-12-03",
+              "type": "ورشة عمل",
+              "title": "صف خطك الأول",
+              "location": "مانشستر",
+              "href": "/ar/events/describe-your-first-line/"
+            }
+          ]
+        },
+        {
+          "label": "الأدوات",
+          "variant": "download",
+          "items": [
+            {
+              "type": "XLSX",
+              "pages": "ورقة واحدة",
+              "title": "حاسبة كلفة التوقف",
+              "href": "/ar/resources/downloads/downtime-calculator/"
+            }
+          ]
+        }
+      ]
+    },
+    "glossary-list": {
+      "type": "glossary-list",
+      "title": "المصطلحات",
+      "lede": "الكلمات التي نستخدمها، بالترتيب الذي ستقابلها به.",
+      "from": "glossary"
+    },
+    "help-categories": {
+      "type": "help-categories",
+      "title": "كيف يمكننا المساعدة؟",
+      "from": "helpCategories"
+    },
+    "search-box": {
+      "type": "search-box",
+      "title": "بحث",
+      "lede": "الصفحات والأدلة والفعاليات والبيانات الصحفية."
+    },
+    "search-results": {
+      "type": "search-results",
+      "query": "السلامة",
+      "from": "searchResults"
+    },
+    "landing-hero": {
+      "type": "hero",
+      "variant": "stats",
+      "title": "أتمتة تدفع كلفتها في ربع سنة",
+      "lede": "مقاسة عبر 1,284 خطًا في 19 دولة.",
+      "primary": {
+        "label": "احجز عرضًا توضيحيًا",
+        "href": "/ar/demo/"
+      },
+      "secondary": {
+        "label": "شاهد نتائج العملاء",
+        "href": "/ar/customers/"
+      },
+      "stats": [
+        {
+          "value": "38%",
+          "label": "توقف أقل"
+        },
+        {
+          "value": "9 أيام",
+          "label": "حتى التشغيل"
+        },
+        {
+          "value": "99.98%",
+          "label": "توافر"
+        }
+      ]
+    },
+    "landing-faq": {
+      "type": "faq",
+      "eyebrow": "أسئلة",
+      "title": "قبل أن تحجز",
+      "group": "faq-landing",
+      "items": [
+        {
+          "title": "ماذا يحدث في العرض التوضيحي؟",
+          "body": "<p>يصف مهندس إحدى محطاتك مباشرة ويعرض المنطق الذي تنتجه. ثلاثون دقيقة، لا شرائح.</p>"
+        },
+        {
+          "title": "من ينبغي أن يحضر؟",
+          "body": "<p>مهندس تحكم واحد وشخص يشغّل الخط يومًا بيوم.</p>"
+        },
+        {
+          "title": "هل توجد تجربة بعد ذلك؟",
+          "body": "<p>ثلاثون يومًا على خط واحد، مع مهندس متاح خلال الأسبوع الأول.</p>"
+        },
+        {
+          "title": "ما وحدات التحكم التي تدعمونها؟",
+          "body": "<p>Siemens وRockwell وBeckhoff من الوصف نفسه.</p>"
+        }
+      ]
+    }
+  },
+  "detail": {
+    "service": {
+      "each": "services",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "خدمة",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "ما نقوم به",
+          "from": "e.features"
+        },
+        {
+          "type": "steps",
+          "eyebrow": "كيف يعمل",
+          "title": "خطوة بخطوة",
+          "from": "e.steps"
+        },
+        {
+          "type": "stats",
+          "title": "مقاس عبر العملاء",
+          "from": "e.stats"
+        },
+        {
+          "type": "testimonials",
+          "variant": "single",
+          "label": "شهادة عميل",
+          "from": "testimonials",
+          "limit": 1
+        },
+        {
+          "type": "faq",
+          "eyebrow": "أسئلة",
+          "title": "قبل أن تسأل",
+          "group": "faq-service",
+          "from": "e.faq",
+          "skipEmpty": true
+        },
+        {
+          "type": "case-study-cards",
+          "eyebrow": "العملاء",
+          "title": "مصانع فعلت ذلك",
+          "from": "cases",
+          "only": "e.cases",
+          "skipEmpty": true
+        },
+        "cta-demo"
+      ]
+    },
+    "product": {
+      "each": "products",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "منتج",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "ما يفعله",
+          "from": "e.features"
+        },
+        {
+          "type": "feature-grid",
+          "eyebrow": "القدرات",
+          "title": "ما في الصندوق",
+          "from": "e.capabilities"
+        },
+        {
+          "type": "pricing",
+          "eyebrow": "الأسعار",
+          "title": "باقات {e.title}",
+          "from": "e.tiers",
+          "into": "tiers"
+        },
+        {
+          "type": "faq",
+          "eyebrow": "أسئلة",
+          "title": "قبل أن تسأل",
+          "group": "faq-product",
+          "from": "e.faq"
+        },
+        {
+          "type": "integration-grid",
+          "eyebrow": "التكاملات",
+          "title": "يعمل مع",
+          "from": "integrations",
+          "only": "e.integrations",
+          "skipEmpty": true
+        },
+        {
+          "type": "testimonials",
+          "variant": "single",
+          "label": "شهادة عميل",
+          "from": "testimonials",
+          "limit": 1
+        },
+        "cta-demo"
+      ]
+    },
+    "industry": {
+      "each": "industries",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "قطاع",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "ما يهم على هذه الخطوط",
+          "from": "e.features"
+        },
+        {
+          "type": "case-study-cards",
+          "eyebrow": "العملاء",
+          "title": "مصانع في هذا القطاع",
+          "from": "cases",
+          "filter": {
+            "industry": "{e.slug}"
+          },
+          "skipEmpty": true
+        },
+        {
+          "type": "stats",
+          "title": "مقاس في هذا القطاع",
+          "from": "e.stats"
+        },
+        {
+          "type": "faq",
+          "eyebrow": "أسئلة",
+          "title": "قبل أن تسأل",
+          "group": "faq-industry",
+          "from": "e.faq",
+          "skipEmpty": true
+        },
+        "cta-demo"
+      ]
+    },
+    "person": {
+      "each": "people",
+      "conversion": "none",
+      "title": "{e.name}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "القيادة",
+          "title": "{e.name}",
+          "lede": "{e.role}"
+        },
+        {
+          "type": "person-bio",
+          "label": "السيرة",
+          "name": "{e.name}",
+          "role": "{e.role}",
+          "md": "e.bio",
+          "into": "bio"
+        },
+        {
+          "type": "related-articles",
+          "title": "مقالات {e.name}",
+          "from": "posts",
+          "filter": {
+            "author": "{e.slug}"
+          },
+          "skipEmpty": true
+        }
+      ]
+    },
+    "office": {
+      "each": "offices",
+      "conversion": "contact",
+      "title": "مكتب {e.city}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "مكتب",
+          "title": "{e.city}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "office-detail",
+          "title": "زورونا",
+          "address": "{e.address}",
+          "phone": "{e.phone}",
+          "email": "{e.email}",
+          "from": "e.hours",
+          "into": "hours",
+          "map": {
+            "slug": "{e.map.slug}",
+            "address": "{e.map.address}"
+          }
+        },
+        {
+          "type": "team-preview",
+          "title": "من ستقابل",
+          "from": "people",
+          "only": "e.team",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "case-study": {
+      "each": "cases",
+      "conversion": "demo",
+      "title": "{e.title}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.company}",
+          "title": "{e.title}",
+          "lede": "{e.excerpt}"
+        },
+        {
+          "type": "stats",
+          "title": "الأرقام",
+          "from": "e.stats"
+        },
+        {
+          "type": "prose",
+          "md": "e.body",
+          "label": "{e.title}"
+        },
+        {
+          "type": "testimonials",
+          "variant": "single",
+          "label": "شهادة عميل",
+          "items": [
+            {
+              "quote": "{e.quote}",
+              "name": "{e.quoteName}",
+              "role": "{e.quoteRole}",
+              "company": "{e.company}"
+            }
+          ]
+        },
+        {
+          "type": "related-items",
+          "title": "الخدمات في هذه القصة",
+          "cardVariant": "service",
+          "from": "services",
+          "only": "e.services"
+        },
+        "cta-demo"
+      ]
+    },
+    "post": {
+      "each": "posts",
+      "layout": "article",
+      "conversion": "subscribe",
+      "toc": true,
+      "sections": [
+        {
+          "type": "related-articles",
+          "title": "تابع القراءة",
+          "from": "posts",
+          "only": "e.related"
+        },
+        "newsletter"
+      ]
+    },
+    "archive": {
+      "each": "tags",
+      "kind": "tags",
+      "noindex": true,
+      "conversion": "none",
+      "title": "{e.label}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "المدونة",
+          "title": "{e.label}",
+          "lede": "كل تدوينة موسومة بـ {e.label}."
+        },
+        {
+          "type": "article-cards",
+          "title": "التدوينات",
+          "from": "posts",
+          "filter": {
+            "tags": "{e.slug}"
+          }
+        }
+      ]
+    },
+    "author": {
+      "each": "people",
+      "kind": "authors",
+      "where": {
+        "posts": true
+      },
+      "conversion": "none",
+      "title": "تدوينات {e.name}",
+      "description": "{e.authorDescription}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "الكاتب",
+          "title": "{e.name}",
+          "lede": "{e.role}"
+        },
+        {
+          "type": "person-bio",
+          "label": "عن الكاتب",
+          "name": "{e.name}",
+          "role": "{e.role}",
+          "md": "e.bio",
+          "into": "bio"
+        },
+        {
+          "type": "article-cards",
+          "title": "التدوينات",
+          "from": "posts",
+          "filter": {
+            "author": "{e.slug}"
+          }
+        }
+      ]
+    },
+    "download": {
+      "each": "downloads",
+      "conversion": "download",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "تنزيل",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "download-detail",
+          "fileType": "{e.fileType}",
+          "pages": "{e.pages}",
+          "md": {
+            "summary": "e.summary"
+          },
+          "from": "e.contents",
+          "into": "contents",
+          "cover": {
+            "slug": "{e.cover.slug}",
+            "ratio": "3:4",
+            "alt": "",
+            "max": 480
+          }
+        },
+        "gated-form",
+        {
+          "type": "related-items",
+          "title": "قد يهمك أيضًا",
+          "cardVariant": "download",
+          "from": "downloads",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "event": {
+      "each": "events",
+      "conversion": "subscribe",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.format}",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "event-detail",
+          "date": "{e.date|date}",
+          "dateIso": "{e.date}",
+          "time": "{e.timeLabel}",
+          "location": "{e.location}",
+          "format": "{e.format}",
+          "md": "e.body",
+          "into": "body"
+        },
+        "registration-form",
+        {
+          "type": "speakers",
+          "title": "المتحدثون",
+          "from": "people",
+          "only": "e.speakers",
+          "skipEmpty": true
+        },
+        {
+          "type": "faq",
+          "eyebrow": "أسئلة",
+          "title": "قبل أن تسجّل",
+          "group": "faq-event",
+          "from": "e.faq",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "job": {
+      "each": "jobs",
+      "conversion": "apply",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.team}",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "job-detail",
+          "team": "{e.team}",
+          "location": "{e.location}",
+          "employment": "{e.employment}",
+          "posted": "{e.posted|date}",
+          "postedIso": "{e.posted}",
+          "md": "e.body",
+          "into": "body"
+        },
+        "apply-form",
+        {
+          "type": "related-items",
+          "title": "وظائف شاغرة أخرى",
+          "cardVariant": "job",
+          "from": "jobs",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "doc": {
+      "each": "docs",
+      "layout": "article",
+      "conversion": "none",
+      "toc": true,
+      "eyebrow": "مركز المساعدة",
+      "sections": [
+        {
+          "type": "was-this-helpful"
+        },
+        {
+          "type": "related-items",
+          "title": "أدلة ذات صلة",
+          "cardVariant": "article",
+          "from": "docs",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "press-release": {
+      "each": "press",
+      "layout": "article",
+      "conversion": "none",
+      "sections": [
+        "media-contact"
+      ]
+    }
+  },
+  "thankYou": {
+    "contact": {
+      "title": "شكرًا على رسالتك",
+      "description": "استلمنا رسالتك وسيرد مهندس خلال يوم عمل واحد. في هذه الأثناء، قائمة تحقق التشغيل قراءة مفيدة لفريقك قبل أول محادثة معنا.",
+      "heading": "استلمنا رسالتك",
+      "text": "سيرد مهندس خلال يوم عمل واحد.",
+      "next": "في هذه الأثناء، قائمة تحقق التشغيل قراءة مفيدة.",
+      "cta": {
+        "label": "اقرأ قائمة التحقق",
+        "href": "/ar/resources/downloads/commissioning-checklist/"
+      }
+    },
+    "demo": {
+      "title": "شكرًا على طلبك",
+      "description": "استلمنا طلب العرض التوضيحي. سيراسلك مهندس خلال يوم عمل واحد لتحديد موعد، ويمكنك قراءة قصص العملاء في هذه الأثناء لترى ما قاسته مصانع أخرى.",
+      "heading": "استلمنا طلبك",
+      "text": "سيراسلك مهندس خلال يوم عمل واحد لتحديد موعد.",
+      "next": "في هذه الأثناء، انظر ما قاسته مصانع أخرى.",
+      "cta": {
+        "label": "شاهد قصص العملاء",
+        "href": "/ar/customers/"
+      }
+    },
+    "newsletter": {
+      "title": "شكرًا على اشتراكك",
+      "description": "أنت مشترك في الملاحظات الشهرية من أرض المصنع. تصل الرسالة الأولى في بداية الشهر القادم، ويمكنك إلغاء الاشتراك أو تغيير ما نرسله في أي وقت.",
+      "heading": "أنت مشترك",
+      "text": "تصل الرسالة الأولى في بداية الشهر القادم.",
+      "next": "يمكنك تغيير ما نرسله في أي وقت.",
+      "cta": {
+        "label": "افتح تفضيلات البريد الإلكتروني",
+        "href": "/ar/newsletter/preferences/"
+      }
+    },
+    "newsletter/preferences": {
+      "title": "حُفظت التفضيلات",
+      "description": "حُفظت تفضيلات بريدك الإلكتروني وتُطبَّق اعتبارًا من الرسالة التالية التي نرسلها. يمكنك العودة وتغييرها، أو إلغاء الاشتراك، في أي وقت تشاء.",
+      "heading": "حُفظت التفضيلات",
+      "text": "تُطبَّق اعتبارًا من الرسالة التالية التي نرسلها.",
+      "next": "يمكنك تغييرها مرة أخرى في أي وقت.",
+      "cta": {
+        "label": "اقرأ المدونة",
+        "href": "/ar/blog/"
+      }
+    },
+    "newsletter/unsubscribe": {
+      "title": "أُلغي اشتراكك",
+      "description": "أُلغي اشتراكك في جميع رسائل Northwind. قد نرسل رسالة واحدة أخرى كانت مجدولة مسبقًا، ويمكنك الاشتراك مرة أخرى في أي وقت من صفحة النشرة البريدية.",
+      "heading": "أُلغي اشتراكك",
+      "text": "قد نرسل رسالة واحدة أخرى كانت مجدولة مسبقًا؛ وبعدها لا شيء.",
+      "next": "يمكنك الاشتراك مرة أخرى في أي وقت.",
+      "cta": {
+        "label": "العودة إلى الصفحة الرئيسية",
+        "href": "/ar/"
+      }
+    },
+    "resources/downloads": {
+      "title": "ملفك في الطريق",
+      "description": "أرسلنا لك الملف الذي طلبته عبر البريد الإلكتروني. يصل عادة خلال دقيقة؛ تحقق من مجلد الرسائل غير المرغوبة إن لم يصل، ثم تصفح التنزيلات الأخرى.",
+      "heading": "تحقق من بريدك الوارد",
+      "text": "الملف في الطريق ويصل عادة خلال دقيقة.",
+      "next": "إن لم يصل، تحقق من مجلد الرسائل غير المرغوبة أو راسلنا.",
+      "cta": {
+        "label": "شاهد كل التنزيلات",
+        "href": "/ar/resources/downloads/"
+      }
+    },
+    "events": {
+      "title": "أنت مسجَّل",
+      "description": "أنت مسجَّل في الفعالية. دعوة التقويم في الطريق إليك، وترسل الفعاليات عبر الإنترنت التسجيل في اليوم التالي لانعقادها إلى كل المسجَّلين.",
+      "heading": "أنت مسجَّل",
+      "text": "دعوة التقويم في الطريق.",
+      "next": "ترسل الفعاليات عبر الإنترنت التسجيل في اليوم التالي.",
+      "cta": {
+        "label": "شاهد كل الفعاليات",
+        "href": "/ar/events/"
+      }
+    },
+    "careers": {
+      "title": "شكرًا على تقدّمك",
+      "description": "استلمنا طلبك ويقرأ مدير التوظيف كل طلب بنفسه. ستسمع منا خلال أسبوعين، أيًا كانت النتيجة، وستجد في هذه الأثناء صفحة عن الحياة في Northwind.",
+      "heading": "استلمنا طلبك",
+      "text": "يقرأ مدير التوظيف كل طلب بنفسه.",
+      "next": "ستسمع منا خلال أسبوعين، أيًا كانت النتيجة.",
+      "cta": {
+        "label": "اقرأ عن الحياة في Northwind",
+        "href": "/ar/careers/culture/"
+      }
+    }
+  }
+}

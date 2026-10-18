@@ -1,0 +1,1742 @@
+{
+  "feedTitle": "Notizen von der Produktionsfläche",
+  "sitemap": {
+    "title": "Seitenübersicht",
+    "description": "Jede Seite der Website von Northwind Dynamics an einem Ort: Leistungen, Produkte, Branchen, Kunden, Ressourcen, Unternehmensseiten und Rechtliches.",
+    "lede": "Jede Seite, nach Bereich gruppiert."
+  },
+  "sections": {
+    "hero-home": {
+      "type": "hero",
+      "variant": "centered",
+      "eyebrow": "Industrielle Automatisierung",
+      "title": "Steuerungssoftware, die Ihre Werksingenieure lesen können",
+      "lede": "Northwind macht aus einer Klartextbeschreibung einer Produktionslinie geprüfte SPS-Logik, sodass Änderungen Stunden statt Wochen dauern und niemand auf einen Programmierer wartet.",
+      "primary": {
+        "label": "Demo buchen",
+        "href": "/de/demo/"
+      },
+      "secondary": {
+        "label": "So funktioniert es",
+        "href": "/de/services/line-automation/"
+      },
+      "image": {
+        "slug": "hero-automation",
+        "ratio": "16:9",
+        "alt": "Abstrakte Formen in den Markenfarben anstelle eines Fotos einer Produktionshalle.",
+        "max": 1600
+      }
+    },
+    "logo-cloud": {
+      "type": "logo-cloud",
+      "label": "Im Einsatz in Werken in 19 Ländern",
+      "from": "customers"
+    },
+    "feature-grid-home": {
+      "type": "feature-grid",
+      "eyebrow": "Warum Northwind",
+      "title": "Alles, was eine Linie braucht, nichts, was ein Programmierer von Hand schreiben muss",
+      "lede": "Beschreiben Sie den Prozess einmal. Northwind erzeugt Logik, Tests und Dokumentation aus derselben Quelle.",
+      "items": [
+        {
+          "icon": "cpu",
+          "title": "Generierte SPS-Logik",
+          "text": "Geprüfter Kontaktplan und strukturierter Text für Siemens, Rockwell und Beckhoff, aus einer Beschreibung."
+        },
+        {
+          "icon": "shield-check",
+          "title": "Sicherheit eingebaut",
+          "text": "Verriegelungen und Zonen sind Teil der Beschreibung, sodass sie bei einem Umschreiben nie vergessen werden."
+        },
+        {
+          "icon": "users",
+          "title": "Bediener behalten die Kontrolle",
+          "text": "Linienleiter ändern Rezepte in Grenzen, die Ingenieure setzen, und jede Änderung wird protokolliert."
+        },
+        {
+          "icon": "file-text",
+          "title": "Dokumentation inklusive",
+          "text": "Testpläne, Nachweispakete und das Änderungsprotokoll kommen aus derselben Beschreibung."
+        },
+        {
+          "icon": "clock",
+          "title": "Zwei Wochen, nicht sechs",
+          "text": "Die meisten Einzellinien laufen innerhalb von zwei Wochen, einschließlich Werksabnahme."
+        },
+        {
+          "icon": "globe",
+          "title": "Support in Ihrer Sprache",
+          "text": "Ingenieure in Manchester, Hamburg und Riad antworten zu lokalen Zeiten."
+        }
+      ]
+    },
+    "feature-rows-home": {
+      "type": "feature-rows",
+      "eyebrow": "So funktioniert es",
+      "title": "Von der Beschreibung zur laufenden Linie",
+      "items": [
+        {
+          "eyebrow": "Beschreiben",
+          "title": "Die Linie mit einem Ingenieur abgehen",
+          "text": "Stationen, Sensoren, Aktoren und die Regeln dazwischen, in Klartext geschrieben, den Ihr Team selbst nachlesen kann.",
+          "image": {
+            "slug": "row-describe",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "Zur Linienautomatisierung",
+            "href": "/de/services/line-automation/"
+          }
+        },
+        {
+          "eyebrow": "Generieren",
+          "title": "Die Logik wie ein Dokument prüfen",
+          "text": "Northwind erzeugt das SPS-Programm, die HMI-Bilder und den Testplan. Ihre Ingenieure prüfen alles, bevor etwas läuft.",
+          "image": {
+            "slug": "row-generate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "Northwind Studio entdecken",
+            "href": "/de/products/northwind-studio/"
+          }
+        },
+        {
+          "eyebrow": "Betreiben",
+          "title": "Linienleiter ändern Rezepte selbst",
+          "text": "Geschwindigkeiten, Mengen und Verriegelungen bewegen sich in Grenzen, die Ihre Ingenieure setzen. Jede Änderung wird mit Wer, Wann und Was protokolliert.",
+          "image": {
+            "slug": "row-operate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "Northwind Edge entdecken",
+            "href": "/de/products/northwind-edge/"
+          }
+        }
+      ]
+    },
+    "stats-home": {
+      "type": "stats",
+      "title": "Über alle Kunden gemessen",
+      "from": "stats"
+    },
+    "testimonials-home": {
+      "type": "testimonials",
+      "variant": "grid",
+      "eyebrow": "Kunden",
+      "title": "Was Werksteams sagen",
+      "from": "testimonials",
+      "limit": 3
+    },
+    "cases-home": {
+      "type": "case-study-cards",
+      "eyebrow": "Kunden",
+      "title": "Ergebnisse von der Produktionsfläche",
+      "from": "cases",
+      "limit": 3,
+      "cta": {
+        "label": "Alle Kundenberichte ansehen",
+        "href": "/de/customers/"
+      }
+    },
+    "latest-posts": {
+      "type": "resources-latest",
+      "eyebrow": "Blog",
+      "title": "Neues von der Produktionsfläche",
+      "from": "posts",
+      "limit": 3,
+      "cta": {
+        "label": "Zum Blog",
+        "href": "/de/blog/"
+      }
+    },
+    "cta-demo": {
+      "type": "cta-band",
+      "title": "Ihre Linie an einem Nachmittag beschrieben",
+      "text": "Dreißig Minuten mit einem Ingenieur. Keine Folien, nur Ihr Prozess.",
+      "primary": {
+        "label": "Demo buchen",
+        "href": "/de/demo/"
+      },
+      "secondary": {
+        "label": "Mit dem Vertrieb sprechen",
+        "href": "/de/contact/"
+      }
+    },
+    "cta-careers": {
+      "type": "cta-band",
+      "title": "Bauen Sie mit, was Werksingenieure lesen können",
+      "text": "Vier offene Stellen in Entwicklung, Support und Produkt.",
+      "primary": {
+        "label": "Offene Stellen ansehen",
+        "href": "/de/careers/"
+      },
+      "secondary": {
+        "label": "Mehr über das Leben bei Northwind",
+        "href": "/de/careers/culture/"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "title": "Monatliche Notizen von der Produktionsfläche",
+      "lede": "Eine E-Mail im Monat: was wir ausgeliefert haben, was Kunden gelernt haben, kein Verkaufsgespräch.",
+      "form": {
+        "action": "/de/newsletter/thank-you/",
+        "submit": "Abonnieren",
+        "privacyHref": "/de/legal/privacy/"
+      }
+    },
+    "contact-form": {
+      "type": "contact-form",
+      "eyebrow": "Kontakt",
+      "title": "Mit einem Ingenieur sprechen",
+      "lede": "Wir antworten innerhalb eines Werktags.",
+      "aside": {
+        "text": "Lieber anrufen oder schreiben? Unser Hamburger Büro übernimmt jedes erste Gespräch auf Deutsch.",
+        "address": "Speicherstadt 12, 20457 Hamburg, Deutschland",
+        "email": "hamburg@example.com",
+        "phone": "+49 40 123456"
+      },
+      "form": {
+        "id": "contact",
+        "action": "/de/contact/thank-you/",
+        "title": "Nachricht senden",
+        "submit": "Nachricht senden",
+        "privacyHref": "/de/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "c-name",
+                "label": "Vollständiger Name",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "c-email",
+                "label": "Geschäftliche E-Mail",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "c-company",
+            "label": "Unternehmen",
+            "autocomplete": "organization"
+          },
+          {
+            "type": "textarea",
+            "name": "message",
+            "id": "c-message",
+            "label": "Wie können wir helfen?",
+            "required": true,
+            "rows": 5
+          }
+        ],
+        "consent": {
+          "type": "checkbox",
+          "name": "updates",
+          "id": "c-updates",
+          "label": "Produktneuigkeiten per E-Mail senden",
+          "value": "yes"
+        }
+      }
+    },
+    "demo-form": {
+      "type": "contact-form",
+      "eyebrow": "Demo",
+      "title": "Dreißig Minuten mit einem Ingenieur",
+      "lede": "Erzählen Sie uns von einer Linie. Wir bringen einen Ingenieur mit, der eine ähnliche Linie in Betrieb genommen hat.",
+      "aside": {
+        "text": "Keine Folien. Wir beschreiben eine Ihrer Stationen live und zeigen die Logik, die daraus entsteht.",
+        "address": "Speicherstadt 12, 20457 Hamburg, Deutschland",
+        "email": "hamburg@example.com",
+        "phone": "+49 40 123456"
+      },
+      "form": {
+        "id": "demo",
+        "action": "/de/demo/thank-you/",
+        "title": "Erzählen Sie uns von Ihrem Werk",
+        "submit": "Demo anfragen",
+        "privacyHref": "/de/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "d-name",
+                "label": "Vollständiger Name",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "d-email",
+                "label": "Geschäftliche E-Mail",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "d-company",
+            "label": "Unternehmen",
+            "required": true,
+            "autocomplete": "organization"
+          },
+          {
+            "type": "select",
+            "name": "industry",
+            "id": "d-industry",
+            "label": "Branche",
+            "options": [
+              {
+                "value": "",
+                "label": "Branche wählen"
+              },
+              {
+                "value": "food",
+                "label": "Lebensmittel und Getränke"
+              },
+              {
+                "value": "pharma",
+                "label": "Pharma"
+              },
+              {
+                "value": "auto",
+                "label": "Automobil"
+              },
+              {
+                "value": "other",
+                "label": "Andere"
+              }
+            ]
+          },
+          {
+            "type": "textarea",
+            "name": "line",
+            "id": "d-line",
+            "label": "Beschreiben Sie eine Linie in einem Satz",
+            "rows": 3
+          }
+        ]
+      }
+    },
+    "gated-form": {
+      "type": "gated-form",
+      "title": "Datei per E-Mail erhalten",
+      "lede": "Wir schicken Ihnen den Download und sonst nichts, es sei denn, Sie wünschen es.",
+      "form": {
+        "id": "gate",
+        "action": "/de/resources/downloads/thank-you/",
+        "submit": "Datei zusenden",
+        "privacyHref": "/de/legal/privacy/",
+        "fields": [
+          {
+            "type": "email",
+            "name": "email",
+            "id": "g-email",
+            "label": "Geschäftliche E-Mail",
+            "required": true,
+            "autocomplete": "email"
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "g-company",
+            "label": "Unternehmen",
+            "autocomplete": "organization"
+          }
+        ]
+      }
+    },
+    "registration-form": {
+      "type": "registration-form",
+      "title": "Anmelden",
+      "lede": "Sie erhalten eine Kalendereinladung und bei Online-Veranstaltungen danach die Aufzeichnung.",
+      "form": {
+        "id": "reg",
+        "action": "/de/events/thank-you/",
+        "submit": "Anmelden",
+        "privacyHref": "/de/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "r-name",
+                "label": "Vollständiger Name",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "r-email",
+                "label": "Geschäftliche E-Mail",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "r-company",
+            "label": "Unternehmen",
+            "autocomplete": "organization"
+          }
+        ]
+      }
+    },
+    "apply-form": {
+      "type": "apply-form",
+      "title": "Auf diese Stelle bewerben",
+      "lede": "Ein Lebenslauf und ein, zwei Sätze reichen. Kein Anschreiben nötig.",
+      "form": {
+        "id": "apply",
+        "action": "/de/careers/thank-you/",
+        "submit": "Bewerbung senden",
+        "privacyHref": "/de/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "a-name",
+                "label": "Vollständiger Name",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "a-email",
+                "label": "E-Mail",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "cv",
+            "id": "a-cv",
+            "label": "Lebenslauf",
+            "required": true,
+            "accept": ".pdf,.doc,.docx",
+            "help": "PDF oder Word, bis 5 MB."
+          },
+          {
+            "type": "textarea",
+            "name": "note",
+            "id": "a-note",
+            "label": "Was wir noch wissen sollten",
+            "rows": 3
+          }
+        ]
+      }
+    },
+    "preferences-form": {
+      "type": "preferences-form",
+      "title": "E-Mail-Einstellungen",
+      "lede": "Wählen Sie, was wir senden. Änderungen gelten sofort.",
+      "form": {
+        "id": "prefs",
+        "action": "/de/newsletter/preferences/thank-you/",
+        "submit": "Einstellungen speichern",
+        "fields": [
+          {
+            "type": "switch",
+            "name": "notes",
+            "id": "p-notes",
+            "label": "Monatliche Notizen",
+            "checked": true,
+            "value": "1"
+          },
+          {
+            "type": "switch",
+            "name": "events",
+            "id": "p-events",
+            "label": "Einladungen zu Veranstaltungen",
+            "value": "1"
+          },
+          {
+            "type": "switch",
+            "name": "product",
+            "id": "p-product",
+            "label": "Produktneuigkeiten",
+            "checked": true,
+            "value": "1"
+          }
+        ]
+      }
+    },
+    "unsubscribe-form": {
+      "type": "unsubscribe-form",
+      "title": "Abmelden",
+      "lede": "Geben Sie die Adresse ein, an die wir geschrieben haben, und wir hören auf.",
+      "form": {
+        "id": "unsub",
+        "action": "/de/newsletter/unsubscribe/thank-you/",
+        "submit": "Abmelden",
+        "fields": [
+          {
+            "type": "email",
+            "name": "email",
+            "id": "u-email",
+            "label": "E-Mail",
+            "required": true,
+            "autocomplete": "email"
+          }
+        ]
+      }
+    },
+    "team-preview": {
+      "type": "team-preview",
+      "title": "Leitung",
+      "from": "people",
+      "limit": 4,
+      "cta": {
+        "label": "Das ganze Team kennenlernen",
+        "href": "/de/about/team/"
+      }
+    },
+    "team-grid": {
+      "type": "team-grid",
+      "eyebrow": "Leitung",
+      "title": "Die Menschen, die ans Telefon gehen",
+      "from": "people"
+    },
+    "office-cards": {
+      "type": "office-cards",
+      "eyebrow": "Standorte",
+      "title": "Drei Büros, eine Support-Warteschlange",
+      "from": "offices"
+    },
+    "service-cards": {
+      "type": "service-cards",
+      "eyebrow": "Leistungen",
+      "title": "Drei Wege, mit uns zu arbeiten",
+      "from": "services"
+    },
+    "product-cards": {
+      "type": "product-cards",
+      "eyebrow": "Produkte",
+      "title": "Die Software hinter jeder Linie",
+      "from": "products"
+    },
+    "industry-cards": {
+      "type": "industry-cards",
+      "eyebrow": "Branchen",
+      "title": "Werke, die wir von der Produktionsfläche kennen",
+      "from": "industries"
+    },
+    "pricing": {
+      "type": "pricing",
+      "eyebrow": "Preise",
+      "title": "Pro Linie zahlen, jeden Monat kündbar",
+      "tiers": [
+        {
+          "name": "Starter",
+          "price": "490 €",
+          "amount": 490,
+          "currency": "EUR",
+          "period": "pro Linie und Monat",
+          "text": "Eine Linie, ein Standort.",
+          "features": [
+            "Bis zu 50 Variablen",
+            "Support per E-Mail",
+            "Wöchentliche Sicherungen"
+          ],
+          "cta": {
+            "label": "Testphase starten",
+            "href": "/de/demo/"
+          }
+        },
+        {
+          "name": "Werk",
+          "price": "1.900 €",
+          "amount": 1900,
+          "currency": "EUR",
+          "period": "pro Standort und Monat",
+          "text": "Jede Linie eines Standorts.",
+          "features": [
+            "Unbegrenzte Variablen",
+            "Telefonsupport in 4 Stunden",
+            "Tägliche Sicherungen",
+            "Änderungsprotokoll"
+          ],
+          "cta": {
+            "label": "Mit dem Vertrieb sprechen",
+            "href": "/de/contact/"
+          },
+          "recommended": true
+        },
+        {
+          "name": "Enterprise",
+          "price": "Auf Anfrage",
+          "period": "pro Gruppe",
+          "text": "On-Premise, SSO, fester Ingenieur.",
+          "features": [
+            "Alles aus Werk",
+            "On-Premise-Hosting",
+            "Single Sign-on",
+            "Fester Support-Ingenieur"
+          ],
+          "cta": {
+            "label": "Angebot anfordern",
+            "href": "/de/contact/"
+          }
+        }
+      ]
+    },
+    "comparison": {
+      "type": "comparison",
+      "title": "Tarife vergleichen",
+      "table": {
+        "caption": "Funktionsvergleich der Tarife",
+        "columns": [
+          {
+            "name": "Starter"
+          },
+          {
+            "name": "Werk",
+            "recommended": true
+          },
+          {
+            "name": "Enterprise"
+          }
+        ],
+        "rows": [
+          {
+            "name": "Variablen",
+            "cells": [
+              "50",
+              "Unbegrenzt",
+              "Unbegrenzt"
+            ]
+          },
+          {
+            "name": "Änderungsprotokoll",
+            "cells": [
+              false,
+              true,
+              true
+            ]
+          },
+          {
+            "name": "On-Premise",
+            "cells": [
+              false,
+              false,
+              true
+            ]
+          },
+          {
+            "name": "Reaktionszeit Support",
+            "cells": [
+              "2 Tage",
+              "4 Stunden",
+              "1 Stunde"
+            ]
+          }
+        ]
+      }
+    },
+    "faq-pricing": {
+      "type": "faq",
+      "eyebrow": "Fragen",
+      "title": "Bevor Sie einen Tarif wählen",
+      "group": "faq-pricing",
+      "from": "faqPricing"
+    },
+    "faq-trust": {
+      "type": "faq",
+      "eyebrow": "Fragen",
+      "title": "Was Sicherheitsteams fragen",
+      "group": "faq-trust",
+      "from": "faqTrust"
+    },
+    "faq-groups": {
+      "type": "faq-groups",
+      "title": "Häufig gestellte Fragen",
+      "lede": "Gruppiert danach, wer sie meist stellt.",
+      "from": "faqGroups",
+      "into": "groups"
+    },
+    "timeline": {
+      "type": "timeline",
+      "eyebrow": "Geschichte",
+      "title": "Sieben Jahre, eine Idee",
+      "from": "timeline"
+    },
+    "values-grid": {
+      "type": "values-grid",
+      "eyebrow": "Werte",
+      "title": "Wie wir arbeiten",
+      "from": "values"
+    },
+    "awards": {
+      "type": "awards",
+      "title": "Auszeichnungen",
+      "from": "awards"
+    },
+    "badges": {
+      "type": "badges",
+      "title": "Zertifizierungen",
+      "lede": "Unabhängig geprüft, jedes Jahr erneuert.",
+      "from": "badges"
+    },
+    "benefits-grid": {
+      "type": "benefits-grid",
+      "eyebrow": "Leistungen",
+      "title": "Was zur Stelle dazugehört",
+      "from": "benefits"
+    },
+    "integration-grid": {
+      "type": "integration-grid",
+      "eyebrow": "Integrationen",
+      "title": "Funktioniert mit dem, was Sie betreiben",
+      "from": "integrations"
+    },
+    "about-rows": {
+      "type": "feature-rows",
+      "eyebrow": "Über uns",
+      "title": "Gebaut von Leuten, die beruflich Linien in Betrieb genommen haben",
+      "items": [
+        {
+          "eyebrow": "Warum",
+          "title": "Zu viele Wochenenden mit Kontaktplanlogik",
+          "text": "Northwind begann mit drei Steuerungsingenieuren und einem Lebensmittelwerk, das es satt hatte, auf einen Programmierer zu warten, um eine Füllmenge zu ändern.",
+          "image": {
+            "slug": "about-why",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Wie",
+          "title": "Eine Beschreibung statt eines Programms",
+          "text": "Ein Linienleiter kann die Beschreibung lesen. Ein Ingenieur kann die Logik prüfen, die sie erzeugt. Ein Prüfer kann die Nachweise sehen, die sie liefert.",
+          "image": {
+            "slug": "about-how",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "company-stats": {
+      "type": "stats",
+      "variant": "plain",
+      "label": "Unternehmen auf einen Blick",
+      "from": "companyStats"
+    },
+    "culture-rows": {
+      "type": "feature-rows",
+      "eyebrow": "Leben bei Northwind",
+      "title": "Produktionsflächen, Testlabore und ruhige Schreibtische",
+      "items": [
+        {
+          "eyebrow": "Vor Ort",
+          "title": "Jeder Ingenieur besucht Werke",
+          "text": "Delivery-Teams verbringen etwa jede dritte Woche auf Kundenflächen. Alle anderen fahren mindestens zweimal im Jahr.",
+          "image": {
+            "slug": "culture-site",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Im Labor",
+          "title": "Drei Testlinien in Hamburg",
+          "text": "Der Support stellt Fehler an echter Hardware nach, und jeder kann Laborzeit für das eigene Projekt buchen.",
+          "image": {
+            "slug": "culture-lab-row",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "gallery": {
+      "type": "image-gallery",
+      "title": "Rund um die Büros",
+      "items": [
+        {
+          "slug": "culture-floor",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Die Fläche in Manchester",
+          "max": 768
+        },
+        {
+          "slug": "culture-lab",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Testlabor in Hamburg",
+          "max": 768
+        },
+        {
+          "slug": "culture-team",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Teamtag in Riad",
+          "max": 768
+        }
+      ]
+    },
+    "careers-grid": {
+      "type": "feature-grid",
+      "eyebrow": "Karriere",
+      "title": "Warum Ingenieure bleiben",
+      "items": [
+        {
+          "icon": "wrench",
+          "title": "Echte Werke, echte Linien",
+          "text": "Sie nehmen in Betrieb, was Sie bauen, und sehen es laufen."
+        },
+        {
+          "icon": "users",
+          "title": "Kleine feste Teams",
+          "text": "Vier Leute verantworten eine Linie von der Beschreibung bis zur Übergabe."
+        },
+        {
+          "icon": "book-open",
+          "title": "Zeit, es aufzuschreiben",
+          "text": "Anleitungen und Vorlagen zählen als Arbeit, nicht als Überstunden."
+        }
+      ]
+    },
+    "job-list": {
+      "type": "job-list",
+      "title": "Offene Stellen",
+      "lede": "Entwicklung in Manchester und Hamburg, Support in allen drei Büros, remote, wo die Stelle es erlaubt.",
+      "from": "jobs",
+      "filters": {
+        "action": "/de/careers/",
+        "filters": [
+          {
+            "type": "select",
+            "name": "team",
+            "id": "jl-team",
+            "label": "Team",
+            "options": [
+              {
+                "value": "",
+                "label": "Alle Teams"
+              },
+              {
+                "value": "eng",
+                "label": "Entwicklung"
+              },
+              {
+                "value": "support",
+                "label": "Support"
+              },
+              {
+                "value": "product",
+                "label": "Produkt"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "name": "location",
+            "id": "jl-location",
+            "label": "Ort",
+            "options": [
+              {
+                "value": "",
+                "label": "Überall"
+              },
+              {
+                "value": "man",
+                "label": "Manchester"
+              },
+              {
+                "value": "ham",
+                "label": "Hamburg"
+              },
+              {
+                "value": "remote",
+                "label": "Remote"
+              }
+            ]
+          }
+        ],
+        "resetHref": "/de/careers/"
+      },
+      "empty": {
+        "icon": "info",
+        "title": "Derzeit keine offenen Stellen",
+        "text": "Abonnieren Sie den Newsletter, und wir sagen Ihnen, wenn etwas frei wird."
+      }
+    },
+    "sustainability-rows": {
+      "type": "feature-rows",
+      "eyebrow": "Nachhaltigkeit",
+      "title": "Weniger Ausschuss, weniger Reisen, langlebigere Linien",
+      "items": [
+        {
+          "eyebrow": "Ausschuss",
+          "title": "Umrüstungen, die keine Charge verwerfen",
+          "text": "Rezeptgrenzen und protokollierte Umrüstungen senkten den Anfahrausschuss auf Lebensmittellinien im ersten Jahr um ein Drittel.",
+          "image": {
+            "slug": "sus-waste",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Reisen",
+          "title": "Inbetriebnahme aus der Beschreibung",
+          "text": "Abnahmetests laufen aus Studio, sodass Ingenieure weniger fliegen und der erste Produktionslauf einen Besuch braucht, nicht drei.",
+          "image": {
+            "slug": "sus-travel",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "sustainability-stats": {
+      "type": "stats",
+      "title": "Gemessen 2025",
+      "items": [
+        {
+          "value": "33 %",
+          "label": "Weniger Anfahrausschuss"
+        },
+        {
+          "value": "2 von 3",
+          "label": "Reisen gespart"
+        },
+        {
+          "value": "100 %",
+          "label": "Ökostrom in den Büros"
+        }
+      ]
+    },
+    "trust-grid": {
+      "type": "feature-grid",
+      "eyebrow": "Vertrauen und Sicherheit",
+      "title": "Wie wir Ihre Beschreibungen und Protokolle schützen",
+      "items": [
+        {
+          "icon": "lock",
+          "title": "Signierte Updates",
+          "text": "Jedes Laufzeit-Update ist signiert; Werke spielen es in ihrem eigenen Fenster ein."
+        },
+        {
+          "icon": "scroll-text",
+          "title": "Nur anfügbare Protokolle",
+          "text": "Änderungsprotokolle können nicht bearbeitet werden; Exporte tragen eine Prüfsumme."
+        },
+        {
+          "icon": "globe",
+          "title": "EU-Hosting",
+          "text": "Standardmäßig zwei EU-Regionen; On-Premise für Enterprise."
+        },
+        {
+          "icon": "users",
+          "title": "Zugang, den Sie gewähren",
+          "text": "Der Support sieht Ihre Daten nur, solange Sie es erlauben, und jeder Zugriff wird protokolliert."
+        }
+      ]
+    },
+    "security-contact": {
+      "type": "contact-card",
+      "title": "Sicherheitskontakt",
+      "name": "Omar Haddad",
+      "role": "Leitung Sicherheit",
+      "text": "Melden Sie eine Schwachstelle, und wir antworten innerhalb von zwei Werktagen.",
+      "email": "security@example.com"
+    },
+    "media-contact": {
+      "type": "media-contact",
+      "title": "Pressekontakt",
+      "name": "Sofia Lindqvist",
+      "role": "Leiterin Kommunikation",
+      "email": "press@example.com",
+      "phone": "+44 20 7946 0001"
+    },
+    "media-kit-cta": {
+      "type": "media-kit-cta",
+      "title": "Pressemappe",
+      "text": "Logos, Produktbilder und Porträts der Leitung in einem Download.",
+      "cta": {
+        "label": "Pressemappe öffnen",
+        "href": "/de/news/media-kit/"
+      }
+    },
+    "media-kit-downloads": {
+      "type": "download-cards",
+      "title": "Dateien der Pressemappe",
+      "items": [
+        {
+          "type": "ZIP",
+          "pages": "4 Dateien",
+          "title": "Logos",
+          "text": "Wortmarke und Monogramm als SVG und PNG, hell und dunkel.",
+          "href": "/de/news/media-kit/"
+        },
+        {
+          "type": "ZIP",
+          "pages": "12 Dateien",
+          "title": "Produktbilder",
+          "text": "Studio, Edge und Cloud in 2x, mit Bildunterschriften.",
+          "href": "/de/news/media-kit/"
+        },
+        {
+          "type": "ZIP",
+          "pages": "5 Dateien",
+          "title": "Porträts der Leitung",
+          "text": "Pressetaugliche Porträts des Führungsteams.",
+          "href": "/de/news/media-kit/"
+        }
+      ]
+    },
+    "press-cards": {
+      "type": "press-cards",
+      "title": "Pressemitteilungen",
+      "from": "press"
+    },
+    "article-cards": {
+      "type": "article-cards",
+      "title": "Alle Beiträge",
+      "from": "posts"
+    },
+    "download-cards": {
+      "type": "download-cards",
+      "title": "Leitfäden und Werkzeuge",
+      "from": "downloads"
+    },
+    "event-cards": {
+      "type": "event-cards",
+      "title": "Kommende Veranstaltungen",
+      "from": "events",
+      "empty": {
+        "icon": "calendar",
+        "title": "Keine Veranstaltungen geplant",
+        "text": "Abonnieren Sie den Newsletter, und wir informieren Sie über die nächste."
+      }
+    },
+    "case-study-cards": {
+      "type": "case-study-cards",
+      "eyebrow": "Kunden",
+      "title": "Ergebnisse von der Produktionsfläche",
+      "from": "cases"
+    },
+    "resource-tabs": {
+      "type": "resource-tabs",
+      "title": "Ressourcen",
+      "lede": "Leitfäden, Veranstaltungen und Werkzeuge, nach Format.",
+      "tabs": [
+        {
+          "label": "Leitfäden",
+          "variant": "download",
+          "items": [
+            {
+              "type": "PDF",
+              "pages": "12 Seiten",
+              "title": "Inbetriebnahme-Checkliste 2026",
+              "href": "/de/resources/downloads/commissioning-checklist/"
+            },
+            {
+              "type": "PDF",
+              "pages": "28 Seiten",
+              "title": "Sicherheitsnachweise für generierten Code",
+              "href": "/de/resources/downloads/safety-evidence-guide/"
+            }
+          ]
+        },
+        {
+          "label": "Veranstaltungen",
+          "variant": "event",
+          "items": [
+            {
+              "date": "12. November 2026",
+              "dateIso": "2026-11-12",
+              "type": "Webinar",
+              "title": "Sicherheits-SPS ohne Papierkram",
+              "location": "Online",
+              "href": "/de/events/safety-plcs-webinar/"
+            },
+            {
+              "date": "3. Dezember 2026",
+              "dateIso": "2026-12-03",
+              "type": "Workshop",
+              "title": "Beschreiben Sie Ihre erste Linie",
+              "location": "Manchester",
+              "href": "/de/events/describe-your-first-line/"
+            }
+          ]
+        },
+        {
+          "label": "Werkzeuge",
+          "variant": "download",
+          "items": [
+            {
+              "type": "XLSX",
+              "pages": "1 Tabelle",
+              "title": "Stillstandskostenrechner",
+              "href": "/de/resources/downloads/downtime-calculator/"
+            }
+          ]
+        }
+      ]
+    },
+    "glossary-list": {
+      "type": "glossary-list",
+      "title": "Glossar",
+      "lede": "Die Begriffe, die wir verwenden, in der Reihenfolge, in der Sie ihnen begegnen.",
+      "from": "glossary"
+    },
+    "help-categories": {
+      "type": "help-categories",
+      "title": "Wie können wir helfen?",
+      "from": "helpCategories"
+    },
+    "search-box": {
+      "type": "search-box",
+      "title": "Suche",
+      "lede": "Seiten, Anleitungen, Veranstaltungen und Pressemitteilungen."
+    },
+    "search-results": {
+      "type": "search-results",
+      "query": "Sicherheit",
+      "from": "searchResults"
+    },
+    "landing-hero": {
+      "type": "hero",
+      "variant": "stats",
+      "title": "Automatisierung, die sich in einem Quartal bezahlt macht",
+      "lede": "Gemessen über 1.284 Linien in 19 Ländern.",
+      "primary": {
+        "label": "Demo buchen",
+        "href": "/de/demo/"
+      },
+      "secondary": {
+        "label": "Kundenergebnisse ansehen",
+        "href": "/de/customers/"
+      },
+      "stats": [
+        {
+          "value": "38 %",
+          "label": "Weniger Stillstand"
+        },
+        {
+          "value": "9 Tage",
+          "label": "Bis Inbetriebnahme"
+        },
+        {
+          "value": "99,98 %",
+          "label": "Verfügbarkeit"
+        }
+      ]
+    },
+    "landing-faq": {
+      "type": "faq",
+      "eyebrow": "Fragen",
+      "title": "Bevor Sie buchen",
+      "group": "faq-landing",
+      "items": [
+        {
+          "title": "Was passiert in der Demo?",
+          "body": "<p>Ein Ingenieur beschreibt eine Ihrer Stationen live und zeigt die Logik, die daraus entsteht. Dreißig Minuten, keine Folien.</p>"
+        },
+        {
+          "title": "Wer sollte dabei sein?",
+          "body": "<p>Ein Steuerungsingenieur und eine Person, die die Linie im Alltag fährt.</p>"
+        },
+        {
+          "title": "Gibt es danach eine Testphase?",
+          "body": "<p>Dreißig Tage auf einer Linie, mit einem Ingenieur in Rufbereitschaft in der ersten Woche.</p>"
+        },
+        {
+          "title": "Welche Steuerungen unterstützen Sie?",
+          "body": "<p>Siemens, Rockwell und Beckhoff aus derselben Beschreibung.</p>"
+        }
+      ]
+    }
+  },
+  "detail": {
+    "service": {
+      "each": "services",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "Leistung",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "Was wir tun",
+          "from": "e.features"
+        },
+        {
+          "type": "steps",
+          "eyebrow": "So funktioniert es",
+          "title": "Schritt für Schritt",
+          "from": "e.steps"
+        },
+        {
+          "type": "stats",
+          "title": "Über alle Kunden gemessen",
+          "from": "e.stats"
+        },
+        {
+          "type": "testimonials",
+          "variant": "single",
+          "label": "Kundenstimme",
+          "from": "testimonials",
+          "limit": 1
+        },
+        {
+          "type": "faq",
+          "eyebrow": "Fragen",
+          "title": "Bevor Sie fragen",
+          "group": "faq-service",
+          "from": "e.faq",
+          "skipEmpty": true
+        },
+        {
+          "type": "case-study-cards",
+          "eyebrow": "Kunden",
+          "title": "Werke, die das getan haben",
+          "from": "cases",
+          "only": "e.cases",
+          "skipEmpty": true
+        },
+        "cta-demo"
+      ]
+    },
+    "product": {
+      "each": "products",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "Produkt",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "Was es tut",
+          "from": "e.features"
+        },
+        {
+          "type": "feature-grid",
+          "eyebrow": "Funktionen",
+          "title": "Im Lieferumfang",
+          "from": "e.capabilities"
+        },
+        {
+          "type": "pricing",
+          "eyebrow": "Preise",
+          "title": "Tarife für {e.title}",
+          "from": "e.tiers",
+          "into": "tiers"
+        },
+        {
+          "type": "faq",
+          "eyebrow": "Fragen",
+          "title": "Bevor Sie fragen",
+          "group": "faq-product",
+          "from": "e.faq"
+        },
+        {
+          "type": "integration-grid",
+          "eyebrow": "Integrationen",
+          "title": "Funktioniert mit",
+          "from": "integrations",
+          "only": "e.integrations",
+          "skipEmpty": true
+        },
+        {
+          "type": "testimonials",
+          "variant": "single",
+          "label": "Kundenstimme",
+          "from": "testimonials",
+          "limit": 1
+        },
+        "cta-demo"
+      ]
+    },
+    "industry": {
+      "each": "industries",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "Branche",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "Worauf es an diesen Linien ankommt",
+          "from": "e.features"
+        },
+        {
+          "type": "case-study-cards",
+          "eyebrow": "Kunden",
+          "title": "Werke in dieser Branche",
+          "from": "cases",
+          "filter": {
+            "industry": "{e.slug}"
+          },
+          "skipEmpty": true
+        },
+        {
+          "type": "stats",
+          "title": "In dieser Branche gemessen",
+          "from": "e.stats"
+        },
+        {
+          "type": "faq",
+          "eyebrow": "Fragen",
+          "title": "Bevor Sie fragen",
+          "group": "faq-industry",
+          "from": "e.faq",
+          "skipEmpty": true
+        },
+        "cta-demo"
+      ]
+    },
+    "person": {
+      "each": "people",
+      "conversion": "none",
+      "title": "{e.name}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "Leitung",
+          "title": "{e.name}",
+          "lede": "{e.role}"
+        },
+        {
+          "type": "person-bio",
+          "label": "Biografie",
+          "name": "{e.name}",
+          "role": "{e.role}",
+          "md": "e.bio",
+          "into": "bio"
+        },
+        {
+          "type": "related-articles",
+          "title": "Beiträge von {e.name}",
+          "from": "posts",
+          "filter": {
+            "author": "{e.slug}"
+          },
+          "skipEmpty": true
+        }
+      ]
+    },
+    "office": {
+      "each": "offices",
+      "conversion": "contact",
+      "title": "Büro {e.city}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "Büro",
+          "title": "{e.city}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "office-detail",
+          "title": "Besuchen Sie uns",
+          "address": "{e.address}",
+          "phone": "{e.phone}",
+          "email": "{e.email}",
+          "from": "e.hours",
+          "into": "hours",
+          "map": {
+            "slug": "{e.map.slug}",
+            "address": "{e.map.address}"
+          }
+        },
+        {
+          "type": "team-preview",
+          "title": "Wen Sie treffen werden",
+          "from": "people",
+          "only": "e.team",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "case-study": {
+      "each": "cases",
+      "conversion": "demo",
+      "title": "{e.title}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.company}",
+          "title": "{e.title}",
+          "lede": "{e.excerpt}"
+        },
+        {
+          "type": "stats",
+          "title": "Die Zahlen",
+          "from": "e.stats"
+        },
+        {
+          "type": "prose",
+          "md": "e.body",
+          "label": "{e.title}"
+        },
+        {
+          "type": "testimonials",
+          "variant": "single",
+          "label": "Kundenstimme",
+          "items": [
+            {
+              "quote": "{e.quote}",
+              "name": "{e.quoteName}",
+              "role": "{e.quoteRole}",
+              "company": "{e.company}"
+            }
+          ]
+        },
+        {
+          "type": "related-items",
+          "title": "Leistungen in diesem Bericht",
+          "cardVariant": "service",
+          "from": "services",
+          "only": "e.services"
+        },
+        "cta-demo"
+      ]
+    },
+    "post": {
+      "each": "posts",
+      "layout": "article",
+      "conversion": "subscribe",
+      "toc": true,
+      "sections": [
+        {
+          "type": "related-articles",
+          "title": "Weiterlesen",
+          "from": "posts",
+          "only": "e.related"
+        },
+        "newsletter"
+      ]
+    },
+    "archive": {
+      "each": "tags",
+      "kind": "tags",
+      "noindex": true,
+      "conversion": "none",
+      "title": "{e.label}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "Blog",
+          "title": "{e.label}",
+          "lede": "Jeder Beitrag mit dem Schlagwort {e.label}."
+        },
+        {
+          "type": "article-cards",
+          "title": "Beiträge",
+          "from": "posts",
+          "filter": {
+            "tags": "{e.slug}"
+          }
+        }
+      ]
+    },
+    "author": {
+      "each": "people",
+      "kind": "authors",
+      "where": {
+        "posts": true
+      },
+      "conversion": "none",
+      "title": "Beiträge von {e.name}",
+      "description": "{e.authorDescription}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "Autorin oder Autor",
+          "title": "{e.name}",
+          "lede": "{e.role}"
+        },
+        {
+          "type": "person-bio",
+          "label": "Über die Autorin oder den Autor",
+          "name": "{e.name}",
+          "role": "{e.role}",
+          "md": "e.bio",
+          "into": "bio"
+        },
+        {
+          "type": "article-cards",
+          "title": "Beiträge",
+          "from": "posts",
+          "filter": {
+            "author": "{e.slug}"
+          }
+        }
+      ]
+    },
+    "download": {
+      "each": "downloads",
+      "conversion": "download",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "Download",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "download-detail",
+          "fileType": "{e.fileType}",
+          "pages": "{e.pages}",
+          "md": {
+            "summary": "e.summary"
+          },
+          "from": "e.contents",
+          "into": "contents",
+          "cover": {
+            "slug": "{e.cover.slug}",
+            "ratio": "3:4",
+            "alt": "",
+            "max": 480
+          }
+        },
+        "gated-form",
+        {
+          "type": "related-items",
+          "title": "Das könnte Sie auch interessieren",
+          "cardVariant": "download",
+          "from": "downloads",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "event": {
+      "each": "events",
+      "conversion": "subscribe",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.format}",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "event-detail",
+          "date": "{e.date|date}",
+          "dateIso": "{e.date}",
+          "time": "{e.timeLabel}",
+          "location": "{e.location}",
+          "format": "{e.format}",
+          "md": "e.body",
+          "into": "body"
+        },
+        "registration-form",
+        {
+          "type": "speakers",
+          "title": "Referentinnen und Referenten",
+          "from": "people",
+          "only": "e.speakers",
+          "skipEmpty": true
+        },
+        {
+          "type": "faq",
+          "eyebrow": "Fragen",
+          "title": "Bevor Sie sich anmelden",
+          "group": "faq-event",
+          "from": "e.faq",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "job": {
+      "each": "jobs",
+      "conversion": "apply",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.team}",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "job-detail",
+          "team": "{e.team}",
+          "location": "{e.location}",
+          "employment": "{e.employment}",
+          "posted": "{e.posted|date}",
+          "postedIso": "{e.posted}",
+          "md": "e.body",
+          "into": "body"
+        },
+        "apply-form",
+        {
+          "type": "related-items",
+          "title": "Weitere offene Stellen",
+          "cardVariant": "job",
+          "from": "jobs",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "doc": {
+      "each": "docs",
+      "layout": "article",
+      "conversion": "none",
+      "toc": true,
+      "eyebrow": "Hilfe-Center",
+      "sections": [
+        {
+          "type": "was-this-helpful"
+        },
+        {
+          "type": "related-items",
+          "title": "Verwandte Anleitungen",
+          "cardVariant": "article",
+          "from": "docs",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "press-release": {
+      "each": "press",
+      "layout": "article",
+      "conversion": "none",
+      "sections": [
+        "media-contact"
+      ]
+    }
+  },
+  "thankYou": {
+    "contact": {
+      "title": "Danke für Ihre Nachricht",
+      "description": "Wir haben Ihre Nachricht erhalten, und ein Ingenieur antwortet innerhalb eines Werktags. In der Zwischenzeit lohnt sich die Inbetriebnahme-Checkliste.",
+      "heading": "Wir haben Ihre Nachricht erhalten",
+      "text": "Ein Ingenieur antwortet innerhalb eines Werktags.",
+      "next": "In der Zwischenzeit lohnt sich die Inbetriebnahme-Checkliste.",
+      "cta": {
+        "label": "Checkliste lesen",
+        "href": "/de/resources/downloads/commissioning-checklist/"
+      }
+    },
+    "demo": {
+      "title": "Danke für Ihre Anfrage",
+      "description": "Wir haben Ihre Demo-Anfrage erhalten. Ein Ingenieur schreibt Ihnen innerhalb eines Werktags, um einen Termin zu finden; solange lohnen sich Kundenberichte.",
+      "heading": "Wir haben Ihre Anfrage erhalten",
+      "text": "Ein Ingenieur schreibt Ihnen innerhalb eines Werktags, um einen Termin zu finden.",
+      "next": "Sehen Sie solange, was andere Werke gemessen haben.",
+      "cta": {
+        "label": "Kundenberichte ansehen",
+        "href": "/de/customers/"
+      }
+    },
+    "newsletter": {
+      "title": "Danke für Ihr Abonnement",
+      "description": "Sie haben die monatlichen Notizen von der Produktionsfläche abonniert. Die erste E-Mail kommt Anfang nächsten Monats; abmelden können Sie sich jederzeit.",
+      "heading": "Sie sind angemeldet",
+      "text": "Die erste E-Mail kommt Anfang nächsten Monats.",
+      "next": "Sie können jederzeit ändern, was wir senden.",
+      "cta": {
+        "label": "E-Mail-Einstellungen öffnen",
+        "href": "/de/newsletter/preferences/"
+      }
+    },
+    "newsletter/preferences": {
+      "title": "Einstellungen gespeichert",
+      "description": "Ihre E-Mail-Einstellungen sind gespeichert und gelten ab der nächsten E-Mail, die wir senden. Sie können sie jederzeit ändern oder sich abmelden.",
+      "heading": "Einstellungen gespeichert",
+      "text": "Sie gelten ab der nächsten E-Mail, die wir senden.",
+      "next": "Sie können sie jederzeit wieder ändern.",
+      "cta": {
+        "label": "Zum Blog",
+        "href": "/de/blog/"
+      }
+    },
+    "newsletter/unsubscribe": {
+      "title": "Sie sind abgemeldet",
+      "description": "Sie sind von allen E-Mails von Northwind abgemeldet. Eine bereits eingeplante E-Mail kommt vielleicht noch, und Sie können sich jederzeit wieder anmelden.",
+      "heading": "Sie sind abgemeldet",
+      "text": "Eine bereits eingeplante E-Mail kommt vielleicht noch; danach nichts mehr.",
+      "next": "Sie können sich jederzeit wieder anmelden.",
+      "cta": {
+        "label": "Zur Startseite",
+        "href": "/de/"
+      }
+    },
+    "resources/downloads": {
+      "title": "Ihr Download ist unterwegs",
+      "description": "Wir haben Ihnen die angeforderte Datei geschickt. Sie kommt meist innerhalb einer Minute an; prüfen Sie sonst den Spam-Ordner oder andere Downloads.",
+      "heading": "Prüfen Sie Ihren Posteingang",
+      "text": "Die Datei ist unterwegs und kommt meist innerhalb einer Minute an.",
+      "next": "Falls nicht, prüfen Sie den Spam-Ordner oder schreiben Sie uns.",
+      "cta": {
+        "label": "Alle Downloads ansehen",
+        "href": "/de/resources/downloads/"
+      }
+    },
+    "events": {
+      "title": "Sie sind angemeldet",
+      "description": "Sie sind für die Veranstaltung angemeldet. Eine Kalendereinladung ist unterwegs, und bei Online-Veranstaltungen senden wir die Aufzeichnung am Tag danach.",
+      "heading": "Sie sind angemeldet",
+      "text": "Eine Kalendereinladung ist unterwegs.",
+      "next": "Bei Online-Veranstaltungen senden wir die Aufzeichnung am nächsten Tag.",
+      "cta": {
+        "label": "Alle Veranstaltungen ansehen",
+        "href": "/de/events/"
+      }
+    },
+    "careers": {
+      "title": "Danke für Ihre Bewerbung",
+      "description": "Wir haben Ihre Bewerbung erhalten, und die zuständige Führungskraft liest jede einzelne. Sie hören innerhalb von zwei Wochen von uns, wie auch immer.",
+      "heading": "Wir haben Ihre Bewerbung erhalten",
+      "text": "Die zuständige Führungskraft liest jede Bewerbung persönlich.",
+      "next": "Sie hören innerhalb von zwei Wochen von uns, wie auch immer die Entscheidung ausfällt.",
+      "cta": {
+        "label": "Mehr über das Leben bei Northwind",
+        "href": "/de/careers/culture/"
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { run, pageAssets, fontsForPage } from "../gates/budget.js";
 import { parse } from "../lib/html.js";
+import * as parseModule from "node-html-parser";
 
 const page = (head, body = "<h1>A</h1>") =>
   `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>t</title>${head}</head><body>${body}</body></html>`;
@@ -62,6 +63,12 @@ test("fontsForPage counts only fonts whose unicode-range matches text on the pag
   assert.deepEqual(fontsForPage(CSS, root).sort(), ["/assets/fonts/any.woff2", "/assets/fonts/inter-latin.woff2"]);
   const ar = parse(path.join(dir, "arabic.html")).root;
   assert.deepEqual(fontsForPage(CSS, ar).sort(), ["/assets/fonts/any.woff2", "/assets/fonts/noto-arabic.woff2"]);
+});
+
+test("fontsForPage ignores text inside elements set in the system font (font-system), such as the language switcher", () => {
+  const { parse: parseHtml } = parseModule;
+  const root = parseHtml('<html><body><p>Hello</p><ul><li><a lang="ar" class="block font-system">العربية</a></li></ul></body></html>');
+  assert.deepEqual(fontsForPage(CSS, root).sort(), ["/assets/fonts/any.woff2", "/assets/fonts/inter-latin.woff2"]);
 });
 
 test("a page within budget passes and reports its weight including fonts", async () => {

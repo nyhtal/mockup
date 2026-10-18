@@ -1,0 +1,1802 @@
+{
+  "services": [
+    {
+      "slug": "line-automation",
+      "title": "Linienautomatisierung",
+      "lede": "Eine Produktionslinie, in Klartext beschrieben und innerhalb von zwei Wochen auf generierter, geprüfter SPS-Logik in Betrieb.",
+      "description": "Linienautomatisierung von Northwind: eine Produktionslinie in Klartext beschreiben und binnen zwei Wochen mit generierter, geprüfter SPS-Logik betreiben.",
+      "icon": "cpu",
+      "serviceType": "Automatisierung von Produktionslinien",
+      "features": [
+        {
+          "eyebrow": "Beschreiben",
+          "title": "Die Linie mit einem Ingenieur abgehen",
+          "text": "Stationen, Sensoren, Aktoren und die Regeln dazwischen, in Klartext geschrieben, den Ihr Team selbst nachlesen kann.",
+          "image": {
+            "slug": "svc-describe",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Generieren",
+          "title": "Die Logik wie ein Dokument prüfen",
+          "text": "Northwind erzeugt das SPS-Programm, die HMI-Bilder und den Testplan. Ihre Ingenieure prüfen alles, bevor etwas läuft.",
+          "image": {
+            "slug": "svc-generate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Betreiben",
+          "title": "Linienleiter ändern Rezepte selbst",
+          "text": "Geschwindigkeiten, Mengen und Verriegelungen bewegen sich in Grenzen, die Ihre Ingenieure setzen. Jede Änderung wird mit Wer, Wann und Was protokolliert.",
+          "image": {
+            "slug": "svc-operate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "steps": [
+        {
+          "title": "Die Linie beschreiben",
+          "text": "Mit einem Ingenieur alle Stationen durchgehen; das dauert einen Nachmittag."
+        },
+        {
+          "title": "Generieren und prüfen",
+          "text": "Northwind erzeugt die Logik; Ihr Team prüft sie wie ein Dokument."
+        },
+        {
+          "title": "In Betrieb nehmen",
+          "text": "Werksabnahmetests aus derselben Beschreibung ausführen."
+        },
+        {
+          "title": "Betreiben",
+          "text": "Linienleiter passen Rezepte innerhalb der gesetzten Grenzen an."
+        }
+      ],
+      "stats": [
+        {
+          "value": "9 Tage",
+          "label": "Median bis Inbetriebnahme"
+        },
+        {
+          "value": "38 %",
+          "label": "Weniger Stillstand"
+        },
+        {
+          "value": "1.284",
+          "label": "Automatisierte Linien"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Ersetzt Northwind unsere SPS?",
+          "body": "<p>Nein. Es arbeitet neben ihr und erzeugt die Logik, die sie ausführt. Ihre Hardware und Ihre Sicherheitszertifizierung bleiben bestehen.</p>"
+        },
+        {
+          "title": "Wie lange dauert die Inbetriebnahme?",
+          "body": "<p>Die meisten Einzellinien laufen innerhalb von zwei Wochen, einschließlich Werksabnahme.</p>"
+        },
+        {
+          "title": "Können wir den generierten Code bearbeiten?",
+          "body": "<p>Ja, aber der unterstützte Weg sind Änderungen an der Beschreibung; bearbeitete Blöcke werden im Änderungsprotokoll markiert.</p>"
+        },
+        {
+          "title": "Welche Steuerungen werden unterstützt?",
+          "body": "<p>Siemens S7-1200 und S7-1500, Rockwell ControlLogix und CompactLogix sowie Beckhoff TwinCAT 3.</p>"
+        }
+      ],
+      "cases": [
+        "alder-foods",
+        "fjord-dairy"
+      ]
+    },
+    {
+      "slug": "plant-programmes",
+      "title": "Werksprogramme",
+      "lede": "Jede Linie eines Standorts unter einer Beschreibung, einem Änderungsprotokoll und einer Support-Warteschlange, Linie für Linie ausgerollt.",
+      "description": "Werksprogramme bringen jede Linie eines Standorts unter eine Beschreibung und ein Änderungsprotokoll, Linie für Linie, mit einer Support-Warteschlange.",
+      "icon": "factory",
+      "serviceType": "Werksweites Automatisierungsprogramm",
+      "features": [
+        {
+          "eyebrow": "Planen",
+          "title": "Mit der Linie beginnen, die am meisten kostet",
+          "text": "Wir ordnen Linien nach Stillstandskosten und Umrüsthäufigkeit und beginnen dort, wo sich der Aufwand am schnellsten bezahlt macht.",
+          "image": {
+            "slug": "plant-plan",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Ausrollen",
+          "title": "Alle drei Wochen eine Linie",
+          "text": "Ein festes Team beschreibt, generiert und nimmt in festem Takt in Betrieb, sodass niemand auf einen Programmierer wartet.",
+          "image": {
+            "slug": "plant-rollout",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Betreiben",
+          "title": "Eine Beschreibung für den ganzen Standort",
+          "text": "Gemeinsame Stationen, gemeinsame Rezepte und ein Änderungsprotokoll über alle Linien, mit Berichten auf Standortebene.",
+          "image": {
+            "slug": "plant-run",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "steps": [
+        {
+          "title": "Linien einordnen",
+          "text": "Stillstandskosten und Umrüsthäufigkeit bestimmen die Reihenfolge."
+        },
+        {
+          "title": "Eine Linie pilotieren",
+          "text": "Die erste Linie belegt den Beschreibungsstil und den Prüfprozess."
+        },
+        {
+          "title": "Im Takt ausrollen",
+          "text": "Alle drei Wochen eine Linie mit einem festen Team."
+        },
+        {
+          "title": "Übergeben",
+          "text": "Ihre Ingenieure übernehmen die Beschreibungen; wir bleiben in der Support-Warteschlange."
+        }
+      ],
+      "stats": [
+        {
+          "value": "3 Wochen",
+          "label": "Pro weiterer Linie"
+        },
+        {
+          "value": "41",
+          "label": "Standorte in Programmen"
+        },
+        {
+          "value": "99,98 %",
+          "label": "Verfügbarkeit im Vorjahr"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Wie viele Linien laufen parallel?",
+          "body": "<p>Zwei feste Teams nehmen alle drei Wochen zwei Linien in Betrieb; größere Standorte ergänzen ein drittes Team.</p>"
+        },
+        {
+          "title": "Wem gehören die Beschreibungen danach?",
+          "body": "<p>Ihnen. Beschreibungen sind Klartextdateien in Ihrem Repository, und Ihre Ingenieure bearbeiten sie weiter.</p>"
+        },
+        {
+          "title": "Was kostet ein Programm?",
+          "body": "<p>Der Tarif Werk deckt jede Linie eines Standorts ab; die Programmgebühr deckt das feste Team für die Monate des Rollouts.</p>"
+        },
+        {
+          "title": "Können Linien während des Rollouts weiterlaufen?",
+          "body": "<p>Ja. Jede Linie wechselt in einem geplanten Fenster, meist an einem Wochenende, nachdem ihr Abnahmetest bestanden ist.</p>"
+        }
+      ],
+      "cases": [
+        "castor-automotive"
+      ]
+    },
+    {
+      "slug": "safety-reviews",
+      "title": "Sicherheitsprüfungen",
+      "lede": "Generierte Logik mit den Nachweisen, die Prüfer verlangen: Verriegelungsbegehungen, Testprotokolle und ein exportierbares Änderungsprotokoll.",
+      "description": "Sicherheitsprüfungen für generierte SPS-Logik: Verriegelungsbegehungen, Testprotokolle und ein exportierbares Änderungsprotokoll als Nachweise für Prüfer.",
+      "icon": "shield-check",
+      "serviceType": "Prüfung der funktionalen Sicherheit",
+      "features": [
+        {
+          "eyebrow": "Begehen",
+          "title": "Jede Verriegelung, vor Ort",
+          "text": "Ein Prüfer und Ihre HSE-Leitung prüfen jede Verriegelung in der Beschreibung gegen die Schutztür, den Sensor und den Aktor, die sie schützt.",
+          "image": {
+            "slug": "safety-walk",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Nachweise",
+          "title": "Testprotokolle aus derselben Beschreibung",
+          "text": "Abnahmetests, ihre Ergebnisse und die Version des generierten Codes werden zusammen abgelegt, sodass das Nachweispaket sich selbst schreibt.",
+          "image": {
+            "slug": "safety-evidence",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "steps": [
+        {
+          "title": "Prüfung abgrenzen",
+          "text": "Welche Linien, welche Zonen, welche Norm der Prüfer anwendet."
+        },
+        {
+          "title": "Verriegelungen begehen",
+          "text": "Jede Verriegelung wird vor Ort geprüft und abgezeichnet."
+        },
+        {
+          "title": "Nachweise ablegen",
+          "text": "Tests, Versionen und Freigaben in einem exportierbaren Paket."
+        }
+      ],
+      "stats": [
+        {
+          "value": "312",
+          "label": "Abgeschlossene Prüfungen"
+        },
+        {
+          "value": "0",
+          "label": "Wieder geöffnete Befunde"
+        },
+        {
+          "value": "2 Tage",
+          "label": "Typische Prüfung"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Zertifizieren Sie die Linie?",
+          "body": "<p>Nein. Wir bereiten die Nachweise vor; Ihr Prüfer oder Ihre benannte Stelle stellt das Zertifikat aus.</p>"
+        },
+        {
+          "title": "Nach welchen Normen wird geprüft?",
+          "body": "<p>Prüfungen folgen der Norm zur funktionalen Sicherheit, die Ihr Prüfer im Abgrenzungsgespräch benennt.</p>"
+        },
+        {
+          "title": "Wie lange dauert eine Prüfung?",
+          "body": "<p>Zwei Tage vor Ort für eine Einzellinie plus eine Woche für das Nachweispaket.</p>"
+        },
+        {
+          "title": "Können Sie Linien prüfen, die nicht mit Northwind gebaut wurden?",
+          "body": "<p>Ja, nachdem zuerst eine Beschreibung geschrieben wurde; die Begehung läuft dann gleich.</p>"
+        }
+      ],
+      "cases": [
+        "brightline-pharma",
+        "castor-automotive"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "slug": "northwind-studio",
+      "title": "Northwind Studio",
+      "lede": "Hier schreiben Ingenieure die Linienbeschreibung, prüfen die generierte Logik und führen Abnahmetests aus.",
+      "description": "In Northwind Studio schreiben Ingenieure die Linienbeschreibung, prüfen die generierte SPS-Logik wie ein Dokument und führen Werksabnahmetests aus.",
+      "image": {
+        "slug": "product-studio",
+        "ratio": "4:3",
+        "alt": ""
+      },
+      "features": [
+        {
+          "eyebrow": "Schreiben",
+          "title": "Eine Beschreibung, kein Programm",
+          "text": "Stationen, Regeln und Rezepte in strukturiertem Klartext, mit dem Glossar, das Ihr Werk bereits nutzt.",
+          "image": {
+            "slug": "studio-write",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Prüfen",
+          "title": "Die Logik wie ein Dokument lesen",
+          "text": "Generierter Code steht neben dem Satz, der ihn erzeugt hat; Prüfer kommentieren den Satz.",
+          "image": {
+            "slug": "studio-review",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "capabilities": [
+        {
+          "icon": "file-text",
+          "title": "Strukturierte Beschreibungen",
+          "text": "Vorlagen für Stationen, Verriegelungen und Rezepte halten jede Linie lesbar."
+        },
+        {
+          "icon": "cpu",
+          "title": "Drei Steuerungsfamilien",
+          "text": "Siemens, Rockwell und Beckhoff aus derselben Beschreibung."
+        },
+        {
+          "icon": "shield-check",
+          "title": "Verriegelungsprüfung",
+          "text": "Jede Verriegelung in der Beschreibung wird gegen den generierten Code geprüft."
+        },
+        {
+          "icon": "chart-bar",
+          "title": "Testpläne",
+          "text": "Abnahmetests werden mit der Logik erzeugt und aus Studio ausgeführt."
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Starter",
+          "price": "490 €",
+          "amount": 490,
+          "currency": "EUR",
+          "period": "pro Linie und Monat",
+          "text": "Eine Linie, ein Standort.",
+          "features": [
+            "Bis zu 50 Variablen",
+            "Support per E-Mail",
+            "Wöchentliche Sicherungen"
+          ],
+          "cta": {
+            "label": "Testphase starten",
+            "href": "/de/demo/"
+          }
+        },
+        {
+          "name": "Werk",
+          "price": "1.900 €",
+          "amount": 1900,
+          "currency": "EUR",
+          "period": "pro Standort und Monat",
+          "text": "Jede Linie eines Standorts.",
+          "features": [
+            "Unbegrenzte Variablen",
+            "Telefonsupport in 4 Stunden",
+            "Tägliche Sicherungen",
+            "Änderungsprotokoll"
+          ],
+          "cta": {
+            "label": "Mit dem Vertrieb sprechen",
+            "href": "/de/contact/"
+          },
+          "recommended": true
+        }
+      ],
+      "faq": [
+        {
+          "title": "Läuft Studio vor Ort?",
+          "body": "<p>Ja. Studio ist eine Desktop-Anwendung; Beschreibungen liegen in Ihrem Repository.</p>"
+        },
+        {
+          "title": "Welche Sprachen spricht Studio?",
+          "body": "<p>Englisch, Deutsch und Arabisch für die Oberfläche; Beschreibungen können jede davon nutzen.</p>"
+        },
+        {
+          "title": "Können mehrere Ingenieure eine Beschreibung bearbeiten?",
+          "body": "<p>Ja. Beschreibungen sind Textdateien, also übernimmt Ihre Versionsverwaltung Zweige und Prüfungen.</p>"
+        },
+        {
+          "title": "Gibt es eine kostenlose Testphase?",
+          "body": "<p>Dreißig Tage auf einer Linie, mit einem Ingenieur in Rufbereitschaft in der ersten Woche.</p>"
+        }
+      ],
+      "integrations": [
+        "tia-portal",
+        "studio-5000",
+        "twincat"
+      ]
+    },
+    {
+      "slug": "northwind-edge",
+      "title": "Northwind Edge",
+      "lede": "Die Laufzeit neben Ihrer SPS, die Rezepte in Grenzen hält, jede Änderung protokolliert und Daten puffert, wenn das Netz ausfällt.",
+      "description": "Northwind Edge läuft neben der SPS: Es hält Rezeptänderungen in Grenzen, protokolliert jede Änderung mit Wer und Wann und puffert Daten bei Netzausfall.",
+      "image": {
+        "slug": "product-edge",
+        "ratio": "4:3",
+        "alt": ""
+      },
+      "features": [
+        {
+          "eyebrow": "Grenzen",
+          "title": "Rezepte bewegen sich, Verriegelungen nicht",
+          "text": "Linienleiter passen Geschwindigkeiten und Mengen in den Grenzen der Ingenieure an; alles außerhalb braucht einen Ingenieur.",
+          "image": {
+            "slug": "edge-limits",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Ausfallsicherheit",
+          "title": "Läuft weiter, wenn das Netz nicht läuft",
+          "text": "Edge puffert Änderungsprotokoll und Sensordaten lokal und gleicht ab, sobald die Verbindung zurück ist.",
+          "image": {
+            "slug": "edge-resilience",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "capabilities": [
+        {
+          "icon": "sliders-horizontal",
+          "title": "Rezeptgrenzen",
+          "text": "Minimum, Maximum und Schrittweite für jeden Wert, den ein Linienleiter ändern darf."
+        },
+        {
+          "icon": "scroll-text",
+          "title": "Änderungsprotokoll",
+          "text": "Wer hat was wann von welchem Bild geändert; mit einem Klick exportierbar."
+        },
+        {
+          "icon": "wifi-off",
+          "title": "Offline-Puffer",
+          "text": "Zweiundsiebzig Stunden Daten und Änderungen werden lokal gespeichert."
+        },
+        {
+          "icon": "lock",
+          "title": "Signierte Updates",
+          "text": "Laufzeit-Updates sind signiert und werden in einem Wartungsfenster Ihrer Wahl eingespielt."
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Pro Linie",
+          "price": "120 €",
+          "amount": 120,
+          "currency": "EUR",
+          "period": "pro Linie und Monat",
+          "text": "In Werk und Enterprise enthalten.",
+          "features": [
+            "Rezeptgrenzen",
+            "Änderungsprotokoll",
+            "Offline-Puffer"
+          ],
+          "cta": {
+            "label": "Mit dem Vertrieb sprechen",
+            "href": "/de/contact/"
+          },
+          "recommended": true
+        }
+      ],
+      "faq": [
+        {
+          "title": "Welche Hardware braucht Edge?",
+          "body": "<p>Einen Industrie-PC mit zwei Netzwerkanschlüssen; getestete Modelle stehen im Hilfe-Center.</p>"
+        },
+        {
+          "title": "Ersetzt Edge das HMI?",
+          "body": "<p>Nein. Es ergänzt die Rezeptbilder und das Änderungsprotokoll im HMI, das Studio erzeugt.</p>"
+        },
+        {
+          "title": "Wie ist das Änderungsprotokoll geschützt?",
+          "body": "<p>Einträge sind signiert und nur anfügbar; Exporte tragen eine Prüfsumme, die Ihre Prüfer verifizieren können.</p>"
+        },
+        {
+          "title": "Was passiert bei einem Update?",
+          "body": "<p>Die Linie läuft auf der SPS weiter; Edge startet im gesetzten Fenster in unter einer Minute neu.</p>"
+        }
+      ],
+      "integrations": [
+        "osisoft-pi"
+      ]
+    },
+    {
+      "slug": "northwind-cloud",
+      "title": "Northwind Cloud",
+      "lede": "Berichte auf Standortebene, Sicherungen und Support-Zugang, gehostet in der EU, mit On-Premise-Option für Enterprise.",
+      "description": "Northwind Cloud ergänzt jede Linie um Standortberichte, tägliche Sicherungen und Support-Zugang, gehostet in der EU, mit On-Premise-Hosting für Enterprise.",
+      "image": {
+        "slug": "product-cloud",
+        "ratio": "4:3",
+        "alt": ""
+      },
+      "features": [
+        {
+          "eyebrow": "Berichten",
+          "title": "Jede Linie auf einer Seite",
+          "text": "Stillstände, Umrüstungen und Rezeptänderungen pro Linie und Standort, mit dem Änderungsprotokoll einen Klick entfernt.",
+          "image": {
+            "slug": "cloud-report",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Support",
+          "title": "Ingenieure, die sehen, was Sie sehen",
+          "text": "Mit Ihrer Erlaubnis öffnet der Support dieselbe Beschreibung und dasselbe Änderungsprotokoll, das Sie gerade ansehen.",
+          "image": {
+            "slug": "cloud-support",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "capabilities": [
+        {
+          "icon": "chart-bar",
+          "title": "Standortberichte",
+          "text": "Stillstands- und Umrüsttrends pro Linie, exportierbar in Ihr BI-Werkzeug."
+        },
+        {
+          "icon": "database",
+          "title": "Sicherungen",
+          "text": "Tägliche Sicherungen von Beschreibungen und Änderungsprotokollen, ein Jahr aufbewahrt."
+        },
+        {
+          "icon": "users",
+          "title": "Support-Zugang",
+          "text": "Zeitlich begrenzter, protokollierter Zugang für den Support-Ingenieur, mit dem Sie sprechen."
+        },
+        {
+          "icon": "globe",
+          "title": "EU-Hosting",
+          "text": "Daten bleiben in der EU; Enterprise kann den ganzen Stack vor Ort betreiben."
+        }
+      ],
+      "tiers": [
+        {
+          "name": "Werk",
+          "price": "1.900 €",
+          "amount": 1900,
+          "currency": "EUR",
+          "period": "pro Standort und Monat",
+          "text": "Jede Linie eines Standorts.",
+          "features": [
+            "Standortberichte",
+            "Tägliche Sicherungen",
+            "Support-Zugang"
+          ],
+          "cta": {
+            "label": "Mit dem Vertrieb sprechen",
+            "href": "/de/contact/"
+          },
+          "recommended": true
+        },
+        {
+          "name": "Enterprise",
+          "price": "Auf Anfrage",
+          "period": "pro Gruppe",
+          "text": "On-Premise, SSO, fester Ingenieur.",
+          "features": [
+            "Alles aus Werk",
+            "On-Premise-Hosting",
+            "Single Sign-on",
+            "Fester Support-Ingenieur"
+          ],
+          "cta": {
+            "label": "Angebot anfordern",
+            "href": "/de/contact/"
+          }
+        }
+      ],
+      "faq": [
+        {
+          "title": "Wo werden Daten gespeichert?",
+          "body": "<p>Standardmäßig in der EU; Enterprise-Kunden können den ganzen Stack vor Ort betreiben.</p>"
+        },
+        {
+          "title": "Wer kann unsere Daten sehen?",
+          "body": "<p>Ihre Nutzer und ein Support-Ingenieur nur, solange Sie zeitlich begrenzten Zugang gewährt haben.</p>"
+        },
+        {
+          "title": "Wie lange werden Sicherungen aufbewahrt?",
+          "body": "<p>Tägliche Sicherungen ein Jahr lang; ein vollständiges Archiv können Sie jederzeit exportieren.</p>"
+        },
+        {
+          "title": "Braucht Cloud Edge?",
+          "body": "<p>Berichte brauchen Edge auf jeder Linie; Sicherungen und Support-Zugang funktionieren mit Studio allein.</p>"
+        }
+      ],
+      "integrations": [
+        "osisoft-pi",
+        "tia-portal"
+      ]
+    }
+  ],
+  "industries": [
+    {
+      "slug": "food-and-beverage",
+      "title": "Lebensmittel und Getränke",
+      "lede": "Rezeptänderungen ohne Wartungsfenster, Allergenumrüstungen mit Protokoll und Hygieneverriegelungen, die nie weggepatcht werden.",
+      "description": "Northwind für Lebensmittel- und Getränkewerke: Rezeptänderungen ohne Wartungsfenster, protokollierte Allergenumrüstungen, bleibende Verriegelungen.",
+      "icon": "wheat",
+      "serviceType": "Automatisierung für Lebensmittel- und Getränkelinien",
+      "features": [
+        {
+          "eyebrow": "Umrüstungen",
+          "title": "Allergenumrüstungen mit Nachweis",
+          "text": "Jede Umrüstung läuft aus einem Rezept mit seinen Reinigungsschritten, und das Änderungsprotokoll zeigt, wer sie wann ausgeführt hat.",
+          "image": {
+            "slug": "food-changeover",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Hygiene",
+          "title": "Verriegelungen leben in der Beschreibung",
+          "text": "CIP- und Schutztürverriegelungen sind Teil der Linienbeschreibung, sodass ein Umschreiben sie nie verlieren kann.",
+          "image": {
+            "slug": "food-hygiene",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "stats": [
+        {
+          "value": "412",
+          "label": "Lebensmittellinien aktiv"
+        },
+        {
+          "value": "38 %",
+          "label": "Weniger Stillstand"
+        },
+        {
+          "value": "14 Min.",
+          "label": "Median Umrüstung"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Können Linienleiter Füllmengen ändern?",
+          "body": "<p>Ja, innerhalb von Grenzen, die ein Ingenieur pro Produkt setzt; jede Änderung wird protokolliert.</p>"
+        },
+        {
+          "title": "Wird Allergenreihenfolge berücksichtigt?",
+          "body": "<p>Rezepte tragen ihre Allergenklasse, und die Beschreibung kann ein Reinigungsrezept zwischen Klassen verlangen.</p>"
+        },
+        {
+          "title": "Was ist mit Nassbereichen?",
+          "body": "<p>Edge läuft auf IP66-Industrie-PCs, die im Hilfe-Center gelistet sind; die SPS bleibt, wo sie ist.</p>"
+        },
+        {
+          "title": "Wie schnell ist ein typischer Rollout?",
+          "body": "<p>Einzelne Abfüll- oder Verpackungslinien laufen innerhalb von zwei Wochen.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "pharmaceutical",
+      "title": "Pharma",
+      "lede": "Validierungsnachweise aus derselben Beschreibung wie die Logik, mit einem nur anfügbaren Änderungsprotokoll, das Ihr QA-Team exportieren kann.",
+      "description": "Northwind für Pharmawerke: Validierungsnachweise aus derselben Linienbeschreibung wie die Logik, plus ein nur anfügbares Änderungsprotokoll für die QA.",
+      "icon": "flask-conical",
+      "serviceType": "Automatisierung für Pharmalinien",
+      "features": [
+        {
+          "eyebrow": "Validieren",
+          "title": "Nachweise aus der Beschreibung",
+          "text": "Testpläne, Ergebnisse und Codeversionen werden zusammen abgelegt, sodass das Validierungspaket der Logik folgt, statt ihr hinterherzulaufen.",
+          "image": {
+            "slug": "pharma-validate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Kontrollieren",
+          "title": "Änderungen brauchen einen Grund",
+          "text": "Jede Rezeptänderung hält Wer, Wann, Was und Warum fest; Exporte tragen eine Prüfsumme, die die QA verifizieren kann.",
+          "image": {
+            "slug": "pharma-control",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "stats": [
+        {
+          "value": "96",
+          "label": "Pharmalinien aktiv"
+        },
+        {
+          "value": "9 Tage",
+          "label": "Bis Inbetriebnahme"
+        },
+        {
+          "value": "0",
+          "label": "Offene Auditbefunde"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Ist das Änderungsprotokoll nur anfügbar?",
+          "body": "<p>Ja. Einträge sind signiert und können nicht bearbeitet werden; Korrekturen sind neue Einträge.</p>"
+        },
+        {
+          "title": "Kann die QA das Nachweispaket exportieren?",
+          "body": "<p>Mit einem Klick, als signiertes Archiv mit Tests, Ergebnissen und Codeversionen.</p>"
+        },
+        {
+          "title": "Verwaltet Northwind unsere Chargenprotokolle?",
+          "body": "<p>Nein. Es verwaltet Linienbeschreibungen und Änderungsprotokolle; Chargenprotokolle bleiben in Ihrem MES.</p>"
+        },
+        {
+          "title": "Können wir vor Ort betreiben?",
+          "body": "<p>Ja, mit dem Tarif Enterprise.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "automotive",
+      "title": "Automobil",
+      "lede": "Sicherheitszonen, Roboterzellen und Förderer unter einer Beschreibung, mit Sicherheitsprüfungen, die ohne Streit über den SPS-Code enden.",
+      "description": "Northwind für Automobilwerke: Sicherheitszonen, Roboterzellen und Förderer unter einer Linienbeschreibung, mit Sicherheitsprüfungen im Zeitplan.",
+      "icon": "car",
+      "serviceType": "Automatisierung für Montagelinien im Automobilbau",
+      "features": [
+        {
+          "eyebrow": "Zonen",
+          "title": "Sicherheitszonen, die man lesen kann",
+          "text": "Lichtvorhänge, Schutztüren und Not-Halt werden pro Zone beschrieben; die generierte Sicherheitslogik wird Satz für Satz geprüft.",
+          "image": {
+            "slug": "auto-zones",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "Zellen",
+          "title": "Roboterzellen als Stationen",
+          "text": "Eine Zelle ist eine Station in der Beschreibung mit ihren Handshakes und Verriegelungen; eine Zelle hinzufügen heißt einen Absatz hinzufügen.",
+          "image": {
+            "slug": "auto-cells",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ],
+      "stats": [
+        {
+          "value": "58",
+          "label": "Montagelinien aktiv"
+        },
+        {
+          "value": "2 Tage",
+          "label": "Typische Sicherheitsprüfung"
+        },
+        {
+          "value": "0",
+          "label": "Wieder geöffnete Befunde"
+        }
+      ],
+      "faq": [
+        {
+          "title": "Welche Sicherheits-SPS werden unterstützt?",
+          "body": "<p>Heute Siemens S7-1500F und Rockwell GuardLogix; Beckhoff TwinSAFE ist im Pilotbetrieb.</p>"
+        },
+        {
+          "title": "Binden Sie Robotersteuerungen an?",
+          "body": "<p>Handshakes mit den gängigen Robotersteuerungen werden als Stationsschnittstellen beschrieben.</p>"
+        },
+        {
+          "title": "Wie werden Zonenänderungen geprüft?",
+          "body": "<p>Eine geänderte Zone zeigt ihre alten und neuen Sätze nebeneinander mit der generierten Logik für beide.</p>"
+        },
+        {
+          "title": "Können Linien über Hallen verteilt sein?",
+          "body": "<p>Ja. Eine Beschreibung kann mehrere SPS umfassen; jede Halle behält ihre eigene.</p>"
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "slug": "priya-natarajan",
+      "name": "Priya Natarajan",
+      "role": "Technische Leiterin (CTO)",
+      "posts": true,
+      "description": "Priya Natarajan, Technische Leiterin von Northwind Dynamics: sechzehn Jahre Leitung von Steuerungsteams, Gründerin, nimmt jedes Jahr eine Linie in Betrieb.",
+      "authorDescription": "Blogbeiträge von Priya Natarajan, Technischer Leiterin von Northwind Dynamics, über generierte SPS-Logik, die Edge-Laufzeit und sicheren Code.",
+      "bio": "Priya hat sechzehn Jahre lang Steuerungsteams in Lebensmittel-, Pharma- und Automobilwerken geleitet. Sie gründete Northwind nach einem Wochenende zu viel, an dem sie Kontaktplanlogik umschrieb, die ein Linienleiter in einem Satz hätte beschreiben können.\n\nSie spricht auf Branchenveranstaltungen über sicherheitsgerichteten generierten Code und nimmt weiterhin jedes Jahr eine Linie selbst in Betrieb."
+    },
+    {
+      "slug": "jonas-weber",
+      "name": "Jonas Weber",
+      "role": "Geschäftsführer",
+      "posts": false,
+      "description": "Jonas Weber, Geschäftsführer von Northwind Dynamics: ein ehemaliger Werksleiter aus Hamburg, der weiterhin jede Woche ein Kundenwerk besucht.",
+      "bio": "Jonas leitete ein Verpackungswerk in Hamburg, bevor er zu Northwind kam, und besucht weiterhin jede Woche ein Kundenwerk.\n\nEr verantwortet das Unternehmen, das Support-Versprechen und die Entscheidung, dass jedes Büro das Telefon in seiner eigenen Sprache beantwortet."
+    },
+    {
+      "slug": "mei-chen",
+      "name": "Mei Chen",
+      "role": "Leiterin Sicherheit",
+      "posts": true,
+      "description": "Mei Chen, Leiterin Sicherheit bei Northwind Dynamics: ein Jahrzehnt funktionale Sicherheit, Autorin der Verriegelungsbegehung, der jede Prüfung folgt.",
+      "authorDescription": "Blogbeiträge von Mei Chen, Leiterin Sicherheit bei Northwind Dynamics, über die Prüfung generierten SPS-Codes, Begehungen und die Fragen der Prüfer.",
+      "bio": "Mei hat ein Jahrzehnt lang funktionale Sicherheit an Montagelinien bewertet, bevor sie die Sicherheitsprüfungspraxis von Northwind aufbaute.\n\nSie hat die Methode der Verriegelungsbegehung geschrieben, der jede Prüfung folgt, und bildet die Prüfer aus, die sie durchführen."
+    },
+    {
+      "slug": "alex-morgan",
+      "name": "Alex Morgan",
+      "role": "Leitung Delivery",
+      "posts": true,
+      "description": "Alex Morgan, Leitung Delivery bei Northwind Dynamics: führt die festen Teams, die Linien in Werksprogrammen beschreiben, generieren und in Betrieb nehmen.",
+      "authorDescription": "Blogbeiträge von Alex Morgan, Leitung Delivery bei Northwind Dynamics, über Inbetriebnahmen, Rezeptgrenzen und das, was das Änderungsprotokoll zeigt.",
+      "bio": "Alex führt die festen Teams, die in Werksprogrammen Linien beschreiben, generieren und in Betrieb nehmen.\n\nVor Northwind nahm Alex Abfülllinien in vier Ländern in Betrieb und führte ein Notizbuch über jeden Stillstand; aus dem Notizbuch wurde die Inbetriebnahme-Checkliste."
+    },
+    {
+      "slug": "sofia-lindqvist",
+      "name": "Sofia Lindqvist",
+      "role": "Leiterin Kommunikation",
+      "posts": false,
+      "description": "Sofia Lindqvist, Leiterin Kommunikation bei Northwind Dynamics: Presse, Newsletter und die Texte auf dieser Website, nach acht Jahren in der Fachpresse.",
+      "bio": "Sofia kümmert sich um Presse, den Newsletter und die Texte auf dieser Website.\n\nSie kam von einer Fachzeitschrift, bei der sie acht Jahre lang über Automatisierung berichtete."
+    }
+  ],
+  "offices": [
+    {
+      "slug": "manchester",
+      "city": "Manchester",
+      "street": "4 Canal Street",
+      "postalCode": "M1 3HE",
+      "country": "GB",
+      "address": "4 Canal Street, Manchester M1 3HE, Vereinigtes Königreich",
+      "phone": "+44 20 7946 0000",
+      "email": "manchester@example.com",
+      "hours": [
+        [
+          "Montag bis Freitag",
+          "08:00–18:00"
+        ],
+        [
+          "Samstag",
+          "Geschlossen"
+        ],
+        [
+          "Sonntag",
+          "Geschlossen"
+        ]
+      ],
+      "map": {
+        "slug": "map-manchester",
+        "address": "4 Canal Street, Manchester M1 3HE"
+      },
+      "description": "Das Büro von Northwind Dynamics in Manchester: Hauptsitz, Entwicklung und erste Support-Linie, geöffnet Montag bis Freitag von 08:00 bis 18:00 Uhr.",
+      "lede": "Hauptsitz, Entwicklung und erste Support-Linie.",
+      "team": [
+        "priya-natarajan",
+        "alex-morgan",
+        "sofia-lindqvist"
+      ]
+    },
+    {
+      "slug": "hamburg",
+      "city": "Hamburg",
+      "street": "Speicherstadt 12",
+      "postalCode": "20457",
+      "country": "DE",
+      "address": "Speicherstadt 12, 20457 Hamburg, Deutschland",
+      "phone": "+49 40 123456",
+      "email": "hamburg@example.com",
+      "hours": [
+        [
+          "Montag bis Freitag",
+          "08:00–18:00"
+        ],
+        [
+          "Samstag",
+          "Geschlossen"
+        ],
+        [
+          "Sonntag",
+          "Geschlossen"
+        ]
+      ],
+      "map": {
+        "slug": "map-hamburg",
+        "address": "Speicherstadt 12, 20457 Hamburg"
+      },
+      "description": "Das Büro von Northwind Dynamics in Hamburg: deutschsprachiger Support, die Sicherheitsprüfungspraxis und Delivery-Teams für Werke in ganz Mitteleuropa.",
+      "lede": "Deutschsprachiger Support und die Sicherheitsprüfungspraxis.",
+      "team": [
+        "jonas-weber",
+        "mei-chen"
+      ]
+    },
+    {
+      "slug": "riyadh",
+      "city": "Riad",
+      "street": "King Fahd Road 88",
+      "postalCode": "12212",
+      "country": "SA",
+      "address": "King Fahd Road 88, Riad 12212, Saudi-Arabien",
+      "phone": "+966 11 123 4567",
+      "email": "riyadh@example.com",
+      "hours": [
+        [
+          "Sonntag bis Donnerstag",
+          "08:00–17:00"
+        ],
+        [
+          "Freitag",
+          "Geschlossen"
+        ],
+        [
+          "Samstag",
+          "Geschlossen"
+        ]
+      ],
+      "map": {
+        "slug": "map-riyadh",
+        "address": "King Fahd Road 88, Riad 12212"
+      },
+      "description": "Das Büro von Northwind Dynamics in Riad: arabischsprachiger Support zu Golfzeiten und Delivery-Teams für Lebensmittel- und Verpackungswerke in der Region.",
+      "lede": "Arabischsprachiger Support zu Golfzeiten.",
+      "team": [
+        "alex-morgan"
+      ]
+    }
+  ],
+  "jobs": [
+    {
+      "slug": "senior-controls-engineer",
+      "title": "Senior Steuerungsingenieur (m/w/d)",
+      "team": "Entwicklung",
+      "location": "Manchester oder remote",
+      "remote": false,
+      "employment": "Vollzeit",
+      "employmentType": "FULL_TIME",
+      "posted": "2026-10-06",
+      "validThrough": "2026-12-31",
+      "description": "Senior Steuerungsingenieur (m/w/d) bei Northwind Dynamics, Manchester oder remote: Linien mit Kunden beschreiben, Logik prüfen, vor Ort in Betrieb nehmen.",
+      "lede": "Linien mit Kunden beschreiben, generierte Logik prüfen und vor Ort in Betrieb nehmen.",
+      "body": "## Was Sie tun werden\n\n- Produktionslinien mit Kundeningenieuren abgehen und die Linienbeschreibung mit ihnen schreiben.\n- Generierte SPS-Logik und HMI-Bilder vor den Abnahmetests prüfen.\n- Linien vor Ort in Betrieb nehmen, meist eine alle drei Wochen.\n- Was Sie lernen, in die Beschreibungsvorlagen zurückfließen lassen.\n\n## Was wir suchen\n\n- Acht oder mehr Jahre Inbetriebnahme SPS-gesteuerter Linien.\n- Flüssiges Lesen von Kontaktplan und strukturiertem Text auf Siemens- oder Rockwell-Steuerungen.\n- Die Geduld, einem Linienleiter eine Verriegelung in einem Satz zu erklären.\n\n## Wie wir arbeiten\n\nDie Stelle ist in Manchester angesiedelt, mit Reisen zu Kundenwerken etwa jede dritte Woche. Remote innerhalb des Vereinigten Königreichs ist nach den ersten sechs Monaten möglich.",
+      "related": [
+        "safety-assessor",
+        "support-engineer-german"
+      ]
+    },
+    {
+      "slug": "support-engineer-german",
+      "title": "Support-Ingenieur Deutsch (m/w/d)",
+      "team": "Support",
+      "location": "Hamburg",
+      "remote": false,
+      "employment": "Vollzeit",
+      "employmentType": "FULL_TIME",
+      "posted": "2026-09-22",
+      "validThrough": "2026-12-15",
+      "description": "Support-Ingenieur Deutsch (m/w/d) bei Northwind Dynamics in Hamburg: Werksteams auf Deutsch antworten, Fehler nachstellen und Anleitungen schreiben.",
+      "lede": "Werksteams auf Deutsch antworten, Fehler an unseren Testlinien nachstellen und Anleitungen schreiben.",
+      "body": "## Was Sie tun werden\n\n- Anrufe und E-Mails deutschsprachiger Werke zu lokalen Zeiten im First Level annehmen.\n- Fehler an den Hamburger Testlinien nachstellen und klare Berichte an die Entwicklung übergeben.\n- Anleitungen fürs Hilfe-Center auf Deutsch und Englisch schreiben und pflegen.\n\n## Was wir suchen\n\n- Drei oder mehr Jahre im technischen Support oder in der Inbetriebnahme industrieller Automatisierung.\n- Deutsch auf muttersprachlichem Niveau und solides Englisch.\n- Die Gewohnheit aufzuschreiben, was Sie gefunden haben, damit die nächste Person es nicht noch einmal finden muss.\n\n## Wie wir arbeiten\n\nDer Support läuft werktags von 08:00 bis 18:00 Uhr aus dem Hamburger Büro. Keine Nachtschichten; Wochenendbereitschaften wechseln etwa einmal im Quartal im Team.",
+      "related": [
+        "senior-controls-engineer",
+        "technical-writer"
+      ]
+    },
+    {
+      "slug": "safety-assessor",
+      "title": "Sicherheitsprüfer (m/w/d)",
+      "team": "Entwicklung",
+      "location": "Remote, EU",
+      "remote": true,
+      "employment": "Vollzeit",
+      "employmentType": "FULL_TIME",
+      "posted": "2026-09-15",
+      "validThrough": "2026-11-30",
+      "description": "Sicherheitsprüfer (m/w/d) bei Northwind Dynamics, remote in der EU: Verriegelungsbegehungen an Kundenlinien, Nachweispakete ablegen, neue Prüfer ausbilden.",
+      "lede": "Verriegelungsbegehungen an Kundenlinien durchführen und die Nachweispakete ablegen.",
+      "body": "## Was Sie tun werden\n\n- Verriegelungsbegehungen an Kundenlinien mit der HSE-Leitung des Werks durchführen.\n- Nachweispakete aus Tests, Versionen und Freigaben zusammenstellen.\n- Neue Prüfer in der Begehungsmethode ausbilden.\n\n## Was wir suchen\n\n- Erfahrung in der Bewertung funktionaler Sicherheit an Produktionslinien.\n- Sicherer Umgang mit generierter Sicherheitslogik und die Fähigkeit, sie einem Werksteam zu erklären.\n- Bereitschaft, etwa zwei Wochen im Monat in der EU zu reisen.\n\n## Wie wir arbeiten\n\nDie Stelle ist remote innerhalb der EU mit Reisen zu Werken. Prüfungen werden einen Monat im Voraus geplant, sodass Reisen planbar sind.",
+      "related": [
+        "senior-controls-engineer"
+      ]
+    },
+    {
+      "slug": "technical-writer",
+      "title": "Technischer Redakteur (m/w/d)",
+      "team": "Produkt",
+      "location": "Manchester",
+      "remote": false,
+      "employment": "Teilzeit",
+      "employmentType": "PART_TIME",
+      "posted": "2026-10-01",
+      "validThrough": "2026-12-31",
+      "description": "Technischer Redakteur (m/w/d) bei Northwind Dynamics in Manchester, Teilzeit: Hilfe-Center, Beschreibungsvorlagen und Glossar in drei Sprachen pflegen.",
+      "lede": "Hilfe-Center, Vorlagen und Glossar in drei Sprachen verständlich halten.",
+      "body": "## Was Sie tun werden\n\n- Das Hilfe-Center verantworten: Anleitungen, Referenzseiten und Versionshinweise.\n- Die Beschreibungsvorlagen so überarbeiten, dass ein neuer Ingenieur sie an einem Tag nutzen kann.\n- Das Glossar mit den Übersetzern über Englisch, Deutsch und Arabisch konsistent halten.\n\n## Was wir suchen\n\n- Drei oder mehr Jahre Schreiben für Ingenieure oder Bediener.\n- Klare, kurze Sätze aus Gewohnheit.\n- Etwas Vertrautheit mit industrieller Automatisierung; den Rest bringen wir Ihnen bei.\n\n## Wie wir arbeiten\n\nDrei Tage pro Woche in Manchester, einer davon flexibel.",
+      "related": [
+        "support-engineer-german"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "slug": "safety-plcs-webinar",
+      "title": "Sicherheits-SPS ohne Papierkram",
+      "format": "Webinar",
+      "date": "2026-11-12",
+      "time": "10:00",
+      "end": "11:00",
+      "tz": "+00:00",
+      "timeLabel": "10:00–11:00 Uhr (UTC)",
+      "location": "Online",
+      "online": true,
+      "description": "Webinar am 12. November 2026: Wie generierte Sicherheitslogik die Prüfung ohne zeilenweise Durchsicht besteht, mit einer Verriegelungsbegehung live.",
+      "lede": "Wie generierte Sicherheitslogik eine Prüfung ohne zeilenweise Durchsicht besteht.",
+      "body": "Mei Chen geht eine echte (anonymisierte) Sicherheitsprüfung durch: die Verriegelungsbegehung, das Nachweispaket und die drei Fragen, die jeder Prüfer stellt. Alex Morgan zeigt, wie dieselbe Beschreibung die Abnahmetests erzeugt hat.\n\n## Ablauf\n\n- 10:00 Die Begehungsmethode in zehn Minuten\n- 10:15 Eine Live-Prüfung der Beschreibung einer Abfülllinie\n- 10:40 Fragen\n\nSie erhalten eine Kalendereinladung und danach die Aufzeichnung.",
+      "speakers": [
+        "mei-chen",
+        "alex-morgan"
+      ],
+      "faq": [
+        {
+          "title": "Gibt es eine Aufzeichnung?",
+          "body": "<p>Ja. Alle Angemeldeten erhalten die Aufzeichnung am nächsten Tag.</p>"
+        },
+        {
+          "title": "Ist das Webinar auf Englisch?",
+          "body": "<p>Ja, mit deutschen und arabischen Untertiteln in der Aufzeichnung.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "describe-your-first-line",
+      "title": "Beschreiben Sie Ihre erste Linie",
+      "format": "Workshop",
+      "date": "2026-12-03",
+      "time": "09:00",
+      "end": "16:00",
+      "tz": "+00:00",
+      "timeLabel": "09:00–16:00 Uhr (UTC)",
+      "location": "Manchester",
+      "online": false,
+      "description": "Eintägiger Workshop in Manchester am 3. Dezember 2026: eine Linienzeichnung mitbringen und mit Linienbeschreibung und generierter Logik nach Hause gehen.",
+      "lede": "Bringen Sie eine Zeichnung einer Linie mit; gehen Sie mit Beschreibung und generierter Logik.",
+      "body": "Ein praktischer Tag für zwei Ingenieure aus einem Werk. Bringen Sie ein R&I-Fließbild oder eine Layoutzeichnung einer Linie mit. Am Ende des Tages haben Sie eine Linienbeschreibung in Studio, generierte Logik für Ihre Steuerungsfamilie und einen Abnahmetestplan zum Mitnehmen.\n\n## Ablauf\n\n- 09:00 Stationen, Sensoren und Aktoren\n- 11:00 Regeln und Verriegelungen\n- 13:00 Rezepte und Grenzen\n- 15:00 Generieren, prüfen, testen\n\nMittagessen inklusive. Die Plätze sind auf sechs Werke begrenzt.",
+      "speakers": [
+        "alex-morgan",
+        "priya-natarajan"
+      ],
+      "faq": [
+        {
+          "title": "Was sollen wir mitbringen?",
+          "body": "<p>Eine Layoutzeichnung oder ein R&I-Fließbild einer Linie und einen Laptop; Studio wird am Tag installiert.</p>"
+        },
+        {
+          "title": "Entstehen Kosten?",
+          "body": "<p>Nein. Der Workshop ist für Werke mit laufender Testphase oder laufendem Abonnement kostenlos.</p>"
+        }
+      ]
+    },
+    {
+      "slug": "northwind-at-sps",
+      "title": "Northwind auf der Automatisierungsmesse",
+      "format": "Konferenz",
+      "date": "2027-01-21",
+      "time": "09:00",
+      "end": "18:00",
+      "tz": "+01:00",
+      "timeLabel": "09:00–18:00 Uhr (MEZ)",
+      "location": "Nürnberg",
+      "online": false,
+      "description": "Northwind am 21. Januar 2027 in Nürnberg: Linienbeschreibungen live am Stand, ein Vortrag zu sicherem generiertem Code und Ingenieure zum Gespräch.",
+      "lede": "Linienbeschreibungen live am Stand und ein Vortrag zu sicherheitsgerichtetem generiertem Code.",
+      "body": "Besuchen Sie den Stand, um zu sehen, wie eine Linie in zwanzig Minuten beschrieben, generiert und getestet wird, oder buchen Sie einen Termin mit einem Ingenieur, um über Ihr Werk zu sprechen.\n\n## Am Stand\n\n- Linienbeschreibungen auf drei Steuerungsfamilien\n- Eine Begehung einer Sicherheitsprüfung zum Ausprobieren\n- Ingenieure aus Manchester, Hamburg und Riad\n\nPriya Natarajan spricht um 14:00 Uhr über sicherheitsgerichteten generierten Code.",
+      "speakers": [
+        "priya-natarajan"
+      ],
+      "faq": []
+    }
+  ],
+  "downloads": [
+    {
+      "slug": "commissioning-checklist",
+      "title": "Inbetriebnahme-Checkliste 2026",
+      "fileType": "PDF",
+      "pages": "12 Seiten",
+      "summary": "Jeder Schritt von der Werksabnahme bis zum ersten Produktionslauf als Checkliste, die Ihr Team ausdrucken und abzeichnen kann. Geschrieben von den Ingenieuren, die Northwind-Linien in Betrieb nehmen.",
+      "description": "Eine 12-seitige Inbetriebnahme-Checkliste von der Werksabnahme bis zum ersten Produktionslauf, geschrieben von Ingenieuren, die Northwind-Linien starten.",
+      "lede": "Von der Werksabnahme bis zum ersten Produktionslauf, in einer druckbaren Checkliste.",
+      "contents": [
+        "Dokumentenprüfung vor der Werksabnahme",
+        "Verriegelungsbegehung",
+        "Freigabe der Rezeptgrenzen",
+        "Nachweis der Bedienerschulung"
+      ],
+      "cover": {
+        "slug": "cover-checklist",
+        "ratio": "3:4",
+        "alt": "",
+        "max": 480
+      },
+      "gated": true,
+      "related": [
+        "safety-evidence-guide",
+        "downtime-calculator"
+      ]
+    },
+    {
+      "slug": "safety-evidence-guide",
+      "title": "Sicherheitsnachweise für generierten Code",
+      "fileType": "PDF",
+      "pages": "28 Seiten",
+      "summary": "Worauf Prüfer bei generierter SPS-Logik achten und wie Sie es aus der Linienbeschreibung erzeugen: Testprotokolle, Versionen, Freigaben und das Änderungsprotokoll.",
+      "description": "Ein 28-seitiger Leitfaden zu den Sicherheitsnachweisen, die Prüfer bei generierter SPS-Logik verlangen, und wie man sie aus der Beschreibung erzeugt.",
+      "lede": "Worauf Prüfer achten und wie Sie es aus der Beschreibung erzeugen.",
+      "contents": [
+        "Die drei Fragen der Prüfer",
+        "Protokolle der Verriegelungsbegehung",
+        "Aufbau des Nachweispakets",
+        "Beispiel: eine Abfülllinie"
+      ],
+      "cover": {
+        "slug": "cover-safety",
+        "ratio": "3:4",
+        "alt": "",
+        "max": 480
+      },
+      "gated": true,
+      "related": [
+        "commissioning-checklist"
+      ]
+    },
+    {
+      "slug": "downtime-calculator",
+      "title": "Stillstandskostenrechner",
+      "fileType": "XLSX",
+      "pages": "1 Tabelle",
+      "summary": "Geben Sie Linienleistung, Marge und Stillstandshistorie ein; die Tabelle zeigt, was eine Stunde ungeplanter Stillstand kostet und was 38 % weniger Stillstand wert sind.",
+      "description": "Ein Rechner auf einer Tabelle: Linienleistung, Marge und Stillstandshistorie eingeben und sehen, was eine Stunde ungeplanter Stillstand jedes Jahr kostet.",
+      "lede": "Linienleistung eingeben; sehen, was eine Stunde Stillstand kostet.",
+      "contents": [
+        "Eingaben Linienleistung und Marge",
+        "Stillstandshistorie",
+        "Jährliche Stillstandskosten",
+        "Amortisation bei 38 % weniger Stillstand"
+      ],
+      "cover": {
+        "slug": "cover-calculator",
+        "ratio": "3:4",
+        "alt": "",
+        "max": 480
+      },
+      "gated": false,
+      "related": [
+        "commissioning-checklist"
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "slug": "sensor-logic-at-the-edge",
+      "title": "Warum wir die Sensorlogik an den Rand verlegt haben",
+      "eyebrow": "Entwicklung",
+      "date": "2026-10-03",
+      "modified": "2026-10-05",
+      "author": "priya-natarajan",
+      "tags": [
+        "engineering"
+      ],
+      "excerpt": "Latenz, Ausfallsicherheit und eine kleinere Angriffsfläche: drei Gründe, warum Sensorlogik jetzt neben der SPS statt in der Cloud läuft.",
+      "description": "Warum Northwind die Sensorlogik aus der Cloud neben die SPS verlegt hat: geringere Latenz, Ausfallsicherheit bei Netzausfall, kleinere Angriffsfläche.",
+      "image": {
+        "slug": "post-sensors",
+        "ratio": "16:9",
+        "alt": ""
+      },
+      "related": [
+        "recipe-changes-by-line-leads",
+        "reading-generated-code"
+      ],
+      "body": "Vor zwei Jahren ging jeder Sensorwert einer Northwind-Linie in die Cloud, bevor irgendetwas darauf reagierte. Das funktionierte, bis es nicht mehr funktionierte: Eine Molkerei in Norwegen verlor für vierzig Minuten ihre Verbindung, die Linie lief weiter, aber das Änderungsprotokoll dieser vierzig Minuten war weg.\n\n## Latenz\n\nEine Füllstandsprüfung, die zu einem Rechenzentrum und zurück läuft, braucht an einem guten Tag zweihundert Millisekunden. Eine Linie, die achtzig Flaschen pro Minute füllt, hat nicht jeden Tag einen guten Tag. Dieselbe Prüfung auf dem Industrie-PC neben der SPS braucht unter fünf Millisekunden, jedes Mal.\n\n## Ausfallsicherheit\n\nEdge puffert jetzt zweiundsiebzig Stunden Messwerte und Änderungen lokal. Wenn die Verbindung zurückkommt, wird der Puffer der Reihe nach abgeglichen, und das Änderungsprotokoll hat keine Lücke. Die Molkerei hatte seitdem zwei weitere Ausfälle; niemand hat es bemerkt.\n\n## Eine kleinere Angriffsfläche\n\nDie SPS braucht überhaupt keine Route ins Internet mehr. Edge spricht über einen Netzwerkanschluss mit der SPS und über den anderen mit Cloud, und nichts im Werksnetz erreicht die Steuerung über uns.\n\n## Was sich für Kunden geändert hat\n\nNichts Sichtbares, und das war der Punkt. Rezeptgrenzen gelten weiterhin, das Änderungsprotokoll lässt sich weiterhin mit einem Klick exportieren, und die Berichte in Cloud sehen gleich aus. Der Unterschied zeigt sich nur, wenn das Netz wegbleibt."
+    },
+    {
+      "slug": "recipe-changes-by-line-leads",
+      "title": "Linienleiter Rezepte sicher ändern lassen",
+      "eyebrow": "Betrieb",
+      "date": "2026-09-19",
+      "author": "alex-morgan",
+      "tags": [
+        "operations"
+      ],
+      "excerpt": "Grenzen, Protokolle und die zwei Regeln, die es tragen, wenn die Leute an der Linie Geschwindigkeiten und Mengen selbst anpassen.",
+      "description": "Wie Northwind Linienleiter Rezepte ohne Programmierer ändern lässt: von Ingenieuren gesetzte Grenzen, ein nur anfügbares Protokoll und zwei Regeln.",
+      "image": {
+        "slug": "post-recipes",
+        "ratio": "16:9",
+        "alt": ""
+      },
+      "related": [
+        "sensor-logic-at-the-edge",
+        "reading-generated-code"
+      ],
+      "body": "Der häufigste Support-Anruf, den wir früher bekamen, war keine Störung. Es war ein Linienleiter, der eine Füllmenge um zwei Milliliter ändern wollte, und ein Ingenieur, der von etwas anderem weggeholt wurde, um eine Zahl in eine SPS einzutippen.\n\n## Regel eins: Ingenieure setzen die Grenzen\n\nJeder Wert, den ein Linienleiter ändern darf, hat ein Minimum, ein Maximum und eine Schrittweite, von einem Ingenieur in der Linienbeschreibung gesetzt. Innerhalb dieser Grenzen ändert der Linienleiter ihn am HMI. Außerhalb braucht die Änderung einen Ingenieur, und das Bild sagt das.\n\n## Regel zwei: alles wird protokolliert\n\nJede Änderung hält fest, wer sie wann von welchem Bild gemacht hat und was der alte und der neue Wert waren. Das Protokoll ist nur anfügbar und signiert. Prüfer mögen es lieber als das Papierblatt, das es ersetzt hat.\n\n## Was wir gesehen haben\n\nÜber die ersten hundert Linien mit Rezeptgrenzen sanken die Ingenieureinsätze für Rezeptänderungen um neun von zehn. Linienleiter machten mehr Änderungen, kleinere, und nahmen schlechte selbst zurück, weil das Protokoll zeigte, was sie geändert hatten.\n\n## Woher die Grenzen kommen\n\nMeist aus dem ersten Monat des Betriebs: Ingenieure sehen im Protokoll, welche Änderungen Linienleiter immer wieder machen, und weiten oder verengen die Grenzen. Die Beschreibung ändert sich, die Logik wird neu generiert, und das HMI folgt."
+    },
+    {
+      "slug": "reading-generated-code",
+      "title": "Generierten SPS-Code an einem Nachmittag lesen",
+      "eyebrow": "Sicherheit",
+      "date": "2026-09-02",
+      "author": "mei-chen",
+      "tags": [
+        "safety",
+        "engineering"
+      ],
+      "excerpt": "Vier Fragen, die einen Prüfer durch ein generiertes Programm bringen, ohne jeden Strompfad zu lesen, und die eine Stelle, an der man langsamer wird.",
+      "description": "Vier Fragen, die einen Prüfer an einem Nachmittag durch generierten SPS-Code bringen, ohne jeden Strompfad zu lesen, und wo man langsamer werden sollte.",
+      "image": {
+        "slug": "post-audit",
+        "ratio": "16:9",
+        "alt": ""
+      },
+      "related": [
+        "sensor-logic-at-the-edge",
+        "recipe-changes-by-line-leads"
+      ],
+      "body": "Prüfer öffneten ein generiertes Programm früher so wie ein handgeschriebenes: oben, Strompfad für Strompfad. Das dauerte Tage und fand wenig, weil das Programm die Beschreibung in anderer Form ist. Hier ist die Nachmittagsversion.\n\n## Taucht jede Verriegelung der Beschreibung im Code auf?\n\nStudio listet sie nebeneinander. Wenn die Anzahl stimmt und jede auf ihren Strompfad verweist, weiter. Fehlt eine, anhalten; das ist ein Fehler in der Beschreibung, nicht im Code.\n\n## Gibt es einen Strompfad, den kein Satz erzeugt hat?\n\nBearbeitete Blöcke werden im Änderungsprotokoll markiert. Eine Markierung heißt, jemand hat den Code von Hand geändert; diesen Block vollständig lesen.\n\n## Passen die Rezeptgrenzen zum Blatt, das der Linienleiter unterschrieben hat?\n\nDie Grenzentabelle neben dem unterschriebenen Blatt öffnen. Das ist die eine Stelle, an der man langsamer wird, denn ein falsches Maximum besteht jeden Test und scheitert an der Linie.\n\n## Decken die Abnahmetests jede Zone ab?\n\nDer Testplan wird pro Zone erzeugt. Eine leere Zone ist eine Beschreibung ohne Regeln, was manchmal richtig und meist falsch ist.\n\nVier Fragen, ein Nachmittag, und eine Prüfung, die Prüfer akzeptieren, weil die Nachweise auf der Seite stehen und nicht in jemandes Gedächtnis."
+    }
+  ],
+  "press": [
+    {
+      "slug": "riyadh-office",
+      "title": "Northwind eröffnet Büro in Riad",
+      "eyebrow": "Pressemitteilung",
+      "date": "2026-10-01",
+      "author": "sofia-lindqvist",
+      "excerpt": "Arabischsprachiger Support zu lokalen Zeiten für Kunden am Golf, mit einem Delivery-Team für Lebensmittel- und Verpackungswerke.",
+      "description": "Northwind Dynamics eröffnet ein Büro in Riad mit arabischsprachigem Support zu Golfzeiten und einem Delivery-Team für Lebensmittel- und Verpackungswerke.",
+      "body": "Northwind Dynamics hat heute sein drittes Büro an der King Fahd Road in Riad eröffnet. Das Büro bietet arabischsprachigen Support von 08:00 bis 17:00 Uhr Ortszeit, Sonntag bis Donnerstag, und ein Delivery-Team für Lebensmittel- und Verpackungswerke am gesamten Golf.\n\n„Werke in der Region haben nach Support zu ihren Zeiten und in ihrer Sprache gefragt“, sagte Jonas Weber, Geschäftsführer. „Jetzt haben sie beides.“\n\nDas Team in Riad beginnt mit acht Ingenieuren unter der Leitung von Alex Morgan, Leitung Delivery, und wächst bis Ende 2027 auf zwanzig. Northwind betreut jetzt 1.284 Linien in 19 Ländern aus Manchester, Hamburg und Riad."
+    },
+    {
+      "slug": "thousandth-line",
+      "title": "Tausendste Northwind-Linie geht in Betrieb",
+      "eyebrow": "Pressemitteilung",
+      "date": "2026-06-12",
+      "author": "sofia-lindqvist",
+      "excerpt": "Eine Molkerei in Norwegen wird zur tausendsten Produktionslinie auf generierter, geprüfter Logik.",
+      "description": "Eine Abfülllinie einer Molkerei in Norwegen ist die tausendste Produktionslinie auf Northwind, in Betrieb auf generierter, geprüfter Logik nach neun Tagen.",
+      "body": "Eine Abfülllinie bei Fjord Dairy in Norwegen ging diese Woche als tausendste Produktionslinie auf Northwind in Betrieb, neun Tage nachdem die Linie erstmals beschrieben wurde.\n\nDie Linie füllt 80 Flaschen pro Minute und fährt elf Rezepte, die Linienleiter alle innerhalb der von den Ingenieuren des Werks gesetzten Grenzen anpassen.\n\n„Neun Tage von der Beschreibung bis zur Produktion sind jetzt der Median, nicht die Ausnahme“, sagte Priya Natarajan, Technische Leiterin. „Die tausendste Linie sah aus wie die hundertste. Das ist das Ergebnis, das wir wollten.“\n\nNorthwind-Linien laufen in Lebensmittel-, Pharma- und Automobilwerken in 19 Ländern."
+    },
+    {
+      "slug": "northwind-4",
+      "title": "Northwind 4 veröffentlicht",
+      "eyebrow": "Pressemitteilung",
+      "date": "2026-03-04",
+      "author": "sofia-lindqvist",
+      "excerpt": "Generierte Logik für Beckhoff TwinCAT 3 ergänzt Siemens und Rockwell, und das Änderungsprotokoll wird in jedem Tarif nur anfügbar.",
+      "description": "Northwind 4 ergänzt generierte Logik für Beckhoff TwinCAT 3 neben Siemens und Rockwell und macht das Rezept-Änderungsprotokoll in jedem Tarif nur anfügbar.",
+      "body": "Northwind 4 ist ab heute für alle Kunden verfügbar. Die Version ergänzt eine dritte Steuerungsfamilie, Beckhoff TwinCAT 3, sodass eine Linienbeschreibung jetzt Logik für Siemens-, Rockwell- und Beckhoff-Steuerungen erzeugen kann.\n\nDas Rezept-Änderungsprotokoll ist ab dieser Version in jedem Tarif nur anfügbar, mit signierten Einträgen und Exporten mit Prüfsumme.\n\n„Kunden haben nach Beckhoff gefragt und nach einem Protokoll, das Prüfer nicht mehr hinterfragen“, sagte Priya Natarajan, Technische Leiterin. „Beides ist in 4.“\n\nBestehende Beschreibungen werden ohne Änderungen neu generiert. Studio, Edge und Cloud aktualisieren sich im Wartungsfenster, das jedes Werk wählt."
+    }
+  ],
+  "cases": [
+    {
+      "slug": "alder-foods",
+      "company": "Alder Foods",
+      "title": "Alder Foods senkt Stillstand um 38 %",
+      "industry": "food-and-beverage",
+      "metricValue": "38 %",
+      "metricLabel": "weniger ungeplanter Stillstand",
+      "quote": "Unsere Linienleiter beheben die meisten Stopps jetzt selbst.",
+      "quoteName": "Rowan Ashby",
+      "quoteRole": "Werksleitung",
+      "excerpt": "Vier Verpackungslinien in einem Monat beschrieben, und die Stopps, die früher auf einen Ingenieur warteten, enden jetzt am HMI.",
+      "description": "Wie Alder Foods den ungeplanten Stillstand auf vier Verpackungslinien um 38 % senkte: Linien in Northwind beschreiben, Rezepte in Grenzen ändern lassen.",
+      "stats": [
+        {
+          "value": "38 %",
+          "label": "Weniger Stillstand"
+        },
+        {
+          "value": "4",
+          "label": "Linien in einem Monat"
+        },
+        {
+          "value": "9 von 10",
+          "label": "Weniger Ingenieureinsätze"
+        }
+      ],
+      "services": [
+        "line-automation"
+      ],
+      "body": "Alder Foods betreibt vier Verpackungslinien an einem Werk im Norden Englands. Vor Northwind wartete jede Rezeptänderung und die meisten Stopps auf einen von zwei Steuerungsingenieuren.\n\n## Das Problem\n\nDie Linien standen etwa zweimal pro Schicht. Die meisten Stopps waren klein: eine falsche Füllmenge, eine nach der Reinigung offen gelassene Schutztür, eine Umrüstung in falscher Reihenfolge. Jeder wartete auf einen Ingenieur, und die Ingenieure waren meist an einer anderen Linie.\n\n## Was sich geändert hat\n\nDie vier Linien wurden in einem Monat beschrieben, eine pro Woche, von Alders Ingenieuren mit einem Northwind-Ingenieur an ihrer Seite. Die Rezeptgrenzen wurden aus dem Änderungsprotokoll des ersten Monats gesetzt. Linienleiter passen Mengen und Geschwindigkeiten jetzt am HMI an, und das HMI sagt ihnen, warum ein Stopp passiert ist.\n\n## Das Ergebnis\n\nDer ungeplante Stillstand sank im ersten Quartal um 38 %. Ingenieureinsätze für Rezeptänderungen sanken um neun von zehn. Die beiden Ingenieure verbringen ihre Zeit mit dem nächsten Werk."
+    },
+    {
+      "slug": "brightline-pharma",
+      "company": "Brightline Pharma",
+      "title": "Brightline Pharma validiert in neun Tagen",
+      "industry": "pharmaceutical",
+      "metricValue": "9 Tage",
+      "metricLabel": "bis Inbetriebnahme",
+      "quote": "Die Validierungsnachweise kamen aus derselben Beschreibung.",
+      "quoteName": "Dana Okafor",
+      "quoteRole": "Leitung Qualität",
+      "excerpt": "Eine Blisterverpackungslinie in neun Tagen in Betrieb genommen und validiert, mit einem Nachweispaket, das neben der Logik erzeugt wurde.",
+      "description": "Wie Brightline Pharma eine Blisterverpackungslinie in neun Tagen in Betrieb nahm und validierte, mit Nachweisen aus derselben Linienbeschreibung.",
+      "stats": [
+        {
+          "value": "9 Tage",
+          "label": "Bis Inbetriebnahme"
+        },
+        {
+          "value": "0",
+          "label": "Offene Auditbefunde"
+        },
+        {
+          "value": "1 Klick",
+          "label": "Nachweisexport"
+        }
+      ],
+      "services": [
+        "safety-reviews",
+        "line-automation"
+      ],
+      "body": "Brightline Pharma verpackt Tabletten in Blister auf einer Linie, für die ein sechswöchiges Fenster für Inbetriebnahme und Validierung eingeplant war.\n\n## Das Problem\n\nDie Validierung hinkte der Inbetriebnahme immer um Wochen hinterher, weil die Nachweise von Hand aus Bildschirmfotos, Testblättern und E-Mails zusammengesetzt wurden.\n\n## Was sich geändert hat\n\nDie Linie wurde in drei Tagen in Studio beschrieben. Die Abnahmetests wurden aus der Beschreibung erzeugt, aus Studio ausgeführt und mit der Codeversion abgelegt. Das Änderungsprotokoll war vom ersten Tag an nur anfügbar.\n\n## Das Ergebnis\n\nDie Linie wurde in neun Tagen in Betrieb genommen und validiert. Das QA-Team exportierte das Nachweispaket für das erste Audit mit einem Klick; das Audit schloss ohne Befunde."
+    },
+    {
+      "slug": "castor-automotive",
+      "company": "Castor Automotive",
+      "title": "Castor Automotive besteht die Sicherheitsprüfung sofort",
+      "industry": "automotive",
+      "metricValue": "0",
+      "metricLabel": "wieder geöffnete Sicherheitsbefunde",
+      "quote": "Die erste Sicherheitsprüfung, bei der niemand über den SPS-Code gestritten hat.",
+      "quoteName": "Ilse Brandt",
+      "quoteRole": "HSE-Leitung",
+      "excerpt": "Zwölf Roboterzellen und drei Förderer unter einer Beschreibung, und eine Sicherheitsprüfung, die in zwei Tagen ohne einen einzigen wieder geöffneten Befund endete.",
+      "description": "Wie Castor Automotive zwölf Roboterzellen und drei Förderer unter eine Northwind-Beschreibung brachte und die Sicherheitsprüfung in zwei Tagen bestand.",
+      "stats": [
+        {
+          "value": "2 Tage",
+          "label": "Sicherheitsprüfung"
+        },
+        {
+          "value": "12",
+          "label": "Roboterzellen"
+        },
+        {
+          "value": "0",
+          "label": "Wieder geöffnete Befunde"
+        }
+      ],
+      "services": [
+        "safety-reviews",
+        "plant-programmes"
+      ],
+      "body": "Castor Automotive montiert Hilfsrahmen auf einer Linie aus zwölf Roboterzellen und drei Förderern in Deutschland.\n\n## Das Problem\n\nSicherheitsprüfungen dauerten eine Woche und endeten in Streit über handgeschriebene Sicherheitslogik, die niemand vollständig erklären konnte.\n\n## Was sich geändert hat\n\nDie Linie wurde Zone für Zone in einem Werksprogramm beschrieben, eine Zelle alle drei Wochen. Die Sicherheitslogik wurde aus den Zonenbeschreibungen erzeugt und Satz für Satz geprüft. Die Verriegelungsbegehung lief mit der HSE-Leitung, bevor der Prüfer kam.\n\n## Das Ergebnis\n\nDie Sicherheitsprüfung dauerte zwei Tage und schloss ohne wieder geöffnete Befunde. Das Werk hat seitdem zwei weitere Linien mit eigenen Ingenieuren beschrieben."
+    }
+  ],
+  "docs": [
+    {
+      "slug": "describe-your-first-line",
+      "title": "Ihre erste Linie beschreiben",
+      "category": "getting-started",
+      "summary": "Von einer Layoutzeichnung zu einem generierten Programm an einem Nachmittag.",
+      "description": "Schritt für Schritt zur ersten Produktionslinie in Northwind Studio: Stationen, Sensoren, Regeln, Rezepte und das Generieren des ersten Programms.",
+      "lede": "Von einer Layoutzeichnung zu einem generierten Programm an einem Nachmittag.",
+      "body": "## Bevor Sie beginnen\n\nSie brauchen Studio, eine Layoutzeichnung oder ein R&I-Fließbild der Linie und die Namen, die Ihr Werk für seine Stationen verwendet.\n\n## Stationen anlegen\n\nLegen Sie eine Station pro Maschine oder Prozessschritt an, in Linienreihenfolge. Geben Sie jeder den Namen aus der Zeichnung. Ein Förderer zwischen zwei Maschinen ist eine eigene Station.\n\n## Sensoren und Aktoren hinzufügen\n\nListen Sie für jede Station auf, was sie erfasst und was sie bewegt. Nutzen Sie die Vorlagenfelder: Name, Typ, Steuerungsadresse.\n\n## Regeln schreiben\n\nRegeln sind Sätze: „Den Füller nur starten, wenn die Schutztür geschlossen ist und der Förderer läuft.“ Verriegelungen sind als Sicherheitsregeln markierte Regeln; sie können nicht am HMI geändert werden.\n\n## Rezepte hinzufügen\n\nEin Rezept ist der Satz von Werten, mit denen die Linie ein Produkt fährt. Setzen Sie für jeden Wert Minimum, Maximum und Schrittweite, die ein Linienleiter nutzen darf.\n\n## Generieren und prüfen\n\nWählen Sie die Steuerungsfamilie und generieren Sie. Studio zeigt jeden Strompfad neben dem Satz, der ihn erzeugt hat. Prüfen Sie und führen Sie dann die generierten Abnahmetests aus.",
+      "related": [
+        "connect-a-controller",
+        "change-a-recipe"
+      ]
+    },
+    {
+      "slug": "connect-a-controller",
+      "title": "Eine Steuerung verbinden",
+      "category": "getting-started",
+      "summary": "Adressen, Downloads und die erste Online-Prüfung für Siemens, Rockwell und Beckhoff.",
+      "description": "So verbinden Sie Northwind Studio mit einer Siemens-, Rockwell- oder Beckhoff-Steuerung: Adressen, Projekt-Download, erste Online-Prüfung, häufige Fehler.",
+      "lede": "Adressen, Downloads und die erste Online-Prüfung für jede Steuerungsfamilie.",
+      "body": "## Die Steuerungsfamilie wählen\n\nSetzen Sie in der Linienbeschreibung Steuerungsfamilie und Modell. Studio erzeugt das Projekt im nativen Format dieser Familie.\n\n## Die Adresse setzen\n\nGeben Sie die IP-Adresse der Steuerung und bei Rockwell den Steckplatz ein. Studio prüft die Verbindung vor jedem Download.\n\n## Das Projekt laden\n\nLaden Sie aus Studio oder exportieren Sie das Projekt und laden Sie mit dem Herstellerwerkzeug. Beide Wege erzeugen dieselbe Codeversion im Änderungsprotokoll.\n\n## Erste Online-Prüfung\n\nGehen Sie online und öffnen Sie die Verriegelungsliste. Jede Verriegelung zeigt ihren aktuellen Zustand neben ihrem Satz. Gehen Sie die Linie ab und betätigen Sie jede Schutztür einmal.\n\n## Häufige Fehler\n\n- Verbindung abgelehnt: Die Steuerung ist in einem anderen Subnetz als Studio.\n- Download abgelehnt: Die Steuerung ist im Run-Modus mit aktiviertem Schutz.\n- Verriegelung zeigt unbekannt: Die Sensoradresse passt nicht zur Zeichnung.",
+      "related": [
+        "describe-your-first-line"
+      ]
+    },
+    {
+      "slug": "change-a-recipe",
+      "title": "Ein Rezept ändern",
+      "category": "operating",
+      "summary": "Was ein Linienleiter am HMI ändern kann, was einen Ingenieur braucht und wie das Protokoll es festhält.",
+      "description": "Wie Linienleiter Rezeptwerte am HMI innerhalb gesetzter Grenzen ändern, was stattdessen einen Ingenieur braucht und wie jede Änderung protokolliert wird.",
+      "lede": "Was ein Linienleiter am HMI ändern kann und wie das Protokoll es festhält.",
+      "body": "## Am HMI\n\nÖffnen Sie das Rezeptbild, wählen Sie das Produkt und ändern Sie den Wert. Das Bild zeigt Minimum, Maximum und Schrittweite für diesen Wert. Speichern; die Linie übernimmt den neuen Wert im nächsten Zyklus.\n\n## Außerhalb der Grenzen\n\nLiegt der benötigte Wert außerhalb der Grenzen, sagt das Bild das und nennt die Grenze. Ein Ingenieur weitet die Grenze in der Linienbeschreibung; die Logik wird neu generiert, und das HMI folgt.\n\n## Das Änderungsprotokoll\n\nJede gespeicherte Änderung hält fest, wer, wann, welches Bild sowie den alten und neuen Wert. Öffnen Sie das Protokoll aus dem Rezeptbild, um die Historie des angezeigten Werts zu sehen, oder exportieren Sie das ganze Protokoll aus Cloud.\n\n## Eine Änderung zurücknehmen\n\nÖffnen Sie den Protokolleintrag und wählen Sie Zurücknehmen. Das Zurücknehmen ist selbst eine protokollierte Änderung.",
+      "related": [
+        "describe-your-first-line"
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "slug": "engineering",
+      "label": "Entwicklung",
+      "description": "Blogbeiträge aus der Northwind-Entwicklung: wie generierte Logik, die Edge-Laufzeit und die Beschreibungsvorlagen funktionieren, von denen, die sie bauen."
+    },
+    {
+      "slug": "operations",
+      "label": "Betrieb",
+      "description": "Blogbeiträge über den Betrieb von Produktionslinien mit Northwind: Rezeptgrenzen, Umrüstungen, Linienleiter und was das Änderungsprotokoll zeigt."
+    },
+    {
+      "slug": "safety",
+      "label": "Sicherheit",
+      "description": "Blogbeiträge zur funktionalen Sicherheit generierter SPS-Logik: Verriegelungsbegehungen, Nachweispakete und was Prüfer in einer Prüfung fragen."
+    }
+  ],
+  "customers": [
+    "Alder Foods",
+    "Brightline Pharma",
+    "Castor Automotive",
+    "Dune Logistics",
+    "Ember Packaging",
+    "Fjord Dairy"
+  ],
+  "testimonials": [
+    {
+      "quote": "Die Inbetriebnahme dauerte neun Tage statt sechs Wochen.",
+      "name": "Dana Okafor",
+      "role": "Leitung Qualität",
+      "company": "Brightline Pharma"
+    },
+    {
+      "quote": "Die Sicherheitsprüfung war die erste, bei der niemand über den SPS-Code gestritten hat.",
+      "name": "Ilse Brandt",
+      "role": "HSE-Leitung",
+      "company": "Castor Automotive"
+    },
+    {
+      "quote": "Der Support antwortet in Minuten und in unserer Sprache.",
+      "name": "Fatima Al-Sayed",
+      "role": "Betriebsleitung",
+      "company": "Dune Logistics"
+    },
+    {
+      "quote": "Unsere Prüfer wollten das Änderungsprotokoll, und wir haben es mit einem Klick exportiert.",
+      "name": "Lena Fischer",
+      "role": "Leitung Qualität",
+      "company": "Fjord Dairy"
+    }
+  ],
+  "integrations": [
+    {
+      "slug": "tia-portal",
+      "icon": "layers",
+      "title": "Siemens TIA Portal",
+      "text": "Variablentabellen importieren und synchron halten."
+    },
+    {
+      "slug": "studio-5000",
+      "icon": "cpu",
+      "title": "Rockwell Studio 5000",
+      "text": "Add-On-Instruktionen und Routinen erzeugen."
+    },
+    {
+      "slug": "twincat",
+      "icon": "settings",
+      "title": "Beckhoff TwinCAT",
+      "text": "Strukturierter Text mit Ihren Bibliotheken."
+    },
+    {
+      "slug": "osisoft-pi",
+      "icon": "chart-bar",
+      "title": "OSIsoft PI",
+      "text": "Historian-Variablen aus der Beschreibung."
+    }
+  ],
+  "values": [
+    {
+      "icon": "eye",
+      "title": "Lesbar zuerst",
+      "text": "Wenn ein Linienleiter es nicht lesen kann, sind wir nicht fertig."
+    },
+    {
+      "icon": "shield-check",
+      "title": "Sicherheit ist keine Funktion",
+      "text": "Verriegelungen leben in der Beschreibung, nie in einem Patch."
+    },
+    {
+      "icon": "hand-helping",
+      "title": "Ans Telefon gehen",
+      "text": "Ein Mensch, in Ihrer Sprache, zu Ihren Zeiten."
+    }
+  ],
+  "benefits": [
+    {
+      "icon": "calendar",
+      "title": "30 Tage Urlaub",
+      "text": "Plus Feiertage, plus Ihr Geburtstag."
+    },
+    {
+      "icon": "heart",
+      "title": "Krankenversicherung",
+      "text": "Für Sie und Ihre Familie ab dem ersten Tag."
+    },
+    {
+      "icon": "globe",
+      "title": "Von überall arbeiten",
+      "text": "Bis zu acht Wochen im Jahr."
+    },
+    {
+      "icon": "wrench",
+      "title": "Laborzeit",
+      "text": "Ein Tag im Monat für Ihr eigenes Automatisierungsprojekt."
+    }
+  ],
+  "awards": [
+    {
+      "name": "Automatisierungsprodukt des Jahres",
+      "year": "2025",
+      "icon": "award"
+    },
+    {
+      "name": "Preis für Sicherheitsinnovation",
+      "year": "2024",
+      "icon": "shield-check"
+    },
+    {
+      "name": "Bester Arbeitgeber, Nordwestengland",
+      "year": "2026",
+      "icon": "heart"
+    }
+  ],
+  "badges": [
+    {
+      "name": "ISO 27001",
+      "text": "Informationssicherheitsmanagement, zertifiziert seit 2022."
+    },
+    {
+      "name": "SOC 2 Typ II",
+      "text": "Jahresbericht unter NDA verfügbar."
+    },
+    {
+      "name": "IEC 61508",
+      "text": "Bewertung des Prozesses zur funktionalen Sicherheit."
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2019",
+      "dateIso": "2019-01-01",
+      "title": "Gründung in Manchester",
+      "text": "Drei Steuerungsingenieure und ein Lebensmittelwerk, das das Warten satt hatte."
+    },
+    {
+      "date": "2021",
+      "dateIso": "2021-06-01",
+      "title": "Erste sicherheitsgerichtete Version",
+      "text": "Generierte Logik bestand ihre erste unabhängige Sicherheitsprüfung."
+    },
+    {
+      "date": "2024",
+      "dateIso": "2024-03-01",
+      "title": "Büros in Hamburg und Riad",
+      "text": "Support auf Deutsch und Arabisch, zu lokalen Zeiten."
+    },
+    {
+      "date": "2026",
+      "dateIso": "2026-01-01",
+      "title": "1.000 Linien aktiv",
+      "text": "In 19 Ländern und drei Branchen."
+    }
+  ],
+  "stats": [
+    {
+      "value": "1.284",
+      "label": "Automatisierte Linien"
+    },
+    {
+      "value": "38 %",
+      "label": "Weniger Stillstand"
+    },
+    {
+      "value": "19",
+      "label": "Länder"
+    },
+    {
+      "value": "99,98 %",
+      "label": "Verfügbarkeit im Vorjahr"
+    }
+  ],
+  "companyStats": [
+    {
+      "value": "140",
+      "label": "Menschen"
+    },
+    {
+      "value": "3",
+      "label": "Büros"
+    },
+    {
+      "value": "2019",
+      "label": "Gegründet"
+    }
+  ],
+  "faqGroups": [
+    {
+      "title": "Für Ingenieure",
+      "items": [
+        {
+          "title": "Welche Steuerungen werden unterstützt?",
+          "body": "<p>Siemens S7-1200 und S7-1500, Rockwell ControlLogix und CompactLogix sowie Beckhoff TwinCAT 3.</p>"
+        },
+        {
+          "title": "Können wir den generierten Code bearbeiten?",
+          "body": "<p>Ja, aber der unterstützte Weg sind Änderungen an der Beschreibung; bearbeitete Blöcke werden im Änderungsprotokoll markiert.</p>"
+        },
+        {
+          "title": "Wo liegen die Beschreibungen?",
+          "body": "<p>In Ihrem Repository als Textdateien; Studio liest und schreibt sie wie jeder Editor.</p>"
+        },
+        {
+          "title": "Wie werden Updates eingespielt?",
+          "body": "<p>Signierte Updates in einem Wartungsfenster Ihrer Wahl; die SPS läuft währenddessen weiter.</p>"
+        }
+      ]
+    },
+    {
+      "title": "Für Werksleitungen",
+      "items": [
+        {
+          "title": "Was kostet ein Rollout?",
+          "body": "<p>Starter kostet 490 € (EUR) pro Linie und Monat; ein Werksprogramm deckt jede Linie eines Standorts für eine Standortgebühr ab.</p>"
+        },
+        {
+          "title": "Wie lange, bis die erste Linie läuft?",
+          "body": "<p>Die meisten Einzellinien laufen innerhalb von zwei Wochen, einschließlich Werksabnahme.</p>"
+        },
+        {
+          "title": "Können Bediener Rezepte ändern?",
+          "body": "<p>Ja, innerhalb von Grenzen, die ein Ingenieur setzt. Jede Änderung wird mit Wer, Wann und Was protokolliert.</p>"
+        },
+        {
+          "title": "Wo werden unsere Daten gespeichert?",
+          "body": "<p>Standardmäßig in der EU, vor Ort mit dem Tarif Enterprise.</p>"
+        }
+      ]
+    }
+  ],
+  "faqPricing": [
+    {
+      "title": "Gibt es eine Mindestlaufzeit?",
+      "body": "<p>Nein. Starter und Werk laufen monatlich, und Sie können jeden Monat kündigen.</p>"
+    },
+    {
+      "title": "Was zählt als Linie?",
+      "body": "<p>Eine Beschreibung, die auf einer oder mehreren SPS läuft und Produkt von einem Ende zum anderen bewegt.</p>"
+    },
+    {
+      "title": "Ist Support im Preis enthalten?",
+      "body": "<p>Ja. E-Mail-Support in Starter, Telefonsupport innerhalb von vier Stunden in Werk, ein fester Ingenieur in Enterprise.</p>"
+    },
+    {
+      "title": "Können wir den Tarif wechseln?",
+      "body": "<p>Jeden Monat, in beide Richtungen. Beschreibungen und Protokolle bleiben erhalten.</p>"
+    }
+  ],
+  "faqTrust": [
+    {
+      "title": "Wo werden Daten gehostet?",
+      "body": "<p>In der EU, in zwei Regionen; Enterprise-Kunden können vor Ort hosten.</p>"
+    },
+    {
+      "title": "Wie gehen Sie mit einer Schwachstellenmeldung um?",
+      "body": "<p>Wir bestätigen innerhalb von zwei Werktagen und veröffentlichen eine Notiz, sobald die Korrektur ausgeliefert ist.</p>"
+    },
+    {
+      "title": "Wer kann auf Kundendaten zugreifen?",
+      "body": "<p>Support-Ingenieure nur mit zeitlich begrenztem Zugang, den Sie gewähren, und jeder Zugriff wird protokolliert.</p>"
+    },
+    {
+      "title": "Haben Sie einen Sicherheitsfragebogen bereit?",
+      "body": "<p>Ja. Fragen Sie den Sicherheitskontakt unten, und wir senden den aktuellen noch am selben Tag.</p>"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "Beschreibung",
+      "definition": "Das Klartextmodell einer Linie, aus dem Northwind Logik erzeugt."
+    },
+    {
+      "term": "Verriegelung",
+      "definition": "Eine Bedingung, die gelten muss, bevor eine Aktion erlaubt ist, etwa eine geschlossene Schutztür vor dem Start eines Motors."
+    },
+    {
+      "term": "Rezept",
+      "definition": "Der Satz von Werten, mit denen eine Linie ein Produkt fährt: Geschwindigkeiten, Mengen, Temperaturen."
+    },
+    {
+      "term": "Rezeptgrenze",
+      "definition": "Minimum, Maximum und Schrittweite, die ein Ingenieur einem Linienleiter für einen Rezeptwert erlaubt."
+    },
+    {
+      "term": "Änderungsprotokoll",
+      "definition": "Die nur anfügbare Aufzeichnung, wer welchen Wert wann von wo geändert hat und was er vorher war."
+    },
+    {
+      "term": "Station",
+      "definition": "Eine Maschine oder ein Prozessschritt in einer Linienbeschreibung mit ihren Sensoren, Aktoren und Regeln."
+    },
+    {
+      "term": "Abnahmetest",
+      "definition": "Ein aus der Beschreibung erzeugter Test, der ausgeführt wird, bevor eine Linie in Produktion geht."
+    },
+    {
+      "term": "Nachweispaket",
+      "definition": "Der exportierte Satz aus Tests, Ergebnissen, Codeversionen und Freigaben, den ein Prüfer durchsieht."
+    }
+  ],
+  "helpCategories": [
+    {
+      "icon": "file-text",
+      "title": "Erste Schritte",
+      "links": [
+        {
+          "label": "Ihre erste Linie beschreiben",
+          "href": "/de/help/describe-your-first-line/"
+        },
+        {
+          "label": "Eine Steuerung verbinden",
+          "href": "/de/help/connect-a-controller/"
+        }
+      ]
+    },
+    {
+      "icon": "users",
+      "title": "Betrieb",
+      "links": [
+        {
+          "label": "Ein Rezept ändern",
+          "href": "/de/help/change-a-recipe/"
+        },
+        {
+          "label": "Downloads",
+          "href": "/de/resources/downloads/"
+        }
+      ]
+    },
+    {
+      "icon": "shield-check",
+      "title": "Sicherheit",
+      "links": [
+        {
+          "label": "Sicherheitsprüfungen",
+          "href": "/de/services/safety-reviews/"
+        },
+        {
+          "label": "Leitfaden Sicherheitsnachweise",
+          "href": "/de/resources/downloads/safety-evidence-guide/"
+        }
+      ]
+    }
+  ],
+  "searchResults": [
+    {
+      "title": "Sicherheits-SPS ohne Papierkram",
+      "href": "/de/events/safety-plcs-webinar/",
+      "excerpt": "Wie generierte Sicherheitslogik eine Prüfung ohne zeilenweise Durchsicht besteht."
+    },
+    {
+      "title": "Sicherheitsprüfungen",
+      "href": "/de/services/safety-reviews/",
+      "excerpt": "Generierte Logik mit den Nachweisen, die Prüfer verlangen."
+    },
+    {
+      "title": "Sicherheitsnachweise für generierten Code",
+      "href": "/de/resources/downloads/safety-evidence-guide/",
+      "excerpt": "Worauf Prüfer achten und wie Sie es aus der Beschreibung erzeugen."
+    }
+  ]
+}

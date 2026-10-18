@@ -52,7 +52,10 @@ function parseRanges(spec) {
 
 /** Font files the page actually needs: every @font-face url whose unicode-range (if any) matches a character on the page. */
 export function fontsForPage(css, root) {
-  const text = root.querySelector("body")?.text || root.text || "";
+  // Text set in the system font (font-system: the language switcher's native names) is served by no web font.
+  const body = root.querySelector("body") || root;
+  for (const el of body.querySelectorAll(".font-system")) el.remove();
+  const text = body.text || "";
   const codes = new Set([...text].map((ch) => ch.codePointAt(0)));
   const out = new Set();
   for (const block of css.matchAll(/@font-face\s*\{([^}]*)\}/g)) {

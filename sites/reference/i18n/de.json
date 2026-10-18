@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "cta": "Demo buchen",
+    "services": "Leistungen",
+    "servicesDesc": "Linienautomatisierung, Werksprogramme und Sicherheitsprüfungen.",
+    "products": "Produkte",
+    "productsDesc": "Studio, Edge und Cloud: die Software hinter jeder Linie.",
+    "industries": "Branchen",
+    "industriesDesc": "Lebensmittel und Getränke, Pharma und Automobilwerke.",
+    "pricing": "Preise",
+    "pricingDesc": "Pro Linie, pro Standort oder für die ganze Gruppe.",
+    "customers": "Kunden",
+    "resources": "Ressourcen",
+    "blog": "Blog",
+    "blogDesc": "Notizen von der Produktionsfläche, monatlich.",
+    "downloads": "Downloads",
+    "downloadsDesc": "Checklisten, Leitfäden und Rechner.",
+    "events": "Veranstaltungen",
+    "eventsDesc": "Webinare, Workshops und wo Sie uns treffen.",
+    "help": "Hilfe-Center",
+    "helpDesc": "Anleitungen für Ingenieure und Linienleiter.",
+    "company": "Unternehmen",
+    "about": "Über uns",
+    "aboutDesc": "Wer wir sind und wie wir arbeiten.",
+    "team": "Leitung",
+    "locations": "Standorte",
+    "careers": "Karriere",
+    "careersDesc": "Offene Stellen in Manchester, Hamburg und Riad.",
+    "news": "Presse",
+    "newsDesc": "Pressemitteilungen und Pressemappe.",
+    "contactDesc": "Innerhalb eines Werktags mit einem Ingenieur sprechen.",
+    "partners": "Partner",
+    "faq": "FAQ",
+    "glossary": "Glossar",
+    "trust": "Vertrauen und Sicherheit",
+    "sustainability": "Nachhaltigkeit",
+    "newsletter": "Newsletter",
+    "sitemap": "Seitenübersicht",
+    "privacy": "Datenschutz",
+    "cookies": "Cookies",
+    "terms": "AGB",
+    "accessibility": "Barrierefreiheit",
+    "imprint": "Impressum"
+  },
+  "footer": {
+    "offer": "Was wir tun",
+    "resources": "Ressourcen",
+    "more": "Mehr"
+  },
+  "sitemap": {
+    "legal": "Rechtliches",
+    "lp": "Kampagnenseiten"
+  },
+  "site": {
+    "tagline": "Industrielle Automatisierung, vereinfacht"
+  }
+}

@@ -18,7 +18,7 @@
 <div popover id="locales" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-56 rounded-lg border border-line bg-surface-raised p-2 text-ink shadow-md opacity-0 open:opacity-100 motion-safe:-translate-y-2 motion-safe:open:translate-y-0 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:-translate-y-2">
 <ul>
 {%- for alt in alternates %}
-<li><a href="{{ alt.url }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}" class="block min-h-11 rounded-md px-3 py-2.5 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'font-medium text-ink-brand' if alt.lang == locale else '' }}"{% if alt.lang == locale %} aria-current="true"{% endif %}>{{ alt.lang | nativeName }}</a></li>
+<li><a href="{{ alt.url }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}" class="font-system block min-h-11 rounded-md px-3 py-2.5 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'font-medium text-ink-brand' if alt.lang == locale else '' }}"{% if alt.lang == locale %} aria-current="true"{% endif %}>{{ alt.lang | nativeName }}</a></li>
 {%- endfor %}
 </ul>
 </div>
