@@ -12,8 +12,8 @@
   content limits: 2–4 tiers
   data: s = { eyebrow, title, lede, tiers: [...] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/pricing-table.njk" import pricingTable %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/pricing-table.njk" import pricingTable with context %}
 {% macro render(s, ctx) %}
 {% call shell("pricing", s, ctx) %}
 {{ pricingTable({ tiers: s.tiers }) }}

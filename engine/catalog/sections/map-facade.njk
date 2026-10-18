@@ -4,8 +4,8 @@
   anatomy: shell > map-facade component
   data: s = { title, map: { slug, address, mapsUrl } }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/map-facade.njk" import mapFacade %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/map-facade.njk" import mapFacade with context %}
 {% macro render(s, ctx) %}
 {% call shell("map-facade", s, ctx) %}{{ mapFacade(s.map) }}{% endcall %}
 {% endmacro %}

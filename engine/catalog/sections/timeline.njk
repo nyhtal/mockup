@@ -12,8 +12,8 @@
   content limits: 4–8 items
   data: s = { eyebrow, title, lede, items: [{ date, dateIso, title, text }] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/timeline.njk" import timeline %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/timeline.njk" import timeline with context %}
 {% macro render(s, ctx) %}
 {% call shell("timeline", s, ctx, { center: false }) %}
 <div class="max-w-3xl">{{ timeline(s.items) }}</div>

@@ -3,9 +3,9 @@
   purpose: Shared body for every form section (R-FORM-01, R-FORM-08, R-FORM-09, R-FORM-10, R-FORM-13): GET to a thank-you page, fields stacked, privacy note, honeypot, one submit.
   usage: {{ formBody(s, ctx) }} where s.form = { action, fields: [], submit, privacyHref, consent: field }
 #}
-{% from "primitives/field.njk" import field %}
-{% from "primitives/button.njk" import button %}
-{% from "components/error-summary.njk" import errorSummary %}
+{% from "primitives/field.njk" import field with context %}
+{% from "primitives/button.njk" import button with context %}
+{% from "components/error-summary.njk" import errorSummary with context %}
 {% macro formBody(f, ctx) %}
 <form method="get" action="{{ f.action }}" class="space-y-6">
 {%- if f.errors %}{{ errorSummary(f.errors) }}{% endif %}

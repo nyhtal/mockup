@@ -3,20 +3,20 @@ layout: base.njk
 pageType: style-guide
 noindex: true
 ---
-{% from "components/card.njk" import card %}
-{% from "components/stat.njk" import stat %}
-{% from "components/testimonial.njk" import testimonial %}
-{% from "components/pricing-table.njk" import pricingTable %}
-{% from "components/comparison-table.njk" import comparisonTable %}
-{% from "components/data-table.njk" import dataTable %}
-{% from "components/accordion.njk" import accordion %}
-{% from "components/tabs.njk" import tabs %}
-{% from "components/steps.njk" import steps %}
-{% from "components/timeline.njk" import timeline %}
-{% from "components/callout.njk" import callout %}
-{% from "components/blockquote.njk" import blockquote %}
-{% from "components/code-block.njk" import codeBlock %}
-{% from "components/image-gallery.njk" import gallery %}
+{% from "components/card.njk" import card with context %}
+{% from "components/stat.njk" import stat with context %}
+{% from "components/testimonial.njk" import testimonial with context %}
+{% from "components/pricing-table.njk" import pricingTable with context %}
+{% from "components/comparison-table.njk" import comparisonTable with context %}
+{% from "components/data-table.njk" import dataTable with context %}
+{% from "components/accordion.njk" import accordion with context %}
+{% from "components/tabs.njk" import tabs with context %}
+{% from "components/steps.njk" import steps with context %}
+{% from "components/timeline.njk" import timeline with context %}
+{% from "components/callout.njk" import callout with context %}
+{% from "components/blockquote.njk" import blockquote with context %}
+{% from "components/code-block.njk" import codeBlock with context %}
+{% from "components/image-gallery.njk" import gallery with context %}
 {%- set sg = "/" + locale + "/style-guide/" -%}
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>

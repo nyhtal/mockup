@@ -12,7 +12,7 @@
   content limits: one sentence
   data: t = { tone, text, link: { label, href } }
 #}
-{% from "primitives/icon.njk" import icon %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro toast(t, opts={}) %}
 {%- set tone = t.tone or "info" -%}
 {%- set icons = { info: "info", success: "circle-check", warning: "triangle-alert", danger: "circle-alert" } -%}

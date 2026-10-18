@@ -4,8 +4,8 @@
   anatomy: shell > image-gallery component
   data: s = { title, lede, items: [{ slug, ratio, alt, caption }] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/image-gallery.njk" import gallery %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/image-gallery.njk" import gallery with context %}
 {% macro render(s, ctx) %}
 {% call shell("image-gallery", s, ctx) %}{{ gallery(s.items) }}{% endcall %}
 {% endmacro %}

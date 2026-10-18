@@ -4,8 +4,8 @@
   anatomy: shell(no title) > author-box component
   data: s = { author: { name, role, bio, href } }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/author-box.njk" import authorBox %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/author-box.njk" import authorBox with context %}
 {% macro render(s, ctx) %}
 {% call shell("author-box", s, ctx, { center: false }) %}<div class="max-w-3xl">{{ authorBox(s.author) }}</div>{% endcall %}
 {% endmacro %}

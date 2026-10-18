@@ -12,7 +12,7 @@
   content limits: bio ≤ 40 words
   data: a = { name, role, bio, href }
 #}
-{% from "primitives/avatar.njk" import avatar %}
+{% from "primitives/avatar.njk" import avatar with context %}
 {% macro authorBox(a) %}
 <aside class="flex gap-4 rounded-lg border border-line bg-surface-alt p-6" aria-labelledby="author-heading" data-component="author-box">
 {{ avatar(a.name, { size: "size-12" }) }}

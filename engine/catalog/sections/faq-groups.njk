@@ -12,8 +12,8 @@
   content limits: 2–6 groups
   data: s = { title, lede, groups: [{ title, items }] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/accordion.njk" import accordion %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/accordion.njk" import accordion with context %}
 {% macro render(s, ctx) %}
 {% call shell("faq-groups", s, ctx) %}
 <div class="mx-auto max-w-3xl space-y-16">

@@ -4,5 +4,5 @@
   anatomy: cardGrid(event, 3)
   data: s = { title, lede, items: [{ date, dateIso, type, title, location, href }], empty }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("event-cards", s, ctx, "event", 3) }}{% endmacro %}

@@ -4,9 +4,9 @@
   anatomy: shell > icon + text + button
   data: s = { title, text, next, cta: { label, href } }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/icon.njk" import icon %}
-{% from "primitives/button.njk" import button %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/icon.njk" import icon with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
 {% call shell("confirmation", s | merge({ title: null, cta: null, label: s.title }), ctx, { noReveal: true }) %}
 <div class="mx-auto max-w-xl text-center">

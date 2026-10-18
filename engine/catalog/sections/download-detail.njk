@@ -4,11 +4,11 @@
   anatomy: shell(center false) > grid > picture(cover) + div(badge + prose + ul + button)
   data: s = { title, type, pages, summary (html), contents: [], cover: {slug, ratio, alt}, cta: { label, href } }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/picture.njk" import picture %}
-{% from "primitives/badge.njk" import badge %}
-{% from "primitives/button.njk" import button %}
-{% from "components/prose.njk" import prose %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/picture.njk" import picture with context %}
+{% from "primitives/badge.njk" import badge with context %}
+{% from "primitives/button.njk" import button with context %}
+{% from "components/prose.njk" import prose with context %}
 {% macro render(s, ctx) %}
 {% call shell("download-detail", s, ctx, { center: false, noReveal: true }) %}
 <div class="grid gap-12 lg:grid-cols-3">

@@ -54,7 +54,7 @@ export async function build({ site }) {
   injectSprites(dist);
   const css = readFileSync("engine/theme/app.css", "utf8")
     .replaceAll("__SITE__", site)
-    .replace("/* @brand */", brandTokens(siteConfig.brand || {}))
+    .replace("/* @brand */", brandTokens(siteConfig.brand || {}, { scriptFamilies: fonts.scriptFamilies }))
     .replace("/* @fonts */", fonts.css);
   mkdirSync("engine/theme/.tmp", { recursive: true });
   writeFileSync("engine/theme/.tmp/app.css", css);

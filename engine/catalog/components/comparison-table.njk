@@ -12,7 +12,7 @@
   content limits: ≤ 5 columns, ≤ 15 rows
   data: c = { caption, columns: [{ name, recommended }], rows: [{ name, cells: [true|false|string] }] }
 #}
-{% from "primitives/icon.njk" import icon %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro comparisonTable(c) %}
 <div class="overflow-x-auto rounded-lg border border-line" tabindex="0" data-component="comparison-table">
 <table class="w-full text-start text-sm">

@@ -12,8 +12,8 @@
   content limits: title ≤ 60 chars
   data: v = { id, title, duration, poster: {slug, ratio, alt}, provider, embedUrl }
 #}
-{% from "primitives/picture.njk" import picture %}
-{% from "primitives/icon.njk" import icon %}
+{% from "primitives/picture.njk" import picture with context %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro videoFacade(v) %}
 <div class="relative overflow-hidden rounded-xl" data-component="video-facade">
 {{ picture(v.poster, { sizes: "(min-width: 64rem) 50vw, 100vw", class: "aspect-video w-full object-cover" }) }}

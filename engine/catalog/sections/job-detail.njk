@@ -4,9 +4,9 @@
   anatomy: shell(center false) > grid > dl(div > dt(icon + label) + dd) + prose
   data: s = { team, location, employment, posted, postedIso, body (html) }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/prose.njk" import prose %}
-{% from "primitives/icon.njk" import icon %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/prose.njk" import prose with context %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("job-detail", s, ctx, { center: false, noReveal: true }) %}
 <div class="grid gap-12 lg:grid-cols-3">

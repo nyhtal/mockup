@@ -4,8 +4,8 @@
   anatomy: section > container > flex(text + button)
   data: s = { title, text, cta: { label, href } }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/button.njk" import button %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
 {% call shell("media-kit-cta", s | merge({ title: null, cta: null, label: s.title }), ctx) %}
 <div class="flex flex-col items-start gap-6 rounded-xl border border-line bg-surface-raised p-8 md:flex-row md:items-center md:justify-between">

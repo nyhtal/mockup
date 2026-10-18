@@ -3,9 +3,9 @@
   purpose: A section whose body is a grid of cards of one variant (R-LAY-03, R-SEC-03). Used by every "*-cards" section.
   usage: {{ cardGrid("case-study-cards", s, ctx, "case-study", 3) }}
 #}
-{% from "sections/_shell.njk" import shell, stagger %}
-{% from "components/card.njk" import card %}
-{% from "components/empty-state.njk" import emptyState %}
+{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "components/card.njk" import card with context %}
+{% from "components/empty-state.njk" import emptyState with context %}
 {% macro cardGrid(name, s, ctx, variant, cols) %}
 {%- set colClass = "md:grid-cols-2" if cols == 2 else ("md:grid-cols-2 lg:grid-cols-4" if cols == 4 else "md:grid-cols-2 lg:grid-cols-3") -%}
 {% call shell(name, s, ctx) %}

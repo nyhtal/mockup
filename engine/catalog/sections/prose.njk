@@ -4,9 +4,9 @@
   anatomy: shell(center false, no title) > grid > (toc) + prose component
   data: s = { html, toc: [{ id, text, level }], lang }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/prose.njk" import prose %}
-{% from "components/toc.njk" import toc %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/prose.njk" import prose with context %}
+{% from "components/toc.njk" import toc with context %}
 {% macro render(s, ctx) %}
 {% call shell("prose", s, ctx, { center: false, noReveal: true }) %}
 <div class="{{ 'grid gap-12 lg:grid-cols-4' if s.toc }}">

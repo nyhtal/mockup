@@ -11,7 +11,7 @@
   i18n: the value is preformatted per locale by the build (R-I18N-07); label ≤ 4 words
   content limits: value ≤ 8 chars; 3–4 stats per section (R-SEC-03)
 #}
-{% from "primitives/badge.njk" import badge %}
+{% from "primitives/badge.njk" import badge with context %}
 {% macro stat(s, opts={}) %}
 <div data-component="stat" data-variant="{{ 'inverse' if opts.inverse else 'default' }}">
 <p class="text-4xl font-bold tabular-nums {{ 'text-ink-inverse' if opts.inverse else 'text-ink' }}">{{ s.value }}</p>

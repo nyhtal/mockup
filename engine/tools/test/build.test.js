@@ -110,3 +110,21 @@ test("three locales: alternates pair the same slug per locale, Arabic pages prel
   assert.ok(existsSync("dist/reference/en/style-guide/index.html"));
   assert.ok(!existsSync("dist/reference/de/style-guide/index.html"), "the style guide shows English sample data: one copy, in the default locale (R-PAGE-09)");
 });
+
+test("UI strings on German and Arabic pages come from their locale, inside imported macros too (R-I18N-05)", () => {
+  const ar = readFileSync("dist/reference/ar/careers/senior-controls-engineer/index.html", "utf8");
+  assert.match(ar, />الانتقال إلى المحتوى</, "skip link");
+  assert.match(ar, />الفريق</, "job-detail label");
+  assert.doesNotMatch(ar, />(Skip to content|Menu|Team|Location|Posted|Back to top)</);
+  const de = readFileSync("dist/reference/de/index.html", "utf8");
+  assert.match(de, />Zum Inhalt springen</);
+  assert.doesNotMatch(de, />(Skip to content|Menu|Back to top)</);
+  // The font stack carries the Arabic face so Arabic text is not set in the Latin fallback.
+  assert.match(readFileSync("dist/reference/assets/app.css", "utf8"), /"Inter Variable", "Noto Sans Arabic Variable"/);
+  // Below sm the header keeps only the wordmark and the menu button; search and languages sit in the drawer (R-LAY-05).
+  assert.match(ar, /popovertarget="locales"[^>]*>[\s\S]*?<span class="hidden sm:inline">/);
+  assert.match(ar, /data-component="locale-switcher" class="hidden sm:block"/);
+  assert.match(ar, /<a href="\/ar\/search\/" class="hidden size-11 sm:inline-flex/);
+  assert.match(ar, /id="drawer"[\s\S]*<a href="\/ar\/search\/" class="[^"]*sm:hidden"/);
+  assert.match(ar, /class="h-7 sm:h-8 fill-ink-brand w-auto"/);
+});

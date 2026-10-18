@@ -4,10 +4,10 @@
   anatomy: shell(center false) > filter-bar + ul.grid(job cards) | empty-state
   data: s = { title, lede, filters: {…}, items: [{ title, team, location, type, href }], empty: {…} }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/filter-bar.njk" import filterBar %}
-{% from "components/card.njk" import card %}
-{% from "components/empty-state.njk" import emptyState %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/filter-bar.njk" import filterBar with context %}
+{% from "components/card.njk" import card with context %}
+{% from "components/empty-state.njk" import emptyState with context %}
 {% macro render(s, ctx) %}
 {% call shell("job-list", s, ctx, { center: false }) %}
 {%- if s.filters %}<div class="mb-8">{{ filterBar(s.filters) }}</div>{% endif %}

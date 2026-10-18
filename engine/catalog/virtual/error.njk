@@ -3,5 +3,5 @@ layout: base.njk
 pageType: error
 noindex: true
 ---
-{% from "components/error-state.njk" import errorState %}
+{% from "components/error-state.njk" import errorState with context %}
 {{ errorState({ code: errorCode, title: title, text: description, links: links }) }}

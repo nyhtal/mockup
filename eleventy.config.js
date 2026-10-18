@@ -218,7 +218,7 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("t", function (key) {
-    const lang = this.page?.lang || site.defaultLocale;
+    const lang = this.ctx?.page?.lang || site.defaultLocale;
     const value = t(lang, key);
     if (value == null) throw new Error(`Missing i18n key "${key}" for locale "${lang}"`);
     return value;
@@ -236,9 +236,9 @@ export default function (eleventyConfig) {
   // Shallow merge for passing section data into components without mutating it.
   eleventyConfig.addFilter("merge", (a, b) => ({ ...(a || {}), ...(b || {}) }));
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
-  eleventyConfig.addFilter("formatDate", function (iso, style) { return formatDate(iso, this.page?.lang || site.defaultLocale, site, style); });
-  eleventyConfig.addFilter("formatNumber", function (n) { return formatNumber(n, this.page?.lang || site.defaultLocale, site); });
-  eleventyConfig.addFilter("formatCurrency", function (n, code) { return formatCurrency(n, this.page?.lang || site.defaultLocale, code, site); });
+  eleventyConfig.addFilter("formatDate", function (iso, style) { return formatDate(iso, this.ctx?.page?.lang || site.defaultLocale, site, style); });
+  eleventyConfig.addFilter("formatNumber", function (n) { return formatNumber(n, this.ctx?.page?.lang || site.defaultLocale, site); });
+  eleventyConfig.addFilter("formatCurrency", function (n, code) { return formatCurrency(n, this.ctx?.page?.lang || site.defaultLocale, code, site); });
   eleventyConfig.addFilter("htmlPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType));
   eleventyConfig.addFilter("sitemapPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType && !p.data.noindex));
   // Every locale version of a page including itself, in site.locales order (R-I18N-04).

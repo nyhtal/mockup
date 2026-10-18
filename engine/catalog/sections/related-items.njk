@@ -4,5 +4,5 @@
   anatomy: cardGrid(variant from s.cardVariant, 3)
   data: s = { title, cardVariant, items: [...] }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("related-items", s, ctx, s.cardVariant or "service", 3) }}{% endmacro %}

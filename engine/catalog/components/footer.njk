@@ -11,8 +11,8 @@
   i18n: column titles and labels via keys; locale links use native names
   content limits: 2–4 columns, ≤ 8 links each; legal links ≤ 6
 #}
-{% from "components/back-to-top.njk" import backToTop %}
-{% from "primitives/wordmark.njk" import wordmark %}
+{% from "components/back-to-top.njk" import backToTop with context %}
+{% from "primitives/wordmark.njk" import wordmark with context %}
 {% macro footer(site, locale, alternates) %}
 <footer class="border-t border-line bg-surface-alt" data-component="footer">
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

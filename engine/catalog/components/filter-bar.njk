@@ -12,8 +12,8 @@
   content limits: ≤ 4 filters
   data: f = { action, filters: [field data], resetHref }
 #}
-{% from "primitives/field.njk" import field %}
-{% from "primitives/button.njk" import button %}
+{% from "primitives/field.njk" import field with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro filterBar(f) %}
 <form method="get" action="{{ f.action }}" class="flex flex-wrap items-end gap-4" data-component="filter-bar">
 {%- for filter in f.filters %}<div class="min-w-48">{{ field(filter) }}</div>{% endfor %}

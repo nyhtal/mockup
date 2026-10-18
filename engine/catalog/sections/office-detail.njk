@@ -4,9 +4,9 @@
   anatomy: shell(center false) > grid > address block + map-facade
   data: s = { title, address, phone, email, hours: [["Weekdays", "08:00–18:00"]], map: { slug, address } }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/map-facade.njk" import mapFacade %}
-{% from "components/data-table.njk" import dataTable %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/map-facade.njk" import mapFacade with context %}
+{% from "components/data-table.njk" import dataTable with context %}
 {% macro render(s, ctx) %}
 {% call shell("office-detail", s, ctx, { center: false }) %}
 <div class="grid gap-12 lg:grid-cols-2">

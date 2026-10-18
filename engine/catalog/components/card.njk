@@ -12,11 +12,11 @@
   content limits: title ≤ 70 chars, text ≤ 40 words, metric label ≤ 4 words
   data: c = { variant, href, title, text, eyebrow, icon, name, role, metricValue, metricLabel, quote, company, city, address, phone, type, pages, date, dateIso, location, team, image: {slug, ratio, alt}, logo }
 #}
-{% from "primitives/icon.njk" import icon %}
-{% from "primitives/avatar.njk" import avatar %}
-{% from "primitives/wordmark.njk" import wordmark %}
-{% from "primitives/badge.njk" import badge %}
-{% from "primitives/picture.njk" import picture %}
+{% from "primitives/icon.njk" import icon with context %}
+{% from "primitives/avatar.njk" import avatar with context %}
+{% from "primitives/wordmark.njk" import wordmark with context %}
+{% from "primitives/badge.njk" import badge with context %}
+{% from "primitives/picture.njk" import picture with context %}
 {% macro card(c, opts={}) %}
 {%- set tag = opts.tag or "li" -%}
 {%- set h = "h" + (opts.level or 3) -%}

@@ -12,7 +12,7 @@
   content limits: none
   data: s = { url, title }
 #}
-{% from "primitives/icon.njk" import icon %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro shareLinks(s) %}
 <div class="flex flex-wrap items-center gap-3" data-component="share-links">
 <p class="text-sm font-medium text-ink-muted">{{ "ui.share" | t }}</p>

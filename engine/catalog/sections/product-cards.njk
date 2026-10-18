@@ -4,5 +4,5 @@
   anatomy: cardGrid(article-style media card, 3)
   data: s = { eyebrow, title, lede, items: [{ image, title, text, href }] }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("product-cards", s, ctx, "article", 3) }}{% endmacro %}

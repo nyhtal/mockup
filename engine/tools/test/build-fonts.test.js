@@ -65,3 +65,14 @@ test("preloadFor picks the script's own file per locale: Arabic pages preload th
   assert.equal(plan.preloadFor("en"), "/assets/fonts/inter-latin-wght-normal.woff2");
   assert.equal(fontPlan({ font: "system" }, ["en"]).preloadFor("en"), null);
 });
+
+test("fallback faces carry their family's unicode-range so loading text falls back per script, and the plan names the script families", () => {
+  const plan = fontPlan({ font: "inter" }, ["en", "ar"]);
+  assert.deepEqual(plan.scriptFamilies, ["Noto Sans Arabic Variable"]);
+  const inter = /@font-face \{\s*font-family: "Inter Fallback";[^}]*\}/.exec(plan.css)[0];
+  assert.match(inter, /unicode-range:[^;]*U\+0000-00FF/);
+  assert.doesNotMatch(inter, /U\+0600-06FF/);
+  const noto = /@font-face \{\s*font-family: "Noto Sans Arabic Fallback";[^}]*\}/.exec(plan.css)[0];
+  assert.match(noto, /unicode-range: U\+0600-06FF/);
+  assert.deepEqual(fontPlan({ font: "inter" }, ["en"]).scriptFamilies, []);
+});

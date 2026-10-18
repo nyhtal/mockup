@@ -12,8 +12,8 @@
   content limits: title ≤ 4 words, text ≤ 30 words
   data: s = { eyebrow, title, lede, items: [{ icon, title, text }] }
 #}
-{% from "sections/_shell.njk" import shell, stagger %}
-{% from "primitives/icon.njk" import icon %}
+{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("values-grid", s, ctx) %}
 <ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">

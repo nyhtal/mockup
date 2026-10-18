@@ -12,8 +12,8 @@
   content limits: title ≤ 60 chars; text ≤ 25 words
   data: e = { icon, title, text, cta: { label, href } }
 #}
-{% from "primitives/icon.njk" import icon %}
-{% from "primitives/button.njk" import button %}
+{% from "primitives/icon.njk" import icon with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro emptyState(e, opts={}) %}
 {%- set h = "h" + (opts.level or 3) -%}
 <div class="mx-auto max-w-md py-12 text-center" data-component="empty-state">

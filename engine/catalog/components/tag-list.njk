@@ -12,7 +12,7 @@
   content limits: ≤ 8 tags
   data: tags = [{ label, href }]
 #}
-{% from "primitives/tag.njk" import tag %}
+{% from "primitives/tag.njk" import tag with context %}
 {% macro tagList(tags) %}
 <ul class="flex flex-wrap gap-2" data-component="tag-list">
 {%- for t in tags %}<li>{{ tag(t.label, t.href) }}</li>{% endfor %}

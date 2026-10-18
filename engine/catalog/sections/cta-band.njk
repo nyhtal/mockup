@@ -12,8 +12,8 @@
   content limits: title ≤ 60 chars; text ≤ 20 words; one primary (+ one secondary)
   data: s = { title, text, primary: {label, href}, secondary: {label, href} }
 #}
-{% from "sections/_shell.njk" import revealClasses %}
-{% from "primitives/button.njk" import button %}
+{% from "sections/_shell.njk" import revealClasses with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
 {%- set pad = "py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24" -%}
 <section class="{{ pad }} bg-linear-to-br from-brand-700 via-brand-600 to-accent-600 text-ink-inverse{{ revealClasses(ctx.reveal) }}"{% if ctx.reveal %} data-reveal{% endif %} data-component="cta-band">

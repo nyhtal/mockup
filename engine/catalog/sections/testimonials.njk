@@ -12,8 +12,8 @@
   content limits: single 1, grid 3, carousel ≤ 6
   data: s = { eyebrow, title, items: [testimonial data], variant }
 #}
-{% from "sections/_shell.njk" import shell, stagger %}
-{% from "components/testimonial.njk" import testimonial %}
+{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "components/testimonial.njk" import testimonial with context %}
 {% macro render(s, ctx) %}
 {%- set variant = s.variant or ("single" if s.items.length == 1 else "grid") -%}
 {% call shell("testimonials", s, ctx) %}

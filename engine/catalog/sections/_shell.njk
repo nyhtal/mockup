@@ -4,7 +4,7 @@
   usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}
   ctx: { locale, pageUrl, density, surface, reveal, index }
 #}
-{% from "primitives/button.njk" import button %}
+{% from "primitives/button.njk" import button with context %}
 {#- Scroll-driven fade+slide where supported; the script fallback only slides (never opacity 0) so content stays visible (R-MOT-04, R-MOT-05). -#}
 {% macro revealClasses(on) %}{% if on %} motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%] motion-safe:js:not-data-revealed:translate-y-4 motion-safe:js:data-revealed:translate-y-0 motion-safe:js:transition-transform motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth{% endif %}{% endmacro %}
 {% macro stagger(i) %}{% if i > 0 and i < 6 %} motion-safe:sda:[animation-delay:calc(var(--reveal-stagger)*{{ i }})]{% endif %}{% endmacro %}

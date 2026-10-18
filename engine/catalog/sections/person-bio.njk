@@ -4,9 +4,9 @@
   anatomy: shell(center false) > grid > avatar + div(role + bio + links)
   data: s = { name, role, bio (html), email, links: [{ label, href }] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/avatar.njk" import avatar %}
-{% from "components/prose.njk" import prose %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/avatar.njk" import avatar with context %}
+{% from "components/prose.njk" import prose with context %}
 {% macro render(s, ctx) %}
 {% call shell("person-bio", s, ctx, { center: false, noReveal: true }) %}
 <div class="grid gap-8 md:grid-cols-4">

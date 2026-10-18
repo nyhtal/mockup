@@ -12,8 +12,8 @@
   content limits: 5–8 names
   data: s = { label, items: ["Alder Foods", …] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/wordmark.njk" import wordmark %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/wordmark.njk" import wordmark with context %}
 {% macro render(s, ctx) %}
 {% call shell("logo-cloud", s, ctx) %}
 {%- if s.label %}<p class="text-center text-sm font-medium text-ink-muted">{{ s.label }}</p>{% endif %}

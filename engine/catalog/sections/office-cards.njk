@@ -4,5 +4,5 @@
   anatomy: cardGrid(office, 3)
   data: s = { eyebrow, title, items: [{ title: city, address, phone, href }] }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("office-cards", s, ctx, "office", 3) }}{% endmacro %}

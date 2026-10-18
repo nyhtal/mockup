@@ -4,5 +4,5 @@
   anatomy: cardGrid(team, 3)
   data: s = { title, items: [{ name, role }] }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("speakers", s, ctx, "team", 3) }}{% endmacro %}

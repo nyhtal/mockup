@@ -12,8 +12,8 @@
   content limits: 2–5 tabs, ≤ 6 items each
   data: s = { title, lede, tabs: [{ label, variant, items: [...] }] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/card.njk" import card %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/card.njk" import card with context %}
 {% macro render(s, ctx) %}
 {% call shell("resource-tabs", s, ctx) %}
 <div class="md:flex md:flex-wrap md:border-b md:border-line">

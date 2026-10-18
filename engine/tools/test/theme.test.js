@@ -78,3 +78,9 @@ test("contrastFailures checks the inverse and boundary pairs in the dark scheme 
 test("system font gives a system stack and no fallback family", () => {
   assert.match(brandTokens({ ...brand, font: "system" }), /--font-sans: system-ui, sans-serif;/);
 });
+
+test("script families join the font stack after the brand font, each before its own fallback (R-TYPO-12)", () => {
+  const css = brandTokens(brand, { scriptFamilies: ["Noto Sans Arabic Variable"] });
+  assert.match(css, /--font-sans: "Inter Variable", "Noto Sans Arabic Variable", "Inter Fallback", "Noto Sans Arabic Fallback", system-ui, sans-serif;/);
+  assert.match(css, /--font-system: system-ui, sans-serif;/);
+});

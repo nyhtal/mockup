@@ -12,7 +12,7 @@
   content limits: text ≤ 50 words
   data: c = { tone, title, text (html) }
 #}
-{% from "primitives/icon.njk" import icon %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro callout(c) %}
 {%- set tone = c.tone or "info" -%}
 {%- set styles = { info: "border-brand-200 bg-brand-50 text-brand-800", success: "border-success bg-success-soft text-success-strong", warning: "border-warning bg-warning-soft text-warning-strong", danger: "border-danger bg-danger-soft text-danger-strong" } -%}

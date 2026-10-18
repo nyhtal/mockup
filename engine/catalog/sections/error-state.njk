@@ -3,5 +3,5 @@
   purpose: Wraps the error-state component for sections-driven error pages.
   data: s = { code, title, text, links: [{ href, label }] }
 #}
-{% from "components/error-state.njk" import errorState %}
+{% from "components/error-state.njk" import errorState with context %}
 {% macro render(s, ctx) %}{{ errorState(s) }}{% endmacro %}

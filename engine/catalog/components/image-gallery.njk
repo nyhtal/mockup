@@ -12,7 +12,7 @@
   content limits: 3–9 images
   data: images = [{ slug, ratio, alt, caption }]
 #}
-{% from "primitives/picture.njk" import picture %}
+{% from "primitives/picture.njk" import picture with context %}
 {% macro gallery(images) %}
 <ul class="grid gap-6 sm:grid-cols-2 md:grid-cols-3" data-component="image-gallery">
 {%- for img in images %}

@@ -12,8 +12,8 @@
   content limits: 3–4 items
   data: s = { title, items: [{ value, label, trend }], variant }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/stat.njk" import stat %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/stat.njk" import stat with context %}
 {% macro render(s, ctx) %}
 {%- set band = s.variant != "plain" -%}
 {% call shell("stats", s | merge({ surface: s.surface or ("bg-brand-700" if band else "bg-surface") }), ctx) %}

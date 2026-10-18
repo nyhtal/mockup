@@ -4,8 +4,8 @@
   anatomy: shell(center false) > address card
   data: s = { title, name, role, email, text }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/avatar.njk" import avatar %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/avatar.njk" import avatar with context %}
 {% macro render(s, ctx) %}
 {% call shell("contact-card", s, ctx, { center: false }) %}
 <div class="flex max-w-xl gap-4 rounded-lg border border-line bg-surface-raised p-6">

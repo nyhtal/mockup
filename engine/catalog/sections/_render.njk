@@ -1,74 +1,74 @@
 {#
   name: _render (dispatcher, not a section)
   purpose: Map a section's `type` to its macro (R-SEC-12). An unknown type fails the build.
-  usage: {% from "sections/_render.njk" import section %}{{ section(s, ctx) }}
+  usage: {% from "sections/_render.njk" import section with context %}{{ section(s, ctx) }}
 #}
-{% from "sections/hero.njk" import render as hero %}
-{% from "sections/page-header.njk" import render as pageHeader %}
-{% from "sections/logo-cloud.njk" import render as logoCloud %}
-{% from "sections/feature-grid.njk" import render as featureGrid %}
-{% from "sections/feature-rows.njk" import render as featureRows %}
-{% from "sections/stats.njk" import render as stats %}
-{% from "sections/testimonials.njk" import render as testimonials %}
-{% from "sections/cta-band.njk" import render as ctaBand %}
-{% from "sections/newsletter.njk" import render as newsletter %}
-{% from "sections/contact-form.njk" import render as contactForm %}
-{% from "sections/team-grid.njk" import render as teamGrid %}
-{% from "sections/team-preview.njk" import render as teamPreview %}
-{% from "sections/person-bio.njk" import render as personBio %}
-{% from "sections/office-cards.njk" import render as officeCards %}
-{% from "sections/office-detail.njk" import render as officeDetail %}
-{% from "sections/map-facade.njk" import render as mapFacade %}
-{% from "sections/service-cards.njk" import render as serviceCards %}
-{% from "sections/product-cards.njk" import render as productCards %}
-{% from "sections/industry-cards.njk" import render as industryCards %}
-{% from "sections/pricing.njk" import render as pricing %}
-{% from "sections/comparison.njk" import render as comparison %}
-{% from "sections/faq-groups.njk" import render as faqGroups %}
-{% from "sections/faq.njk" import render as faq %}
-{% from "sections/steps.njk" import render as steps %}
-{% from "sections/timeline.njk" import render as timeline %}
-{% from "sections/values-grid.njk" import render as valuesGrid %}
-{% from "sections/awards.njk" import render as awards %}
-{% from "sections/case-study-cards.njk" import render as caseStudyCards %}
-{% from "sections/article-cards.njk" import render as articleCards %}
-{% from "sections/press-cards.njk" import render as pressCards %}
-{% from "sections/download-cards.njk" import render as downloadCards %}
-{% from "sections/download-detail.njk" import render as downloadDetail %}
-{% from "sections/gated-form.njk" import render as gatedForm %}
-{% from "sections/event-cards.njk" import render as eventCards %}
-{% from "sections/event-detail.njk" import render as eventDetail %}
-{% from "sections/registration-form.njk" import render as registrationForm %}
-{% from "sections/speakers.njk" import render as speakers %}
-{% from "sections/job-list.njk" import render as jobList %}
-{% from "sections/job-detail.njk" import render as jobDetail %}
-{% from "sections/apply-form.njk" import render as applyForm %}
-{% from "sections/benefits-grid.njk" import render as benefitsGrid %}
-{% from "sections/integration-grid.njk" import render as integrationGrid %}
-{% from "sections/resource-tabs.njk" import render as resourceTabs %}
-{% from "sections/glossary-list.njk" import render as glossaryList %}
-{% from "sections/help-categories.njk" import render as helpCategories %}
-{% from "sections/search-box.njk" import render as searchBox %}
-{% from "sections/search-results.njk" import render as searchResults %}
-{% from "sections/sitemap-list.njk" import render as sitemapList %}
-{% from "sections/prose.njk" import render as prose %}
-{% from "sections/article-meta.njk" import render as articleMeta %}
-{% from "sections/author-box.njk" import render as authorBox %}
-{% from "sections/related-items.njk" import render as relatedItems %}
-{% from "sections/related-articles.njk" import render as relatedArticles %}
-{% from "sections/media-contact.njk" import render as mediaContact %}
-{% from "sections/media-kit-cta.njk" import render as mediaKitCta %}
-{% from "sections/contact-card.njk" import render as contactCard %}
-{% from "sections/badges.njk" import render as badges %}
-{% from "sections/image-gallery.njk" import render as imageGallery %}
-{% from "sections/confirmation.njk" import render as confirmation %}
-{% from "sections/error-state.njk" import render as errorState %}
-{% from "sections/resources-latest.njk" import render as resourcesLatest %}
-{% from "sections/pagination.njk" import render as pagination %}
-{% from "sections/filter-bar.njk" import render as filterBar %}
-{% from "sections/was-this-helpful.njk" import render as wasThisHelpful %}
-{% from "sections/preferences-form.njk" import render as preferencesForm %}
-{% from "sections/unsubscribe-form.njk" import render as unsubscribeForm %}
+{% from "sections/hero.njk" import render as hero with context %}
+{% from "sections/page-header.njk" import render as pageHeader with context %}
+{% from "sections/logo-cloud.njk" import render as logoCloud with context %}
+{% from "sections/feature-grid.njk" import render as featureGrid with context %}
+{% from "sections/feature-rows.njk" import render as featureRows with context %}
+{% from "sections/stats.njk" import render as stats with context %}
+{% from "sections/testimonials.njk" import render as testimonials with context %}
+{% from "sections/cta-band.njk" import render as ctaBand with context %}
+{% from "sections/newsletter.njk" import render as newsletter with context %}
+{% from "sections/contact-form.njk" import render as contactForm with context %}
+{% from "sections/team-grid.njk" import render as teamGrid with context %}
+{% from "sections/team-preview.njk" import render as teamPreview with context %}
+{% from "sections/person-bio.njk" import render as personBio with context %}
+{% from "sections/office-cards.njk" import render as officeCards with context %}
+{% from "sections/office-detail.njk" import render as officeDetail with context %}
+{% from "sections/map-facade.njk" import render as mapFacade with context %}
+{% from "sections/service-cards.njk" import render as serviceCards with context %}
+{% from "sections/product-cards.njk" import render as productCards with context %}
+{% from "sections/industry-cards.njk" import render as industryCards with context %}
+{% from "sections/pricing.njk" import render as pricing with context %}
+{% from "sections/comparison.njk" import render as comparison with context %}
+{% from "sections/faq-groups.njk" import render as faqGroups with context %}
+{% from "sections/faq.njk" import render as faq with context %}
+{% from "sections/steps.njk" import render as steps with context %}
+{% from "sections/timeline.njk" import render as timeline with context %}
+{% from "sections/values-grid.njk" import render as valuesGrid with context %}
+{% from "sections/awards.njk" import render as awards with context %}
+{% from "sections/case-study-cards.njk" import render as caseStudyCards with context %}
+{% from "sections/article-cards.njk" import render as articleCards with context %}
+{% from "sections/press-cards.njk" import render as pressCards with context %}
+{% from "sections/download-cards.njk" import render as downloadCards with context %}
+{% from "sections/download-detail.njk" import render as downloadDetail with context %}
+{% from "sections/gated-form.njk" import render as gatedForm with context %}
+{% from "sections/event-cards.njk" import render as eventCards with context %}
+{% from "sections/event-detail.njk" import render as eventDetail with context %}
+{% from "sections/registration-form.njk" import render as registrationForm with context %}
+{% from "sections/speakers.njk" import render as speakers with context %}
+{% from "sections/job-list.njk" import render as jobList with context %}
+{% from "sections/job-detail.njk" import render as jobDetail with context %}
+{% from "sections/apply-form.njk" import render as applyForm with context %}
+{% from "sections/benefits-grid.njk" import render as benefitsGrid with context %}
+{% from "sections/integration-grid.njk" import render as integrationGrid with context %}
+{% from "sections/resource-tabs.njk" import render as resourceTabs with context %}
+{% from "sections/glossary-list.njk" import render as glossaryList with context %}
+{% from "sections/help-categories.njk" import render as helpCategories with context %}
+{% from "sections/search-box.njk" import render as searchBox with context %}
+{% from "sections/search-results.njk" import render as searchResults with context %}
+{% from "sections/sitemap-list.njk" import render as sitemapList with context %}
+{% from "sections/prose.njk" import render as prose with context %}
+{% from "sections/article-meta.njk" import render as articleMeta with context %}
+{% from "sections/author-box.njk" import render as authorBox with context %}
+{% from "sections/related-items.njk" import render as relatedItems with context %}
+{% from "sections/related-articles.njk" import render as relatedArticles with context %}
+{% from "sections/media-contact.njk" import render as mediaContact with context %}
+{% from "sections/media-kit-cta.njk" import render as mediaKitCta with context %}
+{% from "sections/contact-card.njk" import render as contactCard with context %}
+{% from "sections/badges.njk" import render as badges with context %}
+{% from "sections/image-gallery.njk" import render as imageGallery with context %}
+{% from "sections/confirmation.njk" import render as confirmation with context %}
+{% from "sections/error-state.njk" import render as errorState with context %}
+{% from "sections/resources-latest.njk" import render as resourcesLatest with context %}
+{% from "sections/pagination.njk" import render as pagination with context %}
+{% from "sections/filter-bar.njk" import render as filterBar with context %}
+{% from "sections/was-this-helpful.njk" import render as wasThisHelpful with context %}
+{% from "sections/preferences-form.njk" import render as preferencesForm with context %}
+{% from "sections/unsubscribe-form.njk" import render as unsubscribeForm with context %}
 {% macro section(s, ctx) %}
 {%- set t = s.type -%}
 {%- if t == "hero" %}{{ hero(s, ctx) }}

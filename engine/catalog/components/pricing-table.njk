@@ -12,9 +12,9 @@
   content limits: tiers 2–4; features ≤ 8 per tier; tier name ≤ 20 chars
   data: p = { tiers: [{ name, price, period, text, features: [], cta: { label, href }, recommended }] }
 #}
-{% from "primitives/icon.njk" import icon %}
-{% from "primitives/badge.njk" import badge %}
-{% from "primitives/button.njk" import button %}
+{% from "primitives/icon.njk" import icon with context %}
+{% from "primitives/badge.njk" import badge with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro pricingTable(p, opts={}) %}
 {%- set h = "h" + (opts.level or 3) -%}
 <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-{{ p.tiers.length if p.tiers.length <= 4 else 4 }}" data-component="pricing-table">

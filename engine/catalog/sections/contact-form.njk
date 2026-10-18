@@ -12,8 +12,8 @@
   content limits: ≤ 8 fields
   data: s = { eyebrow, title, lede, aside: { text, address, email, phone }, form: {…} }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "sections/_form.njk" import formBody %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "sections/_form.njk" import formBody with context %}
 {% macro render(s, ctx) %}
 {% call shell("contact-form", s, ctx, { center: false }) %}
 <div class="grid gap-12 lg:grid-cols-5">

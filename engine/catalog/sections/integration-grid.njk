@@ -4,5 +4,5 @@
   anatomy: cardGrid(integration, 4)
   data: s = { title, lede, items: [{ icon, title, text, href }] }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("integration-grid", s, ctx, "integration", 4) }}{% endmacro %}

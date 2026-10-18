@@ -1,8 +1,8 @@
-{% from "components/skip-link.njk" import skipLink %}
-{% from "components/announcement-bar.njk" import announcementBar %}
-{% from "components/header.njk" import header %}
-{% from "components/mobile-drawer.njk" import mobileDrawer %}
-{% from "components/footer.njk" import footer %}
+{% from "components/skip-link.njk" import skipLink with context %}
+{% from "components/announcement-bar.njk" import announcementBar with context %}
+{% from "components/header.njk" import header with context %}
+{% from "components/mobile-drawer.njk" import mobileDrawer with context %}
+{% from "components/footer.njk" import footer with context %}
 {%- set alternates = page.url | allAlternates -%}
 <!DOCTYPE html>
 <html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light-dark scroll-pt-20">
@@ -13,7 +13,7 @@
 {{ skipLink() }}
 {%- if site.announcement %}{{ announcementBar(site.announcement, locale) }}{% endif %}
 {{ header(site, locale, page.url, alternates, { variant: headerVariant }) }}
-{{ mobileDrawer(site.nav, locale, page.url, site.cta, alternates) }}
+{{ mobileDrawer(site.nav, locale, page.url, site.cta, alternates, { search: site.hasSearch }) }}
 <main id="main">
 {{ content | safe }}
 </main>

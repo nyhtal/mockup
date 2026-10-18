@@ -4,8 +4,8 @@
   anatomy: shell > ul.grid > li(icon + h3 + ul links)
   data: s = { title, lede, items: [{ icon, title, links: [{ label, href }] }] }
 #}
-{% from "sections/_shell.njk" import shell, stagger %}
-{% from "primitives/icon.njk" import icon %}
+{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("help-categories", s, ctx) %}
 <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

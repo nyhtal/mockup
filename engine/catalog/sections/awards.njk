@@ -12,8 +12,8 @@
   content limits: 3–8 items; name ≤ 40 chars
   data: s = { title, items: [{ name, year, icon }] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/icon.njk" import icon %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("awards", s, ctx) %}
 <ul class="flex flex-wrap justify-center gap-8">

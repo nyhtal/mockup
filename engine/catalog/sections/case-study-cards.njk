@@ -4,5 +4,5 @@
   anatomy: cardGrid(case-study, 3)
   data: s = { eyebrow, title, lede, items: [{ company, metricValue, metricLabel, quote, title, href }], cta }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("case-study-cards", s, ctx, "case-study", 3) }}{% endmacro %}

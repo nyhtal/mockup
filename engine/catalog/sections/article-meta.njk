@@ -4,9 +4,9 @@
   anatomy: shell(no title, compact) > div.flex > avatar + name + time + tags + share-links
   data: s = { author: { name, role, href }, date, dateIso, readingTime, tags: [{label, href}], share: { url, title } }
 #}
-{% from "primitives/avatar.njk" import avatar %}
-{% from "components/tag-list.njk" import tagList %}
-{% from "components/share-links.njk" import shareLinks %}
+{% from "primitives/avatar.njk" import avatar with context %}
+{% from "components/tag-list.njk" import tagList with context %}
+{% from "components/share-links.njk" import shareLinks with context %}
 {% macro render(s, ctx) %}
 <section class="border-y border-line py-6 {{ s.surface or 'bg-surface' }}" aria-label="{{ s.label or ('ui.articleDetails' | t) }}" data-component="article-meta">
 <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-x-8 gap-y-4 px-4 sm:px-6 lg:px-8">

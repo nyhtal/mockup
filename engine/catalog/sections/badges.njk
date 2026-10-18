@@ -12,8 +12,8 @@
   content limits: 3–6 items
   data: s = { title, lede, items: [{ name, text, icon }] }
 #}
-{% from "sections/_shell.njk" import shell, stagger %}
-{% from "primitives/icon.njk" import icon %}
+{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("badges", s, ctx) %}
 <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

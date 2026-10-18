@@ -11,7 +11,7 @@
   i18n: slides from the end edge in both directions thanks to end-0/translate-x with rtl flip
   content limits: same items as nav-menu
 #}
-{% macro mobileDrawer(items, locale, currentUrl, cta, alternates) %}
+{% macro mobileDrawer(items, locale, currentUrl, cta, alternates, opts={}) %}
 <div popover id="drawer" class="fixed inset-y-0 end-0 start-auto m-0 h-full max-h-none w-80 max-w-full border-0 border-s border-line bg-surface-raised p-0 text-ink shadow-lg opacity-0 open:opacity-100 motion-safe:translate-x-4 motion-safe:open:translate-x-0 rtl:motion-safe:-translate-x-4 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:translate-x-4 lg:hidden" data-component="mobile-drawer">
 <div class="flex h-16 items-center justify-between border-b border-line px-4">
 <span class="font-semibold">{{ "ui.menu" | t }}</span>
@@ -36,6 +36,9 @@
 </li>
 {%- endfor %}
 </ul>
+{%- if opts.search %}
+<a href="/{{ locale }}/search/" class="mt-2 flex min-h-11 items-center gap-2 rounded-md px-3 py-2.5 font-medium hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus sm:hidden"><svg aria-hidden="true" class="size-5"><use href="#i-search"></use></svg>{{ "ui.search" | t }}</a>
+{%- endif %}
 {%- if alternates.length > 1 %}
 <p class="mt-6 px-3 text-sm font-medium text-ink-muted">{{ "ui.language" | t }}</p>
 <ul class="mt-1 space-y-1">

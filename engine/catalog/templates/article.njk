@@ -3,7 +3,7 @@ layout: base.njk
 ---
 {#- Article pages: posts, press releases, case studies, docs, legal (R-PAGE inventory). The markdown body renders through
     the prose section; front matter supplies author, date, readingTime, tags, toc, related, and optional extra sections. -#}
-{% from "sections/_render.njk" import section %}
+{% from "sections/_render.njk" import section with context %}
 {%- set ctx = { locale: locale, pageUrl: page.url, density: site.brand.density or "comfortable", surface: "bg-surface", reveal: false, index: 0, demote: false } -%}
 {{ section({ type: "page-header", eyebrow: eyebrow, title: title, lede: lede, breadcrumbs: breadcrumbs }, ctx) }}
 {%- if author %}

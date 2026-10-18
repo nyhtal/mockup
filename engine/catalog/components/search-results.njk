@@ -12,7 +12,7 @@
   content limits: ≤ 12 per page
   data: r = { query, items: [{ title, href, excerpt }] }
 #}
-{% from "components/empty-state.njk" import emptyState %}
+{% from "components/empty-state.njk" import emptyState with context %}
 {% macro searchResults(r, opts={}) %}
 {%- set h = "h" + (opts.level or 2) -%}
 <div data-component="search-results">

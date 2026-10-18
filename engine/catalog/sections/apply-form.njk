@@ -4,8 +4,8 @@
   anatomy: shell > form card
   data: s = { title, lede, form: {…} }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "sections/_form.njk" import formBody %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "sections/_form.njk" import formBody with context %}
 {% macro render(s, ctx) %}
 {% call shell("apply-form", s, ctx) %}
 <div class="mx-auto max-w-xl rounded-xl border border-line bg-surface-raised p-6 shadow-sm md:p-8">{{ formBody(s.form, ctx) }}</div>

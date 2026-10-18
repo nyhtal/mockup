@@ -12,11 +12,11 @@
   content limits: h1 ≤ 60 chars, lede ≤ 35 words, exactly one primary and one secondary button
   data: s = { variant, eyebrow, title, lede, primary: {label, href}, secondary: {label, href}, image: {slug, ratio, alt}, video, form: [fields], stats: [{value,label}] }
 #}
-{% from "primitives/button.njk" import button %}
-{% from "primitives/picture.njk" import picture %}
-{% from "primitives/field.njk" import field %}
-{% from "components/video-facade.njk" import videoFacade %}
-{% from "components/stat.njk" import stat %}
+{% from "primitives/button.njk" import button with context %}
+{% from "primitives/picture.njk" import picture with context %}
+{% from "primitives/field.njk" import field with context %}
+{% from "components/video-facade.njk" import videoFacade with context %}
+{% from "components/stat.njk" import stat with context %}
 {% macro render(s, ctx) %}
 {%- set variant = s.variant or "centered" -%}
 {%- set pad = "py-12 md:py-20" if ctx.density == "compact" else "py-16 md:py-28" -%}

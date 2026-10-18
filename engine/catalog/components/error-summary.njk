@@ -12,7 +12,7 @@
   content limits: one line per error
   data: errors = [{ id, message }]
 #}
-{% from "primitives/icon.njk" import icon %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro errorSummary(errors) %}
 <div tabindex="-1" class="mb-8 rounded-lg border border-danger-strong bg-danger-soft p-4 text-danger-strong" data-component="error-summary">
 <h2 class="flex items-center gap-2 text-lg font-semibold">{{ icon("circle-alert") }}{{ "ui.fixFollowing" | t }}</h2>

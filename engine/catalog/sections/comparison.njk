@@ -12,8 +12,8 @@
   content limits: ≤ 5 columns, ≤ 15 rows
   data: s = { eyebrow, title, lede, table: { caption, columns, rows } }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/comparison-table.njk" import comparisonTable %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/comparison-table.njk" import comparisonTable with context %}
 {% macro render(s, ctx) %}
 {% call shell("comparison", s, ctx) %}
 {{ comparisonTable(s.table) }}

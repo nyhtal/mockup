@@ -11,10 +11,10 @@
   i18n: this is the i18n control; names come from the nativeName filter
   content limits: one entry per locale
 #}
-{% macro localeSwitcher(alternates, locale) %}
+{% macro localeSwitcher(alternates, locale, opts={}) %}
 {%- if alternates.length > 1 %}
-<div data-component="locale-switcher">
-<button type="button" popovertarget="locales" class="inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><svg aria-hidden="true" class="size-5 shrink-0"><use href="#i-languages"></use></svg><span class="sr-only">{{ "ui.language" | t }}: </span>{{ locale | nativeName }}</button>
+<div data-component="locale-switcher"{% if opts.class %} class="{{ opts.class }}"{% endif %}>
+<button type="button" popovertarget="locales" class="inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><svg aria-hidden="true" class="size-5 shrink-0"><use href="#i-languages"></use></svg><span class="sr-only">{{ "ui.language" | t }}: </span><span class="hidden sm:inline">{{ locale | nativeName }}</span></button>
 <div popover id="locales" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-56 rounded-lg border border-line bg-surface-raised p-2 text-ink shadow-md opacity-0 open:opacity-100 motion-safe:-translate-y-2 motion-safe:open:translate-y-0 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:-translate-y-2">
 <ul>
 {%- for alt in alternates %}

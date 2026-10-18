@@ -54,7 +54,7 @@ function facesFrom(pkg, subsets) {
  */
 export function fontPlan(brand, locales) {
   const main = resolveFont(brand.font);
-  if (!main) return { faces: [], preload: null, preloadFor: () => null, css: "" };
+  if (!main) return { faces: [], preload: null, preloadFor: () => null, scriptFamilies: [], css: "" };
   const faces = facesFrom(main.pkg, ["latin", "latin-ext"]);
   for (const [re, subset, pkg] of SCRIPT_SUBSETS) {
     if (!locales.some((l) => re.test(l))) continue;
@@ -64,10 +64,13 @@ export function fontPlan(brand, locales) {
   const faceCss = faces.map((f) =>
     `@font-face {\n  font-family: "${f.family}";\n  font-style: normal;\n  font-weight: 100 900;\n  font-display: swap;\n  src: url(/assets/fonts/${f.file}) format("woff2-variations");\n  unicode-range: ${f.unicodeRange};\n}`
   );
+  // Each fallback face covers only its family's ranges, so text in one script never borrows another family's metrics while fonts load.
   const fallbackCss = families.map((pkg) => {
     const { family, fallback, metrics: m } = FONTS[pkg];
-    return `@font-face {\n  font-family: "${family.replace(" Variable", "")} Fallback";\n  src: local("${fallback}");\n  size-adjust: ${m.sizeAdjust};\n  ascent-override: ${m.ascent};\n  descent-override: ${m.descent};\n  line-gap-override: ${m.lineGap};\n}`;
+    const range = faces.filter((f) => f.pkg === pkg).map((f) => f.unicodeRange).join(", ");
+    return `@font-face {\n  font-family: "${family.replace(" Variable", "")} Fallback";\n  src: local("${fallback}");\n  size-adjust: ${m.sizeAdjust};\n  ascent-override: ${m.ascent};\n  descent-override: ${m.descent};\n  line-gap-override: ${m.lineGap};\n  unicode-range: ${range};\n}`;
   });
+  const scriptFamilies = families.filter((pkg) => pkg !== main.pkg).map((pkg) => FONTS[pkg].family);
   const latin = faces.find((f) => f.pkg === main.pkg && f.subset === "latin");
   const fileOf = (f) => (f ? `/assets/fonts/${f.file}` : null);
   // The one file a page preloads: its own script's face (R-I18N-11), Latin elsewhere.
@@ -76,7 +79,7 @@ export function fontPlan(brand, locales) {
     const face = script && faces.find((f) => f.subset === script[1]);
     return fileOf(face || latin);
   };
-  return { faces, preload: fileOf(latin), preloadFor, css: [...faceCss, ...fallbackCss].join("\n") + "\n" };
+  return { faces, preload: fileOf(latin), preloadFor, scriptFamilies, css: [...faceCss, ...fallbackCss].join("\n") + "\n" };
 }
 
 export async function copyFonts(plan, distDir) {

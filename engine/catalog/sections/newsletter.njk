@@ -12,9 +12,9 @@
   content limits: one field
   data: s = { title, lede, form: { action, submit, privacyHref } }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/field.njk" import field %}
-{% from "primitives/button.njk" import button %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/field.njk" import field with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
 {% call shell("newsletter", s, ctx) %}
 <form method="get" action="{{ s.form.action }}" class="mx-auto max-w-xl">

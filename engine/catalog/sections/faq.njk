@@ -12,8 +12,8 @@
   content limits: 4–10 items; question ≤ 80 chars; answer ≤ 80 words
   data: s = { eyebrow, title, lede, items: [{ title, body }], group }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "components/accordion.njk" import accordion %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/accordion.njk" import accordion with context %}
 {% macro render(s, ctx) %}
 {% call shell("faq", s, ctx) %}
 <div class="mx-auto max-w-3xl">{{ accordion(s.items, { variant: "faq", group: s.group or "faq", level: 3 }) }}</div>

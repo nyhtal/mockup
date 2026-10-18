@@ -4,5 +4,5 @@
   anatomy: cardGrid(team, 4) with cta
   data: s = { eyebrow, title, items: [{ name, role, href }], cta: { label, href } }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("team-preview", s, ctx, "team", 4) }}{% endmacro %}

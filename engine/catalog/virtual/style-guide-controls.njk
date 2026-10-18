@@ -3,32 +3,32 @@ layout: base.njk
 pageType: style-guide
 noindex: true
 ---
-{% from "components/video-facade.njk" import videoFacade %}
-{% from "components/map-facade.njk" import mapFacade %}
-{% from "components/author-box.njk" import authorBox %}
-{% from "components/share-links.njk" import shareLinks %}
-{% from "components/tag-list.njk" import tagList %}
-{% from "components/pagination.njk" import pagination %}
-{% from "components/toc.njk" import toc %}
-{% from "components/sidebar-nav.njk" import sidebarNav %}
-{% from "components/sub-nav.njk" import subNav %}
-{% from "components/filter-bar.njk" import filterBar %}
-{% from "components/search-results.njk" import searchResults %}
-{% from "components/search-box.njk" import searchBox %}
-{% from "components/breadcrumbs.njk" import breadcrumbs %}
-{% from "components/empty-state.njk" import emptyState %}
-{% from "components/skeleton.njk" import skeleton %}
-{% from "components/toast.njk" import toast %}
-{% from "components/dialog.njk" import dialog, dialogTrigger %}
-{% from "components/drawer.njk" import drawer, drawerTrigger %}
-{% from "components/tooltip.njk" import tooltip %}
-{% from "components/progress.njk" import progress %}
-{% from "components/consent-banner.njk" import consentBanner %}
-{% from "components/consent-preferences.njk" import consentPreferences %}
-{% from "components/was-this-helpful.njk" import wasThisHelpful %}
-{% from "components/error-summary.njk" import errorSummary %}
-{% from "components/prose.njk" import prose %}
-{% from "components/announcement-bar.njk" import announcementBar %}
+{% from "components/video-facade.njk" import videoFacade with context %}
+{% from "components/map-facade.njk" import mapFacade with context %}
+{% from "components/author-box.njk" import authorBox with context %}
+{% from "components/share-links.njk" import shareLinks with context %}
+{% from "components/tag-list.njk" import tagList with context %}
+{% from "components/pagination.njk" import pagination with context %}
+{% from "components/toc.njk" import toc with context %}
+{% from "components/sidebar-nav.njk" import sidebarNav with context %}
+{% from "components/sub-nav.njk" import subNav with context %}
+{% from "components/filter-bar.njk" import filterBar with context %}
+{% from "components/search-results.njk" import searchResults with context %}
+{% from "components/search-box.njk" import searchBox with context %}
+{% from "components/breadcrumbs.njk" import breadcrumbs with context %}
+{% from "components/empty-state.njk" import emptyState with context %}
+{% from "components/skeleton.njk" import skeleton with context %}
+{% from "components/toast.njk" import toast with context %}
+{% from "components/dialog.njk" import dialog, dialogTrigger with context %}
+{% from "components/drawer.njk" import drawer, drawerTrigger with context %}
+{% from "components/tooltip.njk" import tooltip with context %}
+{% from "components/progress.njk" import progress with context %}
+{% from "components/consent-banner.njk" import consentBanner with context %}
+{% from "components/consent-preferences.njk" import consentPreferences with context %}
+{% from "components/was-this-helpful.njk" import wasThisHelpful with context %}
+{% from "components/error-summary.njk" import errorSummary with context %}
+{% from "components/prose.njk" import prose with context %}
+{% from "components/announcement-bar.njk" import announcementBar with context %}
 {%- set sg = "/" + locale + "/style-guide/" -%}
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>

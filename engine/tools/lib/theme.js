@@ -44,13 +44,15 @@ export function resolveFont(name) {
   return FONTS[name] === undefined ? FONTS.inter : FONTS[name];
 }
 
-export function brandTokens(brand) {
+export function brandTokens(brand, { scriptFamilies = [] } = {}) {
   const h = Number(brand.hue) || 0;
   const a = Number(brand.accentHue ?? brand.hue) || 0;
   const r = RADIUS[brand.radius] || RADIUS.soft;
   const [dist, dur, stag] = MOTION[brand.motion] || MOTION.standard;
   const font = resolveFont(brand.font);
-  const fontSans = font ? `"${font.family}", "${font.family.replace(" Variable", "")} Fallback", system-ui, sans-serif` : "system-ui, sans-serif";
+  // Brand font, then each script font (its unicode-range keeps it to its script), then the matching metric fallbacks (R-TYPO-12).
+  const fb = (family) => `"${family.replace(" Variable", "")} Fallback"`;
+  const fontSans = font ? [`"${font.family}"`, ...scriptFamilies.map((f) => `"${f}"`), fb(font.family), ...scriptFamilies.map(fb), "system-ui, sans-serif"].join(", ") : "system-ui, sans-serif";
   return `@theme {
   --color-*: initial;
 ${scale("brand", h)}

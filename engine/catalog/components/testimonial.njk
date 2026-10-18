@@ -12,8 +12,8 @@
   content limits: quote ≤ 50 words; name and role ≤ 40 chars each
   data: t = { quote, name, role, company }
 #}
-{% from "primitives/avatar.njk" import avatar %}
-{% from "primitives/wordmark.njk" import wordmark %}
+{% from "primitives/avatar.njk" import avatar with context %}
+{% from "primitives/wordmark.njk" import wordmark with context %}
 {% macro testimonial(t, opts={}) %}
 {%- set single = (opts.variant or "single") == "single" -%}
 <figure class="{{ 'mx-auto max-w-3xl text-center' if single else 'flex h-full flex-col rounded-lg border border-line bg-surface-raised p-6 shadow-sm' }}" data-component="testimonial" data-variant="{{ opts.variant or 'single' }}">

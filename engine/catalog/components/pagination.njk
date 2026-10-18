@@ -12,7 +12,7 @@
   content limits: ≤ 7 numbered links; use ellipsis text "…" beyond
   data: p = { current, total, href(n) → url: pass hrefs as p.pages [{ n, url }] plus p.prev/p.next urls }
 #}
-{% from "primitives/icon.njk" import icon %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro pagination(p) %}
 <nav aria-label="{{ 'ui.pagination' | t }}" data-component="pagination">
 <ul class="flex flex-wrap items-center gap-1">

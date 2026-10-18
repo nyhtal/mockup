@@ -4,5 +4,5 @@
   anatomy: cardGrid(service, 3)
   data: s = { eyebrow, title, lede, items: [{ icon, title, text, href }] }
 #}
-{% from "sections/_grid.njk" import cardGrid %}
+{% from "sections/_grid.njk" import cardGrid with context %}
 {% macro render(s, ctx) %}{{ cardGrid("service-cards", s, ctx, "service", 3) }}{% endmacro %}

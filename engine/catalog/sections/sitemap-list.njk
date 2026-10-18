@@ -4,7 +4,7 @@
   anatomy: shell(center false) > div.grid > div(h3 + ul)
   data: s = { groups: [{ title, links: [{ label, href }] }] }
 #}
-{% from "sections/_shell.njk" import shell %}
+{% from "sections/_shell.njk" import shell with context %}
 {% macro render(s, ctx) %}
 {% call shell("sitemap-list", s, ctx, { center: false }) %}
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

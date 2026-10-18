@@ -11,7 +11,7 @@
   i18n: label ≤ 25 chars in every locale (R-TYPO-07); icons that point along the reading direction pass rtl:-scale-x-100
   content limits: verb-first label, 1–4 words (R-CONT-05); opts = { href, variant, size, icon, iconEnd, type, external, disabled, pending, attrs }
 #}
-{% from "primitives/icon.njk" import icon %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro button(label, opts={}) %}
 {%- set variant = opts.variant or "primary" -%}
 {%- set size = opts.size or "md" -%}

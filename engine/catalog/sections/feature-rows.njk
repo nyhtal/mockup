@@ -12,9 +12,9 @@
   content limits: title ≤ 60 chars; text ≤ 60 words; 2–4 rows
   data: s = { eyebrow, title, lede, items: [{ eyebrow, title, text, image, link: {label, href} }] }
 #}
-{% from "sections/_shell.njk" import shell %}
-{% from "primitives/picture.njk" import picture %}
-{% from "primitives/button.njk" import button %}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/picture.njk" import picture with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
 {% call shell("feature-rows", s, ctx) %}
 <div class="space-y-16 md:space-y-24">
