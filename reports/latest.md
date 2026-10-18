@@ -1,309 +1,1747 @@
 # Gate report: reference
 
-Date: 2026-10-18T07:13:27.019Z  Commit: a0a5566  OS: win32 x64
-Node 24.19.0 · lighthouse 13.5.0 · tailwindcss 4.3.3 · eleventy 3.1.7 · pa11y 10.0.0 · vnu 26.10.12
+Date: 2026-10-18T17:15:30.420Z  Commit: 3292a4d  OS: win32 x64
+Node 24.19.0 · lighthouse 13.5.0 · tailwindcss 4.3.3 · eleventy 3.1.7 · axe-core 4.14.0 · vnu 26.10.12
 
 | Gate | Result | Findings | Time |
 |---|---|---|---|
 | bylaws | pass | 0 | 0.0s |
-| html | pass | 0 | 4.1s |
+| html | pass | 0 | 4.0s |
 | consistency | pass | 0 | 0.9s |
-| schema | skipped | 0 | - |
-| budget | pass | 0 | 1.4s |
-| i18n | skipped | 0 | - |
-| links | skipped | 0 | - |
-| a11y | skipped | 0 | - |
+| schema | pass | 0 | 0.5s |
+| budget | pass | 0 | 1.6s |
+| i18n | pass | 0 | 1.3s |
+| links | pass | 0 | 1.7s |
+| a11y | pass | 0 | 260.8s |
 | lighthouse | skipped | 0 | - |
 
 ## Page weight
 
 | Page | HTML | Total (mobile) | Total over gzip |
 |---|---|---|---|
-| /404.html | 31284 B | 146366 B | 68591 B |
-| /500.html | 31323 B | 146405 B | 68586 B |
-| /ar/404/ | 36991 B | 205113 B | 122493 B |
-| /ar/500/ | 36862 B | 204984 B | 122504 B |
-| /ar/about/history/ | 42131 B | 210253 B | 123469 B |
-| /ar/about/ | 58079 B | 232471 B | 132061 B |
-| /ar/about/locations/hamburg/ | 44536 B | 215245 B | 126460 B |
-| /ar/about/locations/ | 42576 B | 210698 B | 123411 B |
-| /ar/about/locations/manchester/ | 45745 B | 216255 B | 126339 B |
-| /ar/about/locations/riyadh/ | 43440 B | 214735 B | 127007 B |
-| /ar/about/team/alex-morgan/ | 42900 B | 214305 B | 127265 B |
-| /ar/about/team/ | 46930 B | 215052 B | 123754 B |
-| /ar/about/team/jonas-weber/ | 40454 B | 208576 B | 123341 B |
-| /ar/about/team/mei-chen/ | 42751 B | 214495 B | 127614 B |
-| /ar/about/team/priya-natarajan/ | 43300 B | 215398 B | 128057 B |
-| /ar/about/team/sofia-lindqvist/ | 40497 B | 208619 B | 123253 B |
-| /ar/about/values/ | 43020 B | 211142 B | 123707 B |
-| /ar/blog/author/alex-morgan/ | 42699 B | 214104 B | 127327 B |
-| /ar/blog/author/mei-chen/ | 42532 B | 214276 B | 127639 B |
-| /ar/blog/author/priya-natarajan/ | 43035 B | 215133 B | 128083 B |
-| /ar/blog/ | 46744 B | 225747 B | 135264 B |
-| /ar/blog/reading-generated-code/ | 57117 B | 232498 B | 134115 B |
-| /ar/blog/recipe-changes-by-line-leads/ | 56731 B | 232451 B | 134400 B |
-| /ar/blog/sensor-logic-at-the-edge/ | 56790 B | 231817 B | 133876 B |
-| /ar/blog/tag/engineering/ | 41976 B | 217696 B | 131223 B |
-| /ar/blog/tag/operations/ | 40125 B | 211530 B | 126653 B |
-| /ar/blog/tag/safety/ | 40039 B | 211783 B | 127007 B |
-| /ar/careers/culture/ | 50347 B | 235450 B | 141674 B |
-| /ar/careers/ | 59572 B | 227694 B | 125885 B |
-| /ar/careers/safety-assessor/ | 50338 B | 218460 B | 125168 B |
-| /ar/careers/senior-controls-engineer/ | 51788 B | 219910 B | 125423 B |
-| /ar/careers/support-engineer-german/ | 51998 B | 220120 B | 125431 B |
-| /ar/careers/technical-writer/ | 50005 B | 218127 B | 125113 B |
-| /ar/careers/thank-you/ | 39164 B | 207286 B | 122946 B |
-| /ar/contact/ | 47689 B | 215811 B | 124187 B |
-| /ar/contact/thank-you/ | 39102 B | 207224 B | 122924 B |
-| /ar/customers/alder-foods/ | 49118 B | 217240 B | 124986 B |
-| /ar/customers/brightline-pharma/ | 50804 B | 218926 B | 125139 B |
-| /ar/customers/castor-automotive/ | 51148 B | 219270 B | 125145 B |
-| /ar/customers/ | 49553 B | 217675 B | 124306 B |
-| /ar/demo/ | 49962 B | 218084 B | 124661 B |
-| /ar/demo/thank-you/ | 39144 B | 207266 B | 122928 B |
-| /ar/events/describe-your-first-line/ | 52004 B | 220126 B | 125399 B |
-| /ar/events/ | 44331 B | 212453 B | 123880 B |
-| /ar/events/northwind-at-automation-fair/ | 48795 B | 216917 B | 124838 B |
-| /ar/events/safety-plcs-webinar/ | 52010 B | 220132 B | 125242 B |
-| /ar/events/thank-you/ | 39055 B | 207177 B | 122874 B |
-| /ar/faq/ | 46047 B | 214169 B | 123996 B |
-| /ar/glossary/ | 40676 B | 208798 B | 123484 B |
-| /ar/help/change-a-recipe/ | 45499 B | 213621 B | 124341 B |
-| /ar/help/connect-a-controller/ | 46193 B | 214315 B | 124432 B |
-| /ar/help/describe-your-first-line/ | 47611 B | 215733 B | 124679 B |
-| /ar/help/ | 42997 B | 211119 B | 123586 B |
-| /ar/ | 61983 B | 245067 B | 141253 B |
-| /ar/industries/automotive/ | 51060 B | 225134 B | 130696 B |
-| /ar/industries/food-and-beverage/ | 51398 B | 226526 B | 131759 B |
-| /ar/industries/ | 46276 B | 214398 B | 124061 B |
-| /ar/industries/pharmaceutical/ | 51082 B | 226276 B | 131751 B |
-| /ar/legal/accessibility/ | 40026 B | 208148 B | 123563 B |
-| /ar/legal/cookies/ | 39716 B | 207838 B | 123349 B |
-| /ar/legal/privacy/ | 40205 B | 208327 B | 123671 B |
-| /ar/legal/terms/ | 39826 B | 207948 B | 123606 B |
-| /ar/lp/line-automation-2026/ | 61633 B | 229755 B | 126368 B |
-| /ar/news/ | 42909 B | 211031 B | 123589 B |
-| /ar/news/media-kit/ | 44389 B | 212511 B | 123469 B |
-| /ar/news/northwind-4/ | 45903 B | 214025 B | 124545 B |
-| /ar/news/riyadh-office/ | 46427 B | 214549 B | 124538 B |
-| /ar/news/thousandth-line/ | 46455 B | 214577 B | 124563 B |
-| /ar/newsletter/ | 40190 B | 208312 B | 123298 B |
-| /ar/newsletter/preferences/ | 41299 B | 209421 B | 123274 B |
-| /ar/newsletter/preferences/thank-you/ | 40072 B | 208194 B | 122976 B |
-| /ar/newsletter/thank-you/ | 39322 B | 207444 B | 122936 B |
-| /ar/newsletter/unsubscribe/ | 40508 B | 208630 B | 123273 B |
-| /ar/newsletter/unsubscribe/thank-you/ | 40019 B | 208141 B | 122970 B |
-| /ar/partners/ | 47295 B | 215417 B | 124077 B |
-| /ar/pricing/ | 57889 B | 226011 B | 125367 B |
-| /ar/products/ | 48083 B | 227528 B | 135564 B |
-| /ar/products/northwind-cloud/ | 59869 B | 235557 B | 133277 B |
-| /ar/products/northwind-edge/ | 57074 B | 231731 B | 132194 B |
-| /ar/products/northwind-studio/ | 61505 B | 236828 B | 133316 B |
-| /ar/resources/downloads/commissioning-checklist/ | 49961 B | 221278 B | 127996 B |
-| /ar/resources/downloads/downtime-calculator/ | 47928 B | 219128 B | 127692 B |
-| /ar/resources/downloads/ | 43434 B | 211556 B | 123468 B |
-| /ar/resources/downloads/safety-evidence-guide/ | 48223 B | 219581 B | 127888 B |
-| /ar/resources/downloads/thank-you/ | 39950 B | 208072 B | 122990 B |
-| /ar/resources/ | 48627 B | 216749 B | 124145 B |
-| /ar/search/ | 40209 B | 208331 B | 123201 B |
-| /ar/services/ | 52736 B | 220858 B | 124987 B |
-| /ar/services/line-automation/ | 56474 B | 233484 B | 134470 B |
-| /ar/services/plant-programmes/ | 56455 B | 235545 B | 136466 B |
-| /ar/services/safety-reviews/ | 56381 B | 229863 B | 130791 B |
-| /ar/sitemap/ | 57059 B | 225181 B | 124556 B |
-| /ar/sustainability/ | 50432 B | 224317 B | 130459 B |
-| /ar/trust/ | 49674 B | 217796 B | 124592 B |
-| /de/404/ | 35424 B | 150506 B | 69075 B |
-| /de/500/ | 35608 B | 150690 B | 69102 B |
-| /de/about/history/ | 40641 B | 155723 B | 70026 B |
-| /de/about/ | 56363 B | 177715 B | 78541 B |
-| /de/about/locations/hamburg/ | 43008 B | 160677 B | 73035 B |
-| /de/about/locations/ | 41015 B | 156097 B | 69985 B |
-| /de/about/locations/manchester/ | 44231 B | 161701 B | 72912 B |
-| /de/about/locations/riyadh/ | 41877 B | 160132 B | 73589 B |
-| /de/about/team/alex-morgan/ | 41325 B | 159690 B | 73830 B |
-| /de/about/team/ | 45323 B | 160405 B | 70327 B |
-| /de/about/team/jonas-weber/ | 38911 B | 153993 B | 69933 B |
-| /de/about/team/mei-chen/ | 41221 B | 159925 B | 74181 B |
-| /de/about/team/priya-natarajan/ | 41640 B | 160698 B | 74634 B |
-| /de/about/team/sofia-lindqvist/ | 39006 B | 154088 B | 69882 B |
-| /de/about/values/ | 41509 B | 156591 B | 70259 B |
-| /de/blog/author/alex-morgan/ | 41136 B | 159501 B | 73895 B |
-| /de/blog/author/mei-chen/ | 41051 B | 159755 B | 74228 B |
-| /de/blog/author/priya-natarajan/ | 41411 B | 160469 B | 74681 B |
-| /de/blog/ | 44919 B | 170882 B | 81776 B |
-| /de/blog/reading-generated-code/ | 54174 B | 176515 B | 80471 B |
-| /de/blog/recipe-changes-by-line-leads/ | 53786 B | 176466 B | 80798 B |
-| /de/blog/sensor-logic-at-the-edge/ | 53912 B | 175899 B | 80210 B |
-| /de/blog/tag/engineering/ | 40422 B | 163102 B | 77775 B |
-| /de/blog/tag/operations/ | 38590 B | 156955 B | 73217 B |
-| /de/blog/tag/safety/ | 38527 B | 157231 B | 73572 B |
-| /de/careers/culture/ | 48427 B | 180490 B | 88087 B |
-| /de/careers/ | 57568 B | 172650 B | 72334 B |
-| /de/careers/safety-assessor/ | 48381 B | 163463 B | 71703 B |
-| /de/careers/senior-controls-engineer/ | 49938 B | 165020 B | 71806 B |
-| /de/careers/support-engineer-german/ | 49865 B | 164947 B | 71791 B |
-| /de/careers/technical-writer/ | 48201 B | 163283 B | 71617 B |
-| /de/careers/thank-you/ | 37834 B | 152916 B | 69546 B |
-| /de/contact/ | 45986 B | 161068 B | 70745 B |
-| /de/contact/thank-you/ | 37792 B | 152874 B | 69495 B |
-| /de/customers/alder-foods/ | 47099 B | 162181 B | 71454 B |
-| /de/customers/brightline-pharma/ | 48948 B | 164030 B | 71586 B |
-| /de/customers/castor-automotive/ | 49095 B | 164177 B | 71594 B |
-| /de/customers/ | 47877 B | 162959 B | 70853 B |
-| /de/demo/ | 48148 B | 163230 B | 71180 B |
-| /de/demo/thank-you/ | 37726 B | 152808 B | 69518 B |
-| /de/events/describe-your-first-line/ | 50291 B | 165373 B | 71934 B |
-| /de/events/ | 42740 B | 157822 B | 70454 B |
-| /de/events/northwind-at-automation-fair/ | 47070 B | 162152 B | 71422 B |
-| /de/events/safety-plcs-webinar/ | 49947 B | 165029 B | 71757 B |
-| /de/events/thank-you/ | 37702 B | 152784 B | 69486 B |
-| /de/faq/ | 44155 B | 159237 B | 70508 B |
-| /de/glossary/ | 38825 B | 153907 B | 70026 B |
-| /de/help/change-a-recipe/ | 43789 B | 158871 B | 70911 B |
-| /de/help/connect-a-controller/ | 44373 B | 159455 B | 70974 B |
-| /de/help/describe-your-first-line/ | 45854 B | 160936 B | 71239 B |
-| /de/help/ | 41485 B | 156567 B | 70181 B |
-| /de/ | 60025 B | 190069 B | 87628 B |
-| /de/industries/automotive/ | 49006 B | 170040 B | 77192 B |
-| /de/industries/food-and-beverage/ | 49323 B | 171411 B | 78277 B |
-| /de/industries/ | 44602 B | 159684 B | 70610 B |
-| /de/industries/pharmaceutical/ | 49046 B | 171200 B | 78260 B |
-| /de/legal/accessibility/ | 38393 B | 153475 B | 70160 B |
-| /de/legal/cookies/ | 37772 B | 152854 B | 69919 B |
-| /de/legal/imprint/ | 33696 B | 148778 B | 69544 B |
-| /de/legal/privacy/ | 38505 B | 153587 B | 70234 B |
-| /de/legal/terms/ | 38398 B | 153480 B | 70169 B |
-| /de/lp/line-automation-2026/ | 59701 B | 174783 B | 72790 B |
-| /de/news/ | 41223 B | 156305 B | 70151 B |
-| /de/news/media-kit/ | 42742 B | 157824 B | 70041 B |
-| /de/news/northwind-4/ | 44314 B | 159396 B | 71102 B |
-| /de/news/riyadh-office/ | 44381 B | 159463 B | 71087 B |
-| /de/news/thousandth-line/ | 44538 B | 159620 B | 71083 B |
-| /de/newsletter/ | 38681 B | 153763 B | 69873 B |
-| /de/newsletter/preferences/ | 39611 B | 154693 B | 69830 B |
-| /de/newsletter/preferences/thank-you/ | 38493 B | 153575 B | 69530 B |
-| /de/newsletter/thank-you/ | 37840 B | 152922 B | 69538 B |
-| /de/newsletter/unsubscribe/ | 38806 B | 153888 B | 69801 B |
-| /de/newsletter/unsubscribe/thank-you/ | 38463 B | 153545 B | 69538 B |
-| /de/partners/ | 45774 B | 160856 B | 70633 B |
-| /de/pricing/ | 55614 B | 170696 B | 71837 B |
-| /de/products/ | 46278 B | 172683 B | 82070 B |
-| /de/products/northwind-cloud/ | 57587 B | 180235 B | 79720 B |
-| /de/products/northwind-edge/ | 54944 B | 176561 B | 78685 B |
-| /de/products/northwind-studio/ | 59364 B | 181647 B | 79720 B |
-| /de/resources/downloads/commissioning-checklist/ | 48070 B | 166347 B | 74528 B |
-| /de/resources/downloads/downtime-calculator/ | 46278 B | 164438 B | 74228 B |
-| /de/resources/downloads/ | 41842 B | 156924 B | 70044 B |
-| /de/resources/downloads/safety-evidence-guide/ | 46450 B | 164768 B | 74433 B |
-| /de/resources/downloads/thank-you/ | 38484 B | 153566 B | 69577 B |
-| /de/resources/ | 47109 B | 162191 B | 70728 B |
-| /de/search/ | 38696 B | 153778 B | 69757 B |
-| /de/services/ | 50868 B | 165950 B | 71467 B |
-| /de/services/line-automation/ | 54525 B | 178495 B | 80922 B |
-| /de/services/plant-programmes/ | 54543 B | 180593 B | 83013 B |
-| /de/services/safety-reviews/ | 54118 B | 174560 B | 77295 B |
-| /de/sitemap/ | 55233 B | 170315 B | 71078 B |
-| /de/sustainability/ | 48601 B | 169446 B | 76990 B |
-| /de/trust/ | 47892 B | 162974 B | 71120 B |
-| /en/404/ | 35312 B | 150394 B | 68975 B |
-| /en/500/ | 35351 B | 150433 B | 68969 B |
-| /en/about/history/ | 40385 B | 155467 B | 69862 B |
-| /en/about/ | 55938 B | 177290 B | 78242 B |
-| /en/about/locations/hamburg/ | 42787 B | 160456 B | 72889 B |
-| /en/about/locations/ | 40804 B | 155886 B | 69829 B |
-| /en/about/locations/manchester/ | 44023 B | 161493 B | 72748 B |
-| /en/about/locations/riyadh/ | 41683 B | 159938 B | 73437 B |
-| /en/about/team/alex-morgan/ | 41080 B | 159445 B | 73661 B |
-| /en/about/team/ | 45132 B | 160214 B | 70166 B |
-| /en/about/team/jonas-weber/ | 38685 B | 153767 B | 69767 B |
-| /en/about/team/mei-chen/ | 40944 B | 159648 B | 73998 B |
-| /en/about/team/priya-natarajan/ | 41351 B | 160409 B | 74443 B |
-| /en/about/team/sofia-lindqvist/ | 38795 B | 153877 B | 69722 B |
-| /en/about/values/ | 41331 B | 156413 B | 70104 B |
-| /en/blog/author/alex-morgan/ | 40799 B | 159164 B | 73719 B |
-| /en/blog/author/mei-chen/ | 40662 B | 159366 B | 74032 B |
-| /en/blog/author/priya-natarajan/ | 41058 B | 160116 B | 74469 B |
-| /en/blog/ | 44569 B | 170532 B | 81541 B |
-| /en/blog/reading-generated-code/ | 53602 B | 175943 B | 80108 B |
-| /en/blog/recipe-changes-by-line-leads/ | 53114 B | 175794 B | 80407 B |
-| /en/blog/sensor-logic-at-the-edge/ | 53066 B | 175053 B | 79777 B |
-| /en/blog/tag/engineering/ | 40188 B | 162868 B | 77573 B |
-| /en/blog/tag/operations/ | 38414 B | 156779 B | 73069 B |
-| /en/blog/tag/safety/ | 38222 B | 156926 B | 73399 B |
-| /en/careers/culture/ | 48149 B | 180212 B | 87866 B |
-| /en/careers/ | 57196 B | 172278 B | 72071 B |
-| /en/careers/safety-assessor/ | 47890 B | 162972 B | 71457 B |
-| /en/careers/senior-controls-engineer/ | 49474 B | 164556 B | 71537 B |
-| /en/careers/support-engineer-german/ | 49422 B | 164504 B | 71533 B |
-| /en/careers/technical-writer/ | 47795 B | 162877 B | 71374 B |
-| /en/careers/thank-you/ | 37517 B | 152599 B | 69383 B |
-| /en/contact/ | 45659 B | 160741 B | 70518 B |
-| /en/contact/thank-you/ | 37544 B | 152626 B | 69357 B |
-| /en/customers/alder-foods/ | 46627 B | 161709 B | 71191 B |
-| /en/customers/brightline-pharma/ | 48586 B | 163668 B | 71313 B |
-| /en/customers/castor-automotive/ | 48634 B | 163716 B | 71338 B |
-| /en/customers/ | 47632 B | 162714 B | 70614 B |
-| /en/demo/ | 47868 B | 162950 B | 70928 B |
-| /en/demo/thank-you/ | 37505 B | 152587 B | 69378 B |
-| /en/events/describe-your-first-line/ | 49825 B | 164907 B | 71547 B |
-| /en/events/ | 42399 B | 157481 B | 70251 B |
-| /en/events/northwind-at-automation-fair/ | 46638 B | 161720 B | 71150 B |
-| /en/events/safety-plcs-webinar/ | 49683 B | 164765 B | 71439 B |
-| /en/events/thank-you/ | 37415 B | 152497 B | 69342 B |
-| /en/faq/ | 43780 B | 158862 B | 70269 B |
-| /en/glossary/ | 38497 B | 153579 B | 69799 B |
-| /en/help/change-a-recipe/ | 43313 B | 158395 B | 70640 B |
-| /en/help/connect-a-controller/ | 43965 B | 159047 B | 70725 B |
-| /en/help/describe-your-first-line/ | 45344 B | 160426 B | 70949 B |
-| /en/help/ | 41260 B | 156342 B | 70022 B |
-| /en/ | 59470 B | 189514 B | 87348 B |
-| /en/industries/automotive/ | 48637 B | 169671 B | 76935 B |
-| /en/industries/food-and-beverage/ | 48902 B | 170990 B | 77987 B |
-| /en/industries/ | 44362 B | 159444 B | 70404 B |
-| /en/industries/pharmaceutical/ | 48729 B | 170883 B | 77993 B |
-| /en/legal/accessibility/ | 37970 B | 153052 B | 69900 B |
-| /en/legal/cookies/ | 37478 B | 152560 B | 69722 B |
-| /en/legal/privacy/ | 38027 B | 153109 B | 69965 B |
-| /en/legal/terms/ | 37896 B | 152978 B | 69900 B |
-| /en/lp/line-automation-2026/ | 59113 B | 174195 B | 72499 B |
-| /en/news/ | 41004 B | 156086 B | 69939 B |
-| /en/news/media-kit/ | 42585 B | 157667 B | 69895 B |
-| /en/news/northwind-4/ | 43841 B | 158923 B | 70820 B |
-| /en/news/riyadh-office/ | 44023 B | 159105 B | 70818 B |
-| /en/news/thousandth-line/ | 44162 B | 159244 B | 70838 B |
-| /en/newsletter/ | 38443 B | 153525 B | 69704 B |
-| /en/newsletter/preferences/ | 39385 B | 154467 B | 69700 B |
-| /en/newsletter/preferences/thank-you/ | 38195 B | 153277 B | 69407 B |
-| /en/newsletter/thank-you/ | 37656 B | 152738 B | 69386 B |
-| /en/newsletter/unsubscribe/ | 38660 B | 153742 B | 69667 B |
-| /en/newsletter/unsubscribe/thank-you/ | 38243 B | 153325 B | 69413 B |
-| /en/partners/ | 45546 B | 160628 B | 70446 B |
-| /en/pricing/ | 55108 B | 170190 B | 71598 B |
-| /en/products/ | 45983 B | 172388 B | 81848 B |
-| /en/products/northwind-cloud/ | 57071 B | 179719 B | 79437 B |
-| /en/products/northwind-edge/ | 54506 B | 176123 B | 78345 B |
-| /en/products/northwind-studio/ | 58936 B | 181219 B | 79438 B |
-| /en/resources/downloads/commissioning-checklist/ | 47648 B | 165925 B | 74246 B |
-| /en/resources/downloads/downtime-calculator/ | 45864 B | 164024 B | 73991 B |
-| /en/resources/downloads/ | 41562 B | 156644 B | 69839 B |
-| /en/resources/downloads/safety-evidence-guide/ | 46052 B | 164370 B | 74160 B |
-| /en/resources/downloads/thank-you/ | 38280 B | 153362 B | 69444 B |
-| /en/resources/ | 46743 B | 161825 B | 70497 B |
-| /en/search/ | 38493 B | 153575 B | 69603 B |
-| /en/services/ | 50427 B | 165509 B | 71214 B |
-| /en/services/line-automation/ | 53967 B | 177937 B | 80626 B |
-| /en/services/plant-programmes/ | 54015 B | 180065 B | 82674 B |
-| /en/services/safety-reviews/ | 53589 B | 174031 B | 77023 B |
-| /en/sitemap/ | 54547 B | 169629 B | 70768 B |
-| /en/style-guide/components/ | 71465 B | 200780 B | 88589 B |
-| /en/style-guide/controls/ | 70015 B | 192029 B | 81709 B |
-| /en/style-guide/ | 46281 B | 161363 B | 70282 B |
-| /en/style-guide/primitives/ | 59140 B | 184182 B | 82166 B |
-| /en/style-guide/sections/ | 97543 B | 234897 B | 98178 B |
-| /en/style-guide/sections-b/ | 107722 B | 249983 B | 104799 B |
-| /en/style-guide/sections-c/ | 105903 B | 224180 B | 80133 B |
-| /en/style-guide/sections-d/ | 78876 B | 215096 B | 95604 B |
-| /en/sustainability/ | 48195 B | 169040 B | 76737 B |
-| /en/trust/ | 47395 B | 162477 B | 70831 B |
-| / | 1233 B | 113522 B | 62006 B |
+| /404.html | 31388 B | 151448 B | 69407 B |
+| /500.html | 31427 B | 151487 B | 69402 B |
+| /ar/404/ | 37101 B | 210201 B | 123310 B |
+| /ar/500/ | 36972 B | 210072 B | 123320 B |
+| /ar/about/history/ | 42717 B | 215817 B | 124390 B |
+| /ar/about/ | 59483 B | 238853 B | 133029 B |
+| /ar/about/locations/hamburg/ | 44926 B | 220613 B | 127324 B |
+| /ar/about/locations/ | 43092 B | 216192 B | 124275 B |
+| /ar/about/locations/manchester/ | 46196 B | 221684 B | 127208 B |
+| /ar/about/locations/riyadh/ | 43769 B | 220042 B | 127870 B |
+| /ar/about/team/alex-morgan/ | 43190 B | 219573 B | 128118 B |
+| /ar/about/team/ | 47835 B | 220935 B | 124689 B |
+| /ar/about/team/jonas-weber/ | 40653 B | 213753 B | 124206 B |
+| /ar/about/team/mei-chen/ | 43041 B | 219763 B | 128465 B |
+| /ar/about/team/priya-natarajan/ | 43590 B | 220666 B | 128910 B |
+| /ar/about/team/sofia-lindqvist/ | 40696 B | 213796 B | 124100 B |
+| /ar/about/values/ | 43749 B | 216849 B | 124640 B |
+| /ar/blog/author/alex-morgan/ | 42989 B | 219372 B | 128179 B |
+| /ar/blog/author/mei-chen/ | 42822 B | 219544 B | 128492 B |
+| /ar/blog/author/priya-natarajan/ | 43325 B | 220401 B | 128936 B |
+| /ar/blog/ | 47181 B | 231162 B | 136112 B |
+| /ar/blog/reading-generated-code/ | 57377 B | 237736 B | 134950 B |
+| /ar/blog/recipe-changes-by-line-leads/ | 56991 B | 237689 B | 135237 B |
+| /ar/blog/sensor-logic-at-the-edge/ | 57050 B | 237055 B | 134716 B |
+| /ar/blog/tag/engineering/ | 42327 B | 223025 B | 132078 B |
+| /ar/blog/tag/operations/ | 40415 B | 216798 B | 127512 B |
+| /ar/blog/tag/safety/ | 40329 B | 217051 B | 127868 B |
+| /ar/careers/culture/ | 51397 B | 241478 B | 142629 B |
+| /ar/careers/ | 61024 B | 234124 B | 126831 B |
+| /ar/careers/safety-assessor/ | 50653 B | 223753 B | 126018 B |
+| /ar/careers/senior-controls-engineer/ | 52164 B | 225264 B | 126272 B |
+| /ar/careers/support-engineer-german/ | 52374 B | 225474 B | 126281 B |
+| /ar/careers/technical-writer/ | 50320 B | 223420 B | 125968 B |
+| /ar/careers/thank-you/ | 39269 B | 212369 B | 123760 B |
+| /ar/contact/ | 48320 B | 221420 B | 125054 B |
+| /ar/contact/thank-you/ | 39207 B | 212307 B | 123739 B |
+| /ar/customers/alder-foods/ | 50169 B | 223269 B | 125987 B |
+| /ar/customers/brightline-pharma/ | 51916 B | 225016 B | 126140 B |
+| /ar/customers/castor-automotive/ | 52260 B | 225360 B | 126156 B |
+| /ar/customers/ | 51094 B | 224194 B | 125258 B |
+| /ar/demo/ | 51034 B | 224134 B | 125557 B |
+| /ar/demo/thank-you/ | 39249 B | 212349 B | 123742 B |
+| /ar/events/describe-your-first-line/ | 52514 B | 225614 B | 126270 B |
+| /ar/events/ | 44768 B | 217868 B | 124728 B |
+| /ar/events/northwind-at-automation-fair/ | 49110 B | 222210 B | 125687 B |
+| /ar/events/safety-plcs-webinar/ | 52520 B | 225620 B | 126110 B |
+| /ar/events/thank-you/ | 39160 B | 212260 B | 123687 B |
+| /ar/faq/ | 46543 B | 219643 B | 124916 B |
+| /ar/glossary/ | 40905 B | 214005 B | 124337 B |
+| /ar/help/change-a-recipe/ | 45789 B | 218889 B | 125201 B |
+| /ar/help/connect-a-controller/ | 46483 B | 219583 B | 125292 B |
+| /ar/help/describe-your-first-line/ | 47962 B | 221062 B | 125539 B |
+| /ar/help/ | 43364 B | 216464 B | 124458 B |
+| /ar/ | 64632 B | 259549 B | 149327 B |
+| /ar/industries/automotive/ | 52331 B | 231383 B | 131691 B |
+| /ar/industries/food-and-beverage/ | 52669 B | 232775 B | 132758 B |
+| /ar/industries/ | 47059 B | 220159 B | 124995 B |
+| /ar/industries/pharmaceutical/ | 52353 B | 232525 B | 132745 B |
+| /ar/legal/accessibility/ | 40225 B | 213325 B | 124432 B |
+| /ar/legal/cookies/ | 39915 B | 213015 B | 124195 B |
+| /ar/legal/privacy/ | 40404 B | 213504 B | 124520 B |
+| /ar/legal/terms/ | 40025 B | 213125 B | 124480 B |
+| /ar/lp/line-automation-2026/ | 63264 B | 236364 B | 127386 B |
+| /ar/news/ | 43346 B | 216446 B | 124436 B |
+| /ar/news/media-kit/ | 44831 B | 217931 B | 124326 B |
+| /ar/news/northwind-4/ | 46102 B | 219202 B | 125392 B |
+| /ar/news/riyadh-office/ | 46626 B | 219726 B | 125387 B |
+| /ar/news/thousandth-line/ | 46654 B | 219754 B | 125410 B |
+| /ar/newsletter/ | 40414 B | 213514 B | 124139 B |
+| /ar/newsletter/preferences/ | 41523 B | 214623 B | 124116 B |
+| /ar/newsletter/preferences/thank-you/ | 40177 B | 213277 B | 123791 B |
+| /ar/newsletter/thank-you/ | 39427 B | 212527 B | 123749 B |
+| /ar/newsletter/unsubscribe/ | 40732 B | 213832 B | 124119 B |
+| /ar/newsletter/unsubscribe/thank-you/ | 40124 B | 213224 B | 123786 B |
+| /ar/partners/ | 48621 B | 221721 B | 125015 B |
+| /ar/pricing/ | 58924 B | 232024 B | 126334 B |
+| /ar/products/ | 48901 B | 233324 B | 136492 B |
+| /ar/products/northwind-cloud/ | 61290 B | 241956 B | 134248 B |
+| /ar/products/northwind-edge/ | 58439 B | 238074 B | 133158 B |
+| /ar/products/northwind-studio/ | 62987 B | 243288 B | 134316 B |
+| /ar/resources/downloads/commissioning-checklist/ | 50337 B | 226632 B | 128967 B |
+| /ar/resources/downloads/downtime-calculator/ | 48243 B | 224421 B | 128543 B |
+| /ar/resources/downloads/ | 43846 B | 216946 B | 124325 B |
+| /ar/resources/downloads/safety-evidence-guide/ | 48538 B | 224874 B | 128739 B |
+| /ar/resources/downloads/thank-you/ | 40055 B | 213155 B | 123805 B |
+| /ar/resources/ | 48998 B | 222098 B | 125112 B |
+| /ar/search/ | 40408 B | 213508 B | 124047 B |
+| /ar/services/ | 53545 B | 226645 B | 125921 B |
+| /ar/services/line-automation/ | 58062 B | 240050 B | 135505 B |
+| /ar/services/plant-programmes/ | 58043 B | 242111 B | 137504 B |
+| /ar/services/safety-reviews/ | 57991 B | 236451 B | 131838 B |
+| /ar/sitemap/ | 57169 B | 230269 B | 125382 B |
+| /ar/sustainability/ | 51548 B | 230411 B | 131405 B |
+| /ar/trust/ | 50559 B | 223659 B | 125581 B |
+| /de/404/ | 35534 B | 155594 B | 69890 B |
+| /de/500/ | 35718 B | 155778 B | 69920 B |
+| /de/about/history/ | 41227 B | 161287 B | 70950 B |
+| /de/about/ | 57767 B | 184097 B | 79509 B |
+| /de/about/locations/hamburg/ | 43398 B | 166045 B | 73901 B |
+| /de/about/locations/ | 41531 B | 161591 B | 70850 B |
+| /de/about/locations/manchester/ | 44682 B | 167130 B | 73780 B |
+| /de/about/locations/riyadh/ | 42206 B | 165439 B | 74449 B |
+| /de/about/team/alex-morgan/ | 41615 B | 164958 B | 74684 B |
+| /de/about/team/ | 46228 B | 166288 B | 71263 B |
+| /de/about/team/jonas-weber/ | 39110 B | 159170 B | 70781 B |
+| /de/about/team/mei-chen/ | 41511 B | 165193 B | 75033 B |
+| /de/about/team/priya-natarajan/ | 41930 B | 165966 B | 75485 B |
+| /de/about/team/sofia-lindqvist/ | 39205 B | 159265 B | 70729 B |
+| /de/about/values/ | 42238 B | 162298 B | 71198 B |
+| /de/blog/author/alex-morgan/ | 41426 B | 164769 B | 74746 B |
+| /de/blog/author/mei-chen/ | 41341 B | 165023 B | 75080 B |
+| /de/blog/author/priya-natarajan/ | 41701 B | 165737 B | 75533 B |
+| /de/blog/ | 45356 B | 176297 B | 82626 B |
+| /de/blog/reading-generated-code/ | 54434 B | 181753 B | 81305 B |
+| /de/blog/recipe-changes-by-line-leads/ | 54046 B | 181704 B | 81630 B |
+| /de/blog/sensor-logic-at-the-edge/ | 54172 B | 181137 B | 81041 B |
+| /de/blog/tag/engineering/ | 40773 B | 168431 B | 78629 B |
+| /de/blog/tag/operations/ | 38880 B | 162223 B | 74072 B |
+| /de/blog/tag/safety/ | 38817 B | 162499 B | 74426 B |
+| /de/careers/culture/ | 49477 B | 186518 B | 89162 B |
+| /de/careers/ | 59020 B | 179080 B | 73288 B |
+| /de/careers/safety-assessor/ | 48696 B | 168756 B | 72553 B |
+| /de/careers/senior-controls-engineer/ | 50314 B | 170374 B | 72782 B |
+| /de/careers/support-engineer-german/ | 50241 B | 170301 B | 72754 B |
+| /de/careers/technical-writer/ | 48516 B | 168576 B | 72465 B |
+| /de/careers/thank-you/ | 37939 B | 157999 B | 70360 B |
+| /de/contact/ | 46617 B | 166677 B | 71606 B |
+| /de/contact/thank-you/ | 37897 B | 157957 B | 70309 B |
+| /de/customers/alder-foods/ | 48150 B | 168210 B | 72449 B |
+| /de/customers/brightline-pharma/ | 50060 B | 170120 B | 72630 B |
+| /de/customers/castor-automotive/ | 50207 B | 170267 B | 72636 B |
+| /de/customers/ | 49418 B | 169478 B | 71804 B |
+| /de/demo/ | 49220 B | 169280 B | 72068 B |
+| /de/demo/thank-you/ | 37831 B | 157891 B | 70330 B |
+| /de/events/describe-your-first-line/ | 50801 B | 170861 B | 72792 B |
+| /de/events/ | 43177 B | 163237 B | 71302 B |
+| /de/events/northwind-at-automation-fair/ | 47385 B | 167445 B | 72272 B |
+| /de/events/safety-plcs-webinar/ | 50457 B | 170517 B | 72628 B |
+| /de/events/thank-you/ | 37807 B | 157867 B | 70301 B |
+| /de/faq/ | 44651 B | 164711 B | 71431 B |
+| /de/glossary/ | 39054 B | 159114 B | 70877 B |
+| /de/help/change-a-recipe/ | 44079 B | 164139 B | 71767 B |
+| /de/help/connect-a-controller/ | 44663 B | 164723 B | 71831 B |
+| /de/help/describe-your-first-line/ | 46205 B | 166265 B | 72103 B |
+| /de/help/ | 41852 B | 161912 B | 71052 B |
+| /de/ | 62603 B | 204480 B | 95721 B |
+| /de/industries/automotive/ | 50277 B | 176289 B | 78187 B |
+| /de/industries/food-and-beverage/ | 50594 B | 177660 B | 79273 B |
+| /de/industries/ | 45385 B | 165445 B | 71541 B |
+| /de/industries/pharmaceutical/ | 50317 B | 177449 B | 79255 B |
+| /de/legal/accessibility/ | 38592 B | 158652 B | 71007 B |
+| /de/legal/cookies/ | 37971 B | 158031 B | 70764 B |
+| /de/legal/imprint/ | 33889 B | 153949 B | 70391 B |
+| /de/legal/privacy/ | 38704 B | 158764 B | 71080 B |
+| /de/legal/terms/ | 38597 B | 158657 B | 71015 B |
+| /de/lp/line-automation-2026/ | 61332 B | 181392 B | 73810 B |
+| /de/news/ | 41660 B | 161720 B | 70996 B |
+| /de/news/media-kit/ | 43184 B | 163244 B | 70902 B |
+| /de/news/northwind-4/ | 44513 B | 164573 B | 71949 B |
+| /de/news/riyadh-office/ | 44580 B | 164640 B | 71933 B |
+| /de/news/thousandth-line/ | 44737 B | 164797 B | 71929 B |
+| /de/newsletter/ | 38905 B | 158965 B | 70720 B |
+| /de/newsletter/preferences/ | 39835 B | 159895 B | 70677 B |
+| /de/newsletter/preferences/thank-you/ | 38598 B | 158658 B | 70344 B |
+| /de/newsletter/thank-you/ | 37945 B | 158005 B | 70352 B |
+| /de/newsletter/unsubscribe/ | 39030 B | 159090 B | 70649 B |
+| /de/newsletter/unsubscribe/thank-you/ | 38568 B | 158628 B | 70352 B |
+| /de/partners/ | 47100 B | 167160 B | 71580 B |
+| /de/pricing/ | 56649 B | 176709 B | 72790 B |
+| /de/products/ | 47096 B | 178479 B | 82999 B |
+| /de/products/northwind-cloud/ | 59008 B | 186634 B | 80694 B |
+| /de/products/northwind-edge/ | 56309 B | 182904 B | 79650 B |
+| /de/products/northwind-studio/ | 60846 B | 188107 B | 80690 B |
+| /de/resources/downloads/commissioning-checklist/ | 48446 B | 171701 B | 75383 B |
+| /de/resources/downloads/downtime-calculator/ | 46593 B | 169731 B | 75080 B |
+| /de/resources/downloads/ | 42254 B | 162314 B | 70900 B |
+| /de/resources/downloads/safety-evidence-guide/ | 46765 B | 170061 B | 75287 B |
+| /de/resources/downloads/thank-you/ | 38589 B | 158649 B | 70391 B |
+| /de/resources/ | 47480 B | 167540 B | 71569 B |
+| /de/search/ | 38895 B | 158955 B | 70606 B |
+| /de/services/ | 51677 B | 171737 B | 72404 B |
+| /de/services/line-automation/ | 56113 B | 185061 B | 81944 B |
+| /de/services/plant-programmes/ | 56131 B | 187159 B | 84040 B |
+| /de/services/safety-reviews/ | 55728 B | 181148 B | 78325 B |
+| /de/sitemap/ | 55343 B | 175403 B | 71905 B |
+| /de/sustainability/ | 49717 B | 175540 B | 77939 B |
+| /de/trust/ | 48777 B | 168837 B | 72006 B |
+| /en/404/ | 35422 B | 155482 B | 69788 B |
+| /en/500/ | 35461 B | 155521 B | 69784 B |
+| /en/about/history/ | 40971 B | 161031 B | 70784 B |
+| /en/about/ | 57342 B | 183672 B | 79199 B |
+| /en/about/locations/hamburg/ | 43177 B | 165824 B | 73754 B |
+| /en/about/locations/ | 41320 B | 161380 B | 70692 B |
+| /en/about/locations/manchester/ | 44474 B | 166922 B | 73613 B |
+| /en/about/locations/riyadh/ | 42012 B | 165245 B | 74299 B |
+| /en/about/team/alex-morgan/ | 41370 B | 164713 B | 74508 B |
+| /en/about/team/ | 46037 B | 166097 B | 71097 B |
+| /en/about/team/jonas-weber/ | 38884 B | 158944 B | 70610 B |
+| /en/about/team/mei-chen/ | 41234 B | 164916 B | 74845 B |
+| /en/about/team/priya-natarajan/ | 41641 B | 165677 B | 75294 B |
+| /en/about/team/sofia-lindqvist/ | 38994 B | 159054 B | 70567 B |
+| /en/about/values/ | 42060 B | 162120 B | 71036 B |
+| /en/blog/author/alex-morgan/ | 41089 B | 164432 B | 74566 B |
+| /en/blog/author/mei-chen/ | 40952 B | 164634 B | 74880 B |
+| /en/blog/author/priya-natarajan/ | 41348 B | 165384 B | 75317 B |
+| /en/blog/ | 45006 B | 175947 B | 82387 B |
+| /en/blog/reading-generated-code/ | 53862 B | 181181 B | 80937 B |
+| /en/blog/recipe-changes-by-line-leads/ | 53374 B | 181032 B | 81253 B |
+| /en/blog/sensor-logic-at-the-edge/ | 53326 B | 180291 B | 80618 B |
+| /en/blog/tag/engineering/ | 40539 B | 168197 B | 78428 B |
+| /en/blog/tag/operations/ | 38704 B | 162047 B | 73923 B |
+| /en/blog/tag/safety/ | 38512 B | 162194 B | 74252 B |
+| /en/careers/culture/ | 49199 B | 186240 B | 88932 B |
+| /en/careers/ | 58648 B | 178708 B | 73024 B |
+| /en/careers/safety-assessor/ | 48205 B | 168265 B | 72305 B |
+| /en/careers/senior-controls-engineer/ | 49850 B | 169910 B | 72381 B |
+| /en/careers/support-engineer-german/ | 49798 B | 169858 B | 72382 B |
+| /en/careers/technical-writer/ | 48110 B | 168170 B | 72225 B |
+| /en/careers/thank-you/ | 37622 B | 157682 B | 70192 B |
+| /en/contact/ | 46290 B | 166350 B | 71377 B |
+| /en/contact/thank-you/ | 37649 B | 157709 B | 70170 B |
+| /en/customers/alder-foods/ | 47678 B | 167738 B | 72181 B |
+| /en/customers/brightline-pharma/ | 49698 B | 169758 B | 72307 B |
+| /en/customers/castor-automotive/ | 49746 B | 169806 B | 72334 B |
+| /en/customers/ | 49173 B | 169233 B | 71605 B |
+| /en/demo/ | 48940 B | 169000 B | 71859 B |
+| /en/demo/thank-you/ | 37610 B | 157670 B | 70191 B |
+| /en/events/describe-your-first-line/ | 50335 B | 170395 B | 72498 B |
+| /en/events/ | 42836 B | 162896 B | 71097 B |
+| /en/events/northwind-at-automation-fair/ | 46953 B | 167013 B | 71997 B |
+| /en/events/safety-plcs-webinar/ | 50193 B | 170253 B | 72390 B |
+| /en/events/thank-you/ | 37520 B | 157580 B | 70155 B |
+| /en/faq/ | 44276 B | 164336 B | 71184 B |
+| /en/glossary/ | 38726 B | 158786 B | 70650 B |
+| /en/help/change-a-recipe/ | 43603 B | 163663 B | 71496 B |
+| /en/help/connect-a-controller/ | 44255 B | 164315 B | 71581 B |
+| /en/help/describe-your-first-line/ | 45695 B | 165755 B | 71804 B |
+| /en/help/ | 41627 B | 161687 B | 70892 B |
+| /en/ | 62012 B | 203889 B | 95402 B |
+| /en/industries/automotive/ | 49908 B | 175920 B | 77920 B |
+| /en/industries/food-and-beverage/ | 50173 B | 177239 B | 78975 B |
+| /en/industries/ | 45145 B | 165205 B | 71331 B |
+| /en/industries/pharmaceutical/ | 50000 B | 177132 B | 78981 B |
+| /en/legal/accessibility/ | 38169 B | 158229 B | 70743 B |
+| /en/legal/cookies/ | 37677 B | 157737 B | 70568 B |
+| /en/legal/privacy/ | 38226 B | 158286 B | 70812 B |
+| /en/legal/terms/ | 38095 B | 158155 B | 70742 B |
+| /en/lp/line-automation-2026/ | 60744 B | 180804 B | 73482 B |
+| /en/news/ | 41441 B | 161501 B | 70785 B |
+| /en/news/media-kit/ | 43027 B | 163087 B | 70752 B |
+| /en/news/northwind-4/ | 44040 B | 164100 B | 71665 B |
+| /en/news/riyadh-office/ | 44222 B | 164282 B | 71664 B |
+| /en/news/thousandth-line/ | 44361 B | 164421 B | 71683 B |
+| /en/newsletter/ | 38667 B | 158727 B | 70552 B |
+| /en/newsletter/preferences/ | 39609 B | 159669 B | 70541 B |
+| /en/newsletter/preferences/thank-you/ | 38300 B | 158360 B | 70219 B |
+| /en/newsletter/thank-you/ | 37761 B | 157821 B | 70199 B |
+| /en/newsletter/unsubscribe/ | 38884 B | 158944 B | 70511 B |
+| /en/newsletter/unsubscribe/thank-you/ | 38348 B | 158408 B | 70226 B |
+| /en/partners/ | 46872 B | 166932 B | 71385 B |
+| /en/pricing/ | 56143 B | 176203 B | 72545 B |
+| /en/products/ | 46801 B | 178184 B | 82769 B |
+| /en/products/northwind-cloud/ | 58492 B | 186118 B | 80397 B |
+| /en/products/northwind-edge/ | 55871 B | 182466 B | 79305 B |
+| /en/products/northwind-studio/ | 60418 B | 187679 B | 80408 B |
+| /en/resources/downloads/commissioning-checklist/ | 48024 B | 171279 B | 75099 B |
+| /en/resources/downloads/downtime-calculator/ | 46179 B | 169317 B | 74837 B |
+| /en/resources/downloads/ | 41974 B | 162034 B | 70693 B |
+| /en/resources/downloads/safety-evidence-guide/ | 46367 B | 169663 B | 75007 B |
+| /en/resources/downloads/thank-you/ | 38385 B | 158445 B | 70256 B |
+| /en/resources/ | 47114 B | 167174 B | 71340 B |
+| /en/search/ | 38692 B | 158752 B | 70452 B |
+| /en/services/ | 51236 B | 171296 B | 72145 B |
+| /en/services/line-automation/ | 55555 B | 184503 B | 81653 B |
+| /en/services/plant-programmes/ | 55603 B | 186631 B | 83706 B |
+| /en/services/safety-reviews/ | 55199 B | 180619 B | 78050 B |
+| /en/sitemap/ | 54657 B | 174717 B | 71592 B |
+| /en/style-guide/components/ | 71866 B | 206159 B | 89438 B |
+| /en/style-guide/controls/ | 71131 B | 209041 B | 93712 B |
+| /en/style-guide/ | 46385 B | 166445 B | 71100 B |
+| /en/style-guide/primitives/ | 59189 B | 189209 B | 82979 B |
+| /en/style-guide/sections/ | 101831 B | 244163 B | 99527 B |
+| /en/style-guide/sections-b/ | 111000 B | 258239 B | 105697 B |
+| /en/style-guide/sections-c/ | 107690 B | 230945 B | 80988 B |
+| /en/style-guide/sections-d/ | 79912 B | 221110 B | 96468 B |
+| /en/sustainability/ | 49311 B | 175134 B | 77682 B |
+| /en/trust/ | 48280 B | 168340 B | 71719 B |
+| / | 1233 B | 118500 B | 62798 B |
+
+## Needs human review (axe incomplete)
+
+- `a11y/color-contrast` http://127.0.0.1:52230/404.html — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/404.html — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/500.html — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/500.html — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/404/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/404/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/500/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/500/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/history/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/history/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:animate-reveal-start > div:nth-child(1) > .text-base.leading-relaxed.mt-4)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_20\%_cover_50\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/jonas-weber/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/jonas-weber/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/values/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/about/values/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/author/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/author/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/tag/engineering/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/tag/engineering/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/tag/operations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/tag/operations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/tag/safety/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/blog/tag/safety/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/safety-assessor/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/safety-assessor/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/senior-controls-engineer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/senior-controls-engineer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/support-engineer-german/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/support-engineer-german/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/technical-writer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/technical-writer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/careers/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/contact/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/contact/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/contact/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/contact/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .hover\:fill-ink-brand.h-6[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .hover\:fill-ink-brand.h-6[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .hover\:fill-ink-brand.h-6[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .hover\:fill-ink-brand.h-6[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.mb-4 > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300 > .mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300 > .mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/demo/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/northwind-at-automation-fair/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/northwind-at-automation-fair/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/events/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/faq/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/faq/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/glossary/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/glossary/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/help/change-a-recipe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/help/change-a-recipe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/help/connect-a-controller/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/help/connect-a-controller/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/help/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/help/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/help/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/help/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.shadow-brand-900\/10)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (figcaption > .gap-4.justify-between.flex > .text-ink.font-medium)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.gap-4.justify-between.flex > .tabular-nums)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (figcaption > .mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:animate-reveal-start.rtl\:motion-safe\:sda\:animate-reveal-end.gap-12:nth-child(1) > div:nth-child(1) > .text-base.leading-relaxed.mt-4)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(4) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .p-6[data-component="testimonial"][data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .p-6[data-component="testimonial"][data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/legal/accessibility/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/legal/accessibility/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/legal/cookies/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/legal/cookies/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/legal/privacy/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/legal/privacy/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/legal/terms/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/legal/terms/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.mt-8.gap-3.flex-wrap > .shadow-brand-900\/10.active\:bg-brand-800[data-variant="primary"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(1) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(2) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(3) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/preferences/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/preferences/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/preferences/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/preferences/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/unsubscribe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/unsubscribe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/unsubscribe/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/newsletter/unsubscribe/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/pricing/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/pricing/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/pricing/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/pricing/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/commissioning-checklist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/commissioning-checklist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/downtime-calculator/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/downtime-calculator/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/safety-evidence-guide/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/safety-evidence-guide/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/downloads/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/resources/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/search/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/search/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.ms-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.ms-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.p-6.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5:nth-child(1) > .mb-4.text-ink-muted > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4.text-ink-muted > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/sitemap/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/sitemap/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/sustainability/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/sustainability/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/trust/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/trust/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/ar/trust/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/404/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/404/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/500/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/500/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/history/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/history/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:hover\:-translate-y-0\.5[data-component="card"][data-variant="team"]:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.p-6.shadow-sm.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].p-6.shadow-sm > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_20\%_cover_50\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/jonas-weber/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/jonas-weber/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/jonas-weber/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/values/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/about/values/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/author/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/tag/engineering/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/tag/engineering/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/tag/operations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/tag/operations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/tag/safety/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/blog/tag/safety/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].gap-4.motion-safe\:sda\:\[animation-fill-mode\:both\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].gap-4.motion-safe\:sda\:\[animation-fill-mode\:both\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/safety-assessor/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/safety-assessor/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/senior-controls-engineer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/senior-controls-engineer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/support-engineer-german/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/support-engineer-german/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/technical-writer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/technical-writer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/careers/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/contact/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/contact/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/contact/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/contact/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .hover\:fill-ink-brand.h-6[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .hover\:fill-ink-brand.h-6[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .hover\:fill-ink-brand.h-6[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .hover\:fill-ink-brand.h-6[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.mb-4 > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300 > .mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300 > .mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/demo/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/northwind-at-automation-fair/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/northwind-at-automation-fair/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/northwind-at-automation-fair/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/events/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/faq/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/faq/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/glossary/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/glossary/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/help/change-a-recipe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/help/change-a-recipe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/help/connect-a-controller/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/help/connect-a-controller/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/help/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/help/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/help/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/help/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.gap-12.lg\:grid-cols-2.grid > div > .before\:h-0\.5.before\:w-3.before\:bg-accent-600)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (h1)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.md\:text-xl.max-w-2xl.text-lg)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.shadow-brand-900\/10)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.border-line-strong)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (figcaption > .gap-4.justify-between.flex > .text-ink.font-medium)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.gap-4.justify-between.flex > .tabular-nums)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (figcaption > .mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(4) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .p-6[data-component="testimonial"][data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .p-6[data-component="testimonial"][data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .p-6[data-component="testimonial"][data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.from-brand-700 > .text-3xl.md\:text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.text-ink-inverse\/85)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/accessibility/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/accessibility/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/cookies/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/cookies/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/imprint/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/imprint/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/privacy/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/privacy/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/terms/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/legal/terms/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (h1)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.mt-8.gap-3.flex-wrap > .shadow-brand-900\/10.active\:bg-brand-800[data-variant="primary"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.hover\:border-brand-300)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(1) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(1) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(2) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(2) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(3) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(3) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .mt-2.leading-relaxed.text-base)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/preferences/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/preferences/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/preferences/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/preferences/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/unsubscribe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/unsubscribe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/unsubscribe/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/newsletter/unsubscribe/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/pricing/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/commissioning-checklist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/commissioning-checklist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/downtime-calculator/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/downtime-calculator/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/safety-evidence-guide/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/safety-evidence-guide/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/downloads/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/resources/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/search/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/search/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.ms-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.ms-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.p-6.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5:nth-child(1) > .mb-4.text-ink-muted > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4.text-ink-muted > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/sitemap/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/sitemap/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/sustainability/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/sustainability/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/trust/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/de/trust/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/de/trust/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/404/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/404/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/500/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/500/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/history/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/history/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/history/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:hover\:-translate-y-0\.5[data-component="card"][data-variant="team"]:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.p-6.shadow-sm.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/hamburg/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].p-6.shadow-sm > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/manchester/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/locations/riyadh/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_20\%_cover_50\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/jonas-weber/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/jonas-weber/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/jonas-weber/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/team/sofia-lindqvist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/values/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/values/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/about/values/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/alex-morgan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/mei-chen/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/author/priya-natarajan/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/reading-generated-code/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/recipe-changes-by-line-leads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/sensor-logic-at-the-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/tag/engineering/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/tag/engineering/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/tag/operations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/tag/operations/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/tag/safety/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/blog/tag/safety/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/culture/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].gap-4.motion-safe\:sda\:\[animation-fill-mode\:both\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].gap-4.motion-safe\:sda\:\[animation-fill-mode\:both\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > div > .leading-relaxed)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/safety-assessor/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/safety-assessor/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/senior-controls-engineer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/senior-controls-engineer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/support-engineer-german/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/support-engineer-german/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/technical-writer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/technical-writer/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/careers/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/contact/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/contact/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/contact/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/contact/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/alder-foods/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/brightline-pharma/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.from-ink-inverse.to-brand-100)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/castor-automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .hover\:fill-ink-brand.h-6[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .hover\:fill-ink-brand.h-6[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .hover\:fill-ink-brand.h-6[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .hover\:fill-ink-brand.h-6[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.mb-4 > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300 > .mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300 > .mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/customers/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/demo/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/northwind-at-automation-fair/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/northwind-at-automation-fair/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/northwind-at-automation-fair/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5.hover\:border-brand-300:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/safety-plcs-webinar/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/events/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/faq/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/faq/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/faq/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/glossary/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/glossary/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/help/change-a-recipe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/help/change-a-recipe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/help/connect-a-controller/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/help/connect-a-controller/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/help/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/help/describe-your-first-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/help/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/help/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.gap-12.lg\:grid-cols-2.grid > div > .before\:h-0\.5.before\:w-3.before\:bg-accent-600)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (h1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.md\:text-xl.max-w-2xl.text-lg)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.shadow-brand-900\/10)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.border-line-strong)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (figcaption > .gap-4.justify-between.flex > .text-ink.font-medium)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.gap-4.justify-between.flex > .tabular-nums)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (figcaption > .mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_20\%_cover_50\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_25\%_cover_55\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(4) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .p-6[data-component="testimonial"][data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .p-6[data-component="testimonial"][data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .p-6[data-component="testimonial"][data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.from-brand-700 > .text-3xl.md\:text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.text-ink-inverse\/85)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/automotive/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/food-and-beverage/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-6 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/industries/pharmaceutical/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/legal/accessibility/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/legal/accessibility/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/legal/cookies/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/legal/cookies/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/legal/privacy/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/legal/privacy/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/legal/terms/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/legal/terms/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (h1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.mt-8.gap-3.flex-wrap > .shadow-brand-900\/10.active\:bg-brand-800[data-variant="primary"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.hover\:border-brand-300)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(1) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(1) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(2) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(2) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(3) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (div[data-component="stat"][data-variant="default"]:nth-child(3) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .mt-2.leading-relaxed.text-base)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_20\%_cover_50\%\] > .mt-2.leading-relaxed.text-base)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_25\%_cover_55\%\] > .mt-2.leading-relaxed.text-base)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/lp/line-automation-2026/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/media-kit/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/northwind-4/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/riyadh-office/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-xl > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/news/thousandth-line/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/preferences/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/preferences/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/preferences/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/preferences/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/unsubscribe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/unsubscribe/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/unsubscribe/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/newsletter/unsubscribe/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .h-6.fill-ink-muted[viewBox="0 0 151 32"] > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/partners/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:animate-reveal > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\] > figure > figcaption > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/pricing/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-cloud/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-edge/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\] > .text-base.leading-relaxed.mt-2)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/products/northwind-studio/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/commissioning-checklist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/commissioning-checklist/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/downtime-calculator/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/downtime-calculator/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/safety-evidence-guide/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/safety-evidence-guide/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/downloads/thank-you/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/resources/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/search/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/search/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/line-automation/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.ms-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.mb-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/plant-programmes/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [shortTextContent] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.ms-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.p-6.motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:hover\:-translate-y-0\.5:nth-child(1) > .mb-4.text-ink-muted > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\] > .mb-4.text-ink-muted > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.isolate > .text-3xl.md\:text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.max-w-2xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/services/safety-reviews/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/sitemap/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/sitemap/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (figcaption > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (li:nth-child(1) > .h-full[data-variant="compact"][data-component="testimonial"] > .pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (li:nth-child(2) > .h-full[data-variant="compact"][data-component="testimonial"] > .pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (li:nth-child(3) > .h-full[data-variant="compact"][data-component="testimonial"] > .pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/components/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/controls/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/controls/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/controls/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-12 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-24 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 151 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 229 32"] > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/primitives/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-3xl.text-center.mx-auto > div > .before\:h-0\.5.before\:w-3.before\:bg-accent-600)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-3xl.text-center.mx-auto > div > .mt-3.md\:text-5xl.text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-3xl.text-center.mx-auto > div > .max-w-2xl.md\:text-xl.text-lg)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.max-w-3xl.text-center.mx-auto > div > .mt-8.flex-wrap.gap-3 > .shadow-brand-900\/10.active\:bg-brand-800[href$="style-guide/"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (a[href$="sections/"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .before\:h-0\.5.before\:w-3.before\:bg-accent-600)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .mt-3.md\:text-5xl.text-4xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="split"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .max-w-2xl.md\:text-xl.text-lg)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="split"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .mt-8.flex-wrap.gap-3 > .shadow-brand-900\/10.active\:bg-brand-800[href$="style-guide/"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="split"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .mt-8.flex-wrap.gap-3 > .active\:bg-surface-alt[href$="components/"][data-variant="secondary"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="video"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .md\:text-5xl.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="video"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .max-w-2xl.md\:text-xl.text-lg)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="video"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .mt-8.flex-wrap.gap-3 > .shadow-brand-900\/10.active\:bg-brand-800[href$="style-guide/"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="video"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div:nth-child(1) > .mt-8.flex-wrap.gap-3 > .active\:bg-surface-alt[href$="components/"][data-variant="secondary"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="form"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div > .md\:text-5xl.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="form"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div > .max-w-2xl.md\:text-xl.text-lg)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (form[action="/en/style-guide/"] > .text-xl)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (label[for="hf-name"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (label[for="hf-name"] > .font-normal)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [emptyValue] (#hf-name)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (label[for="hf-email"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (label[for="hf-email"] > .font-normal)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [emptyValue] (#hf-email)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (label[for="hf-industry"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (#hf-industry)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.mt-6:nth-child(3) > .shadow-brand-900\/10.active\:bg-brand-800[type="submit"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="stats"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div > .md\:text-5xl.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-variant="stats"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .lg\:grid-cols-2.gap-12.grid > div > .max-w-2xl.md\:text-xl.text-lg)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.shadow-brand-900\/10.active\:bg-brand-800[href$="components/"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.grid-cols-3 > div[data-variant="default"][data-component="stat"]:nth-child(1) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.grid-cols-3 > div[data-variant="default"][data-component="stat"]:nth-child(1) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.grid-cols-3 > div[data-variant="default"][data-component="stat"]:nth-child(2) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.grid-cols-3 > div[data-variant="default"][data-component="stat"]:nth-child(2) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.grid-cols-3 > div[data-variant="default"][data-component="stat"]:nth-child(3) > .tabular-nums.text-4xl.font-bold)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.grid-cols-3 > div[data-variant="default"][data-component="stat"]:nth-child(3) > .mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(1) > .hover\:fill-ink-brand.h-6[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(2) > .hover\:fill-ink-brand.h-6[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(3) > .hover\:fill-ink-brand.h-6[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 190 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 203 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (li:nth-child(6) > .hover\:fill-ink-brand.h-6[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .mt-2.leading-relaxed.text-base)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_20\%_cover_50\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > .mt-2.leading-relaxed.text-base)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_25\%_cover_55\%\] > .mt-2.leading-relaxed.text-base)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-variant="inverse"][data-component="stat"]:nth-child(1) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-variant="inverse"][data-component="stat"]:nth-child(2) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-variant="inverse"][data-component="stat"]:nth-child(3) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-variant="inverse"][data-component="stat"]:nth-child(4) > .from-ink-inverse.to-brand-100.bg-clip-text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (figcaption > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.ms-4 > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure[data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure[data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:sda\:\[animation-fill-mode\:both\].motion-safe\:sda\:animate-reveal > figure[data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.snap-start.w-80.shrink-0:nth-child(1) > figure[data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.snap-start.w-80.shrink-0:nth-child(2) > figure[data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.snap-start.w-80.shrink-0:nth-child(3) > figure[data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.snap-start.w-80.shrink-0:nth-child(4) > figure[data-variant="compact"] > .mt-auto.pt-6 > .size-8.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.from-brand-700 > .text-3xl.md\:text-4xl.tracking-tight)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.text-ink-inverse\/85)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.bg-brand-50)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [pseudoContent] (.border-ink-inverse\/70)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="team-grid"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .md\:gap-8.lg\:grid-cols-4.md\:grid-cols-2 > .motion-safe\:hover\:-translate-y-0\.5[data-component="card"][data-variant="team"]:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="team-grid"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .md\:gap-8.lg\:grid-cols-4.md\:grid-cols-2 > .motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="team-grid"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .md\:gap-8.lg\:grid-cols-4.md\:grid-cols-2 > .motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="team-grid"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .md\:gap-8.lg\:grid-cols-4.md\:grid-cols-2 > .motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_20\%_cover_50\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="team-preview"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .md\:gap-8.lg\:grid-cols-4.md\:grid-cols-2 > .motion-safe\:hover\:-translate-y-0\.5[data-component="card"][data-variant="team"]:nth-child(1) > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="team-preview"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .md\:gap-8.lg\:grid-cols-4.md\:grid-cols-2 > .motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="team-preview"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .md\:gap-8.lg\:grid-cols-4.md\:grid-cols-2 > .motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="team-preview"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .md\:gap-8.lg\:grid-cols-4.md\:grid-cols-2 > .motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\].motion-safe\:hover\:-translate-y-0\.5[data-component="card"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (svg[viewBox="0 0 151 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:hover\:-translate-y-0\.5[data-variant="case-study"] > .mb-4.text-ink-muted > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.motion-safe\:sda\:\[animation-range\:entry_10\%_cover_40\%\].motion-safe\:hover\:-translate-y-0\.5[data-variant="case-study"] > .mb-4.text-ink-muted > .h-6.fill-ink-muted[viewBox="0 0 229 32"] > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-b/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\][data-variant="team"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].motion-safe\:sda\:\[animation-fill-mode\:both\][data-variant="team"] > .mb-4 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.gap-4.motion-safe\:sda\:\[animation-range\:entry_0\%_cover_30\%\].motion-safe\:sda\:\[animation-fill-mode\:both\] > div > .leading-relaxed.mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_5\%_cover_35\%\].gap-4.motion-safe\:sda\:\[animation-fill-mode\:both\] > div > .leading-relaxed.mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds [elmPartiallyObscuring] (.motion-safe\:sda\:\[animation-range\:entry_15\%_cover_45\%\].gap-4.motion-safe\:sda\:\[animation-fill-mode\:both\] > div > .leading-relaxed.mt-1)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-c/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[y="23"][direction="ltr"][font-size="22"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.size-8 > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (aside > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="media-contact"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .max-w-xl.gap-4.p-6 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (section[data-component="contact-card"] > .max-w-7xl.sm\:px-6.lg\:px-8 > .md\:mt-16.mt-12 > .max-w-xl.gap-4.p-6 > .size-12.shrink-0[viewBox="0 0 48 48"] > .fill-brand-800[x="24"][y="24"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/style-guide/sections-d/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/sustainability/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(1) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(2) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/sustainability/ — Elements must meet minimum color contrast ratio thresholds [bgGradient] (div[data-component="stat"][data-variant="inverse"]:nth-child(3) > .tabular-nums.bg-linear-to-br.from-ink-inverse)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/sustainability/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/trust/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.xl\:h-8 > text[x="4"][y="23"][direction="ltr"])
+- `a11y/color-contrast` http://127.0.0.1:52230/en/trust/ — Elements must meet minimum color contrast ratio thresholds [bgOverlap] (.fill-brand-800)
+- `a11y/color-contrast` http://127.0.0.1:52230/en/trust/ — Elements must meet minimum color contrast ratio thresholds [imgNode] (.sm\:h-8 > text[x="4"][y="23"][direction="ltr"])
+
+## Manual checks
+
+- Done in the browser pane (Chrome 141, Windows): en and ar at 375 px and 1280 px, de at 375 px. Sections rise in on scroll and sit at their natural position once revealed; media rows slide from the inline edge (mirrored in Arabic); grid items stagger without snapping; buttons lift and press, cards lift, nav links grow an underline; the mobile drawer slides from the inline end; the video dialog on the style guide scales in behind a blurred backdrop; the floating back to top is hidden at the top and rises after 60 vh; smooth scroll; the sample clip plays (WebM chosen, poster shown, preload none, one captions track per locale); no horizontal scroll at 375 px.
+- Lighthouse skipped by instruction (the full gate takes about three hours of runs on 288 pages); last full Lighthouse pass recorded in the phase-4 report.
+- Not done: screen-reader read, 400 % zoom, Windows High Contrast, print preview, Rich Results Test, native-speaker proofread of de and ar.
