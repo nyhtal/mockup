@@ -81,12 +81,34 @@ test("the shell has one header with labelled navigation, a drawer trigger, one m
   assert.match(readFileSync("dist/reference/en/customers/index.html", "utf8"), /<a href="\/en\/customers\/"[^>]*aria-current="page"/);
 });
 
-test("enhance.js ships under 2 KB and only does what bylaw 06 allows", () => {
+test("enhance.js ships under 3 KB and only does what bylaw 06 allows", () => {
   const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
-  assert.ok(Buffer.byteLength(js) <= 2048, `${Buffer.byteLength(js)} B`);
+  assert.ok(Buffer.byteLength(js) <= 3072, `${Buffer.byteLength(js)} B`);
   assert.match(js, /IntersectionObserver/);
   assert.match(js, /commandfor/);
+  assert.match(js, /data-count/, "count-up (R-MOT-10 behaviour 3)");
+  assert.match(js, /prefers-reduced-motion/, "count-up respects reduced motion");
+  assert.match(js, /data-sound/, "sound toggle (R-MOT-10 behaviour 4)");
   assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|localStorage|document\.cookie/);
+});
+
+test("the visual layer of 0.5.0: mark in header and favicon, proof strip and highlight in the home hero, counting figures below the fold only, tiles two across, sound toggle with a name", () => {
+  const home = readFileSync("dist/reference/en/index.html", "utf8");
+  assert.match(home, /<header[^>]*>[\s\S]*?data-component="logo"[\s\S]*?<\/header>/, "the header carries the logo lockup");
+  assert.match(readFileSync("dist/reference/icon.svg", "utf8"), /V42L42 64H/, "the favicon is the cut-corner mark");
+  const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
+  assert.match(hero, /lg:grid-cols-12/);
+  assert.match(hero, /xl:text-6xl/);
+  assert.match(hero, /lines automated/, "proof strip");
+  assert.match(hero, /less downtime/, "highlight card");
+  assert.doesNotMatch(hero, /data-count/, "nothing counts above the fold (R-MOT-11)");
+  const stats = /<section[^>]*data-component="stats"[\s\S]*?<\/section>/.exec(home)[0];
+  assert.equal((stats.match(/data-count/g) || []).length, 4, "every stat on the band counts");
+  assert.match(stats, /to-accent-200/, "numerals end in the evidence colour");
+  const team = readFileSync("dist/reference/en/about/team/index.html", "utf8");
+  assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">/, "team tiles two across from 320 px");
+  assert.match(home, /<button type="button" data-sound aria-pressed="false"[^>]*>[\s\S]*?Sound effects/, "sound toggle is a named toggle button, off by default");
+  assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Soundeffekte/);
 });
 
 test("the stylesheet is compiled from the built pages only, not from docs or bylaws", () => {
@@ -126,7 +148,7 @@ test("UI strings on German and Arabic pages come from their locale, inside impor
   assert.match(ar, /data-component="locale-switcher" class="hidden sm:block"/);
   assert.match(ar, /<a href="\/ar\/search\/" class="hidden size-11 sm:inline-flex/);
   assert.match(ar, /id="drawer"[\s\S]*<a href="\/ar\/search\/" class="[^"]*sm:hidden"/);
-  assert.match(ar, /class="h-7 xl:h-8 fill-ink-brand w-auto"/);
+  assert.match(ar, /class="h-6 xl:h-7 fill-ink w-auto"/);
 });
 
 test("every indexable page is in sitemap.xml, every og:image file exists, and the last breadcrumb is the page title (paginated detail pages included)", () => {
@@ -157,7 +179,7 @@ test("review fixes: German hyphenation and wrapping, Arabic leading and tracking
   // Header at lg (Critical 3): label only from xl, wordmark h-7 until xl, CTA never wraps.
   const en = readFileSync("dist/reference/en/index.html", "utf8");
   assert.match(en, /<span class="hidden xl:inline">English<\/span>/);
-  assert.match(en, /class="h-7 xl:h-8 fill-ink-brand w-auto"/);
+  assert.match(en, /class="h-6 xl:h-7 fill-ink w-auto"/);
   assert.match(en, /<a href="\/en\/demo\/" class="hidden min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md/);
 });
 
@@ -202,8 +224,8 @@ test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA p
   assert.match(en, /<section class="relative isolate overflow-hidden [^"]*"[^>]*data-component="hero"/);
   assert.match(en, /data-component="hero"[^>]*>\n<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-hero-backdrop"><\/div>/);
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
-  assert.ok(css.includes(".bg-hero-backdrop{background-image:radial-gradient(40rem 24rem at 25% 15%, light-dark("), "hero backdrop glows in the CSS");
-  assert.ok(css.includes("radial-gradient(var(--color-line) 1px, transparent 1.5px)") && css.includes("mask-image:radial-gradient(#000 20%,#0000 75%)"), "hero backdrop dots and edge mask in the CSS");
+  assert.ok(css.includes(".bg-hero-backdrop{background-image:radial-gradient(44rem 26rem at 18% 20%,light-dark("), "hero backdrop glows in the CSS");
+  assert.ok(!css.includes("var(--color-line) 1px") && css.includes("mask-image:radial-gradient(#000 25%,#0000 78%)"), "hero backdrop has an edge mask and no dot texture (0.5.0)");
   const guide = readFileSync("dist/reference/en/style-guide/sections/index.html", "utf8");
   assert.match(guide, /data-variant="centered">[\s\S]*?<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/, "centered hero media in a framed rounded-2xl box");
   assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-3 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);

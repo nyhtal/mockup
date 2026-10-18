@@ -5,4 +5,4 @@
   data: s = { eyebrow, title, lede, items: [{ name, role, href }] }
 #}
 {% from "sections/_grid.njk" import cardGrid with context %}
-{% macro render(s, ctx) %}{{ cardGrid("team-grid", s, ctx, "team", 4) }}{% endmacro %}
+{% macro render(s, ctx) %}{{ cardGrid("team-grid", s, ctx, "team", 4, { tile: true }) }}{% endmacro %}

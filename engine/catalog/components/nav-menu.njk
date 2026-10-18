@@ -4,7 +4,7 @@
   anatomy: nav[aria-label] > ul > li > a | button[popovertarget] + div[popover]#menu-n > ul > li > a + p
   variants: none
   states: current page (aria-current + brand text), hover, focus-visible, menu open (popover)
-  spacing: gap-1 between items; panel py-8, columns gap-8
+  spacing: gap-1 between items, px-2 at lg and px-3 at xl (the lg bar holds the logo lockup, four German items and three actions in 960 px); panel py-8, columns gap-8
   motion: panel enters with the R-MOT-06 popover pattern
   keyboard: Tab through items; Enter/Space opens a menu; Escape closes it and focus returns to the button (native)
   a11y: nav labelled; the button's expanded state is exposed by the Popover API; panels are full-width under the header so no anchor positioning is needed
@@ -18,7 +18,7 @@
 {%- set href = "/" + locale + item.href -%}
 <li>
 {%- if item.children %}
-<button type="button" popovertarget="menu-{{ loop.index }}" class="inline-flex min-h-11 items-center gap-1 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150">{{ item.key | t }}<svg aria-hidden="true" class="size-4 shrink-0"><use href="#i-chevron-down"></use></svg></button>
+<button type="button" popovertarget="menu-{{ loop.index }}" class="inline-flex min-h-11 items-center gap-1 whitespace-nowrap rounded-md px-2 xl:px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150">{{ item.key | t }}<svg aria-hidden="true" class="size-4 shrink-0"><use href="#i-chevron-down"></use></svg></button>
 <div popover id="menu-{{ loop.index }}" class="fixed inset-x-0 top-16 bottom-auto m-0 w-full max-w-none border-0 border-b border-line bg-surface-raised p-0 text-ink shadow-md opacity-0 open:opacity-100 motion-safe:-translate-y-2 motion-safe:open:translate-y-0 motion-safe:transition-discrete motion-safe:transition-[opacity,translate,scale,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:-translate-y-2">
 <ul class="mx-auto grid w-full max-w-7xl gap-6 px-4 py-8 sm:px-6 md:grid-cols-2 lg:grid-cols-3 lg:px-8">
 {%- for child in item.children %}
@@ -27,7 +27,7 @@
 </ul>
 </div>
 {%- else %}
-<a href="{{ href }}" class="relative inline-flex min-h-11 items-center px-3 text-sm font-medium after:absolute after:inset-x-3 after:bottom-2 after:h-0.5 after:rounded-full after:bg-brand-600 after:scale-x-0 after:origin-left rtl:after:origin-right motion-safe:after:transition-transform motion-safe:after:duration-150 hover:after:scale-x-100 aria-[current=page]:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 hover:text-ink-brand {{ 'text-ink-brand' if currentUrl == href else 'text-ink' }}"{% if currentUrl == href %} aria-current="page"{% endif %}>{{ item.key | t }}</a>
+<a href="{{ href }}" class="relative inline-flex min-h-11 items-center whitespace-nowrap px-2 xl:px-3 text-sm font-medium after:absolute after:inset-x-2 xl:after:inset-x-3 after:bottom-2 after:h-0.5 after:rounded-full after:bg-brand-600 after:scale-x-0 after:origin-left rtl:after:origin-right motion-safe:after:transition-transform motion-safe:after:duration-150 hover:after:scale-x-100 aria-[current=page]:after:scale-x-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150 hover:text-ink-brand {{ 'text-ink-brand' if currentUrl == href else 'text-ink' }}"{% if currentUrl == href %} aria-current="page"{% endif %}>{{ item.key | t }}</a>
 {%- endif %}
 </li>
 {%- endfor %}

@@ -1,7 +1,7 @@
 {#
   name: footer
   purpose: Site footer: link columns, help/contact, legal row with locale links (R-SEO-10, R-A11Y-11 consistent help).
-  anatomy: footer > div.container > (back-to-top row) + nav[aria-label=footer] > grid of columns(h2 + ul) + div.legal(© + legal links + locale links)
+  anatomy: footer > div.container > (logo + sound toggle + back-to-top row) + nav[aria-label=footer] > grid of columns(h2 + ul) + div.legal(© + legal links + locale links)
   variants: none
   states: hover/focus on links
   spacing: py-16, columns gap-8, legal row mt-12 border-t
@@ -12,14 +12,15 @@
   content limits: 2–4 columns, ≤ 8 links each; legal links ≤ 6
 #}
 {% from "components/back-to-top.njk" import backToTop, backToTopFloat with context %}
-{% from "primitives/wordmark.njk" import wordmark with context %}
+{% from "components/sound-toggle.njk" import soundToggle with context %}
+{% from "primitives/logo.njk" import logo with context %}
 {% macro footer(site, locale, alternates) %}
 <footer class="bg-surface-alt" data-component="footer">
 <div class="h-px bg-linear-to-r from-brand-600 to-accent-600" aria-hidden="true"></div>
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 <div class="flex flex-wrap items-center justify-between gap-4">
-<a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ wordmark(site.name, { size: "h-7 sm:h-8" }) }}</a>
-{{ backToTop() }}
+<a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ logo(site.name, { size: "size-8", wordmark: "h-7" }) }}</a>
+<div class="flex flex-wrap items-center gap-2">{{ soundToggle({ label: true, class: "text-sm" }) }}{{ backToTop() }}</div>
 </div>
 <nav aria-label="{{ 'nav.footer' | t }}" class="mt-12">
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

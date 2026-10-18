@@ -46,7 +46,7 @@ One page. Each field names the file and key it lands in. The last column is the 
 
 ### Look and feel (DESIGN.md)
 
-The engine's look is fixed: quiet surfaces, one accent, the motion table in `engine/DESIGN.md`. A brief chooses only the six brand inputs above and may ask for a sample video (`hero-home` variant `split` with a `video`) or none. Anything else is a bylaw change, not a brief field.
+The engine's look is fixed: quiet surfaces, two hues with meanings, the motion table in `engine/DESIGN.md`. A brief chooses only the six brand inputs above and may ask for a sample video (`hero-home` variant `split` with a `video`) or none. The home hero may carry a proof strip (up to three figures) and a highlight card (one figure over the media); both are content in `pages.json`, not brief fields. Anything else is a bylaw change, not a brief field.
 
 ## 5. Pages (R-PAGE-01)
 

@@ -7,6 +7,7 @@ const AXE_SOURCE = readFileSync(createRequire(import.meta.url).resolve("axe-core
 /** The WCAG 2.2 AA tag set plus axe's best practices (landmarks, heading order, region), as the bylaws cite them. */
 export const AXE_TAGS = ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa", "best-practice"];
 import { chromePath, pages } from "../lib/browser.js";
+import { samplePages } from "../lib/sampling.js";
 
 /** Widths at which no page may scroll horizontally (R-LAY-05): the smallest supported phone and the common one. */
 export const REFLOW_WIDTHS = [320, 375];
@@ -64,7 +65,8 @@ const withTimeout = (promise, ms, what) => Promise.race([promise, new Promise((_
 export async function run(ctx) {
   const executablePath = chromePath();
   if (!executablePath) return { id, ok: false, findings: [{ file: "-", message: "Chrome not found; set CHROME_PATH", check: "a11y/chrome" }], report: [] };
-  const all = pages(ctx);
+  // --sample (development): one page per page type and locale; the full sweep stays the pre-delivery run (R-GATE-09).
+  const all = ctx.sample ? samplePages(pages(ctx), ctx.site || { defaultLocale: "", locales: [] }) : pages(ctx);
   const redirects = new Set(all.filter((p) => /<meta http-equiv="refresh"/i.test(readFileSync(p.file, "utf8"))).map((p) => p.url));
   const urls = all.map((p) => p.url);
   const results = new Array(urls.length);

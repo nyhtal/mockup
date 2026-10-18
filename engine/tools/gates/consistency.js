@@ -16,7 +16,7 @@ const PADDINGS = {
   strip: [["py-6"]],
 };
 const STRIPS = new Set(["article-meta", "filter-bar", "pagination", "was-this-helpful"]);
-const GAPS = [["gap-6", "md:gap-8"], ["gap-8"], ["gap-12"]];
+const GAPS = [["gap-6", "md:gap-8"], ["gap-8"], ["gap-12"], ["gap-4", "md:gap-8"]];
 const PY = /^(sm:|md:|lg:|xl:|2xl:)?py-/, GAP = /^(sm:|md:|lg:|xl:|2xl:)?gap-/;
 const tokens = (classes, re) => classes.filter((c) => re.test(c)).sort();
 const onScale = (classes, re, tuples) => { const t = tokens(classes, re); return tuples.some((p) => p.length === t.length && [...p].sort().every((c, i) => c === t[i])); };

@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "reference",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["engine/tools/serve.js", "--site", "reference", "--dev"],
+      "port": 8080
+    }
+  ]
+}

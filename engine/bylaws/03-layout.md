@@ -8,13 +8,13 @@ Why: Alignment across sections is what makes a page look designed.
 Gate: manual: checklists/new-component.md
 
 ### R-LAY-02 Section rhythm
-MUST. One rhythm scale (`engine/DESIGN.md` §2) sets every vertical distance: a section is `py-16 md:py-24` (`py-12 md:py-16` compact; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; strips such as article meta, filter bar, pagination and feedback `py-6`), its heading group then `mt-12 md:mt-16` before the body, grids `gap-6 md:gap-8` (stats `gap-8`, media rows `gap-12`), card internals `mt-2`/`mt-4`/`mt-auto pt-4`, a CTA after the body `mt-12`. Adjacent sections alternate `bg-surface` and `bg-surface-alt` unless a section has its own media background.
+MUST. One rhythm scale (`engine/DESIGN.md` §2) sets every vertical distance: a section is `py-16 md:py-24` (`py-12 md:py-16` compact; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; strips such as article meta, filter bar, pagination and feedback `py-6`), its heading group then `mt-12 md:mt-16` before the body, grids `gap-6 md:gap-8` (tile grids `gap-4 md:gap-8`, stats `gap-8`, media rows `gap-12`), card internals `mt-2`/`mt-4`/`mt-auto pt-4`, a CTA after the body `mt-12`. Adjacent sections alternate `bg-surface` and `bg-surface-alt` unless a section has its own media background.
 Why: Equal vertical rhythm is the cheapest consistency win on a long page, and only a written scale can be checked.
 Gate: consistency/rhythm
 
 ### R-LAY-03 Grids
-MUST. Multi-column layouts use `grid` with `gap-6 md:gap-8` and only these column sets: `md:grid-cols-2`, `md:grid-cols-3`, `md:grid-cols-2 lg:grid-cols-4`, or the 12-column `lg:grid-cols-12` with `col-span-*` for asymmetric splits. Items stack to one column below `md`.
-Why: Four grid shapes cover every corporate section; more makes pages uneven.
+MUST. Multi-column layouts use `grid` with `gap-6 md:gap-8` and only these column sets: `md:grid-cols-2`, `md:grid-cols-3`, `md:grid-cols-2 lg:grid-cols-4`, or the 12-column `lg:grid-cols-12` with `col-span-*` for asymmetric splits (the hero's text five, media seven). Items stack to one column below `md`, except tile grids: short tiles (team, integrations, awards, stats, logos) use `grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4` and sit two across from 320 px, with cards at `p-4 md:p-6`. Descriptive cards (services, products, industries, cases, articles, jobs, offices, downloads, events, help, values, benefits, pricing, testimonials, forms) never go two across on a phone.
+Why: Four grid shapes cover every corporate section; more makes pages uneven. Two padded cards at 320 px leave 100 px of reading width, which is enough for a name and a role and not for a paragraph.
 Gate: manual: checklists/new-component.md
 
 ### R-LAY-04 Logical properties only
@@ -66,7 +66,7 @@ Gate: manual: checklists/pre-delivery.md
 
 - [ ] R-LAY-01 container in every section
 - [ ] R-LAY-02 section padding and alternation
-- [ ] R-LAY-03 grids from the four shapes
+- [ ] R-LAY-03 grids from the four shapes; tiles two across, descriptive cards one
 - [ ] R-LAY-04 no physical direction utilities
 - [ ] R-LAY-05 320 px and 400 % zoom checked
 - [ ] R-LAY-06 measure limits applied

@@ -8,8 +8,8 @@ Why: A page author should never pick a colour, only a role.
 Gate: manual: checklists/new-component.md
 
 ### R-COL-02 Accent is rare
-MUST. `accent-*` appears only in the eyebrow rule, highlighted stats, the active nav indicator, the CTA panel gradient and the footer hairline. It is never a button background or a text colour.
-Why: An accent that is everywhere is not an accent.
+MUST. Accent means evidence (DESIGN.md §1). `accent-*` appears only in: the eyebrow marker rule, the marker under a case-study metric, the far end of the stats band's numeral gradient (`to-accent-200`), the hero's second glow, the far end of the CTA panel gradient and the footer hairline. It is never a button background, an icon tile or a text colour. Brand means identity and action (the mark, buttons, links, icon tiles, markers on timelines and steps); state colours mean state and never decorate (an icon tile is never `success`).
+Why: An accent that is everywhere is not an accent, and a colour that means nothing is noise.
 Gate: manual: checklists/new-component.md
 
 ### R-COL-03 Contrast
@@ -43,7 +43,7 @@ Why: Contrast over photographs cannot be guaranteed any other way.
 Gate: manual: checklists/new-component.md
 
 ### R-COL-09 Gradients
-MUST. Gradients appear only as: the hero glow (two radial gradients, brand and accent at ≤ 40 % alpha, behind the content), the CTA panel (`bg-linear-to-br from-brand-700 via-brand-600 to-accent-600`), the stats band numerals (`from-ink-inverse to-brand-100` clipped to text, with `text-ink-inverse` as the fallback colour) and the footer hairline (`from-brand-600 to-accent-600`, one pixel). No other text gradients.
+MUST. Gradients appear only as: the hero glow (two radial gradients, brand behind the text and accent behind the media at ≤ 40 % alpha, no texture), the CTA panel (`bg-linear-to-br from-brand-700 via-brand-600 to-accent-600`), the stats band numerals (`from-ink-inverse to-accent-200` clipped to text, with `text-ink-inverse` as the fallback colour) and the footer hairline (`from-brand-600 to-accent-600`, one pixel). No other text gradients.
 Why: A few gradients in fixed places read as a system; gradient body text fails contrast tools and prints badly.
 Gate: manual: checklists/new-component.md
 
@@ -55,12 +55,12 @@ Gate: manual: checklists/pre-delivery.md
 ## Checklist
 
 - [ ] R-COL-01 roles used per element type
-- [ ] R-COL-02 accent limited to listed spots
+- [ ] R-COL-02 accent only on evidence; icon tiles brand, never state colours
 - [ ] R-COL-03 contrast measured in light and dark
 - [ ] R-COL-04 focus ring on every control
 - [ ] R-COL-05 state colours only on states
 - [ ] R-COL-06 no colour-only meaning
 - [ ] R-COL-07 no dark: classes
 - [ ] R-COL-08 overlay under text on media
-- [ ] R-COL-09 gradients only hero and CTA band
+- [ ] R-COL-09 gradients only the hero glow, CTA panel, stats numerals and footer hairline
 - [ ] R-COL-10 forced-colors check

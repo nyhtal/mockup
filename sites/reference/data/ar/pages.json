@@ -24,6 +24,25 @@
         "slug": "northwind-sample",
         "title": "نورثويند في ثماني ثوانٍ",
         "duration": "0:08"
+      },
+      "proof": [
+        {
+          "value": "1,284",
+          "label": "خطًا مؤتمتًا"
+        },
+        {
+          "value": "19",
+          "label": "دولة"
+        },
+        {
+          "value": "99.98%",
+          "label": "توافر"
+        }
+      ],
+      "highlight": {
+        "icon": "trending-up",
+        "value": "38%",
+        "label": "توقف أقل"
       }
     },
     "logo-cloud": {

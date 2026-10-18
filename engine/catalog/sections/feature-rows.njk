@@ -26,7 +26,7 @@
 <p class="mt-4 text-base leading-relaxed text-ink-muted">{{ item.text }}</p>
 {%- if item.link %}<div class="mt-6">{{ button(item.link.label, { href: item.link.href, variant: "link", iconEnd: "arrow-right" }) }}</div>{% endif %}
 </div>
-<div class="overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink/10 {{ 'lg:order-1' if loop.index is even }}">{{ picture(item.image, { sizes: "(min-width: 64rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
+<div class="overflow-hidden rounded-2xl ring-1 ring-line {{ 'lg:order-1' if loop.index is even }}">{{ picture(item.image, { sizes: "(min-width: 64rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
 </div>
 {%- endfor %}
 </div>

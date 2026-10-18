@@ -18,7 +18,7 @@ Why: Four weights are enough for hierarchy and keep the subset small.
 Gate: manual: checklists/new-component.md
 
 ### R-TYPO-04 Element scale
-MUST. Text elements use exactly these classes: h1 `text-4xl md:text-5xl font-bold tracking-tight text-balance`; h2 `text-3xl md:text-4xl font-semibold tracking-tight text-balance`; h3 `text-xl md:text-2xl font-semibold`; h4 `text-lg font-semibold`; eyebrow `text-sm font-medium uppercase tracking-wide text-brand-700`; lede `text-lg md:text-xl text-ink-muted`; body `text-base leading-relaxed`; small `text-sm text-ink-muted`; stat value `text-4xl font-bold tabular-nums`.
+MUST. Text elements use exactly these classes: h1 `text-4xl md:text-5xl font-bold tracking-tight text-balance` (in a hero, `xl:text-6xl` as well); h2 `text-3xl md:text-4xl font-semibold tracking-tight text-balance`; h3 `text-xl md:text-2xl font-semibold`; h4 `text-lg font-semibold`; eyebrow `text-sm font-medium uppercase tracking-wide text-ink-brand`; lede `text-lg md:text-xl text-ink-muted`; body `text-base leading-relaxed`; small `text-sm text-ink-muted`; stat value `text-4xl font-bold tabular-nums` (`text-4xl md:text-5xl lg:text-6xl` on the stats band, where two columns from 320 px must hold an eight-character value); hero proof figure `text-xl md:text-2xl font-semibold tabular-nums whitespace-nowrap`.
 Why: Mapping element to class once removes the question forever.
 Gate: manual: checklists/new-component.md
 
@@ -43,8 +43,8 @@ Why: Underlines are the only reliable link affordance in prose.
 Gate: a11y/link-in-text-block
 
 ### R-TYPO-09 Numbers
-MUST. Figures in stats, tables and pricing use `tabular-nums`; locale formatting is done at build time (bylaw 11), never via JS.
-Why: Aligned digits read as data; JS formatting would ship code.
+MUST. Figures in stats, tables and pricing use `tabular-nums`; locale formatting is done at build time (bylaw 11), never via JS. The count-up of R-MOT-10 renders its intermediate frames with `Intl.NumberFormat` in the page's language with Latin digits and ends by restoring the build-time text exactly, so the figure a reader keeps is the one the build wrote.
+Why: Aligned digits read as data; the build decides formatting, the script only passes through it.
 Gate: manual: checklists/new-component.md
 
 ### R-TYPO-10 Prose component

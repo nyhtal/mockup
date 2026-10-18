@@ -2,7 +2,7 @@
   name: wordmark
   purpose: A text logo rendered as inline SVG for the site, customers and partners (R-ASSET-08).
   anatomy: svg[role=img] > title + text
-  variants: site (brand colour, h-8) | mono (ink-muted, h-6; logo clouds)
+  variants: site (brand colour, h-8) | ink (ink colour, beside the mark in the logo lockup) | mono (ink-muted, h-6; logo clouds)
   states: none
   spacing: caller sets height via opts.class (h-6|h-8); width scales with the text
   motion: none
@@ -13,5 +13,5 @@
 #}
 {% macro wordmark(name, opts={}) %}
 {%- set mono = opts.variant == "mono" -%}
-<svg role="img" class="{{ 'h-6 fill-ink-muted' if mono else (opts.size or 'h-8') + ' fill-ink-brand' }} w-auto{% if opts.class %} {{ opts.class }}{% endif %}" viewBox="0 0 {{ (name | length) * 13 + 8 }} 32"><title>{{ name }}</title><text x="4" y="23" direction="ltr" font-size="22" font-weight="700" letter-spacing="-0.5">{{ name }}</text></svg>
+<svg role="img" class="{{ 'h-6 fill-ink-muted' if mono else (opts.size or 'h-8') + (' fill-ink' if opts.variant == 'ink' else ' fill-ink-brand') }} w-auto{% if opts.class %} {{ opts.class }}{% endif %}" viewBox="0 0 {{ (name | length) * 13 + 8 }} 32"><title>{{ name }}</title><text x="4" y="23" direction="ltr" font-size="22" font-weight="700" letter-spacing="-0.5">{{ name }}</text></svg>
 {% endmacro %}

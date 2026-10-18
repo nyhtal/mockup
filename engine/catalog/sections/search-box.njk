@@ -7,5 +7,5 @@
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/search-box.njk" import searchBox with context %}
 {% macro render(s, ctx) %}
-{% call shell("search-box", s, ctx, { noReveal: true }) %}<div class="mx-auto max-w-2xl">{{ searchBox(ctx.locale, { variant: "hero", id: "q-page" }) }}</div>{% endcall %}
+{% call shell("search-box", s, ctx, { noReveal: true, center: true }) %}<div class="mx-auto max-w-2xl">{{ searchBox(ctx.locale, { variant: "hero", id: "q-page" }) }}</div>{% endcall %}
 {% endmacro %}

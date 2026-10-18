@@ -12,11 +12,12 @@
   content limits: title ≤ 60 chars; text ≤ 40 words
   data: items = [{ date, dateIso, title, text }]
 #}
+{% from "sections/_shell.njk" import stagger with context %}
 {% macro timeline(items, opts={}) %}
 {%- set h = "h" + (opts.level or 3) -%}
-<ol class="relative space-y-8 border-s border-line ps-8" data-component="timeline">
+<ol class="relative space-y-8 ps-8 before:absolute before:inset-y-0 before:start-0 before:w-px before:bg-line{% if opts.reveal %} before:origin-top motion-safe:sda:before:animate-draw-y motion-safe:sda:before:[animation-timeline:view()] motion-safe:sda:before:[animation-range:entry_0%_cover_60%]{% endif %}" data-component="timeline">
 {%- for item in items %}
-<li class="relative">
+<li class="relative{{ stagger(loop.index0) if opts.reveal }}">
 <span aria-hidden="true" class="absolute -start-10 top-1.5 size-4 rounded-full border-2 border-surface bg-brand-600"></span>
 <time datetime="{{ item.dateIso }}" class="text-sm font-medium text-ink-brand">{{ item.date }}</time>
 <{{ h }} class="mt-1 text-lg font-semibold">{{ item.title }}</{{ h }}>

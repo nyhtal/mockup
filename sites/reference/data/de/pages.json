@@ -24,6 +24,25 @@
         "slug": "northwind-sample",
         "title": "Northwind in acht Sekunden",
         "duration": "0:08"
+      },
+      "proof": [
+        {
+          "value": "1.284",
+          "label": "automatisierte Linien"
+        },
+        {
+          "value": "19",
+          "label": "Länder"
+        },
+        {
+          "value": "99,98 %",
+          "label": "Verfügbarkeit"
+        }
+      ],
+      "highlight": {
+        "icon": "trending-up",
+        "value": "38 %",
+        "label": "weniger Stillstand"
       }
     },
     "logo-cloud": {

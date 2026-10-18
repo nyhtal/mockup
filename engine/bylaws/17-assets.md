@@ -43,7 +43,7 @@ Why: Real logos would be trademarks; wordmarks still show the pattern.
 Gate: manual: checklists/new-component.md
 
 ### R-ASSET-09 Favicons
-MUST. `/favicon.ico` (16, 32, 48 px), `/icon.svg` (with `@media (prefers-color-scheme: dark)` inside), `/apple-touch-icon.png` (180 px, opaque background), `/icon-192.png`; linked as `<link rel="icon" href="/favicon.ico" sizes="any">`, `<link rel="icon" href="/icon.svg" type="image/svg+xml">`, `<link rel="apple-touch-icon" href="/apple-touch-icon.png">`. No manifest (D24). Generated from the site's monogram by the image tool.
+MUST. `/favicon.ico` (16, 32, 48 px), `/icon.svg` (with `@media (prefers-color-scheme: dark)` inside), `/apple-touch-icon.png` (180 px, opaque background), `/icon-192.png`; linked as `<link rel="icon" href="/favicon.ico" sizes="any">`, `<link rel="icon" href="/icon.svg" type="image/svg+xml">`, `<link rel="apple-touch-icon" href="/apple-touch-icon.png">`. No manifest (D24). Generated from the site's mark by the image tool: the same cut-corner tile with the initial that the `logo` primitive draws in the header and footer (DESIGN.md §4), so tab, home screen and page match.
 Why: Every platform's tab and bookmark covered with four files.
 Gate: budget/missing-asset
 
@@ -77,7 +77,7 @@ Gate: manual: checklists/new-page.md
 - [ ] R-ASSET-06 images declared, markup generated
 - [ ] R-ASSET-07 SVG avatars
 - [ ] R-ASSET-08 wordmark logos
-- [ ] R-ASSET-09 favicon set of four
+- [ ] R-ASSET-09 favicon set of four, same mark as the header
 - [ ] R-ASSET-10 OG image per page
 - [ ] R-ASSET-11 theme-color light and dark
 - [ ] R-ASSET-12 licences recorded

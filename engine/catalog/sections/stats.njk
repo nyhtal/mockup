@@ -2,15 +2,15 @@
   name: stats
   purpose: 3–4 headline figures in a band (R-SEC-03).
   anatomy: shell(surface bg-brand-700 by default) > dl-free grid of stat components
-  variants: default (brand band, inverse text) | plain (surface)
+  variants: default (brand band, inverse text, display numerals) | plain (surface)
   states: none
-  spacing: grid gap-8, 2 columns on sm, up to 4 on lg
-  motion: reveals as a group; no counting animation
+  spacing: grid gap-8, 2 columns from 320 px, up to 4 on lg
+  motion: the band rises; each figure counts from 0 once it scrolls into view (DESIGN §3 "measurement"); nothing counts above the fold
   keyboard: none
   a11y: figures are text; the band meets contrast via ink-inverse on brand-700
   i18n: values preformatted
   content limits: 3–4 items
-  data: s = { title, items: [{ value, label, trend }], variant }
+  data: s = { title, items: [{ value, label, trend, trendTone }], variant }
 #}
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/stat.njk" import stat with context %}
@@ -18,7 +18,7 @@
 {%- set band = s.variant != "plain" -%}
 {% call shell("stats", s | merge({ surface: s.surface or ("bg-brand-700" if band else "bg-surface") }), ctx) %}
 <div class="grid grid-cols-2 gap-8 lg:grid-cols-{{ s.items.length if s.items.length <= 4 else 4 }}">
-{%- for item in s.items %}{{ stat(item, { inverse: band }) }}{% endfor %}
+{%- for item in s.items %}{{ stat(item, { inverse: band, count: ctx.reveal }) }}{% endfor %}
 </div>
 {% endcall %}
 {% endmacro %}

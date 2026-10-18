@@ -15,7 +15,7 @@
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/timeline.njk" import timeline with context %}
 {% macro render(s, ctx) %}
-{% call shell("timeline", s, ctx, { center: false }) %}
-<div class="max-w-3xl">{{ timeline(s.items) }}</div>
+{% call shell("timeline", s, ctx, { itemsReveal: ctx.reveal }) %}
+<div class="max-w-3xl">{{ timeline(s.items, { reveal: ctx.reveal }) }}</div>
 {% endcall %}
 {% endmacro %}

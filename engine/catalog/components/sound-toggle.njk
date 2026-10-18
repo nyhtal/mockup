@@ -1,0 +1,16 @@
+{#
+  name: sound-toggle
+  purpose: Switch the site's synthesised UI sounds on or off (DESIGN §5, R-MOT-10 behaviour 4). Off by default; the choice lives in sessionStorage for the tab.
+  anatomy: button[type=button][data-sound][aria-pressed] > svg(volume-x, shown while off) + svg(volume-2, shown while on) + span.sr-only | span(label, drawer)
+  variants: icon-only (header at xl, size-11) | labelled (opts.label: the drawer row and the footer with visible text)
+  states: aria-pressed="false" (off, default) | "true" (on); hover; focus-visible
+  spacing: size-11 icon button; the labelled row is min-h-11 px-3 like the drawer's links
+  motion: none; the icon swap is instant
+  keyboard: button; Space or Enter toggles
+  a11y: a toggle button with a stable accessible name ("Sound effects") and aria-pressed; the icons are aria-hidden
+  i18n: ui.sound
+  content limits: none
+#}
+{% macro soundToggle(opts={}) %}
+<button type="button" data-sound aria-pressed="false" class="group {{ 'flex min-h-11 items-center gap-2 rounded-md px-3 py-2.5 font-medium' if opts.label else 'size-11 items-center justify-center rounded-md' }} text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus{% if opts.class %} {{ opts.class }}{% endif %}" data-component="sound-toggle"><svg aria-hidden="true" class="size-5 shrink-0 group-aria-pressed:hidden"><use href="#i-volume-x"></use></svg><svg aria-hidden="true" class="hidden size-5 shrink-0 group-aria-pressed:block"><use href="#i-volume-2"></use></svg>{% if opts.label %}{{ "ui.sound" | t }}{% else %}<span class="sr-only">{{ "ui.sound" | t }}</span>{% endif %}</button>
+{% endmacro %}

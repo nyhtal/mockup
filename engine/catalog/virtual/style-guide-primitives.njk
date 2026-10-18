@@ -13,6 +13,7 @@ noindex: true
 {% from "primitives/icon.njk" import icon with context %}
 {% from "primitives/avatar.njk" import avatar with context %}
 {% from "primitives/wordmark.njk" import wordmark with context %}
+{% from "primitives/logo.njk" import logo with context %}
 {% from "primitives/picture.njk" import picture with context %}
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
@@ -86,6 +87,7 @@ noindex: true
 <span class="inline-flex items-center gap-3">{{ avatar("Jonas Weber", { size: "size-24" }) }} Jonas Weber</span>
 </div>
 <div class="mt-8 flex flex-wrap items-center gap-8">
+{{ logo(site.name) }}
 {{ wordmark(site.name) }}
 {{ wordmark("Alder Foods", { variant: "mono" }) }}
 {{ wordmark("Brightline Pharma", { variant: "mono" }) }}

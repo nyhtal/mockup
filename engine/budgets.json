@@ -1,22 +1,25 @@
 {
-  "html": 61440,
+  "html": 67584,
   "css": 81920,
-  "js": 2048,
+  "js": 3072,
   "page": 307200,
   "mobileWidth": 720,
   "overrides": {
     "/style-guide/": {
-      "html": 112640,
+      "html": 122880,
       "page": 409600
     },
-    "/ar/": {
-      "html": 67584
-    },
     "/en/index.html": {
-      "html": 65536
+      "html": 73728
     },
     "/de/index.html": {
-      "html": 65536
+      "html": 73728
+    },
+    "/ar/index.html": {
+      "html": 77824
+    },
+    "/ar/": {
+      "html": 73728
     }
   }
 }

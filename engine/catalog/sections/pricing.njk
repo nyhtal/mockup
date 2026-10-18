@@ -15,7 +15,7 @@
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/pricing-table.njk" import pricingTable with context %}
 {% macro render(s, ctx) %}
-{% call shell("pricing", s, ctx) %}
-{{ pricingTable({ tiers: s.tiers }) }}
+{% call shell("pricing", s, ctx, { itemsReveal: ctx.reveal }) %}
+{{ pricingTable({ tiers: s.tiers }, { reveal: ctx.reveal }) }}
 {% endcall %}
 {% endmacro %}

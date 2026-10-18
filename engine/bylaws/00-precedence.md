@@ -38,7 +38,7 @@ Why: The whole look must be expressible in utilities so pages stay portable and 
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PREC-08 The JS allowance
-MUST. The only runtime script is `engine/scripts/enhance.js`, an ES module of at most 2048 bytes minified with no dependencies, loaded once with `type="module"`. Every behaviour in it is feature-detected and every page works with the script absent.
+MUST. The only runtime script is `engine/scripts/enhance.js`, an ES module of at most 3072 bytes minified with no dependencies, loaded once with `type="module"`. Every behaviour in it is feature-detected and every page works with the script absent. It never fetches, never sets a cookie and never writes `localStorage`; the one thing it stores is the sound preference in `sessionStorage`, which lives only as long as the tab (D44).
 Why: Interaction comes from HTML; the script only smooths what CSS cannot.
 Gate: budget/js
 
@@ -55,5 +55,5 @@ Gate: manual: checklists/pre-delivery.md
 - [ ] R-PREC-05 CHANGELOG bumped when bylaws changed
 - [ ] R-PREC-06 no page carries markup that is not in the catalog
 - [ ] R-PREC-07 app.css diff reviewed against the exception list
-- [ ] R-PREC-08 enhance.js ≤ 2048 B and page usable without it
+- [ ] R-PREC-08 enhance.js ≤ 3072 B, no fetch, cookie or localStorage, page usable without it
 - [ ] R-PREC-09 sources present for feature-dependent rules

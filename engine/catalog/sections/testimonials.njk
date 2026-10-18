@@ -5,7 +5,7 @@
   variants: single | grid | carousel
   states: none
   spacing: grid gap-6 md:gap-8; carousel gap-6 with snap-x
-  motion: group reveal; the carousel never autoplays
+  motion: grid cards settle from 96 % with a stagger, the single quote settles as one framed object (DESIGN §3); the carousel never autoplays
   keyboard: carousel items are reachable because the figure contains no controls; the scroll container is focusable
   a11y: figures with figcaptions; carousel is a list in a focusable scroll region
   i18n: none
@@ -16,7 +16,7 @@
 {% from "components/testimonial.njk" import testimonial with context %}
 {% macro render(s, ctx) %}
 {%- set variant = s.variant or ("single" if s.items.length == 1 else "grid") -%}
-{% call shell("testimonials", s, ctx, { itemsReveal: ctx.reveal }) %}
+{% call shell("testimonials", s, ctx, { itemsReveal: ctx.reveal and variant != "single", center: variant == "single", kind: "scale" }) %}
 {%- if variant == "single" %}
 {{ testimonial(s.items[0]) }}
 {%- elif variant == "carousel" %}
@@ -25,7 +25,7 @@
 </ul>
 {%- else %}
 <ul class="grid gap-6 md:gap-8 md:grid-cols-3">
-{%- for item in s.items %}<li class="{{ stagger(loop.index0) if ctx.reveal }}">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
+{%- for item in s.items %}<li class="{{ stagger(loop.index0, 'scale') if ctx.reveal }}">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
 </ul>
 {%- endif %}
 {% endcall %}

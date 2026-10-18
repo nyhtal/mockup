@@ -15,7 +15,7 @@
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/steps.njk" import steps with context %}
 {% macro render(s, ctx) %}
-{% call shell("steps", s, ctx) %}
-{{ steps(s.items, { variant: s.variant or "horizontal" }) }}
+{% call shell("steps", s, ctx, { itemsReveal: ctx.reveal }) %}
+{{ steps(s.items, { variant: s.variant or "horizontal", reveal: ctx.reveal }) }}
 {% endcall %}
 {% endmacro %}

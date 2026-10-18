@@ -8,11 +8,17 @@ import { oklchToHex } from "./lib/theme.js";
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
+/** The mark outline on a 64-unit square: rounded corners of radius r, the bottom-right corner cut from (64, 42) to (42, 64). */
+export function markPath(r = 14) {
+  return r ? `M${r} 0H${64 - r}a${r} ${r} 0 0 1 ${r} ${r}V42L42 64H${r}a${r} ${r} 0 0 1 -${r} -${r}V${r}a${r} ${r} 0 0 1 ${r} -${r}z` : "M0 0H64V42L42 64H0z";
+}
+
 /** Monogram SVG used for every favicon size; `media` adds the dark-scheme variant for icon.svg. */
 export function monogramSvg({ letter, hue, size = 64, rounded = true, media = false }) {
   const bg = oklchToHex(0.48, 0.17, hue), bgDark = oklchToHex(0.76, 0.11, hue), fgDark = oklchToHex(0.2, 0.02, hue);
   const style = media ? `<style>@media (prefers-color-scheme: dark){.bg{fill:${bgDark}}.fg{fill:${fgDark}}}</style>` : "";
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64">${style}<rect class="bg" width="64" height="64" rx="${rounded ? 14 : 0}" fill="${bg}"/><text class="fg" x="32" y="33" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#ffffff">${esc(letter)}</text></svg>`;
+  // The mark's silhouette (DESIGN §4): a rounded tile whose bottom-right corner is cut on the diagonal; the same path as the `logo` primitive.
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 64 64">${style}<path class="bg" d="${markPath(rounded ? 14 : 0)}" fill="${bg}"/><text class="fg" x="30" y="33" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700" fill="#ffffff">${esc(letter)}</text></svg>`;
 }
 
 /** favicon.ico (16/32/48), icon.svg, apple-touch-icon.png (180, opaque corners), icon-192.png (R-ASSET-09). */

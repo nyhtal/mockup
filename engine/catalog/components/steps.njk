@@ -12,11 +12,12 @@
   content limits: title ≤ 6 words; description ≤ 25 words
   data: items = [{ title, text }]; opts = { level, variant }
 #}
+{% from "sections/_shell.njk" import stagger with context %}
 {% macro steps(items, opts={}) %}
 {%- set h = "h" + (opts.level or 3) -%}
 <ol class="grid gap-8 {{ 'md:grid-cols-' + (items.length if items.length <= 5 else 5) if opts.variant == 'horizontal' }}" data-component="steps" data-variant="{{ opts.variant or 'vertical' }}">
 {%- for item in items %}
-<li class="flex gap-4 {{ 'md:flex-col' if opts.variant == 'horizontal' }}">
+<li class="flex gap-4 {{ 'md:flex-col' if opts.variant == 'horizontal' }}{{ stagger(loop.index0) if opts.reveal }}">
 <span aria-hidden="true" class="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-brand-600 font-semibold tabular-nums text-ink-inverse">{{ loop.index }}</span>
 <div>
 <{{ h }} class="text-lg font-semibold">{{ item.title }}</{{ h }}>

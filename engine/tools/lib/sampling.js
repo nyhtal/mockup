@@ -31,3 +31,14 @@ export function lighthousePages(pages, site) {
   }
   return { sampled, coverage };
 }
+
+/** Development sample for the slow gates (`--sample`): the first page of each page type in every locale. */
+export function samplePages(pages, site) {
+  const seen = new Set();
+  return pages.filter((p) => {
+    const key = `${localeOf(p.url, site)}:${pageTypeOf(p.file)}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}

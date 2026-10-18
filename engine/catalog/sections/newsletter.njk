@@ -16,7 +16,7 @@
 {% from "primitives/field.njk" import field with context %}
 {% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
-{% call shell("newsletter", s, ctx) %}
+{% call shell("newsletter", s, ctx, { center: true }) %}
 <form method="get" action="{{ s.form.action }}" class="mx-auto max-w-xl">
 <div class="flex flex-col gap-3 sm:flex-row sm:items-end">
 <div class="grow">{{ field({ type: "email", name: "email", id: "newsletter-email", label: ("ui.emailLabel" | t), required: true, autocomplete: "email", placeholder: "alex@company.com" }) }}</div>

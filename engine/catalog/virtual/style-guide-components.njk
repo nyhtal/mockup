@@ -5,6 +5,7 @@ noindex: true
 ---
 {% from "components/card.njk" import card with context %}
 {% from "components/stat.njk" import stat with context %}
+{% from "components/sound-toggle.njk" import soundToggle with context %}
 {% from "components/testimonial.njk" import testimonial with context %}
 {% from "components/pricing-table.njk" import pricingTable with context %}
 {% from "components/comparison-table.njk" import comparisonTable with context %}
@@ -41,11 +42,20 @@ noindex: true
 <section class="mt-16">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Stats and testimonials</h2>
 <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-{{ stat({ value: "1,284", label: "Lines automated" }) }}
-{{ stat({ value: "38%", label: "Less downtime", trend: "+6 pts" }) }}
-{{ stat({ value: "19", label: "Countries" }) }}
-{{ stat({ value: "99.98%", label: "Uptime last year" }) }}
+{{ stat({ value: "1,284", label: "Lines automated" }, { count: true }) }}
+{{ stat({ value: "38%", label: "Less downtime", trend: "+6 pts" }, { count: true }) }}
+{{ stat({ value: "19", label: "Countries" }, { count: true }) }}
+{{ stat({ value: "99.98%", label: "Uptime last year", trend: "-0.01 pt", trendTone: "warning" }, { count: true }) }}
 </div>
+<div class="mt-8 rounded-2xl bg-brand-700 p-8 text-ink-inverse">
+<div class="grid grid-cols-2 gap-8 lg:grid-cols-4">
+{{ stat({ value: "1,284", label: "Lines automated" }, { inverse: true, count: true }) }}
+{{ stat({ value: "38%", label: "Less downtime" }, { inverse: true, count: true }) }}
+{{ stat({ value: "19", label: "Countries" }, { inverse: true, count: true }) }}
+{{ stat({ value: "99.98%", label: "Uptime last year" }, { inverse: true, count: true }) }}
+</div>
+</div>
+<p class="mt-4 text-sm text-ink-muted">Figures count from 0 once they scroll into view (enhance.js behaviour 3); the build-time text returns at the end and is what readers without JS or with reduced motion see. The sound toggle below switches the four synthesised UI sounds (off by default, kept for the tab): {{ soundToggle() }}</p>
 <div class="mt-12">{{ testimonial({ quote: "We stopped waiting for a programmer. The line leads change recipes themselves and the audit trail is better than before.", name: "Jonas Weber", role: "Plant manager", company: "Brightline Pharma" }) }}</div>
 <ul class="mt-12 grid gap-6 md:grid-cols-3">
 <li>{{ testimonial({ quote: "Commissioning took nine days instead of six weeks.", name: "Alex Morgan", role: "Project lead", company: "Alder Foods" }, { variant: "compact" }) }}</li>

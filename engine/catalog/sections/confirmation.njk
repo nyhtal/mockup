@@ -8,7 +8,7 @@
 {% from "primitives/icon.njk" import icon with context %}
 {% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
-{% call shell("confirmation", s | merge({ title: null, cta: null, label: s.title }), ctx, { noReveal: true }) %}
+{% call shell("confirmation", s | merge({ title: null, cta: null, label: s.title }), ctx, { noReveal: true, center: true }) %}
 <div class="mx-auto max-w-xl text-center">
 <span class="inline-flex size-16 items-center justify-center rounded-full bg-success-soft text-success-strong">{{ icon("circle-check", { size: "size-6" }) }}</span>
 <h2 class="mt-6 text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>

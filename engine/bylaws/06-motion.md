@@ -23,8 +23,8 @@ Why: Lighthouse, crawlers and browsers without support must see the full page.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-MOT-05 The reveal pattern
-MUST. A section or card that reveals on scroll uses exactly: `motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]` (alternating media rows use `animate-reveal-start` / `animate-reveal-end` instead of `animate-reveal`) with the pair mirrored under `rtl:` and `overflow-x-clip` on their section) and, for the script fallback, `motion-safe:nosda:js:not-data-revealed:translate-y-4 motion-safe:nosda:js:data-revealed:translate-y-0 motion-safe:nosda:js:transition-transform motion-safe:nosda:js:duration-(--reveal-duration) motion-safe:nosda:js:ease-smooth` plus the `data-reveal` attribute the script observes. Grid items stagger by shifting each item's range, `motion-safe:sda:[animation-range:entry_5n%_cover_(30+5n)%] motion-safe:sda:[animation-fill-mode:both]` for n = 0…7 (`stagger(n)` in `_shell.njk`), because time delays do not apply to scroll timelines. Both reveal paths move the element only; neither touches opacity.
-Why: One exact string keeps reveals identical and keeps the hero out of the animation.
+MUST. A section or card that reveals on scroll uses exactly: `motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]` (the treatment table in DESIGN.md §3 decides the keyframe: alternating media rows and the logo cloud use `animate-reveal-start` / `animate-reveal-end`, mirrored under `rtl:` with `overflow-x-clip` on their section; framed objects (testimonial cards, the CTA panel) use `animate-reveal-scale`; the eyebrow marker uses `before:animate-draw` with `before:origin-left rtl:before:origin-right`; the timeline rule uses `before:animate-draw-y`) and, for the script fallback, `motion-safe:nosda:js:not-data-revealed:translate-y-4 motion-safe:nosda:js:data-revealed:translate-y-0 motion-safe:nosda:js:transition-transform motion-safe:nosda:js:duration-(--reveal-duration) motion-safe:nosda:js:ease-smooth` plus the `data-reveal` attribute the script observes. Grid items stagger by shifting each item's range, `motion-safe:sda:[animation-range:entry_5n%_cover_(30+5n)%] motion-safe:sda:[animation-fill-mode:both]` for n = 0…7 (`stagger(n, kind)` in `_shell.njk`), because time delays do not apply to scroll timelines; the heading group of a section whose items stagger rises on its own. Both reveal paths move the element only; neither touches opacity.
+Why: One exact string per treatment keeps reveals identical across sections and keeps the hero out of the animation.
 Gate: manual: checklists/new-component.md
 
 ### R-MOT-06 Overlay entrances
@@ -48,12 +48,12 @@ Why: Slick navigation for free in supporting browsers; plain navigation elsewher
 Gate: manual: checklists/pre-delivery.md
 
 ### R-MOT-10 The script
-MUST. `enhance.js` does only: (1) if `CSS.supports("animation-timeline: view()")` is false, observe `[data-reveal]` elements with `IntersectionObserver` and set `data-revealed` once; (2) if `"command" in HTMLButtonElement.prototype` is false, wire `button[commandfor]` to `showModal()`/`close()`. It sets `document.documentElement.dataset.js = ""` first. No other behaviour.
-Why: Two fallbacks, both feature-detected, both under 2 KB.
+MUST. `enhance.js` does only: (1) if `CSS.supports("animation-timeline: view()")` is false, observe `[data-reveal]` elements with `IntersectionObserver` and set `data-revealed` once; (2) if `"command" in HTMLButtonElement.prototype` is false, wire `button[commandfor]` to `showModal()`/`close()`; (3) unless `prefers-reduced-motion: reduce`, count each `[data-count]` figure from 0 to its value once, over 1.2 s ease-out, when it first intersects (half visible), then restore its build-time text (R-TYPO-09); (4) keep every sound toggle (`[data-sound]`, `aria-pressed`; in the footer on every page, in the header from `xl`, in the drawer below `lg`) in step with `sessionStorage.sound` and, while it is on, play four synthesised Web Audio sounds: a tick when switched on, a muted tone when a popover, drawer, dialog or disclosure opens (`toggle` event), a soft tap when a primary button is pressed, two rising notes when a form is submitted. The audio context is created on the first click, never on load. It sets `document.documentElement.dataset.js = ""` first. No other behaviour. `data-count` goes only on figures below the fold (the stats band, case-study metrics), never in the hero.
+Why: Two fallbacks and two enhancements, all feature-detected, all within the 3 KB of R-PREC-08; sound is opt-in because a site that makes noise unasked is not professional.
 Gate: budget/js
 
 ### R-MOT-11 No motion on load above the fold
-MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state.
+MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state; the hero's proof strip and highlight card do not count.
 Why: Load animation delays LCP and reads as slowness.
 Gate: manual: checklists/new-page.md
 
@@ -83,7 +83,7 @@ Gate: manual: checklists/new-component.md
 - [ ] R-MOT-07 hover transitions cheap, no hover-only content
 - [ ] R-MOT-08 header compaction scroll-driven
 - [ ] R-MOT-09 view transition block present
-- [ ] R-MOT-10 enhance.js does two things only
+- [ ] R-MOT-10 enhance.js does four things only; data-count below the fold; sound off by default
 - [ ] R-MOT-11 nothing animates above the fold on load
 - [ ] R-MOT-12 no autoplay carousels
 - [ ] R-MOT-13 smooth scroll on html; floating back-to-top scroll-driven

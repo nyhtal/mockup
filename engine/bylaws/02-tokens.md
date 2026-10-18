@@ -63,8 +63,8 @@ Why: Three presets give a brief a motion dial without exposing durations.
 Gate: manual: checklists/new-site.md
 
 ### R-TOK-13 Animation tokens
-MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes: `reveal` (translateY(var(--reveal-distance)) → none), `reveal-start` (translateX from the inline-start side), `reveal-end` (translateX from the inline-end side), `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1) and `rise-in` (opacity 0 → 1, translateY(0.5rem) → none, visibility hidden → visible, for scroll-driven appearance only). All animate only `opacity`, `transform` and, in `rise-in`, `visibility`; the three scroll reveals never touch opacity, because an element partly in view at load would be mid-fade and fail contrast checks.
-Why: Seven entrances cover every component; a fixed list keeps the CSS small.
+MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes: `reveal` (translateY(var(--reveal-distance)) → none), `reveal-start` (translateX from the inline-start side), `reveal-end` (translateX from the inline-end side), `reveal-scale` (scale 0.96 → 1, for framed objects), `draw` (scaleX 0 → 1, for rules that draw from the start edge), `draw-y` (scaleY 0 → 1, for rules that draw downward), `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1) and `rise-in` (opacity 0 → 1, translateY(0.5rem) → none, visibility hidden → visible, for scroll-driven appearance only). All animate only `opacity`, `transform` and, in `rise-in`, `visibility`; the six scroll reveals never touch opacity, because an element partly in view at load would be mid-fade and fail contrast checks.
+Why: Ten entrances cover every component and every treatment in DESIGN.md §3; a fixed list keeps the CSS small.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-14 Brand inputs from the brief
@@ -91,6 +91,6 @@ Gate: manual: checklists/new-site.md
 - [ ] R-TOK-10 container string exact
 - [ ] R-TOK-11 four durations, two easings
 - [ ] R-TOK-12 motion preset tokens set
-- [ ] R-TOK-13 seven animation tokens, transform/opacity only
+- [ ] R-TOK-13 ten animation tokens, transform/opacity only
 - [ ] R-TOK-14 brand inputs limited to the six keys
 - [ ] R-TOK-15 density touches padding only

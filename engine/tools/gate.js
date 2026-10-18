@@ -25,19 +25,19 @@ export const GATE_CHECKS = Object.fromEntries(GATES.map((g) => [g.id, g.checks])
 export function parseArgs(argv) {
   const get = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : undefined; };
   const list = (v) => (v ? v.split(",").map((s) => s.trim()).filter(Boolean) : []);
-  return { site: get("--site") || "reference", skip: list(get("--skip")), only: list(get("--only")), runs: get("--runs") ? Number(get("--runs")) : undefined };
+  return { site: get("--site") || "reference", skip: list(get("--skip")), only: list(get("--only")), runs: get("--runs") ? Number(get("--runs")) : undefined, sample: argv.includes("--sample") };
 }
 
 const version = (pkg) => { try { return JSON.parse(readFileSync(path.join("node_modules", pkg, "package.json"), "utf8")).version; } catch { return "n/a"; } };
 const sh = (cmd) => { try { return execSync(cmd, { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim(); } catch { return "n/a"; } };
 
-export async function runGates({ site, skip = [], only = [], runs }) {
+export async function runGates({ site, skip = [], only = [], runs, sample = false }) {
   const distDir = `dist/${site}`;
   if (!existsSync(distDir)) throw new Error(`${distDir} not found; run npm run build -- --site ${site}`);
   if (listHtml(distDir).length === 0) throw new Error(`${distDir} contains no pages; nothing to gate`);
   const { site: siteConfig, siteDir, i18n } = loadSite(site);
   const server = await startServer(distDir);
-  const ctx = { distDir, siteDir, site: siteConfig, i18n, engineDir: "engine", baseUrl: server.url, gateChecks: GATE_CHECKS, runs };
+  const ctx = { distDir, siteDir, site: siteConfig, i18n, engineDir: "engine", baseUrl: server.url, gateChecks: GATE_CHECKS, runs, sample };
   const results = [];
   try {
     for (const gate of GATES) {
