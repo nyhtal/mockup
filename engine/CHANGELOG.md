@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.4.0 — 2026-10-18
+
+Motion and style. `engine/DESIGN.md` records the design intent. Motion presets 12/24/32 px (R-TOK-12); keyframes `reveal-end` and `rise-in` (R-TOK-13); fixed hover vocabulary (R-MOT-07); overlay entrances with `@starting-style` and blurred backdrops (R-MOT-06); header shadow scroll-driven (R-MOT-08); smooth scrolling and floating back-to-top (R-MOT-13); scroll-driven appearance (R-MOT-14). Rhythm scale enforced by `consistency/rhythm` (R-LAY-02); reflow enforced by `a11y/reflow` (R-LAY-05). Button variants and effects (R-COMP-05); native `video` component (R-COMP-12); video budget (R-PERF-17); generated sample clip (R-ASSET-13). Gradients and accent placements enumerated (R-COL-02, R-COL-09). D31–D34.
+
 ## 0.3.0 — 2026-10-17
 
 Reference-site phase. Sites are data (D30): entities and page recipes per locale, engine-generated detail pages, thank-you pages, HTML site map and Atom feed, per-site string overlay, per-page font preload (R-I18N-11). Lighthouse page-type sampling per locale (R-GATE-10, D26). HTML budget 60 KB (R-PERF-01, D27). Script fonts subset at build time (R-TYPO-01, D28). Style guide in the default locale only (R-PAGE-09, R-COMP-16, D29). Language names in the system font (R-I18N-11). Non-home pages open with a page-header built from their title (R-SEC-08); breadcrumbs skip segments without a page (R-SEO-11). New string keys `ui.readingTime`, `ui.tags`, `ui.allPages`.

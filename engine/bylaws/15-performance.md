@@ -82,6 +82,11 @@ MUST. Any change to the catalog, theme or script reruns the full gate on the ref
 Why: Performance regressions are cheap to catch and expensive to find later.
 Gate: manual: checklists/pre-delivery.md
 
+### R-PERF-17 Video
+MUST. A page's video elements use `preload="none"` and a poster, so nothing of the clip loads before play; each clip is ≤ 1.5 MB per format at 1280×720 and ≤ 10 seconds for a sample; the budget gate counts the poster, not the clip.
+Why: A video that loads with the page costs more than every other asset together.
+Gate: manual: checklists/new-page.md
+
 ## Checklist
 
 - [ ] R-PERF-01 budgets green
@@ -100,3 +105,4 @@ Gate: manual: checklists/pre-delivery.md
 - [ ] R-PERF-14 analytics comment only
 - [ ] R-PERF-15 CSS reviewed
 - [ ] R-PERF-16 gate rerun on change
+- [ ] R-PERF-17 video preload none, poster, size limits

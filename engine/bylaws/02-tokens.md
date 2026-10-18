@@ -53,18 +53,18 @@ Why: One container width makes every section line up.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-11 Durations and easings
-MUST. Durations are `duration-150` (hover, focus), `duration-200` (dropdown, popover), `duration-300` (dialog, drawer, page transition) and `duration-(--reveal-duration)` (scroll reveals, set by the motion preset in R-TOK-12). Easings are `ease-out` for entrances and `ease-in-out` for movement; `--ease-smooth: cubic-bezier(0.22, 1, 0.36, 1)` is the only custom easing.
+MUST. Durations are `duration-150` (hover, focus, press), `duration-200` (dropdown, popover, drawer), `duration-300` (dialog, page transition) and `duration-(--reveal-duration)` (scroll reveals, set by the motion preset in R-TOK-12). Easings are `ease-out` for entrances and `ease-in-out` for movement; `--ease-smooth: cubic-bezier(0.22, 1, 0.36, 1)` is the only custom easing and is used by every scroll-driven animation.
 Why: Four durations and two curves make motion feel like one system.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-12 Motion presets
-MUST. The brief's motion level sets three tokens: `calm` = distance 8px, duration 200ms, stagger 0; `standard` = 16px, 300ms, 60ms; `expressive` = 24px, 500ms, 90ms. Keyframes read them via `var(--reveal-distance)` and `var(--reveal-duration)`; nothing else changes.
-Why: One switch changes the feel of the whole site without touching components.
+MUST. The brief's motion level sets three tokens: `calm` = distance 12px, duration 200ms, stagger 0; `standard` = 24px, 300ms, 60ms; `expressive` = 32px, 500ms, 90ms. Keyframes read them via `var(--reveal-distance)` and `var(--reveal-duration)`; nothing else changes.
+Why: Three presets give a brief a motion dial without exposing durations.
 Gate: manual: checklists/new-site.md
 
 ### R-TOK-13 Animation tokens
-MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes: `reveal` (translateY(var(--reveal-distance)) → none, transform only), `reveal-start` (translateX from the inline-start side, transform only), `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1). All animate only `opacity` and `transform`; the two scroll reveals never touch opacity, because an element partly in view at load would be mid-fade and fail contrast checks.
-Why: Five entrances cover every component; a fixed list keeps the CSS small.
+MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes: `reveal` (translateY(var(--reveal-distance)) → none), `reveal-start` (translateX from the inline-start side), `reveal-end` (translateX from the inline-end side), `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1) and `rise-in` (opacity 0 → 1, translateY(0.5rem) → none, visibility hidden → visible, for scroll-driven appearance only). All animate only `opacity`, `transform` and, in `rise-in`, `visibility`; the three scroll reveals never touch opacity, because an element partly in view at load would be mid-fade and fail contrast checks.
+Why: Seven entrances cover every component; a fixed list keeps the CSS small.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-14 Brand inputs from the brief
@@ -91,6 +91,6 @@ Gate: manual: checklists/new-site.md
 - [ ] R-TOK-10 container string exact
 - [ ] R-TOK-11 four durations, two easings
 - [ ] R-TOK-12 motion preset tokens set
-- [ ] R-TOK-13 five animation tokens, transform/opacity only
+- [ ] R-TOK-13 seven animation tokens, transform/opacity only
 - [ ] R-TOK-14 brand inputs limited to the six keys
 - [ ] R-TOK-15 density touches padding only

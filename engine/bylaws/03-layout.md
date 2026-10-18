@@ -8,9 +8,9 @@ Why: Alignment across sections is what makes a page look designed.
 Gate: manual: checklists/new-component.md
 
 ### R-LAY-02 Section rhythm
-MUST. A section is `<section class="py-16 md:py-24">` (density-adjusted per R-TOK-15), its heading group then `mt-12 md:mt-16` before the body, and `space-y-8` or `gap-8` between body items. Adjacent sections alternate `bg-surface` and `bg-surface-alt` unless a section has its own media background.
-Why: Equal vertical rhythm is the cheapest consistency win on a long page.
-Gate: manual: checklists/new-component.md
+MUST. One rhythm scale (`engine/DESIGN.md` §2) sets every vertical distance: a section is `py-16 md:py-24` (`py-12 md:py-16` compact; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; article meta `py-6`), its heading group then `mt-12 md:mt-16` before the body, grids `gap-6 md:gap-8` (stats `gap-8`, media rows `gap-12`), card internals `mt-2`/`mt-4`/`mt-auto pt-4`, a CTA after the body `mt-12`. Adjacent sections alternate `bg-surface` and `bg-surface-alt` unless a section has its own media background.
+Why: Equal vertical rhythm is the cheapest consistency win on a long page, and only a written scale can be checked.
+Gate: consistency/rhythm
 
 ### R-LAY-03 Grids
 MUST. Multi-column layouts use `grid` with `gap-6 md:gap-8` and only these column sets: `md:grid-cols-2`, `md:grid-cols-3`, `md:grid-cols-2 lg:grid-cols-4`, or the 12-column `lg:grid-cols-12` with `col-span-*` for asymmetric splits. Items stack to one column below `md`.
@@ -23,9 +23,9 @@ Why: One markup serves LTR and RTL without a second stylesheet.
 Gate: consistency/logical-props
 
 ### R-LAY-05 Minimum viewport and reflow
-MUST. Every page works at 320 px wide and at 400 % browser zoom with no horizontal scrolling and no clipped content.
+MUST. Every page works at 320 px wide and at 400 % browser zoom with no horizontal scrolling and no clipped content; the `a11y/reflow` check loads every page at 320 px and 375 px and fails when the document is wider than the viewport at the top or the bottom of the page.
 Why: WCAG 1.4.10; also the reality of small phones.
-Gate: manual: checklists/pre-delivery.md
+Gate: a11y/reflow
 
 ### R-LAY-06 Measure
 MUST. Running text is limited to `max-w-prose` (65ch); ledes to `max-w-2xl`; headings to `max-w-3xl`. Centred intro blocks use `mx-auto` with those limits.

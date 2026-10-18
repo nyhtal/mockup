@@ -62,6 +62,11 @@ MUST. `engine/LICENSES.md` lists every third-party asset source (Lucide, each fo
 Why: Mockups get reused; rights must travel with them.
 Gate: manual: checklists/new-site.md
 
+### R-ASSET-13 Sample video
+MUST. `engine/tools/build-video.js` generates every clip a page declares (`{ "slug", "title", "duration" }`): frames of brand-hue shapes in motion rendered by the placeholder generator, encoded with `ffmpeg-static` to `/assets/video/<slug>.mp4` (H.264, yuv420p) and `<slug>.webm` (VP9), with `<slug>-poster` through the image pipeline; builds are seeded by slug so rebuilds are identical and skipped when the files exist.
+Why: A real, self-hosted clip proves the video pattern without rights or requests.
+Gate: manual: checklists/new-page.md
+
 ## Checklist
 
 - [ ] R-ASSET-01 folder layout
@@ -76,3 +81,4 @@ Gate: manual: checklists/new-site.md
 - [ ] R-ASSET-10 OG image per page
 - [ ] R-ASSET-11 theme-color light and dark
 - [ ] R-ASSET-12 licences recorded
+- [ ] R-ASSET-13 sample video generated, seeded by slug

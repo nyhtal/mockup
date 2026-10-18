@@ -44,6 +44,10 @@ One page. Each field names the file and key it lands in. The last column is the 
 | Motion | calm / standard / expressive | `brand.motion` | `standard` |
 | Font | inter / figtree / ibm-plex-sans / source-sans-3 / noto-sans / system | `brand.font` (R-TYPO-01; only `inter` is installed, add the `@fontsource-variable/<name>` package for another; Arabic, Cyrillic, Greek and Vietnamese script faces are added per locale by the build, other scripts need an engine change) | `inter` |
 
+### Look and feel (DESIGN.md)
+
+The engine's look is fixed: quiet surfaces, one accent, the motion table in `engine/DESIGN.md`. A brief chooses only the six brand inputs above and may ask for a sample video (`hero-home` variant `split` with a `video`) or none. Anything else is a bylaw change, not a brief field.
+
 ## 5. Pages (R-PAGE-01)
 
 Core pages are built in every locale without being asked. List optional pages by name; module pages (investors, maintenance, coming soon) come with their module.

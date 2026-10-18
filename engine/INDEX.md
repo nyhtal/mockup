@@ -5,7 +5,7 @@ Read the files in the order listed. Bylaws are numbered rule files in `bylaws/`;
 ## Build a new site from a Site Brief
 
 1. `README.md`, then `site-brief/TEMPLATE.md` (the brief's fields, their destination files and defaults); `../sites/reference/brief.md` is the filled-in example
-2. `DECISIONS.md` (engine-wide decisions D1–D30)
+2. `DESIGN.md` (the look and the motion language), then `DECISIONS.md` (engine-wide decisions D1–D34)
 3. `bylaws/00-precedence.md`
 4. `bylaws/09-pages.md` (inventory and tiers → which pages to create)
 5. `bylaws/02-tokens.md` (brand inputs → `site.json`)
@@ -32,7 +32,7 @@ Read the files in the order listed. Bylaws are numbered rule files in `bylaws/`;
 
 ## Add or change a catalog component
 
-1. `bylaws/07-components.md` (anatomy block, states, patterns)
+1. `DESIGN.md` §3–§4 (motion table, visual vocabulary), then `bylaws/07-components.md` (anatomy block, states, patterns)
 2. `bylaws/01-html.md`, `bylaws/02-tokens.md`, `bylaws/03-layout.md`, `bylaws/04-typography.md`, `bylaws/05-color.md`, `bylaws/06-motion.md`
 3. `bylaws/14-accessibility.md` and, for forms, `bylaws/16-forms.md`
 4. `checklists/new-component.md`

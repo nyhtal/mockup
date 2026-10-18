@@ -23,8 +23,8 @@ Why: Three sizes are enough; defaults keep pages uniform.
 Gate: manual: checklists/new-component.md
 
 ### R-COMP-05 Buttons
-MUST. Variants: `primary`, `secondary`, `ghost`, `link`. Classes include `inline-flex items-center justify-center gap-2 min-h-11 px-5 rounded-md font-medium` plus the variant's colours and the focus ring. Labels are verb-first (bylaw 10) and never "Click here". Icon-only buttons have an `sr-only` label and `size-11`.
-Why: 44 px minimum height clears WCAG 2.5.8 with margin; verb-first labels read as actions.
+MUST. Variants: `primary`, `secondary`, `ghost`, `link`, `inverse`, `inverse-outline`. Classes include `group inline-flex items-center justify-center gap-2 min-h-11 px-5 rounded-md font-medium` plus the variant's colours, the focus ring and the hover vocabulary of R-MOT-07 (lift, press, arrow nudge). The primary and inverse variants end with the `arrow-right` icon unless `noArrow` is set; the icon mirrors in RTL. Labels are verb-first (bylaw 10) and never "Click here". Icon-only buttons have an `sr-only` label and `size-11`.
+Why: 44 px minimum height clears WCAG 2.5.8 with margin; verb-first labels and one hover vocabulary read as actions.
 Gate: manual: checklists/new-component.md
 
 ### R-COMP-06 Links in components
@@ -58,8 +58,8 @@ Why: Scroll-snap is the only carousel that needs no script.
 Gate: manual: checklists/new-component.md
 
 ### R-COMP-12 Facades
-MUST. Video and map embeds are facades: a poster image, a play or "Open map" button, and the iframe markup inside a `<dialog>` or `<template>` so no third-party request happens until the user acts. The facade states the provider and that it loads external content.
-Why: Embeds destroy Lighthouse and need consent; facades defer both.
+MUST. Third-party video and map embeds are facades: a poster image, a play or "Open map" button, and the iframe markup inside a `<dialog>` or `<template>` so no third-party request happens until the user acts; the facade states the provider and that it loads external content. Self-hosted video uses the `video` component: a native `<video controls playsinline preload="none">` with a generated poster in an `aspect-video` frame, MP4 and WebM sources from `/assets/video/`, and a visible title and duration beside it.
+Why: Embeds destroy Lighthouse and need consent; facades defer both, and a native player needs neither.
 Gate: manual: checklists/new-component.md
 
 ### R-COMP-13 Icons

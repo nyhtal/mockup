@@ -8,7 +8,7 @@ Why: A page author should never pick a colour, only a role.
 Gate: manual: checklists/new-component.md
 
 ### R-COL-02 Accent is rare
-MUST. `accent-*` appears only in eyebrows, highlighted stats, the active nav indicator and the CTA band gradient. It is never a button background.
+MUST. `accent-*` appears only in the eyebrow rule, highlighted stats, the active nav indicator, the CTA panel gradient and the footer hairline. It is never a button background or a text colour.
 Why: An accent that is everywhere is not an accent.
 Gate: manual: checklists/new-component.md
 
@@ -43,8 +43,8 @@ Why: Contrast over photographs cannot be guaranteed any other way.
 Gate: manual: checklists/new-component.md
 
 ### R-COL-09 Gradients
-MUST. Gradients appear only in the hero background and the CTA band, built as `bg-gradient-to-br from-brand-700 via-brand-600 to-accent-600`. Text gradients are not used.
-Why: Gradient text fails contrast tools and prints badly.
+MUST. Gradients appear only as: the hero glow (two radial gradients, brand and accent at ≤ 40 % alpha, behind the content), the CTA panel (`bg-linear-to-br from-brand-700 via-brand-600 to-accent-600`), the stats band numerals (`from-ink-inverse to-brand-100` clipped to text, with `text-ink-inverse` as the fallback colour) and the footer hairline (`from-brand-600 to-accent-600`, one pixel). No other text gradients.
+Why: A few gradients in fixed places read as a system; gradient body text fails contrast tools and prints badly.
 Gate: manual: checklists/new-component.md
 
 ### R-COL-10 Forced colours

@@ -18,7 +18,7 @@ Why: Validity is the foundation.
 Gate: html/error
 
 ### R-GATE-04 Consistency
-MUST. `consistency`: no inline `style`; exactly one `h1`; no skipped heading levels; unique ids; every class in the HTML exists in the built CSS (escaped variants and arbitrary values included); every `data-component` names a catalog file; no physical-direction utilities; every animation class under `motion-safe:`; no arbitrary lengths; no `href="#"` or `javascript:` links; every `img` has alt, width and height and is never both priority and lazy; head children in the R-HTML-02 order; title ≤ 60 and description 120–155 characters.
+MUST. `consistency`: no inline `style`; exactly one `h1`; no skipped heading levels; unique ids; every class in the HTML exists in the built CSS (escaped variants and arbitrary values included); every `data-component` names a catalog file; no physical-direction utilities; every animation class under `motion-safe:`; no arbitrary lengths; no `href="#"` or `javascript:` links; every `img` has alt, width and height; the head order of R-HTML-02; title and description lengths; and the rhythm scale of R-LAY-02 (`rhythm`: section padding pairs, heading-group gap, grid gaps).
 Why: Catches improvisation mechanically.
 Gate: consistency/class-exists
 
@@ -43,8 +43,8 @@ Why: Dead links and stray third parties are both defects.
 Gate: links/broken
 
 ### R-GATE-09 Accessibility
-MUST. `a11y`: axe via pa11y, WCAG 2.2 AA tags, zero violations on every page; "incomplete" results are listed under "Needs human review" and resolved by the manual checklist before delivery.
-Why: Automated floor plus a human ceiling.
+MUST. `a11y`: axe via pa11y, WCAG 2.2 AA tags, zero violations on every page; "incomplete" results are listed under "Needs human review" and resolved by the manual checklist before delivery; and `reflow`: every page loaded at 320 px and 375 px must not be wider than its viewport at the top or the bottom of the page.
+Why: Automated floor plus a human ceiling; horizontal scrolling on a phone is the defect visitors notice first.
 Gate: a11y/heading-order
 
 ### R-GATE-10 Lighthouse
