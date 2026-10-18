@@ -19,13 +19,15 @@ before(async () => {
   if (skip) return;
   server = await startServer(distDir);
   fixtures = mkdtempSync(path.join(tmpdir(), "a11y-"));
-  for (const d of ["moderate", "contrast-hex", "contrast-oklch", "noindex", "small-target", "wide"]) mkdirSync(path.join(fixtures, d));
+  for (const d of ["moderate", "contrast-hex", "contrast-oklch", "noindex", "small-target", "wide", "wide-mid", "redirect"]) mkdirSync(path.join(fixtures, d));
+  writeFileSync(path.join(fixtures, "redirect", "index.html"), page('<main><h1>Choose</h1><a href="/noindex/">en</a></main>', '<meta http-equiv="refresh" content="0; url=/noindex/">'));
+  writeFileSync(path.join(fixtures, "wide-mid", "index.html"), page('<main><h1>A</h1><div class="s"></div><div class="m">slides in</div><div class="s"></div></main>', "<style>.s{height:1600px}.m{height:600px;animation:s linear forwards;animation-timeline:view();animation-range:entry 0% cover 60%}@keyframes s{from{transform:translateX(80px)}to{transform:none}}</style>"));
   writeFileSync(path.join(fixtures, "wide", "index.html"), page('<main><h1>A</h1><div class="w">too wide</div></main>', "<style>.w{width:600px}</style>"));
   // heading-order and landmark-one-main are "moderate" impact in axe: they must be findings, not review items.
   writeFileSync(path.join(fixtures, "moderate", "index.html"), page("<h1>A</h1><h3>C</h3><p>no main landmark</p>"));
   writeFileSync(path.join(fixtures, "contrast-hex", "index.html"), page('<main><h1>A</h1><p class="x">low contrast</p></main>', "<style>.x{color:#999;background:#fff}</style>"));
   writeFileSync(path.join(fixtures, "contrast-oklch", "index.html"), page('<main><h1>A</h1><p class="x">low contrast</p></main>', "<style>.x{color:oklch(70% 0 0);background:oklch(100% 0 0)}</style>"));
-  writeFileSync(path.join(fixtures, "small-target", "index.html"), page('<main><h1>A</h1><p><a href="/" class="t">a</a></p><p><a href="/" class="t">b</a></p></main>', "<style>.t{display:inline-block;width:10px;height:10px;font-size:4px}p{margin:0;line-height:10px}</style>"));
+  writeFileSync(path.join(fixtures, "small-target", "index.html"), page('<main><h1>A</h1><div><button class="t">a</button><button class="t">b</button></div></main>', "<style>.t{width:16px;height:16px;padding:0;margin:0;font-size:8px}p{margin:0;line-height:10px}</style>"));
   writeFileSync(path.join(fixtures, "noindex", "index.html"), page("<main><h1>Thanks</h1></main>", '<meta name="robots" content="noindex">'));
   fixtureServer = await startServer(fixtures);
 });
@@ -73,6 +75,27 @@ test("a11y gate fails a page that scrolls horizontally at 320 px (reflow)", { sk
   assert.match(reflow[0].message, /at 320 px the document is 6\d\d px wide/);
   const clean = await a11y.run(fctx(["noindex/index.html"]));
   assert.deepEqual(clean.findings.filter((f) => f.check === "a11y/reflow"), []);
+});
+
+test("a11y gate finds overflow that appears only while scrolling: reflow steps through the page", { skip, timeout: 120000 }, async () => {
+  const r = await a11y.run(fctx(["wide-mid/index.html"]));
+  const reflow = r.findings.filter((f) => f.check === "a11y/reflow");
+  assert.ok(reflow.length >= 1, "mid-scroll overflow finding present");
+  assert.match(reflow[0].message, /at 320 px the document is 3[3-9]\d px wide \(viewport 320\) after scrolling \d+ px/);
+});
+
+test("a11y gate skips a page that redirects itself, quickly and without findings", { skip, timeout: 120000 }, async () => {
+  const started = Date.now();
+  const r = await a11y.run(fctx(["redirect/index.html"]));
+  assert.deepEqual(r.findings, []);
+  assert.equal(r.report[0].skipped, "redirects itself (meta refresh)");
+  assert.ok(Date.now() - started < 20000, "skipped before any timeout");
+});
+
+test("a11y gate turns a page whose tooling fails into an a11y/chrome finding instead of aborting the run", { skip, timeout: 120000 }, async () => {
+  const r = await a11y.run({ ...fctx(["noindex/index.html", "small-target/index.html"]), reflowWidths: ["not-a-width"] });
+  assert.equal(r.report.length, 2, "every page is still reported");
+  assert.ok(r.findings.some((f) => f.check === "a11y/chrome" && /tooling failed/.test(f.message)), `chrome finding present in ${JSON.stringify(r.findings).slice(0, 300)}`);
 });
 
 test("a11y gate runs the WCAG 2.2 target-size rule", { skip, timeout: 120000 }, async () => {

@@ -10,7 +10,7 @@ const RADIUS = {
   soft: ["0.25rem", "0.5rem", "0.75rem", "1rem", "9999px"],
   round: ["0.5rem", "1rem", "1.5rem", "2rem", "9999px"],
 };
-const MOTION = { calm: [12, 200, 0], standard: [24, 300, 60], expressive: [32, 500, 90] };
+const MOTION = { calm: [12, 200], standard: [24, 300], expressive: [32, 500] };
 /** Lightness of ink-muted per scheme; must keep 4.5:1 on every surface (see contrastFailures). */
 const ROLE_MUTED = { light: 46, dark: 72 };
 /** Lightness of ink-brand (brand-coloured text: eyebrows, links, icons on surfaces) per scheme. */
@@ -48,7 +48,7 @@ export function brandTokens(brand, { scriptFamilies = [] } = {}) {
   const h = Number(brand.hue) || 0;
   const a = Number(brand.accentHue ?? brand.hue) || 0;
   const r = RADIUS[brand.radius] || RADIUS.soft;
-  const [dist, dur, stag] = MOTION[brand.motion] || MOTION.standard;
+  const [dist, dur] = MOTION[brand.motion] || MOTION.standard;
   const font = resolveFont(brand.font);
   // Brand font, then each script font (its unicode-range keeps it to its script), then the matching metric fallbacks (R-TYPO-12).
   const fb = (family) => `"${family.replace(" Variable", "")} Fallback"`;
@@ -77,7 +77,6 @@ ${state("danger", 25)}
   --radius-full: ${r[4]};
   --reveal-distance: ${dist}px;
   --reveal-duration: ${dur}ms;
-  --reveal-stagger: ${stag}ms;
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --font-sans: ${fontSans};
   --font-system: system-ui, sans-serif;

@@ -4,7 +4,7 @@
   anatomy: ul[data-component=pricing-table] > li(tier) > h{level} + price + p + ul(features with check icons) + button
   variants: monthly only (billing toggles need JS and are out of scope)
   states: recommended tier (brand border + badge text "Most popular")
-  spacing: grid gap-6; tier p-6; features space-y-3
+  spacing: grid gap-6 md:gap-8; tier p-6; features space-y-3
   motion: none
   keyboard: one button per tier
   a11y: the recommended tier is marked by visible text, not colour alone; price uses tabular-nums; features are a list
@@ -17,7 +17,7 @@
 {% from "primitives/button.njk" import button with context %}
 {% macro pricingTable(p, opts={}) %}
 {%- set h = "h" + (opts.level or 3) -%}
-<ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-{{ p.tiers.length if p.tiers.length <= 4 else 4 }}" data-component="pricing-table">
+<ul class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-{{ p.tiers.length if p.tiers.length <= 4 else 4 }}" data-component="pricing-table">
 {%- for tier in p.tiers %}
 <li class="flex flex-col rounded-lg border bg-surface-raised p-6 shadow-sm {{ 'border-brand-600' if tier.recommended else 'border-line' }}">
 <div class="flex items-center justify-between gap-3">

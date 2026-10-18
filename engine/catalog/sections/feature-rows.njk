@@ -16,7 +16,7 @@
 {% from "primitives/picture.njk" import picture with context %}
 {% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
-{% call shell("feature-rows", s, ctx, { itemsReveal: ctx.reveal }) %}
+{% call shell("feature-rows", s, ctx, { itemsReveal: ctx.reveal, clipX: true }) %}
 <div class="space-y-16 md:space-y-24">
 {%- for item in s.items %}
 <div class="grid items-center gap-12 lg:grid-cols-2{{ revealClasses(ctx.reveal, 'end' if loop.index is even else 'start', true) }}">

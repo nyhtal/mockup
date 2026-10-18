@@ -28,8 +28,8 @@ The `consistency/rhythm` check fails any section, heading group or grid outside 
 | What | Movement | Duration and easing | Trigger |
 |---|---|---|---|
 | Section reveal | rise `--reveal-distance` (12 / 24 / 32 px by preset), no fade | `--reveal-duration`, `--ease-smooth` | scroll-driven (`view()`), entry 0 % to cover 30 %; script fallback slides only |
-| Grid items | same rise, staggered 60–90 ms, up to eight items | as above | same |
-| Alternating media rows | slide from the inline start or end edge | as above | same |
+| Grid items | same rise, each item's range shifted 5 % after the previous, up to eight items, fill both ways | as above | same |
+| Alternating media rows | slide from the inline start or end edge (mirrored in RTL; the section clips horizontal overflow) | as above | same |
 | Floating back to top | fades and rises in after the first 60 vh of scroll; visibility follows | `--ease-smooth` | scroll-driven (`scroll()`) |
 | Header shadow | a shadow fades in over the first 12 rem of scroll | | scroll-driven |
 | Popover, menu, drawer | fade and slide 8 px (menus) or from the end edge (drawer) | 200 ms ease-out | `@starting-style` on open |
@@ -41,7 +41,7 @@ The `consistency/rhythm` check fails any section, heading group or grid outside 
 | Disclosure | chevron rotates 180° | 150 ms | open |
 | Page navigation | cross-document view transition, header stable | browser default | navigation |
 
-Rules that hold everything above together: compositor properties only (transform, opacity, colour), every utility under `motion-safe:`, travel never over 32 px, nothing animates above the fold at load, reduced motion shows final states.
+Rules that hold everything above together: compositor properties only (transform, translate, scale, opacity, colour; transition lists name `translate` and `scale`, since Tailwind's utilities set those, never `transform`), every utility under `motion-safe:`, travel never over 32 px, nothing animates above the fold at load, reduced motion shows final states, and the script fallback applies only where scroll-driven animation is unsupported.
 
 ## 4. Visual vocabulary
 

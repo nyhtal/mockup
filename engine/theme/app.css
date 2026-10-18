@@ -18,6 +18,11 @@
     @slot;
   }
 }
+@custom-variant nosda {
+  @supports not (animation-timeline: view()) {
+    @slot;
+  }
+}
 
 /* @brand */
 

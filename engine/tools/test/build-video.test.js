@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync, readFileSync, statSync, existsSync } from "node:fs";
+import { mkdtempSync, rmSync, readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { videoFrameSvg, captionsVtt, generateVideo } from "../build-video.js";
@@ -31,10 +31,23 @@ test("generateVideo writes mp4, webm and a poster, caches them, and skips the en
     assert.equal(mp4.subarray(4, 8).toString(), "ftyp", "mp4 starts with an ftyp box");
     assert.equal(webm.readUInt32BE(0), 0x1a45dfa3, "webm starts with the EBML header");
     assert.ok(statSync(path.join(dir, "out", "clip-poster.webp")).size > 0);
-    assert.ok(existsSync(path.join(dir, "cache", "clip-320x180-6fps-1s-250-160.mp4")), "mp4 cached under a key with every parameter");
+    assert.ok(existsSync(path.join(dir, "cache", "clip-320x180-6fps-1s-250-160-v1.mp4")), "mp4 cached under a key with every parameter and the generator version");
+    assert.deepEqual(readdirSync(path.join(dir, "cache")).filter((f) => f.includes(".tmp")), [], "no temporary files left in the cache");
     const second = await generateVideo(opts);
     assert.equal(second.generated, false);
     assert.ok(existsSync(path.join(dir, "out", "clip.webm")));
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("generateVideo leaves nothing in the cache when the encoder fails or is missing", { timeout: 60000 }, async () => {
+  const dir = mkdtempSync(path.join(tmpdir(), "video-"));
+  try {
+    const opts = { slug: "bad", hue: 250, accentHue: 160, seconds: 1, fps: 2, width: 64, outDir: path.join(dir, "out"), cacheDir: path.join(dir, "cache") };
+    await assert.rejects(generateVideo({ ...opts, ffmpeg: path.join(dir, "no-such-ffmpeg.exe") }), /ffmpeg/);
+    assert.deepEqual(readdirSync(path.join(dir, "cache")), [], "a failed encode leaves no cache files, truncated or otherwise");
+    await assert.rejects(generateVideo({ ...opts, ffmpeg: null }), /ffmpeg-static/);
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

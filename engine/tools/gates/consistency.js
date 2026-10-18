@@ -8,11 +8,20 @@ export const checks = [
   "logical-props", "motion-safe", "no-arbitrary-lengths", "no-hash-links", "img-attrs", "head-order", "meta-length", "rhythm",
 ];
 
-/** The rhythm scale of R-LAY-02 (engine/DESIGN.md §2): allowed section padding pairs and body grid gaps. */
-const PADDINGS = [["py-16", "md:py-24"], ["py-12", "md:py-16"], ["py-16", "md:py-28"], ["py-12", "md:py-20"], ["py-6"]];
-const GAPS = [["gap-6", "md:gap-8"], ["gap-8"], ["gap-6"], ["gap-12"]];
-const has = (classes, pair) => pair.every((c) => classes.includes(c));
-const gapOf = (classes) => classes.filter((c) => /^(md:)?gap-/.test(c)).join(" ");
+/** The rhythm scale of R-LAY-02 (engine/DESIGN.md §2): the padding pairs each kind of section may carry, and the body grid gaps. */
+const PADDINGS = {
+  section: [["py-16", "md:py-24"], ["py-12", "md:py-16"]],
+  hero: [["py-16", "md:py-28"], ["py-12", "md:py-20"]],
+  "page-header": [["py-12", "md:py-16"]],
+  strip: [["py-6"]],
+};
+const STRIPS = new Set(["article-meta", "filter-bar", "pagination", "was-this-helpful"]);
+const GAPS = [["gap-6", "md:gap-8"], ["gap-8"], ["gap-12"]];
+const PY = /^(sm:|md:|lg:|xl:|2xl:)?py-/, GAP = /^(sm:|md:|lg:|xl:|2xl:)?gap-/;
+const tokens = (classes, re) => classes.filter((c) => re.test(c)).sort();
+const onScale = (classes, re, tuples) => { const t = tokens(classes, re); return tuples.some((p) => p.length === t.length && [...p].sort().every((c, i) => c === t[i])); };
+const kindOf = (name) => (name === "hero" ? "hero" : name === "page-header" ? "page-header" : STRIPS.has(name) ? "strip" : "section");
+const gapOf = (classes) => tokens(classes, GAP).join(" ");
 
 /** Rhythm findings for one parsed page: sections, heading groups and top-level body grids outside the scale. */
 export function rhythmFindings(root) {
@@ -20,7 +29,7 @@ export function rhythmFindings(root) {
   for (const section of root.querySelectorAll("section[data-component]")) {
     const name = section.getAttribute("data-component");
     const classes = (section.getAttribute("class") || "").split(/\s+/);
-    if (!PADDINGS.some((p) => has(classes, p))) out.push(`section "${name}" padding "${classes.filter((c) => /^(md:)?py-/.test(c)).join(" ")}" is not on the rhythm scale (R-LAY-02)`);
+    if (!onScale(classes, PY, PADDINGS[kindOf(name)])) out.push(`section "${name}" padding "${tokens(classes, PY).join(" ")}" is not on the rhythm scale for a ${kindOf(name)} (R-LAY-02)`);
     const container = section.querySelector(":scope > div");
     if (!container) continue;
     const children = container.childNodes.filter((n) => n.nodeType === 1);
@@ -30,14 +39,14 @@ export function rhythmFindings(root) {
       const next = children[children.indexOf(headingGroup) + 1];
       if (next) {
         const nc = (next.getAttribute("class") || "").split(/\s+/);
-        if (!has(nc, ["mt-12", "md:mt-16"])) out.push(`heading group of "${name}" is followed by "${nc.filter((c) => /^(md:)?mt-/.test(c)).join(" ") || "no top margin"}", expected "mt-12 md:mt-16" (R-LAY-02)`);
+        if (!(nc.includes("mt-12") && nc.includes("md:mt-16"))) out.push(`heading group of "${name}" is followed by "${nc.filter((c) => /^(md:)?mt-/.test(c)).join(" ") || "no top margin"}", expected "mt-12 md:mt-16" (R-LAY-02)`);
         body = next;
       }
     }
     for (const grid of body.childNodes.filter((n) => n.nodeType === 1)) {
       const gc = (grid.getAttribute("class") || "").split(/\s+/);
       if (!gc.includes("grid") && !gc.includes("md:grid")) continue;
-      if (!GAPS.some((g) => has(gc, g))) out.push(`grid in "${name}" uses "${gapOf(gc) || "no gap"}", expected one of ${GAPS.map((g) => `"${g.join(" ")}"`).join(", ")} (R-LAY-02)`);
+      if (!onScale(gc, GAP, GAPS)) out.push(`grid in "${name}" uses "${gapOf(gc) || "no gap"}", expected one of ${GAPS.map((g) => `"${g.join(" ")}"`).join(", ")} (R-LAY-02)`);
     }
   }
   return out;

@@ -11,7 +11,7 @@
   i18n: column titles and labels via keys; locale links use native names
   content limits: 2–4 columns, ≤ 8 links each; legal links ≤ 6
 #}
-{% from "components/back-to-top.njk" import backToTop with context %}
+{% from "components/back-to-top.njk" import backToTop, backToTopFloat with context %}
 {% from "primitives/wordmark.njk" import wordmark with context %}
 {% macro footer(site, locale, alternates) %}
 <footer class="bg-surface-alt" data-component="footer">
@@ -53,5 +53,6 @@
 {%- endif %}
 </div>
 </div>
+{{ backToTopFloat() }}
 </footer>
 {% endmacro %}

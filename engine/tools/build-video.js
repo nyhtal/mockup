@@ -4,7 +4,7 @@
  * frame is the poster. Every parameter is in the cache key, so a rebuild copies and an unchanged clip never re-encodes.
  */
 import { spawn } from "node:child_process";
-import { copyFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import sharp from "sharp";
 import ffmpegPath from "ffmpeg-static";
@@ -16,6 +16,8 @@ import { oklchToHex } from "./lib/theme.js";
 export const SECONDS = 8;
 export const FPS = 24;
 export const WIDTH = 1280;
+/** Bump when videoFrameSvg or the encoder arguments change, so cached clips are re-encoded. */
+export const VERSION = 1;
 const CACHE_DIR = "engine/.cache/video";
 
 const TAU = Math.PI * 2;
@@ -63,7 +65,8 @@ export function captionsVtt(seconds, text) {
   return `WEBVTT\n\n${stamp(0)} --> ${stamp(seconds)}\n${text}\n`;
 }
 
-async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, webm, poster }) {
+async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, webm, poster, ffmpeg }) {
+  if (typeof ffmpeg !== "string" || !ffmpeg) throw new Error(`ffmpeg-static did not provide a binary (was its install script skipped?), so the clip "${slug}" cannot be encoded`);
   const n = seconds * fps;
   const svg = (i) => Buffer.from(videoFrameSvg({ slug, hue, accentHue, width, t: i / n }));
   writeFileSync(poster, await sharp(svg(0)).webp({ quality: 75 }).toBuffer());
@@ -74,11 +77,11 @@ async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, 
     "-c:v", "libvpx-vp9", "-crf", "36", "-b:v", "0", "-deadline", "good", "-cpu-used", "4", "-row-mt", "1", "-pix_fmt", "yuv420p", "-an", webm,
   ];
   await new Promise((resolve, reject) => {
-    const p = spawn(ffmpegPath, args, { stdio: ["pipe", "ignore", "pipe"] });
+    const p = spawn(ffmpeg, args, { stdio: ["pipe", "ignore", "pipe"] });
     let err = "";
     p.stderr.on("data", (d) => (err += d));
     p.stdin.on("error", () => {});
-    p.on("error", reject);
+    p.on("error", (e) => reject(new Error(`ffmpeg could not start (${ffmpeg}): ${e.message}`)));
     p.on("close", (code) => (code === 0 ? resolve() : reject(new Error(`ffmpeg exited with ${code}: ${err.trim()}`))));
     (async () => {
       for (let i = 0; i < n; i++) {
@@ -94,16 +97,24 @@ async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, 
  * Write `<slug>.mp4`, `<slug>.webm` and `<slug>-poster.webp` into outDir, encoding only when the cache (keyed by
  * every parameter) lacks them. Returns { generated, files }.
  */
-export async function generateVideo({ slug, hue = 250, accentHue = 160, seconds = SECONDS, fps = FPS, width = WIDTH, outDir, cacheDir = CACHE_DIR }) {
+export async function generateVideo({ slug, hue = 250, accentHue = 160, seconds = SECONDS, fps = FPS, width = WIDTH, outDir, cacheDir = CACHE_DIR, ffmpeg = ffmpegPath }) {
   const height = Math.round((width * 9) / 16);
-  const key = `${slug}-${width}x${height}-${fps}fps-${seconds}s-${hue}-${accentHue}`;
+  const key = `${slug}-${width}x${height}-${fps}fps-${seconds}s-${hue}-${accentHue}-v${VERSION}`;
   mkdirSync(outDir, { recursive: true });
   mkdirSync(cacheDir, { recursive: true });
   const outputs = [[".mp4", `${slug}.mp4`], [".webm", `${slug}.webm`], ["-poster.webp", `${slug}-poster.webp`]];
   const cached = (ext) => path.join(cacheDir, `${key}${ext}`);
   let generated = false;
   if (!outputs.every(([ext]) => existsSync(cached(ext)))) {
-    await encode({ slug, hue, accentHue, seconds, fps, width, height, mp4: cached(".mp4"), webm: cached(".webm"), poster: cached("-poster.webp") });
+    // Encode to temporary names and rename only when every output is complete, so an interrupted build never leaves a truncated clip that the next build would ship as a cache hit.
+    const tmp = (ext) => path.join(cacheDir, `${key}.tmp${ext}`);
+    try {
+      await encode({ slug, hue, accentHue, seconds, fps, width, height, mp4: tmp(".mp4"), webm: tmp(".webm"), poster: tmp("-poster.webp"), ffmpeg });
+      for (const [ext] of outputs) renameSync(tmp(ext), cached(ext));
+    } catch (e) {
+      for (const [ext] of outputs) rmSync(tmp(ext), { force: true });
+      throw e;
+    }
     generated = true;
   }
   const files = outputs.map(([ext, name]) => { const f = path.join(outDir, name); copyFileSync(cached(ext), f); return f; });

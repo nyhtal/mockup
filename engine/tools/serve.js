@@ -18,12 +18,15 @@ const TYPES = {
   ".png": "image/png",
   ".ico": "image/x-icon",
   ".avif": "image/avif",
+  ".mp4": "video/mp4",
+  ".webm": "video/webm",
+  ".vtt": "text/vtt; charset=utf-8",
   ".webp": "image/webp",
   ".woff2": "font/woff2",
 };
 
 /** Static server for a built site: directory URLs → index.html, misses → 404.html with status 404. */
-export function startServer(distDir, port = 0) {
+export function startServer(distDir, port = 0, { noCache = false } = {}) {
   const root = path.resolve(distDir);
   const server = createServer((req, res) => {
     let urlPath;
@@ -34,7 +37,8 @@ export function startServer(distDir, port = 0) {
     if (!existsSync(file) || !statSync(file).isFile()) return send(res, 404, root);
     const type = TYPES[path.extname(file)] || "application/octet-stream";
     const headers = { "Content-Type": type };
-    if (urlPath.startsWith("/assets/")) headers["Cache-Control"] = "public, max-age=31536000";
+    if (noCache) headers["Cache-Control"] = "no-store";
+    else if (urlPath.startsWith("/assets/")) headers["Cache-Control"] = "public, max-age=31536000";
     // Text assets go out gzip-compressed, as a real host would (R-PERF-11), so Lighthouse sees deployment-like transfer sizes.
     const compressible = /^(text\/|application\/(json|xml|javascript|manifest))/.test(type) || type === "image/svg+xml";
     if (compressible && /\bgzip\b/.test(req.headers["accept-encoding"] || "")) {
@@ -66,5 +70,6 @@ function send(res, status, root) {
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const { site } = parseArgs(process.argv.slice(2));
-  startServer(`dist/${site}`, 8080).then(({ url }) => console.log(`Serving dist/${site} at ${url}`));
+  const noCache = process.argv.includes("--dev");
+  startServer(`dist/${site}`, 8080, { noCache }).then(({ url }) => console.log(`Serving dist/${site} at ${url}${noCache ? " (--dev: no caching)" : ""}`));
 }

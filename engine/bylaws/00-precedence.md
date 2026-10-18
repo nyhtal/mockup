@@ -33,7 +33,7 @@ Why: Consistency is a property of the catalog, not of individual pages.
 Gate: manual: checklists/new-page.md
 
 ### R-PREC-07 The CSS exception list
-MUST. `engine/theme/app.css` contains only: `@import "tailwindcss"`, `@source` lines, one `@theme` block (with its `@keyframes`), `@custom-variant` lines, `@font-face` blocks for the site's fonts, and the `@view-transition` block wrapped in `@media (prefers-reduced-motion: no-preference)`. No `@apply`, no `@layer components`, no selectors, no inline `style`.
+MUST. `engine/theme/app.css` contains only: `@import "tailwindcss"`, `@source` lines, one `@theme` block (with its `@keyframes`), `@custom-variant` lines, named `@utility` blocks for the R-COL-09 backgrounds (`bg-hero-backdrop`: layered gradients and a mask that no utility can express), `@font-face` blocks for the site's fonts, and the `@view-transition` block wrapped in `@media (prefers-reduced-motion: no-preference)`. No `@apply`, no `@layer components`, no selectors, no inline `style`.
 Why: The whole look must be expressible in utilities so pages stay portable and the purge stays small.
 Gate: manual: checklists/pre-delivery.md
 

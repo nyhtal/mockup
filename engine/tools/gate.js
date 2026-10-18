@@ -59,7 +59,7 @@ export function formatReport({ site, results }) {
     `# Gate report: ${site}`,
     "",
     `Date: ${new Date().toISOString()}  Commit: ${sh("git rev-parse --short HEAD")}  OS: ${process.platform} ${process.arch}`,
-    `Node ${process.versions.node} · lighthouse ${version("lighthouse")} · tailwindcss ${version("tailwindcss")} · eleventy ${version("@11ty/eleventy")} · pa11y ${version("pa11y")} · vnu ${vnu}`,
+    `Node ${process.versions.node} · lighthouse ${version("lighthouse")} · tailwindcss ${version("tailwindcss")} · eleventy ${version("@11ty/eleventy")} · axe-core ${version("axe-core")} · vnu ${vnu}`,
     "",
     "| Gate | Result | Findings | Time |",
     "|---|---|---|---|",

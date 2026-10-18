@@ -13,7 +13,7 @@
 #}
 {% from "primitives/field.njk" import field with context %}
 {% macro consentPreferences(opts={}) %}
-<div popover id="{{ opts.id or 'consent-preferences' }}" class="m-auto w-full max-w-lg rounded-xl border border-line bg-surface-raised p-6 text-ink shadow-lg opacity-0 open:opacity-100 motion-safe:scale-95 motion-safe:open:scale-100 motion-safe:transition-discrete motion-safe:transition-[opacity,transform,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:scale-95" data-component="consent-preferences">
+<div popover id="{{ opts.id or 'consent-preferences' }}" class="m-auto w-full max-w-lg rounded-xl border border-line bg-surface-raised p-6 text-ink shadow-lg opacity-0 open:opacity-100 motion-safe:scale-95 motion-safe:open:scale-100 motion-safe:transition-discrete motion-safe:transition-[opacity,translate,scale,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:scale-95" data-component="consent-preferences">
 <h2 class="text-xl font-semibold">{{ "ui.consentPreferences" | t }}</h2>
 <form method="get" action="{{ opts.action or '#' }}" class="mt-4 space-y-4">
 {{ field({ type: "switch", name: "necessary", label: ("ui.consentNecessary" | t), checked: true, disabled: true, value: "1" }) }}

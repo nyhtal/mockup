@@ -119,3 +119,25 @@ test("rhythm: sections need an allowed padding pair, a heading group needs mt-12
   assert.match(msgs[1], /heading group of "x" is followed by "mt-8"/);
   assert.match(msgs[2], /grid in "x" uses "gap-5"/);
 });
+
+test("rhythm: off-scale extra breakpoints, hero padding outside heroes, strip padding outside strips and unlisted gaps are findings", async () => {
+  const { rhythmFindings } = await import("../gates/consistency.js");
+  const { parse: parseHtml } = await import("node-html-parser");
+  const sec = (cls, name = "x", grid = "grid gap-6 md:gap-8") => parseHtml(`<section class="${cls} bg-surface" data-component="${name}"><div class="mx-auto"><div class="${grid}"><p>a</p></div></div></section>`);
+  for (const [cls, name] of [["py-6 md:py-24", "x"], ["py-16 md:py-24 lg:py-40", "x"], ["py-16 md:py-28", "faq"], ["py-12 md:py-16", "hero"], ["py-6", "faq"], ["py-16 md:py-24", "pagination"]]) {
+    const m = rhythmFindings(sec(cls, name));
+    assert.equal(m.length, 1, `${name} "${cls}": ${m.join(" | ") || "no finding"}`);
+    assert.match(m[0], /padding/);
+  }
+  for (const grid of ["grid gap-6 md:gap-10", "grid gap-8 md:gap-2", "grid gap-6"]) {
+    const m = rhythmFindings(sec("py-16 md:py-24", "x", grid));
+    assert.equal(m.length, 1, `"${grid}": ${m.join(" | ") || "no finding"}`);
+    assert.match(m[0], /grid in "x"/);
+  }
+  assert.deepEqual(rhythmFindings(sec("py-16 md:py-28", "hero")), []);
+  assert.deepEqual(rhythmFindings(sec("py-12 md:py-20", "hero")), []);
+  assert.deepEqual(rhythmFindings(sec("py-12 md:py-16", "page-header")), []);
+  assert.deepEqual(rhythmFindings(sec("py-6", "pagination")), []);
+  assert.deepEqual(rhythmFindings(sec("py-16 md:py-24", "resource-tabs")), [], "resource-tabs is a full section, not a strip");
+  assert.deepEqual(rhythmFindings(sec("py-16 md:py-24", "x", "grid gap-12")), []);
+});

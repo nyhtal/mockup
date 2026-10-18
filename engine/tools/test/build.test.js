@@ -142,7 +142,7 @@ test("every indexable page is in sitemap.xml, every og:image file exists, and th
 
 test("review fixes: German hyphenation and wrapping, Arabic leading and tracking, mirrored card arrow, plural strings, lg header", () => {
   const de = readFileSync("dist/reference/de/resources/downloads/downtime-calculator/index.html", "utf8");
-  assert.match(de, /<body id="top" class="[^"]*hyphens-auto[^"]*wrap-break-word/);
+  assert.match(de, /<body id="top" class="[^"]*hyphens-auto[^"]*wrap-anywhere/);
   const ar = readFileSync("dist/reference/ar/blog/reading-generated-code/index.html", "utf8");
   assert.match(ar, /<body id="top" class="[^"]*\[&_h1\]:leading-snug[^"]*\[&_\*\]:tracking-normal/);
   assert.match(ar, /<div class="max-w-prose text-base leading-loose/);
@@ -226,5 +226,37 @@ test("home hero carries the generated sample clip: native video, poster, preload
   for (const f of ["northwind-sample.mp4", "northwind-sample.webm", "northwind-sample-poster.webp"]) {
     const size = statSync(`dist/reference/assets/video/${f}`).size;
     assert.ok(size > 0 && size <= 1.5 * 1024 * 1024, `${f} is ${size} B`);
+  }
+});
+
+test("review fixes: transitions name translate and scale, feature rows clip and mirror their slide, the script fallback is scoped to browsers without scroll-driven animation, staggered items fill both", () => {
+  const en = readFileSync("dist/reference/en/index.html", "utf8");
+  const ar = readFileSync("dist/reference/ar/index.html", "utf8");
+  const svc = readFileSync("dist/reference/en/services/index.html", "utf8");
+  const guide = readFileSync("dist/reference/en/style-guide/controls/index.html", "utf8");
+  for (const [name, html] of [["en", en], ["ar", ar], ["controls", guide]]) {
+    const lists = [...html.matchAll(/transition-\[([^\]]+)\]/g)].map((m) => m[1]);
+    assert.ok(lists.length > 0, `${name} has transition lists`);
+    for (const l of lists) assert.doesNotMatch(l, /transform|box-shadow/, `${name}: transition list "${l}" names a property Tailwind 4 never sets (transform) or R-MOT-01 forbids (box-shadow)`);
+  }
+  assert.match(en, /motion-safe:transition-\[color,background-color,border-color,translate,scale\]/, "button and card list");
+  assert.match(en, /motion-safe:transition-\[opacity,translate,scale,display,overlay\][^>]*data-component="mobile-drawer"/, "drawer list");
+  assert.match(guide, /<dialog[^>]*motion-safe:transition-\[opacity,translate,scale,display,overlay\]/, "dialog list");
+  assert.match(en, /<section class="[^"]*overflow-x-clip[^"]*"[^>]*data-component="feature-rows"/, "feature rows clip horizontal overflow while rows slide in");
+  assert.match(ar, /motion-safe:sda:animate-reveal-end rtl:motion-safe:sda:animate-reveal-start/, "rows mirror their slide in RTL");
+  assert.match(en, /motion-safe:nosda:js:not-data-revealed:translate-y-4 motion-safe:nosda:js:data-revealed:translate-y-0/, "script fallback scoped to browsers without scroll-driven animation");
+  assert.doesNotMatch(en, /motion-safe:js:not-data-revealed/, "no unscoped fallback remains");
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  assert.ok(css.includes("@supports not (animation-timeline:view())"), "nosda variant in the CSS");
+  assert.match(svc, /motion-safe:sda:\[animation-range:entry_5%_cover_35%\] motion-safe:sda:\[animation-fill-mode:both\]/, "staggered items fill both so they never jump at their range start");
+});
+
+test("gate fixes: the floating back-to-top lives inside the footer landmark and every body grid is on the rhythm scale", () => {
+  const en = readFileSync("dist/reference/en/index.html", "utf8");
+  assert.match(en, /<footer[^>]*>[\s\S]*data-component="back-to-top" data-variant="float"[\s\S]*<\/footer>/, "floating back-to-top inside the footer");
+  assert.doesNotMatch(en, /<\/footer>[\s\S]*data-component="back-to-top" data-variant="float"/, "not after the footer");
+  for (const page of ["en/resources/index.html", "en/products/northwind-studio/index.html", "en/style-guide/sections/index.html", "en/style-guide/sections-c/index.html", "en/style-guide/sections-d/index.html"]) {
+    const html = readFileSync(`dist/reference/${page}`, "utf8");
+    assert.doesNotMatch(html, /<ul class="grid gap-6 (?!md:gap-8)/, `${page}: bare gap-6 body grid`);
   }
 });

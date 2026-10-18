@@ -4,7 +4,7 @@
   anatomy: div.overflow > table[data-component=comparison-table] > caption + thead(th scope=col) + tbody(tr > th scope=row + td(check|x|text))
   variants: none
   states: recommended column marked in its header text
-  spacing: cell px-4 py-3; wrapper overflow-x-auto (R-LAY-08)
+  spacing: cell px-4 py-3; wrapper relative overflow-x-auto (R-LAY-08; relative so sr-only cells stay inside the scroller instead of widening the page)
   motion: none
   keyboard: none (scroll container is focusable via tabindex=0 so keyboard users can scroll it)
   a11y: caption names the table; booleans render an icon plus sr-only "Included"/"Not included"
@@ -14,7 +14,7 @@
 #}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro comparisonTable(c) %}
-<div class="overflow-x-auto rounded-lg border border-line" tabindex="0" data-component="comparison-table">
+<div class="relative overflow-x-auto rounded-lg border border-line" tabindex="0" data-component="comparison-table">
 <table class="w-full text-start text-sm">
 <caption class="sr-only">{{ c.caption }}</caption>
 <thead class="bg-surface-alt">

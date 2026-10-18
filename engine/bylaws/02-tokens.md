@@ -58,7 +58,7 @@ Why: Four durations and two curves make motion feel like one system.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-12 Motion presets
-MUST. The brief's motion level sets three tokens: `calm` = distance 12px, duration 200ms, stagger 0; `standard` = 24px, 300ms, 60ms; `expressive` = 32px, 500ms, 90ms. Keyframes read them via `var(--reveal-distance)` and `var(--reveal-duration)`; nothing else changes.
+MUST. The brief's motion level sets two tokens: `calm` = distance 12px, duration 200ms; `standard` = 24px, 300ms; `expressive` = 32px, 500ms. Keyframes read them via `var(--reveal-distance)` and `var(--reveal-duration)`; nothing else changes (items stagger by scroll range, R-MOT-05, not by time).
 Why: Three presets give a brief a motion dial without exposing durations.
 Gate: manual: checklists/new-site.md
 

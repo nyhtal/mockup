@@ -21,7 +21,7 @@
 <details class="group md:contents md:details-content:order-last md:details-content:w-full md:details-content:border-t md:details-content:border-line" name="resources"{% if loop.first %} open{% endif %}>
 <summary class="cursor-pointer list-none border-b-2 border-transparent px-4 py-3 font-medium text-ink-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus group-open:border-brand-600 group-open:text-ink md:-mb-px">{{ tab.label }}</summary>
 <div class="py-6">
-<ul class="grid gap-6 md:grid-cols-3">{% for item in tab.items %}{{ card(item | merge({ variant: tab.variant or "article" }), { density: ctx.density }) }}{% endfor %}</ul>
+<ul class="grid gap-6 md:gap-8 md:grid-cols-3">{% for item in tab.items %}{{ card(item | merge({ variant: tab.variant or "article" }), { density: ctx.density }) }}{% endfor %}</ul>
 </div>
 </details>
 {%- endfor %}

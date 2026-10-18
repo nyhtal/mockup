@@ -23,7 +23,7 @@
 {%- set variant = c.variant or "service" -%}
 {%- set pad = "p-4" if opts.density == "compact" else "p-6" -%}
 {%- set link = "text-ink after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus hover:underline underline-offset-4" -%}
-<{{ tag }} class="group relative flex flex-col rounded-lg border border-line bg-surface-raised {{ pad }} shadow-sm{{ ' ' + opts.class if opts.class }} motion-safe:transition-[transform,border-color,box-shadow] motion-safe:duration-150 motion-safe:ease-out motion-safe:hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md" data-component="card" data-variant="{{ variant }}">
+<{{ tag }} class="group relative flex flex-col rounded-lg border border-line bg-surface-raised {{ pad }} shadow-sm{{ ' ' + opts.class if opts.class }} motion-safe:transition-[color,background-color,border-color,translate,scale] motion-safe:duration-150 motion-safe:ease-out motion-safe:hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md" data-component="card" data-variant="{{ variant }}">
 {%- if variant == "article" and c.image %}
 <div class="-mx-6 -mt-6 mb-6 overflow-hidden rounded-t-lg">{{ picture(c.image, { sizes: "(min-width: 48rem) 33vw, 100vw", class: "aspect-video w-full object-cover" }) }}</div>
 {%- endif %}

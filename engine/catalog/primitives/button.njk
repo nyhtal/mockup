@@ -16,7 +16,7 @@
 {%- set variant = opts.variant or "primary" -%}
 {%- set size = opts.size or "md" -%}
 {#- The hover vocabulary of R-MOT-07: lift one pixel with a deeper shadow, settle and press on active, nudge the trailing arrow; link buttons grow an underline from the start edge instead. -#}
-{%- set base = "group inline-flex items-center justify-center gap-2 rounded-md font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-[color,background-color,border-color,transform,box-shadow] motion-safe:duration-150 motion-safe:ease-out" -%}
+{%- set base = "group inline-flex items-center justify-center gap-2 rounded-md font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-[color,background-color,border-color,translate,scale] motion-safe:duration-150 motion-safe:ease-out" -%}
 {%- set lift = " motion-safe:hover:-translate-y-px hover:shadow-md active:translate-y-0 motion-safe:active:scale-[0.98]" -%}
 {%- set sizes = { sm: "min-h-9 px-4 text-sm", md: "min-h-11 px-5", lg: "min-h-12 px-6 text-lg" } -%}
 {%- set variants = {

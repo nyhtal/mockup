@@ -12,7 +12,7 @@
 {% call shell("job-list", s, ctx, { center: false }) %}
 {%- if s.filters %}<div class="mb-8">{{ filterBar(s.filters) }}</div>{% endif %}
 {%- if s.items and s.items.length %}
-<ul class="grid gap-6 md:grid-cols-2">{% for item in s.items %}{{ card(item | merge({ variant: "job" }), { density: ctx.density }) }}{% endfor %}</ul>
+<ul class="grid gap-6 md:gap-8 md:grid-cols-2">{% for item in s.items %}{{ card(item | merge({ variant: "job" }), { density: ctx.density }) }}{% endfor %}</ul>
 {%- else %}
 {{ emptyState(s.empty or { icon: "briefcase", title: ("ui.noRolesTitle" | t), text: ("ui.noRolesText" | t) }) }}
 {%- endif %}

@@ -4,7 +4,7 @@
   anatomy: shell > testimonial (single) | ul.grid (grid) | ul.snap carousel (carousel)
   variants: single | grid | carousel
   states: none
-  spacing: grid gap-6; carousel gap-6 with snap-x
+  spacing: grid gap-6 md:gap-8; carousel gap-6 with snap-x
   motion: group reveal; the carousel never autoplays
   keyboard: carousel items are reachable because the figure contains no controls; the scroll container is focusable
   a11y: figures with figcaptions; carousel is a list in a focusable scroll region
@@ -24,7 +24,7 @@
 {%- for item in s.items %}<li class="w-80 shrink-0 snap-start">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
 </ul>
 {%- else %}
-<ul class="grid gap-6 md:grid-cols-3">
+<ul class="grid gap-6 md:gap-8 md:grid-cols-3">
 {%- for item in s.items %}<li class="{{ stagger(loop.index0) if ctx.reveal }}">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
 </ul>
 {%- endif %}

@@ -1,20 +1,20 @@
 {#
   name: _shell (helper, not a section)
   purpose: The section skeleton every section uses (R-SEC-01, R-SEC-06, R-SEC-10, R-TOK-15, R-LAY-02): padding by density, surface, container, eyebrow + h2 + lede, body via caller, optional CTA, reveal classes below the fold.
-  usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}
+  usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}; opts: itemsReveal (items stagger, the section keeps only the fallback), clipX (overflow-x-clip for sliding rows), noReveal, center
   ctx: { locale, pageUrl, density, surface, reveal, index }
 #}
 {% from "primitives/button.njk" import button with context %}
 {#- Scroll-driven rise (or slide from an inline edge, kind = "start" | "end") where supported; the script fallback only slides (never opacity 0) so content stays visible (R-MOT-04, R-MOT-05).
-    sdaOnly leaves the script fallback to the parent section, for items that stagger inside it. -#}
-{% macro revealClasses(on, kind="", sdaOnly=false) %}{% if on %} motion-safe:sda:animate-reveal{{ "-" + kind if kind }} motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]{% if not sdaOnly %} motion-safe:js:not-data-revealed:translate-y-4 motion-safe:js:data-revealed:translate-y-0 motion-safe:js:transition-transform motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth{% endif %}{% endif %}{% endmacro %}
+    sdaOnly leaves the script fallback to the parent section, for items that stagger inside it. The fallback is scoped to nosda (no scroll-driven animation) so the two paths never compound; media rows mirror their slide under rtl:. -#}
+{% macro revealClasses(on, kind="", sdaOnly=false) %}{% if on %} motion-safe:sda:animate-reveal{{ "-" + kind if kind }}{% if kind %} rtl:motion-safe:sda:animate-reveal-{{ "start" if kind == "end" else "end" }}{% endif %} motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_0%_cover_30%]{% if not sdaOnly %} motion-safe:nosda:js:not-data-revealed:translate-y-4 motion-safe:nosda:js:data-revealed:translate-y-0 motion-safe:nosda:js:transition-transform motion-safe:nosda:js:duration-(--reveal-duration) motion-safe:nosda:js:ease-smooth{% endif %}{% endif %}{% endmacro %}
 {#- Staggered grid items: each item reveals on its own view() timeline with a range shifted 5 % per item (time delays do not apply to scroll timelines); eight items at most (R-MOT-03). -#}
-{% macro stagger(i) %}{% if i < 8 %} motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_{{ i * 5 }}%_cover_{{ 30 + i * 5 }}%]{% endif %}{% endmacro %}
+{% macro stagger(i) %}{% if i < 8 %} motion-safe:sda:animate-reveal motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:entry_{{ i * 5 }}%_cover_{{ 30 + i * 5 }}%] motion-safe:sda:[animation-fill-mode:both]{% endif %}{% endmacro %}
 {% macro shell(name, s, ctx, opts={}) %}
 {%- set pad = "py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24" -%}
 {%- set surface = s.surface or ctx.surface or "bg-surface" -%}
 {%- set inverse = surface == "bg-brand-700" -%}
-<section class="{{ pad }} {{ surface }}{% if inverse %} text-ink-inverse{% endif %}{% if opts.itemsReveal and ctx.reveal and not opts.noReveal %} motion-safe:js:not-data-revealed:translate-y-4 motion-safe:js:data-revealed:translate-y-0 motion-safe:js:transition-transform motion-safe:js:duration-(--reveal-duration) motion-safe:js:ease-smooth{% else %}{{ revealClasses(ctx.reveal and not opts.noReveal) }}{% endif %}"{% if ctx.reveal and not opts.noReveal %} data-reveal{% endif %} data-component="{{ name }}"{% if s.variant %} data-variant="{{ s.variant }}"{% endif %}{% if s.anchor %} id="{{ s.anchor }}"{% endif %}{% if not s.title and s.label %} aria-label="{{ s.label }}"{% endif %}>
+<section class="{{ pad }} {{ surface }}{% if inverse %} text-ink-inverse{% endif %}{% if opts.clipX %} overflow-x-clip{% endif %}{% if opts.itemsReveal and ctx.reveal and not opts.noReveal %} motion-safe:nosda:js:not-data-revealed:translate-y-4 motion-safe:nosda:js:data-revealed:translate-y-0 motion-safe:nosda:js:transition-transform motion-safe:nosda:js:duration-(--reveal-duration) motion-safe:nosda:js:ease-smooth{% else %}{{ revealClasses(ctx.reveal and not opts.noReveal) }}{% endif %}"{% if ctx.reveal and not opts.noReveal %} data-reveal{% endif %} data-component="{{ name }}"{% if s.variant %} data-variant="{{ s.variant }}"{% endif %}{% if s.anchor %} id="{{ s.anchor }}"{% endif %}{% if not s.title and s.label %} aria-label="{{ s.label }}"{% endif %}>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 {%- if s.title or s.eyebrow or s.lede %}
 <div class="{{ 'mx-auto max-w-3xl text-center' if opts.center !== false else 'max-w-3xl' }}">

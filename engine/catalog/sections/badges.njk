@@ -4,7 +4,7 @@
   anatomy: shell > ul.grid > li(icon + name + text)
   variants: none
   states: none
-  spacing: gap-6; 3 columns
+  spacing: gap-6 md:gap-8; 3 columns
   motion: reveals
   keyboard: none
   a11y: text; icons aria-hidden
@@ -16,11 +16,11 @@
 {% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("badges", s, ctx) %}
-<ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<ul class="grid gap-6 md:gap-8 sm:grid-cols-2 lg:grid-cols-3">
 {%- for item in s.items %}
 <li class="flex items-start gap-4 rounded-lg border border-line bg-surface-raised p-6{{ stagger(loop.index0) }}">
 <span class="inline-flex size-12 shrink-0 items-center justify-center rounded-md bg-success-soft text-success-strong">{{ icon(item.icon or "shield-check", { size: "size-6" }) }}</span>
-<div><h3 class="font-semibold">{{ item.name }}</h3><p class="mt-1 text-sm leading-relaxed text-ink-muted">{{ item.text }}</p></div>
+<div class="min-w-0"><h3 class="font-semibold">{{ item.name }}</h3><p class="mt-1 text-sm leading-relaxed text-ink-muted">{{ item.text }}</p></div>
 </li>
 {%- endfor %}
 </ul>

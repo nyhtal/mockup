@@ -43,7 +43,7 @@ Why: Dead links and stray third parties are both defects.
 Gate: links/broken
 
 ### R-GATE-09 Accessibility
-MUST. `a11y`: axe via pa11y, WCAG 2.2 AA tags, zero violations on every page; "incomplete" results are listed under "Needs human review" and resolved by the manual checklist before delivery; and `reflow`: every page loaded at 320 px and 375 px must not be wider than its viewport at the top or the bottom of the page.
+MUST. `a11y`: axe-core injected into every page through puppeteer, the WCAG 2.2 AA tag set plus axe best practices, zero violations on every page whatever their impact; "incomplete" results are listed under "Needs human review" and resolved by the manual checklist before delivery; and `reflow`: every page loaded at 320 px and 375 px must not be wider than its viewport at any scroll position (the gate steps through the page half a viewport at a time). The gate runs on one shared browser, four pages at a time, with a 90 s ceiling per page; a page whose tooling fails or stalls is an `a11y/chrome` finding, and a page that redirects itself (meta refresh) is skipped and listed as such.
 Why: Automated floor plus a human ceiling; horizontal scrolling on a phone is the defect visitors notice first.
 Gate: a11y/heading-order
 
