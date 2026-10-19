@@ -36,6 +36,8 @@
     "language": "اللغة",
     "sound": "المؤثرات الصوتية",
     "theme": "الوضع الداكن",
+    "openImage": "فتح الصورة",
+    "imageOf": "{n} من {total}",
     "included": "مشمول",
     "notIncluded": "غير مشمول",
     "playVideo": "تشغيل الفيديو",

@@ -36,6 +36,8 @@
     "language": "Sprache",
     "sound": "Soundeffekte",
     "theme": "Dunkles Design",
+    "openImage": "Bild öffnen",
+    "imageOf": "{n} von {total}",
     "included": "Enthalten",
     "notIncluded": "Nicht enthalten",
     "playVideo": "Video abspielen",

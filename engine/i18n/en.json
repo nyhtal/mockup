@@ -36,6 +36,8 @@
     "language": "Language",
     "sound": "Sound effects",
     "theme": "Dark theme",
+    "openImage": "Open image",
+    "imageOf": "{n} of {total}",
     "included": "Included",
     "notIncluded": "Not included",
     "playVideo": "Play video",

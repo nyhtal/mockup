@@ -827,6 +827,27 @@
           "alt": "",
           "caption": "Teamtag in Riad",
           "max": 768
+        },
+        {
+          "slug": "culture-workshop",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Werkbank in Manchester",
+          "max": 768
+        },
+        {
+          "slug": "culture-desk",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Ruhige Schreibtische in Hamburg",
+          "max": 768
+        },
+        {
+          "slug": "culture-kitchen",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Küchentisch in Riad",
+          "max": 768
         }
       ]
     },
@@ -1400,6 +1421,33 @@
             "slug": "{e.map.slug}",
             "address": "{e.map.address}"
           }
+        },
+        {
+          "type": "image-gallery",
+          "title": "Einblicke ins Büro",
+          "items": [
+            {
+              "slug": "office-{e.slug}-floor",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "Die Fläche in {e.city}",
+              "max": 768
+            },
+            {
+              "slug": "office-{e.slug}-meeting",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "Besprechungsraum in {e.city}",
+              "max": 768
+            },
+            {
+              "slug": "office-{e.slug}-workshop",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "Werkstatt in {e.city}",
+              "max": 768
+            }
+          ]
         },
         {
           "type": "team-preview",

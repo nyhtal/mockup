@@ -1,7 +1,7 @@
 {
   "html": 73728,
-  "css": 81920,
-  "js": 3072,
+  "css": 98304,
+  "js": 4096,
   "page": 307200,
   "mobileWidth": 720,
   "overrides": {
@@ -16,6 +16,9 @@
       "html": 81920
     },
     "/ar/index.html": {
+      "html": 86016
+    },
+    "/careers/culture/": {
       "html": 86016
     },
     "/ar/": {

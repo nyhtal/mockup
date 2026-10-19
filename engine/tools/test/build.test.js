@@ -82,9 +82,9 @@ test("the shell has one header with labelled navigation, a drawer trigger, one m
   assert.match(readFileSync("dist/reference/en/customers/index.html", "utf8"), /<a href="\/en\/customers\/"[^>]*aria-current="page"/);
 });
 
-test("enhance.js ships under 3 KB and only does what bylaw 06 allows", () => {
+test("enhance.js ships under 4 KB and only does what bylaw 06 allows", () => {
   const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
-  assert.ok(Buffer.byteLength(js) <= 3072, `${Buffer.byteLength(js)} B`);
+  assert.ok(Buffer.byteLength(js) <= 4096, `${Buffer.byteLength(js)} B`);
   assert.match(js, /IntersectionObserver/);
   assert.match(js, /pending:/, "entrances are triggered by the script, once, as each element crosses 88 % of the viewport (R-MOT-10 behaviour 1)");
   assert.match(js, /innerHeight\*\.88/, "elements already in view at load are revealed before the pending: state can apply (R-MOT-11)");
@@ -165,6 +165,21 @@ test("top navigation: wide menus put every link on one row; Company is a compact
   assert.match(nav, /<button type="button" popovertarget="menu-4" class="\[anchor-name:--menu-4\] /);
   assert.match(nav, /<div popover id="menu-4" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-72 [^"]*\[position-anchor:--menu-4\][^"]*\[position-area:block-end_span-inline-end\]/);
   assert.match(nav, /href="\/en\/careers\/culture\/"[^>]*aria-current="page"><span class="block text-sm font-medium">Life at Northwind<\/span>/, "the culture page is in the Company list and marked current on itself");
+});
+
+test("photo galleries open in a lightbox: thumbnails are named buttons with invoker commands, each image has a labelled dialog with its large picture, n of N, previous/next and close (to-do 3)", () => {
+  const culture = readFileSync("dist/reference/en/careers/culture/index.html", "utf8");
+  const g = /<div data-component="image-gallery">[\s\S]*?<\/dialog>\n<\/div>/.exec(culture)[0];
+  assert.equal((g.match(/<button type="button" command="show-modal" commandfor="gallery-\d+-\d"/g) || []).length, 6, "six thumbnails");
+  assert.equal((g.match(/<dialog id="gallery-\d+-\d" closedby="any" aria-label="[^"]+" data-lightbox/g) || []).length, 6, "six lightboxes");
+  assert.match(g, /<span class="sr-only">Open image: The floor in Manchester<\/span>/);
+  assert.match(g, /-1200\.avif 1200w/, "the lightbox loads the large picture");
+  assert.match(g, />2 of 6</);
+  assert.match(g, /data-lb="gallery-\d+-6"[^>]*>[\s\S]*?Previous/, "the first image's previous wraps to the last");
+  const office = readFileSync("dist/reference/de/about/locations/hamburg/index.html", "utf8");
+  assert.match(office, /<h2[^>]*>Einblicke ins Büro<\/h2>[\s\S]*?Bild öffnen: Die Fläche in Hamburg/, "office pages carry a gallery, in their language");
+  const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
+  assert.match(js, /data-lightbox/, "arrow keys move between images");
 });
 
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {

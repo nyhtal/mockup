@@ -70,6 +70,63 @@
     }
   }
 }
+/* The lightbox (R-MOT-06, D55): the dialog motion of R-MOT-06 and the round control buttons, written once because a gallery repeats them for every picture (about 1.8 KB each as utilities). */
+@utility lightbox {
+  margin: auto;
+  width: 100%;
+  max-width: min(64rem, calc((100svh - 7rem) * 4 / 3));
+  background: transparent;
+  padding: calc(var(--spacing) * 4);
+  color: var(--color-ink-inverse);
+  opacity: 0;
+  &[open] {
+    opacity: 1;
+  }
+  &::backdrop {
+    background-color: color-mix(in oklab, var(--color-ink) 80%, transparent);
+    opacity: 0;
+  }
+  &[open]::backdrop {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    scale: 0.95;
+    transition: opacity 300ms ease-out, scale 300ms ease-out, display 300ms allow-discrete, overlay 300ms allow-discrete;
+    &[open] {
+      scale: 1;
+      @starting-style {
+        opacity: 0;
+        scale: 0.95;
+      }
+    }
+    &::backdrop {
+      backdrop-filter: blur(var(--blur-sm));
+      transition: opacity 300ms, display 300ms allow-discrete, overlay 300ms allow-discrete;
+    }
+    &[open]::backdrop {
+      @starting-style {
+        opacity: 0;
+      }
+    }
+  }
+}
+@utility lightbox-control {
+  width: calc(var(--spacing) * 11);
+  height: calc(var(--spacing) * 11);
+  align-items: center;
+  justify-content: center;
+  border-radius: calc(infinity * 1px);
+  background-color: color-mix(in oklab, var(--color-surface-raised) 90%, transparent);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-md);
+  &:hover {
+    background-color: var(--color-surface-raised);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
 @custom-variant sda {
   @supports (animation-timeline: view()) {
     @slot;

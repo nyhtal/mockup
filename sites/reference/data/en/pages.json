@@ -850,6 +850,27 @@
           "alt": "",
           "caption": "Riyadh team day",
           "max": 768
+        },
+        {
+          "slug": "culture-workshop",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Workshop bench in Manchester",
+          "max": 768
+        },
+        {
+          "slug": "culture-desk",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Quiet desks in Hamburg",
+          "max": 768
+        },
+        {
+          "slug": "culture-kitchen",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "Kitchen table in Riyadh",
+          "max": 768
         }
       ]
     },
@@ -1423,6 +1444,33 @@
             "slug": "{e.map.slug}",
             "address": "{e.map.address}"
           }
+        },
+        {
+          "type": "image-gallery",
+          "title": "Inside the office",
+          "items": [
+            {
+              "slug": "office-{e.slug}-floor",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "The floor in {e.city}",
+              "max": 768
+            },
+            {
+              "slug": "office-{e.slug}-meeting",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "Meeting room in {e.city}",
+              "max": 768
+            },
+            {
+              "slug": "office-{e.slug}-workshop",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "Workshop in {e.city}",
+              "max": 768
+            }
+          ]
         },
         {
           "type": "team-preview",

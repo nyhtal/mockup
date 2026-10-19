@@ -33,12 +33,12 @@ Why: Consistency is a property of the catalog, not of individual pages.
 Gate: manual: checklists/new-page.md
 
 ### R-PREC-07 The CSS exception list
-MUST. `engine/theme/app.css` contains only: `@import "tailwindcss"`, `@source` lines, one `@theme` block (with its `@keyframes`), `@custom-variant` lines, named `@utility` blocks for the R-COL-09 backgrounds (`bg-hero-backdrop`: layered gradients and a mask that no utility can express) for the item distance of R-TOK-12 (`reveal-items`: sets `--reveal-distance` to the item value on a grid, with its `md` media query) and for the disclosure motion of R-MOT-06 (`disclosure`, `disclosure-tabs`: the `::details-content` height and opacity transition, about 500 bytes per `<details>` if written as utilities), `@font-face` blocks for the site's fonts, and the `@view-transition` block wrapped in `@media (prefers-reduced-motion: no-preference)`. No `@apply`, no `@layer components`, no selectors, no inline `style`.
+MUST. `engine/theme/app.css` contains only: `@import "tailwindcss"`, `@source` lines, one `@theme` block (with its `@keyframes`), `@custom-variant` lines, named `@utility` blocks for the R-COL-09 backgrounds (`bg-hero-backdrop`: layered gradients and a mask that no utility can express) for the item distance of R-TOK-12 (`reveal-items`: sets `--reveal-distance` to the item value on a grid, with its `md` media query) for the disclosure motion of R-MOT-06 (`disclosure`, `disclosure-tabs`: the `::details-content` height and opacity transition, about 500 bytes per `<details>` if written as utilities) and for the lightbox (`lightbox`, `lightbox-control`: the dialog motion of R-MOT-06 and the round controls, about 1.8 KB per picture if written as utilities), `@font-face` blocks for the site's fonts, and the `@view-transition` block wrapped in `@media (prefers-reduced-motion: no-preference)`. No `@apply`, no `@layer components`, no selectors, no inline `style`.
 Why: The whole look must be expressible in utilities so pages stay portable and the purge stays small.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PREC-08 The JS allowance
-MUST. The only runtime script is `engine/scripts/enhance.js`, an ES module of at most 3072 bytes minified with no dependencies, loaded once with `type="module"`. Every behaviour in it is feature-detected and every page works with the script absent. It never fetches and never sets a cookie; it stores two preferences the visitor sets: the sound choice in `sessionStorage` for the tab (D44) and the theme choice in `localStorage` under the key `theme` (D54). Besides it, one inline script of at most 200 bytes in the head reads that theme choice before first paint; the CSP allows exactly that text by its `sha256` hash (`engine/tools/lib/theme-script.js`).
+MUST. The only runtime script is `engine/scripts/enhance.js`, an ES module of at most 4096 bytes minified with no dependencies, loaded once with `type="module"`. Every behaviour in it is feature-detected and every page works with the script absent. It never fetches and never sets a cookie; it stores two preferences the visitor sets: the sound choice in `sessionStorage` for the tab (D44) and the theme choice in `localStorage` under the key `theme` (D54). Besides it, one inline script of at most 200 bytes in the head reads that theme choice before first paint; the CSP allows exactly that text by its `sha256` hash (`engine/tools/lib/theme-script.js`).
 Why: Interaction comes from HTML; the script only smooths what CSS cannot.
 Gate: budget/js
 
@@ -55,5 +55,5 @@ Gate: manual: checklists/pre-delivery.md
 - [ ] R-PREC-05 CHANGELOG bumped when bylaws changed
 - [ ] R-PREC-06 no page carries markup that is not in the catalog
 - [ ] R-PREC-07 app.css diff reviewed against the exception list
-- [ ] R-PREC-08 enhance.js ≤ 3072 B, no fetch, cookie or localStorage, page usable without it
+- [ ] R-PREC-08 enhance.js ≤ 4096 B, no fetch or cookie, localStorage only for the theme, page usable without it
 - [ ] R-PREC-09 sources present for feature-dependent rules

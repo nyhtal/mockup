@@ -1,22 +1,43 @@
 {#
   name: image-gallery
-  purpose: Grid of captioned pictures (culture page, press kit).
-  anatomy: ul[data-component=image-gallery] > li > figure > picture + figcaption
+  purpose: Grid of captioned pictures that open in a lightbox (culture page, office pages, press kit).
+  anatomy: div[data-component=image-gallery] > ul > li > figure > button[command=show-modal commandfor] (picture + zoom badge + sr-only label) + figcaption; then one dialog[closedby=any] per image > figure > div.relative(picture (large) + previous + next) + figcaption(caption + "n of N", last child as the content model requires) + form[method=dialog] > button(close)
   variants: none
-  states: none
-  spacing: grid gap-6 md:gap-8, 2 columns at sm, 3 at md
-  motion: none
-  keyboard: none (no lightbox: it would need JS)
-  a11y: each image has alt; captions are visible text
-  i18n: captions from content
-  content limits: 3–9 images
-  data: images = [{ slug, ratio, alt, caption }]
+  states: rest; hover (the picture eases to 105 % inside its frame, the zoom badge appears); lightbox open (backdrop blurs in)
+  spacing: grid gap-6 md:gap-8, 2 columns at sm, 3 at md; the lightbox is at most 64 rem wide and never taller than the window (its width follows the window height for a 4:3 picture), p-4
+  motion: the lightbox scales and fades in and out as every dialog does (R-MOT-06; the `lightbox` and `lightbox-control` utilities in app.css carry the dialog motion and the round buttons once instead of per picture, R-PREC-07); hover zoom 300 ms; nothing moves under reduced motion
+  keyboard: Tab to a thumbnail, Enter or Space opens and focus lands on the close button; inside, Escape closes, the arrow keys and the previous/next buttons move between images, Tab cycles inside (native modal); on close, focus returns to the thumbnail of the image last shown (enhance.js focuses it between closing one dialog and opening the next, so the browser restores focus there)
+  a11y: thumbnails are buttons named "Open image: {caption}"; each dialog is labelled by its caption; previous and next are named and show only once enhance.js runs (they need it); invoker commands open the dialog natively, enhance.js covers browsers without them
+  i18n: ui.openImage, ui.previous, ui.next, ui.close, ui.imageOf
+  content limits: 3–9 images; caption ≤ 12 words
+  data: images = [{ slug, ratio, alt, caption }]; opts = { id (unique on the page) }
 #}
 {% from "primitives/picture.njk" import picture with context %}
-{% macro gallery(images) %}
-<ul class="grid gap-6 md:gap-8 sm:grid-cols-2 md:grid-cols-3" data-component="image-gallery">
+{% from "primitives/icon.njk" import icon with context %}
+{% macro gallery(images, opts={}) %}
+{%- set gid = opts.id or "gallery" -%}
+{%- set n = images.length -%}
+{%- set ctrl = "lightbox-control" -%}
+<div data-component="image-gallery">
+<ul class="grid gap-6 md:gap-8 sm:grid-cols-2 md:grid-cols-3">
 {%- for img in images %}
-<li><figure><div class="overflow-hidden rounded-lg">{{ picture(img, { sizes: "(min-width: 48rem) 33vw, (min-width: 40rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>{% if img.caption %}<figcaption class="mt-2 text-sm text-ink-muted">{{ img.caption }}</figcaption>{% endif %}</figure></li>
+<li><figure><button type="button" command="show-modal" commandfor="{{ gid }}-{{ loop.index }}" class="group relative block w-full overflow-hidden rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ picture(img, { sizes: "(min-width: 48rem) 33vw, (min-width: 40rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover motion-safe:transition-[scale] motion-safe:duration-300 motion-safe:ease-reveal motion-safe:group-hover:scale-105" }) }}<span aria-hidden="true" class="absolute end-3 bottom-3 inline-flex size-9 items-center justify-center rounded-full bg-surface-raised/90 text-ink opacity-0 shadow-md group-hover:opacity-100 group-focus-visible:opacity-100 motion-safe:transition-opacity motion-safe:duration-150">{{ icon("zoom-in", { size: "size-5" }) }}</span><span class="sr-only">{{ "ui.openImage" | t }}: {{ img.caption or img.alt }}</span></button>{% if img.caption %}<figcaption class="mt-2 text-sm text-ink-muted">{{ img.caption }}</figcaption>{% endif %}</figure></li>
 {%- endfor %}
 </ul>
+{%- for img in images %}
+<dialog id="{{ gid }}-{{ loop.index }}" closedby="any" aria-label="{{ img.caption or img.alt }}" data-lightbox class="lightbox">
+<figure>
+<div class="relative">
+<div class="overflow-hidden rounded-xl bg-surface-raised shadow-lg">{{ picture(img | merge({ max: 1200 }), { sizes: "(min-width: 64rem) 64rem, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
+{%- if n > 1 %}
+<button type="button" data-lb="{{ gid }}-{{ loop.index - 1 if loop.index > 1 else n }}" class="{{ ctrl }} absolute start-3 top-1/2 hidden -translate-y-1/2 js:inline-flex">{{ icon("chevron-left", { size: "size-5", class: "rtl:-scale-x-100" }) }}<span class="sr-only">{{ "ui.previous" | t }}</span></button>
+<button type="button" data-lb="{{ gid }}-{{ loop.index + 1 if loop.index < n else 1 }}" class="{{ ctrl }} absolute end-3 top-1/2 hidden -translate-y-1/2 js:inline-flex">{{ icon("chevron-right", { size: "size-5", class: "rtl:-scale-x-100" }) }}<span class="sr-only">{{ "ui.next" | t }}</span></button>
+{%- endif %}
+</div>
+<figcaption class="mt-3 flex items-baseline justify-between gap-4 text-sm"><span>{{ img.caption or img.alt }}</span><span class="tabular-nums text-ink-inverse/80">{{ "ui.imageOf" | t | replace("{n}", loop.index) | replace("{total}", n) }}</span></figcaption>
+</figure>
+<form method="dialog" class="absolute end-6 top-6"><button type="submit" autofocus class="{{ ctrl }} inline-flex">{{ icon("x", { size: "size-5" }) }}<span class="sr-only">{{ "ui.close" | t }}</span></button></form>
+</dialog>
+{%- endfor %}
+</div>
 {% endmacro %}
