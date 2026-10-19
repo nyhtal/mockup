@@ -1,32 +1,53 @@
 {#
   name: search-results
-  purpose: Static list of mock results for the search page; the empty state when there are none (R-SEC-11).
-  anatomy: div[data-component=search-results] > p(count) + ol > li > h{level} > a + p(excerpt) + p(url)
+  purpose: One page of search results with type filters and paging (R-PAGE-11; to-do 4).
+  anatomy: div[data-component=search-results] > p(count, page n of N) + fieldset(legend + radio chips: all + one per group, with counts) + ol > li[data-group] > (badge + h2 > a(title with <mark>) + p(excerpt with <mark>) + p(url)) + pagination
   variants: none
-  states: results | empty (empty-state component)
-  spacing: space-y-6
+  states: a filter chip is checked (brand), disabled when no result on this page belongs to it; the list hides the other groups through CSS :has() on the wrapper, so filtering needs no script
+  spacing: chips gap-2 mt-6; list mt-6 space-y-6; pagination mt-12
   motion: none
-  keyboard: links
-  a11y: results are an ordered list; the count is announced as text
-  i18n: ui.resultsFor
-  content limits: ≤ 12 per page
-  data: r = { query, items: [{ title, href, excerpt }] }
+  keyboard: the chips are native radio buttons (arrow keys move between them, the focus ring sits on the chip); links
+  a11y: the filters are a fieldset with a legend; the radios are visually hidden but focusable, their labels carry the focus ring; matched terms are <mark>; the current page is aria-current in the pagination
+  i18n: ui.resultsFor (plural), ui.pageOf, ui.filterResults, ui.all, ui.searchGroups.*
+  content limits: 12 results per page
+  note: the filter class list is printed with | safe: Nunjucks would escape its "&" to "&amp;", which browsers decode but Tailwind's scanner does not, so the rules would never be generated
+  data: r = { query, items: [{ href, titleHtml, excerptHtml, group }], total, page, pages, counts, groups }, opts = { level, base (the first page's URL), id }
 #}
 {% from "components/empty-state.njk" import emptyState with context %}
+{% from "components/pagination.njk" import pagination with context %}
+{% from "primitives/badge.njk" import badge with context %}
 {% macro searchResults(r, opts={}) %}
 {%- set h = "h" + (opts.level or 2) -%}
-<div data-component="search-results">
+{%- set id = opts.id or "sf" -%}
+{%- set hide = [] -%}
+{%- for g in r.groups %}{% set hide = (hide.push("[&:has(#" + id + "-" + g + ":checked)_li[data-group]:not([data-group=" + g + "])]:hidden"), hide) %}{% endfor -%}
+<div data-component="search-results" class="{{ hide | join(' ') | safe }}">
 {%- if r.items.length %}
-<p class="text-sm text-ink-muted">{{ ("ui.resultsFor" | t(r.items.length)) | replace("{query}", r.query) }}</p>
+<p class="text-sm text-ink-muted">{{ ("ui.resultsFor" | t(r.total)) | replace("{query}", r.query) }}{% if r.pages > 1 %} · {{ "ui.pageOf" | t | replace("{n}", r.page) | replace("{total}", r.pages) }}{% endif %}</p>
+<fieldset class="mt-6">
+<legend class="text-sm font-medium">{{ "ui.filterResults" | t }}</legend>
+<div class="mt-2 flex flex-wrap gap-2">
+{%- for g in ["all"].concat(r.groups) %}
+{%- set n = r.counts[g] -%}
+<label class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:bg-surface-alt has-checked:border-brand-600 has-checked:bg-brand-600 has-checked:text-ink-inverse has-disabled:cursor-not-allowed has-disabled:opacity-60 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><input type="radio" name="{{ id }}" id="{{ id }}-{{ g }}" value="{{ g }}" class="sr-only"{% if g == "all" %} checked{% endif %}{% if not n %} disabled{% endif %}>{{ ("ui.all" if g == "all" else "ui.searchGroups." + g) | t }} <span class="tabular-nums">({{ n }})</span></label>
+{%- endfor %}
+</div>
+</fieldset>
 <ol class="mt-6 space-y-6">
 {%- for item in r.items %}
-<li>
-<{{ h }} class="text-xl font-semibold"><a href="{{ item.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ item.title }}</a></{{ h }}>
-<p class="mt-1 text-base leading-relaxed text-ink-muted">{{ item.excerpt }}</p>
+<li data-group="{{ item.group }}">
+<p>{{ badge(("ui.searchGroups." + item.group) | t) }}</p>
+<{{ h }} class="mt-2 text-xl font-semibold"><a href="{{ item.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ item.titleHtml | safe }}</a></{{ h }}>
+<p class="mt-1 text-base leading-relaxed text-ink-muted">{{ item.excerptHtml | safe }}</p>
 <p class="mt-1 text-sm text-ink-muted">{{ item.href }}</p>
 </li>
 {%- endfor %}
 </ol>
+{%- if r.pages > 1 %}
+{%- set pageList = [] -%}
+{%- for n in range(1, r.pages + 1) %}{% set pageList = (pageList.push({ n: n, url: opts.base if n == 1 else opts.base + "page/" + n + "/" }), pageList) %}{% endfor -%}
+<div class="mt-12">{{ pagination({ current: r.page, total: r.pages, pages: pageList, prev: (pageList[r.page - 2].url if r.page > 1), next: (pageList[r.page].url if r.page < r.pages) }) }}</div>
+{%- endif %}
 {%- else %}
 {{ emptyState({ icon: "search", title: ("ui.noResultsTitle" | t), text: ("ui.noResultsText" | t), cta: r.cta }) }}
 {%- endif %}

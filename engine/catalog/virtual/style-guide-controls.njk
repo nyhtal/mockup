@@ -92,7 +92,7 @@ noindex: true
 </div>
 <div class="mt-8 max-w-xl">{{ progress(2, 4, "Request a demo") }}</div>
 <div class="mt-8 max-w-xl">{{ errorSummary([{ id: "email-bad", message: "Enter an email address like alex@company.com" }, { id: "industry", message: "Choose an industry" }]) }}</div>
-<div class="mt-8">{{ searchResults({ query: "safety", items: [{ title: "Safety PLCs without the paperwork", href: sg, excerpt: "How generated logic passes a TÜV review without a line-by-line walkthrough." }, { title: "Interlock verification", href: sg + "components/", excerpt: "Every interlock in the description is checked against the generated code." }] }) }}</div>
-<div class="mt-8">{{ searchResults({ query: "zzz", items: [], cta: { label: "Browse the style guide", href: sg } }) }}</div>
+<div class="mt-8">{{ searchResults(([{ title: "Safety PLCs without the paperwork", href: sg, excerpt: "How generated logic passes a TÜV review without a line-by-line walkthrough.", group: "articles" }, { title: "Interlock verification", href: sg + "components/", excerpt: "Every interlock in the description is checked against the generated code.", group: "articles" }] | searchPage("safety", 1, 12)) | merge({ query: "safety" }), { base: sg, id: "sg-sf" }) }}</div>
+<div class="mt-8">{{ searchResults(([] | searchPage("zzz", 1, 12)) | merge({ query: "zzz", cta: { label: "Browse the style guide", href: sg } }), { base: sg, id: "sg-sf2" }) }}</div>
 </section>
 </div>

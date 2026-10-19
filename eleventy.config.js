@@ -10,6 +10,7 @@ import { renderMarkdown, tocOf, wordCount } from "./engine/tools/lib/markdown.js
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
+import { searchIndex, searchPage } from "./engine/tools/lib/search-index.js";
 
 const OG_LOCALES = { en: "en_GB", de: "de_DE", ar: "ar_SA", fr: "fr_FR", es: "es_ES", it: "it_IT", nl: "nl_NL", pt: "pt_PT", ja: "ja_JP", zh: "zh_CN" };
 
@@ -137,6 +138,8 @@ export default function (eleventyConfig) {
   const fmtFor = (locale) => ({ date: (iso) => formatDate(iso, locale, site) });
   const entityCtx = (locale) => ({ locale, site, entities: siteData[locale]?.entities || {}, fmt: fmtFor(locale) });
   const detailRecipes = (locale) => siteData[locale]?.pages?.detail || {};
+  // The site search covers the entities of each locale (to-do 4): sections read it as `from: "searchIndex"`.
+  for (const l of site.locales) if (siteData[l]?.entities) siteData[l].entities.searchIndex = searchIndex(siteData[l].entities, entityCtx(l));
 
   eleventyConfig.addPlugin(I18nPlugin, { defaultLanguage: site.defaultLocale, errorMode: "strict" });
   eleventyConfig.addGlobalData("site", site);
@@ -255,6 +258,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("merge", (a, b) => ({ ...(a || {}), ...(b || {}) }));
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("formatDate", function (iso, style) { return formatDate(iso, this.ctx?.page?.lang || site.defaultLocale, site, style); });
+  // One page of search results, matches first, with <mark> around the query (to-do 4).
+  eleventyConfig.addFilter("searchPage", (index, query, page, perPage) => searchPage(index || [], query, page || 1, perPage || 12));
   eleventyConfig.addFilter("formatNumber", function (n) { return formatNumber(n, this.ctx?.page?.lang || site.defaultLocale, site); });
   // A formatted figure → { number, decimals, nu, prefix, suffix } for the count-up (R-MOT-10); null when it holds no digit.
   eleventyConfig.addFilter("figure", function (value) { return parseFigure(value, fmtLocale(this.ctx?.page?.lang || site.defaultLocale, site)); });

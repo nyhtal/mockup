@@ -1173,7 +1173,9 @@
     "search-results": {
       "type": "search-results",
       "query": "Sicherheit",
-      "from": "searchResults"
+      "from": "searchIndex",
+      "page": 1,
+      "perPage": 12
     },
     "landing-hero": {
       "type": "hero",

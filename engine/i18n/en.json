@@ -112,7 +112,17 @@
       "other": "{n} min read"
     },
     "tags": "Tags",
-    "allPages": "All pages"
+    "allPages": "All pages",
+    "pageOf": "Page {n} of {total}",
+    "filterResults": "Show",
+    "all": "All",
+    "searchGroups": {
+      "offer": "Services and products",
+      "articles": "Articles and news",
+      "jobs": "Jobs",
+      "events": "Events",
+      "resources": "Guides and downloads"
+    }
   },
   "footer": {
     "rights": "All rights reserved.",

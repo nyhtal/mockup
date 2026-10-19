@@ -112,7 +112,17 @@
       "other": ""
     },
     "tags": "",
-    "allPages": ""
+    "allPages": "",
+    "pageOf": "",
+    "filterResults": "",
+    "all": "",
+    "searchGroups": {
+      "offer": "",
+      "articles": "",
+      "jobs": "",
+      "events": "",
+      "resources": ""
+    }
   },
   "footer": {
     "rights": "",

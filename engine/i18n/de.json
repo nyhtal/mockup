@@ -112,7 +112,17 @@
       "other": "{n} Min. Lesezeit"
     },
     "tags": "Schlagwörter",
-    "allPages": "Alle Seiten"
+    "allPages": "Alle Seiten",
+    "pageOf": "Seite {n} von {total}",
+    "filterResults": "Anzeigen",
+    "all": "Alle",
+    "searchGroups": {
+      "offer": "Leistungen und Produkte",
+      "articles": "Artikel und Presse",
+      "jobs": "Stellen",
+      "events": "Veranstaltungen",
+      "resources": "Anleitungen und Downloads"
+    }
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

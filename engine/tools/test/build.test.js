@@ -182,6 +182,24 @@ test("photo galleries open in a lightbox: thumbnails are named buttons with invo
   assert.match(js, /data-lightbox/, "arrow keys move between images");
 });
 
+test("search: results from the site's own content, filters that work without script, real paging with rel prev/next, the query in <mark> (to-do 4)", () => {
+  const p1 = readFileSync("dist/reference/en/search/index.html", "utf8");
+  const w = /<div data-component="search-results" class="([^"]*)">[\s\S]*?<\/ol>/.exec(p1);
+  assert.ok(w, "results render");
+  assert.match(w[1], /\[&:has\(#sf\d-jobs:checked\)_li\[data-group\]:not\(\[data-group=jobs\]\)\]:hidden/, "the filter classes reach the HTML unescaped, so Tailwind compiles them");
+  assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes(":has(#sf"), "and the CSS has the rules");
+  assert.match(p1, /31 results for “safety” · Page 1 of 3/);
+  assert.match(p1, /<fieldset class="mt-6">\n<legend[^>]*>Show<\/legend>/);
+  assert.match(p1, /<input type="radio" name="sf\d" id="sf\d-all" value="all" class="sr-only" checked>/);
+  assert.equal((w[0].match(/<li data-group=/g) || []).length, 12);
+  assert.match(w[0], /<mark class="rounded-sm bg-accent-100 px-0\.5 text-ink">[Ss]afety<\/mark>/);
+  assert.match(p1, /<a href="\/en\/search\/page\/2\/" rel="next"/);
+  const p3 = readFileSync("dist/reference/de/search/page/3/index.html", "utf8");
+  assert.match(p3, /<a href="\/de\/search\/page\/2\/" rel="prev"/);
+  assert.match(p3, /Seite 3 von 3/);
+  assert.match(readFileSync("dist/reference/ar/search/index.html", "utf8"), /<mark[^>]*>السلامة<\/mark>/, "Arabic matches are marked (all four are on page 1)");
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {
@@ -261,7 +279,7 @@ test("review fixes: German hyphenation and wrapping, Arabic leading and tracking
   // Plural forms (Important 6): Arabic reading time is not "1 دقائق".
   assert.doesNotMatch(ar, /1 دقائق/);
   assert.match(ar, /دقيقة واحدة للقراءة|دقيقتان للقراءة|دقائق قراءة|دقيقة قراءة/);
-  assert.match(readFileSync("dist/reference/en/search/index.html", "utf8"), /3 results for/);
+  assert.match(readFileSync("dist/reference/en/search/index.html", "utf8"), /31 results for/);
   // Header at lg (Critical 3): label only from xl, wordmark h-7 until xl, CTA never wraps.
   const en = readFileSync("dist/reference/en/index.html", "utf8");
   assert.match(en, /<span class="hidden xl:inline">English<\/span>/);

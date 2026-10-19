@@ -112,7 +112,17 @@
       "other": "{n} دقيقة قراءة"
     },
     "tags": "الوسوم",
-    "allPages": "كل الصفحات"
+    "allPages": "كل الصفحات",
+    "pageOf": "الصفحة {n} من {total}",
+    "filterResults": "عرض",
+    "all": "الكل",
+    "searchGroups": {
+      "offer": "الخدمات والمنتجات",
+      "articles": "المقالات والأخبار",
+      "jobs": "الوظائف",
+      "events": "الفعاليات",
+      "resources": "الأدلة والتنزيلات"
+    }
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",
