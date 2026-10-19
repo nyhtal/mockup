@@ -117,6 +117,10 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.match(home, /before:blur-3xl md:motion-safe:sda:before:animate-drift rtl:md:motion-safe:sda:before:animate-drift-end/, "the CTA highlight drifts and mirrors");
   assert.match(home, /gap-y-8 reveal-items md:motion-safe:sda:animate-drift rtl:md:motion-safe:sda:animate-drift-end/, "the logo cloud drifts");
   assert.doesNotMatch(home, /(?<!md:)motion-safe:sda:(?:before:)?animate-(?:parallax|drift)/, "no depth below md");
+  // Accents (Task 5): the reading-progress hairline on every page's header; the sticky editorial row on the about page (expressive).
+  assert.match(home, /<header class="sticky top-0[^"]*before:-bottom-px before:hidden before:h-px before:origin-left rtl:before:origin-right before:bg-linear-to-r before:from-brand-600 before:to-accent-600 motion-safe:sda:before:block motion-safe:sda:before:animate-progress motion-safe:sda:before:\[animation-timeline:scroll\(root\)\]/, "progress hairline under the header (R-MOT-08)");
+  const about = readFileSync("dist/reference/en/about/index.html", "utf8");
+  assert.match(about, /data-component="feature-rows" data-variant="sticky"[\s\S]*?<div class="grid gap-12 lg:grid-cols-2 lg:items-start">\n<div class="overflow-clip rounded-2xl ring-1 ring-line lg:sticky lg:top-24 lg:self-start/, "the sticky editorial row pins its picture");
   assert.match(stats, /to-accent-200/, "numerals end in the evidence colour");
   const team = readFileSync("dist/reference/en/about/team/index.html", "utf8");
   assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");

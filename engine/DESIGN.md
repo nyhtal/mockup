@@ -34,7 +34,7 @@ What the bylaws enforce, written as the taste behind them. Read this before the 
 | Card internals | `mt-2` text, `mt-4` meta, `mt-auto pt-4` footer | cards |
 | CTA after body | `mt-12` | sections with a button |
 | Hero proof strip | `mt-12` after the buttons | heroes |
-| Sticky editorial row | picture `lg:sticky lg:top-24 lg:self-start`, text blocks `space-y-16` | `feature-rows` variant `sticky` (expressive) |
+| Sticky editorial row | picture `lg:sticky lg:top-24 lg:self-start`, text blocks `space-y-16`, each `lg:min-h-96` | `feature-rows` variant `sticky` (expressive) |
 
 The `consistency/rhythm` check fails any section, heading group or grid outside this table.
 

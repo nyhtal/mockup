@@ -57,6 +57,20 @@ test("radius and motion presets map to the bylaw values", () => {
   assert.match(brandTokens({ ...brand, motion: "expressive" }), /--reveal-distance: 40px;[\s\S]*--reveal-distance-item: 48px;[\s\S]*--reveal-duration: 560ms;/);
 });
 
+test("the flair dial: calm rises only, standard adds the vocabulary and media depth, expressive adds pop, hero depth, drift and the sticky row (R-TOK-12)", async () => {
+  const { flairFor, motionLevels } = await import("../lib/theme.js");
+  const calm = flairFor("calm"), standard = flairFor("standard"), expressive = flairFor("expressive");
+  assert.ok(Object.entries(calm).every(([k, v]) => k === "level" || v === false), "calm enables nothing");
+  assert.deepEqual([standard.vocabulary, standard.count, standard.rule, standard.parallaxMedia, standard.progress], [true, true, true, true, true]);
+  assert.deepEqual([standard.pop, standard.parallaxHero, standard.drift, standard.sticky, standard.settle], [false, false, false, false, false]);
+  assert.ok(Object.entries(expressive).every(([k, v]) => k === "level" || v === true), "expressive enables everything");
+  assert.equal(flairFor("loud").level, "standard", "an unknown level falls back to the default");
+  const table = motionLevels();
+  assert.deepEqual(table.map((l) => [l.level, l.section, l.item, l.itemSm, l.duration]), [["calm", 16, 24, 16, 300], ["standard", 32, 40, 24, 480], ["expressive", 40, 48, 28, 560]]);
+  assert.equal(table[0].enables.length, 0);
+  assert.ok(table[2].enables.includes("sticky editorial row"));
+});
+
 test("contrast follows WCAG 2", () => {
   assert.equal(Math.round(contrast("#000000", "#ffffff")), 21);
   assert.ok(Math.abs(contrast("#767676", "#ffffff") - 4.54) < 0.05);

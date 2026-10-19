@@ -2,7 +2,7 @@
   name: feature-rows
   purpose: 2–4 alternating text + picture rows (R-SEC-03).
   anatomy: shell > div.space-y > div.grid(text + picture), picture side alternates
-  variants: none
+  variants: default (alternating rows) | sticky (expressive only: the first item's picture, or s.image, pins at lg:top-24 beside the stacked points; any other level renders the default)
   states: none
   spacing: rows space-y-16; grid gap-12
   motion: each row slides from its inline edge; from the standard level the picture inside its frame sits deeper than the words (parallax-md over its own passage, overscanned 10 %, R-MOT-15)
@@ -12,11 +12,28 @@
   content limits: title ≤ 60 chars; text ≤ 60 words; 2–4 rows
   data: s = { eyebrow, title, lede, items: [{ eyebrow, title, text, image, link: {label, href} }] }
 #}
-{% from "sections/_shell.njk" import shell, revealClasses, depth with context %}
+{% from "sections/_shell.njk" import shell, revealClasses, stagger, depth with context %}
 {% from "primitives/picture.njk" import picture with context %}
 {% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
+{%- set sticky = s.variant == "sticky" and ctx.flair and ctx.flair.sticky -%}
 {% call shell("feature-rows", s, ctx, { itemsReveal: ctx.reveal, clipX: true }) %}
+{%- if sticky %}
+{#- The sticky editorial row (expressive, DESIGN §3): one picture pins beside the points as they pass; normal flow below lg. The section clips with overflow-x-clip, which does not create a scroll container, so sticky still works. -#}
+<div class="grid gap-12 lg:grid-cols-2 lg:items-start">
+<div class="overflow-clip rounded-2xl ring-1 ring-line lg:sticky lg:top-24 lg:self-start{{ revealClasses(ctx.reveal, 'start', true) }}">{{ picture(s.image or s.items[0].image, { sizes: "(min-width: 64rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
+<div class="space-y-16">
+{%- for item in s.items %}
+<div class="lg:min-h-96{{ stagger(0, 'rise') if ctx.reveal }}">
+{%- if item.eyebrow %}<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">{{ item.eyebrow }}</p>{% endif %}
+<h3 class="{{ 'mt-2' if item.eyebrow }} text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ item.title }}</h3>
+<p class="mt-4 text-base leading-relaxed text-ink-muted">{{ item.text }}</p>
+{%- if item.link %}<div class="mt-6">{{ button(item.link.label, { href: item.link.href, variant: "link", iconEnd: "arrow-right" }) }}</div>{% endif %}
+</div>
+{%- endfor %}
+</div>
+</div>
+{%- else %}
 <div class="space-y-16 md:space-y-24">
 {%- for item in s.items %}
 <div class="grid items-center gap-12 lg:grid-cols-2{{ revealClasses(ctx.reveal, 'end' if loop.index is even else 'start', true) }}">
@@ -30,5 +47,6 @@
 </div>
 {%- endfor %}
 </div>
+{%- endif %}
 {% endcall %}
 {% endmacro %}

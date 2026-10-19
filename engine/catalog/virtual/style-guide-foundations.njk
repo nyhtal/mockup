@@ -84,11 +84,25 @@ noindex: true
 
 <section class="mt-16">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Motion</h2>
-<p class="mt-4 max-w-prose text-base leading-relaxed">Preset <strong>{{ site.brand.motion or "standard" }}</strong>: entrances travel at most the reveal distance over the reveal duration with the smooth easing. Everything animates only under <code>motion-safe</code>; with reduced motion the page simply appears.</p>
-<div class="mt-8 flex flex-wrap gap-6">
-<div class="size-24 rounded-lg bg-brand-600 motion-safe:animate-reveal"></div>
-<div class="size-24 rounded-lg bg-accent-600 motion-safe:animate-scale-in"></div>
-<div class="size-24 rounded-lg bg-brand-300 motion-safe:animate-fade"></div>
+<p class="mt-4 max-w-prose text-base leading-relaxed">This site runs the <strong>{{ flair.level }}</strong> level of the flair dial (R-TOK-12). Scroll drives every entrance and depth layer; the durations below are only for browsers without scroll-driven animation. Everything moves only under <code>motion-safe</code>; with reduced motion the page simply appears.</p>
+<div class="mt-8 overflow-x-auto">
+<table class="w-full min-w-xl text-start text-sm">
+<caption class="sr-only">The three levels of the flair dial</caption>
+<thead><tr class="border-b border-line-strong"><th scope="col" class="py-3 pe-4 text-start font-semibold">Level</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Sections</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Items</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Items below md</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Fallback</th><th scope="col" class="py-3 text-start font-semibold">Enables</th></tr></thead>
+<tbody>
+{%- for l in motionLevels %}
+<tr class="border-b border-line{{ ' font-medium text-ink-brand' if l.level == flair.level }}"><th scope="row" class="py-3 pe-4 text-start font-medium">{{ l.level }}</th><td class="py-3 pe-4 tabular-nums">{{ l.section }} px</td><td class="py-3 pe-4 tabular-nums">{{ l.item }} px</td><td class="py-3 pe-4 tabular-nums">{{ l.itemSm }} px</td><td class="py-3 pe-4 tabular-nums">{{ l.duration }} ms</td><td class="py-3">{{ l.enables | join(", ") if l.enables.length else "rise only" }}</td></tr>
+{%- endfor %}
+</tbody>
+</table>
+</div>
+<p class="mt-8 text-sm text-ink-muted">The entrance vocabulary of R-MOT-16 and the icon pop, each playing once on load here so they can be compared side by side:</p>
+<div class="mt-4 grid grid-cols-2 gap-6 sm:grid-cols-5">
+<figure><div class="h-24 rounded-lg bg-brand-600 motion-safe:animate-reveal-start rtl:motion-safe:animate-reveal-end"></div><figcaption class="mt-2 text-sm text-ink-muted">slide-in</figcaption></figure>
+<figure><div class="h-24 rounded-lg bg-brand-500 motion-safe:animate-reveal"></div><figcaption class="mt-2 text-sm text-ink-muted">rise</figcaption></figure>
+<figure><div class="h-24 rounded-lg bg-brand-400 motion-safe:animate-reveal-settle"></div><figcaption class="mt-2 text-sm text-ink-muted">framed settle</figcaption></figure>
+<figure><div class="h-24 rounded-lg bg-brand-300 motion-safe:animate-reveal-end rtl:motion-safe:animate-reveal-start"></div><figcaption class="mt-2 text-sm text-ink-muted">slide-from-end</figcaption></figure>
+<figure><div class="flex h-24 items-center justify-center rounded-lg bg-surface-alt"><span class="size-12 rounded-md bg-brand-100 motion-safe:animate-pop"></span></div><figcaption class="mt-2 text-sm text-ink-muted">pop</figcaption></figure>
 </div>
 </section>
 </div>

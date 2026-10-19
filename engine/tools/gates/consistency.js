@@ -5,8 +5,51 @@ import { pagesFor, parse } from "../lib/html.js";
 export const id = "consistency";
 export const checks = [
   "inline-style", "single-h1", "heading-order", "dup-id", "class-exists", "component-known",
-  "logical-props", "motion-safe", "no-arbitrary-lengths", "no-hash-links", "img-attrs", "head-order", "meta-length", "rhythm",
+  "logical-props", "motion-safe", "no-arbitrary-lengths", "no-hash-links", "img-attrs", "head-order", "meta-length", "rhythm", "motion-vocabulary",
 ];
+
+/** The motion vocabulary of R-TOK-13 and R-MOT-05: the keyframes a page may name and the scroll ranges it may use. */
+export const ANIMATIONS = new Set([
+  "reveal", "reveal-start", "reveal-end", "reveal-scale", "reveal-settle", "pop", "draw", "draw-y", "progress",
+  "parallax-sm", "parallax-md", "parallax-lg", "drift", "drift-end", "settle", "drop", "scale-in", "fade", "rise-in",
+  "spin", "pulse", "none",
+]);
+const STEPS = [...Array(8).keys()];
+export const RANGES = new Set([
+  "entry_0%_cover_25%", // section
+  "cover_0%_cover_20%", // heading group
+  ...STEPS.map((n) => `cover_${5 + 3 * n}%_cover_${25 + 3 * n}%`), // item and sequence, shifted 3 % per column or item
+  "cover_5%_cover_20%", // rule
+  "cover_0%_cover_100%", // depth on a view() timeline
+  "0_80vh", // hero depth on scroll(root)
+  "0_12rem", // header shadow
+  "0_60vh", // floating back to top
+]);
+const DEPTH = /^(parallax-(sm|md|lg)|drift(-end)?)$/;
+
+/** Motion-vocabulary findings for one parsed page (R-MOT-05, R-MOT-15, R-MOT-16): unknown keyframes, off-preset ranges, depth below md, depth on hero text. */
+export function motionFindings(root) {
+  const out = [];
+  const seen = new Set();
+  for (const el of root.querySelectorAll("[class]")) {
+    for (const c of el.getAttribute("class").split(/\s+/).filter(Boolean)) {
+      const { variants, base } = splitClass(c);
+      const anim = /^animate-(.+)$/.exec(base)?.[1];
+      const range = /^\[animation-range:(.+)\]$/.exec(base)?.[1];
+      const key = `${c}|${anim && DEPTH.test(anim) && el.closest('[data-component="hero"]') ? "hero" : ""}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      if (anim && !ANIMATIONS.has(anim)) out.push(`class "${c}" names a keyframe outside R-TOK-13`);
+      if (range && !RANGES.has(range)) out.push(`class "${c}" uses a scroll range outside the presets of R-MOT-05`);
+      if (anim && DEPTH.test(anim)) {
+        if (!variants.includes("md")) out.push(`class "${c}" moves a depth layer below md (R-MOT-15)`);
+        const hero = el.closest('[data-component="hero"]');
+        if (hero && el.tagName !== "IMG" && el.getAttribute("aria-hidden") !== "true") out.push(`class "${c}" puts depth on hero content other than its picture or backdrop (R-MOT-11, R-MOT-15)`);
+      }
+    }
+  }
+  return out;
+}
 
 /** The rhythm scale of R-LAY-02 (engine/DESIGN.md §2): the padding pairs each kind of section may carry, and the body grid gaps. */
 const PADDINGS = {
@@ -129,6 +172,7 @@ export async function run(ctx) {
     const h1s = root.querySelectorAll("h1");
     if (h1s.length !== 1) add("single-h1", `${h1s.length} h1 elements`);
     for (const m of rhythmFindings(root)) add("rhythm", m);
+    for (const m of motionFindings(root)) add("motion-vocabulary", m);
 
     let prev = 0;
     for (const h of root.querySelectorAll("h1,h2,h3,h4,h5,h6")) {

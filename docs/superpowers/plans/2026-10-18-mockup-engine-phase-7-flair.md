@@ -1,6 +1,6 @@
 # Mockup Engine Phase 7 Plan (flair): legible motion, feature-block vocabulary, parallax, premium accents, count-up v2, a flair dial
 
-> **Status: approved 2026-10-18; Tasks 1–4 and 6 done (bylaws, reveal engine, vocabulary, depth, count-up v2), Tasks 5, 7, 8 open.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
+> **Status: approved 2026-10-18; all eight tasks done 2026-10-19. Pre-delivery still owed: the full a11y sweep, `npm test` with SMOKE=1, and Lighthouse on `/en/`, `/en/about/team/` and `/ar/`.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
 
 **Goal:** Motion that is unmistakable without being a slideshow, feature blocks that each arrive differently yet read as one system, selective parallax depth, three or four premium accents, a count-up that feels engineered, and a brief-level flair dial (calm / standard / expressive) that decides which of these a site gets. Still: compositor-only, scroll-driven CSS first, everything under `motion-safe:`, content complete without motion or JS, the hero still at first paint, no loops, no third-party code, Lighthouse 100 and WCAG 2.2 AA.
 
@@ -114,10 +114,10 @@
 
 **Files:** `_shell.njk` (heading rule), `header.njk` (progress hairline), `cta-band.njk` (drift), `feature-rows.njk` (sticky variant), `button.njk` (optional shimmer: a `before:` highlight that translates across on hover, transform-only; decide in the browser whether it earns its place), `DESIGN.md`.
 
-- [ ] Heading rule draws at 24 px over `cover 5% → cover 20%`; the h2's underline is not touched (text stays text).
-- [ ] Reading-progress hairline: `after:` on the header, `fixed inset-x-0 top-16 h-px origin-left rtl:origin-right bg-linear-to-r from-brand-600 to-accent-600`, `animate-progress` on `scroll(root)`; present on every page (it is information, so it may stay under reduced motion — decide with R-MOT-02 in mind: the bylaw says reduce means final states; a progress bar at its final state is full width, which is wrong; keep it `motion-safe:` and accept that reduced-motion users do not get it).
-- [ ] Sticky editorial row: `feature-rows` variant `sticky` (expressive): picture `lg:sticky lg:top-24 lg:self-start`, text blocks stacked `space-y-16`, ordinary flow below `lg`; no scroll trapping, no oversized spacer (C).
-- [ ] Button shimmer: evaluate; keep only if it reads as light, not as a sale banner.
+- [x] Heading rule draws at 24 px over `cover 5% → cover 20%`; the h2's underline is not touched (text stays text).
+- [x] Reading-progress hairline: `after:` on the header, `fixed inset-x-0 top-16 h-px origin-left rtl:origin-right bg-linear-to-r from-brand-600 to-accent-600`, `animate-progress` on `scroll(root)`; present on every page (it is information, so it may stay under reduced motion — decide with R-MOT-02 in mind: the bylaw says reduce means final states; a progress bar at its final state is full width, which is wrong; keep it `motion-safe:` and accept that reduced-motion users do not get it).
+- [x] Sticky editorial row: `feature-rows` variant `sticky` (expressive): picture `lg:sticky lg:top-24 lg:self-start`, text blocks stacked `space-y-16`, ordinary flow below `lg`; no scroll trapping, no oversized spacer (C).
+- [x] Button shimmer: evaluate; keep only if it reads as light, not as a sale banner.
 
 **Acceptance:** style guide shows each accent; the hairline sits under the header without shifting content (it is absolutely positioned).
 
@@ -138,9 +138,9 @@
 
 **Files:** `sites/reference/site.json` (`motion: "expressive"`), `engine/tools/lib/theme.js`, `_shell.njk` and sections (a `ctx.flair` object with booleans: `vocabulary`, `pop`, `parallaxHero`, `parallaxMedia`, `drift`, `sticky`, `settle`, `progress`), `engine/tools/lib/sections.js` (passes the level), `site-brief/TEMPLATE.md`, `sites/reference/DECISIONS.md`.
 
-- [ ] One place derives the booleans from the level; sections read booleans, never the level name.
-- [ ] Style guide gets a "Motion" foundations block that shows the three levels' numbers and lists what each enables.
-- [ ] Reference site decisions record the move to `expressive`.
+- [x] One place derives the booleans from the level; sections read booleans, never the level name.
+- [x] Style guide gets a "Motion" foundations block that shows the three levels' numbers and lists what each enables.
+- [x] Reference site decisions record the move to `expressive`.
 
 **Acceptance:** building the reference site with each level produces a green `consistency` gate; a theme test covers the token output per level.
 
@@ -148,10 +148,10 @@
 
 **Files:** `engine/tools/gates/consistency.js` (+ `motion-vocabulary`), `engine/tools/test/gate-consistency.test.js`, `build.test.js`, `reports/latest.md`.
 
-- [ ] `consistency/motion-vocabulary`: every `animate-*` class on a page is one of the approved tokens; every `view()` range on an item is one of the approved presets (section, item + 3 % steps, media, parallax); any `animate-parallax-*` or `animate-drift` without `md:` is a finding; any parallax utility inside the hero's text column is a finding.
-- [ ] Budget deltas measured per page kind; D45 adjusted only if a page kind grows past its line.
-- [ ] Quick loop during the work: `npm run build && npm run gate -- --skip lighthouse --sample`; pre-delivery: full gates, `npm test`, Lighthouse on `/en/`, `/en/about/team/`, `/ar/` mobile and desktop (parallax and count-up must not touch CLS or TBT).
-- [ ] Browser pass recorded in the report: en, de, ar at 375, 1024, 1280; reduced motion on; Firefox (fallback path) once.
+- [x] `consistency/motion-vocabulary`: every `animate-*` class on a page is one of the approved tokens; every `view()` range on an item is one of the approved presets (section, item + 3 % steps, media, parallax); any `animate-parallax-*` or `animate-drift` without `md:` is a finding; any parallax utility inside the hero's text column is a finding.
+- [x] Budget deltas measured per page kind; D45 adjusted only if a page kind grows past its line.
+- [ ] Quick loop during the work (done after every task) / pre-delivery part still owed: `npm run build && npm run gate -- --skip lighthouse --sample`; pre-delivery: full gates, `npm test`, Lighthouse on `/en/`, `/en/about/team/`, `/ar/` mobile and desktop (parallax and count-up must not touch CLS or TBT).
+- [ ] Browser pass recorded in the report (partly done in the session: en at 1024 and 1280, en and ar at 375, the count-up, depth, hairline and sticky row probed; reduced motion and Firefox not yet): en, de, ar at 375, 1024, 1280; reduced motion on; Firefox (fallback path) once.
 
 ---
 

@@ -2,7 +2,7 @@ import { I18nPlugin } from "@11ty/eleventy";
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { loadSite } from "./engine/tools/lib/site.js";
-import { themeColors } from "./engine/tools/lib/theme.js";
+import { themeColors, flairFor, motionLevels } from "./engine/tools/lib/theme.js";
 import { fontPlan } from "./engine/tools/build-fonts.js";
 import { engineFiles } from "./engine/tools/lib/engine-files.js";
 import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
@@ -140,6 +140,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addPlugin(I18nPlugin, { defaultLanguage: site.defaultLocale, errorMode: "strict" });
   eleventyConfig.addGlobalData("site", site);
   eleventyConfig.addGlobalData("themeColors", themeColors(site.brand || {}));
+  // The flair dial's booleans for chrome outside the section planner (header hairline), and the level table for the style guide (R-TOK-12).
+  eleventyConfig.addGlobalData("flair", flairFor(site.brand?.motion));
+  eleventyConfig.addGlobalData("motionLevels", motionLevels());
   eleventyConfig.addGlobalData("engineFiles", engineFiles(site));
   eleventyConfig.addGlobalData("buildYear", String(new Date().getUTCFullYear()));
   eleventyConfig.addGlobalData("siteData", siteData);

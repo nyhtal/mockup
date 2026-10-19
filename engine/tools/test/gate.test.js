@@ -12,8 +12,9 @@ test("every gate exports a non-empty list of check names", () => {
   }
 });
 
-test("parseArgs reads site, skip, only and runs", () => {
-  assert.deepEqual(parseArgs(["--site", "x", "--skip", "a,b", "--runs", "2"]), { site: "x", skip: ["a", "b"], only: [], runs: 2 });
+test("parseArgs reads site, skip, only, runs and the development sample flag", () => {
+  assert.deepEqual(parseArgs(["--site", "x", "--skip", "a,b", "--runs", "2"]), { site: "x", skip: ["a", "b"], only: [], runs: 2, sample: false });
+  assert.equal(parseArgs(["--skip", "lighthouse", "--sample"]).sample, true, "--sample checks one page per page type and locale in the a11y gate (R-GATE-09)");
 });
 
 test("an output folder with no pages is a failure, not a green run", async () => {

@@ -47,6 +47,22 @@ after(() => rmSync(dir, { recursive: true, force: true }));
 const ctx = (file) => ({ distDir: dir, only: [file], cssFile: path.join(dir, "app.css"), components: ["hero-split"] });
 const checks = (r) => r.findings.map((f) => f.check);
 
+test("motion-vocabulary: unknown keyframes, off-preset ranges, depth below md and depth on hero text are findings; the presets pass (R-MOT-05, R-MOT-15)", async () => {
+  const { motionFindings } = await import("../gates/consistency.js");
+  const { parse: parseHtml } = await import("node-html-parser");
+  const ok = parseHtml('<section data-component="hero"><div aria-hidden="true" class="md:motion-safe:sda:animate-parallax-sm md:motion-safe:sda:[animation-range:0_80vh]"></div><img class="md:motion-safe:sda:animate-parallax-md"></section>' +
+    '<ul><li class="motion-safe:sda:animate-reveal-start rtl:motion-safe:sda:animate-reveal-end motion-safe:sda:[animation-range:cover_8%_cover_28%]"></li><li class="motion-safe:sda:animate-reveal-settle motion-safe:sda:[animation-range:cover_11%_cover_31%]"></li></ul>' +
+    '<div class="before:origin-left motion-safe:sda:before:animate-draw motion-safe:sda:before:[animation-range:cover_5%_cover_20%]"></div><ul class="md:motion-safe:sda:animate-drift rtl:md:motion-safe:sda:animate-drift-end"></ul>');
+  assert.deepEqual(motionFindings(ok), []);
+  const bad = parseHtml('<section data-component="hero"><h1 class="md:motion-safe:sda:animate-parallax-sm">A</h1></section>' +
+    '<div class="motion-safe:sda:animate-wobble"></div><div class="motion-safe:sda:[animation-range:entry_0%_cover_60%]"></div><div class="motion-safe:sda:animate-parallax-md"></div>');
+  const msgs = motionFindings(bad);
+  assert.ok(msgs.some((m) => /hero content/.test(m)), "depth on the hero heading");
+  assert.ok(msgs.some((m) => /animate-wobble.*R-TOK-13/.test(m)), "unknown keyframe");
+  assert.ok(msgs.some((m) => /entry_0%_cover_60%.*R-MOT-05/.test(m)), "off-preset range");
+  assert.ok(msgs.some((m) => /below md/.test(m)), "depth without md:");
+});
+
 test("classesInCss unescapes Tailwind selectors", () => {
   const set = classesInCss(CSS);
   assert.ok(set.has("md:ps-4"));

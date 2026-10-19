@@ -763,6 +763,7 @@
     },
     "about-rows": {
       "type": "feature-rows",
+      "variant": "sticky",
       "eyebrow": "About us",
       "title": "Built by people who commissioned lines for a living",
       "items": [

@@ -18,7 +18,7 @@ Why: Validity is the foundation.
 Gate: html/error
 
 ### R-GATE-04 Consistency
-MUST. `consistency`: no inline `style`; exactly one `h1`; no skipped heading levels; unique ids; every class in the HTML exists in the built CSS (escaped variants and arbitrary values included); every `data-component` names a catalog file; no physical-direction utilities; every animation class under `motion-safe:`; no arbitrary lengths; no `href="#"` or `javascript:` links; every `img` has alt, width and height; the head order of R-HTML-02; title and description lengths; and the rhythm scale of R-LAY-02 (`rhythm`: section padding pairs, heading-group gap, grid gaps).
+MUST. `consistency`: no inline `style`; exactly one `h1`; no skipped heading levels; unique ids; every class in the HTML exists in the built CSS (escaped variants and arbitrary values included); every `data-component` names a catalog file; no physical-direction utilities; every animation class under `motion-safe:`; no arbitrary lengths; no `href="#"` or `javascript:` links; every `img` has alt, width and height; the head order of R-HTML-02; title and description lengths; the rhythm scale of R-LAY-02 (`rhythm`: section padding pairs, heading-group gap, grid gaps); and the motion vocabulary (`motion-vocabulary`: every `animate-*` names a keyframe of R-TOK-13, every `animation-range` is a preset of R-MOT-05, depth keyframes carry `md:` and never sit on hero content other than its picture or backdrop, R-MOT-15).
 Why: Catches improvisation mechanically.
 Gate: consistency/class-exists
 
@@ -63,7 +63,7 @@ Why: What automation cannot see still has to be seen.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-GATE-13 Planned checks
-SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `budget/contrast` (token-level contrast ratios in both schemes), `consistency/motion-props` (R-MOT-01), `consistency/motion-vocabulary` (R-MOT-05, R-MOT-15, R-MOT-16: every `animate-*` class is a token of R-TOK-13, every `view()` range is a preset, no depth utility without `md:` or inside the hero's text column), `consistency/url-policy` (R-PAGE-02), `consistency/canonical` (R-SEO-02), `consistency/no-hardcoded-strings` (R-CONT-10). Role colours need no check: the theme wipes Tailwind's palette, so a palette class fails `consistency/class-exists`. They are added as the catalog phase makes their inputs stable.
+SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `budget/contrast` (token-level contrast ratios in both schemes), `consistency/motion-props` (R-MOT-01), `consistency/url-policy` (R-PAGE-02), `consistency/canonical` (R-SEO-02), `consistency/no-hardcoded-strings` (R-CONT-10). Role colours need no check: the theme wipes Tailwind's palette, so a palette class fails `consistency/class-exists`. They are added as the catalog phase makes their inputs stable.
 Why: Honesty about which rules are machine-checked today.
 Gate: manual: checklists/pre-delivery.md
 

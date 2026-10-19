@@ -740,6 +740,7 @@
     },
     "about-rows": {
       "type": "feature-rows",
+      "variant": "sticky",
       "eyebrow": "من نحن",
       "title": "بناه أشخاص شغّلوا الخطوط مهنةً",
       "items": [

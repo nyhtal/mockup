@@ -17,6 +17,15 @@ const MOTION = {
   expressive: { section: 40, item: 48, itemSm: 28, duration: 560 },
 };
 
+/** The dial as a table for the style guide: each level's distances, fallback duration and enabled devices (R-TOK-12). */
+export function motionLevels() {
+  const names = { vocabulary: "column vocabulary", count: "count-up", rule: "eyebrow rule draw", parallaxMedia: "media-row depth", progress: "progress hairline", pop: "icon pop", parallaxHero: "hero depth", parallaxStats: "stats backdrop", drift: "CTA and logo drift", sticky: "sticky editorial row", settle: "count settle" };
+  return Object.entries(MOTION).map(([level, m]) => {
+    const f = flairFor(level);
+    return { level, ...m, enables: Object.keys(names).filter((k) => f[k]).map((k) => names[k]) };
+  });
+}
+
 /** Booleans the catalog reads instead of the level name (R-TOK-12): what a site at this level gets. */
 export function flairFor(level) {
   const l = MOTION[level] ? level : "standard";

@@ -740,6 +740,7 @@
     },
     "about-rows": {
       "type": "feature-rows",
+      "variant": "sticky",
       "eyebrow": "Über uns",
       "title": "Gebaut von Leuten, die beruflich Linien in Betrieb genommen haben",
       "items": [
