@@ -12,12 +12,13 @@
   content limits: 4–10 items; question ≤ 80 chars; answer ≤ 80 words
   data: items = [{ title, body (html) }]; opts = { variant, level, group }
 #}
+{% from "primitives/disclosure.njk" import disclosure with context %}
 {% macro accordion(items, opts={}) %}
 {%- set h = "h" + (opts.level or 3) -%}
 {%- set exclusive = opts.variant == "exclusive" or opts.variant == "faq" -%}
 <div class="divide-y divide-line border-y border-line" data-component="accordion" data-variant="{{ opts.variant or 'default' }}">
 {%- for item in items %}
-<details class="group"{% if exclusive %} name="{{ opts.group or 'accordion' }}"{% endif %}{% if item.open %} open{% endif %}>
+<details class="group{{ disclosure() }}"{% if exclusive %} name="{{ opts.group or 'accordion' }}"{% endif %}{% if item.open %} open{% endif %}>
 <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-start focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><{{ h }} class="text-lg font-semibold">{{ item.title }}</{{ h }}><svg aria-hidden="true" class="size-5 shrink-0 text-ink-muted motion-safe:transition-transform motion-safe:duration-150 group-open:rotate-180"><use href="#i-chevron-down"></use></svg></summary>
 <div class="pb-4 text-base leading-relaxed text-ink-muted">{{ item.body | safe }}</div>
 </details>

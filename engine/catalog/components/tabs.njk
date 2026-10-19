@@ -13,10 +13,11 @@
   layout: at md+ the wrapper is a wrapping flex row; details is display:contents so its summary becomes a flex item, and the browser's ::details-content box (styled via the details-content: variant) is ordered last and full width, so the open panel sits under the row in flow
   data: items = [{ label, body (html), open }]; opts = { group }
 #}
+{% from "primitives/disclosure.njk" import disclosure with context %}
 {% macro tabs(items, opts={}) %}
 <div class="md:flex md:flex-wrap md:border-b md:border-line" data-component="tabs">
 {%- for item in items %}
-<details class="group md:contents md:details-content:order-last md:details-content:w-full md:details-content:border-t md:details-content:border-line" name="{{ opts.group or 'tabs' }}"{% if item.open or (loop.first and not opts.noneOpen) %} open{% endif %}>
+<details class="group md:contents md:details-content:order-last md:details-content:w-full md:details-content:border-t md:details-content:border-line{{ disclosure('tabs') }}" name="{{ opts.group or 'tabs' }}"{% if item.open or (loop.first and not opts.noneOpen) %} open{% endif %}>
 <summary class="cursor-pointer list-none border-b-2 border-transparent px-4 py-3 font-medium text-ink-muted hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus group-open:border-brand-600 group-open:text-ink md:-mb-px">{{ item.label }}</summary>
 <div class="py-6 text-base leading-relaxed">{{ item.body | safe }}</div>
 </details>

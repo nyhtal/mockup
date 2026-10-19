@@ -12,6 +12,7 @@
   content limits: same items as nav-menu
 #}
 {% from "components/sound-toggle.njk" import soundToggle with context %}
+{% from "primitives/disclosure.njk" import disclosure with context %}
 {% macro mobileDrawer(items, locale, currentUrl, cta, alternates, opts={}) %}
 <div popover id="drawer" class="fixed inset-y-0 end-0 start-auto m-0 h-full max-h-none w-80 max-w-full border-0 border-s border-line bg-surface-raised p-0 text-ink shadow-lg opacity-0 open:opacity-100 motion-safe:translate-x-full motion-safe:open:translate-x-0 rtl:motion-safe:-translate-x-full motion-safe:transition-discrete motion-safe:transition-[opacity,translate,scale,display,overlay] motion-safe:duration-300 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:translate-x-full rtl:motion-safe:starting:open:-translate-x-full lg:hidden" data-component="mobile-drawer">
 <div class="flex h-16 items-center justify-between border-b border-line px-4">
@@ -23,7 +24,7 @@
 {%- for item in items %}
 <li>
 {%- if item.children %}
-<details name="mobile-nav" class="group">
+<details name="mobile-nav" class="group{{ disclosure() }}">
 <summary class="flex min-h-11 cursor-pointer list-none items-center justify-between rounded-md px-3 font-medium hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ item.key | t }}<svg aria-hidden="true" class="size-4 motion-safe:transition-transform motion-safe:duration-150 group-open:rotate-180"><use href="#i-chevron-down"></use></svg></summary>
 <ul class="mt-1 space-y-1 ps-3">
 {%- for child in item.children %}

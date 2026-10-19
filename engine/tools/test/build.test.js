@@ -30,7 +30,7 @@ test("build produces the reference home page and css", () => {
   assert.ok(existsSync("dist/reference/en/index.html"));
   assert.ok(existsSync("dist/reference/assets/app.css"));
   const html = readFileSync("dist/reference/en/index.html", "utf8");
-  assert.match(html, /<html lang="en" dir="ltr" class="scheme-light-dark scroll-pt-20 motion-safe:scroll-smooth">/);
+  assert.match(html, /<html lang="en" dir="ltr" class="scheme-light-dark scroll-pt-20 motion-safe:scroll-smooth \[interpolate-size:allow-keywords\]">/);
   assert.match(html, /<link rel="stylesheet" href="\/assets\/app.css">/);
 });
 
@@ -129,6 +129,18 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");
   assert.match(home, /<button type="button" data-sound aria-pressed="false"[^>]*>[\s\S]*?Sound effects/, "sound toggle is a named toggle button, off by default");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Soundeffekte/);
+});
+
+test("every disclosure opens and closes smoothly: details content animates height and opacity, html interpolates to auto (R-MOT-06)", () => {
+  const faq = readFileSync("dist/reference/en/faq/index.html", "utf8");
+  assert.match(faq, /<html [^>]*class="[^"]*\[interpolate-size:allow-keywords\]/);
+  const details = faq.match(/<details [^>]*>/g) || [];
+  assert.ok(details.length > 5, "the FAQ has disclosures");
+  for (const d of details) assert.match(d, /details-content:h-0|max-md:details-content:h-0/, `every details animates: ${d.slice(0, 80)}`);
+  assert.match(faq, /open:details-content:h-auto open:details-content:opacity-100 motion-safe:details-content:transition-\[height,opacity,content-visibility\] motion-safe:details-content:transition-discrete/);
+  const resources = readFileSync("dist/reference/en/resources/index.html", "utf8");
+  assert.match(resources, /<details class="group md:contents[^"]*max-md:details-content:h-0[^"]*motion-safe:md:details-content:transition-opacity/, "tabs: height below md, fade only at md and up");
+  assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes("interpolate-size:allow-keywords"));
 });
 
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {

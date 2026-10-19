@@ -5,7 +5,7 @@
 {% from "components/footer.njk" import footer with context %}
 {%- set alternates = page.url | allAlternates -%}
 <!DOCTYPE html>
-<html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light-dark scroll-pt-20 motion-safe:scroll-smooth">
+<html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light-dark scroll-pt-20 motion-safe:scroll-smooth [interpolate-size:allow-keywords]">
 <head>
 {% include "templates/_head.njk" %}
 </head>
