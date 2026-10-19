@@ -38,7 +38,7 @@ Why: The whole look must be expressible in utilities so pages stay portable and 
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PREC-08 The JS allowance
-MUST. The only runtime script is `engine/scripts/enhance.js`, an ES module of at most 3072 bytes minified with no dependencies, loaded once with `type="module"`. Every behaviour in it is feature-detected and every page works with the script absent. It never fetches, never sets a cookie and never writes `localStorage`; the one thing it stores is the sound preference in `sessionStorage`, which lives only as long as the tab (D44).
+MUST. The only runtime script is `engine/scripts/enhance.js`, an ES module of at most 3072 bytes minified with no dependencies, loaded once with `type="module"`. Every behaviour in it is feature-detected and every page works with the script absent. It never fetches and never sets a cookie; it stores two preferences the visitor sets: the sound choice in `sessionStorage` for the tab (D44) and the theme choice in `localStorage` under the key `theme` (D54). Besides it, one inline script of at most 200 bytes in the head reads that theme choice before first paint; the CSP allows exactly that text by its `sha256` hash (`engine/tools/lib/theme-script.js`).
 Why: Interaction comes from HTML; the script only smooths what CSS cannot.
 Gate: budget/js
 

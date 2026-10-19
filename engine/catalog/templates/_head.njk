@@ -3,6 +3,7 @@
 {%- set xDefault = page.url | xDefaultUrl -%}
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>{{ themeScript | safe }}</script>
 <title>{% if pageType == "home" %}{{ site.name }} · {{ locale | tagline }}{% else %}{{ title }} · {{ site.name }}{% endif %}</title>
 <meta name="description" content="{{ description }}">
 <link rel="canonical" href="{{ canonical }}">

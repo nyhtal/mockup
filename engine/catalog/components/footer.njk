@@ -13,6 +13,7 @@
 #}
 {% from "components/back-to-top.njk" import backToTop, backToTopFloat with context %}
 {% from "components/sound-toggle.njk" import soundToggle with context %}
+{% from "components/theme-toggle.njk" import themeToggle with context %}
 {% from "primitives/logo.njk" import logo with context %}
 {% macro footer(site, locale, alternates) %}
 <footer class="bg-surface-alt" data-component="footer">
@@ -20,7 +21,7 @@
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 <div class="flex flex-wrap items-center justify-between gap-4">
 <a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ logo(site.name, { size: "size-8", wordmark: "h-7" }) }}</a>
-<div class="flex flex-wrap items-center gap-2">{{ soundToggle({ label: true, class: "text-sm" }) }}{{ backToTop() }}</div>
+<div class="flex flex-wrap items-center gap-2">{{ themeToggle({ label: true, class: "text-sm" }) }}{{ soundToggle({ label: true, class: "text-sm" }) }}{{ backToTop() }}</div>
 </div>
 <nav aria-label="{{ 'nav.footer' | t }}" class="mt-12">
 <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">

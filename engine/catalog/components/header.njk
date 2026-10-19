@@ -13,6 +13,7 @@
 #}
 {% from "primitives/logo.njk" import logo with context %}
 {% from "components/sound-toggle.njk" import soundToggle with context %}
+{% from "components/theme-toggle.njk" import themeToggle with context %}
 {% from "components/nav-menu.njk" import navMenu with context %}
 {% from "components/locale-switcher.njk" import localeSwitcher with context %}
 {% macro header(site, locale, currentUrl, alternates, opts={}) %}
@@ -25,6 +26,7 @@
 {%- if site.hasSearch %}
 <a href="/{{ locale }}/search/" class="hidden size-11 sm:inline-flex items-center justify-center rounded-md text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-5"><use href="#i-search"></use></svg><span class="sr-only">{{ "ui.search" | t }}</span></a>
 {%- endif %}
+{{ themeToggle({ show: "xl:js:inline-flex" }) }}
 {{ soundToggle({ class: "hidden xl:inline-flex" }) }}
 {%- if site.cta %}
 <a href="/{{ locale }}{{ site.cta.href }}" class="hidden min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-brand-600 px-4 xl:px-5 font-medium text-ink-inverse hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus group motion-safe:transition-[color,background-color,border-color,translate,scale] motion-safe:duration-150 motion-safe:hover:-translate-y-px hover:shadow-md active:translate-y-0 motion-safe:active:scale-[0.98] lg:inline-flex">{{ site.cta.key | t }}<svg aria-hidden="true" class="size-4 shrink-0 motion-safe:transition-transform motion-safe:duration-150 group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5"><use href="#i-arrow-right"></use></svg></a>

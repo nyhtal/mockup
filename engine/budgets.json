@@ -6,17 +6,17 @@
   "mobileWidth": 720,
   "overrides": {
     "/style-guide/": {
-      "html": 131072,
+      "html": 135168,
       "page": 409600
     },
     "/en/index.html": {
-      "html": 77824
+      "html": 81920
     },
     "/de/index.html": {
-      "html": 77824
+      "html": 81920
     },
     "/ar/index.html": {
-      "html": 81920
+      "html": 86016
     },
     "/ar/": {
       "html": 77824

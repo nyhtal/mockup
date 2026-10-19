@@ -33,8 +33,8 @@ Why: WCAG 1.4.1 and colour-blind users.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-COL-07 Dark scheme is automatic
-MUST. No `dark:` classes in pages. Role tokens contain both values (R-TOK-05); media that cannot adapt gets a `bg-surface-raised` frame; shadows stay, and `line` gets lighter in dark mode via its token.
-Why: Dark mode stays correct on every page because it exists in one place.
+MUST. No `dark:` classes in pages. Role tokens contain both values (R-TOK-05); media that cannot adapt gets a `bg-surface-raised` frame; shadows stay, and `line` gets lighter in dark mode via its token. The scheme follows the system until the visitor uses the theme toggle (header from `xl`, drawer, footer): the toggle sets `data-theme` on `<html>`, which switches `color-scheme` (`data-[theme=light]:scheme-light`, `data-[theme=dark]:scheme-dark`), so every `light-dark()` token follows with no other change (D54).
+Why: Dark mode stays correct on every page because it exists in one place, and a visitor's choice moves only one property.
 Gate: manual: checklists/new-component.md
 
 ### R-COL-08 Text over media

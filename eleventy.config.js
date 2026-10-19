@@ -9,6 +9,7 @@ import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
 import { renderMarkdown, tocOf, wordCount } from "./engine/tools/lib/markdown.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
+import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
 
 const OG_LOCALES = { en: "en_GB", de: "de_DE", ar: "ar_SA", fr: "fr_FR", es: "es_ES", it: "it_IT", nl: "nl_NL", pt: "pt_PT", ja: "ja_JP", zh: "zh_CN" };
 
@@ -143,6 +144,8 @@ export default function (eleventyConfig) {
   // The flair dial's booleans for chrome outside the section planner (header hairline), and the level table for the style guide (R-TOK-12).
   eleventyConfig.addGlobalData("flair", flairFor(site.brand?.motion));
   eleventyConfig.addGlobalData("motionLevels", motionLevels());
+  // The inline theme script of R-PERF-03; its hash is in the CSP (engine-files.js).
+  eleventyConfig.addGlobalData("themeScript", THEME_SCRIPT);
   eleventyConfig.addGlobalData("engineFiles", engineFiles(site));
   eleventyConfig.addGlobalData("buildYear", String(new Date().getUTCFullYear()));
   eleventyConfig.addGlobalData("siteData", siteData);

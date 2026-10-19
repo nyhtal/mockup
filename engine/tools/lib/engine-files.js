@@ -1,8 +1,10 @@
 /** Static discovery and deployment files every site ships (R-DEPLOY-01, R-DEPLOY-05, R-DEPLOY-06, R-SEO-12). */
+import { THEME_SCRIPT_HASH } from "./theme-script.js";
+
 export function engineFiles(site) {
   const host = new URL(site.url).hostname;
   const expires = new Date(Date.UTC(new Date().getUTCFullYear() + 1, 0, 1)).toISOString();
-  const csp = "default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests";
+  const csp = `default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self' ${THEME_SCRIPT_HASH}; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests`;
   return [
     { path: "/robots.txt", content: `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n` },
     { path: "/.well-known/security.txt", content: `Contact: mailto:${site.securityContact || `security@${host}`}\nExpires: ${expires}\nPreferred-Languages: ${site.locales.join(", ")}\nCanonical: ${site.url}/.well-known/security.txt\n` },

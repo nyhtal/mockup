@@ -1,0 +1,16 @@
+{#
+  name: theme-toggle
+  purpose: Switch between the light and dark themes (R-TOK-05, D54). The site follows the system setting until the visitor chooses; switching back to the system's own theme returns to following it.
+  anatomy: button[type=button][data-theme-toggle][aria-pressed] > svg(moon, shown while light) + svg(sun, shown while dark) + span.sr-only | span(label)
+  variants: icon-only (header at xl via opts.show, size-11) | labelled (opts.label: the drawer row and the footer)
+  states: aria-pressed="false" (light in effect) | "true" (dark in effect); hidden until enhance.js runs, since it does nothing without it
+  spacing: as the sound toggle: size-11, or min-h-11 px-3 with a label
+  motion: none on the button; the page's colours change in one frame
+  keyboard: button; Space or Enter toggles
+  a11y: a toggle button named "Dark theme" with aria-pressed; icons aria-hidden
+  i18n: ui.theme
+  content limits: none
+#}
+{% macro themeToggle(opts={}) %}
+<button type="button" data-theme-toggle aria-pressed="false" class="group hidden {{ opts.show or ('js:flex' if opts.label else 'js:inline-flex') }} {{ 'min-h-11 items-center gap-2 rounded-md px-3 py-2.5 font-medium' if opts.label else 'size-11 items-center justify-center rounded-md' }} text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus{% if opts.class %} {{ opts.class }}{% endif %}" data-component="theme-toggle"><svg aria-hidden="true" class="size-5 shrink-0 group-aria-pressed:hidden"><use href="#i-moon"></use></svg><svg aria-hidden="true" class="hidden size-5 shrink-0 group-aria-pressed:block"><use href="#i-sun"></use></svg>{% if opts.label %}{{ "ui.theme" | t }}{% else %}<span class="sr-only">{{ "ui.theme" | t }}</span>{% endif %}</button>
+{% endmacro %}

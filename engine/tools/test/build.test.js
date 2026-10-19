@@ -30,7 +30,7 @@ test("build produces the reference home page and css", () => {
   assert.ok(existsSync("dist/reference/en/index.html"));
   assert.ok(existsSync("dist/reference/assets/app.css"));
   const html = readFileSync("dist/reference/en/index.html", "utf8");
-  assert.match(html, /<html lang="en" dir="ltr" class="scheme-light-dark scroll-pt-20 motion-safe:scroll-smooth \[interpolate-size:allow-keywords\]">/);
+  assert.match(html, /<html lang="en" dir="ltr" class="scheme-light-dark data-\[theme=light\]:scheme-light data-\[theme=dark\]:scheme-dark scroll-pt-20 motion-safe:scroll-smooth \[interpolate-size:allow-keywords\]">/);
   assert.match(html, /<link rel="stylesheet" href="\/assets\/app.css">/);
 });
 
@@ -93,7 +93,20 @@ test("enhance.js ships under 3 KB and only does what bylaw 06 allows", () => {
   assert.match(js, /dataset\.decimals/, "precision comes from the build, not from parsing text");
   assert.match(js, /prefers-reduced-motion/, "count-up respects reduced motion");
   assert.match(js, /data-sound/, "sound toggle (R-MOT-10 behaviour 4)");
-  assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|localStorage|document\.cookie/);
+  assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|document\.cookie/);
+  assert.deepEqual([...new Set(js.match(/localStorage\.\w+\("[^"]*"/g).map((x) => x.replace(/localStorage\.\w+\(/, "")))], ['"theme"'], "localStorage holds the theme choice and nothing else (D54)");
+});
+
+test("light/dark switch: the head script applies a saved choice before first paint, the CSP allows exactly that script, toggles sit in the header, drawer and footer (D54)", async () => {
+  const { THEME_SCRIPT, THEME_SCRIPT_HASH } = await import("../lib/theme-script.js");
+  const home = readFileSync("dist/reference/en/index.html", "utf8");
+  assert.ok(home.includes(`<meta name="viewport" content="width=device-width, initial-scale=1">\n<script>${THEME_SCRIPT}</script>`), "inline theme script right after the viewport");
+  assert.equal((home.match(/<script>/g) || []).length, 1, "one inline script");
+  assert.ok(readFileSync("dist/reference/_headers", "utf8").includes(`script-src 'self' ${THEME_SCRIPT_HASH};`), "the CSP allows it by hash");
+  assert.match(home, /<html [^>]*class="scheme-light-dark data-\[theme=light\]:scheme-light data-\[theme=dark\]:scheme-dark /);
+  assert.equal((home.match(/data-component="theme-toggle"/g) || []).length, 3, "header, drawer, footer");
+  assert.match(home, /<button type="button" data-theme-toggle aria-pressed="false" class="group hidden xl:js:inline-flex size-11[^"]*"[^>]*>[\s\S]*?Dark theme/);
+  assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Dunkles Design/);
 });
 
 test("the visual layer of 0.5.0: mark in header and favicon, proof strip and highlight in the home hero, counting figures below the fold only, tiles two across, sound toggle with a name", () => {

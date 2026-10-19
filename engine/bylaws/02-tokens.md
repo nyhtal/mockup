@@ -24,7 +24,7 @@ Gate: manual: checklists/new-component.md
 
 ### R-TOK-05 Roles carry both schemes
 MUST. Every role token is defined with `light-dark(<light>, <dark>)` and `<html>` carries `scheme-light-dark`. Pages never use the `dark:` variant. Fallback: browsers older than Chrome 123, Safari 17.5 or Firefox 120 (all before mid-2024) ignore `light-dark()` and render the browser's default colours (black text, transparent backgrounds), which stays readable; `light-dark()` becomes Baseline Widely available on 2026-11-13. This overrides spec §4.4 (recorded in DECISIONS D7).
-Why: Dark mode becomes a token concern instead of a class on every element; it follows the OS as D7 requires.
+Why: Dark mode becomes a token concern instead of a class on every element; it follows the OS, and the theme toggle of R-COL-07 overrides it by changing `color-scheme` on `<html>` alone (D54).
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-06 Brand scales are generated
