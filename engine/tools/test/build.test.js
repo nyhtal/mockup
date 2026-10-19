@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { existsSync, readFileSync, copyFileSync, rmSync, statSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, copyFileSync, rmSync, statSync } from "node:fs";
+import path from "node:path";
 
 function run(env = {}) {
   return execFileSync("node", ["engine/tools/build.js", "--site", "reference"], {
@@ -128,6 +129,21 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");
   assert.match(home, /<button type="button" data-sound aria-pressed="false"[^>]*>[\s\S]*?Sound effects/, "sound toggle is a named toggle button, off by default");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Soundeffekte/);
+});
+
+test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
+  const offenders = [];
+  const walk = (dir) => {
+    for (const name of readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, name.name);
+      if (name.isDirectory()) walk(p);
+      else if (name.name.endsWith(".html") && /&lt;\/?(?:p|strong|em|ul|ol|li|h[1-6]|br)\b|&lt;a href/.test(readFileSync(p, "utf8"))) offenders.push(p);
+    }
+  };
+  walk("dist/reference");
+  assert.deepEqual(offenders, []);
+  const post = readFileSync("dist/reference/en/news/thousandth-line/index.html", "utf8");
+  assert.match(post, /data-component="author-box"[\s\S]*?<p class="mt-2 text-sm leading-relaxed">Sofia handles press, the newsletter and the words on this site\.<\/p>/, "the author box shows the bio's first paragraph as text");
 });
 
 test("the stylesheet is compiled from the built pages only, not from docs or bylaws", () => {

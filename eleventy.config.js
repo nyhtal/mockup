@@ -193,7 +193,8 @@ export default function (eleventyConfig) {
       if (!person) throw new Error(`${data.page.url}: author "${data.e.author}" is not in data/${lang}/entities.json people`);
       const recipe = detailRecipes(lang).author;
       const hasPage = recipe && (!recipe.where || Object.entries(recipe.where).every(([k, v]) => person[k] === v));
-      return { name: person.name, role: person.role, bio: person.bio ? renderMarkdown(person.bio) : undefined, href: hasPage ? entityUrl("authors", person.slug, lang) : undefined };
+      // The author box takes a short plain-text bio (≤ 40 words, R-SEC-04): the first paragraph of the person's Markdown bio, which the profile page renders in full.
+      return { name: person.name, role: person.role, bio: person.bio ? person.bio.split(/\n\s*\n/)[0].trim() : undefined, href: hasPage ? entityUrl("authors", person.slug, lang) : undefined };
     },
     tags: (data) => {
       if (data.tags || !data.e?.tags) return data.tags;

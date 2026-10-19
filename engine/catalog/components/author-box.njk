@@ -9,8 +9,8 @@
   keyboard: the link
   a11y: aside is labelled by the heading "About the author" (sr-only)
   i18n: ui.aboutAuthor
-  content limits: bio ≤ 40 words
-  data: a = { name, role, bio, href }
+  content limits: bio ≤ 40 words, plain text (one paragraph; on articles it is the first paragraph of the person's bio)
+  data: a = { name, role, bio (plain text, escaped), href }
 #}
 {% from "primitives/avatar.njk" import avatar with context %}
 {% macro authorBox(a) %}
