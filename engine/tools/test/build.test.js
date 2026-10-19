@@ -107,6 +107,16 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.equal((stats.match(/data-count="/g) || []).length, 4, "every stat on the band counts");
   assert.match(stats, /<span class="inline-grid"><span class="invisible \[grid-area:1\/1\]" aria-hidden="true">99\.98%<\/span><span class="\[grid-area:1\/1\] whitespace-nowrap motion-safe:data-counted:animate-settle" aria-hidden="true" data-count="99.98" data-decimals="2" data-nu="latn">99\.98%<\/span><span class="sr-only">99\.98%<\/span><\/span>/, "the counting triple: sizing copy, animated copy with build-time attributes, screen-reader copy (R-MOT-10)");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /data-count="99.98" data-decimals="2" data-nu="latn">99,98/, "German figures parse with the decimal comma");
+  // Depth (R-MOT-15): md+ only, scroll(root) in the hero, the element's own view() elsewhere, drift mirrored in RTL, nothing on hero text.
+  assert.match(hero, /bg-hero-backdrop"[^>]*>|md:motion-safe:sda:animate-parallax-sm md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\][^"]*bg-hero-backdrop/, "the hero glows sink on scroll(root)");
+  assert.doesNotMatch(/<div class="lg:col-span-7[\s\S]*?<\/ul>/.exec(hero)?.[0] || "", /parallax|drift/, "no depth on the hero's text column");
+  const guide = readFileSync("dist/reference/en/style-guide/sections/index.html", "utf8");
+  assert.match(guide, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\]/, "the split hero picture sinks, overscanned, at identity at rest");
+  assert.match(home, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-110 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:view\(\)\] md:motion-safe:sda:\[animation-range:cover_0%_cover_100%\]"/, "media-row pictures sit deeper on their own passage");
+  assert.match(stats, /before:to-accent-600\/25 md:motion-safe:sda:before:animate-parallax-sm/, "the stats backdrop moves slower than the band");
+  assert.match(home, /before:blur-3xl md:motion-safe:sda:before:animate-drift rtl:md:motion-safe:sda:before:animate-drift-end/, "the CTA highlight drifts and mirrors");
+  assert.match(home, /gap-y-8 reveal-items md:motion-safe:sda:animate-drift rtl:md:motion-safe:sda:animate-drift-end/, "the logo cloud drifts");
+  assert.doesNotMatch(home, /(?<!md:)motion-safe:sda:(?:before:)?animate-(?:parallax|drift)/, "no depth below md");
   assert.match(stats, /to-accent-200/, "numerals end in the evidence colour");
   const team = readFileSync("dist/reference/en/about/team/index.html", "utf8");
   assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");
@@ -228,14 +238,14 @@ test("micro-interactions: primary buttons lift, press and nudge their arrow (mir
 test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA panel, logo cloud hover, footer hairline, testimonial quote mark", () => {
   const en = readFileSync("dist/reference/en/index.html", "utf8");
   assert.match(en, /<section class="relative isolate overflow-hidden [^"]*"[^>]*data-component="hero"/);
-  assert.match(en, /data-component="hero"[^>]*>\n<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-hero-backdrop"><\/div>/);
+  assert.match(en, /data-component="hero"[^>]*>\s*<div aria-hidden="true" class="pointer-events-none absolute [^"]*bg-hero-backdrop"><\/div>/);
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.ok(css.includes(".bg-hero-backdrop{background-image:radial-gradient(44rem 26rem at 18% 20%,light-dark("), "hero backdrop glows in the CSS");
   assert.ok(!css.includes("var(--color-line) 1px") && css.includes("mask-image:radial-gradient(#000 25%,#0000 78%)"), "hero backdrop has an edge mask and no dot texture (0.5.0)");
   const guide = readFileSync("dist/reference/en/style-guide/sections/index.html", "utf8");
   assert.match(guide, /data-variant="centered">[\s\S]*?<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/, "centered hero media in a framed rounded-2xl box");
   assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-6 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);
-  assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-hidden rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600/);
+  assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-clip rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600/);
   assert.match(en, /data-component="logo-cloud"[\s\S]*?<svg role="img" class="h-6 fill-ink-muted w-auto motion-safe:transition-colors motion-safe:duration-150 hover:fill-ink-brand"/);
   assert.match(en, /<footer class="bg-surface-alt" data-component="footer">\n<div class="h-px bg-linear-to-r from-brand-600 to-accent-600" aria-hidden="true"><\/div>/);
   const svc = readFileSync("dist/reference/en/services/line-automation/index.html", "utf8");

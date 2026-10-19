@@ -5,18 +5,20 @@
   variants: default (brand band, inverse text, display numerals) | plain (surface)
   states: none
   spacing: grid gap-8, 2 columns from 320 px, up to 4 on lg
-  motion: the band rises; each figure counts from 0 once it scrolls into view (DESIGN §3 "measurement"); nothing counts above the fold
+  motion: the band rises; each figure counts from 0 once it scrolls into view, 80 ms apart (DESIGN §3 "measurement"); nothing counts above the fold; in expressive a tinted backdrop sits deeper than the band
   keyboard: none
   a11y: figures are text; the band meets contrast via ink-inverse on brand-700
   i18n: values preformatted
   content limits: 3–4 items
   data: s = { title, items: [{ value, label, trend, trendTone }], variant }
 #}
-{% from "sections/_shell.njk" import shell with context %}
+{% from "sections/_shell.njk" import shell, depth with context %}
 {% from "components/stat.njk" import stat with context %}
 {% macro render(s, ctx) %}
 {%- set band = s.variant != "plain" -%}
-{% call shell("stats", s | merge({ surface: s.surface or ("bg-brand-700" if band else "bg-surface") }), ctx) %}
+{#- Depth (expressive): a diagonal tint from deeper brand to a trace of accent sits behind the band and moves 16 px slower than it (R-MOT-15, R-COL-09). -#}
+{%- set backdrop = "relative isolate overflow-clip before:pointer-events-none before:absolute before:inset-x-0 before:-inset-y-6 before:-z-10 before:bg-linear-to-br before:from-brand-800/70 before:via-brand-700/0 before:to-accent-600/25" + depth('parallax-sm', 'view()', 'cover_0%_cover_100%', 'before:') if band and ctx.flair and ctx.flair.parallaxStats -%}
+{% call shell("stats", s | merge({ surface: s.surface or ("bg-brand-700" if band else "bg-surface") }), ctx, { extra: backdrop }) %}
 <div class="grid grid-cols-2 gap-8 lg:grid-cols-{{ s.items.length if s.items.length <= 4 else 4 }}">
 {%- for item in s.items %}{{ stat(item, { inverse: band, count: ctx.reveal and ctx.flair and ctx.flair.count, settle: ctx.flair and ctx.flair.settle }) }}{% endfor %}
 </div>

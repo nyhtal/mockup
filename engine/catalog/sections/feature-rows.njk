@@ -5,14 +5,14 @@
   variants: none
   states: none
   spacing: rows space-y-16; grid gap-12
-  motion: each row reveals
+  motion: each row slides from its inline edge; from the standard level the picture inside its frame sits deeper than the words (parallax-md over its own passage, overscanned 10 %, R-MOT-15)
   keyboard: optional link per row
   a11y: each row has an h3; pictures have alt
   i18n: the picture alternates by order, not by physical side
   content limits: title ≤ 60 chars; text ≤ 60 words; 2–4 rows
   data: s = { eyebrow, title, lede, items: [{ eyebrow, title, text, image, link: {label, href} }] }
 #}
-{% from "sections/_shell.njk" import shell, revealClasses with context %}
+{% from "sections/_shell.njk" import shell, revealClasses, depth with context %}
 {% from "primitives/picture.njk" import picture with context %}
 {% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
@@ -26,7 +26,7 @@
 <p class="mt-4 text-base leading-relaxed text-ink-muted">{{ item.text }}</p>
 {%- if item.link %}<div class="mt-6">{{ button(item.link.label, { href: item.link.href, variant: "link", iconEnd: "arrow-right" }) }}</div>{% endif %}
 </div>
-<div class="overflow-hidden rounded-2xl ring-1 ring-line {{ 'lg:order-1' if loop.index is even }}">{{ picture(item.image, { sizes: "(min-width: 64rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
+<div class="overflow-clip rounded-2xl ring-1 ring-line {{ 'lg:order-1' if loop.index is even }}">{{ picture(item.image, { sizes: "(min-width: 64rem) 50vw, 100vw", class: "aspect-[4/3] w-full object-cover" + (" md:motion-safe:sda:scale-110" + depth('parallax-md') if ctx.flair and ctx.flair.parallaxMedia) }) }}</div>
 </div>
 {%- endfor %}
 </div>

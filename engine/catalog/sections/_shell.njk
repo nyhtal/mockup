@@ -1,7 +1,7 @@
 {#
   name: _shell (helper, not a section)
   purpose: The section skeleton every section uses (R-SEC-01, R-SEC-06, R-SEC-10, R-TOK-15, R-LAY-02): padding by density, surface, container, eyebrow + h2 + lede, body via caller, optional CTA, reveal presets below the fold (R-MOT-05).
-  usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}; opts: itemsReveal (items carry their own presets; the section keeps only the fallback, clips horizontal overflow because items may slide, and the heading group rises first), clipX (overflow-x-clip for sliding rows), noReveal, center (true centres the heading group; the default is start-aligned, DESIGN §4), kind ("scale" for a framed object; the default rise)
+  usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}; opts: itemsReveal (items carry their own presets; the section keeps only the fallback, clips horizontal overflow because items may slide, and the heading group rises first), clipX (overflow-x-clip for sliding rows), noReveal, center (true centres the heading group; the default is start-aligned, DESIGN §4), kind ("scale" for a framed object; the default rise), extra (classes appended to the section, e.g. a depth backdrop)
   ctx: { locale, pageUrl, density, surface, reveal, index, flair }; flair = the booleans of the brief's motion level (R-TOK-12): vocabulary, pop, rule, …
   macros: revealClasses (section preset), headingClasses (heading preset), item (item preset: treatment by column, R-MOT-16), stagger (sequence preset: shift by index), pop (icon pop), eyebrowRule (the marker that draws)
 #}
@@ -18,6 +18,8 @@
 {% macro stagger(i, kind="") %}{% if i < 8 %}{% if kind == "rise" %}{% set kind = "" %}{% endif %} motion-safe:sda:animate-reveal{{ "-" + kind if kind }}{% if kind == "start" or kind == "end" %} rtl:motion-safe:sda:animate-reveal-{{ "start" if kind == "end" else "end" }}{% endif %} motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:cover_{{ 5 + i * 3 }}%_cover_{{ 25 + i * 3 }}%] motion-safe:sda:[animation-fill-mode:both]{% endif %}{% endmacro %}
 {#- Icon pop (expressive): the icon tile, avatar or badge inside an item scales .82 → 1.04 → 1 on its own view timeline. -#}
 {% macro pop(ctx) %}{% if ctx.reveal and ctx.flair and ctx.flair.pop %} motion-safe:sda:animate-pop motion-safe:sda:[animation-timeline:view()] motion-safe:sda:[animation-range:cover_5%_cover_25%] motion-safe:sda:[animation-fill-mode:both]{% endif %}{% endmacro %}
+{#- Depth (R-MOT-15): a decorative layer moves on scroll() or on its own view(), md and up, linear; drift mirrors under rtl:. pseudo = "before:" puts it on a pseudo-element. Callers gate on ctx.flair. -#}
+{% macro depth(kind, timeline="view()", range="cover_0%_cover_100%", pseudo="") %} md:motion-safe:sda:{{ pseudo }}animate-{{ kind }}{% if kind == "drift" %} rtl:md:motion-safe:sda:{{ pseudo }}animate-drift-end{% endif %} md:motion-safe:sda:{{ pseudo }}[animation-timeline:{{ timeline }}] md:motion-safe:sda:{{ pseudo }}[animation-range:{{ range }}]{% endmacro %}
 {#- The eyebrow marker (DESIGN §4): a 24 px accent rule before the label that draws from the start edge as its section reveals (transform only). -#}
 {% macro eyebrowRule(inverse=false, draw=false) %}before:h-0.5 before:w-6 before:rounded-full {{ 'before:bg-ink-inverse/70' if inverse else 'before:bg-accent-600' }}{% if draw %} before:origin-left rtl:before:origin-right motion-safe:sda:before:animate-draw motion-safe:sda:before:[animation-timeline:view()] motion-safe:sda:before:[animation-range:cover_5%_cover_20%] motion-safe:sda:before:[animation-fill-mode:both]{% endif %}{% endmacro %}
 {% macro shell(name, s, ctx, opts={}) %}
@@ -26,7 +28,7 @@
 {%- set inverse = surface == "bg-brand-700" -%}
 {%- set reveal = ctx.reveal and not opts.noReveal -%}
 {%- set center = opts.center === true -%}
-<section class="{{ pad }} {{ surface }}{% if inverse %} text-ink-inverse{% endif %}{% if opts.clipX or (opts.itemsReveal and reveal) %} overflow-x-clip{% endif %}{% if opts.itemsReveal and reveal %}{{ fallback() }}{% else %}{{ revealClasses(reveal, opts.kind) }}{% endif %}"{% if reveal %} data-reveal{% endif %} data-component="{{ name }}"{% if s.variant %} data-variant="{{ s.variant }}"{% endif %}{% if s.anchor %} id="{{ s.anchor }}"{% endif %}{% if not s.title and s.label %} aria-label="{{ s.label }}"{% endif %}>
+<section class="{{ pad }} {{ surface }}{% if inverse %} text-ink-inverse{% endif %}{% if opts.clipX or (opts.itemsReveal and reveal) %} overflow-x-clip{% endif %}{% if opts.extra %} {{ opts.extra }}{% endif %}{% if opts.itemsReveal and reveal %}{{ fallback() }}{% else %}{{ revealClasses(reveal, opts.kind) }}{% endif %}"{% if reveal %} data-reveal{% endif %} data-component="{{ name }}"{% if s.variant %} data-variant="{{ s.variant }}"{% endif %}{% if s.anchor %} id="{{ s.anchor }}"{% endif %}{% if not s.title and s.label %} aria-label="{{ s.label }}"{% endif %}>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 {%- if s.title or s.eyebrow or s.lede %}
 <div class="{{ 'mx-auto max-w-3xl text-center' if center else 'max-w-3xl' }}{{ headingClasses(reveal and opts.itemsReveal) }}">

@@ -75,8 +75,8 @@ Every entrance is transform-only and scroll-driven (`view()`, the ranges of R-MO
 
 | Layer | Travel | Timeline | Level |
 |---|---|---|---|
-| hero media interior | 48 px (`parallax-lg`) | `scroll(root)` over the first 80 vh | expressive |
-| hero glows | 32 px (`parallax-md`) | same | expressive |
+| hero media interior (split picture) | 32 px (`parallax-md`, at identity at rest) | `scroll(root)` over the first 80 vh | expressive |
+| hero glows | 16 px (`parallax-sm`, at identity at rest) | same | expressive |
 | media-row pictures | 32 px (`parallax-md`) | the row's `view()`, full passage | standard |
 | stats band backdrop | 16 px (`parallax-sm`) | the band's `view()` | expressive |
 | CTA highlight | 24 px inline (`drift`) | the panel's `view()` | expressive |

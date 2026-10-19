@@ -87,14 +87,14 @@ MUST. Depth is set dressing that moves slower than the content. Only these layer
 
 | Layer | Keyframe and travel | Timeline and range | Level |
 |---|---|---|---|
-| hero media interior (pictures only, never video controls or a form) | `parallax-lg`, 48 px total | `scroll(root)`, `0 → 80vh` | expressive |
-| hero glows (the backdrop layer) | `parallax-md`, 32 px | `scroll(root)`, `0 → 80vh` | expressive |
+| hero media interior (the split picture only, never video controls or a form) | `parallax-md`, 32 px, with a static `translate-y-4` under `sda:` so the picture is at identity at rest and sinks as the page scrolls; overscanned `scale-115` | `scroll(root)`, `0 → 80vh` | expressive |
+| hero glows (the backdrop layer, `-inset-y-8`) | `parallax-sm`, 16 px, with `translate-y-2` likewise | `scroll(root)`, `0 → 80vh` | expressive |
 | media-row pictures | `parallax-md`, 32 px | the row's `view()`, `cover 0% → cover 100%` | standard |
-| stats band backdrop (`before:` layer) | `parallax-sm`, 16 px | the band's `view()`, `cover 0% → cover 100%` | expressive |
+| stats band backdrop (`before:` layer: a diagonal tint from brand-800 to a trace of accent, R-COL-09) | `parallax-sm`, 16 px | the band's `view()`, `cover 0% → cover 100%` | expressive |
 | CTA panel highlight (its own absolute layer) | `drift`, 24 px inline, mirrored in RTL | the panel's `view()`, `cover 0% → cover 100%` | expressive |
 | logo cloud list | `drift`, 24 px inline | its `view()`, `cover 0% → cover 100%` | expressive |
 
-At most two depth layers move in any viewport; nothing moves below `md`; text never carries depth; browsers without scroll-driven animation get the layer at rest and no script. Everything else about depth is refused: parallax on headings, backgrounds that move everywhere, blur or filter depth.
+A frame around a layer timed by its own `view()` clips with `overflow-clip`, never `overflow-hidden`: a hidden-overflow box is a scroll container and would become the layer's timeline, which then never progresses. At most two depth layers move in any viewport; nothing moves below `md`; text never carries depth; browsers without scroll-driven animation get the layer at rest and no script. Everything else about depth is refused: parallax on headings, backgrounds that move everywhere, blur or filter depth.
 Why: Two layers at different speeds read as a space; a third reads as a fairground. Phones have no room for depth and their scrolling is the motion.
 Gate: manual: checklists/new-component.md
 

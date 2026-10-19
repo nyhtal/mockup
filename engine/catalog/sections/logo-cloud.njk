@@ -12,12 +12,12 @@
   content limits: 5–8 names
   data: s = { label, items: ["Alder Foods", …] }
 #}
-{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "sections/_shell.njk" import shell, stagger, depth with context %}
 {% from "primitives/wordmark.njk" import wordmark with context %}
 {% macro render(s, ctx) %}
 {% call shell("logo-cloud", s, ctx, { center: true, itemsReveal: ctx.reveal, clipX: true }) %}
 {%- if s.label %}<p class="text-center text-sm font-medium text-ink-muted">{{ s.label }}</p>{% endif %}
-<ul class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8{{ ' reveal-items' if ctx.reveal }}">
+<ul class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8{{ ' reveal-items' if ctx.reveal }}{{ depth('drift') if ctx.reveal and ctx.flair and ctx.flair.drift }}">
 {%- for name in s.items %}<li class="{{ stagger(loop.index0, 'start') if ctx.reveal }}">{{ wordmark(name, { variant: "mono", class: "motion-safe:transition-colors motion-safe:duration-150 hover:fill-ink-brand" }) }}</li>{% endfor %}
 </ul>
 {% endcall %}

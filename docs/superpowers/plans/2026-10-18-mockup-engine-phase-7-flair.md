@@ -1,6 +1,6 @@
 # Mockup Engine Phase 7 Plan (flair): legible motion, feature-block vocabulary, parallax, premium accents, count-up v2, a flair dial
 
-> **Status: approved 2026-10-18; Tasks 1–3 and 6 done (bylaws, reveal engine, vocabulary, count-up v2), Tasks 4, 5, 7, 8 open.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
+> **Status: approved 2026-10-18; Tasks 1–4 and 6 done (bylaws, reveal engine, vocabulary, depth, count-up v2), Tasks 5, 7, 8 open.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
 
 **Goal:** Motion that is unmistakable without being a slideshow, feature blocks that each arrive differently yet read as one system, selective parallax depth, three or four premium accents, a count-up that feels engineered, and a brief-level flair dial (calm / standard / expressive) that decides which of these a site gets. Still: compositor-only, scroll-driven CSS first, everything under `motion-safe:`, content complete without motion or JS, the hero still at first paint, no loops, no third-party code, Lighthouse 100 and WCAG 2.2 AA.
 
@@ -100,13 +100,13 @@
 
 **Files:** `hero.njk`, `app.css` (`bg-hero-backdrop` split into two layers or kept as one layer translated 12 px), `feature-rows.njk`, `stats.njk` + `_shell.njk` (decorative backdrop pseudo-element for the band), `cta-band.njk`, `logo-cloud.njk`, `picture.njk` (an `overscan` option: `scale-[1.08]` static inner image inside an `overflow-hidden` frame).
 
-- [ ] Hero media interior: `+24 px` on `scroll(root)` over `0 → 80vh` (`parallax-lg`, linear), the frame clips; identity at scroll zero. Video variant: the frame moves, not the `<video>` (controls stay put) — or no hero parallax on the video variant; decide in the browser.
-- [ ] Hero glows: `+12 px` on the same timeline (`parallax-md`).
-- [ ] Media rows: pictures `−16 → +16 px` on the row's `view()`, `cover 0% → cover 100%` (`parallax-md`), overscanned; text stays.
-- [ ] Stats band: a decorative `before:` layer (a second, deeper brand tone or the accent glow) `−8 → +8 px` on the band's `view()` (`parallax-sm`).
-- [ ] CTA panel highlight: the existing radial highlight becomes its own layer drifting 24 px inline on the panel's `view()` (`drift`, mirrored in RTL).
-- [ ] Logo cloud: expressive only, the list drifts `−12 → +12 px` inline on its `view()`.
-- [ ] All parallax utilities are wrapped `md:` and `motion-safe:sda:`; nothing moves on phones or in Firefox < 161.
+- [x] Hero media interior: `+24 px` on `scroll(root)` over `0 → 80vh` (`parallax-lg`, linear), the frame clips; identity at scroll zero. Video variant: the frame moves, not the `<video>` (controls stay put) — or no hero parallax on the video variant; decide in the browser.
+- [x] Hero glows: `+12 px` on the same timeline (`parallax-md`).
+- [x] Media rows: pictures `−16 → +16 px` on the row's `view()`, `cover 0% → cover 100%` (`parallax-md`), overscanned; text stays.
+- [x] Stats band: a decorative `before:` layer (a second, deeper brand tone or the accent glow) `−8 → +8 px` on the band's `view()` (`parallax-sm`).
+- [x] CTA panel highlight: the existing radial highlight becomes its own layer drifting 24 px inline on the panel's `view()` (`drift`, mirrored in RTL).
+- [x] Logo cloud: expressive only, the list drifts `−12 → +12 px` inline on its `view()`.
+- [x] All parallax utilities are wrapped `md:` and `motion-safe:sda:`; nothing moves on phones or in Firefox < 161.
 
 **Acceptance:** a build test asserts no parallax utility appears on hero text or the highlight card and none without `md:`; browser pass confirms two layers at most move in any viewport; Lighthouse mobile and desktop on `/en/` unchanged.
 

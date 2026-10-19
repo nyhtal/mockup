@@ -5,7 +5,7 @@
   variants: centered | split (text + picture) | video (text + native video when s.video.slug is set, else a third-party facade) | form (text + short form) | stats (text + 3 stats)
   states: none
   spacing: py-16 md:py-28; grid gap-12; a brand glow behind the text and an accent glow behind the media (DESIGN §4, R-COL-09); proof strip mt-12, three columns with hairlines, value above label so long labels wrap inside their column in every locale
-  motion: none on load; nothing in the hero reveals or counts (R-MOT-11)
+  motion: none on load; nothing in the hero reveals or counts (R-MOT-11); in expressive the split picture and the glows carry depth that is at identity at rest and moves only with the scroll (R-MOT-15)
   keyboard: buttons, then the form or facade
   a11y: the h1 lives here; the picture is the LCP image with fetchpriority=high; the proof strip is a list; the highlight card is plain text
   i18n: buttons ≤ 25 chars; the highlight card mirrors to the top-start corner in RTL through logical end-*
@@ -19,12 +19,15 @@
 {% from "components/video-facade.njk" import videoFacade with context %}
 {% from "components/video.njk" import video with context %}
 {% from "components/stat.njk" import stat with context %}
+{% from "sections/_shell.njk" import depth with context %}
 {% macro render(s, ctx) %}
 {%- set variant = s.variant or "centered" -%}
 {%- set pad = "py-12 md:py-20" if ctx.density == "compact" else "py-16 md:py-28" -%}
 {%- set split = variant == "split" or variant == "video" or variant == "form" -%}
 <section class="relative isolate overflow-hidden {{ pad }} {{ s.surface or 'bg-surface' }}" data-component="hero" data-variant="{{ variant }}">
-<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-hero-backdrop"></div>
+{#- Depth (R-MOT-15, expressive): the glows sink 16 px over the first 80 vh of scroll; a static half-travel offset keeps them at identity at rest; the layer is taller than the section so no edge shows. -#}
+{%- set hd = ctx.flair and ctx.flair.parallaxHero -%}
+<div aria-hidden="true" class="pointer-events-none absolute {{ 'inset-x-0 -inset-y-8 md:motion-safe:sda:translate-y-2' + depth('parallax-sm', 'scroll(root)', '0_80vh') if hd else 'inset-0' }} -z-10 bg-hero-backdrop"></div>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 <div class="{{ 'mx-auto max-w-3xl text-center' if variant == 'centered' else 'grid items-center gap-12 lg:grid-cols-12' }}">
 <div class="{{ 'lg:col-span-7 xl:col-span-5' if split else ('lg:col-span-12' if variant == 'stats') }}">
@@ -48,7 +51,8 @@
 {%- if split %}
 <div class="relative lg:col-span-5 xl:col-span-7">
 {%- if variant == "split" and s.image %}
-<div class="overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink/10">{{ picture(s.image, { priority: true, sizes: "(min-width: 64rem) 58vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
+{#- The picture inside its frame sinks 32 px over the first 80 vh (parallax-md with a 16 px static offset so it is at identity at rest), overscanned 15 % so no edge shows. -#}
+<div class="overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink/10">{{ picture(s.image, { priority: true, sizes: "(min-width: 64rem) 58vw, 100vw", class: "aspect-[4/3] w-full object-cover" + (" md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4" + depth('parallax-md', 'scroll(root)', '0_80vh') if hd) }) }}</div>
 {%- elif variant == "video" and s.video %}
 {% if s.video.slug %}{{ video(s.video) }}{% else %}{{ videoFacade(s.video) }}{% endif %}
 {%- elif variant == "form" and s.form %}
