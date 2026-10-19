@@ -145,6 +145,15 @@ test("every disclosure opens and closes smoothly: details content animates heigh
   assert.match(css, /content-visibility \.3s var\(--ease-reveal\) allow-discrete/, "closing plays before hiding");
 });
 
+test("top navigation: wide menus put every link on one row; Company is a compact single-column dropdown anchored to its button and lists the culture page", () => {
+  const en = readFileSync("dist/reference/en/careers/culture/index.html", "utf8");
+  const nav = /<nav [^>]*data-component="nav-menu">[\s\S]*?<\/nav>/.exec(en)[0];
+  assert.match(nav, /<div popover id="menu-1"[^>]*>\n<ul class="mx-auto grid [^"]*grid-cols-4">/, "Services: four links, four columns");
+  assert.match(nav, /<button type="button" popovertarget="menu-4" class="\[anchor-name:--menu-4\] /);
+  assert.match(nav, /<div popover id="menu-4" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-72 [^"]*\[position-anchor:--menu-4\][^"]*\[position-area:block-end_span-inline-end\]/);
+  assert.match(nav, /href="\/en\/careers\/culture\/"[^>]*aria-current="page"><span class="block text-sm font-medium">Life at Northwind<\/span>/, "the culture page is in the Company list and marked current on itself");
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

@@ -92,6 +92,7 @@
     {
       "key": "nav.company",
       "href": "/about/",
+      "layout": "list",
       "children": [
         {
           "key": "nav.about",
@@ -102,6 +103,11 @@
           "key": "nav.careers",
           "href": "/careers/",
           "descKey": "nav.careersDesc"
+        },
+        {
+          "key": "nav.culture",
+          "href": "/careers/culture/",
+          "descKey": "nav.cultureDesc"
         },
         {
           "key": "nav.news",
