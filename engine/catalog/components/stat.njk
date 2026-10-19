@@ -1,7 +1,7 @@
 {#
   name: stat
   purpose: One headline figure with its label (R-TYPO-09, R-CONT-11).
-  anatomy: div[data-component=stat] > p.value[data-count when the section reveals] + p.label (+ badge trend)
+  anatomy: div[data-component=stat] > p.value > numeral (the counting triple when the section reveals) + p.label (+ badge trend)
   variants: default | inverse (on brand backgrounds: display size, numerals in a light gradient that ends in accent-200, the evidence colour)
   states: none
   spacing: value then mt-1 label
@@ -9,12 +9,13 @@
   keyboard: none
   a11y: value and label are plain text in reading order; the count changes text only, never size or position
   i18n: the value is preformatted per locale by the build (R-I18N-07); label ≤ 4 words
-  content limits: value ≤ 8 chars; 3–4 stats per section (R-SEC-03); opts = { inverse, count, trendTone }
+  content limits: value ≤ 8 chars; 3–4 stats per section (R-SEC-03); opts = { inverse, count, settle (expressive), trendTone }
 #}
 {% from "primitives/badge.njk" import badge with context %}
+{% from "primitives/numeral.njk" import numeral with context %}
 {% macro stat(s, opts={}) %}
 <div data-component="stat" data-variant="{{ 'inverse' if opts.inverse else 'default' }}">
-<p class="font-bold tabular-nums {{ 'text-4xl md:text-5xl lg:text-6xl text-ink-inverse bg-linear-to-br from-ink-inverse to-accent-200 bg-clip-text supports-[background-clip:text]:text-transparent' if opts.inverse else 'text-4xl text-ink' }}"{% if opts.count %} data-count{% endif %}>{{ s.value }}</p>
+<p class="font-bold tabular-nums {{ 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-ink-inverse bg-linear-to-br from-ink-inverse to-accent-200 bg-clip-text supports-[background-clip:text]:text-transparent' if opts.inverse else 'text-4xl text-ink' }}">{{ numeral(s.value, { count: opts.count, settle: opts.settle }) }}</p>
 <p class="mt-1 text-sm {{ 'text-ink-inverse/80' if opts.inverse else 'text-ink-muted' }}">{{ s.label }}</p>
 {%- if s.trend %}<p class="mt-2">{{ badge(s.trend, { tone: s.trendTone or "success" }) }}</p>{% endif %}
 </div>

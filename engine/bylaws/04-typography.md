@@ -18,7 +18,7 @@ Why: Four weights are enough for hierarchy and keep the subset small.
 Gate: manual: checklists/new-component.md
 
 ### R-TYPO-04 Element scale
-MUST. Text elements use exactly these classes: h1 `text-4xl md:text-5xl font-bold tracking-tight text-balance` (in a hero, `xl:text-6xl` as well); h2 `text-3xl md:text-4xl font-semibold tracking-tight text-balance`; h3 `text-xl md:text-2xl font-semibold`; h4 `text-lg font-semibold`; eyebrow `text-sm font-medium uppercase tracking-wide text-ink-brand`; lede `text-lg md:text-xl text-ink-muted`; body `text-base leading-relaxed`; small `text-sm text-ink-muted`; stat value `text-4xl font-bold tabular-nums` (`text-4xl md:text-5xl lg:text-6xl` on the stats band, where two columns from 320 px must hold an eight-character value); hero proof figure `text-xl md:text-2xl font-semibold tabular-nums whitespace-nowrap`.
+MUST. Text elements use exactly these classes: h1 `text-4xl md:text-5xl font-bold tracking-tight text-balance` (in a hero, `xl:text-6xl` as well); h2 `text-3xl md:text-4xl font-semibold tracking-tight text-balance`; h3 `text-xl md:text-2xl font-semibold`; h4 `text-lg font-semibold`; eyebrow `text-sm font-medium uppercase tracking-wide text-ink-brand`; lede `text-lg md:text-xl text-ink-muted`; body `text-base leading-relaxed`; small `text-sm text-ink-muted`; stat value `text-4xl font-bold tabular-nums` (`text-3xl sm:text-4xl md:text-5xl lg:text-6xl` on the stats band, where two columns from 320 px must hold a non-wrapping eight-character value such as the German "99,98 %"); hero proof figure `text-xl md:text-2xl font-semibold tabular-nums whitespace-nowrap`.
 Why: Mapping element to class once removes the question forever.
 Gate: manual: checklists/new-component.md
 

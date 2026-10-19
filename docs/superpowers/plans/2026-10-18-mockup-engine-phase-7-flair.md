@@ -1,6 +1,6 @@
 # Mockup Engine Phase 7 Plan (flair): legible motion, feature-block vocabulary, parallax, premium accents, count-up v2, a flair dial
 
-> **Status: approved 2026-10-18; Tasks 1–3 done (bylaws, reveal engine, vocabulary), Tasks 4–8 open.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
+> **Status: approved 2026-10-18; Tasks 1–3 and 6 done (bylaws, reveal engine, vocabulary, count-up v2), Tasks 4, 5, 7, 8 open.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
 
 **Goal:** Motion that is unmistakable without being a slideshow, feature blocks that each arrive differently yet read as one system, selective parallax depth, three or four premium accents, a count-up that feels engineered, and a brief-level flair dial (calm / standard / expressive) that decides which of these a site gets. Still: compositor-only, scroll-driven CSS first, everything under `motion-safe:`, content complete without motion or JS, the hero still at first paint, no loops, no third-party code, Lighthouse 100 and WCAG 2.2 AA.
 
@@ -125,12 +125,12 @@
 
 **Files:** `engine/scripts/enhance.js`, `stat.njk`, `card.njk` (case-study metric), `engine/tools/lib/site.js` or the section planner (emit `data-count`, `data-decimals`, `data-nu`), `build.test.js`.
 
-- [ ] Build-time attributes instead of text parsing (C): `data-count="1284"`, `data-decimals="2"` when the authored value has them, `data-nu="latn|arab"` from the site's numbering system; prefix and suffix stay in the text; the script formats with one `Intl.NumberFormat` per figure in `lang-u-nu-<nu>` and writes only when the formatted string changes.
-- [ ] Reserved width without inline styles: the stat value becomes an `inline-grid` with an `invisible` sizing span holding the final text (`[grid-area:1/1]`), an `aria-hidden` animated span on top, and an `sr-only` span with the final text for assistive technology; `tabular-nums whitespace-nowrap`; bidi isolation (`unicode-bidi: isolate` via `[unicode-bidi:isolate]`). About 140 bytes per figure; the budgets of D45 hold.
-- [ ] Timing: 1 500 ms, ease-out cubic (keep) with an 80 ms stagger per figure in document order, capped at 240 ms; start at 30 % visibility; reduced motion and mid-count preference changes restore the final text at once.
-- [ ] Settle (expressive only): on completion the script sets `data-counted` and the figure's utility `data-counted:motion-safe:animate-settle` scales 1.015 → 1 over 160 ms (R-TOK-13 `settle`); no bounce.
-- [ ] Case-study metrics and the style-guide figures get the same markup; the hero stays static.
-- [ ] Size: the parsing code goes, the formatter and stagger come in; target ≤ 2.6 KB total.
+- [x] Build-time attributes instead of text parsing (C): `data-count="1284"`, `data-decimals="2"` when the authored value has them, `data-nu="latn|arab"` from the site's numbering system; prefix and suffix stay in the text; the script formats with one `Intl.NumberFormat` per figure in `lang-u-nu-<nu>` and writes only when the formatted string changes.
+- [x] Reserved width without inline styles: the stat value becomes an `inline-grid` with an `invisible` sizing span holding the final text (`[grid-area:1/1]`), an `aria-hidden` animated span on top, and an `sr-only` span with the final text for assistive technology; `tabular-nums whitespace-nowrap`; bidi isolation (`unicode-bidi: isolate` via `[unicode-bidi:isolate]`). About 140 bytes per figure; the budgets of D45 hold.
+- [x] Timing: 1 500 ms, ease-out cubic (keep) with an 80 ms stagger per figure in document order, capped at 240 ms; start at 30 % visibility; reduced motion and mid-count preference changes restore the final text at once.
+- [x] Settle (expressive only): on completion the script sets `data-counted` and the figure's utility `data-counted:motion-safe:animate-settle` scales 1.015 → 1 over 160 ms (R-TOK-13 `settle`); no bounce.
+- [x] Case-study metrics and the style-guide figures get the same markup; the hero stays static.
+- [x] Size: the parsing code goes, the formatter and stagger come in; target ≤ 2.6 KB total.
 
 **Acceptance:** build test asserts the three-span markup and attributes on the band; browser check in en, de (`1.284`, `99,98 %`) and ar (Latin digits by default, Arabic-Indic when the brief sets `numberingSystem.ar = "arab"`); no layout shift measured on the band while counting (CLS 0 in a Lighthouse run on `/en/`).
 

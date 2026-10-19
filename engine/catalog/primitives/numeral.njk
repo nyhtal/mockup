@@ -1,0 +1,17 @@
+{#
+  name: numeral
+  purpose: A figure that may count up (R-MOT-10 behaviour 3, R-TYPO-09): the build parses the formatted value once; the script only animates.
+  anatomy: span.inline-grid > span.invisible (the final text, reserves the width) + span[aria-hidden][data-count data-decimals data-nu] (animated) + span.sr-only (the final text for assistive technology) | plain text when not counting
+  variants: none; opts.count turns the triple on, opts.settle adds the expressive settle after landing (data-counted:animate-settle)
+  states: counting (text changes), counted (data-counted set by the script)
+  spacing: none; the caller's element sets size and colour (the gradient of the stats band clips to this text too)
+  motion: count 1.5 s ease-out cubic, 80 ms after the previous figure; settle 160 ms (expressive)
+  keyboard: none
+  a11y: one stable value for assistive technology (sr-only); the animated copy is aria-hidden and never a live region; the sizing copy is visibility-hidden
+  i18n: the value is preformatted per locale by the build (R-I18N-07); the script formats frames in the page's language with the same numbering system (data-nu)
+  content limits: value ≤ 8 chars; a value with no digit renders plain
+#}
+{% macro numeral(value, opts={}) %}
+{%- set fig = (value | figure) if opts.count else null -%}
+{%- if fig %}<span class="inline-grid"><span class="invisible [grid-area:1/1]" aria-hidden="true">{{ value }}</span><span class="[grid-area:1/1] whitespace-nowrap{% if opts.settle %} motion-safe:data-counted:animate-settle{% endif %}" aria-hidden="true" data-count="{{ fig.number }}" data-decimals="{{ fig.decimals }}" data-nu="{{ fig.nu }}">{{ value }}</span><span class="sr-only">{{ value }}</span></span>{% else %}{{ value }}{% endif %}
+{%- endmacro %}

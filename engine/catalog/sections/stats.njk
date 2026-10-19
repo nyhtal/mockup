@@ -18,7 +18,7 @@
 {%- set band = s.variant != "plain" -%}
 {% call shell("stats", s | merge({ surface: s.surface or ("bg-brand-700" if band else "bg-surface") }), ctx) %}
 <div class="grid grid-cols-2 gap-8 lg:grid-cols-{{ s.items.length if s.items.length <= 4 else 4 }}">
-{%- for item in s.items %}{{ stat(item, { inverse: band, count: ctx.reveal }) }}{% endfor %}
+{%- for item in s.items %}{{ stat(item, { inverse: band, count: ctx.reveal and ctx.flair and ctx.flair.count, settle: ctx.flair and ctx.flair.settle }) }}{% endfor %}
 </div>
 {% endcall %}
 {% endmacro %}

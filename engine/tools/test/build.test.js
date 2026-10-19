@@ -87,6 +87,7 @@ test("enhance.js ships under 3 KB and only does what bylaw 06 allows", () => {
   assert.match(js, /IntersectionObserver/);
   assert.match(js, /commandfor/);
   assert.match(js, /data-count/, "count-up (R-MOT-10 behaviour 3)");
+  assert.match(js, /dataset\.decimals/, "precision comes from the build, not from parsing text");
   assert.match(js, /prefers-reduced-motion/, "count-up respects reduced motion");
   assert.match(js, /data-sound/, "sound toggle (R-MOT-10 behaviour 4)");
   assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|localStorage|document\.cookie/);
@@ -103,7 +104,9 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.match(hero, /less downtime/, "highlight card");
   assert.doesNotMatch(hero, /data-count/, "nothing counts above the fold (R-MOT-11)");
   const stats = /<section[^>]*data-component="stats"[\s\S]*?<\/section>/.exec(home)[0];
-  assert.equal((stats.match(/data-count/g) || []).length, 4, "every stat on the band counts");
+  assert.equal((stats.match(/data-count="/g) || []).length, 4, "every stat on the band counts");
+  assert.match(stats, /<span class="inline-grid"><span class="invisible \[grid-area:1\/1\]" aria-hidden="true">99\.98%<\/span><span class="\[grid-area:1\/1\] whitespace-nowrap motion-safe:data-counted:animate-settle" aria-hidden="true" data-count="99.98" data-decimals="2" data-nu="latn">99\.98%<\/span><span class="sr-only">99\.98%<\/span><\/span>/, "the counting triple: sizing copy, animated copy with build-time attributes, screen-reader copy (R-MOT-10)");
+  assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /data-count="99.98" data-decimals="2" data-nu="latn">99,98/, "German figures parse with the decimal comma");
   assert.match(stats, /to-accent-200/, "numerals end in the evidence colour");
   const team = readFileSync("dist/reference/en/about/team/index.html", "utf8");
   assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");

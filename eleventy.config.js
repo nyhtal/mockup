@@ -8,6 +8,7 @@ import { engineFiles } from "./engine/tools/lib/engine-files.js";
 import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
 import { renderMarkdown, tocOf, wordCount } from "./engine/tools/lib/markdown.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
+import { parseFigure } from "./engine/tools/lib/figures.js";
 
 const OG_LOCALES = { en: "en_GB", de: "de_DE", ar: "ar_SA", fr: "fr_FR", es: "es_ES", it: "it_IT", nl: "nl_NL", pt: "pt_PT", ja: "ja_JP", zh: "zh_CN" };
 
@@ -248,6 +249,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("isoDate", (d) => new Date(d).toISOString().slice(0, 10));
   eleventyConfig.addFilter("formatDate", function (iso, style) { return formatDate(iso, this.ctx?.page?.lang || site.defaultLocale, site, style); });
   eleventyConfig.addFilter("formatNumber", function (n) { return formatNumber(n, this.ctx?.page?.lang || site.defaultLocale, site); });
+  // A formatted figure → { number, decimals, nu, prefix, suffix } for the count-up (R-MOT-10); null when it holds no digit.
+  eleventyConfig.addFilter("figure", function (value) { return parseFigure(value, fmtLocale(this.ctx?.page?.lang || site.defaultLocale, site)); });
   eleventyConfig.addFilter("formatCurrency", function (n, code) { return formatCurrency(n, this.ctx?.page?.lang || site.defaultLocale, code, site); });
   eleventyConfig.addFilter("htmlPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType));
   eleventyConfig.addFilter("sitemapPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType && !p.data.noindex));

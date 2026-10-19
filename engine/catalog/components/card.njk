@@ -17,6 +17,7 @@
 {% from "primitives/wordmark.njk" import wordmark with context %}
 {% from "primitives/badge.njk" import badge with context %}
 {% from "primitives/picture.njk" import picture with context %}
+{% from "primitives/numeral.njk" import numeral with context %}
 {% macro card(c, opts={}) %}
 {%- set tag = opts.tag or "li" -%}
 {%- set h = "h" + (opts.level or 3) -%}
@@ -33,7 +34,7 @@
 {%- endif %}
 {%- if variant == "case-study" %}
 <div class="mb-4 text-ink-muted">{{ wordmark(c.company, { variant: "mono" }) }}</div>
-<p class="text-4xl font-bold tabular-nums text-ink-brand"{% if opts.count %} data-count{% endif %}>{{ c.metricValue }}</p>
+<p class="text-4xl font-bold tabular-nums text-ink-brand">{{ numeral(c.metricValue, { count: opts.count, settle: opts.settle }) }}</p>
 <p class="flex items-center gap-2 text-sm text-ink-muted before:h-0.5 before:w-3 before:rounded-full before:bg-accent-600">{{ c.metricLabel }}</p>
 {%- endif %}
 {%- if variant == "team" %}

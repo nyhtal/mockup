@@ -13,7 +13,7 @@
 {%- if s.items and s.items.length %}
 <ul class="grid {{ colClass }}{{ ' reveal-items' if ctx.reveal }}">
 {%- for it in s.items %}
-{{ card(it | merge({ variant: it.variant or variant }), { density: ctx.density, tile: opts.tile, count: ctx.reveal, class: item(loop.index0, cols, ctx, "rise" if opts.tile else ""), pop: pop(ctx) if opts.tile }) }}
+{{ card(it | merge({ variant: it.variant or variant }), { density: ctx.density, tile: opts.tile, count: ctx.reveal and ctx.flair and ctx.flair.count, settle: ctx.flair and ctx.flair.settle, class: item(loop.index0, cols, ctx, "rise" if opts.tile else ""), pop: pop(ctx) if opts.tile }) }}
 {%- endfor %}
 </ul>
 {%- else %}
