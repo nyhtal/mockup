@@ -20,3 +20,4 @@ All names, figures and quotes on this site are fictional. Northwind Dynamics, it
 - The home page carries neither of the optional case-study cards and resources-latest sections (both live on their own index pages; the staggered item reveals of 0.4.0 cost about 3 KB per page); the landing page carries no stats section beyond its hero's and product pages carry no testimonial (R-PERF-01 at 60 KB with the 0.4.0 motion classes).
 - The tagline is localised through the `site.tagline` string in `i18n/<locale>.json`.
 - The style guide exists at `/en/style-guide/` only (D29) and is not linked from the footer.
+- The motion level is `expressive` (bylaws 0.6.0, D46): the reference site is the showcase and has to show every device of the flair dial; a new brief defaults to `standard`.

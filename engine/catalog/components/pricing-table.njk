@@ -15,12 +15,13 @@
 {% from "primitives/icon.njk" import icon with context %}
 {% from "primitives/badge.njk" import badge with context %}
 {% from "primitives/button.njk" import button with context %}
-{% from "sections/_shell.njk" import stagger with context %}
+{% from "sections/_shell.njk" import item with context %}
 {% macro pricingTable(p, opts={}) %}
 {%- set h = "h" + (opts.level or 3) -%}
-<ul class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-{{ p.tiers.length if p.tiers.length <= 4 else 4 }}" data-component="pricing-table">
+{%- set cols = p.tiers.length if p.tiers.length <= 4 else 4 -%}
+<ul class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-{{ cols }}{{ ' reveal-items' if opts.ctx and opts.ctx.reveal }}" data-component="pricing-table">
 {%- for tier in p.tiers %}
-<li class="flex flex-col rounded-lg border bg-surface-raised p-6 shadow-sm {{ 'border-brand-600' if tier.recommended else 'border-line' }}{{ stagger(loop.index0) if opts.reveal }}">
+<li class="flex flex-col rounded-lg border bg-surface-raised p-6 shadow-sm {{ 'border-brand-600' if tier.recommended else 'border-line' }}{{ item(loop.index0, cols, opts.ctx, 'settle' if tier.recommended else '') if opts.ctx }}">
 <div class="flex items-center justify-between gap-3">
 <{{ h }} class="text-xl font-semibold">{{ tier.name }}</{{ h }}>
 {%- if tier.recommended %}{{ badge("ui.mostPopular" | t, { tone: "brand" }) }}{% endif %}

@@ -11,6 +11,13 @@
     radial-gradient(36rem 22rem at 85% 85%, color-mix(in oklab, light-dark(var(--color-accent-200), var(--color-accent-800)) 35%, transparent), transparent 70%);
   mask-image: radial-gradient(ellipse at center, black 25%, transparent 78%);
 }
+/* Grid items travel further than sections (R-TOK-12): the grid sets the item distance once for its children, shorter below md. The keyframes read --reveal-distance, so one utility on the list is enough. */
+@utility reveal-items {
+  --reveal-distance: var(--reveal-distance-item-sm);
+  @media (width >= 48rem) {
+    --reveal-distance: var(--reveal-distance-item);
+  }
+}
 @custom-variant sda {
   @supports (animation-timeline: view()) {
     @slot;
@@ -34,8 +41,20 @@
   --animate-reveal-end: reveal-end var(--reveal-duration) var(--ease-smooth) forwards;
   /* Framed objects (testimonial cards, the CTA panel) settle from 96 %; rules draw along their axis (the eyebrow marker, the timeline rule). Transform only (R-TOK-13). */
   --animate-reveal-scale: reveal-scale var(--reveal-duration) var(--ease-smooth) forwards;
+  /* The framed settle of a grid item and the icon pop (R-MOT-16); rules that draw; the reading-progress hairline (R-MOT-08). */
+  --animate-reveal-settle: reveal-settle var(--reveal-duration) var(--ease-smooth) forwards;
+  --animate-pop: pop var(--reveal-duration) var(--ease-smooth) forwards;
   --animate-draw: draw var(--reveal-duration) var(--ease-smooth) forwards;
   --animate-draw-y: draw-y var(--reveal-duration) var(--ease-smooth) forwards;
+  --animate-progress: progress 1s linear both;
+  /* Depth (R-MOT-15): linear, identity at the middle of the range, driven by scroll() or the layer's view(). drift-end is drift's mirror for rtl:. */
+  --animate-parallax-sm: parallax-sm 1s linear both;
+  --animate-parallax-md: parallax-md 1s linear both;
+  --animate-parallax-lg: parallax-lg 1s linear both;
+  --animate-drift: drift 1s linear both;
+  --animate-drift-end: drift-end 1s linear both;
+  /* After a count-up lands (expressive, R-MOT-10): a 160 ms settle, time-based. */
+  --animate-settle: settle 160ms ease-out both;
   /* Scroll-driven appearance of conveniences (floating back-to-top): visibility rides with opacity so the control is never a hidden tab stop (R-MOT-13, R-MOT-14). */
   --animate-rise-in: rise-in 300ms var(--ease-smooth) both;
   --animate-drop: drop 200ms var(--ease-smooth) both;
@@ -57,6 +76,43 @@
   }
   @keyframes reveal-scale {
     from { transform: scale(0.96); }
+    to { transform: none; }
+  }
+  @keyframes reveal-settle {
+    from { transform: translateY(var(--reveal-distance)) scale(0.94); }
+    to { transform: none; }
+  }
+  @keyframes pop {
+    from { transform: scale(0.82); }
+    75% { transform: scale(1.04); }
+    to { transform: none; }
+  }
+  @keyframes progress {
+    from { transform: scaleX(0); }
+    to { transform: none; }
+  }
+  @keyframes parallax-sm {
+    from { transform: translateY(-8px); }
+    to { transform: translateY(8px); }
+  }
+  @keyframes parallax-md {
+    from { transform: translateY(-16px); }
+    to { transform: translateY(16px); }
+  }
+  @keyframes parallax-lg {
+    from { transform: translateY(-24px); }
+    to { transform: translateY(24px); }
+  }
+  @keyframes drift {
+    from { transform: translateX(-12px); }
+    to { transform: translateX(12px); }
+  }
+  @keyframes drift-end {
+    from { transform: translateX(12px); }
+    to { transform: translateX(-12px); }
+  }
+  @keyframes settle {
+    from { transform: scale(1.015); }
     to { transform: none; }
   }
   @keyframes draw {

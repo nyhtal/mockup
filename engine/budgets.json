@@ -1,12 +1,12 @@
 {
-  "html": 67584,
+  "html": 70656,
   "css": 81920,
   "js": 3072,
   "page": 307200,
   "mobileWidth": 720,
   "overrides": {
     "/style-guide/": {
-      "html": 122880,
+      "html": 131072,
       "page": 409600
     },
     "/en/index.html": {

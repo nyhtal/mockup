@@ -5,6 +5,7 @@
  * context. Lives in JS because Nunjucks cannot carry state across loop iterations.
  */
 import { cardOf, sortEntities } from "./entities.js";
+import { flairFor } from "./theme.js";
 
 const MEDIA = new Set(["hero", "cta-band", "page-header", "article-meta", "pagination", "filter-bar", "was-this-helpful"]);
 const STATIC = new Set(["search-box", "search-results", "person-bio", "download-detail", "event-detail", "job-detail", "prose", "confirmation", "error-state"]);
@@ -68,7 +69,8 @@ function expand(raw, opts) {
 }
 
 export function planSections(samples, sections, opts) {
-  const { locale, pageUrl, density, demote = false, breadcrumbs = [], siteSections = {}, defaultSiteSections, header } = opts;
+  const { locale, pageUrl, density, motion, demote = false, breadcrumbs = [], siteSections = {}, defaultSiteSections, header } = opts;
+  const flair = flairFor(motion);
   let surface = "bg-surface";
   const steps = [];
   const list = [...(sections || [])];
@@ -87,7 +89,7 @@ export function planSections(samples, sections, opts) {
     delete s.skipEmpty;
     const i = steps.length;
     const reveal = i > 0 && !MEDIA.has(s.type) && !STATIC.has(s.type);
-    steps.push({ s, ctx: { locale, pageUrl, density: density || "comfortable", surface, reveal, index: i, demote: !!demote, breadcrumbs } });
+    steps.push({ s, ctx: { locale, pageUrl, density: density || "comfortable", surface, reveal, index: i, demote: !!demote, breadcrumbs, flair } });
     if (MEDIA.has(s.type)) surface = "bg-surface";
     else if (!s.surface) surface = surface === "bg-surface" ? "bg-surface-alt" : "bg-surface";
   }

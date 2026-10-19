@@ -5,23 +5,23 @@
   variants: none
   states: none
   spacing: gap-8; 3 columns at lg
-  motion: items stagger
+  motion: items arrive by column (slide-in / rise / framed settle, R-MOT-16); icon tiles pop (expressive)
   keyboard: none unless items carry href (then card links)
   a11y: list; icons aria-hidden
   i18n: none
   content limits: title ≤ 6 words; text ≤ 40 words
   data: s = { eyebrow, title, lede, items: [{ icon, title, text, href }], cta }
 #}
-{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "sections/_shell.njk" import shell, item, pop with context %}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("feature-grid", s, ctx, { itemsReveal: ctx.reveal }) %}
-<ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-{%- for item in s.items %}
-<li class="{{ stagger(loop.index0) if ctx.reveal }}">
-<span class="inline-flex size-12 items-center justify-center rounded-md bg-brand-100 text-brand-800">{{ icon(item.icon or "layers", { size: "size-6" }) }}</span>
-<h3 class="mt-4 text-xl font-semibold">{% if item.href %}<a href="{{ item.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</h3>
-<p class="mt-2 text-base leading-relaxed text-ink-muted">{{ item.text }}</p>
+<ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3{{ ' reveal-items' if ctx.reveal }}">
+{%- for f in s.items %}
+<li class="{{ item(loop.index0, 3, ctx) }}">
+<span class="inline-flex size-12 items-center justify-center rounded-md bg-brand-100 text-brand-800{{ pop(ctx) }}">{{ icon(f.icon or "layers", { size: "size-6" }) }}</span>
+<h3 class="mt-4 text-xl font-semibold">{% if f.href %}<a href="{{ f.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ f.title }}</a>{% else %}{{ f.title }}{% endif %}</h3>
+<p class="mt-2 text-base leading-relaxed text-ink-muted">{{ f.text }}</p>
 </li>
 {%- endfor %}
 </ul>

@@ -1,18 +1,19 @@
 {#
   name: _grid (helper, not a section)
   purpose: A section whose body is a grid of cards of one variant (R-LAY-03, R-SEC-03). Used by every "*-cards" section.
-  usage: {{ cardGrid("case-study-cards", s, ctx, "case-study", 3) }}; opts.tile puts short tiles two across from 320 px (R-LAY-03)
+  usage: {{ cardGrid("case-study-cards", s, ctx, "case-study", 3) }}; opts.tile puts short tiles two across from 320 px (R-LAY-03), rises them and pops their icon or avatar (R-MOT-16)
+  motion: the grid carries `reveal-items` (the item distance of R-TOK-12); each card's wrapper takes its column's treatment (R-MOT-16)
 #}
-{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "sections/_shell.njk" import shell, item, pop with context %}
 {% from "components/card.njk" import card with context %}
 {% from "components/empty-state.njk" import emptyState with context %}
 {% macro cardGrid(name, s, ctx, variant, cols, opts={}) %}
 {%- set colClass = ("grid-cols-2 gap-4 md:gap-8 " + ("lg:grid-cols-4" if cols == 4 else "lg:grid-cols-3")) if opts.tile else ("gap-6 md:gap-8 " + ("md:grid-cols-2" if cols == 2 else ("md:grid-cols-2 lg:grid-cols-4" if cols == 4 else "md:grid-cols-2 lg:grid-cols-3"))) -%}
 {% call shell(name, s, ctx, { itemsReveal: ctx.reveal }) %}
 {%- if s.items and s.items.length %}
-<ul class="grid {{ colClass }}">
-{%- for item in s.items %}
-{{ card(item | merge({ variant: item.variant or variant }), { density: ctx.density, tile: opts.tile, count: ctx.reveal, class: stagger(loop.index0) if ctx.reveal }) }}
+<ul class="grid {{ colClass }}{{ ' reveal-items' if ctx.reveal }}">
+{%- for it in s.items %}
+{{ card(it | merge({ variant: it.variant or variant }), { density: ctx.density, tile: opts.tile, count: ctx.reveal, class: item(loop.index0, cols, ctx, "rise" if opts.tile else ""), pop: pop(ctx) if opts.tile }) }}
 {%- endfor %}
 </ul>
 {%- else %}

@@ -153,7 +153,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("sectionsPlan", function (sections, locale, pageUrl, density, demote = false, breadcrumbs = [], header = null) {
     const lang = locale || site.defaultLocale;
     return planSections(samples, sections, {
-      locale: lang, pageUrl, density, demote, breadcrumbs, header: header || undefined,
+      locale: lang, pageUrl, density, motion: site.brand?.motion, demote, breadcrumbs, header: header || undefined,
       siteSections: siteData[lang]?.pages?.sections || {}, defaultSiteSections: lang === site.defaultLocale ? undefined : siteData[site.defaultLocale]?.pages?.sections || {}, entities: siteData[lang]?.entities || {}, entity: this.ctx?.e,
       site, fmt: fmtFor(lang), md: renderMarkdown, toc: tocOf,
     });

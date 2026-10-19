@@ -251,7 +251,7 @@
     "accentHue": 160,
     "radius": "soft",
     "density": "comfortable",
-    "motion": "standard",
+    "motion": "expressive",
     "font": "inter"
   }
 }

@@ -12,7 +12,7 @@
   content limits: single 1, grid 3, carousel ≤ 6
   data: s = { eyebrow, title, items: [testimonial data], variant }
 #}
-{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "sections/_shell.njk" import shell, item with context %}
 {% from "components/testimonial.njk" import testimonial with context %}
 {% macro render(s, ctx) %}
 {%- set variant = s.variant or ("single" if s.items.length == 1 else "grid") -%}
@@ -24,8 +24,8 @@
 {%- for item in s.items %}<li class="w-80 shrink-0 snap-start">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
 </ul>
 {%- else %}
-<ul class="grid gap-6 md:gap-8 md:grid-cols-3">
-{%- for item in s.items %}<li class="{{ stagger(loop.index0, 'scale') if ctx.reveal }}">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
+<ul class="grid gap-6 md:gap-8 md:grid-cols-3{{ ' reveal-items' if ctx.reveal }}">
+{%- for f in s.items %}<li class="{{ item(loop.index0, 3, ctx, 'scale') }}">{{ testimonial(f, { variant: "compact" }) }}</li>{% endfor %}
 </ul>
 {%- endif %}
 {% endcall %}

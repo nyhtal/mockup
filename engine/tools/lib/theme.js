@@ -10,7 +10,19 @@ const RADIUS = {
   soft: ["0.25rem", "0.5rem", "0.75rem", "1rem", "9999px"],
   round: ["0.5rem", "1rem", "1.5rem", "2rem", "9999px"],
 };
-const MOTION = { calm: [12, 200], standard: [24, 300], expressive: [32, 500] };
+/** The flair dial (R-TOK-12): entrance distance for sections and for grid items (shorter below md), the script-fallback duration, and (flairFor) the devices each level enables. */
+const MOTION = {
+  calm: { section: 16, item: 24, itemSm: 16, duration: 300 },
+  standard: { section: 32, item: 40, itemSm: 24, duration: 480 },
+  expressive: { section: 40, item: 48, itemSm: 28, duration: 560 },
+};
+
+/** Booleans the catalog reads instead of the level name (R-TOK-12): what a site at this level gets. */
+export function flairFor(level) {
+  const l = MOTION[level] ? level : "standard";
+  const standard = l !== "calm", expressive = l === "expressive";
+  return { level: l, vocabulary: standard, count: standard, rule: standard, parallaxMedia: standard, progress: standard, pop: expressive, parallaxHero: expressive, parallaxStats: expressive, drift: expressive, sticky: expressive, settle: expressive };
+}
 /** Lightness of ink-muted per scheme; must keep 4.5:1 on every surface (see contrastFailures). */
 const ROLE_MUTED = { light: 46, dark: 72 };
 /** Lightness of ink-brand (brand-coloured text: eyebrows, links, icons on surfaces) per scheme. */
@@ -48,7 +60,7 @@ export function brandTokens(brand, { scriptFamilies = [] } = {}) {
   const h = Number(brand.hue) || 0;
   const a = Number(brand.accentHue ?? brand.hue) || 0;
   const r = RADIUS[brand.radius] || RADIUS.soft;
-  const [dist, dur] = MOTION[brand.motion] || MOTION.standard;
+  const m = MOTION[brand.motion] || MOTION.standard;
   const font = resolveFont(brand.font);
   // Brand font, then each script font (its unicode-range keeps it to its script), then the matching metric fallbacks (R-TYPO-12).
   const fb = (family) => `"${family.replace(" Variable", "")} Fallback"`;
@@ -75,8 +87,10 @@ ${state("danger", 25)}
   --radius-lg: ${r[2]};
   --radius-xl: ${r[3]};
   --radius-full: ${r[4]};
-  --reveal-distance: ${dist}px;
-  --reveal-duration: ${dur}ms;
+  --reveal-distance: ${m.section}px;
+  --reveal-distance-item: ${m.item}px;
+  --reveal-distance-item-sm: ${m.itemSm}px;
+  --reveal-duration: ${m.duration}ms;
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
   --font-sans: ${fontSans};
   --font-system: system-ui, sans-serif;

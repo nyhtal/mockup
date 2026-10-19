@@ -1,6 +1,6 @@
 # Mockup Engine Phase 7 Plan (flair): legible motion, feature-block vocabulary, parallax, premium accents, count-up v2, a flair dial
 
-> **Status: approved 2026-10-18; Task 1 (bylaws 0.6.0) done, Tasks 2–8 open.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
+> **Status: approved 2026-10-18; Tasks 1–3 done (bylaws, reveal engine, vocabulary), Tasks 4–8 open.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
 
 **Goal:** Motion that is unmistakable without being a slideshow, feature blocks that each arrive differently yet read as one system, selective parallax depth, three or four premium accents, a count-up that feels engineered, and a brief-level flair dial (calm / standard / expressive) that decides which of these a site gets. Still: compositor-only, scroll-driven CSS first, everything under `motion-safe:`, content complete without motion or JS, the hero still at first paint, no loops, no third-party code, Lighthouse 100 and WCAG 2.2 AA.
 
@@ -74,11 +74,11 @@
 
 **Files:** `engine/theme/app.css`, `engine/tools/lib/theme.js` (presets), `engine/catalog/sections/_shell.njk`, `engine/catalog/components/card.njk`, `engine/catalog/sections/_grid.njk`, `engine/tools/test/theme.test.js`.
 
-- [ ] Keyframes and tokens from Task 1 in `@theme`; `brandTokens()` emits the four distance/duration tokens per level, with the `md:` pair for items.
-- [ ] `_shell.njk`: `revealClasses(on, kind)` keeps section ranges; new `item(i, cols, kind)` macro returns the treatment for column `i % cols` with the range shifted +3 % per column and `animation-fill-mode: both`; `kind` can force one treatment (tiles: `rise` + `pop` on the icon). `eyebrowRule` draws a 24 px rule (`before:w-6`).
-- [ ] Entrance on the wrapper, hover on the child (C): the card macro puts reveal classes on the `li` and moves the hover lift, border warm and shadow to an inner `div`/`article` so the two transforms never fight. R-MOT-07 wording updated to "the card's inner element".
-- [ ] Heading group of a staggering section rises first (`cover 0% → cover 20%`), items follow.
-- [ ] JS fallback (`nosda:js:`) uses `--reveal-distance-item` and the level's duration; still translate-only, one shot.
+- [x] Keyframes and tokens from Task 1 in `@theme`; `brandTokens()` emits the four distance/duration tokens per level, with the `md:` pair for items.
+- [x] `_shell.njk`: `revealClasses(on, kind)` keeps section ranges; new `item(i, cols, kind)` macro returns the treatment for column `i % cols` with the range shifted +3 % per column and `animation-fill-mode: both`; `kind` can force one treatment (tiles: `rise` + `pop` on the icon). `eyebrowRule` draws a 24 px rule (`before:w-6`).
+- [x] Entrance on the wrapper, hover on the child (C): the card macro puts reveal classes on the `li` and moves the hover lift, border warm and shadow to an inner `div`/`article` so the two transforms never fight. R-MOT-07 wording updated to "the card's inner element".
+- [x] Heading group of a staggering section rises first (`cover 0% → cover 20%`), items follow.
+- [x] JS fallback (`nosda:js:`) uses `--reveal-distance-item` and the level's duration; still translate-only, one shot.
 
 **Acceptance:** a build test asserts the three treatments appear in column order on the home feature grid and that no `li` carries both an entrance keyframe and a hover transform.
 
@@ -86,13 +86,13 @@
 
 **Files:** `feature-grid.njk`, `_grid.njk` (service, product, industry, case, article, job, office, download, event cards), `benefits-grid.njk`, `values-grid.njk`, `help-categories.njk`, `integration-grid.njk`, `team-grid.njk`, `steps.njk` + component, `pricing-table.njk`, `testimonials.njk`, `awards.njk`.
 
-- [ ] Feature grid (3 columns): slide-in / rise / framed settle; icon tiles pop in all three.
-- [ ] Card grids: same by column count; article cards (with pictures) use framed settle only in the third column so pictures do not scale twice.
-- [ ] Tiles (team, integrations, awards): rise + icon or avatar pop; two across on phones keeps the +3 % shift per column.
-- [ ] Steps: slide-in from the start for every step (a sequence reads left to right; RTL mirrors), the number badge pops.
-- [ ] Pricing: slide-in / rise / framed settle (the recommended tier gets framed settle regardless of column so it lands last).
-- [ ] Testimonials grid keeps framed settle (scale) for all three: quotes are framed objects, not features.
-- [ ] Benefits (4 columns, no card): slide-in / rise / framed settle / slide-from-end.
+- [x] Feature grid (3 columns): slide-in / rise / framed settle; icon tiles pop in all three.
+- [x] Card grids: same by column count; article cards (with pictures) use framed settle only in the third column so pictures do not scale twice.
+- [x] Tiles (team, integrations, awards): rise + icon or avatar pop; two across on phones keeps the +3 % shift per column.
+- [x] Steps: slide-in from the start for every step (a sequence reads left to right; RTL mirrors), the number badge pops.
+- [x] Pricing: slide-in / rise / framed settle (the recommended tier gets framed settle regardless of column so it lands last).
+- [x] Testimonials grid keeps framed settle (scale) for all three: quotes are framed objects, not features.
+- [x] Benefits (4 columns, no card): slide-in / rise / framed settle / slide-from-end.
 
 **Acceptance:** style-guide sections pages show every grid with its vocabulary; browser pass at 1280 and 375 in en, de, ar (slides mirror).
 

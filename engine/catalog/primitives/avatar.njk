@@ -14,5 +14,5 @@
 {% macro avatar(name, opts={}) %}
 {%- set words = (name | trim).split(" ") -%}
 {%- set initials = (words[0] | first | upper) + ((words[1] | first | upper) if words.length > 1 else "") -%}
-<svg aria-hidden="true" class="{{ opts.size or 'size-12' }} shrink-0" viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" class="fill-brand-100"/><text x="24" y="24" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="600" class="fill-brand-800">{{ initials }}</text></svg>
+<svg aria-hidden="true" class="{{ opts.size or 'size-12' }} shrink-0{{ opts.class if opts.class }}" viewBox="0 0 48 48"><circle cx="24" cy="24" r="24" class="fill-brand-100"/><text x="24" y="24" text-anchor="middle" dominant-baseline="central" font-size="18" font-weight="600" class="fill-brand-800">{{ initials }}</text></svg>
 {% endmacro %}

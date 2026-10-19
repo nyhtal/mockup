@@ -12,10 +12,10 @@
   content limits: 3–5 steps
   data: s = { eyebrow, title, lede, items: [{ title, text }], variant }
 #}
-{% from "sections/_shell.njk" import shell with context %}
+{% from "sections/_shell.njk" import shell, pop with context %}
 {% from "components/steps.njk" import steps with context %}
 {% macro render(s, ctx) %}
 {% call shell("steps", s, ctx, { itemsReveal: ctx.reveal }) %}
-{{ steps(s.items, { variant: s.variant or "horizontal", reveal: ctx.reveal }) }}
+{{ steps(s.items, { variant: s.variant or "horizontal", reveal: ctx.reveal, pop: pop(ctx) }) }}
 {% endcall %}
 {% endmacro %}

@@ -106,7 +106,7 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.equal((stats.match(/data-count/g) || []).length, 4, "every stat on the band counts");
   assert.match(stats, /to-accent-200/, "numerals end in the evidence colour");
   const team = readFileSync("dist/reference/en/about/team/index.html", "utf8");
-  assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4">/, "team tiles two across from 320 px");
+  assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");
   assert.match(home, /<button type="button" data-sound aria-pressed="false"[^>]*>[\s\S]*?Sound effects/, "sound toggle is a named toggle button, off by default");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Soundeffekte/);
 });
@@ -189,7 +189,9 @@ test("motion: smooth scrolling, floating back-to-top under sda, staggered item r
   assert.match(html, /data-component="back-to-top" data-variant="float"/);
   assert.match(html, /motion-safe:sda:animate-rise-in[^"]*motion-safe:sda:\[animation-timeline:scroll\(\)\]/);
   // Grid items reveal with a shifted range; sections never hide (no opacity-0 on a section).
-  assert.match(html, /<li class="[^"]*motion-safe:sda:animate-reveal[^"]*motion-safe:sda:\[animation-range:entry_5%_cover_35%\]/);
+  assert.match(html, /<li class="[^"]*motion-safe:sda:animate-reveal [^"]*motion-safe:sda:\[animation-range:cover_8%_cover_28%\]/, "the second column rises on the item preset shifted 3 %");
+  assert.match(html, /<li class="[^"]*motion-safe:sda:animate-reveal-start rtl:motion-safe:sda:animate-reveal-end[^"]*cover_5%_cover_25%/, "the first column slides in (R-MOT-16)");
+  assert.match(html, /<li class="[^"]*motion-safe:sda:animate-reveal-settle[^"]*cover_11%_cover_31%/, "the third column settles");
   assert.doesNotMatch(html, /<section class="[^"]*opacity-0/);
   // Header shadow fades in on scroll; feature rows slide from the inline edges.
   assert.match(html, /<header class="[^"]*motion-safe:sda:after:animate-fade[^"]*motion-safe:sda:after:\[animation-timeline:scroll\(\)\]/);
@@ -199,7 +201,8 @@ test("motion: smooth scrolling, floating back-to-top under sda, staggered item r
   assert.match(guide, /<dialog [^>]*class="[^"]*motion-safe:starting:open:backdrop:opacity-0/);
   assert.match(guide, /id="drawer"[^>]*class="[^"]*motion-safe:translate-x-full[^"]*motion-safe:starting:open:translate-x-full/);
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
-  assert.match(css, /--reveal-distance: ?24px/);
+  assert.match(css, /--reveal-distance: ?40px/);
+  assert.match(css, /--reveal-distance-item: ?48px/);
   assert.match(css, /@keyframes rise-in/);
   assert.match(css, /@keyframes reveal-end/);
 });
@@ -212,7 +215,7 @@ test("micro-interactions: primary buttons lift, press and nudge their arrow (mir
   assert.match(primary, /hover:shadow-md/);
   assert.match(primary, /class="size-5 shrink-0 motion-safe:transition-transform motion-safe:duration-150 group-hover:translate-x-0\.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0\.5"><use href="#i-arrow-right">/);
   const services = readFileSync("dist/reference/en/services/index.html", "utf8");
-  assert.match(services, /<li class="group relative flex flex-col[^"]*hover:border-brand-300/);
+  assert.match(services, /<div class="group relative flex w-full flex-col[^"]*hover:border-brand-300/);
   assert.match(services, /<span class="mb-4 inline-flex size-12[^"]*group-hover:scale-105/);
   const faq = readFileSync("dist/reference/en/faq/index.html", "utf8");
   assert.match(faq, /<summary class="[^"]*"[^>]*>[\s\S]*?group-open:rotate-180/);
@@ -228,7 +231,7 @@ test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA p
   assert.ok(!css.includes("var(--color-line) 1px") && css.includes("mask-image:radial-gradient(#000 25%,#0000 78%)"), "hero backdrop has an edge mask and no dot texture (0.5.0)");
   const guide = readFileSync("dist/reference/en/style-guide/sections/index.html", "utf8");
   assert.match(guide, /data-variant="centered">[\s\S]*?<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/, "centered hero media in a framed rounded-2xl box");
-  assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-3 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);
+  assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-6 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);
   assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-hidden rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600/);
   assert.match(en, /data-component="logo-cloud"[\s\S]*?<svg role="img" class="h-6 fill-ink-muted w-auto motion-safe:transition-colors motion-safe:duration-150 hover:fill-ink-brand"/);
   assert.match(en, /<footer class="bg-surface-alt" data-component="footer">\n<div class="h-px bg-linear-to-r from-brand-600 to-accent-600" aria-hidden="true"><\/div>/);
@@ -266,11 +269,12 @@ test("review fixes: transitions name translate and scale, feature rows clip and 
   assert.match(guide, /<dialog[^>]*motion-safe:transition-\[opacity,translate,scale,display,overlay\]/, "dialog list");
   assert.match(en, /<section class="[^"]*overflow-x-clip[^"]*"[^>]*data-component="feature-rows"/, "feature rows clip horizontal overflow while rows slide in");
   assert.match(ar, /motion-safe:sda:animate-reveal-end rtl:motion-safe:sda:animate-reveal-start/, "rows mirror their slide in RTL");
-  assert.match(en, /motion-safe:nosda:js:not-data-revealed:translate-y-4 motion-safe:nosda:js:data-revealed:translate-y-0/, "script fallback scoped to browsers without scroll-driven animation");
+  assert.match(en, /motion-safe:nosda:js:not-data-revealed:translate-y-\(--reveal-distance\) motion-safe:nosda:js:data-revealed:translate-y-0/, "script fallback scoped to browsers without scroll-driven animation");
   assert.doesNotMatch(en, /motion-safe:js:not-data-revealed/, "no unscoped fallback remains");
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.ok(css.includes("@supports not (animation-timeline:view())"), "nosda variant in the CSS");
-  assert.match(svc, /motion-safe:sda:\[animation-range:entry_5%_cover_35%\] motion-safe:sda:\[animation-fill-mode:both\]/, "staggered items fill both so they never jump at their range start");
+  assert.match(svc, /motion-safe:sda:\[animation-range:cover_8%_cover_28%\] motion-safe:sda:\[animation-fill-mode:both\]/, "staggered items fill both so they never jump at their range start");
+  assert.match(svc, /<li class="flex[^"]*animate-reveal[^"]*"[^>]*>\n<div class="group relative[^"]*motion-safe:hover:-translate-y-0\.5/, "entrance on the wrapper, hover on the inner card (R-MOT-05)");
 });
 
 test("gate fixes: the floating back-to-top lives inside the footer landmark and every body grid is on the rhythm scale", () => {

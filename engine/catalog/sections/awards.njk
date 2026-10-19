@@ -12,16 +12,16 @@
   content limits: 3–8 items; name ≤ 40 chars
   data: s = { title, items: [{ name, year, icon }] }
 #}
-{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "sections/_shell.njk" import shell, stagger, item, pop with context %}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("awards", s, ctx, { center: true, itemsReveal: ctx.reveal }) %}
-<ul class="flex flex-wrap justify-center gap-8">
-{%- for item in s.items %}
+<ul class="flex flex-wrap justify-center gap-8{{ ' reveal-items' if ctx.reveal }}">
+{%- for f in s.items %}
 <li class="flex w-36 flex-col items-center text-center{{ stagger(loop.index0) if ctx.reveal }}">
-<span class="inline-flex size-14 items-center justify-center rounded-full bg-brand-100 text-brand-800">{{ icon(item.icon or "award", { size: "size-6" }) }}</span>
-<p class="mt-3 text-sm font-medium">{{ item.name }}</p>
-{%- if item.year %}<p class="text-xs text-ink-muted">{{ item.year }}</p>{% endif %}
+<span class="inline-flex size-14 items-center justify-center rounded-full bg-brand-100 text-brand-800{{ pop(ctx) }}">{{ icon(f.icon or "award", { size: "size-6" }) }}</span>
+<p class="mt-3 text-sm font-medium">{{ f.name }}</p>
+{%- if f.year %}<p class="text-xs text-ink-muted">{{ f.year }}</p>{% endif %}
 </li>
 {%- endfor %}
 </ul>

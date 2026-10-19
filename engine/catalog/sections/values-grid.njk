@@ -5,23 +5,23 @@
   variants: none
   states: none
   spacing: gap-8; 3 columns
-  motion: stagger
+  motion: items arrive by column (R-MOT-16); icons pop (expressive)
   keyboard: none
   a11y: list
   i18n: none
   content limits: title ≤ 4 words, text ≤ 30 words
   data: s = { eyebrow, title, lede, items: [{ icon, title, text }] }
 #}
-{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "sections/_shell.njk" import shell, stagger, item, pop with context %}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("values-grid", s, ctx, { itemsReveal: ctx.reveal }) %}
-<ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-{%- for item in s.items %}
-<li class="rounded-lg border border-line bg-surface-raised p-6{{ stagger(loop.index0) if ctx.reveal }}">
-<span class="inline-flex size-10 items-center justify-center rounded-full bg-brand-100 text-brand-800">{{ icon(item.icon or "heart") }}</span>
-<h3 class="mt-4 text-lg font-semibold">{{ item.title }}</h3>
-<p class="mt-2 text-sm leading-relaxed text-ink-muted">{{ item.text }}</p>
+<ul class="grid gap-8 md:grid-cols-2 lg:grid-cols-3{{ ' reveal-items' if ctx.reveal }}">
+{%- for f in s.items %}
+<li class="rounded-lg border border-line bg-surface-raised p-6{{ item(loop.index0, 3, ctx) }}">
+<span class="inline-flex size-10 items-center justify-center rounded-full bg-brand-100 text-brand-800{{ pop(ctx) }}">{{ icon(f.icon or "heart") }}</span>
+<h3 class="mt-4 text-lg font-semibold">{{ f.title }}</h3>
+<p class="mt-2 text-sm leading-relaxed text-ink-muted">{{ f.text }}</p>
 </li>
 {%- endfor %}
 </ul>

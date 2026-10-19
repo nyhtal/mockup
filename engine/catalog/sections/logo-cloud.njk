@@ -17,7 +17,7 @@
 {% macro render(s, ctx) %}
 {% call shell("logo-cloud", s, ctx, { center: true, itemsReveal: ctx.reveal, clipX: true }) %}
 {%- if s.label %}<p class="text-center text-sm font-medium text-ink-muted">{{ s.label }}</p>{% endif %}
-<ul class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
+<ul class="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-8{{ ' reveal-items' if ctx.reveal }}">
 {%- for name in s.items %}<li class="{{ stagger(loop.index0, 'start') if ctx.reveal }}">{{ wordmark(name, { variant: "mono", class: "motion-safe:transition-colors motion-safe:duration-150 hover:fill-ink-brand" }) }}</li>{% endfor %}
 </ul>
 {% endcall %}
