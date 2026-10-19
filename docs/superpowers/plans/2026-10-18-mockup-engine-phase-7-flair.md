@@ -1,6 +1,6 @@
 # Mockup Engine Phase 7 Plan (flair): legible motion, feature-block vocabulary, parallax, premium accents, count-up v2, a flair dial
 
-> **Status: proposal, nothing built.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
+> **Status: approved 2026-10-18; Task 1 (bylaws 0.6.0) done, Tasks 2–8 open.** The owner asked for research and a plan only ("don't do any of the work"). Every task below is a todo; the bylaw changes are listed per task and are applied in Task 1 when the plan is approved. Codex (gpt-6-astra) was consulted on the same brief; its recommendations are folded in and marked (C). Web research is cited at the end.
 
 **Goal:** Motion that is unmistakable without being a slideshow, feature blocks that each arrive differently yet read as one system, selective parallax depth, three or four premium accents, a count-up that feels engineered, and a brief-level flair dial (calm / standard / expressive) that decides which of these a site gets. Still: compositor-only, scroll-driven CSS first, everything under `motion-safe:`, content complete without motion or JS, the hero still at first paint, no loops, no third-party code, Lighthouse 100 and WCAG 2.2 AA.
 
@@ -47,7 +47,7 @@
 
 **Files:** `engine/bylaws/02-tokens.md`, `06-motion.md`, `03-layout.md`, `08-sections.md`, `19-quality-gates.md`, `engine/DESIGN.md`, `engine/DECISIONS.md` (D46–D52), `engine/CHANGELOG.md`, `engine/site-brief/TEMPLATE.md`, checklists (`npm run checklists`).
 
-- [ ] **R-TOK-12 motion presets become the flair dial.** Three levels set four tokens and a feature list:
+- [x] **R-TOK-12 motion presets become the flair dial.** Three levels set four tokens and a feature list:
 
   | Level | `--reveal-distance` (sections) | `--reveal-distance-item` | `--reveal-duration` (JS fallback) | Enables |
   |---|---|---|---|---|
@@ -56,17 +56,17 @@
   | expressive | 40 px | 48 px (28 px below `md`) | 560 ms | everything in standard plus icon pop, hero depth (media + glows), stats backdrop, CTA drift, logo drift, sticky editorial row, count-up settle |
 
   The reference site moves to `expressive` (it is the showcase). The mobile values come from a second token pair under `md:` (`--reveal-distance-item-sm`).
-- [ ] **R-TOK-13 keyframe list** grows to: `reveal`, `reveal-start`, `reveal-end`, `reveal-scale`, `reveal-settle` (translateY(var(--reveal-distance-item)) scale(.94) → none), `pop` (scale .82 → 1.04 at 75 % → 1), `draw`, `draw-y`, `parallax-sm` / `-md` / `-lg` (translateY −8/−16/−24 px → +8/+16/+24 px, linear), `drift` (translateX −12 → +12 px, mirrored under `rtl:`), `progress` (scaleX 0 → 1), `settle` (scale 1.015 → 1, 160 ms, time-based), plus the existing `drop`, `scale-in`, `fade`, `rise-in`. All transform-only; `fade` and `drop` stay for overlays.
-- [ ] **R-MOT-03 budget:** entrance travel ≤ 48 px (was 32); parallax total travel ≤ 48 px and at most two depth layers moving at once; the concurrent-motion budget (three groups) counts heading groups and decorative layers (C).
-- [ ] **R-MOT-05 reveal pattern** stops naming one exact string and names the approved presets instead: section (`entry 0% → cover 25%`), item (`cover 5% → cover 25%`, shifted +3 % per column, reset per row), media row (`cover 0% → cover 100%` for parallax, entry range for the slide), each with its keyframe. The `consistency/motion-vocabulary` check (Task 8) enforces the set.
-- [ ] **R-MOT-11** gains the identity-at-scroll-zero clause for parallax; the hero text and highlight card stay still.
-- [ ] **R-MOT-08/14** gain the reading-progress hairline (fixed, `scroll(root)`, one pixel, brand → accent, `scaleX`, origin start).
-- [ ] **New R-MOT-15 Parallax:** which layers may move, travel per layer, `scroll(root)` for the hero and `view()` elsewhere, overscanned artwork (`scale-[1.08]` static on the inner picture so edges never show), off below `md`, never on video controls or forms, static fallback.
-- [ ] **New R-MOT-16 Entrance vocabulary:** the five item treatments and the per-column assignment rule (3 columns: slide-in / rise / framed settle; 4 columns: slide-in / rise / framed settle / slide-from-end; 2 columns: slide-in / slide-from-end; tiles: rise with icon pop); never random, never per index.
-- [ ] **R-MOT-10 count-up clause** rewritten for v2 (Task 6): numeric value and precision come from build-time attributes, formatting through `Intl` in the page's numbering system, reserved width, 80 ms stagger capped at 240 ms, settle in expressive, reduced motion restores final text at once.
-- [ ] **R-LAY-02 rhythm** adds the sticky row's `lg:top-24` and the stacked text blocks' `space-y-16`.
-- [ ] **DESIGN.md §3** becomes the vocabulary table (treatment per section kind and per column) plus a depth table; §4 removes "parallax" from the "not" list and adds the depth and accent devices; §1 adds "motion has one more meaning: depth tells you which layer is content and which is set dressing".
-- [ ] DECISIONS D46 (flair dial), D47 (distances and ranges, with the four reasons above), D48 (vocabulary by column), D49 (parallax rules and the Firefox fallback), D50 (count-up v2 markup), D51 (progress hairline on every page), D52 (what was refused and why). CHANGELOG 0.6.0 (minor: nothing green goes red; the vocabulary check is new).
+- [x] **R-TOK-13 keyframe list** grows to: `reveal`, `reveal-start`, `reveal-end`, `reveal-scale`, `reveal-settle` (translateY(var(--reveal-distance-item)) scale(.94) → none), `pop` (scale .82 → 1.04 at 75 % → 1), `draw`, `draw-y`, `parallax-sm` / `-md` / `-lg` (translateY −8/−16/−24 px → +8/+16/+24 px, linear), `drift` (translateX −12 → +12 px, mirrored under `rtl:`), `progress` (scaleX 0 → 1), `settle` (scale 1.015 → 1, 160 ms, time-based), plus the existing `drop`, `scale-in`, `fade`, `rise-in`. All transform-only; `fade` and `drop` stay for overlays.
+- [x] **R-MOT-03 budget:** entrance travel ≤ 48 px (was 32); parallax total travel ≤ 48 px and at most two depth layers moving at once; the concurrent-motion budget (three groups) counts heading groups and decorative layers (C).
+- [x] **R-MOT-05 reveal pattern** stops naming one exact string and names the approved presets instead: section (`entry 0% → cover 25%`), item (`cover 5% → cover 25%`, shifted +3 % per column, reset per row), media row (`cover 0% → cover 100%` for parallax, entry range for the slide), each with its keyframe. The `consistency/motion-vocabulary` check (Task 8) enforces the set.
+- [x] **R-MOT-11** gains the identity-at-scroll-zero clause for parallax; the hero text and highlight card stay still.
+- [x] **R-MOT-08/14** gain the reading-progress hairline (fixed, `scroll(root)`, one pixel, brand → accent, `scaleX`, origin start).
+- [x] **New R-MOT-15 Parallax:** which layers may move, travel per layer, `scroll(root)` for the hero and `view()` elsewhere, overscanned artwork (`scale-[1.08]` static on the inner picture so edges never show), off below `md`, never on video controls or forms, static fallback.
+- [x] **New R-MOT-16 Entrance vocabulary:** the five item treatments and the per-column assignment rule (3 columns: slide-in / rise / framed settle; 4 columns: slide-in / rise / framed settle / slide-from-end; 2 columns: slide-in / slide-from-end; tiles: rise with icon pop); never random, never per index.
+- [x] **R-MOT-10 count-up clause** rewritten for v2 (Task 6): numeric value and precision come from build-time attributes, formatting through `Intl` in the page's numbering system, reserved width, 80 ms stagger capped at 240 ms, settle in expressive, reduced motion restores final text at once.
+- [x] **R-LAY-02 rhythm** adds the sticky row's `lg:top-24` and the stacked text blocks' `space-y-16`.
+- [x] **DESIGN.md §3** becomes the vocabulary table (treatment per section kind and per column) plus a depth table; §4 removes "parallax" from the "not" list and adds the depth and accent devices; §1 adds "motion has one more meaning: depth tells you which layer is content and which is set dressing".
+- [x] DECISIONS D46 (flair dial), D47 (distances and ranges, with the four reasons above), D48 (vocabulary by column), D49 (parallax rules and the Firefox fallback), D50 (count-up v2 markup), D51 (progress hairline on every page), D52 (what was refused and why). CHANGELOG 0.6.0 (minor: nothing green goes red; the vocabulary check is new).
 
 **Acceptance:** `npm run gate -- --only bylaws` green; `npm run checklists` clean; the brief template documents the three levels.
 

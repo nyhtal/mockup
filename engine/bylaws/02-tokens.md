@@ -58,13 +58,21 @@ Why: Four durations and two curves make motion feel like one system.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-12 Motion presets
-MUST. The brief's motion level sets two tokens: `calm` = distance 12px, duration 200ms; `standard` = 24px, 300ms; `expressive` = 32px, 500ms. Keyframes read them via `var(--reveal-distance)` and `var(--reveal-duration)`; nothing else changes (items stagger by scroll range, R-MOT-05, not by time).
-Why: Three presets give a brief a motion dial without exposing durations.
+MUST. The brief's motion level is the flair dial. It sets four tokens and decides which treatments of DESIGN.md §3 a site gets; sections read the derived booleans, never the level name:
+
+| Level | `--reveal-distance` (sections) | `--reveal-distance-item` (grid items; the second value below `md`) | `--reveal-duration` (script fallback only) | Enables |
+|---|---|---|---|---|
+| `calm` | 16px | 24px / 16px | 300ms | rise only, static figures, no parallax, no pop |
+| `standard` (default) | 32px | 40px / 24px | 480ms | the entrance vocabulary by column (R-MOT-16), count-up v2, the heading rule draw, media-row depth, the reading-progress hairline |
+| `expressive` | 40px | 48px / 28px | 560ms | everything in `standard` plus icon pop, hero depth (media and glows), the stats backdrop layer, CTA light drift, logo-cloud drift, the sticky editorial row, the count-up settle |
+
+Keyframes read the distances via `var(--reveal-distance)` and `var(--reveal-distance-item)`; scroll distance, not time, drives every scroll-driven animation (items stagger by range, R-MOT-05). Reduced motion overrides every level; sound is a separate opt-in (R-MOT-10).
+Why: Three levels give a brief a motion dial without exposing numbers, and "which effects" belongs to the dial as much as "how far": a calm site with parallax is a contradiction.
 Gate: manual: checklists/new-site.md
 
 ### R-TOK-13 Animation tokens
-MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes: `reveal` (translateY(var(--reveal-distance)) → none), `reveal-start` (translateX from the inline-start side), `reveal-end` (translateX from the inline-end side), `reveal-scale` (scale 0.96 → 1, for framed objects), `draw` (scaleX 0 → 1, for rules that draw from the start edge), `draw-y` (scaleY 0 → 1, for rules that draw downward), `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1) and `rise-in` (opacity 0 → 1, translateY(0.5rem) → none, visibility hidden → visible, for scroll-driven appearance only). All animate only `opacity`, `transform` and, in `rise-in`, `visibility`; the six scroll reveals never touch opacity, because an element partly in view at load would be mid-fade and fail contrast checks.
-Why: Ten entrances cover every component and every treatment in DESIGN.md §3; a fixed list keeps the CSS small.
+MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes. Entrances (sections use `--reveal-distance`, items `--reveal-distance-item`): `reveal` (translateY(distance) → none), `reveal-start` (translateX from the inline-start side), `reveal-end` (translateX from the inline-end side), `reveal-scale` (scale 0.96 → 1, for framed objects), `reveal-settle` (translateY(distance) scale(0.94) → none, the framed settle of a grid item), `pop` (scale 0.82 → 1.04 at 75 % → 1, for icon tiles, avatars and step badges). Rules: `draw` (scaleX 0 → 1, from the start edge), `draw-y` (scaleY 0 → 1, downward), `progress` (scaleX 0 → 1, linear, the reading-progress hairline). Depth (linear, identity at the middle of the range): `parallax-sm` (translateY −8px → 8px), `parallax-md` (−16px → 16px), `parallax-lg` (−24px → 24px), `drift` (translateX −12px → 12px, mirrored under `rtl:`). Feedback: `settle` (scale 1.015 → 1 over 160 ms, time-based, after a count-up). Overlays and conveniences: `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1) and `rise-in` (opacity 0 → 1, translateY(0.5rem) → none, visibility hidden → visible, for scroll-driven appearance only). All animate only `opacity`, `transform` and, in `rise-in`, `visibility`; no entrance, rule or depth keyframe touches opacity, because an element partly in view at load would be mid-fade and fail contrast checks.
+Why: Eighteen keyframes cover every treatment in DESIGN.md §3 and every depth layer in §4; a fixed list keeps the CSS small and lets a gate list what is allowed.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-14 Brand inputs from the brief
@@ -90,7 +98,7 @@ Gate: manual: checklists/new-site.md
 - [ ] R-TOK-09 z-index from the scale
 - [ ] R-TOK-10 container string exact
 - [ ] R-TOK-11 four durations, two easings
-- [ ] R-TOK-12 motion preset tokens set
-- [ ] R-TOK-13 ten animation tokens, transform/opacity only
+- [ ] R-TOK-12 flair level tokens set; sections read booleans, not the level
+- [ ] R-TOK-13 eighteen animation tokens, transform/opacity only
 - [ ] R-TOK-14 brand inputs limited to the six keys
 - [ ] R-TOK-15 density touches padding only

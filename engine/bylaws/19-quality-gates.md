@@ -63,7 +63,7 @@ Why: What automation cannot see still has to be seen.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-GATE-13 Planned checks
-SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `budget/contrast` (token-level contrast ratios in both schemes), `consistency/motion-props` (R-MOT-01), `consistency/url-policy` (R-PAGE-02), `consistency/canonical` (R-SEO-02), `consistency/no-hardcoded-strings` (R-CONT-10). Role colours need no check: the theme wipes Tailwind's palette, so a palette class fails `consistency/class-exists`. They are added as the catalog phase makes their inputs stable.
+SHOULD. The following checks are referenced by bylaws but implemented in a later phase; until then they are covered by the manual checklist: `budget/contrast` (token-level contrast ratios in both schemes), `consistency/motion-props` (R-MOT-01), `consistency/motion-vocabulary` (R-MOT-05, R-MOT-15, R-MOT-16: every `animate-*` class is a token of R-TOK-13, every `view()` range is a preset, no depth utility without `md:` or inside the hero's text column), `consistency/url-policy` (R-PAGE-02), `consistency/canonical` (R-SEO-02), `consistency/no-hardcoded-strings` (R-CONT-10). Role colours need no check: the theme wipes Tailwind's palette, so a palette class fails `consistency/class-exists`. They are added as the catalog phase makes their inputs stable.
 Why: Honesty about which rules are machine-checked today.
 Gate: manual: checklists/pre-delivery.md
 
