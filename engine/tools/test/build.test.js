@@ -136,11 +136,13 @@ test("every disclosure opens and closes smoothly: details content animates heigh
   assert.match(faq, /<html [^>]*class="[^"]*\[interpolate-size:allow-keywords\]/);
   const details = faq.match(/<details [^>]*>/g) || [];
   assert.ok(details.length > 5, "the FAQ has disclosures");
-  for (const d of details) assert.match(d, /details-content:h-0|max-md:details-content:h-0/, `every details animates: ${d.slice(0, 80)}`);
-  assert.match(faq, /open:details-content:h-auto open:details-content:opacity-100 motion-safe:details-content:transition-\[height,opacity,content-visibility\] motion-safe:details-content:transition-discrete/);
+  for (const d of details) assert.match(d, /class="[^"]*\bdisclosure(-tabs)?\b/, `every details animates: ${d.slice(0, 80)}`);
   const resources = readFileSync("dist/reference/en/resources/index.html", "utf8");
-  assert.match(resources, /<details class="group md:contents[^"]*max-md:details-content:h-0[^"]*motion-safe:md:details-content:transition-opacity/, "tabs: height below md, fade only at md and up");
-  assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes("interpolate-size:allow-keywords"));
+  assert.match(resources, /<details class="group md:contents[^"]* disclosure-tabs"/, "tabs use the tab variant: height below md, fade only at md and up");
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  assert.ok(css.includes("interpolate-size:allow-keywords"));
+  assert.match(css, /\.disclosure::details-content\{[^}]*block-size:0/, "the disclosure utility closes to height 0");
+  assert.match(css, /content-visibility \.3s var\(--ease-reveal\) allow-discrete/, "closing plays before hiding");
 });
 
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {

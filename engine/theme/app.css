@@ -26,6 +26,50 @@
     --reveal-distance: var(--reveal-distance-item);
   }
 }
+/* Disclosure motion (R-MOT-06): a <details> grows and fades open, shrinks and fades closed. Height to auto needs interpolate-size: allow-keywords on <html>; content-visibility is a discrete transition so closing plays before hiding. Tabs animate height only while they stack (below md). */
+@utility disclosure {
+  &::details-content {
+    block-size: 0;
+    overflow: clip;
+    opacity: 0;
+  }
+  &[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    &::details-content {
+      transition: block-size 300ms var(--ease-reveal), opacity 300ms var(--ease-reveal), content-visibility 300ms var(--ease-reveal) allow-discrete;
+    }
+  }
+}
+@utility disclosure-tabs {
+  &::details-content {
+    opacity: 0;
+  }
+  &[open]::details-content {
+    opacity: 1;
+  }
+  @media (width < 48rem) {
+    &::details-content {
+      block-size: 0;
+      overflow: clip;
+    }
+    &[open]::details-content {
+      block-size: auto;
+    }
+  }
+  @media (width < 48rem) and (prefers-reduced-motion: no-preference) {
+    &::details-content {
+      transition: block-size 300ms var(--ease-reveal), opacity 300ms var(--ease-reveal), content-visibility 300ms var(--ease-reveal) allow-discrete;
+    }
+  }
+  @media (width >= 48rem) and (prefers-reduced-motion: no-preference) {
+    &::details-content {
+      transition: opacity 300ms var(--ease-reveal);
+    }
+  }
+}
 @custom-variant sda {
   @supports (animation-timeline: view()) {
     @slot;

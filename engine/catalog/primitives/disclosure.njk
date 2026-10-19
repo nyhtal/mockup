@@ -1,14 +1,15 @@
 {#
   name: disclosure (helper, not a component)
   purpose: The open and close motion every <details> shares (R-MOT-06): the content grows and fades in when it opens and shrinks and fades out when it closes.
-  anatomy: classes for a <details> element; they style its ::details-content box (everything after the summary)
-  variants: accordion (default: height and opacity) | tabs (height and opacity below md, where tabs stack as an accordion; a fade-in only at md and up, where two panels must never stand stacked during a switch)
+  anatomy: one class on a <details> element, defined as an @utility in engine/theme/app.css (R-PREC-07): `disclosure` (accordions, menu groups) or `disclosure-tabs` (tab sets that stack as an accordion below md)
+  variants: accordion (height and opacity) | tabs (height and opacity below md; a fade-in only at md and up, where two panels must never stand stacked during a switch)
   states: closed (height 0, clipped, transparent) | open (height auto, opaque)
   spacing: none; the content keeps its own padding inside the clipped box
-  motion: 300 ms on --ease-reveal; content-visibility transitions as a discrete property so closing animates before the content is hidden; height to and from auto works because <html> carries interpolate-size: allow-keywords. Browsers without ::details-content or interpolate-size open and close instantly, as before. Reduced motion: instant.
+  motion: 300 ms on --ease-reveal; content-visibility transitions as a discrete property so closing animates before the content is hidden; height to and from auto works because <html> carries interpolate-size: allow-keywords. Browsers without ::details-content or interpolate-size open and close instantly. Reduced motion: instant (the transition sits in a no-preference media query inside the utility).
   keyboard: native details and summary
-  a11y: native; nothing is hidden from assistive technology that the browser would not hide
+  a11y: native
   i18n: none
   content limits: none
+  why a utility: written as utilities on each element the pattern cost about 500 bytes per <details>, and every page carries three in the mobile menu (R-PERF-01)
 #}
-{% macro disclosure(variant="accordion") %}{% if variant == "tabs" %} max-md:details-content:h-0 max-md:details-content:overflow-clip max-md:open:details-content:h-auto details-content:opacity-0 open:details-content:opacity-100 motion-safe:max-md:details-content:transition-[height,opacity,content-visibility] motion-safe:max-md:details-content:transition-discrete motion-safe:md:details-content:transition-opacity motion-safe:details-content:duration-300 motion-safe:details-content:ease-reveal{% else %} details-content:h-0 details-content:overflow-clip details-content:opacity-0 open:details-content:h-auto open:details-content:opacity-100 motion-safe:details-content:transition-[height,opacity,content-visibility] motion-safe:details-content:transition-discrete motion-safe:details-content:duration-300 motion-safe:details-content:ease-reveal{% endif %}{% endmacro %}
+{% macro disclosure(variant="accordion") %} {{ "disclosure-tabs" if variant == "tabs" else "disclosure" }}{% endmacro %}
