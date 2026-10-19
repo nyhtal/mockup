@@ -115,7 +115,7 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.match(readFileSync("dist/reference/icon.svg", "utf8"), /V42L42 64H/, "the favicon is the cut-corner mark");
   const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
   assert.match(hero, /lg:grid-cols-12/);
-  assert.match(hero, /xl:text-6xl/);
+  assert.match(hero, /xl:text-6xl xl:\[&amp;:lang\(de\)\]:text-5xl|xl:text-6xl xl:\[&:lang\(de\)\]:text-5xl/);
   assert.match(hero, /lines automated/, "proof strip");
   assert.match(hero, /less downtime/, "highlight card");
   assert.doesNotMatch(hero, /data-count/, "nothing counts above the fold (R-MOT-11)");

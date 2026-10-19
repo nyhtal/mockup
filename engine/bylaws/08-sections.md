@@ -33,7 +33,7 @@ Why: Alternation separates sections without lines or extra spacing.
 Gate: manual: checklists/new-page.md
 
 ### R-SEC-07 Hero
-MUST. Variants: `centered`, `split` (text + media), `video` (facade), `form` (text + short form), `stats` (text + 3 stats). The hero contains the page's `h1`, a lede, one primary and one secondary button, and the LCP image (`fetchpriority="high"`); split, video and form variants sit on twelve columns: text seven and media five at `lg` (a German compound at `text-5xl` needs the measure), text five and media seven at `xl`. It may add a proof strip (≤ 3 figures with labels under the buttons) and, with media, a highlight card (icon, figure, label) over the media's top-end corner. It never animates on load (R-MOT-11).
+MUST. Variants: `centered`, `split` (text + media), `video` (facade), `form` (text + short form), `stats` (text + 3 stats). The hero contains the page's `h1`, a lede, one primary and one secondary button, and the LCP image (`fetchpriority="high"`); split, video and form variants sit on twelve columns: text seven and media five at `lg`, six and six at `xl` (a German compound at the display size needs the measure). It may add a proof strip (≤ 3 figures with labels under the buttons) and, with media, a highlight card (icon, figure, label) over the media's top-end corner. It never animates on load (R-MOT-11).
 Why: The hero is the LCP and the first impression; it is the most constrained section.
 Gate: manual: checklists/new-page.md
 
