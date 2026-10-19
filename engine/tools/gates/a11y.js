@@ -77,6 +77,8 @@ export async function run(ctx) {
     const page = await browser.newPage();
     try {
       await page.setViewport({ width: 1280, height: 1024 });
+      // axe sees final states: with reduced motion the pending: entrance state never applies, so content below the fold is checked at full opacity instead of being skipped as invisible (R-GATE-09, R-MOT-05). Reflow below keeps motion, since an offset entrance could widen the page.
+      await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
       await page.goto(url, { waitUntil: "load", timeout: 60000 });
       await page.evaluate(AXE_SOURCE);
       const result = await page.evaluate(async (tags) => await axe.run(document, { runOnly: { type: "tag", values: tags }, rules: { "target-size": { enabled: true } }, resultTypes: ["violations", "incomplete"] }), AXE_TAGS);

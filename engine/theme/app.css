@@ -4,6 +4,14 @@
 
 /* The two progressive-enhancement variants of bylaw 06: JS present (set by enhance.js) and scroll-driven animation support. */
 @custom-variant js (&:where([data-js], [data-js] *));
+/* The from-state of a time-based entrance (R-MOT-05): on screen, with motion allowed and JS running, an element waits faded and offset until enhance.js marks it data-revealed as it crosses 88 % of the viewport. Print, reduced motion and no JS never match, so they show final states (R-MOT-04). */
+@custom-variant pending {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    &:where([data-js] *):not([data-revealed]) {
+      @slot;
+    }
+  }
+}
 /* The hero backdrop (DESIGN §4, R-COL-09): a brand glow behind the text and an accent glow behind the media, both at 35 % alpha and faded to the surface at the edges. One element, no texture, no blur filters. */
 @utility bg-hero-backdrop {
   background-image:
@@ -23,29 +31,13 @@
     @slot;
   }
 }
-@custom-variant nosda {
-  @supports not (animation-timeline: view()) {
-    @slot;
-  }
-}
 
 /* @brand */
 
 /* @fonts */
 
 @theme {
-  /* forwards, not both: before its scroll range (off-screen) the element keeps its natural opacity,
-     so content is never hidden for readers, crawlers or axe (R-MOT-04). */
-  --animate-reveal: reveal var(--reveal-duration) var(--ease-smooth) forwards;
-  --animate-reveal-start: reveal-start var(--reveal-duration) var(--ease-smooth) forwards;
-  --animate-reveal-end: reveal-end var(--reveal-duration) var(--ease-smooth) forwards;
-  /* Framed objects (testimonial cards, the CTA panel) settle from 96 %; rules draw along their axis (the eyebrow marker, the timeline rule). Transform only (R-TOK-13). */
-  --animate-reveal-scale: reveal-scale var(--reveal-duration) var(--ease-smooth) forwards;
-  /* The framed settle of a grid item and the icon pop (R-MOT-16); rules that draw; the reading-progress hairline (R-MOT-08). */
-  --animate-reveal-settle: reveal-settle var(--reveal-duration) var(--ease-smooth) forwards;
-  --animate-pop: pop var(--reveal-duration) var(--ease-smooth) forwards;
-  --animate-draw: draw var(--reveal-duration) var(--ease-smooth) forwards;
-  --animate-draw-y: draw-y var(--reveal-duration) var(--ease-smooth) forwards;
+  /* Entrances are transitions, not keyframes (R-MOT-05, the pending: variant). What stays keyframed is what tracks the scroll: the reading-progress hairline (R-MOT-08) and depth (R-MOT-15). */
   --animate-progress: progress 1s linear both;
   /* Depth (R-MOT-15): linear, identity at the middle of the range, driven by scroll() or the layer's view(). drift-end is drift's mirror for rtl:. */
   --animate-parallax-sm: parallax-sm 1s linear both;
@@ -62,31 +54,6 @@
   --animate-fade: fade 200ms ease-out both;
   /* Section reveals move but never fade: an element partly in view at load would be mid-fade and fail
      contrast checks, and content must stay readable at every scroll position (R-MOT-04, R-MOT-05). */
-  @keyframes reveal {
-    from { transform: translateY(var(--reveal-distance)); }
-    to { transform: none; }
-  }
-  @keyframes reveal-start {
-    from { transform: translateX(calc(var(--reveal-distance) * -1)); }
-    to { transform: none; }
-  }
-  @keyframes reveal-end {
-    from { transform: translateX(var(--reveal-distance)); }
-    to { transform: none; }
-  }
-  @keyframes reveal-scale {
-    from { transform: scale(0.96); }
-    to { transform: none; }
-  }
-  @keyframes reveal-settle {
-    from { transform: translateY(var(--reveal-distance)) scale(0.94); }
-    to { transform: none; }
-  }
-  @keyframes pop {
-    from { transform: scale(0.82); }
-    75% { transform: scale(1.04); }
-    to { transform: none; }
-  }
   @keyframes progress {
     from { transform: scaleX(0); }
     to { transform: none; }
@@ -113,14 +80,6 @@
   }
   @keyframes settle {
     from { transform: scale(1.015); }
-    to { transform: none; }
-  }
-  @keyframes draw {
-    from { transform: scaleX(0); }
-    to { transform: none; }
-  }
-  @keyframes draw-y {
-    from { transform: scaleY(0); }
     to { transform: none; }
   }
   @keyframes rise-in {

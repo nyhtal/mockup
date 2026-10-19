@@ -7,7 +7,7 @@ import { run, classesInCss } from "../gates/consistency.js";
 
 const CSS =
   ".mt-4{margin-top:1rem}.md\\:ps-4{padding-inline-start:1rem}.\\[animation-timeline\\:view\\(\\)\\]{animation-timeline:view()}" +
-  ".motion-safe\\:sda\\:animate-reveal{animation:var(--animate-reveal)}.text-lg{font-size:1.125rem}" +
+  ".motion-safe\\:sda\\:animate-fade{animation:var(--animate-fade)}.text-lg{font-size:1.125rem}" +
   ".\\32 xl\\:px-8{padding-inline:2rem}.\\31 \\/2{width:50%}" +
   ".pl-4{padding-left:1rem}.text-left{text-align:left}.animate-fade{animation:fade 1s}.transition{transition-property:all}" +
   ".motion-safe\\:animate-fade{animation:fade 1s}.motion-safe\\:transition{transition-property:all}.p-\\[13px\\]{padding:13px}";
@@ -26,7 +26,7 @@ const FIXTURES = {
   "img-ok.html": page('<h1>A</h1><img src="/a.webp" width="1" height="1" alt="" loading="lazy" decoding="async"><img src="/b.webp" width="1" height="1" alt="" fetchpriority="high" decoding="async">'),
   "meta-length.html": `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>${"x".repeat(70)}</title><meta name="description" content="short"></head><body><h1>A</h1></body></html>`,
   "head-order.html": `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="/assets/app.css"><meta name="viewport" content="width=device-width"><title>t</title><meta name="description" content="${DESC}"><link rel="canonical" href="https://example.com/"></head><body><h1>A</h1></body></html>`,
-  "escaped-classes.html": page('<h1 class="mt-4 md:ps-4 [animation-timeline:view()] motion-safe:sda:animate-reveal 2xl:px-8 1/2">A</h1>'),
+  "escaped-classes.html": page('<h1 class="mt-4 md:ps-4 [animation-timeline:view()] motion-safe:sda:animate-fade 2xl:px-8 1/2">A</h1>'),
   "noop-classes.html": page('<h1 class="group peer group/card">A</h1>'),
   "inline-style.html": page('<h1 style="color:red">A</h1>'),
   "two-h1.html": page("<h1>A</h1><h1>B</h1>"),
@@ -51,15 +51,15 @@ test("motion-vocabulary: unknown keyframes, off-preset ranges, depth below md an
   const { motionFindings } = await import("../gates/consistency.js");
   const { parse: parseHtml } = await import("node-html-parser");
   const ok = parseHtml('<section data-component="hero"><div aria-hidden="true" class="md:motion-safe:sda:animate-parallax-sm md:motion-safe:sda:[animation-range:0_80vh]"></div><img class="md:motion-safe:sda:animate-parallax-md"></section>' +
-    '<ul><li class="motion-safe:sda:animate-reveal-start rtl:motion-safe:sda:animate-reveal-end motion-safe:sda:[animation-range:cover_8%_cover_28%]"></li><li class="motion-safe:sda:animate-reveal-settle motion-safe:sda:[animation-range:cover_11%_cover_31%]"></li></ul>' +
-    '<div class="before:origin-left motion-safe:sda:before:animate-draw motion-safe:sda:before:[animation-range:cover_5%_cover_20%]"></div><ul class="md:motion-safe:sda:animate-drift rtl:md:motion-safe:sda:animate-drift-end"></ul>');
+    '<ul><li class="pending:opacity-0 pending:-translate-x-(--reveal-distance) motion-safe:data-revealed:delay-90"></li><li class="motion-safe:sda:animate-progress motion-safe:sda:[animation-range:0_12rem]"></li></ul>' +
+    '<ul class="md:motion-safe:sda:animate-drift rtl:md:motion-safe:sda:animate-drift-end md:motion-safe:sda:[animation-range:cover_0%_cover_100%]"></ul>');
   assert.deepEqual(motionFindings(ok), []);
   const bad = parseHtml('<section data-component="hero"><h1 class="md:motion-safe:sda:animate-parallax-sm">A</h1></section>' +
-    '<div class="motion-safe:sda:animate-wobble"></div><div class="motion-safe:sda:[animation-range:entry_0%_cover_60%]"></div><div class="motion-safe:sda:animate-parallax-md"></div>');
+    '<div class="motion-safe:sda:animate-wobble"></div><div class="motion-safe:sda:[animation-range:entry_0%_cover_25%]"></div><div class="motion-safe:sda:animate-parallax-md"></div>');
   const msgs = motionFindings(bad);
   assert.ok(msgs.some((m) => /hero content/.test(m)), "depth on the hero heading");
   assert.ok(msgs.some((m) => /animate-wobble.*R-TOK-13/.test(m)), "unknown keyframe");
-  assert.ok(msgs.some((m) => /entry_0%_cover_60%.*R-MOT-05/.test(m)), "off-preset range");
+  assert.ok(msgs.some((m) => /entry_0%_cover_25%.*R-MOT-05/.test(m)), "an entrance tied to the scroll is no longer a preset");
   assert.ok(msgs.some((m) => /below md/.test(m)), "depth without md:");
 });
 
@@ -67,7 +67,7 @@ test("classesInCss unescapes Tailwind selectors", () => {
   const set = classesInCss(CSS);
   assert.ok(set.has("md:ps-4"));
   assert.ok(set.has("[animation-timeline:view()]"));
-  assert.ok(set.has("motion-safe:sda:animate-reveal"));
+  assert.ok(set.has("motion-safe:sda:animate-fade"));
   assert.ok(set.has("2xl:px-8"), "hex escape \\32 followed by a space decodes to the digit 2");
   assert.ok(set.has("1/2"), "hex escape \\31 decodes to the digit 1");
 });

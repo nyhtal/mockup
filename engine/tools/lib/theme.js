@@ -12,9 +12,9 @@ const RADIUS = {
 };
 /** The flair dial (R-TOK-12): entrance distance for sections and for grid items (shorter below md), the script-fallback duration, and (flairFor) the devices each level enables. */
 const MOTION = {
-  calm: { section: 16, item: 24, itemSm: 16, duration: 300 },
-  standard: { section: 32, item: 40, itemSm: 24, duration: 480 },
-  expressive: { section: 40, item: 48, itemSm: 28, duration: 560 },
+  calm: { section: 16, item: 24, itemSm: 16, duration: 500 },
+  standard: { section: 32, item: 40, itemSm: 24, duration: 700 },
+  expressive: { section: 40, item: 56, itemSm: 32, duration: 800 },
 };
 
 /** The dial as a table for the style guide: each level's distances, fallback duration and enabled devices (R-TOK-12). */
@@ -101,6 +101,8 @@ ${state("danger", 25)}
   --reveal-distance-item-sm: ${m.itemSm}px;
   --reveal-duration: ${m.duration}ms;
   --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --font-sans: ${fontSans};
   --font-system: system-ui, sans-serif;
 }

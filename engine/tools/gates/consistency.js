@@ -10,16 +10,11 @@ export const checks = [
 
 /** The motion vocabulary of R-TOK-13 and R-MOT-05: the keyframes a page may name and the scroll ranges it may use. */
 export const ANIMATIONS = new Set([
-  "reveal", "reveal-start", "reveal-end", "reveal-scale", "reveal-settle", "pop", "draw", "draw-y", "progress",
-  "parallax-sm", "parallax-md", "parallax-lg", "drift", "drift-end", "settle", "drop", "scale-in", "fade", "rise-in",
+  "progress", "parallax-sm", "parallax-md", "parallax-lg", "drift", "drift-end", "settle", "drop", "scale-in", "fade", "rise-in",
   "spin", "pulse", "none",
 ]);
-const STEPS = [...Array(8).keys()];
+/** Scroll ranges are left only for what tracks the scroll: depth, the header shadow and the floating back to top (entrances are time-based, R-MOT-05). */
 export const RANGES = new Set([
-  "entry_0%_cover_25%", // section
-  "cover_0%_cover_20%", // heading group
-  ...STEPS.map((n) => `cover_${5 + 3 * n}%_cover_${25 + 3 * n}%`), // item and sequence, shifted 3 % per column or item
-  "cover_5%_cover_20%", // rule
   "cover_0%_cover_100%", // depth on a view() timeline
   "0_80vh", // hero depth on scroll(root)
   "0_12rem", // header shadow

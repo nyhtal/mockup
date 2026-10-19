@@ -15,7 +15,8 @@ What the bylaws enforce, written as the taste behind them. Read this before the 
   | focus | where the keyboard is | every control |
 
   An icon tile is brand, never accent or a state colour; a trend badge takes its tone from the data.
-- **Motion explains, never performs.** Every movement answers "where did this come from", "what is this", "which layer is this" or "what did I just do": a card arrives from the side its column faces, a framed object settles into place, a marker draws itself, a figure counts to its value, a picture sits a little deeper than the words beside it, a dialog grows from where you looked. Nothing loops, nothing moves on its own, nothing hides content until it animates, and motion is loud enough to be seen: an entrance under 32 px competes with the page's own scrolling and goes unnoticed.
+- **Motion explains, never performs.** Every movement answers "where did this come from", "what is this", "which layer is this" or "what did I just do": a card arrives from the side its column faces, a framed object settles into place, a marker draws itself, a figure counts to its value, a picture sits a little deeper than the words beside it, a dialog grows from where you looked. Nothing loops, nothing moves on its own, nothing hides content from anyone who has motion or JavaScript off, and motion is loud enough to be seen: an entrance under 32 px competes with the page's own scrolling and goes unnoticed.
+- **Entrances keep their own time; depth keeps the scroll's.** An entrance starts once its element is visibly on screen and then plays at its own pace, so a fast flick and a slow read see the same thing. Only what is meant to track the scroll (depth, the progress hairline, the header shadow) is tied to it.
 - **Depth is set dressing.** A layer that moves slower than the content is scenery; the content is what you read. Two layers at different speeds read as a space; three read as a fairground. Depth never touches text and never exists on phones, where scrolling is the motion.
 - **Depth from light, not lines.** Elevation is a soft shadow and a hairline ring, never a heavy border. A card lifts one pixel and its border warms toward the brand hue on hover. Only the hero media carries the long shadow; everything else sits flat with a ring.
 - **Space is the layout.** One rhythm scale (below) decides every vertical distance. Headings sit on the start edge; only symmetric content (a logo cloud, a single quote, a form) is centred.
@@ -40,18 +41,18 @@ The `consistency/rhythm` check fails any section, heading group or grid outside 
 
 ## 3. Motion table
 
-Every entrance is transform-only and scroll-driven (`view()`, the ranges of R-MOT-05, `--ease-smooth`); the script fallback only slides. Distances come from the flair dial (R-TOK-12): sections 16 / 32 / 40 px, items 24 / 40 / 48 px (16 / 24 / 28 px below `md`) for calm / standard / expressive.
+Every entrance is a fade plus a move, time-based and once (R-MOT-05): it waits faded and offset until its top crosses 88 % of the window, then plays over 500 / 700 / 800 ms on `--ease-reveal` (an exponential ease-out: quick to leave, long to settle) for calm / standard / expressive. Distances: sections 16 / 32 / 40 px, items 24 / 40 / 56 px (16 / 24 / 32 px below `md`). Columns of a row cascade 90 ms apart, list items 70 ms. Without JavaScript, with reduced motion and in print there is no waiting state at all.
 
 **Which treatment a section gets** is decided by what its content is:
 
 | Section kind | Treatment | Why this one |
 |---|---|---|
 | hero, page header, first section | none at load; the hero media and glows carry depth from `expressive` | first paint is still (R-MOT-11) |
-| heading group of any revealing section | rises first (`cover 0 → 20 %`); its eyebrow rule, 24 px wide, draws from the start edge | the marker writes the label |
-| grids of features, services, products, industries, benefits, values, help categories; cards for cases, articles, jobs, offices, downloads, events | the column vocabulary below, ranges shifted 3 % per column | each block arrives its own way and the row reads as one gesture |
+| heading group of any revealing section | rises first; its eyebrow rule, 24 px wide, draws from the start edge 200 ms later | the marker writes the label |
+| grids of features, services, products, industries, benefits, values, help categories; cards for cases, articles, jobs, offices, downloads, events | the column vocabulary below, cascading 90 ms per column; article pictures settle from 115 % | each block arrives its own way and the row reads as one gesture |
 | tiles (team, integrations, awards) | rise; icon, avatar or badge pops (expressive) | small things announce themselves with a pop, not a journey |
 | steps | all slide in from the start, number badges pop | a sequence reads along the writing direction |
-| alternating media rows | the row slides from the inline edge, mirrored in RTL; the picture sits deeper (`parallax-md`, standard) | a story told from two sides, with a window in each |
+| alternating media rows | the row slides in from its inline edge, mirrored in RTL; the picture settles from 115 % inside its frame, then sits deeper as the page scrolls (`parallax-md`, standard) | a story told from two sides, with a window in each |
 | sticky editorial row (expressive) | the picture pins while the text blocks pass | one picture, several points |
 | logo cloud | wordmarks slide from the inline start, staggered; the list drifts with the scroll (expressive) | a line of names reads in |
 | stats band, case-study metric | the band rises; each figure counts from 0, 80 ms apart, and settles (expressive); the band's backdrop sits deeper (expressive) | measurement |
@@ -63,13 +64,14 @@ Every entrance is transform-only and scroll-driven (`view()`, the ranges of R-MO
 
 **The column vocabulary** (R-MOT-16): three columns are slide-in / rise / framed settle; four columns add slide-from-end; two columns are slide-in / slide-from-end. Slides mirror in RTL. From `standard`; `calm` rises everything.
 
-| Treatment | Keyframe | From → to |
+| Treatment | From-state (`pending:`) | Easing and delay |
 |---|---|---|
-| slide-in | `reveal-start` | translateX(−distance) → none |
-| rise | `reveal` | translateY(distance) → none |
-| framed settle | `reveal-settle` | translateY(distance) scale(.94) → none |
-| slide-from-end | `reveal-end` | translateX(distance) → none |
-| pop (on the icon, not the tile) | `pop` | scale .82 → 1.04 at 75 % → 1 |
+| slide-in | `opacity-0 -translate-x-(--reveal-distance)` | `ease-reveal`, column × 90 ms |
+| rise | `opacity-0 translate-y-(--reveal-distance)` | `ease-reveal`, column × 90 ms |
+| framed settle | `opacity-0 translate-y-(--reveal-distance) scale-94` | `ease-reveal`, column × 90 ms |
+| slide-from-end | `opacity-0 translate-x-(--reveal-distance)` | `ease-reveal`, column × 90 ms |
+| pop (on the icon, not the tile) | `opacity-0 scale-70` | `ease-spring` (a slight overshoot), the item's delay + 180 ms |
+| picture settle | `scale-115` inside the clipped frame | `ease-reveal` over 1 200 ms |
 
 **Depth** (R-MOT-15), `md` and up, identity at rest, artwork overscanned, two layers at most in any viewport:
 
@@ -97,10 +99,11 @@ Conveniences and feedback:
 | Link hover | underline grows from the start edge | 150 ms | hover |
 | Disclosure | chevron rotates 180° | 150 ms | open |
 | Count-up | a figure counts from 0 to its value, ease-out cubic, 80 ms after the previous figure, then shows the build-time text; the width is reserved so nothing shifts | 1.5 s | 30 % visible (script) |
+| Entrance | fade and move into place (the vocabulary above) | 500 / 700 / 800 ms, `ease-reveal` | top crosses 88 % of the window (script), once |
 | Count-up settle (expressive) | the figure scales 1.015 → 1 once it lands | 160 ms | `data-counted` |
 | Page navigation | cross-document view transition, header stable | browser default | navigation |
 
-Rules that hold everything above together: compositor properties only (transform, translate, scale, opacity, colour; transition lists name `translate` and `scale`, since Tailwind's utilities set those, never `transform`), every utility under `motion-safe:`, entrances never over 48 px, depth never over 48 px and never below `md`, nothing animates above the fold at load, the entrance lives on the wrapper and the hover on the inner element, reduced motion shows final states (and no count, no hairline), and the script fallback applies only where scroll-driven animation is unsupported (Firefox before 161: one slide per section, no stagger, no depth).
+Rules that hold everything above together: compositor properties only (transform, translate, scale, opacity, colour; transition lists name `translate` and `scale`, since Tailwind's utilities set those, never `transform`), every utility under `motion-safe:`, entrances never over 64 px, depth never over 48 px and never below `md`, nothing animates above the fold at load (whatever is in view when the script starts is shown, not entered), the entrance lives on the wrapper and the hover on the inner element, an entrance's transition exists only once it is revealed (so nothing ever fades out), and reduced motion shows final states (and no count, no hairline). Browsers without scroll-driven animation (Firefox before 161) get every entrance and no depth.
 
 ## 4. Visual vocabulary
 
@@ -119,7 +122,7 @@ Rules that hold everything above together: compositor properties only (transform
 - **Pictures**: every placeholder in a `rounded-xl` frame with a hairline ring; only the hero media gets the long shadow.
 - **Sound**: four synthesised UI sounds behind a labelled toggle in the footer (also the header at `xl`, the drawer below `lg`; off by default, kept for the tab): a tick when switched on, a muted tone when an overlay opens, a soft tap on a primary button, two rising notes on a form submission. Never on hover, scroll, navigation, a count or an error; motion stays silent.
 
-What "pizzazz" is allowed to be: glow, hairlines, gradients on large numerals and panels, the motion table, two layers of depth, the four sounds. What it is not: parallax on words or everywhere, auto-playing media, text that fades in, hover-only content, more than one accent, texture, blur, clip-path reveals, magnetic cursors, card flips, digit slot machines, scroll hijacking, marquees. One device is deferred rather than refused: a picture "curtain" (a surface-coloured panel sliding off a picture as it enters); it is evaluated after the devices above are in, because it hides imagery until scrolled.
+What "pizzazz" is allowed to be: glow, hairlines, gradients on large numerals and panels, the motion table, two layers of depth, the four sounds. What it is not: parallax on words or everywhere, auto-playing media, text that fades in word by word, hover-only content, more than one accent, texture, blur, clip-path reveals, magnetic cursors, card flips, digit slot machines, scroll hijacking, marquees. One device is deferred rather than refused: a picture "curtain" (a surface-coloured panel sliding off a picture as it enters); it is evaluated after the devices above are in, because it hides imagery until scrolled.
 
 ## 5. Sample media
 

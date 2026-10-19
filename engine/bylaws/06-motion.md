@@ -13,28 +13,30 @@ Why: WCAG 2.3.3 and vestibular safety; "reduce" means reduce, not "fade instead"
 Gate: consistency/motion-safe
 
 ### R-MOT-03 Budget
-MUST. At most three groups animate in at once; a heading group, a staggered grid (at most eight items, each column's range shifted 3 % after the previous, reset per row) and a decorative depth layer each count as one. Entrance travel ≤ 48 px (the `expressive` item distance), except the drawer, which slides its own width from the inline end. Depth (R-MOT-15): total travel ≤ 48 px per layer and at most two depth layers moving in any viewport. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons and `animate-spin` on a pending button.
-Why: Below 32 px an entrance competes with the page's own scrolling and goes unnoticed; above 48 px, or with more than three things moving, the page reads as a slideshow.
+MUST. At most three groups enter at once; a heading group, a grid row (its columns cascade 90 ms apart, so a four-column row finishes 270 ms after its first item) and a decorative depth layer each count as one, and a list cascades 70 ms per item for at most eight items. Entrance travel ≤ 64 px (the `expressive` item distance is 56 px), except the drawer, which slides its own width from the inline end. Depth (R-MOT-15): total travel ≤ 48 px per layer and at most two depth layers moving in any viewport. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons and `animate-spin` on a pending button.
+Why: Below 32 px an entrance competes with the page's own scrolling and goes unnoticed; past 64 px, or with more than three things moving, the page reads as a slideshow.
 Gate: manual: checklists/new-component.md
 
 ### R-MOT-04 Content is visible without motion
-MUST. No element is hidden by default and revealed by animation. Reveal classes are applied only inside `@supports (animation-timeline: view())` (the `sda:` variant) or, where that is unsupported (the `nosda:` variant) and `enhance.js` has set `data-js` (the `js:` variant), by the script; otherwise the element is simply visible. The two paths never apply together.
-Why: Lighthouse, crawlers and browsers without support must see the full page.
+MUST. An entrance may hide an element only in its `pending:` state, and `pending:` (`engine/theme/app.css`) matches only on screen, with `prefers-reduced-motion: no-preference`, after `enhance.js` has set `data-js`, and until the script marks the element `data-revealed`. Without JavaScript, with reduced motion and in print the page renders final states. Elements already above 88 % of the window when the script starts are marked before `pending:` can apply. Text is never hidden by any other means (no word-by-word fades, no clip reveals).
+Why: Crawlers, printers, people who turn motion off and browsers where the script fails must see the full page; an entrance is a courtesy, not a gate on content.
 Gate: manual: checklists/pre-delivery.md
 
-### R-MOT-05 The reveal pattern
-MUST. Every scroll reveal is one of these presets, each `motion-safe:sda:` with `[animation-timeline:view()]`, `[animation-fill-mode:both]` and the range named here; `_shell.njk` is the only place that writes them:
+### R-MOT-05 The entrance pattern
+MUST. An entrance is time-based and plays once: the element carries its from-state under `pending:` (`pending:opacity-0` plus a move), its transition under `motion-safe:data-revealed:` (`transition-[opacity,translate,scale]`, `duration-(--reveal-duration)`, `ease-reveal`, and a delay when it cascades), and `enhance.js` marks it `data-revealed` once its top crosses 88 % of the window (an `IntersectionObserver` with a `-12 %` bottom margin). The transition sits under `data-revealed:` so it exists only for the entrance itself: entering the from-state when the script starts is instant, never a fade-out. `_shell.njk` is the only place that writes entrances:
 
-| Preset | Keyframe | Range | Used by |
+| Macro | From-state | Delay | Used by |
 |---|---|---|---|
-| section | `reveal` (`reveal-scale` for a framed object) | `entry 0% → cover 25%` | sections that reveal as one |
-| heading | `reveal` | `cover 0% → cover 20%` | the heading group of a section whose items stagger |
-| item | the column's treatment (R-MOT-16) | `cover 5% → cover 25%`, both ends shifted +3 % per column (`cover 8% → cover 28%` for the second column, and so on), reset on every row | grid items, tiles, steps, tiers, cards |
-| media row | `reveal-start` / `reveal-end`, mirrored under `rtl:` | `entry 0% → cover 25%` | alternating media rows, the logo cloud |
-| rule | `before:animate-draw` (`before:origin-left rtl:before:origin-right`) or `before:animate-draw-y` (`before:origin-top`) | `cover 5% → cover 20%` | the eyebrow marker, the timeline rule |
+| `revealClasses(on, kind)` | the kind's move | none | sections that arrive as one, media rows, the CTA panel |
+| `headingClasses(on)` | rise | none | the heading group of a section whose items arrive on their own |
+| `item(i, cols, ctx, kind)` | the column's treatment (R-MOT-16) | 90 ms × column, reset each row | grid items, tiles, tiers, cards |
+| `stagger(i, kind)` | the kind's move | 70 ms × index, at most 490 ms | logo cloud, timeline entries, steps, awards |
+| `pop(ctx, delay)` | `scale-70`, faded, on `ease-spring` | its item's delay + 180 ms | icon tiles, avatars, step badges (expressive) |
+| `zoom(ctx)` | `scale-115` inside a clipped frame, 1 200 ms | none | media-row and article pictures (standard) |
+| `eyebrowRule` | `before:scale-x-0` from the start edge | 200 ms | the eyebrow marker |
 
-"cover n %" is n % of the element's whole passage through the viewport, so the item preset starts once the item is visibly inside the viewport and is finished by a quarter of its passage. Every section whose items or rows may slide clips horizontal overflow (`overflow-x-clip`), so a translated item never widens the page (R-LAY-05). The script fallback for browsers without scroll-driven animation is `motion-safe:nosda:js:not-data-revealed:translate-y-4 motion-safe:nosda:js:data-revealed:translate-y-0 motion-safe:nosda:js:transition-transform motion-safe:nosda:js:duration-(--reveal-duration) motion-safe:nosda:js:ease-smooth` on the section plus the `data-reveal` attribute the script observes; it slides the section once and never staggers. Both paths move the element only; neither touches opacity. The entrance goes on the item's wrapper and the hover transforms of R-MOT-07 on its inner element, so the two never compound.
-Why: A short list of presets keeps reveals identical across sections, keeps the hero out of the animation, and lets `consistency/motion-vocabulary` list what is allowed instead of matching one string.
+Kinds: rise (`pending:translate-y-(--reveal-distance)`), `start` (`pending:-translate-x-(--reveal-distance)`, mirrored with `rtl:pending:translate-x-…`), `end` (the mirror), `settle` (rise plus `pending:scale-94`), `scale` (`pending:scale-96`). Every section whose items or rows slide clips horizontal overflow (`overflow-x-clip`) so an offset item never widens the page (R-LAY-05). The entrance goes on the item's wrapper and the hover transforms of R-MOT-07 on its inner element, and a hover scale and an arrival pop never share an element. Scroll timelines are kept for what is meant to track the scroll: depth (R-MOT-15), the progress hairline (R-MOT-08), the header shadow and the floating back to top (R-MOT-14).
+Why: An entrance scrubbed by the scroll lasts exactly as long as the visitor takes to scroll past it: two wheel notches, about 190 px, in the bottom 30 % of the window, which reads as a twitch before the eye arrives (measured on 0.6.0). A time-based entrance triggered once the element is visibly on screen plays at the same pace for everyone, which is how current product sites do it.
 Gate: consistency/motion-vocabulary
 
 ### R-MOT-06 Overlay entrances
@@ -58,12 +60,12 @@ Why: Slick navigation for free in supporting browsers; plain navigation elsewher
 Gate: manual: checklists/pre-delivery.md
 
 ### R-MOT-10 The script
-MUST. `enhance.js` does only: (1) if `CSS.supports("animation-timeline: view()")` is false, observe `[data-reveal]` elements with `IntersectionObserver` and set `data-revealed` once; (2) if `"command" in HTMLButtonElement.prototype` is false, wire `button[commandfor]` to `showModal()`/`close()`; (3) unless `prefers-reduced-motion: reduce`, count each `[data-count]` figure once, from 0 to the numeric value the build wrote into `data-count` (with `data-decimals` for the authored precision and `data-nu` for the locale's numbering system, R-I18N-07), over 1.5 s ease-out cubic, starting when the figure is 30 % visible and 80 ms after the previous figure of the same section (capped at 240 ms), formatting each frame with one `Intl.NumberFormat` per figure and writing only when the formatted string changes, then restoring the build-time text exactly (R-TYPO-09) and setting `data-counted`, which the `expressive` level turns into the `settle` keyframe; the figure's markup reserves its final width with an `invisible` sizing span and keeps an `sr-only` copy of the final text for assistive technology while the animated span is `aria-hidden` (never a live region); a reduced-motion change mid-count restores the final text at once; (4) keep every sound toggle (`[data-sound]`, `aria-pressed`; in the footer on every page, in the header from `xl`, in the drawer below `lg`) in step with `sessionStorage.sound` and, while it is on, play four synthesised Web Audio sounds: a tick when switched on, a muted tone when a popover, drawer, dialog or disclosure opens (`toggle` event), a soft tap when a primary button is pressed, two rising notes when a form is submitted. The audio context is created on the first click, never on load. It sets `document.documentElement.dataset.js = ""` first. No other behaviour. `data-count` goes only on figures below the fold (the stats band, case-study metrics), never in the hero.
-Why: Two fallbacks and two enhancements, all feature-detected, all within the 3 KB of R-PREC-08; sound is opt-in because a site that makes noise unasked is not professional.
+MUST. `enhance.js` does only: (1) mark every element carrying `pending:` utilities `data-revealed` if its top is already above 88 % of the window, then set `data-js`, then observe the rest with one `IntersectionObserver` (bottom margin −12 %) and mark each `data-revealed` once when it crosses (R-MOT-05, R-MOT-11); (2) if `"command" in HTMLButtonElement.prototype` is false, wire `button[commandfor]` to `showModal()`/`close()`; (3) unless `prefers-reduced-motion: reduce`, count each `[data-count]` figure once, from 0 to the numeric value the build wrote into `data-count` (with `data-decimals` for the authored precision and `data-nu` for the locale's numbering system, R-I18N-07), over 1.5 s ease-out cubic, starting when the figure is 30 % visible and 80 ms after the previous figure of the same section (capped at 240 ms), formatting each frame with one `Intl.NumberFormat` per figure and writing only when the formatted string changes, then restoring the build-time text exactly (R-TYPO-09) and setting `data-counted`, which the `expressive` level turns into the `settle` keyframe; the figure's markup reserves its final width with an `invisible` sizing span and keeps an `sr-only` copy of the final text for assistive technology while the animated span is `aria-hidden` (never a live region); a reduced-motion change mid-count restores the final text at once; (4) keep every sound toggle (`[data-sound]`, `aria-pressed`; in the footer on every page, in the header from `xl`, in the drawer below `lg`) in step with `sessionStorage.sound` and, while it is on, play four synthesised Web Audio sounds: a tick when switched on, a muted tone when a popover, drawer, dialog or disclosure opens (`toggle` event), a soft tap when a primary button is pressed, two rising notes when a form is submitted. The audio context is created on the first click, never on load. It sets `document.documentElement.dataset.js = ""` first. No other behaviour. `data-count` goes only on figures below the fold (the stats band, case-study metrics), never in the hero.
+Why: The entrance trigger, one fallback and two enhancements, all feature-detected, all within the 3 KB of R-PREC-08; sound is opt-in because a site that makes noise unasked is not professional.
 Gate: budget/js
 
 ### R-MOT-11 No motion on load above the fold
-MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state; the hero's proof strip and highlight card do not count. Scroll-linked movement that is at identity while `scrollY` is 0 (the depth layers of R-MOT-15 on the hero media and glows) is not an entrance and is allowed; the hero's text column and highlight card never move.
+MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state; the hero's proof strip and highlight card do not count. `enhance.js` marks every entrance whose top is already above 88 % of the window as revealed before it sets `data-js`, so content visible at load never fades in. Scroll-linked movement that is at identity while `scrollY` is 0 (the depth layers of R-MOT-15 on the hero media and glows) is not an entrance and is allowed; the hero's text column and highlight card never move.
 Why: Load animation delays LCP and reads as slowness; a layer that only moves when the visitor scrolls cannot.
 Gate: manual: checklists/new-page.md
 
@@ -99,17 +101,17 @@ Why: Two layers at different speeds read as a space; a third reads as a fairgrou
 Gate: consistency/motion-vocabulary
 
 ### R-MOT-16 Entrance vocabulary
-MUST. A grid item arrives with the treatment of its column, never a random one and never by index: three columns are slide-in (`reveal-start`, mirrored in RTL) / rise (`reveal`) / framed settle (`reveal-settle`); four columns add slide-from-end (`reveal-end`) as the fourth; two columns are slide-in / slide-from-end; tiles (team, integrations, awards) rise and their icon, avatar or badge pops (`pop`, from the `expressive` level); steps all slide in from the start (a sequence reads along the writing direction) and their number badge pops; pricing tiers follow the column rule except that the recommended tier always takes the framed settle; testimonial cards keep the framed settle in every column (a quote is a framed object, not a feature); article cards take the framed settle only in the third column so a picture never scales twice. The vocabulary applies from the `standard` level; `calm` rises everything.
-Why: Different behaviours in one grid show the system; the same behaviour everywhere is wallpaper, and random behaviour is noise.
+MUST. A grid item arrives with the treatment of its column, never a random one and never by index: three columns are slide-in (`start`, mirrored in RTL) / rise / framed settle (`settle`); four columns add slide-from-end (`end`) as the fourth; two columns are slide-in / slide-from-end; the columns of a row cascade 90 ms apart and the next row starts over. Tiles (team, integrations, awards) rise and their icon, avatar or badge pops (from the `expressive` level); steps all slide in from the start (a sequence reads along the writing direction) and their number badge pops; pricing tiers follow the column rule except that the recommended tier always settles; testimonial cards grow from 96 % (`scale`) in every column (a quote is a framed object, not a feature); article and media-row pictures settle from 115 % inside their frame (`zoom`). The vocabulary applies from the `standard` level; `calm` rises everything.
+Why: Different behaviours in one row, cascading, show the system; the same behaviour everywhere is wallpaper, and random behaviour is noise.
 Gate: manual: checklists/new-component.md
 
 ## Checklist
 
 - [ ] R-MOT-01 transform/opacity only
 - [ ] R-MOT-02 every motion class under motion-safe
-- [ ] R-MOT-03 budget: ≤ 48 px entrances, three groups, two depth layers
-- [ ] R-MOT-04 page complete with motion off and JS off
-- [ ] R-MOT-05 reveals from the preset table only; entrance on the wrapper; not on LCP
+- [ ] R-MOT-03 budget: ≤ 64 px entrances, three groups, 90 ms column cascade, two depth layers
+- [ ] R-MOT-04 page complete with motion off, JS off and in print
+- [ ] R-MOT-05 time-based entrances from the shell macros only; transition under data-revealed:; entrance on the wrapper; not on LCP
 - [ ] R-MOT-06 overlay entrance strings exact
 - [ ] R-MOT-07 hover transitions cheap, no hover-only content
 - [ ] R-MOT-08 header shadow and progress hairline scroll-driven
@@ -120,4 +122,4 @@ Gate: manual: checklists/new-component.md
 - [ ] R-MOT-13 smooth scroll on html; floating back-to-top scroll-driven
 - [ ] R-MOT-14 scroll-driven appearance under sda only
 - [ ] R-MOT-15 depth only on the listed layers, md+, overscanned, two at most
-- [ ] R-MOT-16 item treatment by column, never random
+- [ ] R-MOT-16 item treatment and delay by column, never random

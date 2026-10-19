@@ -85,6 +85,8 @@ test("enhance.js ships under 3 KB and only does what bylaw 06 allows", () => {
   const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
   assert.ok(Buffer.byteLength(js) <= 3072, `${Buffer.byteLength(js)} B`);
   assert.match(js, /IntersectionObserver/);
+  assert.match(js, /pending:/, "entrances are triggered by the script, once, as each element crosses 88 % of the viewport (R-MOT-10 behaviour 1)");
+  assert.match(js, /innerHeight\*\.88/, "elements already in view at load are revealed before the pending: state can apply (R-MOT-11)");
   assert.match(js, /commandfor/);
   assert.match(js, /data-count/, "count-up (R-MOT-10 behaviour 3)");
   assert.match(js, /dataset\.decimals/, "precision comes from the build, not from parsing text");
@@ -112,7 +114,7 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.doesNotMatch(/<div class="lg:col-span-7[\s\S]*?<\/ul>/.exec(hero)?.[0] || "", /parallax|drift/, "no depth on the hero's text column");
   const guide = readFileSync("dist/reference/en/style-guide/sections/index.html", "utf8");
   assert.match(guide, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\]/, "the split hero picture sinks, overscanned, at identity at rest");
-  assert.match(home, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-110 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:view\(\)\] md:motion-safe:sda:\[animation-range:cover_0%_cover_100%\]"/, "media-row pictures sit deeper on their own passage");
+  assert.match(home, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-110 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:view\(\)\] md:motion-safe:sda:\[animation-range:cover_0%_cover_100%\] pending:scale-115 motion-safe:data-revealed:transition-\[scale\] motion-safe:data-revealed:duration-1200 motion-safe:data-revealed:ease-reveal"/, "media-row pictures settle from 115 % as they enter, then sit deeper on their own passage");
   assert.match(stats, /before:to-accent-600\/25 md:motion-safe:sda:before:animate-parallax-sm/, "the stats backdrop moves slower than the band");
   assert.match(home, /before:blur-3xl md:motion-safe:sda:before:animate-drift rtl:md:motion-safe:sda:before:animate-drift-end/, "the CTA highlight drifts and mirrors");
   assert.match(home, /gap-y-8 reveal-items md:motion-safe:sda:animate-drift rtl:md:motion-safe:sda:animate-drift-end/, "the logo cloud drifts");
@@ -200,28 +202,32 @@ test("review fixes: German hyphenation and wrapping, Arabic leading and tracking
   assert.match(en, /<a href="\/en\/demo\/" class="hidden min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md/);
 });
 
-test("motion: smooth scrolling, floating back-to-top under sda, staggered item reveals without opacity, overlay entrances with blurred backdrops", () => {
+test("motion: smooth scrolling, floating back-to-top under sda, time-based item entrances by column, overlay entrances with blurred backdrops", () => {
   const html = readFileSync("dist/reference/en/index.html", "utf8");
   assert.match(html, /<html [^>]*class="[^"]*motion-safe:scroll-smooth/);
   assert.match(html, /data-component="back-to-top" data-variant="float"/);
   assert.match(html, /motion-safe:sda:animate-rise-in[^"]*motion-safe:sda:\[animation-timeline:scroll\(\)\]/);
-  // Grid items reveal with a shifted range; sections never hide (no opacity-0 on a section).
-  assert.match(html, /<li class="[^"]*motion-safe:sda:animate-reveal [^"]*motion-safe:sda:\[animation-range:cover_8%_cover_28%\]/, "the second column rises on the item preset shifted 3 %");
-  assert.match(html, /<li class="[^"]*motion-safe:sda:animate-reveal-start rtl:motion-safe:sda:animate-reveal-end[^"]*cover_5%_cover_25%/, "the first column slides in (R-MOT-16)");
-  assert.match(html, /<li class="[^"]*motion-safe:sda:animate-reveal-settle[^"]*cover_11%_cover_31%/, "the third column settles");
-  assert.doesNotMatch(html, /<section class="[^"]*opacity-0/);
+  // Grid items are time-based entrances (R-MOT-05, R-MOT-16): a from-state under pending:, a transition that exists only once revealed, a delay by column.
+  const feat = /data-component="feature-grid"[\s\S]*?<\/section>/.exec(html)[0];
+  assert.match(feat, /<li class=" pending:opacity-0 pending:-translate-x-\(--reveal-distance\) rtl:pending:translate-x-\(--reveal-distance\) motion-safe:data-revealed:transition-\[opacity,translate,scale\] motion-safe:data-revealed:duration-\(--reveal-duration\) motion-safe:data-revealed:ease-reveal">/, "the first column slides in at once");
+  assert.match(feat, /<li class=" pending:opacity-0 pending:translate-y-\(--reveal-distance\) motion-safe:data-revealed:transition-\[opacity,translate,scale\][^"]*motion-safe:data-revealed:delay-90">/, "the second column rises 90 ms later");
+  assert.match(feat, /<li class=" pending:opacity-0 pending:translate-y-\(--reveal-distance\) pending:scale-94 [^"]*motion-safe:data-revealed:delay-180">/, "the third column settles 180 ms later");
+  assert.doesNotMatch(html, /<section class="(?:[^"]*\s)?opacity-0[\s"]/, "no section is hidden outright: opacity-0 only ever comes with pending:");
+  assert.doesNotMatch(html, /motion-safe:js:transition-\[opacity/, "entrance transitions exist only once revealed, so the script starting never fades anything out");
+  assert.doesNotMatch(html, /animate-reveal|animation-range:cover_5%|animation-range:entry_/, "no entrance is tied to the scroll any more");
   // Header shadow fades in on scroll; feature rows slide from the inline edges.
   assert.match(html, /<header class="[^"]*motion-safe:sda:after:animate-fade[^"]*motion-safe:sda:after:\[animation-timeline:scroll\(\)\]/);
-  assert.match(html, /motion-safe:sda:animate-reveal-start/);
-  assert.match(html, /motion-safe:sda:animate-reveal-end/);
+  assert.match(html, /pending:-translate-x-\(--reveal-distance\)/);
+  assert.match(html, /pending:translate-x-\(--reveal-distance\) rtl:pending:-translate-x-\(--reveal-distance\)/);
   const guide = readFileSync("dist/reference/en/style-guide/controls/index.html", "utf8");
   assert.match(guide, /<dialog [^>]*class="[^"]*motion-safe:starting:open:backdrop:opacity-0/);
   assert.match(guide, /id="drawer"[^>]*class="[^"]*motion-safe:translate-x-full[^"]*motion-safe:starting:open:translate-x-full/);
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.match(css, /--reveal-distance: ?40px/);
-  assert.match(css, /--reveal-distance-item: ?48px/);
+  assert.match(css, /--reveal-distance-item: ?56px/);
+  assert.match(css, /--reveal-duration: ?(800ms|.8s)/);
   assert.match(css, /@keyframes rise-in/);
-  assert.match(css, /@keyframes reveal-end/);
+  assert.doesNotMatch(css, /@keyframes reveal/, "entrances are transitions; no entrance keyframes remain (R-TOK-13)");
 });
 
 test("micro-interactions: primary buttons lift, press and nudge their arrow (mirrored in RTL); cards warm their border; disclosure chevrons rotate; nav links grow an underline", () => {
@@ -233,7 +239,7 @@ test("micro-interactions: primary buttons lift, press and nudge their arrow (mir
   assert.match(primary, /class="size-5 shrink-0 motion-safe:transition-transform motion-safe:duration-150 group-hover:translate-x-0\.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0\.5"><use href="#i-arrow-right">/);
   const services = readFileSync("dist/reference/en/services/index.html", "utf8");
   assert.match(services, /<div class="group relative flex w-full flex-col[^"]*hover:border-brand-300/);
-  assert.match(services, /<span class="mb-4 inline-flex size-12[^"]*group-hover:scale-105/);
+  assert.match(services, /<span class="mb-4 inline-flex self-start"><span class="inline-flex size-12[^"]*group-hover:scale-105/, "the hover scale sits on the inner tile, the arrival pop on its wrapper");
   const faq = readFileSync("dist/reference/en/faq/index.html", "utf8");
   assert.match(faq, /<summary class="[^"]*"[^>]*>[\s\S]*?group-open:rotate-180/);
   assert.match(en, /<a href="\/en\/customers\/" class="[^"]*after:scale-x-0 after:origin-left rtl:after:origin-right[^"]*hover:after:scale-x-100/);
@@ -285,13 +291,12 @@ test("review fixes: transitions name translate and scale, feature rows clip and 
   assert.match(en, /motion-safe:transition-\[opacity,translate,scale,display,overlay\][^>]*data-component="mobile-drawer"/, "drawer list");
   assert.match(guide, /<dialog[^>]*motion-safe:transition-\[opacity,translate,scale,display,overlay\]/, "dialog list");
   assert.match(en, /<section class="[^"]*overflow-x-clip[^"]*"[^>]*data-component="feature-rows"/, "feature rows clip horizontal overflow while rows slide in");
-  assert.match(ar, /motion-safe:sda:animate-reveal-end rtl:motion-safe:sda:animate-reveal-start/, "rows mirror their slide in RTL");
-  assert.match(en, /motion-safe:nosda:js:not-data-revealed:translate-y-\(--reveal-distance\) motion-safe:nosda:js:data-revealed:translate-y-0/, "script fallback scoped to browsers without scroll-driven animation");
-  assert.doesNotMatch(en, /motion-safe:js:not-data-revealed/, "no unscoped fallback remains");
+  assert.match(ar, /pending:translate-x-\(--reveal-distance\) rtl:pending:-translate-x-\(--reveal-distance\)/, "rows mirror their slide in RTL");
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
-  assert.ok(css.includes("@supports not (animation-timeline:view())"), "nosda variant in the CSS");
-  assert.match(svc, /motion-safe:sda:\[animation-range:cover_8%_cover_28%\] motion-safe:sda:\[animation-fill-mode:both\]/, "staggered items fill both so they never jump at their range start");
-  assert.match(svc, /<li class="flex[^"]*animate-reveal[^"]*"[^>]*>\n<div class="group relative[^"]*motion-safe:hover:-translate-y-0\.5/, "entrance on the wrapper, hover on the inner card (R-MOT-05)");
+  assert.ok(css.includes(":where([data-js] *):not([data-revealed])"), "the pending: variant: only with JS, only until revealed");
+  assert.ok(/@media screen and \(prefers-reduced-motion:\s?no-preference\)/.test(css), "the pending: variant: only on screen and only with motion allowed");
+  assert.ok(!css.includes("@supports not (animation-timeline:view())"), "the nosda fallback is gone: entrances work the same in every browser");
+  assert.match(svc, /<li class="flex pending:opacity-0[^"]*motion-safe:data-revealed:delay-90"[^>]*>\n<div class="group relative[^"]*motion-safe:hover:-translate-y-0\.5/, "entrance and column delay on the wrapper, hover on the inner card (R-MOT-05)");
 });
 
 test("gate fixes: the floating back-to-top lives inside the footer landmark and every body grid is on the rhythm scale", () => {
