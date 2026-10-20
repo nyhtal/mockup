@@ -1,7 +1,7 @@
 {#
   name: locale-switcher
   purpose: Switch to the same page in another locale (R-I18N-08).
-  anatomy: button[popovertarget=locales] + div[popover]#locales > ul > li > a[hreflang lang]
+  anatomy: button[popovertarget=locales][anchor-name] + div[popover]#locales > ul > li > a[hreflang lang]; the panel is anchored under its button with CSS anchor positioning (block-end, spanning inline-end, flipping inline at the window edge); without support it sits under the header at the inline end, as the nav menu does
   variants: none
   states: open; current locale marked with aria-current="true"
   spacing: panel w-56 p-2
@@ -14,8 +14,8 @@
 {% macro localeSwitcher(alternates, locale, opts={}) %}
 {%- if alternates.length > 1 %}
 <div data-component="locale-switcher"{% if opts.class %} class="{{ opts.class }}"{% endif %}>
-<button type="button" popovertarget="locales" class="inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><svg aria-hidden="true" class="size-5 shrink-0"><use href="#i-languages"></use></svg><span class="sr-only">{{ "ui.language" | t }}: </span><span class="hidden xl:inline">{{ locale | nativeName }}</span></button>
-<div popover id="locales" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-56 rounded-lg border border-line bg-surface-raised p-2 text-ink shadow-md opacity-0 open:opacity-100 motion-safe:-translate-y-2 motion-safe:open:translate-y-0 motion-safe:transition-discrete motion-safe:transition-[opacity,translate,scale,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:-translate-y-2">
+<button type="button" popovertarget="locales" class="[anchor-name:--locales] inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><svg aria-hidden="true" class="size-5 shrink-0"><use href="#i-languages"></use></svg><span class="sr-only">{{ "ui.language" | t }}: </span><span class="hidden xl:inline">{{ locale | nativeName }}</span></button>
+<div popover id="locales" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-56 rounded-lg border border-line bg-surface-raised p-2 text-ink shadow-md supports-[position-area:block-end]:inset-auto supports-[position-area:block-end]:mt-2 supports-[position-area:block-end]:[position-anchor:--locales] supports-[position-area:block-end]:[position-area:block-end_span-inline-end] supports-[position-area:block-end]:[position-try-fallbacks:flip-inline] opacity-0 open:opacity-100 motion-safe:-translate-y-2 motion-safe:open:translate-y-0 motion-safe:transition-discrete motion-safe:transition-[opacity,translate,scale,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:-translate-y-2">
 <ul>
 {%- for alt in alternates %}
 <li><a href="{{ alt.url }}" hreflang="{{ alt.lang }}" lang="{{ alt.lang }}" class="font-system block min-h-11 rounded-md px-3 py-2.5 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus {{ 'font-medium text-ink-brand' if alt.lang == locale else '' }}"{% if alt.lang == locale %} aria-current="true"{% endif %}>{{ alt.lang | nativeName }}</a></li>

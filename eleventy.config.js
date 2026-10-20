@@ -288,10 +288,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("formatCurrency", function (n, code) { return formatCurrency(n, this.ctx?.page?.lang || site.defaultLocale, code, site); });
   eleventyConfig.addFilter("htmlPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType));
   // System pages (D56): "locales" = each language's system page; for a locale (or "" for root pages): "style" = its style
-  // guide, "qa" = its test pages, "hidden" = every other noindex page (a locale without a system page is listed under the default one).
-  const sysLocales = () => site.locales.filter((l) => l === site.defaultLocale);
+  // guide, "qa" = its test pages, "hidden" = every other noindex page of that language only (each language has its own system page).
   eleventyConfig.addFilter("sysPages", (all, kind, locale) => {
-    const inLocale = (u) => (locale === "" ? !/^\/[a-z]{2}\//.test(u) : locale === site.defaultLocale ? !sysLocales().filter((l) => l !== locale).some((l) => u.startsWith(`/${l}/`)) && /^\/[a-z]{2}\//.test(u) : u.startsWith(`/${locale}/`));
+    const inLocale = (u) => (locale === "" ? !/^\/[a-z]{2}\//.test(u) : u.startsWith(`/${locale}/`));
     return all
       .filter((p) => p.url && p.data.pageType && (
         kind === "locales" ? p.data.pageType === "sys" && /^\/[a-z]{2}\/sys\/$/.test(p.url)
@@ -344,6 +343,13 @@ export default function (eleventyConfig) {
   eleventyConfig.addTemplate("_engine/sitemap.njk", virtual("sitemap.njk"));
   eleventyConfig.addTemplate("_engine/og-manifest.njk", virtual("og-manifest.njk"));
   eleventyConfig.addTemplate("_engine/files.njk", virtual("files.njk"));
+  // Each language's system page (D56): /<locale>/sys/ lists that language's hidden pages and files, and in the default locale the QA page and the style guide. The three share a slug, so the language switcher pairs them (owner, 2026-10-20).
+  const englishName = new Intl.DisplayNames(["en"], { type: "language" });
+  eleventyConfig.addFilter("englishName", (l) => englishName.of(l));
+  for (const locale of site.locales) {
+    const name = englishName.of(locale);
+    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: `${name} system pages`, description: `The ${name} system page of ${site.name}: ${locale === site.defaultLocale ? "the QA test pages, the style guide, " : ""}every hidden ${name} page and the ${name} files.`, permalink: `/${locale}/sys/index.html` });
+  }
   // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, under /en/sys/style-guide/; the test pages under /en/qa/; /sys/ links them all. No other locale has them, so they show no language links (D56). Written in the default locale (its sample data is English).
   for (const locale of [site.defaultLocale]) {
     for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"], ["style-guide-widgets.njk", "widgets/", "Widgets test page"], ["style-guide-html.njk", "html/", "HTML element reference"]]) {
@@ -351,7 +357,6 @@ export default function (eleventyConfig) {
     }
     // The hidden system index at /sys/ (D56): links to the style guide, the test pages, hidden pages and system files.
     eleventyConfig.addTemplate(`${locale}/_engine/sys.njk`, virtual("sys.njk"), { lang: locale, title: "System pages", breadcrumbs: [], description: `The system hub of ${site.name}: each language's system page with its style guide and test pages, the pages outside a language, and the site files.`, permalink: "/sys/index.html" });
-    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: "English system pages", description: `The English system page of ${site.name}: the QA test pages, the style guide, every hidden page in each language and the English files.`, permalink: `/${locale}/sys/index.html` });
     eleventyConfig.addTemplate(`${locale}/_engine/qa.njk`, virtual("qa.njk"), { lang: locale, title: "QA test pages", description: `The QA test pages of ${site.name}: every interactive widget working on one page, and every HTML element with a page of the site that uses it.`, permalink: `/${locale}/qa/index.html` });
     // Every sample section, split into five pages so each stays within the HTML budget (R-PERF-01).
     const ids = samples.sections.map((s) => s.id);

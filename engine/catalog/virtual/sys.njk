@@ -16,7 +16,7 @@ noindex: true
 <div class="mx-auto w-full max-w-4xl px-4 pt-16 pb-24 sm:px-6 md:pt-24 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">System</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">System pages</h1>
-<p class="mt-4 text-lg text-ink-muted">The entry point for checking the site by hand. Each language has its own system page with its style guide, test pages and hidden pages; the files below belong to the whole site. Nothing under <code>/sys/</code> is in the sitemap, linked from a public page or indexed.</p>
+<p class="mt-4 text-lg text-ink-muted">The entry point for checking the site by hand. Each language has its own system page with its hidden pages and files; the default language's also carries the style guide and the test pages. The files below belong to the whole site. Nothing under <code>/sys/</code> is in the sitemap, linked from a public page or indexed.</p>
 
 <section id="sys-locales" class="mt-16 scroll-mt-24" aria-labelledby="sys-locales-h">
 <h2 id="sys-locales-h" class="text-2xl font-semibold tracking-tight">By language</h2>
@@ -25,7 +25,6 @@ noindex: true
 <li class="{{ row }}"><a href="{{ p.url }}" class="font-medium {{ link }}">{{ p.title }}</a><code class="text-sm text-ink-muted">{{ p.url }}</code></li>
 {%- endfor %}
 </ul>
-<p class="mt-3 text-sm text-ink-muted">German and Arabic have no system pages: the style guide and the test pages use English sample data.</p>
 </section>
 
 <section id="sys-root" class="mt-16 scroll-mt-24" aria-labelledby="sys-root-h">

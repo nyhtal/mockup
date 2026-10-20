@@ -158,6 +158,13 @@ test("every disclosure opens and closes smoothly: details content animates heigh
   assert.match(css, /content-visibility \.3s var\(--ease-reveal\) allow-discrete/, "closing plays before hiding");
 });
 
+test("locale switcher: the panel is anchored under its own button, with the viewport-fixed placement only as a fallback", () => {
+  const en = readFileSync("dist/reference/en/index.html", "utf8");
+  const sw = /<div data-component="locale-switcher"[^>]*>[\s\S]*?<div popover id="locales"[^>]*>/.exec(en)[0];
+  assert.match(sw, /<button type="button" popovertarget="locales" class="\[anchor-name:--locales\] /);
+  assert.match(sw, /<div popover id="locales" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-56 [^"]*supports-\[position-area:block-end\]:inset-auto[^"]*\[position-anchor:--locales\][^"]*\[position-area:block-end_span-inline-end\][^"]*\[position-try-fallbacks:flip-inline\]/);
+});
+
 test("top navigation: wide menus put every link on one row; Company is a compact single-column dropdown anchored to its button and lists the culture page", () => {
   const en = readFileSync("dist/reference/en/careers/culture/index.html", "utf8");
   const nav = /<nav [^>]*data-component="nav-menu">[\s\S]*?<\/nav>/.exec(en)[0];
@@ -451,20 +458,33 @@ test("HTML element reference (to-do 8): every element of the standard is listed,
   }
 });
 
-test("system pages (D56): /sys/ links each language's system page, /en/sys/ links the QA page and lists the style guide and every hidden page, /en/qa/ lists the test pages; all hidden, none with language links", () => {
+test("system pages (D56): /sys/ links each language's system page; each lists only its own hidden pages and carries the language switcher; /en/sys/ links the QA page and lists the style guide; /en/qa/ lists the test pages; all hidden", () => {
   const read = (u) => readFileSync(`dist/reference${u}index.html`, "utf8");
   const links = (html) => new Set([...html.matchAll(/<a href="([^"#]+)" class="(?:font-medium|mt-10|block)/g)].map((m) => m[1]));
-  const enSys = read("/en/sys/"), qa = read("/en/qa/");
+  const enSys = read("/en/sys/"), deSys = read("/de/sys/"), arSys = read("/ar/sys/"), qa = read("/en/qa/");
   const hub = read("/sys/");
-  assert.ok(links(hub).has("/en/sys/"), "/sys/ links the English system page");
+  for (const l of ["en", "de", "ar"]) assert.ok(links(hub).has(`/${l}/sys/`), `/sys/ links the ${l} system page`);
   assert.ok(links(enSys).has("/en/qa/"), "/en/sys/ links the QA page");
+  assert.match(enSys, /<h1[^>]*>English system pages<\/h1>/);
+  assert.match(deSys, /<h1[^>]*>German system pages<\/h1>/);
+  assert.match(arSys, /<h1[^>]*>Arabic system pages<\/h1>/);
+  // Each language's page lists only its own pages; the language switcher pairs the three system pages, and German and Arabic point to the English one for the QA pages and the style guide (owner, 2026-10-20).
+  for (const [l, html] of [["en", enSys], ["de", deSys], ["ar", arSys]]) {
+    const foreign = [...links(html)].filter((u) => /^\/[a-z]{2}\//.test(u) && !u.startsWith(`/${l}/`));
+    assert.deepEqual(foreign, l === "en" ? [] : ["/en/sys/"], `/${l}/sys/ lists no other language's pages`);
+    assert.ok(links(html).has(`/${l}/search/`), `/${l}/sys/ lists its own hidden pages`);
+    assert.ok(links(html).has(`/${l}/feed.xml`), `/${l}/sys/ lists its own files`);
+    assert.match(html, /data-component="locale-switcher"/, `/${l}/sys/ has the language switcher`);
+    for (const o of ["en", "de", "ar"]) assert.match(html, new RegExp(`<link rel="alternate" hreflang="${o}" href="[^"]*/${o}/sys/"`), `/${l}/sys/ names /${o}/sys/ as its ${o} alternate`);
+  }
+  assert.doesNotMatch(deSys, /href="\/de\/qa\/"|style-guide/, "German has no QA page or style guide of its own");
   for (const u of ["/en/qa/widgets/", "/en/qa/html/"]) assert.ok(links(qa).has(u), `/en/qa/ lists ${u}`);
-  for (const html of [hub, enSys, qa]) {
-    assert.match(html, /<meta name="robots" content="noindex/);
-    assert.doesNotMatch(html, /hreflang="(de|ar)"/, "no language links");
+  for (const html of [hub, enSys, deSys, arSys, qa]) assert.match(html, /<meta name="robots" content="noindex/);
+  for (const html of [hub, qa]) {
+    assert.doesNotMatch(html, /hreflang="(de|ar)"/, "the hub and the QA page exist in one place only: no language links");
     assert.doesNotMatch(html, /data-component="locale-switcher"/);
   }
-  const listed = new Set([...links(hub), ...links(enSys), ...links(qa)]);
+  const listed = new Set([...links(hub), ...links(enSys), ...links(deSys), ...links(arSys), ...links(qa)]);
   const pages = [];
   const walk = (dir) => { for (const e of readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith(".html")) pages.push(p); } };
   walk("dist/reference");
