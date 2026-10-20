@@ -1,6 +1,6 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import { pdf, csv, ics, vcard } from "./lib/files.js";
+import { pdf, csv, ics, vcard, wav, vtt } from "./lib/files.js";
 import { entityUrl } from "./lib/entities.js";
 
 /**
@@ -16,11 +16,14 @@ export function generateFiles(dist, site, data) {
     if (d.fileType === "PDF") write(`${d.slug}.pdf`, pdf(d.title, [`${site.name}: ${d.pages || ""}`.trim(), "Sample page of a fictional document.", "Every name, figure and quote in it is invented.", site.url]));
     if (d.fileType === "CSV") write(`${d.slug}.csv`, csv([["Line", "Stops per month", "Minutes per stop", "Cost per minute (GBP)", "Monthly cost (GBP)"], ["Filler 1", 14, 22, 85, 26180], ["Capper 2", 9, 15, 85, 11475], ["Palletiser", 4, 40, 60, 9600]]));
   }
+  write("line-notes-12.wav", wav(6));
   const stamp = `${site.year || "2026"}0101T000000Z`;
   const host = new URL(site.url).host;
   for (const locale of site.locales) {
     const e = data[locale]?.entities || {};
     for (const ev of e.events || []) write(`${locale}/${ev.slug}.ics`, ics(ev, { url: site.url + entityUrl("events", ev.slug, locale), host, stamp }));
+    const cues = data[locale]?.pages?.sections?.["podcast-episode"]?.episode?.captions?.cues;
+    if (cues) write(`${locale}/line-notes-12.vtt`, vtt(cues));
     for (const o of e.offices || []) write(`${locale}/${o.slug}.vcf`, vcard(o, { org: site.name, url: site.url + entityUrl("offices", o.slug, locale) }));
   }
 }

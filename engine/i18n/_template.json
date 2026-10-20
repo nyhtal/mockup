@@ -131,7 +131,15 @@
     "visitSubject": "",
     "feedLink": "",
     "previousPrice": "",
-    "comma": ""
+    "comma": "",
+    "changeAdded": "",
+    "changeChanged": "",
+    "changeFixed": "",
+    "changeRemoved": "",
+    "versions": "",
+    "episode": "",
+    "transcript": "",
+    "downloadAudio": ""
   },
   "footer": {
     "rights": "",

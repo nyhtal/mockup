@@ -6,7 +6,7 @@ import { themeColors, flairFor, motionLevels } from "./engine/tools/lib/theme.js
 import { fontPlan } from "./engine/tools/build-fonts.js";
 import { engineFiles } from "./engine/tools/lib/engine-files.js";
 import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
-import { renderMarkdown, tocOf, wordCount, headingIds } from "./engine/tools/lib/markdown.js";
+import { renderMarkdown, renderInline, tocOf, wordCount, headingIds } from "./engine/tools/lib/markdown.js";
 import { semantics } from "./engine/tools/lib/markdown-semantics.js";
 import { wordBreaks } from "./engine/tools/lib/word-breaks.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
@@ -261,6 +261,7 @@ export default function (eleventyConfig) {
     return value;
   });
   eleventyConfig.addFilter("md", renderMarkdown);
+  eleventyConfig.addFilter("mdInline", renderInline);
   // Headings: escaped text with <wbr> at the joints of long compounds in the page's language (site.json wordBreaks).
   eleventyConfig.addFilter("wbr", function (text) { return wordBreaks(text, site.wordBreaks?.[this.ctx?.page?.lang]); });
   // The tagline in the page's language: the site's string overlay (site.tagline) or site.json's tagline.

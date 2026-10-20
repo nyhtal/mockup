@@ -1,0 +1,34 @@
+{#
+  name: changelog
+  purpose: What's new: one <article> per release, newest first, with jump links to each (to-do 7).
+  anatomy: shell(center false) > nav(jump links) + div > article#v…(header(h2|h3 > data[value=version] + p > time) + ul > li(badge + text))
+  data: s = { title, releases: [{ version: "2.4.0", name: "Studio 2.4", dateIso, items: [{ kind: added|changed|fixed|removed, text (inline Markdown) }] }] }
+  a11y: the change kind is a visible word, not a colour; each release is a landmark-free article with its own heading
+  i18n: kinds from ui.changeAdded … ui.changeRemoved; dates through formatDate
+#}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/badge.njk" import badge with context %}
+{% macro render(s, ctx) %}
+{% call shell("changelog", s, ctx, { center: false }) %}
+{%- set rh = "h3" if s.title else "h2" -%}
+{%- set kinds = { added: ["ui.changeAdded", "success"], changed: ["ui.changeChanged", "brand"], fixed: ["ui.changeFixed", "warning"], removed: ["ui.changeRemoved", "neutral"] } -%}
+<div class="grid gap-12 lg:grid-cols-4">
+<nav aria-label="{{ 'ui.versions' | t }}" class="lg:sticky lg:top-20 lg:self-start"><ul class="flex flex-wrap gap-2 lg:flex-col">{% for r in s.releases %}<li><a href="#v{{ r.version | slugify }}" class="inline-flex min-h-11 items-center rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ r.name }}</a></li>{% endfor %}</ul></nav>
+<div class="space-y-16 lg:col-span-3">
+{%- for r in s.releases %}
+<article id="v{{ r.version | slugify }}" class="scroll-mt-24 border-t border-line pt-8">
+<header class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+<{{ rh }} class="text-2xl font-semibold"><data value="{{ r.version }}">{{ r.name }}</data></{{ rh }}>
+<p class="text-sm text-ink-muted"><time datetime="{{ r.dateIso }}">{{ r.dateIso | formatDate }}</time></p>
+</header>
+<ul class="mt-6 space-y-4">
+{%- for it in r.items %}
+<li class="flex flex-col items-start gap-2 sm:flex-row sm:items-baseline sm:gap-4"><span class="w-24 shrink-0">{{ badge(kinds[it.kind][0] | t, { tone: kinds[it.kind][1] }) }}</span><span class="text-base leading-relaxed [&_code]:rounded-sm [&_code]:bg-surface-alt [&_code]:px-1 [&_code]:text-sm [&_kbd]:rounded-sm [&_kbd]:border [&_kbd]:border-line-strong [&_kbd]:px-1.5 [&_kbd]:font-mono [&_kbd]:text-sm">{{ it.text | mdInline | safe }}</span></li>
+{%- endfor %}
+</ul>
+</article>
+{%- endfor %}
+</div>
+</div>
+{% endcall %}
+{% endmacro %}

@@ -131,7 +131,15 @@
     "visitSubject": "Besuch im Büro {city}",
     "feedLink": "Dem Blog im Feedreader folgen (Atom)",
     "previousPrice": "Bisher",
-    "comma": ", "
+    "comma": ", ",
+    "changeAdded": "Neu",
+    "changeChanged": "Geändert",
+    "changeFixed": "Behoben",
+    "changeRemoved": "Entfernt",
+    "versions": "Versionen",
+    "episode": "Folge {n}",
+    "transcript": "Transkript",
+    "downloadAudio": "Audio herunterladen (WAV)"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

@@ -1,0 +1,33 @@
+{#
+  name: podcast-episode
+  purpose: One podcast episode: the player, show notes and the transcript (to-do 7).
+  anatomy: shell(center false) > grid > (figure(figcaption(episode · time · duration) + audio(source + track + fallback link)) + prose(notes)) + accordion(transcript: p > b(speaker) + text)
+  data: s = { title, episode: { number, dateIso, duration (ISO 8601, "PT6S"), durationLabel, audio, captions: { src, srclang, label }, notes (Markdown), transcript: [{ speaker, text, term: { text, lang } }] } }
+  a11y: preload="none"; captions in a <track>; the full transcript on the page; speaker names in <b>, the HTML spec's markup for a conversation; a word in another language in <i lang>
+#}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "components/prose.njk" import prose with context %}
+{% from "components/accordion.njk" import accordion with context %}
+{% macro render(s, ctx) %}
+{% call shell("podcast-episode", s, ctx, { center: false, noReveal: true }) %}
+{%- set ep = s.episode -%}
+{%- set lines -%}
+{%- for line in ep.transcript %}{% set parts = line.text.split("{term}") %}<p class="{{ 'mt-4' if not loop.first }}"><b class="font-semibold text-ink">{{ line.speaker }}:</b> {{ parts[0] }}{% if line.term %}<i lang="{{ line.term.lang }}" dir="{{ 'rtl' if line.term.lang == 'ar' else 'ltr' }}">{{ line.term.text }}</i>{{ parts[1] }}{% endif %}</p>{% endfor -%}
+{%- endset -%}
+<div class="grid gap-12 lg:grid-cols-3">
+<div class="lg:col-span-2">
+<figure class="rounded-lg border border-line bg-surface-raised p-6">
+<figcaption class="text-sm text-ink-muted">{{ "ui.episode" | t | replace("{n}", ep.number) }} · <time datetime="{{ ep.dateIso }}">{{ ep.dateIso | formatDate }}</time> · <time datetime="{{ ep.duration }}">{{ ep.durationLabel }}</time></figcaption>
+<audio controls preload="none" class="mt-4 block w-full">
+<source src="{{ ep.audio }}" type="audio/wav">
+<track kind="captions" src="{{ ep.captions.src }}" srclang="{{ ep.captions.srclang }}" label="{{ ep.captions.label }}" default>
+<a href="{{ ep.audio }}" download type="audio/wav">{{ "ui.downloadAudio" | t }}</a>
+</audio>
+<p class="mt-4 text-sm"><a href="{{ ep.audio }}" download type="audio/wav" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.downloadAudio" | t }}</a></p>
+</figure>
+<div class="mt-8">{{ prose(ep.notes | md, { loose: ctx.locale == "ar" }) }}</div>
+</div>
+<div>{{ accordion([{ title: "ui.transcript" | t, body: lines, open: true }], { level: 3 }) }}</div>
+</div>
+{% endcall %}
+{% endmacro %}

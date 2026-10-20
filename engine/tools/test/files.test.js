@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { pdf, csv, ics, vcard } from "../lib/files.js";
+import { pdf, csv, ics, vcard, wav, vtt } from "../lib/files.js";
 
 test("pdf: a well-formed one-page PDF whose xref offsets point at its objects", () => {
   const buf = pdf("Commissioning checklist 2026", ["Sample page", "All figures are fictional."]);
@@ -24,4 +24,14 @@ test("csv quotes cells that need it; ics converts the event's offset to UTC and 
   assert.match(card, /ADR;TYPE=work:;;Speicherstadt 12;Hamburg;;20457;DE\r\n/);
   assert.match(card, /TEL;TYPE=work,voice;VALUE=uri:tel:\+4940123456/);
   assert.match(card, /GEO:geo:53\.5438,9\.9861/);
+});
+
+test("wav: a RIFF/WAVE header for 8 kHz 8-bit mono and one byte per sample; vtt: numbered cues", () => {
+  const w = wav(1);
+  assert.equal(w.toString("latin1", 0, 4), "RIFF");
+  assert.equal(w.toString("latin1", 8, 16), "WAVEfmt ");
+  assert.equal(w.readUInt32LE(24), 8000);
+  assert.equal(w.readUInt16LE(34), 8);
+  assert.equal(w.length, 44 + 8000);
+  assert.equal(vtt([{ start: "00:00.000", end: "00:01.000", text: "Hi" }]).toString(), "WEBVTT\n\n1\n00:00.000 --> 00:01.000\nHi\n");
 });

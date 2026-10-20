@@ -1277,6 +1277,122 @@
           "body": "<p>Siemens, Rockwell und Beckhoff aus derselben Beschreibung.</p>"
         }
       ]
+    },
+    "changelog": {
+      "type": "changelog",
+      "releases": [
+        {
+          "version": "2.4.0",
+          "name": "Studio 2.4",
+          "dateIso": "2026-10-06",
+          "items": [
+            {
+              "kind": "added",
+              "text": "Rezeptgrenzen pro Linienleiter, festgelegt in `limits.yaml`."
+            },
+            {
+              "kind": "changed",
+              "text": "Die Generierung prüft Verriegelungen vor Regeln; eine fehlende Verriegelung stoppt den Lauf zuerst."
+            },
+            {
+              "kind": "fixed",
+              "text": "Stationsnamen mit einem kaufmännischen Und brechen den Prüfexport nicht mehr."
+            }
+          ]
+        },
+        {
+          "version": "1.9.0",
+          "name": "Edge 1.9",
+          "dateIso": "2026-09-15",
+          "items": [
+            {
+              "kind": "added",
+              "text": "Sensorzustand im Edge-Dashboard, alle 5 s aktualisiert."
+            },
+            {
+              "kind": "fixed",
+              "text": "Ein Neustart nach einem Stromausfall spielt die letzte Rezeptänderung nicht mehr erneut ab."
+            }
+          ]
+        },
+        {
+          "version": "3.2.0",
+          "name": "Cloud 3.2",
+          "dateIso": "2026-08-28",
+          "items": [
+            {
+              "kind": "changed",
+              "text": "Exporte des Änderungsprotokolls werden mit dem eigenen Schlüssel des Werks signiert."
+            },
+            {
+              "kind": "removed",
+              "text": "Der alte CSV-Import. Nutzen Sie stattdessen `northwind import --format=xlsx`."
+            }
+          ]
+        },
+        {
+          "version": "2.3.0",
+          "name": "Studio 2.3",
+          "dateIso": "2026-07-30",
+          "items": [
+            {
+              "kind": "added",
+              "text": "Linienbeschreibungen auf Deutsch und Arabisch."
+            },
+            {
+              "kind": "fixed",
+              "text": "[[Strg]]+[[Z]] macht das Löschen einer Station wieder rückgängig."
+            }
+          ]
+        }
+      ],
+      "title": "Alle Versionen"
+    },
+    "podcast-episode": {
+      "type": "podcast-episode",
+      "title": "Neun Tage bis zur Inbetriebnahme",
+      "episode": {
+        "number": 12,
+        "dateIso": "2026-10-08",
+        "duration": "PT6S",
+        "durationLabel": "0:06",
+        "audio": "/assets/files/line-notes-12.wav",
+        "captions": {
+          "src": "/assets/files/de/line-notes-12.vtt",
+          "srclang": "de",
+          "label": "Deutsch",
+          "cues": [
+            {
+              "start": "00:00.000",
+              "end": "00:06.000",
+              "text": "[Signalton] Ein Platzhalter. Die Folge ist das Transkript auf dieser Seite."
+            }
+          ]
+        },
+        "notes": "*[FAT]: Factory Acceptance Test (Werksabnahme)\n\nMei Chen spricht mit Dana Okafor, Qualitätsleiterin bei Brightline Pharma, über die Abfülllinie, die in neun Tagen von der Beschreibung in die Produktion ging, und über den FAT, der im zweiten Lauf bestand.",
+        "transcript": [
+          {
+            "speaker": "Mei Chen",
+            "text": "Dana, neun Tage. Wie sah der erste Morgen aus?"
+          },
+          {
+            "speaker": "Dana Okafor",
+            "text": "Wir haben die Beschreibung mit den Linienleitern laut gelesen. Jeder Satz musste in der Halle stimmen."
+          },
+          {
+            "speaker": "Mei Chen",
+            "text": "Und die Abnahme?"
+          },
+          {
+            "speaker": "Dana Okafor",
+            "text": "Die Kollegen in Manchester sagen {term} dazu. Wir haben sie am siebten Tag gefahren, im zweiten Versuch hat sie bestanden.",
+            "term": {
+              "text": "factory acceptance test",
+              "lang": "en"
+            }
+          }
+        ]
+      }
     }
   },
   "detail": {

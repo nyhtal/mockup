@@ -131,7 +131,15 @@
     "visitSubject": "زيارة مكتب {city}",
     "feedLink": "تابع المدونة في قارئ الخلاصات (Atom)",
     "previousPrice": "السعر السابق",
-    "comma": "، "
+    "comma": "، ",
+    "changeAdded": "جديد",
+    "changeChanged": "تغيير",
+    "changeFixed": "إصلاح",
+    "changeRemoved": "إزالة",
+    "versions": "الإصدارات",
+    "episode": "الحلقة {n}",
+    "transcript": "النص المكتوب",
+    "downloadAudio": "تنزيل الصوت (WAV)"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

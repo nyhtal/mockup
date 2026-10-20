@@ -1300,6 +1300,122 @@
           "body": "<p>Siemens, Rockwell and Beckhoff from the same description.</p>"
         }
       ]
+    },
+    "changelog": {
+      "type": "changelog",
+      "releases": [
+        {
+          "version": "2.4.0",
+          "name": "Studio 2.4",
+          "dateIso": "2026-10-06",
+          "items": [
+            {
+              "kind": "added",
+              "text": "Recipe limits per line lead, set in `limits.yaml`."
+            },
+            {
+              "kind": "changed",
+              "text": "Generation checks interlocks before rules, so a missing interlock stops the run first."
+            },
+            {
+              "kind": "fixed",
+              "text": "Station names with an ampersand no longer break the review export."
+            }
+          ]
+        },
+        {
+          "version": "1.9.0",
+          "name": "Edge 1.9",
+          "dateIso": "2026-09-15",
+          "items": [
+            {
+              "kind": "added",
+              "text": "Sensor health on the Edge dashboard, refreshed every 5 s."
+            },
+            {
+              "kind": "fixed",
+              "text": "A restart after a power cut no longer replays the last recipe change."
+            }
+          ]
+        },
+        {
+          "version": "3.2.0",
+          "name": "Cloud 3.2",
+          "dateIso": "2026-08-28",
+          "items": [
+            {
+              "kind": "changed",
+              "text": "Audit trail exports are signed with the plant's own key."
+            },
+            {
+              "kind": "removed",
+              "text": "The old CSV import. Use `northwind import --format=xlsx` instead."
+            }
+          ]
+        },
+        {
+          "version": "2.3.0",
+          "name": "Studio 2.3",
+          "dateIso": "2026-07-30",
+          "items": [
+            {
+              "kind": "added",
+              "text": "Line descriptions in German and Arabic."
+            },
+            {
+              "kind": "fixed",
+              "text": "[[Ctrl]]+[[Z]] undoes a deleted station again."
+            }
+          ]
+        }
+      ],
+      "title": "All releases"
+    },
+    "podcast-episode": {
+      "type": "podcast-episode",
+      "title": "Nine days to commissioning",
+      "episode": {
+        "number": 12,
+        "dateIso": "2026-10-08",
+        "duration": "PT6S",
+        "durationLabel": "0:06",
+        "audio": "/assets/files/line-notes-12.wav",
+        "captions": {
+          "src": "/assets/files/en/line-notes-12.vtt",
+          "srclang": "en",
+          "label": "English",
+          "cues": [
+            {
+              "start": "00:00.000",
+              "end": "00:06.000",
+              "text": "[Chime] A placeholder clip. The episode is the transcript on this page."
+            }
+          ]
+        },
+        "notes": "*[FAT]: factory acceptance test\n\nMei Chen talks to Dana Okafor, quality lead at Brightline Pharma, about the filling line that went from description to production in nine days, and about the FAT that passed on its second run.",
+        "transcript": [
+          {
+            "speaker": "Mei Chen",
+            "text": "Dana, nine days. What did the first morning look like?"
+          },
+          {
+            "speaker": "Dana Okafor",
+            "text": "We read the description out loud with the line leads. Every sentence had to be true on the floor."
+          },
+          {
+            "speaker": "Mei Chen",
+            "text": "And the acceptance test?"
+          },
+          {
+            "speaker": "Dana Okafor",
+            "text": "Our Hamburg colleagues call it the {term}. We ran it on day seven, and it passed on the second try.",
+            "term": {
+              "text": "Werksabnahme",
+              "lang": "de"
+            }
+          }
+        ]
+      }
     }
   },
   "detail": {

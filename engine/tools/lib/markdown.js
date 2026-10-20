@@ -54,6 +54,11 @@ export function renderMarkdown(md) {
   return parser.renderer.render(tokens, parser.options, env).trim();
 }
 
+/** One line of Markdown → inline HTML (no paragraph), with the semantics plugin (changelog items; to-do 7). */
+export function renderInline(md) {
+  return new MarkdownIt({ html: false, linkify: false, typographer: false }).use(semantics).renderInline(String(md || ""), {});
+}
+
 /** h2 and h3 entries for the toc component, in document order. */
 export function tocOf(md) {
   return headings(md).filter((h) => h.level === 2 || h.level === 3).map(({ id, text, level }) => ({ id, text, level }));

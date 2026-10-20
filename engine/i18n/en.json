@@ -131,7 +131,15 @@
     "visitSubject": "Visiting the {city} office",
     "feedLink": "Follow the blog in a feed reader (Atom)",
     "previousPrice": "Previously",
-    "comma": ", "
+    "comma": ", ",
+    "changeAdded": "Added",
+    "changeChanged": "Changed",
+    "changeFixed": "Fixed",
+    "changeRemoved": "Removed",
+    "versions": "Versions",
+    "episode": "Episode {n}",
+    "transcript": "Transcript",
+    "downloadAudio": "Download the audio (WAV)"
   },
   "footer": {
     "rights": "All rights reserved.",

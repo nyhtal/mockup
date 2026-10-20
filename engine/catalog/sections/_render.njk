@@ -70,6 +70,8 @@
 {% from "sections/was-this-helpful.njk" import render as wasThisHelpful with context %}
 {% from "sections/preferences-form.njk" import render as preferencesForm with context %}
 {% from "sections/unsubscribe-form.njk" import render as unsubscribeForm with context %}
+{% from "sections/changelog.njk" import render as changelog with context %}
+{% from "sections/podcast-episode.njk" import render as podcastEpisode with context %}
 {% macro section(s, ctx) %}
 {%- set t = s.type -%}
 {%- if t == "hero" %}{{ hero(s, ctx) }}
@@ -116,6 +118,8 @@
 {%- elif t == "integration-grid" %}{{ integrationGrid(s, ctx) }}
 {%- elif t == "resource-tabs" %}{{ resourceTabs(s, ctx) }}
 {%- elif t == "glossary-list" %}{{ glossaryList(s, ctx) }}
+{%- elif t == "changelog" %}{{ changelog(s, ctx) }}
+{%- elif t == "podcast-episode" %}{{ podcastEpisode(s, ctx) }}
 {%- elif t == "help-categories" %}{{ helpCategories(s, ctx) }}
 {%- elif t == "search-box" %}{{ searchBox(s, ctx) }}
 {%- elif t == "search-results" %}{{ searchResults(s, ctx) }}

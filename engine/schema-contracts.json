@@ -1,57 +1,474 @@
 {
-  "home": { "required": ["Organization", "WebSite", "WebPage"] },
-  "error": { "required": ["Organization", "WebSite", "WebPage"] },
-  "style-guide": { "required": ["Organization", "WebSite", "WebPage"] },
-  "redirect": { "required": ["WebSite"] },
-  "generic": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
-  "legal": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
-  "newsletter": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
-  "preferences": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
-  "unsubscribe": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
-  "landing": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
-  "thank-you": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
-  "sitemap": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList"] },
-  "about": { "required": ["Organization", "WebSite", "AboutPage", "BreadcrumbList"] },
-  "history": { "required": ["Organization", "WebSite", "AboutPage", "BreadcrumbList"] },
-  "values": { "required": ["Organization", "WebSite", "AboutPage", "BreadcrumbList"] },
-  "culture": { "required": ["Organization", "WebSite", "AboutPage", "BreadcrumbList"] },
-  "sustainability": { "required": ["Organization", "WebSite", "AboutPage", "BreadcrumbList"] },
-  "trust": { "required": ["Organization", "WebSite", "AboutPage", "BreadcrumbList"] },
-  "team": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList", "Person"] },
-  "person": { "required": ["Organization", "WebSite", "ProfilePage", "BreadcrumbList", "Person"] },
-  "author": { "required": ["Organization", "WebSite", "ProfilePage", "BreadcrumbList", "Person"] },
-  "locations": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList", "Place"] },
-  "office": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Place"] },
-  "collection": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "services": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "products": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "industries": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "partners": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "customers": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "resources": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "archive": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "downloads": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "events": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "glossary": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "help": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "news": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "media-kit": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "careers": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList"] },
-  "service": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Service"] },
-  "industry": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Service"] },
-  "product": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Product"] },
-  "pricing": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Product", "Offer"] },
-  "article": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Article"] },
-  "case-study": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Article"] },
-  "download": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Article"] },
-  "doc": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Article"] },
-  "blog": { "required": ["Organization", "WebSite", "CollectionPage", "BreadcrumbList", "Blog"] },
-  "post": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "BlogPosting", "Person"] },
-  "event": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "Event"] },
-  "faq": { "required": ["Organization", "WebSite", "FAQPage", "BreadcrumbList"] },
-  "press-release": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "NewsArticle"] },
-  "job": { "required": ["Organization", "WebSite", "WebPage", "BreadcrumbList", "JobPosting"] },
-  "contact": { "required": ["Organization", "WebSite", "ContactPage", "BreadcrumbList", "ContactPoint"] },
-  "demo": { "required": ["Organization", "WebSite", "ContactPage", "BreadcrumbList", "ContactPoint"] },
-  "search": { "required": ["Organization", "WebSite", "SearchResultsPage", "BreadcrumbList"] }
+  "home": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage"
+    ]
+  },
+  "error": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage"
+    ]
+  },
+  "style-guide": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage"
+    ]
+  },
+  "redirect": {
+    "required": [
+      "WebSite"
+    ]
+  },
+  "generic": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "legal": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "newsletter": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "preferences": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "unsubscribe": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "landing": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "thank-you": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "sitemap": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "about": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "AboutPage",
+      "BreadcrumbList"
+    ]
+  },
+  "history": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "AboutPage",
+      "BreadcrumbList"
+    ]
+  },
+  "values": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "AboutPage",
+      "BreadcrumbList"
+    ]
+  },
+  "culture": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "AboutPage",
+      "BreadcrumbList"
+    ]
+  },
+  "sustainability": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "AboutPage",
+      "BreadcrumbList"
+    ]
+  },
+  "trust": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "AboutPage",
+      "BreadcrumbList"
+    ]
+  },
+  "team": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList",
+      "Person"
+    ]
+  },
+  "person": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "ProfilePage",
+      "BreadcrumbList",
+      "Person"
+    ]
+  },
+  "author": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "ProfilePage",
+      "BreadcrumbList",
+      "Person"
+    ]
+  },
+  "locations": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList",
+      "Place"
+    ]
+  },
+  "office": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Place"
+    ]
+  },
+  "collection": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "services": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "products": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "industries": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "partners": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "customers": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "resources": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "archive": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "downloads": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "events": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "glossary": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "help": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "news": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "media-kit": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "careers": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList"
+    ]
+  },
+  "service": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Service"
+    ]
+  },
+  "industry": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Service"
+    ]
+  },
+  "product": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Product"
+    ]
+  },
+  "pricing": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Product",
+      "Offer"
+    ]
+  },
+  "article": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Article"
+    ]
+  },
+  "case-study": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Article"
+    ]
+  },
+  "download": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Article"
+    ]
+  },
+  "doc": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Article"
+    ]
+  },
+  "blog": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "CollectionPage",
+      "BreadcrumbList",
+      "Blog"
+    ]
+  },
+  "post": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "BlogPosting",
+      "Person"
+    ]
+  },
+  "event": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "Event"
+    ]
+  },
+  "faq": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "FAQPage",
+      "BreadcrumbList"
+    ]
+  },
+  "press-release": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "NewsArticle"
+    ]
+  },
+  "job": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList",
+      "JobPosting"
+    ]
+  },
+  "contact": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "ContactPage",
+      "BreadcrumbList",
+      "ContactPoint"
+    ]
+  },
+  "demo": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "ContactPage",
+      "BreadcrumbList",
+      "ContactPoint"
+    ]
+  },
+  "search": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "SearchResultsPage",
+      "BreadcrumbList"
+    ]
+  },
+  "changelog": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
+  "podcast": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  }
 }

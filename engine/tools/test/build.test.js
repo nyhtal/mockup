@@ -315,6 +315,27 @@ test("element semantics in pages (to-do 6c): article with its header, wbr, ins a
   assert.match(readFileSync("dist/reference/assets/enhance.js", "utf8"), /data-estimate|dataset\.estimate/, "enhance.js keeps the output current");
 });
 
+test("new pages (to-do 7a): a changelog of release articles, a podcast episode with audio, captions and a transcript", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  const cl = read("en/changelog");
+  assert.equal((cl.match(/<article id="v\d+-\d+-\d+"/g) || []).length, 4, "one article per release");
+  assert.match(cl, /<a href="#v2-4-0"[^>]*>Studio 2\.4<\/a>/, "jump links to each release");
+  assert.match(cl, /<article id="v2-4-0"[^>]*>\n<header[^>]*>\n<h3[^>]*><data value="2\.4\.0">Studio 2\.4<\/data><\/h3>\n<p[^>]*><time datetime="2026-10-06">/);
+  assert.match(cl, /<code>limits\.yaml<\/code>/);
+  assert.match(cl, /<kbd>Ctrl<\/kbd>\+<kbd>Z<\/kbd>/);
+  const pod = read("ar/resources/podcast");
+  assert.match(pod, /<audio controls preload="none"[^>]*>\n<source src="\/assets\/files\/line-notes-12\.wav" type="audio\/wav">\n<track kind="captions" src="\/assets\/files\/ar\/line-notes-12\.vtt" srclang="ar" label="العربية" default>/);
+  assert.match(pod, /<time datetime="PT6S">0:06<\/time>/);
+  assert.match(pod, /<p[^>]*><b class="[^"]*">مي تشين:<\/b> /, "speaker names in <b>");
+  assert.match(pod, /<i lang="en" dir="ltr">factory acceptance test<\/i>/);
+  assert.match(pod, /<abbr title="اختبار القبول في المصنع">FAT<\/abbr>/);
+  assert.ok(readFileSync("dist/reference/assets/files/line-notes-12.wav").subarray(0, 4).toString() === "RIFF");
+  assert.match(readFileSync("dist/reference/assets/files/de/line-notes-12.vtt", "utf8"), /^WEBVTT\n\n1\n00:00\.000 --> 00:06\.000\n\[Signalton\]/);
+  const footer = read("de/trust");
+  assert.match(footer, /<a href="\/de\/changelog\/"[^>]*>Neuigkeiten<\/a>/);
+  assert.match(footer, /<a href="\/de\/resources\/podcast\/"[^>]*>Podcast<\/a>/);
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

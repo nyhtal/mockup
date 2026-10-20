@@ -29,6 +29,27 @@ export function csv(rows) {
   return Buffer.from(rows.map((r) => r.map((c) => (/[",\n]/.test(String(c)) ? `"${String(c).replace(/"/g, '""')}"` : String(c))).join(",")).join("\r\n") + "\r\n", "utf8");
 }
 
+/** A short three-note chime as 8 kHz 8-bit mono WAV: the placeholder audio of the podcast episode (to-do 7). */
+export function wav(seconds = 6) {
+  const rate = 8000, n = Math.round(rate * seconds), data = Buffer.alloc(n);
+  const notes = [[523.25, 0], [659.25, 0.35], [783.99, 0.7]];
+  for (let i = 0; i < n; i++) {
+    const t = i / rate;
+    let v = 0;
+    for (const [f, at] of notes) if (t >= at) v += Math.sin(2 * Math.PI * f * (t - at)) * Math.exp(-(t - at) * 2.2) * 0.28;
+    data[i] = Math.max(0, Math.min(255, Math.round(128 + v * 127)));
+  }
+  const h = Buffer.alloc(44);
+  h.write("RIFF", 0); h.writeUInt32LE(36 + n, 4); h.write("WAVE", 8); h.write("fmt ", 12); h.writeUInt32LE(16, 16); h.writeUInt16LE(1, 20); h.writeUInt16LE(1, 22);
+  h.writeUInt32LE(rate, 24); h.writeUInt32LE(rate, 28); h.writeUInt16LE(1, 32); h.writeUInt16LE(8, 34); h.write("data", 36); h.writeUInt32LE(n, 40);
+  return Buffer.concat([h, data]);
+}
+
+/** WebVTT captions from [{ start, end, text }]. */
+export function vtt(cues) {
+  return Buffer.from("WEBVTT\n\n" + cues.map((c, i) => `${i + 1}\n${c.start} --> ${c.end}\n${c.text}\n`).join("\n"), "utf8");
+}
+
 const icsText = (s) => String(s || "").replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r?\n/g, "\\n");
 /** Lines longer than 75 octets fold onto continuation lines (RFC 5545 §3.1). */
 const fold = (line) => { const out = []; let rest = Buffer.from(line, "utf8"); while (rest.length > 75) { let cut = 75; while ((rest[cut] & 0xc0) === 0x80) cut--; out.push(rest.subarray(0, cut).toString("utf8")); rest = Buffer.concat([Buffer.from(" "), rest.subarray(cut)]); } out.push(rest.toString("utf8")); return out.join("\r\n"); };

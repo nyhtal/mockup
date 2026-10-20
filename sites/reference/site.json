@@ -227,6 +227,14 @@
             "href": "/newsletter/"
           },
           {
+            "key": "nav.changelog",
+            "href": "/changelog/"
+          },
+          {
+            "key": "nav.podcast",
+            "href": "/resources/podcast/"
+          },
+          {
             "key": "nav.sitemap",
             "href": "/sitemap/"
           }
