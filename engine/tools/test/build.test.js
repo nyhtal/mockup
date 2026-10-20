@@ -336,6 +336,22 @@ test("new pages (to-do 7a): a changelog of release articles, a podcast episode w
   assert.match(footer, /<a href="\/de\/resources\/podcast\/"[^>]*>Podcast<\/a>/);
 });
 
+test("office map (to-do 7b): an image map whose areas sit on the offices' dots and link to their pages", () => {
+  const page = readFileSync("dist/reference/ar/about/locations/index.html", "utf8");
+  const img = /<img src="\/assets\/files\/ar\/office-map\.svg" usemap="#(office-map-\d+)" width="640" height="400" alt="([^"]+)"/.exec(page);
+  assert.ok(img, "an img with usemap");
+  assert.match(img[2], /مانشستر، هامبورغ، الرياض/);
+  const areas = [...page.matchAll(/<area shape="circle" coords="(\d+),(\d+),18" href="([^"]+)" alt="([^"]+)">/g)];
+  assert.equal(areas.length, 3);
+  assert.ok(page.includes(`<map name="${img[1]}">`));
+  const svg = readFileSync("dist/reference/assets/files/ar/office-map.svg", "utf8");
+  for (const [, x, y, href] of areas) {
+    assert.ok(svg.includes(`<circle cx="${x}" cy="${y}" r="8"/>`), `${href}: the hot spot is on its dot`);
+    assert.ok(existsSync(`dist/reference${href}index.html`), `${href} exists`);
+  }
+  assert.match(svg, /<text [^>]*>الرياض<\/text>/, "labels in the page's language");
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

@@ -139,7 +139,10 @@
     "versions": "Versionen",
     "episode": "Folge {n}",
     "transcript": "Transkript",
-    "downloadAudio": "Audio herunterladen (WAV)"
+    "downloadAudio": "Audio herunterladen (WAV)",
+    "officeMap": "Bürokarte",
+    "officeMapAlt": "Karte unserer Büros: {list}",
+    "officeIn": "Büro {city}"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

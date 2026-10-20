@@ -1,0 +1,29 @@
+{#
+  name: office-map
+  purpose: The offices on a map whose dots are links: an image map (<img usemap>, <map>, <area>) beside the same links as a list (to-do 7).
+  anatomy: shell(center false) > grid > div[tabindex=0](img[usemap] + map > area(circle)) + ul > li > a
+  data: s = { title, lede, items: [{ title (city), slug, href, address, geo: { lat, lng } }] } (from "offices")
+  a11y: every area has alt text and an href; the picture's alt names the offices; the list repeats the links as text; the picture keeps its pixel size (hot spots do not scale), so narrow screens scroll it inside a focusable region
+  i18n: labels in the picture come from the locale's office names (one SVG per locale)
+#}
+{% from "sections/_shell.njk" import shell with context %}
+{% macro render(s, ctx) %}
+{% call shell("office-map", s, ctx, { center: false }) %}
+{%- set names = [] %}{% for o in s.items %}{% set names = (names.push(o.title), names) %}{% endfor -%}
+<div class="grid gap-8 lg:grid-cols-5 lg:items-center">
+<div class="w-fit max-w-full overflow-x-auto rounded-xl border border-line lg:col-span-3" tabindex="0" role="region" aria-label="{{ 'ui.officeMap' | t }}">
+<img src="/assets/files/{{ ctx.locale }}/office-map.svg" usemap="#office-map-{{ ctx.index }}" width="640" height="400" alt="{{ 'ui.officeMapAlt' | t | replace('{list}', names | join('ui.comma' | t)) }}" loading="lazy" decoding="async" class="block max-w-none">
+<map name="office-map-{{ ctx.index }}">
+{%- for o in s.items %}{% set p = o.geo | mapPoint %}{% if p %}
+<area shape="circle" coords="{{ p.x }},{{ p.y }},18" href="{{ o.href }}" alt="{{ 'ui.officeIn' | t | replace('{city}', o.title) }}">
+{%- endif %}{% endfor %}
+</map>
+</div>
+<ul class="space-y-4 lg:col-span-2">
+{%- for o in s.items %}
+<li><a href="{{ o.href }}" class="group block rounded-lg border border-line bg-surface-raised p-4 hover:border-brand-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span class="block font-semibold group-hover:underline underline-offset-4">{{ o.title }}</span><span class="mt-1 block text-sm text-ink-muted">{{ o.address }}</span></a></li>
+{%- endfor %}
+</ul>
+</div>
+{% endcall %}
+{% endmacro %}

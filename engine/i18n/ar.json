@@ -139,7 +139,10 @@
     "versions": "الإصدارات",
     "episode": "الحلقة {n}",
     "transcript": "النص المكتوب",
-    "downloadAudio": "تنزيل الصوت (WAV)"
+    "downloadAudio": "تنزيل الصوت (WAV)",
+    "officeMap": "خريطة المكاتب",
+    "officeMapAlt": "خريطة مكاتبنا: {list}",
+    "officeIn": "مكتب {city}"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

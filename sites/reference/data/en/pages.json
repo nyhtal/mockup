@@ -1416,6 +1416,12 @@
           }
         ]
       }
+    },
+    "office-map": {
+      "type": "office-map",
+      "title": "Where we are",
+      "lede": "Select an office on the map, or in the list, for its address and hours.",
+      "from": "offices"
     }
   },
   "detail": {

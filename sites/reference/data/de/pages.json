@@ -1393,6 +1393,12 @@
           }
         ]
       }
+    },
+    "office-map": {
+      "type": "office-map",
+      "title": "Wo wir sind",
+      "lede": "Wählen Sie ein Büro auf der Karte oder in der Liste, um Adresse und Öffnungszeiten zu sehen.",
+      "from": "offices"
     }
   },
   "detail": {

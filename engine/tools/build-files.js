@@ -2,6 +2,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { pdf, csv, ics, vcard, wav, vtt } from "./lib/files.js";
 import { entityUrl } from "./lib/entities.js";
+import { officeMapSvg } from "./lib/office-map.js";
 
 /**
  * The files the site links to with `download` (to-do 5): a PDF per PDF download (one English file: the base-14 PDF
@@ -24,6 +25,7 @@ export function generateFiles(dist, site, data) {
     for (const ev of e.events || []) write(`${locale}/${ev.slug}.ics`, ics(ev, { url: site.url + entityUrl("events", ev.slug, locale), host, stamp }));
     const cues = data[locale]?.pages?.sections?.["podcast-episode"]?.episode?.captions?.cues;
     if (cues) write(`${locale}/line-notes-12.vtt`, vtt(cues));
+    if ((e.offices || []).some((o) => o.geo)) write(`${locale}/office-map.svg`, officeMapSvg(e.offices));
     for (const o of e.offices || []) write(`${locale}/${o.slug}.vcf`, vcard(o, { org: site.name, url: site.url + entityUrl("offices", o.slug, locale) }));
   }
 }

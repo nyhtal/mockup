@@ -9,6 +9,7 @@ import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
 import { renderMarkdown, renderInline, tocOf, wordCount, headingIds } from "./engine/tools/lib/markdown.js";
 import { semantics } from "./engine/tools/lib/markdown-semantics.js";
 import { wordBreaks } from "./engine/tools/lib/word-breaks.js";
+import { project } from "./engine/tools/lib/office-map.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
@@ -262,6 +263,8 @@ export default function (eleventyConfig) {
   });
   eleventyConfig.addFilter("md", renderMarkdown);
   eleventyConfig.addFilter("mdInline", renderInline);
+  // The office map's frame: { x, y } in the picture for a { lat, lng } (to-do 7).
+  eleventyConfig.addFilter("mapPoint", (geo) => (geo ? project(geo) : null));
   // Headings: escaped text with <wbr> at the joints of long compounds in the page's language (site.json wordBreaks).
   eleventyConfig.addFilter("wbr", function (text) { return wordBreaks(text, site.wordBreaks?.[this.ctx?.page?.lang]); });
   // The tagline in the page's language: the site's string overlay (site.tagline) or site.json's tagline.
