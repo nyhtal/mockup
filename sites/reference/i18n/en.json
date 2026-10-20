@@ -56,6 +56,8 @@
     "lp": "Campaign pages"
   },
   "site": {
-    "tagline": "Industrial automation, simplified"
+    "tagline": "Industrial automation, simplified",
+    "notice": "Webinar on 12 November: safety PLCs without the paperwork.",
+    "noticeLink": "Save a seat"
   }
 }

@@ -149,7 +149,11 @@
     "monthly": "شهريًا",
     "annual": "سنويًا، شهران مجانًا",
     "billedYearly": "يُدفع سنويًا",
-    "rated": "التقييم {n} من 5"
+    "rated": "التقييم {n} من 5",
+    "linkCopied": "تم نسخ الرابط",
+    "addressCopied": "تم نسخ العنوان",
+    "copyAddress": "نسخ العنوان",
+    "dismiss": "إغلاق"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

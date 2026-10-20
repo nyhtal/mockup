@@ -149,7 +149,11 @@
     "monthly": "Monatlich",
     "annual": "Jährlich, 2 Monate gratis",
     "billedYearly": "jährlich abgerechnet",
-    "rated": "Bewertet mit {n} von 5"
+    "rated": "Bewertet mit {n} von 5",
+    "linkCopied": "Link kopiert",
+    "addressCopied": "Adresse kopiert",
+    "copyAddress": "Adresse kopieren",
+    "dismiss": "Schließen"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

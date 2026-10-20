@@ -149,7 +149,11 @@
     "monthly": "Monthly",
     "annual": "Yearly, 2 months free",
     "billedYearly": "billed yearly",
-    "rated": "Rated {n} out of 5"
+    "rated": "Rated {n} out of 5",
+    "linkCopied": "Link copied",
+    "addressCopied": "Address copied",
+    "copyAddress": "Copy the address",
+    "dismiss": "Dismiss"
   },
   "footer": {
     "rights": "All rights reserved.",

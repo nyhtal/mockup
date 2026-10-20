@@ -377,6 +377,23 @@ test("widgets (to-do 7b, part one): a billing toggle without script, a tooltip o
   assert.match(read("en/blog"), /<div class="flex -space-x-2">(<svg aria-hidden="true"[^>]*ring-2[^>]*>[\s\S]*?<\/svg>\s*){4}<\/div>\n<p class="text-sm text-ink-muted">Read by 1,400 engineers every month<\/p>/);
 });
 
+test("widgets (to-do 7b, part two): copy and share buttons report into a live toast; the home page's notice can be dismissed for the session", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  const office = read("de/about/locations/hamburg");
+  assert.match(office, /<button type="button" data-copy="Speicherstadt 12, 20457 Hamburg, Deutschland" data-copied="Adresse kopiert" class="hidden js:inline-flex/);
+  assert.match(office, /<div role="status" aria-live="polite" class="[^"]*" data-component="toast" data-variant="live" data-toast><div hidden/);
+  const post = read("en/blog/reading-generated-code");
+  assert.match(post, /data-copy="https:\/\/example\.com\/en\/blog\/reading-generated-code\/" data-copied="Link copied"><svg[^>]*><use href="#i-link">/);
+  assert.match(post, /data-copied="Link copied" data-share><svg[^>]*><use href="#i-share-2">/);
+  assert.doesNotMatch(post, /data-component="announcement-bar"/, "the notice is on the home page only");
+  const home = read("ar");
+  assert.match(home, /<div class="relative bg-brand-700[^"]*in-data-\[notice=off\]:hidden" data-component="announcement-bar">[\s\S]*?<button type="button" data-dismiss[^>]*>[\s\S]*?<span class="sr-only">إغلاق<\/span>/);
+  const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
+  assert.match(js, /data-copy/);
+  assert.match(js, /sessionStorage\.notice=1/);
+  assert.ok(Buffer.byteLength(js) <= 5120, "enhance.js within 5 KB (D55)");
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

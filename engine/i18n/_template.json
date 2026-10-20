@@ -149,7 +149,11 @@
     "monthly": "",
     "annual": "",
     "billedYearly": "",
-    "rated": ""
+    "rated": "",
+    "linkCopied": "",
+    "addressCopied": "",
+    "copyAddress": "",
+    "dismiss": ""
   },
   "footer": {
     "rights": "",

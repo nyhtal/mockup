@@ -287,5 +287,12 @@
       "Presse",
       "Produkt"
     ]
+  },
+  "announcement": {
+    "key": "site.notice",
+    "linkKey": "site.noticeLink",
+    "href": "/events/safety-plcs-webinar/",
+    "dismissible": true,
+    "homeOnly": true
   }
 }

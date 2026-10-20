@@ -12,7 +12,7 @@
 {#- Locale typography (R-TYPO-05, R-LAY-05): German hyphenates (long compounds in headings), everything wraps long words; Arabic gets snug headings and no letter-spacing. -#}
 <body id="top" class="bg-surface font-sans text-ink antialiased{% if locale == 'de' %} hyphens-auto{% endif %} wrap-anywhere{% if locale == 'ar' %} [&_h1]:leading-snug [&_h2]:leading-snug [&_h3]:leading-snug [&_*]:tracking-normal{% endif %}" data-page="{{ pageType or 'generic' }}">
 {{ skipLink() }}
-{%- if site.announcement %}{{ announcementBar(site.announcement, locale) }}{% endif %}
+{%- if site.announcement and (pageType == "home" or not site.announcement.homeOnly) %}{{ announcementBar(site.announcement, locale) }}{% endif %}
 {{ header(site, locale, page.url, alternates, { variant: headerVariant }) }}
 {{ mobileDrawer(site.nav, locale, page.url, site.cta, alternates, { search: site.hasSearch }) }}
 <main id="main">

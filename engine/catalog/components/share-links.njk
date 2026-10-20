@@ -13,13 +13,15 @@
   data: s = { url, title }
 #}
 {% from "primitives/icon.njk" import icon with context %}
+{% from "components/toast.njk" import toast with context %}
 {% macro shareLinks(s) %}
 <div class="flex flex-wrap items-center gap-3" data-component="share-links">
 <p class="text-sm font-medium text-ink-muted">{{ "ui.share" | t }}</p>
 <menu class="flex gap-2">
 <li><a href="mailto:?subject={{ s.title | urlencode }}&amp;body={{ s.url | urlencode }}" class="inline-flex size-11 items-center justify-center rounded-md border border-line-strong text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ icon("mail") }}<span class="sr-only">{{ "ui.shareByEmail" | t }}</span></a></li>
-<li><button type="button" class="inline-flex size-11 items-center justify-center rounded-md border border-line-strong text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" disabled>{{ icon("link") }}<span class="sr-only">{{ "ui.copyLink" | t }}</span></button></li>
-<li><button type="button" class="inline-flex size-11 items-center justify-center rounded-md border border-line-strong text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" disabled>{{ icon("share-2") }}<span class="sr-only">{{ "ui.shareElsewhere" | t }}</span></button></li>
+<li><button type="button" class="hidden js:inline-flex size-11 items-center justify-center rounded-md border border-line-strong text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-copy="{{ s.url }}" data-copied="{{ 'ui.linkCopied' | t }}">{{ icon("link") }}<span class="sr-only">{{ "ui.copyLink" | t }}</span></button></li>
+<li><button type="button" class="hidden js:inline-flex size-11 items-center justify-center rounded-md border border-line-strong text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" data-copy="{{ s.url }}" data-copied="{{ 'ui.linkCopied' | t }}" data-share>{{ icon("share-2") }}<span class="sr-only">{{ "ui.shareElsewhere" | t }}</span></button></li>
 </menu>
+{{ toast({}, { live: true }) }}
 </div>
 {% endmacro %}

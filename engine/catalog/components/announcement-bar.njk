@@ -6,13 +6,15 @@
   states: none (no dismiss without JS; the owner removes it)
   spacing: py-2, container inside
   motion: none
-  keyboard: the link only
+  dismiss: a.dismissible adds a close button (script only); enhance.js sets <html data-notice="off"> and remembers it for the session, and the head script restores it before the first paint
+  keyboard: the link, then the dismiss button
   a11y: plain text and a link; brand background with ink-inverse text meets 4.5:1
   i18n: text and link label from content
   content limits: text ≤ 12 words, link label ≤ 4 words
 #}
 {% macro announcementBar(a, locale) %}
-<div class="bg-brand-700 text-sm text-ink-inverse" data-component="announcement-bar">
-<p class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-2 sm:px-6 lg:px-8"><span>{{ a.text }}</span><a href="/{{ locale }}{{ a.href }}" class="font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ a.label }}</a></p>
+<div class="relative bg-brand-700 text-sm text-ink-inverse in-data-[notice=off]:hidden" data-component="announcement-bar">
+<p class="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-12 py-2 sm:px-14 lg:px-16"><span>{{ a.text or (a.key | t) }}</span><a href="/{{ locale }}{{ a.href }}" class="font-medium underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ a.label or (a.linkKey | t) }}</a></p>
+{%- if a.dismissible %}<button type="button" data-dismiss class="absolute end-2 top-1/2 hidden size-9 -translate-y-1/2 items-center justify-center rounded-md hover:bg-ink-inverse/10 js:inline-flex focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-4"><use href="#i-x"></use></svg><span class="sr-only">{{ "ui.dismiss" | t }}</span></button>{% endif %}
 </div>
 {% endmacro %}

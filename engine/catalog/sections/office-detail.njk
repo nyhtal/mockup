@@ -8,6 +8,8 @@
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/map-facade.njk" import mapFacade with context %}
 {% from "components/data-table.njk" import dataTable with context %}
+{% from "components/toast.njk" import toast with context %}
+{% from "primitives/icon.njk" import icon with context %}
 {% macro render(s, ctx) %}
 {% call shell("office-detail", s, ctx, { center: false }) %}
 <div class="grid gap-12 lg:grid-cols-2">
@@ -20,6 +22,7 @@
 {%- if s.geo and s.geo != "," %}<p><a href="geo:{{ s.geo }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.openInMaps" | t }}</a></p>{% endif %}
 {%- if s.slug %}<p><a href="/assets/files/{{ ctx.locale }}/{{ s.slug }}.vcf" download type="text/vcard" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.saveContact" | t }} <span class="text-ink-muted">(vCard)</span></a></p>{% endif %}
 </address>
+{%- if s.address %}<p class="mt-2"><button type="button" data-copy="{{ s.address }}" data-copied="{{ 'ui.addressCopied' | t }}" class="hidden js:inline-flex min-h-11 items-center gap-2 text-sm font-medium text-ink-brand underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ icon("copy", { size: "size-4" }) }}{{ "ui.copyAddress" | t }}</button></p>{{ toast({}, { live: true }) }}{% endif %}
 {%- if s.hours %}<div class="mt-8">{{ dataTable({ caption: s.hoursCaption or ("ui.openingHours" | t), columns: [s.hoursColumns[0] if s.hoursColumns else ("ui.day" | t), s.hoursColumns[1] if s.hoursColumns else ("ui.hours" | t)], rows: s.hours }, { rowHeaders: true }) }}</div>{% endif %}
 </div>
 {{ mapFacade(s.map) }}
