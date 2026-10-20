@@ -1,0 +1,674 @@
+[
+  {
+    "el": "html",
+    "group": "Document and metadata",
+    "purpose": "The root; carries lang and dir.",
+    "href": "/en/"
+  },
+  {
+    "el": "head",
+    "group": "Document and metadata",
+    "purpose": "Metadata container.",
+    "href": "/en/"
+  },
+  {
+    "el": "title",
+    "group": "Document and metadata",
+    "purpose": "The page title in tabs and results.",
+    "href": "/en/"
+  },
+  {
+    "el": "base",
+    "group": "Document and metadata",
+    "purpose": "Base URL and default link target for the page.",
+    "href": null
+  },
+  {
+    "el": "link",
+    "group": "Document and metadata",
+    "purpose": "Stylesheets, icons, canonical and alternate links.",
+    "href": "/en/"
+  },
+  {
+    "el": "meta",
+    "group": "Document and metadata",
+    "purpose": "Charset, viewport, description, Open Graph.",
+    "href": "/en/"
+  },
+  {
+    "el": "style",
+    "group": "Document and metadata",
+    "purpose": "An embedded stylesheet; here only inside an inert template, since the CSP allows no inline styles.",
+    "href": null
+  },
+  {
+    "el": "body",
+    "group": "Sections",
+    "purpose": "The document's content.",
+    "href": "/en/"
+  },
+  {
+    "el": "article",
+    "group": "Sections",
+    "purpose": "A self-contained composition: a post, a case study, a release, a card.",
+    "href": "/en/blog/"
+  },
+  {
+    "el": "section",
+    "group": "Sections",
+    "purpose": "A thematic group with a heading.",
+    "href": "/en/"
+  },
+  {
+    "el": "nav",
+    "group": "Sections",
+    "purpose": "A block of navigation links.",
+    "href": "/en/"
+  },
+  {
+    "el": "aside",
+    "group": "Sections",
+    "purpose": "Content tangential to its surroundings: the author box.",
+    "href": "/en/blog/reading-generated-code/"
+  },
+  {
+    "el": "h1",
+    "group": "Sections",
+    "purpose": "Page title.",
+    "href": "/en/"
+  },
+  {
+    "el": "h2",
+    "group": "Sections",
+    "purpose": "Section heading.",
+    "href": "/en/"
+  },
+  {
+    "el": "h3",
+    "group": "Sections",
+    "purpose": "Sub-section heading.",
+    "href": "/en/"
+  },
+  {
+    "el": "h4",
+    "group": "Sections",
+    "purpose": "Fourth level.",
+    "href": "/en/faq/"
+  },
+  {
+    "el": "h5",
+    "group": "Sections",
+    "purpose": "Fifth level (the privacy annex).",
+    "href": "/en/legal/privacy/"
+  },
+  {
+    "el": "h6",
+    "group": "Sections",
+    "purpose": "Sixth level (the privacy annex).",
+    "href": "/en/legal/privacy/"
+  },
+  {
+    "el": "hgroup",
+    "group": "Sections",
+    "purpose": "A heading with its eyebrow and lede.",
+    "href": "/en/about/"
+  },
+  {
+    "el": "header",
+    "group": "Sections",
+    "purpose": "Introductory content: the site header, an article's header.",
+    "href": "/en/"
+  },
+  {
+    "el": "footer",
+    "group": "Sections",
+    "purpose": "Footer of the page or a section.",
+    "href": "/en/"
+  },
+  {
+    "el": "address",
+    "group": "Sections",
+    "purpose": "Contact information for the nearest article or the page.",
+    "href": "/en/about/locations/hamburg/"
+  },
+  {
+    "el": "main",
+    "group": "Sections",
+    "purpose": "The page's main content.",
+    "href": "/en/"
+  },
+  {
+    "el": "search",
+    "group": "Sections",
+    "purpose": "A search or filtering region.",
+    "href": "/en/search/"
+  },
+  {
+    "el": "p",
+    "group": "Grouping",
+    "purpose": "A paragraph.",
+    "href": "/en/"
+  },
+  {
+    "el": "hr",
+    "group": "Grouping",
+    "purpose": "A thematic break.",
+    "href": "/en/blog/reading-generated-code/"
+  },
+  {
+    "el": "pre",
+    "group": "Grouping",
+    "purpose": "Preformatted text.",
+    "href": "/en/help/describe-your-first-line/"
+  },
+  {
+    "el": "blockquote",
+    "group": "Grouping",
+    "purpose": "A quotation from another source.",
+    "href": "/en/"
+  },
+  {
+    "el": "ol",
+    "group": "Grouping",
+    "purpose": "An ordered list.",
+    "href": "/en/faq/"
+  },
+  {
+    "el": "ul",
+    "group": "Grouping",
+    "purpose": "An unordered list.",
+    "href": "/en/"
+  },
+  {
+    "el": "menu",
+    "group": "Grouping",
+    "purpose": "A toolbar of commands: the share buttons.",
+    "href": "/en/blog/reading-generated-code/"
+  },
+  {
+    "el": "li",
+    "group": "Grouping",
+    "purpose": "A list item.",
+    "href": "/en/"
+  },
+  {
+    "el": "dl",
+    "group": "Grouping",
+    "purpose": "A description list.",
+    "href": "/en/glossary/"
+  },
+  {
+    "el": "dt",
+    "group": "Grouping",
+    "purpose": "A term in a description list.",
+    "href": "/en/glossary/"
+  },
+  {
+    "el": "dd",
+    "group": "Grouping",
+    "purpose": "A description.",
+    "href": "/en/glossary/"
+  },
+  {
+    "el": "figure",
+    "group": "Grouping",
+    "purpose": "Self-contained media with a caption.",
+    "href": "/en/"
+  },
+  {
+    "el": "figcaption",
+    "group": "Grouping",
+    "purpose": "A figure's caption.",
+    "href": "/en/"
+  },
+  {
+    "el": "div",
+    "group": "Grouping",
+    "purpose": "A generic container.",
+    "href": "/en/"
+  },
+  {
+    "el": "a",
+    "group": "Text-level",
+    "purpose": "A hyperlink: pages, tel:, sms:, mailto:, geo:, downloads, in-page anchors.",
+    "href": "/en/"
+  },
+  {
+    "el": "em",
+    "group": "Text-level",
+    "purpose": "Stress emphasis.",
+    "href": "/en/blog/reading-generated-code/"
+  },
+  {
+    "el": "strong",
+    "group": "Text-level",
+    "purpose": "Importance.",
+    "href": "/en/blog/reading-generated-code/"
+  },
+  {
+    "el": "small",
+    "group": "Text-level",
+    "purpose": "Side comments and fine print: the copyright line.",
+    "href": "/en/"
+  },
+  {
+    "el": "s",
+    "group": "Text-level",
+    "purpose": "No longer accurate: the replaced price.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "cite",
+    "group": "Text-level",
+    "purpose": "The title of a work.",
+    "href": "/en/blog/reading-generated-code/"
+  },
+  {
+    "el": "q",
+    "group": "Text-level",
+    "purpose": "An inline quotation; the browser adds the language's quotation marks.",
+    "href": "/en/news/riyadh-office/"
+  },
+  {
+    "el": "dfn",
+    "group": "Text-level",
+    "purpose": "The defining instance of a term: the glossary.",
+    "href": "/en/glossary/"
+  },
+  {
+    "el": "abbr",
+    "group": "Text-level",
+    "purpose": "An abbreviation with its expansion.",
+    "href": "/en/blog/sensor-logic-at-the-edge/"
+  },
+  {
+    "el": "ruby",
+    "group": "Text-level",
+    "purpose": "Ruby annotation for East Asian typography.",
+    "href": null
+  },
+  {
+    "el": "rt",
+    "group": "Text-level",
+    "purpose": "The ruby text.",
+    "href": null
+  },
+  {
+    "el": "rp",
+    "group": "Text-level",
+    "purpose": "Fallback parentheses for browsers without ruby.",
+    "href": null
+  },
+  {
+    "el": "data",
+    "group": "Text-level",
+    "purpose": "A value with a machine-readable form: versions, figures, prices.",
+    "href": "/en/changelog/"
+  },
+  {
+    "el": "time",
+    "group": "Text-level",
+    "purpose": "A date, time or duration.",
+    "href": "/en/changelog/"
+  },
+  {
+    "el": "code",
+    "group": "Text-level",
+    "purpose": "Code.",
+    "href": "/en/changelog/"
+  },
+  {
+    "el": "var",
+    "group": "Text-level",
+    "purpose": "A variable.",
+    "href": "/en/help/describe-your-first-line/"
+  },
+  {
+    "el": "samp",
+    "group": "Text-level",
+    "purpose": "Program output.",
+    "href": "/en/help/describe-your-first-line/"
+  },
+  {
+    "el": "kbd",
+    "group": "Text-level",
+    "purpose": "Keyboard input.",
+    "href": "/en/help/describe-your-first-line/"
+  },
+  {
+    "el": "sub",
+    "group": "Text-level",
+    "purpose": "Subscript: CO₂.",
+    "href": "/en/customers/alder-foods/"
+  },
+  {
+    "el": "sup",
+    "group": "Text-level",
+    "purpose": "Superscript: m².",
+    "href": "/en/customers/alder-foods/"
+  },
+  {
+    "el": "i",
+    "group": "Text-level",
+    "purpose": "Text in an alternate voice: a term from another language.",
+    "href": "/en/resources/podcast/"
+  },
+  {
+    "el": "b",
+    "group": "Text-level",
+    "purpose": "Text drawn attention to without importance: speaker names in a transcript.",
+    "href": "/en/resources/podcast/"
+  },
+  {
+    "el": "u",
+    "group": "Text-level",
+    "purpose": "An unarticulated annotation: a misspelling.",
+    "href": null
+  },
+  {
+    "el": "mark",
+    "group": "Text-level",
+    "purpose": "Highlighted for relevance: the search query in results.",
+    "href": "/en/search/"
+  },
+  {
+    "el": "bdi",
+    "group": "Text-level",
+    "purpose": "Isolated text of unknown direction: names and the visitor's query.",
+    "href": "/ar/customers/"
+  },
+  {
+    "el": "bdo",
+    "group": "Text-level",
+    "purpose": "Overrides the text direction.",
+    "href": null
+  },
+  {
+    "el": "span",
+    "group": "Text-level",
+    "purpose": "A generic inline container.",
+    "href": "/en/"
+  },
+  {
+    "el": "br",
+    "group": "Text-level",
+    "purpose": "A line break.",
+    "href": "/en/contact/"
+  },
+  {
+    "el": "wbr",
+    "group": "Text-level",
+    "purpose": "A line-break opportunity: long German compounds.",
+    "href": "/de/blog/"
+  },
+  {
+    "el": "ins",
+    "group": "Edits",
+    "purpose": "An addition to the document: the terms' change history.",
+    "href": "/en/legal/terms/"
+  },
+  {
+    "el": "del",
+    "group": "Edits",
+    "purpose": "A removal from the document.",
+    "href": "/en/legal/terms/"
+  },
+  {
+    "el": "picture",
+    "group": "Embedded content",
+    "purpose": "Responsive image sources.",
+    "href": "/en/"
+  },
+  {
+    "el": "source",
+    "group": "Embedded content",
+    "purpose": "A media or image source.",
+    "href": "/en/"
+  },
+  {
+    "el": "img",
+    "group": "Embedded content",
+    "purpose": "An image.",
+    "href": "/en/"
+  },
+  {
+    "el": "iframe",
+    "group": "Embedded content",
+    "purpose": "A nested document: the framed newsletter issue.",
+    "href": "/en/newsletter/"
+  },
+  {
+    "el": "embed",
+    "group": "Embedded content",
+    "purpose": "External content: a PDF preview.",
+    "href": "/en/resources/downloads/safety-evidence-guide/"
+  },
+  {
+    "el": "object",
+    "group": "Embedded content",
+    "purpose": "External content with fallback: a PDF preview.",
+    "href": "/en/resources/downloads/commissioning-checklist/"
+  },
+  {
+    "el": "video",
+    "group": "Embedded content",
+    "purpose": "A video.",
+    "href": "/en/"
+  },
+  {
+    "el": "audio",
+    "group": "Embedded content",
+    "purpose": "Audio: the podcast episode.",
+    "href": "/en/resources/podcast/"
+  },
+  {
+    "el": "track",
+    "group": "Embedded content",
+    "purpose": "Captions for media.",
+    "href": "/en/resources/podcast/"
+  },
+  {
+    "el": "map",
+    "group": "Embedded content",
+    "purpose": "An image map.",
+    "href": "/en/about/locations/"
+  },
+  {
+    "el": "area",
+    "group": "Embedded content",
+    "purpose": "A hot spot in an image map.",
+    "href": "/en/about/locations/"
+  },
+  {
+    "el": "canvas",
+    "group": "Embedded content",
+    "purpose": "A scriptable bitmap with fallback content.",
+    "href": null
+  },
+  {
+    "el": "table",
+    "group": "Tables",
+    "purpose": "Tabular data.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "caption",
+    "group": "Tables",
+    "purpose": "A table's title.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "colgroup",
+    "group": "Tables",
+    "purpose": "A group of columns.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "col",
+    "group": "Tables",
+    "purpose": "One column or a span of them.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "tbody",
+    "group": "Tables",
+    "purpose": "Table body rows.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "thead",
+    "group": "Tables",
+    "purpose": "Header rows.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "tfoot",
+    "group": "Tables",
+    "purpose": "Footer rows: the price row.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "tr",
+    "group": "Tables",
+    "purpose": "A row.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "td",
+    "group": "Tables",
+    "purpose": "A data cell.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "th",
+    "group": "Tables",
+    "purpose": "A header cell.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "form",
+    "group": "Forms",
+    "purpose": "A form.",
+    "href": "/en/blog/"
+  },
+  {
+    "el": "label",
+    "group": "Forms",
+    "purpose": "A control's caption.",
+    "href": "/en/blog/"
+  },
+  {
+    "el": "input",
+    "group": "Forms",
+    "purpose": "A control: text, email, date, time, range, radio, checkbox, file…",
+    "href": "/en/blog/"
+  },
+  {
+    "el": "button",
+    "group": "Forms",
+    "purpose": "A button.",
+    "href": "/en/"
+  },
+  {
+    "el": "select",
+    "group": "Forms",
+    "purpose": "A list box.",
+    "href": "/en/demo/"
+  },
+  {
+    "el": "datalist",
+    "group": "Forms",
+    "purpose": "Suggestions for an input.",
+    "href": "/en/search/"
+  },
+  {
+    "el": "optgroup",
+    "group": "Forms",
+    "purpose": "A group of options.",
+    "href": "/en/careers/"
+  },
+  {
+    "el": "option",
+    "group": "Forms",
+    "purpose": "An option.",
+    "href": "/en/demo/"
+  },
+  {
+    "el": "textarea",
+    "group": "Forms",
+    "purpose": "Multi-line text.",
+    "href": "/en/demo/"
+  },
+  {
+    "el": "output",
+    "group": "Forms",
+    "purpose": "A calculated result.",
+    "href": "/en/pricing/"
+  },
+  {
+    "el": "progress",
+    "group": "Forms",
+    "purpose": "Completion of a task.",
+    "href": "/en/careers/technical-writer/"
+  },
+  {
+    "el": "meter",
+    "group": "Forms",
+    "purpose": "A measurement within a known range.",
+    "href": "/en/sustainability/"
+  },
+  {
+    "el": "fieldset",
+    "group": "Forms",
+    "purpose": "A group of controls.",
+    "href": "/en/search/"
+  },
+  {
+    "el": "legend",
+    "group": "Forms",
+    "purpose": "A fieldset's caption.",
+    "href": "/en/search/"
+  },
+  {
+    "el": "details",
+    "group": "Interactive",
+    "purpose": "A disclosure: the FAQ, accordions, tabs.",
+    "href": "/en/"
+  },
+  {
+    "el": "summary",
+    "group": "Interactive",
+    "purpose": "A disclosure's label.",
+    "href": "/en/"
+  },
+  {
+    "el": "dialog",
+    "group": "Interactive",
+    "purpose": "A dialog: the lightbox, consent preferences.",
+    "href": "/en/careers/culture/"
+  },
+  {
+    "el": "script",
+    "group": "Scripting",
+    "purpose": "Script: the theme check in the head, enhance.js, JSON-LD.",
+    "href": "/en/"
+  },
+  {
+    "el": "noscript",
+    "group": "Scripting",
+    "purpose": "Content for when script is off.",
+    "href": null
+  },
+  {
+    "el": "template",
+    "group": "Scripting",
+    "purpose": "Inert markup for script to clone.",
+    "href": null
+  },
+  {
+    "el": "slot",
+    "group": "Scripting",
+    "purpose": "A placeholder in a web component's shadow tree.",
+    "href": null
+  }
+]

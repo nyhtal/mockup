@@ -438,13 +438,26 @@ test("widgets test page (owner's request): every widget on one page, each linked
   assert.match(readFileSync("dist/reference/en/style-guide/index.html", "utf8"), /href="\/en\/style-guide\/widgets\/"/, "linked from the style guide");
 });
 
+test("HTML element reference (to-do 8): every element of the standard is listed, each linked page really uses it, and every element appears on the site", () => {
+  const list = JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8"));
+  assert.ok(list.length >= 110, `${list.length} elements`);
+  const ref = readFileSync("dist/reference/en/style-guide/html/index.html", "utf8");
+  assert.match(ref, /<base href="\/en\/style-guide\/html\/" target="_self">/);
+  const has = (html, el) => new RegExp(`<${el}[\\s>/]`).test(html);
+  for (const e of list) {
+    assert.ok(ref.includes(`<tr id="el-${e.el}"`), `${e.el} is listed`);
+    if (e.href) assert.ok(has(readFileSync(`dist/reference${e.href}index.html`, "utf8"), e.el), `${e.href} uses <${e.el}>`);
+    else assert.ok(has(ref, e.el) && ref.includes(`id="live-${e.el}"`), `<${e.el}> is shown live on the reference page`);
+  }
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {
     for (const name of readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, name.name);
       if (name.isDirectory()) walk(p);
-      else if (name.name.endsWith(".html") && /&lt;\/?(?:p|strong|em|ul|ol|li|h[1-6]|br)\b|&lt;a href/.test(readFileSync(p, "utf8"))) offenders.push(p);
+      else if (name.name.endsWith(".html") && !p.replace(/\\/g, "/").includes("style-guide/html/") && /&lt;\/?(?:p|strong|em|ul|ol|li|h[1-6]|br)\b|&lt;a href/.test(readFileSync(p, "utf8"))) offenders.push(p);
     }
   };
   walk("dist/reference");
