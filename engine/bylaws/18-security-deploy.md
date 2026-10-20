@@ -3,8 +3,8 @@
 Purpose: what a static host needs from the build so the mockup deploys safely anywhere: headers, error pages, redirects, discovery files and the consent story. Sources: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP, https://owasp.org/www-project-secure-headers/, https://www.rfc-editor.org/rfc/rfc9116, https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag.
 
 ### R-DEPLOY-01 Headers file
-MUST. The build emits `_headers` (Netlify/Cloudflare syntax) and `headers.json` (generic) with: `Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()`, `Strict-Transport-Security: max-age=31536000; includeSubDomains`, and the asset cache rule from R-PERF-11.
-Why: A strict CSP is only possible because the site has no inline scripts and no third parties; shipping it proves that.
+MUST. The build emits `_headers` (Netlify/Cloudflare syntax) and `headers.json` (generic) with: `Content-Security-Policy: default-src 'self'; img-src 'self' data:; style-src 'self'; script-src 'self'` plus the theme script's `sha256` hash (D54)`; font-src 'self'; connect-src 'self'; frame-src 'self'; object-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests`, `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin`, `Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()`, `Strict-Transport-Security: max-age=31536000; includeSubDomains`, and the asset cache rule from R-PERF-11.
+Why: A strict CSP is only possible because the site has no inline scripts and no third parties; shipping it proves that. Frames and objects are allowed from the site itself only: the newsletter preview is a same-origin `<iframe>` and the download pages preview their PDF in `<object>` / `<embed>` (to-do 7); no other origin can frame the site or be framed by it.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-DEPLOY-02 JSON-LD under CSP
@@ -13,7 +13,7 @@ Why: Correctness of the CSP claim.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-DEPLOY-03 Facades and CSP
-MUST. When a facade loads a third-party iframe after a click, the site's `DECISIONS.md` lists the provider origin to add to `frame-src`; the shipped CSP stays `frame-src 'none'` until then.
+MUST. When a facade loads a third-party iframe after a click, the site's `DECISIONS.md` lists the provider origin to add to `frame-src`; the shipped CSP stays `frame-src 'self'` until then.
 Why: The exception must be deliberate and documented.
 Gate: manual: checklists/pre-delivery.md
 

@@ -1151,7 +1151,8 @@
       "related": [
         "safety-evidence-guide",
         "downtime-calculator"
-      ]
+      ],
+      "preview": "object"
     },
     {
       "slug": "safety-evidence-guide",
@@ -1176,7 +1177,8 @@
       "gated": true,
       "related": [
         "commissioning-checklist"
-      ]
+      ],
+      "preview": "embed"
     },
     {
       "slug": "downtime-calculator",

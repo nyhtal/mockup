@@ -1,0 +1,30 @@
+{#- A newsletter issue as its own document (to-do 7): what the subscriber's mail client shows, framed by the newsletter page.
+    No site chrome; the site stylesheet, light scheme only; links open in the top window. noindex, out of the sitemap. -#}
+<!DOCTYPE html>
+<html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }} · {{ site.name }}</title>
+<meta name="description" content="{{ description }}">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="/assets/app.css">
+<script type="application/ld+json">{{ schemaJson | safe }}</script>
+</head>
+<body class="bg-surface-raised font-sans text-ink antialiased">
+<main class="mx-auto max-w-xl px-6 py-10">
+<p class="text-sm font-semibold uppercase tracking-wide text-ink-brand">{{ site.name }}</p>
+<h1 class="mt-2 text-3xl font-bold tracking-tight">{{ title }}</h1>
+<p class="mt-3 text-base text-ink-muted">{{ intro }}</p>
+{%- for st in stories %}
+<article class="mt-8 border-t border-line pt-6">
+<h2 class="text-xl font-semibold"><a href="{{ st.href }}" target="_top" class="underline-offset-4 hover:underline">{{ st.title }}</a></h2>
+<p class="mt-2 text-base leading-relaxed text-ink-muted">{{ st.text }}</p>
+</article>
+{%- endfor %}
+<footer class="mt-10 border-t border-line pt-6 text-sm text-ink-muted">
+<p>{{ footerNote }} <a href="/{{ locale }}/newsletter/unsubscribe/" target="_top" class="underline underline-offset-4">{{ unsubscribe }}</a></p>
+</footer>
+</main>
+</body>
+</html>

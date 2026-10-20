@@ -142,7 +142,9 @@
     "downloadAudio": "Audio herunterladen (WAV)",
     "officeMap": "Bürokarte",
     "officeMapAlt": "Karte unserer Büros: {list}",
-    "officeIn": "Büro {city}"
+    "officeIn": "Büro {city}",
+    "openIssue": "Ausgabe allein öffnen",
+    "pdfPreview": "Vorschau der Beispielseite (PDF)"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

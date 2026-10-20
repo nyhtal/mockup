@@ -2,7 +2,7 @@
   name: download-detail
   purpose: A whitepaper or report: cover, summary, contents list, and the download button (or the gated form below).
   anatomy: shell(center false) > grid > picture(cover) + div(badge + prose + ul + button)
-  data: s = { title, slug, gated, fileType, pages, summary (html), contents: [], cover: {slug, ratio, alt}, cta: { label, href } }
+  data: s = { title, slug, gated, preview: object|embed (the sample PDF in place), fileType, pages, summary (html), contents: [], cover: {slug, ratio, alt}, cta: { label, href } }
   links: an ungated file downloads directly (download, its MIME type); a gated one offers a sample page beside the form; the files are English, so other locales mark them hreflang="en" (to-do 5)
 #}
 {% from "sections/_shell.njk" import shell with context %}
@@ -23,6 +23,14 @@
 {%- set mime = { pdf: "application/pdf", csv: "text/csv" }[ft] -%}
 {%- if s.cta %}<div class="mt-8">{{ button(s.cta.label, { href: s.cta.href, icon: "download" }) }}</div>
 {%- elif s.slug and s.gated == "true" and ft == "pdf" %}<p class="mt-8"><a href="/assets/files/{{ s.slug }}.pdf" download type="application/pdf"{% if ctx.locale != "en" %} hreflang="en"{% endif %} class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.downloadSample" | t }}</a></p>
+{%- if s.preview and s.slug and ft == "pdf" %}
+{#- The sample page, previewed in place (CSP object-src 'self'): <object> with a link as its fallback, or <embed>. -#}
+{%- if s.preview == "object" %}
+<object data="/assets/files/{{ s.slug }}.pdf" type="application/pdf" title="{{ 'ui.pdfPreview' | t }}" class="mt-6 block h-120 w-full max-w-xl rounded-lg border border-line bg-surface-raised"><p class="p-4 text-sm"><a href="/assets/files/{{ s.slug }}.pdf" download class="underline underline-offset-4">{{ "ui.downloadSample" | t }}</a></p></object>
+{%- else %}
+<embed src="/assets/files/{{ s.slug }}.pdf" type="application/pdf" title="{{ 'ui.pdfPreview' | t }}" class="mt-6 block h-120 w-full max-w-xl rounded-lg border border-line bg-surface-raised">
+{%- endif %}
+{%- endif %}
 {%- elif s.slug and mime %}{% set fa = { download: "", type: mime, hreflang: "en" } if ctx.locale != "en" else { download: "", type: mime } %}<div class="mt-8">{{ button("ui.downloadFile" | t | replace("{type}", s.fileType), { href: "/assets/files/" + s.slug + "." + ft, icon: "download", attrs: fa }) }}</div>{% endif %}
 </div>
 </div>

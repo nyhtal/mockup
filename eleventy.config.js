@@ -335,10 +335,10 @@ export default function (eleventyConfig) {
     for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"]]) {
       eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: `/${locale}/style-guide/${slug}index.html` });
     }
-    // Every sample section, split into four pages so each stays within the HTML budget (R-PERF-01).
+    // Every sample section, split into five pages so each stays within the HTML budget (R-PERF-01).
     const ids = samples.sections.map((s) => s.id);
-    const per = Math.ceil(ids.length / 4);
-    ["a", "b", "c", "d"].forEach((letter, i) => {
+    const per = Math.ceil(ids.length / 5);
+    ["a", "b", "c", "d", "e"].forEach((letter, i) => {
       const slug = i === 0 ? "sections/" : `sections-${letter}/`;
       eleventyConfig.addTemplate(`${locale}/_engine/style-guide-sections-${letter}.njk`, virtual("style-guide-sections.njk"), { lang: locale, title: `Style guide: sections ${letter.toUpperCase()}`, description: `Every section in the ${site.name} catalog, rendered from its sample data exactly as a page would show it. Part ${letter.toUpperCase()} of four.`, permalink: `/${locale}/style-guide/${slug}index.html`, sections: ids.slice(i * per, (i + 1) * per) });
     });

@@ -1685,6 +1685,13 @@
       ]
     },
     {
+      "id": "newsletter-preview",
+      "type": "newsletter-preview",
+      "title": "See a recent issue",
+      "src": "/en/newsletter/preview/",
+      "frameTitle": "The October 2026 issue of Line Notes"
+    },
+    {
       "id": "help-categories",
       "type": "help-categories",
       "title": "How can we help?",

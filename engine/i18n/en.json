@@ -142,7 +142,9 @@
     "downloadAudio": "Download the audio (WAV)",
     "officeMap": "Office map",
     "officeMapAlt": "Map of our offices: {list}",
-    "officeIn": "{city} office"
+    "officeIn": "{city} office",
+    "openIssue": "Open the issue on its own",
+    "pdfPreview": "Preview of the sample page (PDF)"
   },
   "footer": {
     "rights": "All rights reserved.",

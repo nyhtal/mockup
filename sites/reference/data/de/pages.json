@@ -1399,6 +1399,13 @@
       "title": "Wo wir sind",
       "lede": "Wählen Sie ein Büro auf der Karte oder in der Liste, um Adresse und Öffnungszeiten zu sehen.",
       "from": "offices"
+    },
+    "newsletter-preview": {
+      "type": "newsletter-preview",
+      "title": "Eine aktuelle Ausgabe",
+      "lede": "So kam die Oktober-Ausgabe bei den Abonnenten an.",
+      "src": "/de/newsletter/preview/",
+      "frameTitle": "Die Oktober-Ausgabe 2026 von Line Notes"
     }
   },
   "detail": {
@@ -1776,7 +1783,8 @@
             "max": 480
           },
           "slug": "{e.slug}",
-          "gated": "{e.gated}"
+          "gated": "{e.gated}",
+          "preview": "{e.preview}"
         },
         "gated-form",
         {

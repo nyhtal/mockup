@@ -1399,6 +1399,13 @@
       "title": "أين نحن",
       "lede": "اختر مكتبًا على الخريطة أو في القائمة لترى عنوانه ومواعيده.",
       "from": "offices"
+    },
+    "newsletter-preview": {
+      "type": "newsletter-preview",
+      "title": "اطّلع على عدد حديث",
+      "lede": "هذا عدد أكتوبر كما وصل إلى المشتركين.",
+      "src": "/ar/newsletter/preview/",
+      "frameTitle": "عدد أكتوبر 2026 من Line Notes"
     }
   },
   "detail": {
@@ -1776,7 +1783,8 @@
             "max": 480
           },
           "slug": "{e.slug}",
-          "gated": "{e.gated}"
+          "gated": "{e.gated}",
+          "preview": "{e.preview}"
         },
         "gated-form",
         {

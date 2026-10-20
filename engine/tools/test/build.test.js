@@ -352,6 +352,19 @@ test("office map (to-do 7b): an image map whose areas sit on the offices' dots a
   assert.match(svg, /<text [^>]*>الرياض<\/text>/, "labels in the page's language");
 });
 
+test("frames and objects (to-do 7c): a same-origin iframe of a newsletter issue, PDF previews in object and embed, a CSP that allows only the site itself", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  assert.match(read("de/newsletter"), /<iframe src="\/de\/newsletter\/preview\/" title="Die Oktober-Ausgabe 2026 von Line Notes" loading="lazy" sandbox="allow-same-origin allow-top-navigation-by-user-activation"/);
+  const issue = read("de/newsletter/preview");
+  assert.match(issue, /<meta name="robots" content="noindex">/);
+  assert.match(issue, /<a href="\/de\/blog\/reading-generated-code\/" target="_top"/);
+  assert.doesNotMatch(readFileSync("dist/reference/sitemap.xml", "utf8"), /newsletter\/preview/, "the issue stays out of the sitemap");
+  assert.match(read("en/resources/downloads/commissioning-checklist"), /<object data="\/assets\/files\/commissioning-checklist\.pdf" type="application\/pdf" title="[^"]+"[^>]*><p[^>]*><a href="\/assets\/files\/commissioning-checklist\.pdf" download/);
+  assert.match(read("ar/resources/downloads/safety-evidence-guide"), /<embed src="\/assets\/files\/safety-evidence-guide\.pdf" type="application\/pdf" title="معاينة الصفحة النموذجية \(PDF\)"/);
+  const headers = readFileSync("dist/reference/_headers", "utf8");
+  assert.match(headers, /frame-src 'self'; object-src 'self';[^\n]*frame-ancestors 'self';/);
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

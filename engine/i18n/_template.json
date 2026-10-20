@@ -142,7 +142,9 @@
     "downloadAudio": "",
     "officeMap": "",
     "officeMapAlt": "",
-    "officeIn": ""
+    "officeIn": "",
+    "openIssue": "",
+    "pdfPreview": ""
   },
   "footer": {
     "rights": "",

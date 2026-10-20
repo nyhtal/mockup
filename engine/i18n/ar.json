@@ -142,7 +142,9 @@
     "downloadAudio": "تنزيل الصوت (WAV)",
     "officeMap": "خريطة المكاتب",
     "officeMapAlt": "خريطة مكاتبنا: {list}",
-    "officeIn": "مكتب {city}"
+    "officeIn": "مكتب {city}",
+    "openIssue": "افتح العدد وحده",
+    "pdfPreview": "معاينة الصفحة النموذجية (PDF)"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

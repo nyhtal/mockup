@@ -1422,6 +1422,13 @@
       "title": "Where we are",
       "lede": "Select an office on the map, or in the list, for its address and hours.",
       "from": "offices"
+    },
+    "newsletter-preview": {
+      "type": "newsletter-preview",
+      "title": "See a recent issue",
+      "lede": "This is the October issue as subscribers received it.",
+      "src": "/en/newsletter/preview/",
+      "frameTitle": "The October 2026 issue of Line Notes"
     }
   },
   "detail": {
@@ -1799,7 +1806,8 @@
             "max": 480
           },
           "slug": "{e.slug}",
-          "gated": "{e.gated}"
+          "gated": "{e.gated}",
+          "preview": "{e.preview}"
         },
         "gated-form",
         {
