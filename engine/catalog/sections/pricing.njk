@@ -12,11 +12,24 @@
   content limits: 2–4 tiers
   data: s = { eyebrow, title, lede, tiers: [...] }
 #}
+{% from "components/tooltip.njk" import tooltip with context %}
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/pricing-table.njk" import pricingTable with context %}
 {% macro render(s, ctx) %}
 {% call shell("pricing", s, ctx, { itemsReveal: ctx.reveal }) %}
+{%- set billing = s.tiers | selectattr("annual") | length -%}
+<div class="group/billing">
+{%- if billing %}
+{#- Billing toggle: two radios styled as a segmented control; the tiers swap prices through :has(), so it works without script (to-do 7b). -#}
+{%- set opt = "inline-flex min-h-11 cursor-pointer items-center rounded-full px-4 text-sm font-medium text-ink hover:bg-surface-alt has-checked:bg-brand-600 has-checked:text-ink-inverse has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150" %}
+<fieldset class="mx-auto mb-10 flex w-fit gap-1 rounded-full border border-line-strong bg-surface-raised p-1">
+<legend class="sr-only">{{ "ui.billing" | t }}</legend>
+<label class="{{ opt }}"><input type="radio" name="billing-{{ ctx.index }}" value="monthly" checked class="sr-only">{{ "ui.monthly" | t }}</label>
+<label class="{{ opt }}"><input type="radio" name="billing-{{ ctx.index }}" value="annual" class="sr-only">{{ "ui.annual" | t }}</label>
+</fieldset>
+{%- endif %}
 {{ pricingTable({ tiers: s.tiers }, { ctx: ctx }) }}
+</div>
 {%- if s.estimate %}
 {#- A range input and its <output> (an implicit status region): the server renders the default sum, enhance.js keeps it current (to-do 6). -#}
 {%- set eid = "estimate-" + ctx.index %}
@@ -25,6 +38,7 @@
 <input type="range" id="{{ eid }}" min="1" max="20" step="1" value="{{ s.estimate.value }}" data-estimate="{{ s.estimate.template }}" data-amount="{{ s.estimate.amount }}" class="mt-4 block w-full accent-brand-600">
 <p class="mt-3 text-lg"><output for="{{ eid }}" class="font-semibold tabular-nums">{{ s.estimate.initial }}</output></p>
 <p class="mt-2 text-sm text-ink-muted">{{ s.estimate.note }}</p>
+{%- if s.estimate.tip %}<p class="mt-3 text-sm">{{ tooltip("tip-" + ctx.index, s.estimate.tip.label, s.estimate.tip.text) }}</p>{% endif %}
 </div>
 {%- endif %}
 {% endcall %}

@@ -209,6 +209,15 @@
         "action": "/en/newsletter/thank-you/",
         "submit": "Subscribe",
         "privacyHref": "/en/legal/privacy/"
+      },
+      "readers": {
+        "names": [
+          "Priya Natarajan",
+          "Mei Chen",
+          "Dana Okafor",
+          "Jonas Weber"
+        ],
+        "text": "Read by 1,400 engineers every month"
       }
     },
     "contact-form": {
@@ -590,7 +599,9 @@
           "cta": {
             "label": "Start a trial",
             "href": "/en/demo/"
-          }
+          },
+          "annual": "€408",
+          "annualAmount": 408
         },
         {
           "name": "Plant",
@@ -610,7 +621,9 @@
             "href": "/en/contact/"
           },
           "recommended": true,
-          "was": "€2,200"
+          "was": "€2,200",
+          "annual": "€1,583",
+          "annualAmount": 1583
         },
         {
           "name": "Enterprise",
@@ -635,7 +648,11 @@
         "label": "How many lines would run on Starter?",
         "template": "{n} × Starter: €{total} a month",
         "initial": "4 × Starter: €1,960 a month",
-        "note": "Prices exclude VAT. From five lines on one site, Plant at €1,900 costs less."
+        "note": "Prices exclude VAT. From five lines on one site, Plant at €1,900 costs less.",
+        "tip": {
+          "label": "What counts as a line?",
+          "text": "One production line under one controller, from infeed to palletiser. Two lines that share a PLC count as two."
+        }
       }
     },
     "comparison": {

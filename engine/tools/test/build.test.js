@@ -365,6 +365,18 @@ test("frames and objects (to-do 7c): a same-origin iframe of a newsletter issue,
   assert.match(headers, /frame-src 'self'; object-src 'self';[^\n]*frame-ancestors 'self';/);
 });
 
+test("widgets (to-do 7b, part one): a billing toggle without script, a tooltip on pricing, star ratings, an avatar stack", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  const pricing = read("de/pricing");
+  assert.match(pricing, /<div class="group\/billing">\n<fieldset[^>]*>\n<legend class="sr-only">Abrechnung<\/legend>\n<label[^>]*><input type="radio" name="billing-\d+" value="monthly" checked class="sr-only">Monatlich<\/label>\n<label[^>]*><input type="radio" name="billing-\d+" value="annual" class="sr-only">Jährlich, 2 Monate gratis<\/label>/);
+  assert.match(pricing, /<span class="hidden group-has-\[\[value=annual\]:checked\]\/billing:inline"><data value="1583"[^>]*>1\.583 €<\/data><\/span>/);
+  assert.match(readFileSync("dist/reference/assets/app.css", "utf8"), /:has\(\[value=annual\]:checked\)/);
+  assert.match(pricing, /<button type="button" popovertarget="tip-\d+"[\s\S]*?<span popover="hint" id="tip-\d+"[^>]*>/, "a tooltip explains what counts as a line");
+  const home = read("ar");
+  assert.match(home, /<span class="sr-only">التقييم [45] من 5<\/span><span aria-hidden="true"[^>]*>★+/);
+  assert.match(read("en/blog"), /<div class="flex -space-x-2">(<svg aria-hidden="true"[^>]*ring-2[^>]*>[\s\S]*?<\/svg>\s*){4}<\/div>\n<p class="text-sm text-ink-muted">Read by 1,400 engineers every month<\/p>/);
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

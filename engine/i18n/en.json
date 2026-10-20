@@ -144,7 +144,12 @@
     "officeMapAlt": "Map of our offices: {list}",
     "officeIn": "{city} office",
     "openIssue": "Open the issue on its own",
-    "pdfPreview": "Preview of the sample page (PDF)"
+    "pdfPreview": "Preview of the sample page (PDF)",
+    "billing": "Billing",
+    "monthly": "Monthly",
+    "annual": "Yearly, 2 months free",
+    "billedYearly": "billed yearly",
+    "rated": "Rated {n} out of 5"
   },
   "footer": {
     "rights": "All rights reserved.",

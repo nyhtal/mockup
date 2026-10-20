@@ -15,6 +15,7 @@
 {% from "sections/_shell.njk" import shell with context %}
 {% from "primitives/field.njk" import field with context %}
 {% from "primitives/button.njk" import button with context %}
+{% from "primitives/avatar.njk" import avatar with context %}
 {% macro render(s, ctx) %}
 {% call shell("newsletter", s, ctx, { center: true }) %}
 <form method="get" action="{{ s.form.action }}" class="mx-auto max-w-xl">
@@ -25,5 +26,11 @@
 <div hidden><label for="newsletter-website">{{ "ui.website" | t }}</label><input type="text" id="newsletter-website" name="website" tabindex="-1" autocomplete="off"></div>
 {%- if s.form.privacyHref %}<p class="mt-3 text-center text-sm text-ink-muted">{{ "ui.privacyNote" | t }} <a href="{{ s.form.privacyHref }}" class="underline underline-offset-4 hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.privacyPolicy" | t }}</a></p>{% endif %}
 </form>
+{%- if s.readers %}
+<div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+<div class="flex -space-x-2">{% for n in s.readers.names %}{{ avatar(n, { size: "size-9", class: " rounded-full ring-2 ring-surface" }) }}{% endfor %}</div>
+<p class="text-sm text-ink-muted">{{ s.readers.text }}</p>
+</div>
+{%- endif %}
 {% endcall %}
 {% endmacro %}

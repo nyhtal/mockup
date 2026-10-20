@@ -144,7 +144,12 @@
     "officeMapAlt": "",
     "officeIn": "",
     "openIssue": "",
-    "pdfPreview": ""
+    "pdfPreview": "",
+    "billing": "",
+    "monthly": "",
+    "annual": "",
+    "billedYearly": "",
+    "rated": ""
   },
   "footer": {
     "rights": "",

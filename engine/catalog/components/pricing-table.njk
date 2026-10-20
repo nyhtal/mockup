@@ -10,7 +10,8 @@
   a11y: the recommended tier is marked by visible text, not colour alone; price uses tabular-nums; features are a list
   i18n: prices are preformatted strings with currency code (R-CONT-14)
   content limits: tiers 2–4; features ≤ 8 per tier; tier name ≤ 20 chars
-  data: p = { tiers: [{ name, price, amount (<data value>), was (struck through in <s>), period, text, features: [], cta: { label, href }, recommended }] }
+  billing: a tier with annual/annualAmount shows that price while the pricing section's "annual" radio is checked (CSS :has(), no script)
+  data: p = { tiers: [{ name, price, amount (<data value>), was (struck through in <s>), annual, annualAmount, period, text, features: [], cta: { label, href }, recommended }] }
 #}
 {% from "primitives/icon.njk" import icon with context %}
 {% from "primitives/badge.njk" import badge with context %}
@@ -26,7 +27,7 @@
 <{{ h }} class="text-xl font-semibold">{{ tier.name }}</{{ h }}>
 {%- if tier.recommended %}{{ badge("ui.mostPopular" | t, { tone: "brand" }) }}{% endif %}
 </div>
-<p class="mt-4">{% if tier.was %}<s class="me-2 text-lg text-ink-muted tabular-nums"><span class="sr-only">{{ "ui.previousPrice" | t }} </span>{{ tier.was }}</s>{% endif %}{% if tier.amount %}<data value="{{ tier.amount }}" class="text-4xl font-bold tabular-nums">{{ tier.price }}</data>{% else %}<span class="text-4xl font-bold tabular-nums">{{ tier.price }}</span>{% endif %}{% if tier.period %} <span class="text-sm text-ink-muted">{{ tier.period }}</span>{% endif %}</p>
+<p class="mt-4"><span class="{{ 'group-has-[[value=annual]:checked]/billing:hidden' if tier.annual }}">{% if tier.was %}<s class="me-2 text-lg text-ink-muted tabular-nums"><span class="sr-only">{{ "ui.previousPrice" | t }} </span>{{ tier.was }}</s>{% endif %}{% if tier.amount %}<data value="{{ tier.amount }}" class="text-4xl font-bold tabular-nums">{{ tier.price }}</data>{% else %}<span class="text-4xl font-bold tabular-nums">{{ tier.price }}</span>{% endif %}</span>{% if tier.annual %}<span class="hidden group-has-[[value=annual]:checked]/billing:inline"><data value="{{ tier.annualAmount }}" class="text-4xl font-bold tabular-nums">{{ tier.annual }}</data></span>{% endif %}{% if tier.period %} <span class="text-sm text-ink-muted">{{ tier.period }}</span>{% endif %}{% if tier.annual %}<span class="hidden text-sm text-ink-muted group-has-[[value=annual]:checked]/billing:block">{{ "ui.billedYearly" | t }}</span>{% endif %}</p>
 {%- if tier.text %}<p class="mt-2 text-sm text-ink-muted">{{ tier.text }}</p>{% endif %}
 <ul class="mt-6 space-y-3 text-sm">
 {%- for f in tier.features %}

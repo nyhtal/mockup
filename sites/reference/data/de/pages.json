@@ -209,6 +209,15 @@
         "action": "/de/newsletter/thank-you/",
         "submit": "Abonnieren",
         "privacyHref": "/de/legal/privacy/"
+      },
+      "readers": {
+        "names": [
+          "Priya Natarajan",
+          "Mei Chen",
+          "Dana Okafor",
+          "Jonas Weber"
+        ],
+        "text": "Jeden Monat von 1.400 Ingenieurinnen und Ingenieuren gelesen"
       }
     },
     "contact-form": {
@@ -590,7 +599,9 @@
           "cta": {
             "label": "Testphase starten",
             "href": "/de/demo/"
-          }
+          },
+          "annual": "408 €",
+          "annualAmount": 408
         },
         {
           "name": "Werk",
@@ -610,7 +621,9 @@
             "href": "/de/contact/"
           },
           "recommended": true,
-          "was": "2.200 €"
+          "was": "2.200 €",
+          "annual": "1.583 €",
+          "annualAmount": 1583
         },
         {
           "name": "Enterprise",
@@ -635,7 +648,11 @@
         "label": "Wie viele Linien liefen im Starter-Tarif?",
         "template": "{n} × Starter: {total} € im Monat",
         "initial": "4 × Starter: 1.960 € im Monat",
-        "note": "Preise zzgl. MwSt. Ab fünf Linien an einem Standort ist Werk für 1.900 € günstiger."
+        "note": "Preise zzgl. MwSt. Ab fünf Linien an einem Standort ist Werk für 1.900 € günstiger.",
+        "tip": {
+          "label": "Was zählt als Linie?",
+          "text": "Eine Produktionslinie unter einer Steuerung, vom Einlauf bis zum Palettierer. Zwei Linien an einer SPS zählen als zwei."
+        }
       }
     },
     "comparison": {

@@ -1474,25 +1474,29 @@
       "quote": "استغرق التشغيل تسعة أيام بدل ستة أسابيع.",
       "name": "دانا أوكافور",
       "role": "رئيسة الجودة",
-      "company": "Brightline Pharma"
+      "company": "Brightline Pharma",
+      "rating": 5
     },
     {
       "quote": "كانت مراجعة السلامة أول مراجعة لم يجادل فيها أحد حول كود PLC.",
       "name": "إلزه برانت",
       "role": "مديرة السلامة",
-      "company": "Castor Automotive"
+      "company": "Castor Automotive",
+      "rating": 5
     },
     {
       "quote": "يرد الدعم في دقائق وبلغتنا.",
       "name": "فاطمة السيد",
       "role": "مديرة العمليات",
-      "company": "Dune Logistics"
+      "company": "Dune Logistics",
+      "rating": 4
     },
     {
       "quote": "طلب مدققونا سجل التغييرات فصدّرناه بنقرة واحدة.",
       "name": "لينا فيشر",
       "role": "رئيسة الجودة",
-      "company": "Fjord Dairy"
+      "company": "Fjord Dairy",
+      "rating": 5
     }
   ],
   "integrations": [

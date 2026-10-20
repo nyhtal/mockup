@@ -144,7 +144,12 @@
     "officeMapAlt": "خريطة مكاتبنا: {list}",
     "officeIn": "مكتب {city}",
     "openIssue": "افتح العدد وحده",
-    "pdfPreview": "معاينة الصفحة النموذجية (PDF)"
+    "pdfPreview": "معاينة الصفحة النموذجية (PDF)",
+    "billing": "الفوترة",
+    "monthly": "شهريًا",
+    "annual": "سنويًا، شهران مجانًا",
+    "billedYearly": "يُدفع سنويًا",
+    "rated": "التقييم {n} من 5"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

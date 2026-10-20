@@ -1474,25 +1474,29 @@
       "quote": "Die Inbetriebnahme dauerte neun Tage statt sechs Wochen.",
       "name": "Dana Okafor",
       "role": "Leitung Qualität",
-      "company": "Brightline Pharma"
+      "company": "Brightline Pharma",
+      "rating": 5
     },
     {
       "quote": "Die Sicherheitsprüfung war die erste, bei der niemand über den SPS-Code gestritten hat.",
       "name": "Ilse Brandt",
       "role": "HSE-Leitung",
-      "company": "Castor Automotive"
+      "company": "Castor Automotive",
+      "rating": 5
     },
     {
       "quote": "Der Support antwortet in Minuten und in unserer Sprache.",
       "name": "Fatima Al-Sayed",
       "role": "Betriebsleitung",
-      "company": "Dune Logistics"
+      "company": "Dune Logistics",
+      "rating": 4
     },
     {
       "quote": "Unsere Prüfer wollten das Änderungsprotokoll, und wir haben es mit einem Klick exportiert.",
       "name": "Lena Fischer",
       "role": "Leitung Qualität",
-      "company": "Fjord Dairy"
+      "company": "Fjord Dairy",
+      "rating": 5
     }
   ],
   "integrations": [

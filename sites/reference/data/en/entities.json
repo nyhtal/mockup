@@ -1474,25 +1474,29 @@
       "quote": "Commissioning took nine days instead of six weeks.",
       "name": "Dana Okafor",
       "role": "Quality lead",
-      "company": "Brightline Pharma"
+      "company": "Brightline Pharma",
+      "rating": 5
     },
     {
       "quote": "The safety review was the first one where nobody argued about the PLC code.",
       "name": "Ilse Brandt",
       "role": "HSE manager",
-      "company": "Castor Automotive"
+      "company": "Castor Automotive",
+      "rating": 5
     },
     {
       "quote": "Support answers in minutes and in our language.",
       "name": "Fatima Al-Sayed",
       "role": "Operations director",
-      "company": "Dune Logistics"
+      "company": "Dune Logistics",
+      "rating": 4
     },
     {
       "quote": "Our auditors asked for the change log and we exported it in one click.",
       "name": "Lena Fischer",
       "role": "Quality lead",
-      "company": "Fjord Dairy"
+      "company": "Fjord Dairy",
+      "rating": 5
     }
   ],
   "integrations": [

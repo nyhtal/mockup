@@ -10,7 +10,7 @@
   a11y: figure/figcaption pair; quote marks are typographic characters, not icons
   i18n: quotes use the locale's quotation marks from content
   content limits: quote ≤ 50 words; name and role ≤ 40 chars each
-  data: t = { quote, name, role, company }
+  data: t = { rating (1–5: stars with the number as text; no review schema), quote, name, role, company }
 #}
 {% from "primitives/avatar.njk" import avatar with context %}
 {% from "primitives/wordmark.njk" import wordmark with context %}
@@ -19,6 +19,9 @@
 <figure class="{{ 'mx-auto max-w-3xl text-center' if single else 'flex h-full flex-col rounded-lg border border-line bg-surface-raised p-6 shadow-sm' }}" data-component="testimonial" data-variant="{{ opts.variant or 'single' }}">
 {%- if single %}
 <span aria-hidden="true" class="block h-12 select-none text-7xl font-bold leading-none text-brand-200">“</span>{% endif %}
+{%- if t.rating %}
+<p class="mb-4 flex items-center gap-0.5 text-warning {{ 'justify-center' if single }}"><span class="sr-only">{{ "ui.rated" | t | replace("{n}", t.rating) }}</span><span aria-hidden="true" class="text-base tracking-widest">{{ "★".repeat(t.rating) }}<span class="text-line-strong">{{ "★".repeat(5 - t.rating) }}</span></span></p>
+{%- endif %}
 <blockquote class="{{ 'text-2xl md:text-3xl font-medium tracking-tight text-balance' if single else 'text-base leading-relaxed' }}">
 <p>“{{ t.quote }}”</p>
 </blockquote>
