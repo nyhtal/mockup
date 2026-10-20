@@ -3,6 +3,8 @@
 {% from "components/header.njk" import header with context %}
 {% from "components/mobile-drawer.njk" import mobileDrawer with context %}
 {% from "components/footer.njk" import footer with context %}
+{% from "components/sticky-cta.njk" import stickyCta with context %}
+{% from "components/contact-launcher.njk" import contactLauncher with context %}
 {%- set alternates = page.url | allAlternates -%}
 <!DOCTYPE html>
 <html lang="{{ locale }}" dir="{{ dir }}" class="scheme-light-dark data-[theme=light]:scheme-light data-[theme=dark]:scheme-dark scroll-pt-20 motion-safe:scroll-smooth [interpolate-size:allow-keywords]">
@@ -17,7 +19,9 @@
 {{ mobileDrawer(site.nav, locale, page.url, site.cta, alternates, { search: site.hasSearch }) }}
 <main id="main">
 {{ content | safe }}
+{%- if pageType == "home" and site.cta %}{{ stickyCta(site.cta, locale) }}{% endif %}
 </main>
+{%- if pageType in ["pricing", "service", "industry"] and site.contact %}{{ contactLauncher(site.contact, locale) }}{% endif %}
 {{ footer(site, locale, alternates) }}
 <!--sprite--><script type="module" src="/assets/enhance.js"></script>
 </body>

@@ -1338,7 +1338,13 @@
       "services": [
         "line-automation"
       ],
-      "body": "*[HMI]: human–machine interface\n\nAlder Foods runs four packing lines at one plant in the north of England. Before Northwind, every recipe change and most stoppages waited for one of two controls engineers.\n\n## The problem\n\nThe lines stopped about twice a shift. Most stops were small: a wrong fill volume, a guard left open after cleaning, a changeover run in the wrong order. Each one waited for an engineer, and the engineers were usually on another line.\n\n## What changed\n\nThe four lines were described in a month, one a week, by Alder's engineers with a Northwind engineer alongside. Recipe limits were set from the first month's change log. Line leads now adjust volumes and speeds at the HMI, and the HMI tells them why a stop happened.\n\n## The result\n\nUnplanned downtime fell by 38% in the first quarter. Engineer call-outs for recipe changes fell by nine in ten. The two engineers spend their time on the next plant.\n\nThe plant also avoids about 18 t of CO~2~ a year in commissioning trips, and gained 40 m^2^ of floor when the second control cabinet went."
+      "body": "*[HMI]: human–machine interface\n\nAlder Foods runs four packing lines at one plant in the north of England. Before Northwind, every recipe change and most stoppages waited for one of two controls engineers.\n\n## The problem\n\nThe lines stopped about twice a shift. Most stops were small: a wrong fill volume, a guard left open after cleaning, a changeover run in the wrong order. Each one waited for an engineer, and the engineers were usually on another line.\n\n## What changed\n\nThe four lines were described in a month, one a week, by Alder's engineers with a Northwind engineer alongside. Recipe limits were set from the first month's change log. Line leads now adjust volumes and speeds at the HMI, and the HMI tells them why a stop happened.\n\n## The result\n\nUnplanned downtime fell by 38% in the first quarter. Engineer call-outs for recipe changes fell by nine in ten. The two engineers spend their time on the next plant.\n\nThe plant also avoids about 18 t of CO~2~ a year in commissioning trips, and gained 40 m^2^ of floor when the second control cabinet went.",
+      "compare": {
+        "title": "The line display, before and after",
+        "before": "The old operator panel: forty unlabelled buttons and a fault list in code numbers",
+        "after": "The new display: stations named as on the floor, faults in plain words",
+        "caption": "Drag the handle to compare the operator display before and after the change."
+      }
     },
     {
       "slug": "brightline-pharma",
@@ -1370,7 +1376,13 @@
         "safety-reviews",
         "line-automation"
       ],
-      "body": "Brightline Pharma packs tablets into blisters on a line that had been scheduled for a six-week commissioning and validation window.\n\n## The problem\n\nValidation had always trailed commissioning by weeks because the evidence was assembled by hand from screenshots, test sheets and emails.\n\n## What changed\n\nThe line was described in Studio over three days. The acceptance tests were generated from the description, run from Studio and filed with the code version. The change log was append-only from day one.\n\n## The result\n\nThe line was commissioned and validated in nine days. The QA team exported the evidence pack in one click for the first audit, which closed with no findings."
+      "body": "Brightline Pharma packs tablets into blisters on a line that had been scheduled for a six-week commissioning and validation window.\n\n## The problem\n\nValidation had always trailed commissioning by weeks because the evidence was assembled by hand from screenshots, test sheets and emails.\n\n## What changed\n\nThe line was described in Studio over three days. The acceptance tests were generated from the description, run from Studio and filed with the code version. The change log was append-only from day one.\n\n## The result\n\nThe line was commissioned and validated in nine days. The QA team exported the evidence pack in one click for the first audit, which closed with no findings.",
+      "compare": {
+        "title": "The line display, before and after",
+        "before": "The old operator panel: forty unlabelled buttons and a fault list in code numbers",
+        "after": "The new display: stations named as on the floor, faults in plain words",
+        "caption": "Drag the handle to compare the operator display before and after the change."
+      }
     },
     {
       "slug": "castor-automotive",
@@ -1402,7 +1414,13 @@
         "safety-reviews",
         "plant-programmes"
       ],
-      "body": "Castor Automotive assembles sub-frames on a line of twelve robot cells and three conveyors in Germany.\n\n## The problem\n\nSafety reviews took a week and ended in arguments about hand-written safety logic that nobody could fully explain.\n\n## What changed\n\nThe line was described zone by zone on a plant programme, one cell every three weeks. Safety logic was generated from the zone descriptions and reviewed sentence by sentence. The interlock walk-down was run with the HSE manager before the assessor arrived.\n\n## The result\n\nThe safety review took two days and closed with no findings reopened. The plant has since described two more lines with its own engineers."
+      "body": "Castor Automotive assembles sub-frames on a line of twelve robot cells and three conveyors in Germany.\n\n## The problem\n\nSafety reviews took a week and ended in arguments about hand-written safety logic that nobody could fully explain.\n\n## What changed\n\nThe line was described zone by zone on a plant programme, one cell every three weeks. Safety logic was generated from the zone descriptions and reviewed sentence by sentence. The interlock walk-down was run with the HSE manager before the assessor arrived.\n\n## The result\n\nThe safety review took two days and closed with no findings reopened. The plant has since described two more lines with its own engineers.",
+      "compare": {
+        "title": "The line display, before and after",
+        "before": "The old operator panel: forty unlabelled buttons and a fault list in code numbers",
+        "after": "The new display: stations named as on the floor, faults in plain words",
+        "caption": "Drag the handle to compare the operator display before and after the change."
+      }
     }
   ],
   "docs": [

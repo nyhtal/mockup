@@ -1,0 +1,28 @@
+{#
+  name: before-after
+  purpose: Compare two pictures of the same place: the "before" picture covers the start side up to a handle the visitor drags (to-do 7b).
+  anatomy: shell(center false) > figure > div[data-ba-frame](picture(after) + div(clip: picture(before)) + rule + labels) + label(sr-only + input[type=range][data-ba]) + figcaption
+  motion: none; the clip follows the range input
+  keyboard: the range input (arrows, Home, End); without script it is hidden and the pictures stay split at half
+  i18n: the clip and the handle mirror in RTL, where the range input also runs right to left
+  data: s = { title, before: { slug, alt }, after: { slug, alt }, caption }
+#}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/picture.njk" import picture with context %}
+{% macro render(s, ctx) %}
+{%- if s.before and s.before.slug and s.after and s.after.slug %}
+{% call shell("before-after", s, ctx, { center: false }) %}
+{%- set tag = "absolute top-3 rounded-md bg-ink/75 px-2 py-1 text-xs font-medium text-ink-inverse" -%}
+<figure class="mx-auto max-w-4xl">
+<div class="relative overflow-hidden rounded-xl [--pos:50%]" data-ba-frame>
+{{ picture({ slug: s.after.slug, ratio: "16:9", alt: s.after.alt, max: 1200 }, { sizes: "(min-width: 56rem) 56rem, 100vw", class: "block aspect-video w-full object-cover" }) }}
+<div class="absolute inset-0 [clip-path:inset(0_calc(100%-var(--pos))_0_0)] rtl:[clip-path:inset(0_0_0_calc(100%-var(--pos)))]">{{ picture({ slug: s.before.slug, ratio: "16:9", alt: s.before.alt, max: 1200 }, { sizes: "(min-width: 56rem) 56rem, 100vw", class: "block aspect-video w-full object-cover" }) }}</div>
+<div aria-hidden="true" class="pointer-events-none absolute inset-y-0 start-(--pos) w-0.5 -translate-x-1/2 bg-ink-inverse shadow-md rtl:translate-x-1/2"></div>
+<span aria-hidden="true" class="{{ tag }} start-3">{{ "ui.before" | t }}</span><span aria-hidden="true" class="{{ tag }} end-3">{{ "ui.after" | t }}</span>
+</div>
+<label class="mt-4 hidden js:block"><span class="sr-only">{{ "ui.compareSlider" | t }}</span><input type="range" min="0" max="100" value="50" data-ba class="block w-full accent-brand-600"></label>
+{%- if s.caption %}<figcaption class="mt-3 text-sm text-ink-muted">{{ s.caption }}</figcaption>{% endif %}
+</figure>
+{% endcall %}
+{%- endif %}
+{% endmacro %}

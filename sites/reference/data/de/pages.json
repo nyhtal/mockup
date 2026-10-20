@@ -1423,6 +1423,14 @@
       "lede": "So kam die Oktober-Ausgabe bei den Abonnenten an.",
       "src": "/de/newsletter/preview/",
       "frameTitle": "Die Oktober-Ausgabe 2026 von Line Notes"
+    },
+    "testimonials-carousel": {
+      "type": "testimonials",
+      "variant": "carousel",
+      "eyebrow": "Kunden",
+      "title": "Was Werksteams sagen",
+      "from": "testimonials",
+      "limit": 3
     }
   },
   "detail": {
@@ -1678,6 +1686,19 @@
           "type": "prose",
           "md": "e.body",
           "label": "{e.title}"
+        },
+        {
+          "type": "before-after",
+          "title": "{e.compare.title}",
+          "before": {
+            "slug": "{e.slug}-hmi-before",
+            "alt": "{e.compare.before}"
+          },
+          "after": {
+            "slug": "{e.slug}-hmi-after",
+            "alt": "{e.compare.after}"
+          },
+          "caption": "{e.compare.caption}"
         },
         {
           "type": "testimonials",

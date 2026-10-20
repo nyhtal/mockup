@@ -9,6 +9,6 @@ description: "Northwind customers and their results: downtime, commissioning tim
 sections:
   - "logo-cloud"
   - "case-study-cards"
-  - "testimonials-home"
+  - "testimonials-carousel"
   - "cta-demo"
 ---

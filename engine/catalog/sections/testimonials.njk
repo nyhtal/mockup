@@ -20,8 +20,9 @@
 {%- if variant == "single" %}
 {{ testimonial(s.items[0]) }}
 {%- elif variant == "carousel" %}
-<ul class="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-4 scroll-ps-4 [scrollbar-width:thin]" tabindex="0">
-{%- for item in s.items %}<li class="w-80 shrink-0 snap-start">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
+{#- Carousel (to-do 7b): the list scrolls and snaps; ::scroll-button and ::scroll-marker add controls where supported. Focusable so the keyboard can scroll it. -#}
+<ul class="carousel" tabindex="0" aria-label="{{ s.title or ('ui.testimonials' | t) }}" data-prev="{{ 'ui.previous' | t }}" data-next="{{ 'ui.next' | t }}">
+{%- for item in s.items %}<li class="flex">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
 </ul>
 {%- else %}
 <ul class="grid gap-6 md:gap-8 md:grid-cols-3{{ ' reveal-items' if ctx.reveal }}">

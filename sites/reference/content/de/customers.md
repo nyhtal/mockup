@@ -9,6 +9,6 @@ description: "Northwind-Kunden und ihre Ergebnisse: Stillstand, Inbetriebnahmeze
 sections:
   - "logo-cloud"
   - "case-study-cards"
-  - "testimonials-home"
+  - "testimonials-carousel"
   - "cta-demo"
 ---

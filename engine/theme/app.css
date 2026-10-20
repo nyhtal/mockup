@@ -110,6 +110,70 @@
     }
   }
 }
+/* Carousel (to-do 7b): a snapping row; browsers with ::scroll-button and ::scroll-marker add previous/next buttons and one dot per item.
+   The buttons' accessible names come from the list's data-prev / data-next attributes, so they follow the page's language. */
+@utility carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(85%, 28rem);
+  gap: calc(var(--spacing) * 6);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding-block-end: calc(var(--spacing) * 4);
+  scroll-marker-group: after;
+  anchor-name: --carousel;
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+  & > * {
+    scroll-snap-align: start;
+  }
+  & > *::scroll-marker {
+    content: "";
+    width: calc(var(--spacing) * 2.5);
+    height: calc(var(--spacing) * 2.5);
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-line-strong);
+  }
+  & > *::scroll-marker:target-current {
+    background-color: var(--color-brand-600);
+  }
+  &::scroll-marker-group {
+    display: flex;
+    justify-content: center;
+    gap: calc(var(--spacing) * 3);
+    margin-block-start: calc(var(--spacing) * 4);
+  }
+  &::scroll-button(*) {
+    position: absolute;
+    position-anchor: --carousel;
+    top: anchor(center);
+    translate: 0 -50%;
+    width: calc(var(--spacing) * 11);
+    height: calc(var(--spacing) * 11);
+    border: 1px solid var(--color-line-strong);
+    border-radius: calc(infinity * 1px);
+    background-color: var(--color-surface-raised);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+  }
+  &::scroll-button(*):disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+  &::scroll-button(inline-start) {
+    content: "‹" / attr(data-prev);
+    inset-inline-start: anchor(start);
+  }
+  &::scroll-button(inline-end) {
+    content: "›" / attr(data-next);
+    inset-inline-end: anchor(end);
+  }
+}
+
 @utility lightbox-control {
   width: calc(var(--spacing) * 11);
   height: calc(var(--spacing) * 11);

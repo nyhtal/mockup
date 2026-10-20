@@ -1,0 +1,12 @@
+{#
+  name: sticky-cta
+  purpose: The main call to action, kept in reach on phones once the hero has scrolled away (to-do 7b).
+  anatomy: div[data-component=sticky-cta] (sticky bottom-0 at the end of main) > button
+  motion: rises in over the first 60vh of scroll (scroll-driven, motion-safe; R-MOT-05 range of the floating back to top); without scroll-driven animation it is not shown
+  layout: phones and tablets only (lg:hidden); sticky inside <main>, so it stops above the footer and never covers it; leaves room at the end for the back-to-top button
+  data: cta = { key, href }
+#}
+{% from "primitives/button.njk" import button with context %}
+{% macro stickyCta(cta, locale) %}
+<div class="sticky bottom-0 z-10 hidden border-t border-line bg-surface/95 px-4 py-3 pe-20 backdrop-blur sda:block lg:hidden motion-safe:sda:animate-rise-in motion-safe:sda:[animation-timeline:scroll()] motion-safe:sda:[animation-range:0_60vh] print:hidden" data-component="sticky-cta">{{ button(cta.key | t, { href: "/" + locale + cta.href, class: "w-full" }) }}</div>
+{% endmacro %}

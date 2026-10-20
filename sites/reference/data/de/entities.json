@@ -1338,7 +1338,13 @@
       "services": [
         "line-automation"
       ],
-      "body": "*[HMI]: Human-Machine-Interface (Bedienoberfläche)\n\nAlder Foods betreibt vier Verpackungslinien an einem Werk im Norden Englands. Vor Northwind wartete jede Rezeptänderung und die meisten Stopps auf einen von zwei Steuerungsingenieuren.\n\n## Das Problem\n\nDie Linien standen etwa zweimal pro Schicht. Die meisten Stopps waren klein: eine falsche Füllmenge, eine nach der Reinigung offen gelassene Schutztür, eine Umrüstung in falscher Reihenfolge. Jeder wartete auf einen Ingenieur, und die Ingenieure waren meist an einer anderen Linie.\n\n## Was sich geändert hat\n\nDie vier Linien wurden in einem Monat beschrieben, eine pro Woche, von Alders Ingenieuren mit einem Northwind-Ingenieur an ihrer Seite. Die Rezeptgrenzen wurden aus dem Änderungsprotokoll des ersten Monats gesetzt. Linienleiter passen Mengen und Geschwindigkeiten jetzt am HMI an, und das HMI sagt ihnen, warum ein Stopp passiert ist.\n\n## Das Ergebnis\n\nDer ungeplante Stillstand sank im ersten Quartal um 38 %. Ingenieureinsätze für Rezeptänderungen sanken um neun von zehn. Die beiden Ingenieure verbringen ihre Zeit mit dem nächsten Werk.\n\nDas Werk spart zudem rund 18 t CO~2~ im Jahr an Inbetriebnahmereisen und gewann 40 m^2^ Fläche, als der zweite Schaltschrank wegfiel."
+      "body": "*[HMI]: Human-Machine-Interface (Bedienoberfläche)\n\nAlder Foods betreibt vier Verpackungslinien an einem Werk im Norden Englands. Vor Northwind wartete jede Rezeptänderung und die meisten Stopps auf einen von zwei Steuerungsingenieuren.\n\n## Das Problem\n\nDie Linien standen etwa zweimal pro Schicht. Die meisten Stopps waren klein: eine falsche Füllmenge, eine nach der Reinigung offen gelassene Schutztür, eine Umrüstung in falscher Reihenfolge. Jeder wartete auf einen Ingenieur, und die Ingenieure waren meist an einer anderen Linie.\n\n## Was sich geändert hat\n\nDie vier Linien wurden in einem Monat beschrieben, eine pro Woche, von Alders Ingenieuren mit einem Northwind-Ingenieur an ihrer Seite. Die Rezeptgrenzen wurden aus dem Änderungsprotokoll des ersten Monats gesetzt. Linienleiter passen Mengen und Geschwindigkeiten jetzt am HMI an, und das HMI sagt ihnen, warum ein Stopp passiert ist.\n\n## Das Ergebnis\n\nDer ungeplante Stillstand sank im ersten Quartal um 38 %. Ingenieureinsätze für Rezeptänderungen sanken um neun von zehn. Die beiden Ingenieure verbringen ihre Zeit mit dem nächsten Werk.\n\nDas Werk spart zudem rund 18 t CO~2~ im Jahr an Inbetriebnahmereisen und gewann 40 m^2^ Fläche, als der zweite Schaltschrank wegfiel.",
+      "compare": {
+        "title": "Die Linienanzeige, vorher und nachher",
+        "before": "Das alte Bedienpanel: vierzig unbeschriftete Tasten und eine Störliste in Codes",
+        "after": "Die neue Anzeige: Stationen so benannt wie in der Halle, Störungen im Klartext",
+        "caption": "Ziehen Sie den Regler, um die Bedienanzeige vor und nach der Umstellung zu vergleichen."
+      }
     },
     {
       "slug": "brightline-pharma",
@@ -1370,7 +1376,13 @@
         "safety-reviews",
         "line-automation"
       ],
-      "body": "Brightline Pharma verpackt Tabletten in Blister auf einer Linie, für die ein sechswöchiges Fenster für Inbetriebnahme und Validierung eingeplant war.\n\n## Das Problem\n\nDie Validierung hinkte der Inbetriebnahme immer um Wochen hinterher, weil die Nachweise von Hand aus Bildschirmfotos, Testblättern und E-Mails zusammengesetzt wurden.\n\n## Was sich geändert hat\n\nDie Linie wurde in drei Tagen in Studio beschrieben. Die Abnahmetests wurden aus der Beschreibung erzeugt, aus Studio ausgeführt und mit der Codeversion abgelegt. Das Änderungsprotokoll war vom ersten Tag an nur anfügbar.\n\n## Das Ergebnis\n\nDie Linie wurde in neun Tagen in Betrieb genommen und validiert. Das QA-Team exportierte das Nachweispaket für das erste Audit mit einem Klick; das Audit schloss ohne Befunde."
+      "body": "Brightline Pharma verpackt Tabletten in Blister auf einer Linie, für die ein sechswöchiges Fenster für Inbetriebnahme und Validierung eingeplant war.\n\n## Das Problem\n\nDie Validierung hinkte der Inbetriebnahme immer um Wochen hinterher, weil die Nachweise von Hand aus Bildschirmfotos, Testblättern und E-Mails zusammengesetzt wurden.\n\n## Was sich geändert hat\n\nDie Linie wurde in drei Tagen in Studio beschrieben. Die Abnahmetests wurden aus der Beschreibung erzeugt, aus Studio ausgeführt und mit der Codeversion abgelegt. Das Änderungsprotokoll war vom ersten Tag an nur anfügbar.\n\n## Das Ergebnis\n\nDie Linie wurde in neun Tagen in Betrieb genommen und validiert. Das QA-Team exportierte das Nachweispaket für das erste Audit mit einem Klick; das Audit schloss ohne Befunde.",
+      "compare": {
+        "title": "Die Linienanzeige, vorher und nachher",
+        "before": "Das alte Bedienpanel: vierzig unbeschriftete Tasten und eine Störliste in Codes",
+        "after": "Die neue Anzeige: Stationen so benannt wie in der Halle, Störungen im Klartext",
+        "caption": "Ziehen Sie den Regler, um die Bedienanzeige vor und nach der Umstellung zu vergleichen."
+      }
     },
     {
       "slug": "castor-automotive",
@@ -1402,7 +1414,13 @@
         "safety-reviews",
         "plant-programmes"
       ],
-      "body": "Castor Automotive montiert Hilfsrahmen auf einer Linie aus zwölf Roboterzellen und drei Förderern in Deutschland.\n\n## Das Problem\n\nSicherheitsprüfungen dauerten eine Woche und endeten in Streit über handgeschriebene Sicherheitslogik, die niemand vollständig erklären konnte.\n\n## Was sich geändert hat\n\nDie Linie wurde Zone für Zone in einem Werksprogramm beschrieben, eine Zelle alle drei Wochen. Die Sicherheitslogik wurde aus den Zonenbeschreibungen erzeugt und Satz für Satz geprüft. Die Verriegelungsbegehung lief mit der HSE-Leitung, bevor der Prüfer kam.\n\n## Das Ergebnis\n\nDie Sicherheitsprüfung dauerte zwei Tage und schloss ohne wieder geöffnete Befunde. Das Werk hat seitdem zwei weitere Linien mit eigenen Ingenieuren beschrieben."
+      "body": "Castor Automotive montiert Hilfsrahmen auf einer Linie aus zwölf Roboterzellen und drei Förderern in Deutschland.\n\n## Das Problem\n\nSicherheitsprüfungen dauerten eine Woche und endeten in Streit über handgeschriebene Sicherheitslogik, die niemand vollständig erklären konnte.\n\n## Was sich geändert hat\n\nDie Linie wurde Zone für Zone in einem Werksprogramm beschrieben, eine Zelle alle drei Wochen. Die Sicherheitslogik wurde aus den Zonenbeschreibungen erzeugt und Satz für Satz geprüft. Die Verriegelungsbegehung lief mit der HSE-Leitung, bevor der Prüfer kam.\n\n## Das Ergebnis\n\nDie Sicherheitsprüfung dauerte zwei Tage und schloss ohne wieder geöffnete Befunde. Das Werk hat seitdem zwei weitere Linien mit eigenen Ingenieuren beschrieben.",
+      "compare": {
+        "title": "Die Linienanzeige, vorher und nachher",
+        "before": "Das alte Bedienpanel: vierzig unbeschriftete Tasten und eine Störliste in Codes",
+        "after": "Die neue Anzeige: Stationen so benannt wie in der Halle, Störungen im Klartext",
+        "caption": "Ziehen Sie den Regler, um die Bedienanzeige vor und nach der Umstellung zu vergleichen."
+      }
     }
   ],
   "docs": [

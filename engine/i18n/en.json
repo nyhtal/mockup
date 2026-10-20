@@ -153,7 +153,13 @@
     "linkCopied": "Link copied",
     "addressCopied": "Address copied",
     "copyAddress": "Copy the address",
-    "dismiss": "Dismiss"
+    "dismiss": "Dismiss",
+    "talkToUs": "Talk to a person",
+    "contactPage": "All the ways to reach us",
+    "testimonials": "What customers say",
+    "before": "Before",
+    "after": "After",
+    "compareSlider": "Compare before and after"
   },
   "footer": {
     "rights": "All rights reserved.",

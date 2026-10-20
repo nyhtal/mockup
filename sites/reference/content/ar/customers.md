@@ -9,6 +9,6 @@ description: "عملاء Northwind ونتائجهم: التوقف ومدة ال�
 sections:
   - "logo-cloud"
   - "case-study-cards"
-  - "testimonials-home"
+  - "testimonials-carousel"
   - "cta-demo"
 ---

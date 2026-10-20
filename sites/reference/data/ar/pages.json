@@ -1423,6 +1423,14 @@
       "lede": "هذا عدد أكتوبر كما وصل إلى المشتركين.",
       "src": "/ar/newsletter/preview/",
       "frameTitle": "عدد أكتوبر 2026 من Line Notes"
+    },
+    "testimonials-carousel": {
+      "type": "testimonials",
+      "variant": "carousel",
+      "eyebrow": "العملاء",
+      "title": "ماذا تقول فرق المصانع",
+      "from": "testimonials",
+      "limit": 3
     }
   },
   "detail": {
@@ -1678,6 +1686,19 @@
           "type": "prose",
           "md": "e.body",
           "label": "{e.title}"
+        },
+        {
+          "type": "before-after",
+          "title": "{e.compare.title}",
+          "before": {
+            "slug": "{e.slug}-hmi-before",
+            "alt": "{e.compare.before}"
+          },
+          "after": {
+            "slug": "{e.slug}-hmi-after",
+            "alt": "{e.compare.after}"
+          },
+          "caption": "{e.compare.caption}"
         },
         {
           "type": "testimonials",

@@ -1446,6 +1446,14 @@
       "lede": "This is the October issue as subscribers received it.",
       "src": "/en/newsletter/preview/",
       "frameTitle": "The October 2026 issue of Line Notes"
+    },
+    "testimonials-carousel": {
+      "type": "testimonials",
+      "variant": "carousel",
+      "eyebrow": "Customers",
+      "title": "What plant teams say",
+      "from": "testimonials",
+      "limit": 3
     }
   },
   "detail": {
@@ -1701,6 +1709,19 @@
           "type": "prose",
           "md": "e.body",
           "label": "{e.title}"
+        },
+        {
+          "type": "before-after",
+          "title": "{e.compare.title}",
+          "before": {
+            "slug": "{e.slug}-hmi-before",
+            "alt": "{e.compare.before}"
+          },
+          "after": {
+            "slug": "{e.slug}-hmi-after",
+            "alt": "{e.compare.after}"
+          },
+          "caption": "{e.compare.caption}"
         },
         {
           "type": "testimonials",

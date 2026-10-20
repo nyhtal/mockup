@@ -82,9 +82,9 @@ test("the shell has one header with labelled navigation, a drawer trigger, one m
   assert.match(readFileSync("dist/reference/en/customers/index.html", "utf8"), /<a href="\/en\/customers\/"[^>]*aria-current="page"/);
 });
 
-test("enhance.js ships under 4 KB and only does what bylaw 06 allows", () => {
+test("enhance.js ships under 5 KB (D55) and only does what bylaw 06 allows", () => {
   const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
-  assert.ok(Buffer.byteLength(js) <= 4096, `${Buffer.byteLength(js)} B`);
+  assert.ok(Buffer.byteLength(js) <= 5120, `${Buffer.byteLength(js)} B`);
   assert.match(js, /IntersectionObserver/);
   assert.match(js, /pending:/, "entrances are triggered by the script, once, as each element crosses 88 % of the viewport (R-MOT-10 behaviour 1)");
   assert.match(js, /innerHeight\*\.88/, "elements already in view at load are revealed before the pending: state can apply (R-MOT-11)");
@@ -392,6 +392,28 @@ test("widgets (to-do 7b, part two): copy and share buttons report into a live to
   assert.match(js, /data-copy/);
   assert.match(js, /sessionStorage\.notice=1/);
   assert.ok(Buffer.byteLength(js) <= 5120, "enhance.js within 5 KB (D55)");
+});
+
+test("widgets (to-do 7b, part three): a carousel, a sticky phone CTA, a contact launcher, a before/after slider", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  assert.match(read("de/customers"), /<ul class="carousel" tabindex="0" aria-label="[^"]+" data-prev="[^"]+" data-next="[^"]+">/);
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  assert.match(css, /::scroll-button\(inline-start\)/);
+  assert.match(css, /::scroll-marker/);
+  const home = read("en");
+  const sticky = /<div class="sticky bottom-0[^"]*sda:block lg:hidden[^"]*\[animation-range:0_60vh\][^"]*" data-component="sticky-cta"><a href="\/en\/demo\/"/.exec(home);
+  assert.ok(sticky, "a sticky CTA on the home page");
+  assert.ok(home.indexOf('data-component="sticky-cta"') < home.indexOf("</main>"), "inside main, so it stops above the footer");
+  assert.doesNotMatch(read("en/about"), /data-component="sticky-cta"/);
+  const pricing = read("ar/pricing");
+  assert.match(pricing, /<button type="button" popovertarget="contact-launcher"[^>]*>[\s\S]*?<div popover id="contact-launcher" role="dialog" aria-labelledby="contact-launcher-title"/);
+  assert.match(pricing, /<a href="tel:\+442079460000">[\s\S]*?<a href="mailto:hello@example\.com">[\s\S]*?<a href="\/ar\/contact\/">/);
+  assert.doesNotMatch(read("en/products/northwind-studio"), /contact-launcher/);
+  const cs = read("de/customers/brightline-pharma");
+  assert.match(cs, /<div class="relative overflow-hidden rounded-xl \[--pos:50%\]" data-ba-frame>/);
+  assert.match(cs, /brightline-pharma-hmi-before[\s\S]*?brightline-pharma-hmi-after|brightline-pharma-hmi-after[\s\S]*?brightline-pharma-hmi-before/);
+  assert.match(cs, /<label class="mt-4 hidden js:block"><span class="sr-only">Vorher und nachher vergleichen<\/span><input type="range" min="0" max="100" value="50" data-ba/);
+  assert.match(readFileSync("dist/reference/assets/enhance.js", "utf8"), /setProperty\("--pos"/);
 });
 
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {

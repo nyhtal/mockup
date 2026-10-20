@@ -153,7 +153,13 @@
     "linkCopied": "تم نسخ الرابط",
     "addressCopied": "تم نسخ العنوان",
     "copyAddress": "نسخ العنوان",
-    "dismiss": "إغلاق"
+    "dismiss": "إغلاق",
+    "talkToUs": "تحدّث إلى شخص",
+    "contactPage": "كل طرق التواصل معنا",
+    "testimonials": "ماذا يقول العملاء",
+    "before": "قبل",
+    "after": "بعد",
+    "compareSlider": "قارن بين قبل وبعد"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

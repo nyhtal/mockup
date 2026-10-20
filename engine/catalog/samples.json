@@ -1692,6 +1692,20 @@
       "frameTitle": "The October 2026 issue of Line Notes"
     },
     {
+      "id": "before-after",
+      "type": "before-after",
+      "title": "The line display, before and after",
+      "before": {
+        "slug": "alder-foods-hmi-before",
+        "alt": "The old operator panel: forty unlabelled buttons and a fault list in code numbers"
+      },
+      "after": {
+        "slug": "alder-foods-hmi-after",
+        "alt": "The new display: stations named as on the floor, faults in plain words"
+      },
+      "caption": "Drag the handle to compare the operator display before and after the change."
+    },
+    {
       "id": "help-categories",
       "type": "help-categories",
       "title": "How can we help?",

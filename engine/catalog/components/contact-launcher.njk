@@ -1,0 +1,23 @@
+{#
+  name: contact-launcher
+  purpose: A floating button on sales pages that opens the ways to reach a person: phone, email, the contact page (to-do 7b).
+  anatomy: button[popovertarget] (icon + sr-only label) + div[popover]#contact-launcher > p#title + ul > li > a
+  motion: the panel fades and rises 8 px (R-MOT-06), motion-safe
+  keyboard: Enter or Space opens; Escape and a click outside close (popover=auto); focus returns to the button
+  layout: bottom start corner (the back-to-top button owns the end corner)
+  data: contact = { phone, email }
+#}
+{% from "primitives/icon.njk" import icon with context %}
+{% macro contactLauncher(contact, locale) %}
+<div class="print:hidden" data-component="contact-launcher">
+<button type="button" popovertarget="contact-launcher" class="fixed bottom-6 start-6 z-10 inline-flex size-12 items-center justify-center rounded-full bg-brand-600 text-ink-inverse shadow-lg hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ icon("message-circle") }}<span class="sr-only">{{ "ui.talkToUs" | t }}</span></button>
+<div popover id="contact-launcher" role="dialog" aria-labelledby="contact-launcher-title" class="fixed inset-auto bottom-20 start-6 m-0 w-72 max-w-[calc(100vw-3rem)] rounded-lg border border-line bg-surface-raised p-4 text-sm shadow-lg opacity-0 open:opacity-100 motion-safe:translate-y-2 motion-safe:open:translate-y-0 motion-safe:transition-discrete motion-safe:transition-[opacity,translate,scale,display,overlay] motion-safe:duration-200 motion-safe:ease-out motion-safe:starting:open:opacity-0 motion-safe:starting:open:translate-y-2">
+<p id="contact-launcher-title" class="px-2 font-semibold text-ink">{{ "ui.talkToUs" | t }}</p>
+<ul class="mt-2 space-y-1 [&_a]:flex [&_a]:min-h-11 [&_a]:items-center [&_a]:gap-3 [&_a]:rounded-md [&_a]:px-2 [&_a]:text-ink [&_a:hover]:bg-surface-alt [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-2 [&_a:focus-visible]:outline-focus">
+<li><a href="tel:{{ contact.phone | replace(' ', '') }}">{{ icon("phone", { size: "size-4", class: "text-ink-brand" }) }}<span dir="ltr">{{ contact.phone }}</span></a></li>
+<li><a href="mailto:{{ contact.email }}">{{ icon("mail", { size: "size-4", class: "text-ink-brand" }) }}{{ contact.email }}</a></li>
+<li><a href="/{{ locale }}/contact/">{{ icon("arrow-right", { size: "size-4", class: "text-ink-brand rtl:-scale-x-100" }) }}{{ "ui.contactPage" | t }}</a></li>
+</ul>
+</div>
+</div>
+{% endmacro %}
