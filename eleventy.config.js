@@ -332,7 +332,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addTemplate("_engine/files.njk", virtual("files.njk"));
   // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, in the default locale only (its sample data is English).
   for (const locale of [site.defaultLocale]) {
-    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"]]) {
+    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"], ["style-guide-widgets.njk", "widgets/", "Style guide: widgets"]]) {
       eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: `/${locale}/style-guide/${slug}index.html` });
     }
     // Every sample section, split into five pages so each stays within the HTML budget (R-PERF-01).

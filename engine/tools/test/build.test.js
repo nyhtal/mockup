@@ -427,6 +427,17 @@ test("widgets (to-do 7b, part four): native date, time and range inputs; progres
   assert.match(nl, /<div class="relative">\n<div class="absolute inset-0[^"]*">\s*<div aria-hidden="true" class="motion-safe:animate-pulse" data-component="skeleton"[\s\S]*?<iframe /);
 });
 
+test("widgets test page (owner's request): every widget on one page, each linked from its list and live", () => {
+  const page = readFileSync("dist/reference/en/style-guide/widgets/index.html", "utf8");
+  const anchors = [...page.matchAll(/<a href="#(w-[a-z]+)"/g)].map((m) => m[1]);
+  assert.equal(anchors.length, 20);
+  for (const id of anchors) assert.match(page, new RegExp(`id="${id}"`), `${id} is on the page`);
+  for (const marker of ['data-theme-toggle', 'data-component="announcement-bar"', "data-copy=", 'data-toast', 'popover="hint"', 'command="show-modal"', "data-lightbox", 'data-component="accordion"', 'data-component="tabs"', 'type="date"', 'type="time"', 'type="range"', "<datalist", "<progress", 'data-component="skeleton"', "data-count=", 'data-component="video-facade"', 'data-component="map-facade"', 'group/billing', "data-estimate=", 'class="carousel"', "★", 'ring-2 ring-surface', "data-ba-frame", "usemap=", "<iframe ", 'data-component="contact-launcher"', 'data-component="sticky-cta"']) {
+    assert.ok(page.includes(marker), `widget marker ${marker}`);
+  }
+  assert.match(readFileSync("dist/reference/en/style-guide/index.html", "utf8"), /href="\/en\/style-guide\/widgets\/"/, "linked from the style guide");
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {
