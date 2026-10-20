@@ -28,4 +28,11 @@ Unsere Haftung nach diesen Bedingungen ist auf die Gebühren begrenzt, die Sie i
 
 Monatliche Tarife enden zum Ende eines jeden Monats nach Kündigung. Wir können den Dienst bei unbezahlten Gebühren nach dreißig Tagen Vorankündigung aussetzen. Sie können Beschreibungen und Protokolle jederzeit exportieren, auch nach dem Ende.
 
+## Änderungen dieser Bedingungen
+
+Die Fassung vom <time datetime="2026-09-01">1. September 2026</time> hat zwei Sätze geändert. Gestrichene Wörter sind durchgestrichen, neue unterstrichen.
+
+- Cloud wird mit einem monatlichen Verfügbarkeitsziel von <del datetime="2026-09-01"><span class="sr-only">Entfernt: </span>99,5 %</del> <ins datetime="2026-09-01"><span class="sr-only">Neu: </span>99,9 %</ins> betrieben.
+- Wir können den Dienst bei unbezahlten Gebühren nach <del datetime="2026-09-01"><span class="sr-only">Entfernt: </span>vierzehn</del> <ins datetime="2026-09-01"><span class="sr-only">Neu: </span>dreißig</ins> Tagen Vorankündigung aussetzen.
+
 <p>Zuletzt geprüft: <time datetime="2026-10-01">1. Oktober 2026</time></p>

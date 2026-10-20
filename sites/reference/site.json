@@ -264,5 +264,20 @@
   },
   "allowedExternal": [
     "https://www.w3.org/TR/WCAG22/"
-  ]
+  ],
+  "wordBreaks": {
+    "de": [
+      "Stillstandskosten",
+      "Stillstands",
+      "Steuerungs",
+      "Sicherheits",
+      "Produktions",
+      "Änderungs",
+      "Unternehmens",
+      "Nutzungs",
+      "Linien",
+      "Presse",
+      "Produkt"
+    ]
+  }
 }

@@ -39,7 +39,7 @@
 {%- set hg = "hgroup" if s.title else "div" %}
 <{{ hg }} class="{{ 'mx-auto max-w-3xl text-center' if center else 'max-w-3xl' }}{{ headingClasses(reveal and opts.itemsReveal) }}">
 {%- if s.eyebrow %}<p class="flex items-center gap-2 {{ 'justify-center' if center }} text-sm font-medium uppercase tracking-wide {{ 'text-ink-inverse/80' if inverse else 'text-ink-brand' }} {{ eyebrowRule(inverse, reveal and ctx.flair and ctx.flair.rule) }}">{{ s.eyebrow }}</p>{% endif %}
-{%- if s.title %}<h2 class="{{ 'mt-2' if s.eyebrow }} text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>{% endif %}
+{%- if s.title %}<h2 class="{{ 'mt-2' if s.eyebrow }} text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title | wbr | safe }}</h2>{% endif %}
 {%- if s.lede %}<p class="mt-4 text-lg md:text-xl {{ 'text-ink-inverse/80' if inverse else 'text-ink-muted' }}">{{ s.lede }}</p>{% endif %}
 </{{ hg }}>
 {%- endif %}

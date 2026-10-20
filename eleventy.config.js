@@ -8,6 +8,7 @@ import { engineFiles } from "./engine/tools/lib/engine-files.js";
 import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
 import { renderMarkdown, tocOf, wordCount, headingIds } from "./engine/tools/lib/markdown.js";
 import { semantics } from "./engine/tools/lib/markdown-semantics.js";
+import { wordBreaks } from "./engine/tools/lib/word-breaks.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
@@ -163,6 +164,12 @@ export default function (eleventyConfig) {
 
   // Section ids → render steps with alternating surfaces, reveal flags and the page context (see lib/sections.js).
   // Site sections (pages.json `sections`) and entities come from the page's locale; `e` is the page's entity when it has one.
+  // Self-contained pages (case studies, events, jobs) are an <article> up to the first section that leads away from it (to-do 6).
+  const AWAY = new Set(["related-items", "related-articles", "newsletter", "registration-form", "apply-form", "gated-form", "cta-band", "faq"]);
+  eleventyConfig.addFilter("articleSplit", (steps) => {
+    const i = steps.findIndex((st) => AWAY.has(st.s.type));
+    return i < 0 ? [steps, []] : [steps.slice(0, i), steps.slice(i)];
+  });
   eleventyConfig.addFilter("sectionsPlan", function (sections, locale, pageUrl, density, demote = false, breadcrumbs = [], header = null) {
     const lang = locale || site.defaultLocale;
     return planSections(samples, sections, {
@@ -254,6 +261,8 @@ export default function (eleventyConfig) {
     return value;
   });
   eleventyConfig.addFilter("md", renderMarkdown);
+  // Headings: escaped text with <wbr> at the joints of long compounds in the page's language (site.json wordBreaks).
+  eleventyConfig.addFilter("wbr", function (text) { return wordBreaks(text, site.wordBreaks?.[this.ctx?.page?.lang]); });
   // The tagline in the page's language: the site's string overlay (site.tagline) or site.json's tagline.
   const tagline = (lang) => t(lang || site.defaultLocale, "site.tagline") || site.tagline;
   eleventyConfig.addFilter("tagline", tagline);

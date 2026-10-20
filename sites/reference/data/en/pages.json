@@ -628,7 +628,15 @@
             "href": "/en/contact/"
           }
         }
-      ]
+      ],
+      "estimate": {
+        "value": 4,
+        "amount": 490,
+        "label": "How many lines would run on Starter?",
+        "template": "{n} × Starter: €{total} a month",
+        "initial": "4 × Starter: €1,960 a month",
+        "note": "Prices exclude VAT. From five lines on one site, Plant at €1,900 costs less."
+      }
     },
     "comparison": {
       "type": "comparison",

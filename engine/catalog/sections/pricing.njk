@@ -17,5 +17,15 @@
 {% macro render(s, ctx) %}
 {% call shell("pricing", s, ctx, { itemsReveal: ctx.reveal }) %}
 {{ pricingTable({ tiers: s.tiers }, { ctx: ctx }) }}
+{%- if s.estimate %}
+{#- A range input and its <output> (an implicit status region): the server renders the default sum, enhance.js keeps it current (to-do 6). -#}
+{%- set eid = "estimate-" + ctx.index %}
+<div class="mt-12 max-w-xl rounded-lg border border-line bg-surface-raised p-6">
+<label for="{{ eid }}" class="block font-medium">{{ s.estimate.label }}</label>
+<input type="range" id="{{ eid }}" min="1" max="20" step="1" value="{{ s.estimate.value }}" data-estimate="{{ s.estimate.template }}" data-amount="{{ s.estimate.amount }}" class="mt-4 block w-full accent-brand-600">
+<p class="mt-3 text-lg"><output for="{{ eid }}" class="font-semibold tabular-nums">{{ s.estimate.initial }}</output></p>
+<p class="mt-2 text-sm text-ink-muted">{{ s.estimate.note }}</p>
+</div>
+{%- endif %}
 {% endcall %}
 {% endmacro %}

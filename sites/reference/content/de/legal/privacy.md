@@ -31,4 +31,22 @@ Mitarbeitende von Northwind, die sie für ihre Arbeit brauchen, und der Hosting-
 
 Sie können eine Kopie Ihrer Daten anfordern, sie berichtigen oder löschen lassen, indem Sie an privacy@example.com schreiben. Wir antworten innerhalb eines Monats.
 
+## Wo Daten liegen
+
+### Hosting in der EU
+
+Beschreibungen, Protokolle und Kontodaten liegen in zwei Rechenzentren in Frankfurt.
+
+#### Sicherungen
+
+Jede Nacht entsteht eine Kopie, die verschlüsselt im zweiten Rechenzentrum liegt.
+
+##### Wie lange Sicherungen aufbewahrt werden
+
+Dreißig Tage. Ein gelöschter Datensatz verschwindet innerhalb von dreißig Tagen nach dem Löschen aus den Sicherungen.
+
+###### Gerichtliche Aufbewahrungspflichten
+
+Ordnet ein Gericht an, einen Datensatz aufzubewahren, behalten wir ihn, solange die Anordnung gilt, und informieren Sie, sofern die Anordnung das nicht verbietet.
+
 <p>Zuletzt geprüft: <time datetime="2026-10-01">1. Oktober 2026</time></p>

@@ -628,7 +628,15 @@
             "href": "/de/contact/"
           }
         }
-      ]
+      ],
+      "estimate": {
+        "value": 4,
+        "amount": 490,
+        "label": "Wie viele Linien liefen im Starter-Tarif?",
+        "template": "{n} × Starter: {total} € im Monat",
+        "initial": "4 × Starter: 1.960 € im Monat",
+        "note": "Preise zzgl. MwSt. Ab fünf Linien an einem Standort ist Werk für 1.900 € günstiger."
+      }
     },
     "comparison": {
       "type": "comparison",

@@ -4,10 +4,24 @@ layout: base.njk
 {#- Sections-driven page (R-SEC-06 alternation, R-SEC-10 reveal below the fold, R-SEC-12 data only).
     Front matter: sections: [ "sample-id" | { type, … } ]; demote: true turns section h1s into h2s (style guide only).
     The page's computed breadcrumbs travel in ctx so page-header can show them (R-SEC-08). Any template body renders before the sections.
-    Pages with a title open with a page-header built from title, eyebrow and lede unless their first section is a hero or page-header. -#}
+    Pages with a title open with a page-header built from title, eyebrow and lede unless their first section is a hero or page-header.
+    Case studies, events and jobs wrap their own sections in <article>, up to the first section that leads elsewhere (articleSplit). -#}
 {% from "sections/_render.njk" import section with context %}
 {{ content | safe }}
 {%- set header = { eyebrow: eyebrow, title: title, lede: lede } if (title and not demote and not noHeader) else null -%}
-{%- for step in sections | sectionsPlan(locale, page.url, site.brand.density, demote, breadcrumbs, header) %}
+{%- set steps = sections | sectionsPlan(locale, page.url, site.brand.density, demote, breadcrumbs, header) -%}
+{%- if pageType in ["case-study", "event", "job"] %}
+{%- set parts = steps | articleSplit %}
+<article>
+{%- for step in parts[0] %}
+{{ section(step.s, step.ctx | merge({ inArticle: true })) }}
+{%- endfor %}
+</article>
+{%- for step in parts[1] %}
 {{ section(step.s, step.ctx) }}
 {%- endfor %}
+{%- else %}
+{%- for step in steps %}
+{{ section(step.s, step.ctx) }}
+{%- endfor %}
+{%- endif %}

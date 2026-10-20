@@ -31,4 +31,22 @@ Northwind staff who need it for their work, and the hosting provider in the EU. 
 
 You can ask for a copy of your data, correct it, or have it deleted by writing to privacy@example.com. We reply within one month.
 
+## Where data is kept
+
+### Hosting in the EU
+
+Descriptions, logs and account data are stored in two data centres in Frankfurt.
+
+#### Backups
+
+A copy is taken every night and kept, encrypted, in the second data centre.
+
+##### How long backups are kept
+
+Thirty days. A deleted record leaves the backups within thirty days of its deletion.
+
+###### Legal holds
+
+If a court orders us to keep a record, we keep it for as long as the order lasts and tell you, unless the order forbids it.
+
 <p>Last reviewed: <time datetime="2026-10-01">1 October 2026</time></p>

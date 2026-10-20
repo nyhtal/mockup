@@ -296,6 +296,25 @@ test("element semantics in content (to-do 6b): abbr, q, figure with figcaption a
   }
 });
 
+test("element semantics in pages (to-do 6c): article with its header, wbr, ins and del, h5 and h6, a range input with an output", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  const post = read("en/blog/reading-generated-code");
+  assert.match(post, /<article>\n+<header class="py-12 md:py-16[^"]*" data-component="page-header">[\s\S]*?<h1[\s\S]*?data-component="author-box"[\s\S]*?<\/article>/, "a post is one article: header, byline, body, author box");
+  assert.doesNotMatch(post.slice(post.indexOf("</article>")), /data-component="author-box"/);
+  const job = read("de/careers/senior-controls-engineer");
+  assert.match(job, /<article>\n+<header [^>]*data-component="page-header">[\s\S]*?data-component="job-detail"[\s\S]*?<\/article>/);
+  assert.ok(job.indexOf('data-component="apply-form"') > job.indexOf("</article>"), "the application form follows the article");
+  assert.match(read("de/blog"), /Produktions<wbr>fläche/);
+  const terms = read("en/legal/terms");
+  assert.match(terms, /<del datetime="2026-09-01"><span class="sr-only">Removed: <\/span>99\.5%<\/del> <ins datetime="2026-09-01"><span class="sr-only">Added: <\/span>99\.9%<\/ins>/);
+  const privacy = read("ar/legal/privacy");
+  assert.match(privacy, /<h4 [^>]*>[\s\S]*<h5 [^>]*>[\s\S]*<h6 [^>]*>/, "the privacy annex nests to h6 without skipping a level");
+  const pricing = read("de/pricing");
+  assert.match(pricing, /<label for="estimate-1"[^>]*>[^<]+<\/label>\n<input type="range" id="estimate-1" min="1" max="20" step="1" value="4" data-estimate="\{n\} × Starter: \{total\} € im Monat" data-amount="490"/);
+  assert.match(pricing, /<output for="estimate-1" class="[^"]*">4 × Starter: 1\.960 € im Monat<\/output>/);
+  assert.match(readFileSync("dist/reference/assets/enhance.js", "utf8"), /data-estimate|dataset\.estimate/, "enhance.js keeps the output current");
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

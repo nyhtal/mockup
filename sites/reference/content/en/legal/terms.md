@@ -28,4 +28,11 @@ Our liability under these terms is limited to the fees you paid in the twelve mo
 
 Monthly tiers end at the end of any month on notice. We may suspend the service for unpaid fees after thirty days' notice. You can export descriptions and logs at any time, including after the end.
 
+## Changes to these terms
+
+The version of <time datetime="2026-09-01">1 September 2026</time> changed two sentences. Removed words are struck through, added words underlined.
+
+- Cloud is run to a <del datetime="2026-09-01"><span class="sr-only">Removed: </span>99.5%</del> <ins datetime="2026-09-01"><span class="sr-only">Added: </span>99.9%</ins> monthly uptime target.
+- We may suspend the service for unpaid fees after <del datetime="2026-09-01"><span class="sr-only">Removed: </span>fourteen</del> <ins datetime="2026-09-01"><span class="sr-only">Added: </span>thirty</ins> days' notice.
+
 <p>Last reviewed: <time datetime="2026-10-01">1 October 2026</time></p>
