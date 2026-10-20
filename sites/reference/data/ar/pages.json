@@ -1062,7 +1062,11 @@
           "text": "صور جاهزة للنشر لفريق القيادة.",
           "href": "/ar/news/media-kit/"
         }
-      ]
+      ],
+      "license": {
+        "label": "شروط استخدام هذه الملفات",
+        "href": "/ar/legal/terms/"
+      }
     },
     "press-cards": {
       "type": "press-cards",
@@ -1072,7 +1076,8 @@
     "article-cards": {
       "type": "article-cards",
       "title": "كل التدوينات",
-      "from": "posts"
+      "from": "posts",
+      "feed": true
     },
     "download-cards": {
       "type": "download-cards",

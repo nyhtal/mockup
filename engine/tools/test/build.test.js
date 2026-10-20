@@ -236,6 +236,22 @@ test("link types and files: tel, sms, mailto with a subject, geo, and downloads 
   assert.ok(readFileSync("dist/reference/assets/files/safety-evidence-guide.pdf", "latin1").startsWith("%PDF-1.4"));
 });
 
+test("rel values: tag and author on an article, bookmark on article cards, privacy-policy and terms-of-service in the footer, a visible feed link on the blog (to-do 5)", () => {
+  const post = readFileSync("dist/reference/en/blog/reading-generated-code/index.html", "utf8");
+  assert.match(post, /<a href="[^"]+" rel="tag"/);
+  assert.match(post, /<a href="[^"]+" rel="author"/);
+  assert.match(post, /<a href="\/en\/legal\/privacy\/" rel="privacy-policy"/);
+  assert.match(post, /<a href="\/en\/legal\/terms\/" rel="terms-of-service"/);
+  assert.match(readFileSync("dist/reference/de/news/media-kit/index.html", "utf8"), /<a href="\/de\/legal\/terms\/" rel="license"/);
+  const a11y = readFileSync("dist/reference/ar/legal/accessibility/index.html", "utf8");
+  assert.match(a11y, /<a href="https:\/\/www\.w3\.org\/TR\/WCAG22\/" target="_blank" rel="noopener noreferrer" hreflang="en">[\s\S]*?<span class="sr-only">/);
+  for (const l of ["en", "de", "ar"]) {
+    const blog = readFileSync(`dist/reference/${l}/blog/index.html`, "utf8");
+    assert.match(blog, /<article class="group relative[^"]*"[\s\S]*?<a href="[^"]+" rel="bookmark"/, `${l}: article cards`);
+    assert.match(blog, new RegExp(`<a href="/${l}/feed\\.xml" rel="alternate" type="application/atom\\+xml"`), `${l}: feed link`);
+  }
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

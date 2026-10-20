@@ -128,7 +128,8 @@
     "addToCalendar": "Add to calendar",
     "downloadSample": "Download a sample page (PDF)",
     "downloadFile": "Download the {type}",
-    "visitSubject": "Visiting the {city} office"
+    "visitSubject": "Visiting the {city} office",
+    "feedLink": "Follow the blog in a feed reader (Atom)"
   },
   "footer": {
     "rights": "All rights reserved.",

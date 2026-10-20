@@ -42,7 +42,7 @@
 {%- if site.footer.legal.length %}
 <ul class="flex flex-wrap gap-x-6 gap-y-2">
 {%- for link in site.footer.legal %}
-<li><a href="/{{ locale }}{{ link.href }}" class="hover:text-ink hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ link.key | t }}</a></li>
+<li><a href="/{{ locale }}{{ link.href }}"{% if link.rel %} rel="{{ link.rel }}"{% endif %} class="hover:text-ink hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ link.key | t }}</a></li>
 {%- endfor %}
 </ul>
 {%- endif %}

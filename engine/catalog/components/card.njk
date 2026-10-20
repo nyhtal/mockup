@@ -6,6 +6,7 @@
   states: rest (shadow-sm), hover (lift + shadow-md), focus-within (ring on the link)
   spacing: p-6 (comfortable) / p-4 (compact density) / p-4 md:p-6 (opts.tile: two-across tiles on phones); internal mt-2/mt-4 steps
   motion: the wrapper arrives with its column's treatment and delay (opts.class from the item macro); the inner card lifts 2 px on hover, warms the border to brand-300 and deepens the shadow; the icon tile scales 105 % on hover and its wrapper pops on arrival when opts.pop is set (expressive; two elements so the two scales never share a transition); an article picture settles from 115 % when opts.zoom is set; the arrow nudges (R-MOT-07); the case-study metric counts from 0 once in view when opts.count is set (R-MOT-10)
+  semantics: an article card's inner card is an <article> and its title link carries rel="bookmark" (to-do 5)
   keyboard: the title link is the only focusable element; the whole card is clickable via after:absolute after:inset-0 on the inner card
   a11y: heading level is a parameter (default 3); link text is the title; icons aria-hidden; dates in <time>; the case-study metric label carries the accent marker (evidence, DESIGN §1)
   i18n: dates and phone numbers are preformatted strings from content; metric values use tabular-nums
@@ -23,9 +24,10 @@
 {%- set h = "h" + (opts.level or 3) -%}
 {%- set variant = c.variant or "service" -%}
 {%- set pad = "p-4" if opts.density == "compact" else ("p-4 md:p-6" if opts.tile else "p-6") -%}
+{%- set inner = "article" if variant == "article" else "div" -%}
 {%- set link = "text-ink after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus hover:underline underline-offset-4" -%}
 <{{ tag }} class="flex{{ opts.class if opts.class }}" data-component="card" data-variant="{{ variant }}">
-<div class="group relative flex w-full flex-col rounded-lg border border-line bg-surface-raised {{ pad }} shadow-sm motion-safe:transition-[color,background-color,border-color,translate,scale] motion-safe:duration-150 motion-safe:ease-out motion-safe:hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md">
+<{{ inner }} class="group relative flex w-full flex-col rounded-lg border border-line bg-surface-raised {{ pad }} shadow-sm motion-safe:transition-[color,background-color,border-color,translate,scale] motion-safe:duration-150 motion-safe:ease-out motion-safe:hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md">
 {%- if variant == "article" and c.image %}
 <div class="-mx-6 -mt-6 mb-6 overflow-hidden rounded-t-lg">{{ picture(c.image, { sizes: "(min-width: 48rem) 33vw, 100vw", class: "aspect-video w-full object-cover" + (opts.zoom or "") }) }}</div>
 {%- endif %}
@@ -52,7 +54,7 @@
 {%- if variant == "article" and c.date %}
 <p class="mb-2 text-sm text-ink-muted"><time datetime="{{ c.dateIso }}">{{ c.date }}</time></p>
 {%- endif %}
-<{{ h }} class="text-xl font-semibold">{% if c.href %}<a href="{{ c.href }}" class="{{ link }}">{{ c.title or c.name }}</a>{% else %}{{ c.title or c.name }}{% endif %}</{{ h }}>
+<{{ h }} class="text-xl font-semibold">{% if c.href %}<a href="{{ c.href }}"{% if variant == "article" %} rel="bookmark"{% endif %} class="{{ link }}">{{ c.title or c.name }}</a>{% else %}{{ c.title or c.name }}{% endif %}</{{ h }}>
 {%- if variant == "team" and c.role %}
 <p class="mt-1 text-sm text-ink-muted">{{ c.role }}</p>
 {%- endif %}
@@ -77,6 +79,6 @@
 {%- if c.href and (variant == "service" or variant == "download") %}
 <p class="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-ink-brand" aria-hidden="true">{{ c.cta or (("ui.download" | t) if variant == "download" else ("ui.readMore" | t)) }}{{ icon("arrow-right", { size: "size-4", class: "motion-safe:transition-transform motion-safe:duration-150 group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" }) }}</p>
 {%- endif %}
-</div>
+</{{ inner }}>
 </{{ tag }}>
 {% endmacro %}

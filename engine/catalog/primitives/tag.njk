@@ -11,9 +11,10 @@
   i18n: none
   content limits: label ≤ 20 chars
 #}
-{% macro tag(label, href) %}
+{#- rel: "tag" when the link goes to the index of a tag the current article carries (to-do 5). -#}
+{% macro tag(label, href, rel) %}
 {%- if href -%}
-<a href="{{ href }}" class="inline-flex items-center rounded-md bg-surface-alt px-2 py-1 text-sm text-ink hover:bg-brand-100 hover:text-brand-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150" data-component="tag" data-variant="link">{{ label }}</a>
+<a href="{{ href }}"{% if rel %} rel="{{ rel }}"{% endif %} class="inline-flex items-center rounded-md bg-surface-alt px-2 py-1 text-sm text-ink hover:bg-brand-100 hover:text-brand-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150" data-component="tag" data-variant="link">{{ label }}</a>
 {%- else -%}
 <span class="inline-flex items-center rounded-md bg-surface-alt px-2 py-1 text-sm text-ink" data-component="tag" data-variant="static">{{ label }}</span>
 {%- endif -%}

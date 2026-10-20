@@ -128,7 +128,8 @@
     "addToCalendar": "إضافة إلى التقويم",
     "downloadSample": "تنزيل صفحة نموذجية (PDF)",
     "downloadFile": "تنزيل ملف {type}",
-    "visitSubject": "زيارة مكتب {city}"
+    "visitSubject": "زيارة مكتب {city}",
+    "feedLink": "تابع المدونة في قارئ الخلاصات (Atom)"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

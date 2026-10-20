@@ -10,7 +10,7 @@ description: "Die Erklärung zur Barrierefreiheit von Northwind Dynamics: WCAG 2
 ---
 ## Unsere Verpflichtung
 
-Diese Website soll die Web Content Accessibility Guidelines (WCAG) 2.2 auf Stufe AA erfüllen. Jede Änderung wird vor der Veröffentlichung mit automatischen Tests und einem Durchgang mit Tastatur und Screenreader geprüft.
+Diese Website soll die Web Content Accessibility Guidelines <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer" hreflang="en">(WCAG) 2.2<svg aria-hidden="true" class="ms-1 inline size-4 align-[-0.125em]"><use href="#i-external-link"></use></svg><span class="sr-only"> (öffnet in neuem Tab)</span></a> auf Stufe AA erfüllen. Jede Änderung wird vor der Veröffentlichung mit automatischen Tests und einem Durchgang mit Tastatur und Screenreader geprüft.
 
 ## Was funktioniert
 

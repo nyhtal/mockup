@@ -128,7 +128,8 @@
     "addToCalendar": "Zum Kalender hinzufügen",
     "downloadSample": "Beispielseite herunterladen (PDF)",
     "downloadFile": "{type} herunterladen",
-    "visitSubject": "Besuch im Büro {city}"
+    "visitSubject": "Besuch im Büro {city}",
+    "feedLink": "Dem Blog im Feedreader folgen (Atom)"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

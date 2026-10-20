@@ -10,8 +10,8 @@
 {% macro render(s, ctx) %}
 <section class="border-y border-line py-6 {{ s.surface or 'bg-surface' }}" aria-label="{{ s.label or ('ui.articleDetails' | t) }}" data-component="article-meta">
 <div class="mx-auto flex w-full max-w-7xl flex-wrap items-center gap-x-8 gap-y-4 px-4 sm:px-6 lg:px-8">
-<div class="flex items-center gap-3">{{ avatar(s.author.name, { size: "size-8" }) }}<span class="text-sm"><span class="block font-medium">{% if s.author.href %}<a href="{{ s.author.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.author.name }}</a>{% else %}{{ s.author.name }}{% endif %}</span><span class="block text-ink-muted"><time datetime="{{ s.dateIso }}">{{ s.date }}</time>{% if s.readingTime %} · {{ s.readingTime }}{% endif %}</span></span></div>
-{%- if s.tags %}{{ tagList(s.tags) }}{% endif %}
+<div class="flex items-center gap-3">{{ avatar(s.author.name, { size: "size-8" }) }}<span class="text-sm"><span class="block font-medium">{% if s.author.href %}<a href="{{ s.author.href }}" rel="author" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.author.name }}</a>{% else %}{{ s.author.name }}{% endif %}</span><span class="block text-ink-muted"><time datetime="{{ s.dateIso }}">{{ s.date }}</time>{% if s.readingTime %} · {{ s.readingTime }}{% endif %}</span></span></div>
+{%- if s.tags %}{{ tagList(s.tags, { rel: "tag" }) }}{% endif %}
 {%- if s.share %}<div class="ms-auto">{{ shareLinks(s.share) }}</div>{% endif %}
 </div>
 </section>

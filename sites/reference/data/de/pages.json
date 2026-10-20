@@ -1062,7 +1062,11 @@
           "text": "Pressetaugliche Porträts des Führungsteams.",
           "href": "/de/news/media-kit/"
         }
-      ]
+      ],
+      "license": {
+        "label": "Nutzungsbedingungen für diese Dateien",
+        "href": "/de/legal/terms/"
+      }
     },
     "press-cards": {
       "type": "press-cards",
@@ -1072,7 +1076,8 @@
     "article-cards": {
       "type": "article-cards",
       "title": "Alle Beiträge",
-      "from": "posts"
+      "from": "posts",
+      "feed": true
     },
     "download-cards": {
       "type": "download-cards",

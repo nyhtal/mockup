@@ -18,7 +18,7 @@
 {{ avatar(a.name, { size: "size-12" }) }}
 <div>
 <h2 id="author-heading" class="sr-only">{{ "ui.aboutAuthor" | t }}</h2>
-<p class="font-semibold">{% if a.href %}<a href="{{ a.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ a.name }}</a>{% else %}{{ a.name }}{% endif %}</p>
+<p class="font-semibold">{% if a.href %}<a href="{{ a.href }}" rel="author" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ a.name }}</a>{% else %}{{ a.name }}{% endif %}</p>
 <p class="text-sm text-ink-muted">{{ a.role }}</p>
 {%- if a.bio %}<p class="mt-2 text-sm leading-relaxed">{{ a.bio }}</p>{% endif %}
 </div>

@@ -10,7 +10,7 @@ description: "The Northwind Dynamics accessibility statement: this site aims at 
 ---
 ## Our commitment
 
-This site aims to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA. Every change is checked with automated tests and a keyboard and screen reader walkthrough before it is published.
+This site aims to meet the Web Content Accessibility Guidelines <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer">(WCAG) 2.2<svg aria-hidden="true" class="ms-1 inline size-4 align-[-0.125em]"><use href="#i-external-link"></use></svg><span class="sr-only"> (opens in a new tab)</span></a> at level AA. Every change is checked with automated tests and a keyboard and screen reader walkthrough before it is published.
 
 ## What works
 

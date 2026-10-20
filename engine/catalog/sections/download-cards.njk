@@ -2,7 +2,12 @@
   name: download-cards
   purpose: Whitepapers, media kit files, investor reports.
   anatomy: cardGrid(download, 3)
-  data: s = { title, lede, items: [{ type, pages, title, text, href }] }
+  data: s = { license: { label, href } (rel="license": the terms the files are offered under), title, lede, items: [{ type, pages, title, text, href }] }
 #}
 {% from "sections/_grid.njk" import cardGrid with context %}
-{% macro render(s, ctx) %}{{ cardGrid("download-cards", s, ctx, "download", 3) }}{% endmacro %}
+{% macro render(s, ctx) %}
+{%- set after -%}
+{%- if s.license %}<p class="mt-8 text-sm text-ink-muted"><a href="{{ s.license.href }}" rel="license" class="underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.license.label }}</a></p>{% endif -%}
+{%- endset -%}
+{{ cardGrid("download-cards", s, ctx, "download", 3, { after: after }) }}
+{%- endmacro %}

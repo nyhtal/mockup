@@ -10,7 +10,7 @@ description: "بيان إمكانية الوصول لشركة Northwind Dynamics
 ---
 ## التزامنا
 
-يستهدف هذا الموقع استيفاء إرشادات إمكانية الوصول إلى محتوى الويب (WCAG) 2.2 بمستوى AA. يُفحص كل تغيير باختبارات آلية وجولة بلوحة المفاتيح وقارئ الشاشة قبل نشره.
+يستهدف هذا الموقع استيفاء إرشادات إمكانية الوصول إلى محتوى الويب <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener noreferrer" hreflang="en">(WCAG) 2.2<svg aria-hidden="true" class="ms-1 inline size-4 align-[-0.125em]"><use href="#i-external-link"></use></svg><span class="sr-only"> (يفتح في تبويب جديد)</span></a> بمستوى AA. يُفحص كل تغيير باختبارات آلية وجولة بلوحة المفاتيح وقارئ الشاشة قبل نشره.
 
 ## ما يعمل
 

@@ -128,7 +128,8 @@
     "addToCalendar": "",
     "downloadSample": "",
     "downloadFile": "",
-    "visitSubject": ""
+    "visitSubject": "",
+    "feedLink": ""
   },
   "footer": {
     "rights": "",

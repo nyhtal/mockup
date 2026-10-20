@@ -1,7 +1,7 @@
 {#
   name: _grid (helper, not a section)
   purpose: A section whose body is a grid of cards of one variant (R-LAY-03, R-SEC-03). Used by every "*-cards" section.
-  usage: {{ cardGrid("case-study-cards", s, ctx, "case-study", 3) }}; opts.tile puts short tiles two across from 320 px (R-LAY-03), rises them and pops their icon or avatar (R-MOT-16)
+  usage: {{ cardGrid("case-study-cards", s, ctx, "case-study", 3) }}; opts.after is markup printed under the grid; opts.tile puts short tiles two across from 320 px (R-LAY-03), rises them and pops their icon or avatar (R-MOT-16)
   motion: the grid carries `reveal-items` (the item distance of R-TOK-12); each card's wrapper takes its column's treatment (R-MOT-16)
 #}
 {% from "sections/_shell.njk" import shell, item, pop, zoom with context %}
@@ -19,5 +19,6 @@
 {%- else %}
 {{ emptyState(s.empty or { icon: "info", title: ("ui.emptyTitle" | t), text: ("ui.emptyText" | t) }) }}
 {%- endif %}
+{%- if opts.after %}{{ opts.after | safe }}{% endif %}
 {% endcall %}
 {% endmacro %}

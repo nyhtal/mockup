@@ -1,8 +1,14 @@
 {#
   name: article-cards
   purpose: Blog index and resource listings, 12 per page (R-PAGE-11).
-  anatomy: cardGrid(article, 3) + optional pagination via the pagination section
-  data: s = { title, items: [{ image, eyebrow, title, text, date, dateIso, href }] }
+  anatomy: cardGrid(article, 3) + optional feed link (s.feed: rel="alternate" type="application/atom+xml", the visible twin of the head link) + optional pagination via the pagination section
+  data: s = { title, feed, items: [{ image, eyebrow, title, text, date, dateIso, href }] }
 #}
 {% from "sections/_grid.njk" import cardGrid with context %}
-{% macro render(s, ctx) %}{{ cardGrid("article-cards", s, ctx, "article", 3) }}{% endmacro %}
+{% from "primitives/icon.njk" import icon with context %}
+{% macro render(s, ctx) %}
+{%- set after -%}
+{%- if s.feed %}<p class="mt-10"><a href="/{{ ctx.locale }}/feed.xml" rel="alternate" type="application/atom+xml" class="inline-flex min-h-11 items-center gap-2 text-sm font-medium text-ink-brand underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ icon("rss", { size: "size-4" }) }}{{ "ui.feedLink" | t }}</a></p>{% endif -%}
+{%- endset -%}
+{{ cardGrid("article-cards", s, ctx, "article", 3, { after: after }) }}
+{%- endmacro %}

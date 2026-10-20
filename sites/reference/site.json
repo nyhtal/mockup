@@ -236,7 +236,8 @@
     "legal": [
       {
         "key": "nav.privacy",
-        "href": "/legal/privacy/"
+        "href": "/legal/privacy/",
+        "rel": "privacy-policy"
       },
       {
         "key": "nav.cookies",
@@ -244,7 +245,8 @@
       },
       {
         "key": "nav.terms",
-        "href": "/legal/terms/"
+        "href": "/legal/terms/",
+        "rel": "terms-of-service"
       },
       {
         "key": "nav.accessibility",
@@ -259,5 +261,8 @@
     "density": "comfortable",
     "motion": "expressive",
     "font": "inter"
-  }
+  },
+  "allowedExternal": [
+    "https://www.w3.org/TR/WCAG22/"
+  ]
 }
