@@ -21,9 +21,11 @@
 {{ testimonial(s.items[0]) }}
 {%- elif variant == "carousel" %}
 {#- Carousel (to-do 7b): the list scrolls and snaps; ::scroll-button and ::scroll-marker add controls where supported. Focusable so the keyboard can scroll it. -#}
+<div class="relative">
 <ul class="carousel" tabindex="0" aria-label="{{ s.title or ('ui.testimonials' | t) }}" data-prev="{{ 'ui.previous' | t }}" data-next="{{ 'ui.next' | t }}">
 {%- for item in s.items %}<li class="flex">{{ testimonial(item, { variant: "compact" }) }}</li>{% endfor %}
 </ul>
+</div>
 {%- else %}
 <ul class="grid gap-6 md:gap-8 md:grid-cols-3{{ ' reveal-items' if ctx.reveal }}">
 {%- for f in s.items %}<li class="{{ item(loop.index0, 3, ctx, 'scale') }}">{{ testimonial(f, { variant: "compact" }) }}</li>{% endfor %}

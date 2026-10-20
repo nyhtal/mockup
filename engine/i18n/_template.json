@@ -160,7 +160,8 @@
     "before": "",
     "after": "",
     "compareSlider": "",
-    "stickyPitch": ""
+    "stickyPitch": "",
+    "announcement": ""
   },
   "footer": {
     "rights": "",

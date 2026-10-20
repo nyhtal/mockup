@@ -160,7 +160,8 @@
     "before": "Vorher",
     "after": "Nachher",
     "compareSlider": "Vorher und nachher vergleichen",
-    "stickyPitch": "Ihre Linie in dreißig Minuten beschrieben."
+    "stickyPitch": "Ihre Linie in dreißig Minuten beschrieben.",
+    "announcement": "Hinweis"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

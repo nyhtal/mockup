@@ -18,7 +18,7 @@ baseTarget: "_self"
 {%- for g in groups %}
 <section id="{{ g | slugify }}" class="mt-16 scroll-mt-24" aria-labelledby="{{ g | slugify }}-h">
 <h2 id="{{ g | slugify }}-h" class="text-2xl font-semibold tracking-tight">{{ g }}</h2>
-<div class="mt-6 overflow-x-auto rounded-lg border border-line" tabindex="0" role="region" aria-label="{{ g }}">
+<div class="mt-6 overflow-x-auto rounded-lg border border-line" tabindex="0" role="region" aria-label="{{ g }} table">
 <table class="w-full text-start text-sm">
 <caption class="sr-only">{{ g }}: element, purpose and where the site uses it</caption>
 <colgroup><col class="w-40"><col><col class="w-72"></colgroup>
@@ -38,12 +38,12 @@ baseTarget: "_self"
 <p class="mt-2 max-w-prose text-sm text-ink-muted">Elements that have no natural place in a company site's content, each doing its job here.</p>
 <div class="mt-8 grid gap-6 md:grid-cols-2">
 
-<div id="live-base" class="scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
+<div id="live-base" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;base&gt;</code></h3>
 <p class="mt-2 text-sm text-ink-muted">This page's head carries <code>&lt;base href="/en/style-guide/html/" target="_self"&gt;</code>: the URL relative links resolve against and the default target for every link and form here. Both equal what the browser would use anyway, so nothing changes; any other <code>href</code> would rewrite every relative URL and fragment on the page.</p>
 </div>
 
-<div id="live-style" class="scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
+<div id="live-style" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;template&gt;</code>, <code>&lt;style&gt;</code> and <code>&lt;slot&gt;</code></h3>
 <p class="mt-2 text-sm text-ink-muted">A web component's markup kept inert: the browser parses it but renders nothing and applies no style, so the CSP never has to allow it. Script would clone it into a shadow root, where the slot takes the light-DOM title.</p>
 <span id="live-template"></span><span id="live-slot"></span>
@@ -55,32 +55,32 @@ baseTarget: "_self"
 &lt;/template&gt;</code></pre>
 </div>
 
-<div id="live-noscript" class="scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
+<div id="live-noscript" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;noscript&gt;</code></h3>
 <p class="mt-2 text-sm text-ink-muted">Shown only when script is off. Every page works without script, so the site needs it nowhere else.</p>
 <noscript><p class="mt-4 rounded-md bg-warning-soft p-3 text-sm text-warning-strong">Script is off: the copy buttons, the count-up and the slider stay still; everything else works.</p></noscript>
 <p class="mt-4 text-sm">With script on, the message above is absent.</p>
 </div>
 
-<div id="live-canvas" class="scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
+<div id="live-canvas" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;canvas&gt;</code></h3>
 <p class="mt-2 text-sm text-ink-muted">A bitmap that script draws into, with fallback content for browsers without canvas and a text alternative for everyone. Nothing draws into it here; its background is the brand gradient.</p>
 <canvas width="320" height="80" role="img" aria-label="Line throughput this week, rising from 820 to 910 units an hour" class="mt-4 block h-20 w-full max-w-80 rounded-md bg-linear-to-r from-brand-600 to-accent-600">Line throughput this week, rising from 820 to 910 units an hour.</canvas>
 </div>
 
-<div id="live-ruby" class="scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
+<div id="live-ruby" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;ruby&gt;</code>, <code>&lt;rt&gt;</code> and <code>&lt;rp&gt;</code></h3>
 <p class="mt-2 text-sm text-ink-muted">Pronunciation over East Asian text; <code>&lt;rp&gt;</code> supplies parentheses where ruby is not supported.</p>
 <span id="live-rt"></span><span id="live-rp"></span>
 <p class="mt-4 text-2xl" lang="ja"><ruby>工<rp>(</rp><rt>こう</rt><rp>)</rp>場<rp>(</rp><rt>じょう</rt><rp>)</rp></ruby> <span class="text-base text-ink-muted" lang="en">(factory)</span></p>
 </div>
 
-<div id="live-bdo" class="scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
+<div id="live-bdo" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;bdo&gt;</code></h3>
 <p class="mt-2 text-sm text-ink-muted">Forces a direction, ignoring the bidirectional algorithm: <bdo dir="rtl">Northwind</bdo> is the word "Northwind" laid out right to left. Use <code>&lt;bdi&gt;</code> to isolate text instead, as the Arabic pages do.</p>
 </div>
 
-<div id="live-u" class="scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
+<div id="live-u" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;u&gt;</code>, <code>&lt;b&gt;</code> and <code>&lt;i&gt;</code></h3>
 <p class="mt-2 text-sm text-ink-muted">Not underline, bold and italic but meanings: <code>&lt;u&gt;</code> marks a non-textual annotation such as a misspelling, <code>&lt;b&gt;</code> draws attention without importance, <code>&lt;i&gt;</code> sets text in another voice.</p>
 <p class="mt-4 text-sm">The operator wrote <u class="decoration-danger decoration-wavy underline-offset-4">recieve</u> in the shift log. <b>Mei Chen:</b> the line said <i lang="de">Werksabnahme</i> before it said FAT.</p>

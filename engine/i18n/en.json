@@ -160,7 +160,8 @@
     "before": "Before",
     "after": "After",
     "compareSlider": "Compare before and after",
-    "stickyPitch": "See your line described in thirty minutes."
+    "stickyPitch": "See your line described in thirty minutes.",
+    "announcement": "Announcement"
   },
   "footer": {
     "rights": "All rights reserved.",

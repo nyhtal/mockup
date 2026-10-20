@@ -110,7 +110,7 @@
     }
   }
 }
-/* Carousel (to-do 7b): a snapping row; browsers with ::scroll-button and ::scroll-marker add previous/next buttons and one dot per item.
+/* Carousel (to-do 7b): a snapping row inside a `relative` wrapper (the scroll buttons position against it); browsers with ::scroll-button and ::scroll-marker add previous/next buttons and one dot per item.
    The buttons' accessible names come from the list's data-prev / data-next attributes, so they follow the page's language. */
 @utility carousel {
   display: grid;
@@ -123,11 +123,11 @@
   scrollbar-width: thin;
   padding-block-end: calc(var(--spacing) * 4);
   scroll-marker-group: after;
-  anchor-name: --carousel;
   @media (prefers-reduced-motion: no-preference) {
     scroll-behavior: smooth;
   }
   & > * {
+    position: relative; /* contains absolutely positioned descendants (sr-only text) inside the scroller */
     scroll-snap-align: start;
   }
   & > *::scroll-marker {
@@ -148,9 +148,9 @@
   }
   &::scroll-button(*) {
     position: absolute;
-    position-anchor: --carousel;
-    top: anchor(center);
+    top: 40%;
     translate: 0 -50%;
+    z-index: 1;
     width: calc(var(--spacing) * 11);
     height: calc(var(--spacing) * 11);
     border: 1px solid var(--color-line-strong);
@@ -166,11 +166,11 @@
   }
   &::scroll-button(inline-start) {
     content: "‹" / attr(data-prev);
-    inset-inline-start: anchor(start);
+    inset-inline-start: 0;
   }
   &::scroll-button(inline-end) {
     content: "›" / attr(data-next);
-    inset-inline-end: anchor(end);
+    inset-inline-end: 0;
   }
 }
 

@@ -387,7 +387,7 @@ test("widgets (to-do 7b, part two): copy and share buttons report into a live to
   assert.match(post, /data-copied="Link copied" data-share><svg[^>]*><use href="#i-share-2">/);
   assert.doesNotMatch(post, /data-component="announcement-bar"/, "the notice is on the home page only");
   const home = read("ar");
-  assert.match(home, /<div class="relative bg-brand-700[^"]*in-data-\[notice=off\]:hidden" data-component="announcement-bar">[\s\S]*?<button type="button" data-dismiss[^>]*>[\s\S]*?<span class="sr-only">إغلاق<\/span>/);
+  assert.match(home, /<div role="region" aria-label="إعلان" class="relative bg-brand-700[^"]*in-data-\[notice=off\]:hidden" data-component="announcement-bar">[\s\S]*?<button type="button" data-dismiss[^>]*>[\s\S]*?<span class="sr-only">إغلاق<\/span>/);
   const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
   assert.match(js, /data-copy/);
   assert.match(js, /sessionStorage\.notice=1/);
