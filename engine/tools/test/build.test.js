@@ -200,6 +200,19 @@ test("search: results from the site's own content, filters that work without scr
   assert.match(readFileSync("dist/reference/ar/search/index.html", "utf8"), /<mark[^>]*>السلامة<\/mark>/, "Arabic matches are marked (all four are on page 1)");
 });
 
+test("in-page links: legal pages carry a table of contents whose links land on heading ids; the FAQ jumps to its groups (to-do 5)", () => {
+  for (const [l, f] of [["en", "privacy"], ["de", "imprint"], ["ar", "terms"]]) {
+    const html = readFileSync(`dist/reference/${l}/legal/${f}/index.html`, "utf8");
+    const links = [...html.matchAll(/<nav aria-label="[^"]+" class="lg:sticky lg:top-20" data-component="toc">[\s\S]*?<\/nav>/g)].flatMap((m) => [...m[0].matchAll(/href="#([^"]+)"/g)].map((x) => x[1]));
+    assert.ok(links.length >= 3, `${l}/${f}: a table of contents`);
+    for (const id of links) assert.ok(html.includes(`id="${id}"`), `${l}/${f}: #${id} exists`);
+  }
+  const faq = readFileSync("dist/reference/en/faq/index.html", "utf8");
+  const jumps = [...faq.matchAll(/<a href="#(faq-\d+-\d+)"/g)].map((m) => m[1]);
+  assert.ok(jumps.length >= 2, "FAQ jump links");
+  for (const id of jumps) assert.match(faq, new RegExp(`<h3 id="${id}"`));
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

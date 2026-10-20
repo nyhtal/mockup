@@ -21,6 +21,21 @@ function headings(md) {
   return out;
 }
 
+/** markdown-it plugin: the same heading ids as renderMarkdown, for Markdown pages Eleventy renders itself (legal pages; to-do 5). */
+export function headingIds(md) {
+  md.core.ruler.push("heading_ids", (state) => {
+    const seen = new Map();
+    state.tokens.forEach((tok, i) => {
+      if (tok.type !== "heading_open" || tok.attrGet("id")) return;
+      const text = state.tokens[i + 1].children.filter((c) => c.type === "text" || c.type === "code_inline").map((c) => c.content).join("");
+      const base = slugify(text);
+      const n = (seen.get(base) || 0) + 1;
+      seen.set(base, n);
+      tok.attrSet("id", n === 1 ? base : `${base}-${n}`);
+    });
+  });
+}
+
 /** Markdown → HTML with ids on every heading (R-COMP-13 anchors; toc targets). */
 export function renderMarkdown(md) {
   const parser = new MarkdownIt({ html: false, linkify: false, typographer: false });

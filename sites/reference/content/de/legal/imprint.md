@@ -1,6 +1,7 @@
 ---
 layout: "article.njk"
 pageType: "legal"
+toc: true
 conversion: "none"
 title: "Impressum"
 eyebrow: "Rechtliches"

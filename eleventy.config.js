@@ -6,7 +6,7 @@ import { themeColors, flairFor, motionLevels } from "./engine/tools/lib/theme.js
 import { fontPlan } from "./engine/tools/build-fonts.js";
 import { engineFiles } from "./engine/tools/lib/engine-files.js";
 import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
-import { renderMarkdown, tocOf, wordCount } from "./engine/tools/lib/markdown.js";
+import { renderMarkdown, tocOf, wordCount, headingIds } from "./engine/tools/lib/markdown.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
@@ -142,6 +142,8 @@ export default function (eleventyConfig) {
   for (const l of site.locales) if (siteData[l]?.entities) siteData[l].entities.searchIndex = searchIndex(siteData[l].entities, entityCtx(l));
 
   eleventyConfig.addPlugin(I18nPlugin, { defaultLanguage: site.defaultLocale, errorMode: "strict" });
+  // Content Markdown gets the same heading ids as entity bodies, so tables of contents can link to them.
+  eleventyConfig.amendLibrary("md", (md) => md.use(headingIds));
   eleventyConfig.addGlobalData("site", site);
   eleventyConfig.addGlobalData("themeColors", themeColors(site.brand || {}));
   // The flair dial's booleans for chrome outside the section planner (header hairline), and the level table for the style guide (R-TOK-12).
@@ -212,7 +214,13 @@ export default function (eleventyConfig) {
         return { label: tag.label, href: detailRecipes(lang).archive ? entityUrl("tags", slug, lang) : undefined };
       });
     },
-    toc: (data) => (data.toc === true && data.e?.body ? tocOf(data.e.body) : data.toc === true ? undefined : data.toc),
+    // toc: true builds the table of contents from the entity body, or from the page's own Markdown (legal pages; in-page links, to-do 5).
+    toc: (data) => {
+      if (data.toc !== true) return data.toc;
+      if (data.e?.body) return tocOf(data.e.body);
+      if (data.page?.inputPath?.endsWith(".md")) return tocOf(readFileSync(data.page.inputPath, "utf8").replace(/^---[\s\S]*?\n---\r?\n/, ""));
+      return undefined;
+    },
     // Breadcrumbs from the URL; names come from sibling pages' titles when they exist (R-SEO-11, R-SCH-12).
     breadcrumbs: (data) => {
       if (data.breadcrumbs) return data.breadcrumbs;

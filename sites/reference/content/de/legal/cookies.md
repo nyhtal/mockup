@@ -1,6 +1,7 @@
 ---
 layout: "article.njk"
 pageType: "legal"
+toc: true
 conversion: "none"
 title: "Cookie-Richtlinie"
 eyebrow: "Rechtliches"

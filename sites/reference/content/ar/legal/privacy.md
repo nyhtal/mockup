@@ -1,6 +1,7 @@
 ---
 layout: "article.njk"
 pageType: "legal"
+toc: true
 conversion: "none"
 title: "سياسة الخصوصية"
 eyebrow: "الصفحات القانونية"

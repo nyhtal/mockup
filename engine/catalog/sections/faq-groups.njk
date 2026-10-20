@@ -17,9 +17,12 @@
 {% macro render(s, ctx) %}
 {% call shell("faq-groups", s, ctx) %}
 <div class="mx-auto max-w-3xl space-y-16">
+{%- if s.groups.length > 1 %}
+<nav aria-label="{{ 'ui.onThisPage' | t }}"><ul class="flex flex-wrap gap-2">{% for g in s.groups %}<li><a href="#faq-{{ ctx.index }}-{{ loop.index }}" class="inline-flex min-h-11 items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:border-brand-300 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ g.title }}<svg aria-hidden="true" class="size-4 shrink-0"><use href="#i-arrow-down"></use></svg></a></li>{% endfor %}</ul></nav>
+{%- endif %}
 {%- for g in s.groups %}
 <div>
-<h3 class="text-xl md:text-2xl font-semibold">{{ g.title }}</h3>
+<h3 id="faq-{{ ctx.index }}-{{ loop.index }}" class="text-xl md:text-2xl font-semibold">{{ g.title }}</h3>
 <div class="mt-6">{{ accordion(g.items, { variant: "faq", group: "faq-" + loop.index, level: 4 }) }}</div>
 </div>
 {%- endfor %}
