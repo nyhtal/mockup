@@ -275,6 +275,27 @@ test("element semantics (to-do 6a): hgroup, menu, small, dfn, data, meter, s, co
   assert.match(read("ar/customers"), /، <bdi>[A-Za-z][^<]*<\/bdi>/, "a Latin company name in an Arabic byline is isolated");
 });
 
+test("element semantics in content (to-do 6b): abbr, q, figure with figcaption and cite, kbd, var, samp, pre and code, sub, sup, hr, strong, em", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  assert.match(read("de/blog/sensor-logic-at-the-edge"), /<abbr title="speicherprogrammierbare Steuerung">SPS<\/abbr>/);
+  assert.match(read("de/news/riyadh-office"), /<q>Werke in der Region[^<]*<\/q>/, "German quotation marks become <q>");
+  const post = read("ar/blog/reading-generated-code");
+  assert.match(post, /<hr>/);
+  assert.match(post, /<figure>\n<blockquote>\n<p>[^<]+<\/p>\n<\/blockquote>\n<figcaption>— بريا ناتاراجان، <cite>Control Engineering Review<\/cite><\/figcaption>\n<\/figure>/);
+  assert.match(post, /<strong>[^<]+<\/strong>[\s\S]*<em>[^<]+<\/em>/);
+  const doc = read("en/help/describe-your-first-line");
+  assert.match(doc, /<kbd>Ctrl<\/kbd>\+<kbd>Shift<\/kbd>\+<kbd>R<\/kbd>/);
+  assert.match(doc, /<var>n<\/var> stations and <var>r<\/var> rules/);
+  assert.match(doc, /<code>DB10\.DBX0\.0<\/code>/);
+  assert.match(doc, /<pre><samp>Checked 6 stations/);
+  assert.match(doc, /<pre><code>rule &quot;guard-open&quot;/);
+  assert.match(read("en/customers/alder-foods"), /CO<sub>2<\/sub>[\s\S]*40 m<sup>2<\/sup>/);
+  for (const f of readdirSync("dist/reference", { recursive: true })) {
+    if (!/\.(html|xml|json)$/.test(String(f))) continue;
+    assert.doesNotMatch(readFileSync(`dist/reference/${f}`, "utf8"), /\*\[(PLC|SPS|HMI)\]:|\[\[Ctrl\]\]|CO~2~/, `${f}: no Markdown semantics syntax leaks`);
+  }
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

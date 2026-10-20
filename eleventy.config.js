@@ -7,6 +7,7 @@ import { fontPlan } from "./engine/tools/build-fonts.js";
 import { engineFiles } from "./engine/tools/lib/engine-files.js";
 import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
 import { renderMarkdown, tocOf, wordCount, headingIds } from "./engine/tools/lib/markdown.js";
+import { semantics } from "./engine/tools/lib/markdown-semantics.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
@@ -143,7 +144,7 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPlugin(I18nPlugin, { defaultLanguage: site.defaultLocale, errorMode: "strict" });
   // Content Markdown gets the same heading ids as entity bodies, so tables of contents can link to them.
-  eleventyConfig.amendLibrary("md", (md) => md.use(headingIds));
+  eleventyConfig.amendLibrary("md", (md) => md.use(headingIds).use(semantics));
   eleventyConfig.addGlobalData("site", site);
   eleventyConfig.addGlobalData("themeColors", themeColors(site.brand || {}));
   // The flair dial's booleans for chrome outside the section planner (header hairline), and the level table for the style guide (R-TOK-12).

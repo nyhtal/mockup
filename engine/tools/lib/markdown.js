@@ -1,4 +1,5 @@
 import MarkdownIt from "markdown-it";
+import { semantics } from "./markdown-semantics.js";
 
 /** Heading slug: lower-case, letters and digits of any script kept, everything else collapsed to one hyphen. */
 export function slugify(text) {
@@ -38,8 +39,9 @@ export function headingIds(md) {
 
 /** Markdown → HTML with ids on every heading (R-COMP-13 anchors; toc targets). */
 export function renderMarkdown(md) {
-  const parser = new MarkdownIt({ html: false, linkify: false, typographer: false });
-  const tokens = parser.parse(md, {});
+  const parser = new MarkdownIt({ html: false, linkify: false, typographer: false }).use(semantics);
+  const env = {};
+  const tokens = parser.parse(md, env);
   const seen = new Map();
   tokens.forEach((tok, i) => {
     if (tok.type !== "heading_open") return;
@@ -49,7 +51,7 @@ export function renderMarkdown(md) {
     seen.set(base, n);
     tok.attrSet("id", n === 1 ? base : `${base}-${n}`);
   });
-  return parser.renderer.render(tokens, parser.options, {}).trim();
+  return parser.renderer.render(tokens, parser.options, env).trim();
 }
 
 /** h2 and h3 entries for the toc component, in document order. */
