@@ -6,8 +6,9 @@
 #}
 {% from "sections/_shell.njk" import shell with context %}
 {% from "sections/_form.njk" import formBody with context %}
+{% from "components/progress.njk" import progress with context %}
 {% macro render(s, ctx) %}
 {% call shell("apply-form", s, ctx) %}
-<div class="mx-auto max-w-xl rounded-xl border border-line bg-surface-raised p-6 shadow-sm md:p-8">{{ formBody(s.form, ctx) }}</div>
+<div class="mx-auto max-w-xl rounded-xl border border-line bg-surface-raised p-6 shadow-sm md:p-8">{% if s.progress %}<div class="mb-8">{{ progress(s.progress.value, s.progress.max, s.progress.label) }}</div>{% endif %}{{ formBody(s.form, ctx) }}</div>
 {% endcall %}
 {% endmacro %}

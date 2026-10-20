@@ -358,6 +358,43 @@
             ]
           },
           {
+            "pair": [
+              {
+                "type": "date",
+                "name": "day",
+                "id": "d-day",
+                "label": "اليوم المفضّل",
+                "attrs": {
+                  "min": "2026-10-20"
+                },
+                "help": "من الأحد إلى الخميس."
+              },
+              {
+                "type": "time",
+                "name": "time",
+                "id": "d-time",
+                "label": "الوقت المفضّل",
+                "attrs": {
+                  "min": "08:00",
+                  "max": "17:00",
+                  "step": "1800"
+                },
+                "help": "بين 08:00 و17:00 بتوقيت الرياض."
+              }
+            ]
+          },
+          {
+            "type": "range",
+            "name": "lines",
+            "id": "d-lines",
+            "label": "عدد الخطوط في الموقع",
+            "value": "4",
+            "attrs": {
+              "min": "1",
+              "max": "40"
+            }
+          },
+          {
             "type": "textarea",
             "name": "line",
             "id": "d-line",
@@ -482,6 +519,11 @@
             "rows": 3
           }
         ]
+      },
+      "progress": {
+        "value": 1,
+        "max": 3,
+        "label": "بياناتك"
       }
     },
     "preferences-form": {

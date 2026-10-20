@@ -2,7 +2,7 @@
   name: field
   purpose: One form control with its label, help and error text (R-FORM-02, R-FORM-03, R-FORM-04, R-FORM-05, R-A11Y-10).
   anatomy: div[data-component=field] > label[for] + control + (p.help#id-help) + (p.error#id-error)
-  variants: types text | email | tel | url | number | search | textarea | select | checkbox | radio (group) | switch | file
+  variants: types text | email | tel | url | number | search | date | time | range (with <output>) | textarea | select | checkbox | radio (group) | switch | file
   states: default, focus-visible (ring), user-invalid (danger border), disabled (opacity-60), error (opts.error renders the message and sets aria-describedby), prefilled (value)
   spacing: label mb-2; help/error mt-2; the form stacks fields with space-y-6 (R-FORM-13)
   motion: motion-safe:transition-colors on the control border
@@ -54,6 +54,8 @@
 {%- endif %}
 {%- endfor %}
 </select>
+{%- elif type == "range" %}
+<div class="flex items-center gap-4"><input type="range" id="{{ id }}" class="block min-h-11 w-full accent-brand-600" {{ common | safe }} value="{{ f.value }}" data-estimate="{n}{{ f.unit or '' }}"><output for="{{ id }}" class="w-16 shrink-0 text-end font-semibold tabular-nums">{{ f.value }}{{ f.unit or "" }}</output></div>
 {%- elif type == "file" %}
 <input type="file" id="{{ id }}" class="{{ control }} min-h-11 py-2 file:me-3 file:rounded-sm file:border-0 file:bg-surface-alt file:px-3 file:py-1 file:text-sm file:font-medium file:text-ink" {{ common | safe }}{% if f.accept %} accept="{{ f.accept }}"{% endif %}>
 {%- else %}

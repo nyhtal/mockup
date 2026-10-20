@@ -416,6 +416,17 @@ test("widgets (to-do 7b, part three): a carousel, a sticky phone CTA, a contact 
   assert.match(readFileSync("dist/reference/assets/enhance.js", "utf8"), /setProperty\("--pos"/);
 });
 
+test("widgets (to-do 7b, part four): native date, time and range inputs; progress on the application; a skeleton behind the newsletter frame", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  const demo = read("de/demo");
+  assert.match(demo, /<input type="date" id="d-day" [^>]*min="2026-10-20"/);
+  assert.match(demo, /<input type="time" id="d-time" [^>]*min="08:00" max="17:00" step="1800"/);
+  assert.match(demo, /<input type="range" id="d-lines" [^>]*min="1" max="40"[^>]* value="4" data-estimate="\{n\}"><output for="d-lines"[^>]*>4<\/output>/);
+  assert.match(read("en/careers/technical-writer"), /<div class="mb-8">\s*<div data-component="progress">[\s\S]*?<progress value="1" max="3"/);
+  const nl = read("ar/newsletter");
+  assert.match(nl, /<div class="relative">\n<div class="absolute inset-0[^"]*">\s*<div aria-hidden="true" class="motion-safe:animate-pulse" data-component="skeleton"[\s\S]*?<iframe /);
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

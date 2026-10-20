@@ -3,14 +3,19 @@
   purpose: A recent newsletter issue, framed: a same-origin <iframe> of the issue's own document (to-do 7).
   anatomy: shell > iframe[title][sandbox][loading=lazy] + p > a (open the issue on its own)
   data: s = { title, lede, src, frameTitle }
+  loading: a skeleton (aria-hidden) sits behind the frame until the issue paints over it (R-MOT-03's one loop)
   a11y: the frame has a title; sandboxed without scripts; its links need a click to leave the frame (allow-top-navigation-by-user-activation); a plain link opens the issue in the window
   security: CSP frame-src 'self' and frame-ancestors 'self' (R-DEPLOY-01)
 #}
 {% from "sections/_shell.njk" import shell with context %}
+{% from "components/skeleton.njk" import skeleton with context %}
 {% macro render(s, ctx) %}
 {% call shell("newsletter-preview", s, ctx) %}
 <div class="mx-auto max-w-2xl">
-<iframe src="{{ s.src }}" title="{{ s.frameTitle }}" loading="lazy" sandbox="allow-same-origin allow-top-navigation-by-user-activation" class="block h-144 w-full rounded-lg border border-line bg-surface-raised shadow-sm"></iframe>
+<div class="relative">
+<div class="absolute inset-0 overflow-hidden rounded-lg border border-line bg-surface-raised p-8">{{ skeleton("card") }}<div class="mt-6">{{ skeleton("text") }}</div></div>
+<iframe src="{{ s.src }}" title="{{ s.frameTitle }}" loading="lazy" sandbox="allow-same-origin allow-top-navigation-by-user-activation" class="block h-144 w-full rounded-lg border border-line shadow-sm relative"></iframe>
+</div>
 <p class="mt-4 text-center text-sm"><a href="{{ s.src }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.openIssue" | t }}</a></p>
 </div>
 {% endcall %}

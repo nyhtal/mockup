@@ -358,6 +358,43 @@
             ]
           },
           {
+            "pair": [
+              {
+                "type": "date",
+                "name": "day",
+                "id": "d-day",
+                "label": "Preferred day",
+                "attrs": {
+                  "min": "2026-10-20"
+                },
+                "help": "Monday to Friday."
+              },
+              {
+                "type": "time",
+                "name": "time",
+                "id": "d-time",
+                "label": "Preferred time",
+                "attrs": {
+                  "min": "08:00",
+                  "max": "17:00",
+                  "step": "1800"
+                },
+                "help": "Between 08:00 and 17:00 UK time."
+              }
+            ]
+          },
+          {
+            "type": "range",
+            "name": "lines",
+            "id": "d-lines",
+            "label": "Lines on the site",
+            "value": "4",
+            "attrs": {
+              "min": "1",
+              "max": "40"
+            }
+          },
+          {
             "type": "textarea",
             "name": "line",
             "id": "d-line",
@@ -482,6 +519,11 @@
             "rows": 3
           }
         ]
+      },
+      "progress": {
+        "value": 1,
+        "max": 3,
+        "label": "Your details"
       }
     },
     "preferences-form": {
