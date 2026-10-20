@@ -24,7 +24,7 @@
 </blockquote>
 <figcaption class="mt-6 flex items-center gap-3 {{ 'justify-center' if single else 'mt-auto pt-6' }}">
 {{ avatar(t.name, { size: "size-12" if single else "size-8" }) }}
-<span class="text-start"><span class="block font-medium text-ink">{{ t.name }}</span><span class="block text-sm text-ink-muted">{{ t.role }}{% if t.company %}, {{ t.company }}{% endif %}</span></span>
+<span class="text-start"><span class="block font-medium text-ink">{{ t.name }}</span><span class="block text-sm text-ink-muted">{{ t.role }}{% if t.company %}{{ "ui.comma" | t }}<bdi>{{ t.company }}</bdi>{% endif %}</span></span>
 {%- if single and t.company %}<span class="ms-4 hidden sm:inline">{{ wordmark(t.company, { variant: "mono" }) }}</span>{% endif %}
 </figcaption>
 </figure>

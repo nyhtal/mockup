@@ -43,7 +43,15 @@
 {%- elif type == "select" %}
 <select id="{{ id }}" class="{{ control }} min-h-11" {{ common | safe }}>
 {%- for o in f.options %}
+{%- if o.options %}
+<optgroup label="{{ o.label }}">
+{%- for g in o.options %}
+<option value="{{ g.value }}"{% if g.selected or (f.value and f.value == g.value) %} selected{% endif %}>{{ g.label }}</option>
+{%- endfor %}
+</optgroup>
+{%- else %}
 <option value="{{ o.value }}"{% if o.selected or (f.value and f.value == o.value) %} selected{% endif %}>{{ o.label }}</option>
+{%- endif %}
 {%- endfor %}
 </select>
 {%- elif type == "file" %}

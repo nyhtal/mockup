@@ -10,7 +10,7 @@
   a11y: the recommended tier is marked by visible text, not colour alone; price uses tabular-nums; features are a list
   i18n: prices are preformatted strings with currency code (R-CONT-14)
   content limits: tiers 2–4; features ≤ 8 per tier; tier name ≤ 20 chars
-  data: p = { tiers: [{ name, price, period, text, features: [], cta: { label, href }, recommended }] }
+  data: p = { tiers: [{ name, price, amount (<data value>), was (struck through in <s>), period, text, features: [], cta: { label, href }, recommended }] }
 #}
 {% from "primitives/icon.njk" import icon with context %}
 {% from "primitives/badge.njk" import badge with context %}
@@ -26,7 +26,7 @@
 <{{ h }} class="text-xl font-semibold">{{ tier.name }}</{{ h }}>
 {%- if tier.recommended %}{{ badge("ui.mostPopular" | t, { tone: "brand" }) }}{% endif %}
 </div>
-<p class="mt-4"><span class="text-4xl font-bold tabular-nums">{{ tier.price }}</span>{% if tier.period %} <span class="text-sm text-ink-muted">{{ tier.period }}</span>{% endif %}</p>
+<p class="mt-4">{% if tier.was %}<s class="me-2 text-lg text-ink-muted tabular-nums"><span class="sr-only">{{ "ui.previousPrice" | t }} </span>{{ tier.was }}</s>{% endif %}{% if tier.amount %}<data value="{{ tier.amount }}" class="text-4xl font-bold tabular-nums">{{ tier.price }}</data>{% else %}<span class="text-4xl font-bold tabular-nums">{{ tier.price }}</span>{% endif %}{% if tier.period %} <span class="text-sm text-ink-muted">{{ tier.period }}</span>{% endif %}</p>
 {%- if tier.text %}<p class="mt-2 text-sm text-ink-muted">{{ tier.text }}</p>{% endif %}
 <ul class="mt-6 space-y-3 text-sm">
 {%- for f in tier.features %}

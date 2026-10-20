@@ -18,12 +18,12 @@
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 {%- set crumbs = s.breadcrumbs or ctx.breadcrumbs -%}
 {%- if crumbs and crumbs.length %}<div class="mb-6">{{ breadcrumbs(crumbs) }}</div>{% endif %}
-<div class="max-w-3xl">
+<hgroup class="max-w-3xl">
 {%- if s.eyebrow %}<p class="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-ink-brand before:h-0.5 before:w-6 before:rounded-full before:bg-accent-600">{{ s.eyebrow }}</p>{% endif %}
 {%- set h = "h2" if ctx.demote else "h1" -%}
 <{{ h }} class="{{ 'mt-2' if s.eyebrow }} text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ s.title }}</{{ h }}>
 {%- if s.lede %}<p class="mt-4 text-lg md:text-xl text-ink-muted">{{ s.lede }}</p>{% endif %}
-</div>
+</hgroup>
 </div>
 </section>
 {% endmacro %}

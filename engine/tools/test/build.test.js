@@ -188,7 +188,7 @@ test("search: results from the site's own content, filters that work without scr
   assert.ok(w, "results render");
   assert.match(w[1], /\[&:has\(#sf\d-jobs:checked\)_li\[data-group\]:not\(\[data-group=jobs\]\)\]:hidden/, "the filter classes reach the HTML unescaped, so Tailwind compiles them");
   assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes(":has(#sf"), "and the CSS has the rules");
-  assert.match(p1, /31 results for “safety” · Page 1 of 3/);
+  assert.match(p1, /31 results for “<bdi>safety<\/bdi>” · Page 1 of 3/);
   assert.match(p1, /<fieldset class="mt-6">\n<legend[^>]*>Show<\/legend>/);
   assert.match(p1, /<input type="radio" name="sf\d" id="sf\d-all" value="all" class="sr-only" checked>/);
   assert.equal((w[0].match(/<li data-group=/g) || []).length, 12);
@@ -250,6 +250,29 @@ test("rel values: tag and author on an article, bookmark on article cards, priva
     assert.match(blog, /<article class="group relative[^"]*"[\s\S]*?<a href="[^"]+" rel="bookmark"/, `${l}: article cards`);
     assert.match(blog, new RegExp(`<a href="/${l}/feed\\.xml" rel="alternate" type="application/atom\\+xml"`), `${l}: feed link`);
   }
+});
+
+test("element semantics (to-do 6a): hgroup, menu, small, dfn, data, meter, s, colgroup and tfoot, optgroup, datalist, bdi", () => {
+  const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
+  const about = read("en/about");
+  assert.match(about, /<hgroup class="max-w-3xl"><p[^>]*>[^<]+<\/p><h1/, "page header: eyebrow and h1 in an hgroup");
+  assert.match(about, /<hgroup class="[^"]*"[^>]*>[\s\S]{0,600}?<h2/, "section heading groups are hgroups");
+  assert.match(read("en/blog/reading-generated-code"), /<menu class="flex gap-2">/, "the share toolbar is a menu");
+  assert.match(about, /<p><small class="text-sm">© /, "the copyright line is small print");
+  assert.match(read("en/glossary"), /<dt [^>]*id="term-[^"]+"><dfn class="not-italic">/, "glossary terms are defined with dfn");
+  const sus = read("en/sustainability");
+  assert.match(sus, /<data value="33">/);
+  assert.match(sus, /<data value="0\.667">/, "a ratio's data value is the ratio");
+  assert.match(sus, /<meter min="0" max="3" value="2" optimum="3"/);
+  const pricing = read("de/pricing");
+  assert.match(pricing, /<s class="[^"]*"><span class="sr-only">Bisher <\/span>2\.200 €<\/s><data value="1900"/);
+  assert.match(pricing, /<colgroup><col class="w-1\/3"><col span="3"><\/colgroup>/);
+  assert.match(pricing, /<tfoot[\s\S]*?<th scope="row"[^>]*>Preis<\/th>/);
+  assert.match(read("de/careers"), /<optgroup label="Standorte">/);
+  const search = read("ar/search");
+  assert.match(search, /<input type="search" id="q-page" name="q" list="q-page-suggestions"/);
+  assert.match(search, /<datalist id="q-page-suggestions"><option value="PLC"><\/option>/);
+  assert.match(read("ar/customers"), /، <bdi>[A-Za-z][^<]*<\/bdi>/, "a Latin company name in an Arabic byline is isolated");
 });
 
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {

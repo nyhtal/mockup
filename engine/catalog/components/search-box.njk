@@ -15,8 +15,11 @@
 <search data-component="search-box" data-variant="{{ opts.variant or 'inline' }}">
 <form method="get" action="/{{ locale }}/search/" class="flex items-stretch gap-2 {{ 'max-w-2xl' if opts.variant == 'hero' else 'w-64' }}">
 <label for="{{ opts.id or 'q' }}" class="sr-only">{{ "ui.search" | t }}</label>
-<input type="search" id="{{ opts.id or 'q' }}" name="q" placeholder="{{ 'ui.search' | t }}" autocomplete="off" class="block min-h-11 w-full rounded-md border border-line-strong bg-surface-raised px-3 text-base text-ink placeholder:text-ink-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+<input type="search" id="{{ opts.id or 'q' }}" name="q"{% if opts.suggestions %} list="{{ opts.id or 'q' }}-suggestions"{% endif %} placeholder="{{ 'ui.search' | t }}" autocomplete="off" class="block min-h-11 w-full rounded-md border border-line-strong bg-surface-raised px-3 text-base text-ink placeholder:text-ink-muted focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
 <button type="submit" class="inline-flex min-h-11 shrink-0 items-center justify-center rounded-md bg-brand-600 px-4 font-medium text-ink-inverse hover:bg-brand-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><svg aria-hidden="true" class="size-5"><use href="#i-search"></use></svg><span class="sr-only">{{ "ui.search" | t }}</span></button>
+{%- if opts.suggestions %}
+<datalist id="{{ opts.id or 'q' }}-suggestions">{% for o in opts.suggestions %}<option value="{{ o }}"></option>{% endfor %}</datalist>
+{%- endif %}
 </form>
 </search>
 {% endmacro %}

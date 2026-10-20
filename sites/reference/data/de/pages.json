@@ -609,7 +609,8 @@
             "label": "Mit dem Vertrieb sprechen",
             "href": "/de/contact/"
           },
-          "recommended": true
+          "recommended": true,
+          "was": "2.200 €"
         },
         {
           "name": "Enterprise",
@@ -679,7 +680,15 @@
               "1 Stunde"
             ]
           }
-        ]
+        ],
+        "foot": {
+          "name": "Preis",
+          "cells": [
+            "490 €",
+            "1.900 €",
+            "Auf Anfrage"
+          ]
+        }
       }
     },
     "faq-pricing": {
@@ -916,12 +925,21 @@
                 "label": "Überall"
               },
               {
-                "value": "man",
-                "label": "Manchester"
-              },
-              {
-                "value": "ham",
-                "label": "Hamburg"
+                "label": "Standorte",
+                "options": [
+                  {
+                    "value": "man",
+                    "label": "Manchester"
+                  },
+                  {
+                    "value": "ham",
+                    "label": "Hamburg"
+                  },
+                  {
+                    "value": "riy",
+                    "label": "Riad"
+                  }
+                ]
               },
               {
                 "value": "remote",
@@ -973,15 +991,26 @@
       "items": [
         {
           "value": "33 %",
-          "label": "Weniger Anfahrausschuss"
+          "label": "Weniger Anfahrausschuss",
+          "meter": {
+            "value": 33
+          }
         },
         {
           "value": "2 von 3",
-          "label": "Reisen gespart"
+          "label": "Reisen gespart",
+          "meter": {
+            "value": 2,
+            "max": 3
+          },
+          "dataValue": "0.667"
         },
         {
           "value": "100 %",
-          "label": "Ökostrom in den Büros"
+          "label": "Ökostrom in den Büros",
+          "meter": {
+            "value": 100
+          }
         }
       ]
     },
@@ -1173,7 +1202,14 @@
     "search-box": {
       "type": "search-box",
       "title": "Suche",
-      "lede": "Seiten, Anleitungen, Veranstaltungen und Pressemitteilungen."
+      "lede": "Seiten, Anleitungen, Veranstaltungen und Pressemitteilungen.",
+      "suggestions": [
+        "SPS",
+        "Inbetriebnahme",
+        "Rezept",
+        "Änderungsprotokoll",
+        "Sicherheit"
+      ]
     },
     "search-results": {
       "type": "search-results",

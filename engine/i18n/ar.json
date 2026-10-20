@@ -129,7 +129,9 @@
     "downloadSample": "تنزيل صفحة نموذجية (PDF)",
     "downloadFile": "تنزيل ملف {type}",
     "visitSubject": "زيارة مكتب {city}",
-    "feedLink": "تابع المدونة في قارئ الخلاصات (Atom)"
+    "feedLink": "تابع المدونة في قارئ الخلاصات (Atom)",
+    "previousPrice": "السعر السابق",
+    "comma": "، "
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

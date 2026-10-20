@@ -129,7 +129,9 @@
     "downloadSample": "Download a sample page (PDF)",
     "downloadFile": "Download the {type}",
     "visitSubject": "Visiting the {city} office",
-    "feedLink": "Follow the blog in a feed reader (Atom)"
+    "feedLink": "Follow the blog in a feed reader (Atom)",
+    "previousPrice": "Previously",
+    "comma": ", "
   },
   "footer": {
     "rights": "All rights reserved.",

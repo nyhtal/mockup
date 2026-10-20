@@ -129,7 +129,9 @@
     "downloadSample": "",
     "downloadFile": "",
     "visitSubject": "",
-    "feedLink": ""
+    "feedLink": "",
+    "previousPrice": "",
+    "comma": ""
   },
   "footer": {
     "rights": "",

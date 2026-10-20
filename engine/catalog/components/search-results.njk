@@ -23,7 +23,7 @@
 {%- for g in r.groups %}{% set hide = (hide.push("[&:has(#" + id + "-" + g + ":checked)_li[data-group]:not([data-group=" + g + "])]:hidden"), hide) %}{% endfor -%}
 <div data-component="search-results" class="{{ hide | join(' ') | safe }}">
 {%- if r.items.length %}
-<p class="text-sm text-ink-muted">{{ ("ui.resultsFor" | t(r.total)) | replace("{query}", r.query) }}{% if r.pages > 1 %} · {{ "ui.pageOf" | t | replace("{n}", r.page) | replace("{total}", r.pages) }}{% endif %}</p>
+<p class="text-sm text-ink-muted">{%- set rf = "ui.resultsFor" | t(r.total) -%}{{ rf.split("{query}")[0] }}<bdi>{{ r.query }}</bdi>{{ rf.split("{query}")[1] }}{% if r.pages > 1 %} · {{ "ui.pageOf" | t | replace("{n}", r.page) | replace("{total}", r.pages) }}{% endif %}</p>
 <fieldset class="mt-6">
 <legend class="text-sm font-medium">{{ "ui.filterResults" | t }}</legend>
 <div class="mt-2 flex flex-wrap gap-2">

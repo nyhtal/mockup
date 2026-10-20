@@ -129,7 +129,9 @@
     "downloadSample": "Beispielseite herunterladen (PDF)",
     "downloadFile": "{type} herunterladen",
     "visitSubject": "Besuch im Büro {city}",
-    "feedLink": "Dem Blog im Feedreader folgen (Atom)"
+    "feedLink": "Dem Blog im Feedreader folgen (Atom)",
+    "previousPrice": "Bisher",
+    "comma": ", "
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

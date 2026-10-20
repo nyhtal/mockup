@@ -9,7 +9,7 @@
 {% call shell("glossary-list", s, ctx, { center: false }) %}
 <dl class="max-w-3xl divide-y divide-line">
 {%- for item in s.items %}
-<div class="py-4 md:grid md:grid-cols-3 md:gap-6"><dt class="font-semibold" id="term-{{ item.term | slugify }}">{{ item.term }}</dt><dd class="mt-1 text-base leading-relaxed text-ink-muted md:col-span-2 md:mt-0">{{ item.definition }}</dd></div>
+<div class="py-4 md:grid md:grid-cols-3 md:gap-6"><dt class="font-semibold" id="term-{{ item.term | slugify }}"><dfn class="not-italic">{{ item.term }}</dfn></dt><dd class="mt-1 text-base leading-relaxed text-ink-muted md:col-span-2 md:mt-0">{{ item.definition }}</dd></div>
 {%- endfor %}
 </dl>
 {% endcall %}

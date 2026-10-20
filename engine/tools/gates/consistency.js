@@ -71,7 +71,7 @@ export function rhythmFindings(root) {
     const container = section.querySelector(":scope > div");
     if (!container) continue;
     const children = container.childNodes.filter((n) => n.nodeType === 1);
-    const headingGroup = children.find((d) => d.tagName === "DIV" && d.childNodes.some((c) => c.nodeType === 1 && c.tagName === "H2"));
+    const headingGroup = children.find((d) => (d.tagName === "DIV" || d.tagName === "HGROUP") && d.childNodes.some((c) => c.nodeType === 1 && c.tagName === "H2"));
     let body = container;
     if (headingGroup) {
       const next = children[children.indexOf(headingGroup) + 1];

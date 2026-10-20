@@ -609,7 +609,8 @@
             "label": "Talk to sales",
             "href": "/en/contact/"
           },
-          "recommended": true
+          "recommended": true,
+          "was": "€2,200"
         },
         {
           "name": "Enterprise",
@@ -679,7 +680,15 @@
               "1 hour"
             ]
           }
-        ]
+        ],
+        "foot": {
+          "name": "Price",
+          "cells": [
+            "€490",
+            "€1,900",
+            "Custom"
+          ]
+        }
       }
     },
     "faq-pricing": {
@@ -939,12 +948,21 @@
                 "label": "Anywhere"
               },
               {
-                "value": "man",
-                "label": "Manchester"
-              },
-              {
-                "value": "ham",
-                "label": "Hamburg"
+                "label": "Offices",
+                "options": [
+                  {
+                    "value": "man",
+                    "label": "Manchester"
+                  },
+                  {
+                    "value": "ham",
+                    "label": "Hamburg"
+                  },
+                  {
+                    "value": "riy",
+                    "label": "Riyadh"
+                  }
+                ]
               },
               {
                 "value": "remote",
@@ -996,15 +1014,26 @@
       "items": [
         {
           "value": "33%",
-          "label": "Less start-up scrap"
+          "label": "Less start-up scrap",
+          "meter": {
+            "value": 33
+          }
         },
         {
           "value": "2 of 3",
-          "label": "Commissioning trips saved"
+          "label": "Commissioning trips saved",
+          "meter": {
+            "value": 2,
+            "max": 3
+          },
+          "dataValue": "0.667"
         },
         {
           "value": "100%",
-          "label": "Renewable office power"
+          "label": "Renewable office power",
+          "meter": {
+            "value": 100
+          }
         }
       ]
     },
@@ -1196,7 +1225,14 @@
     "search-box": {
       "type": "search-box",
       "title": "Search",
-      "lede": "Pages, guides, events and press releases."
+      "lede": "Pages, guides, events and press releases.",
+      "suggestions": [
+        "PLC",
+        "commissioning",
+        "recipe",
+        "audit trail",
+        "safety"
+      ]
     },
     "search-results": {
       "type": "search-results",

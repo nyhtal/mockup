@@ -10,13 +10,14 @@
   a11y: caption names the table; booleans render an icon plus sr-only "Included"/"Not included"
   i18n: ui.included / ui.notIncluded keys
   content limits: ≤ 5 columns, ≤ 15 rows
-  data: c = { caption, columns: [{ name, recommended }], rows: [{ name, cells: [true|false|string] }] }
+  data: c = { foot: { name, cells } (a <tfoot> row), caption, columns: [{ name, recommended }], rows: [{ name, cells: [true|false|string] }] }
 #}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro comparisonTable(c) %}
 <div class="relative overflow-x-auto rounded-lg border border-line" tabindex="0" data-component="comparison-table">
 <table class="w-full text-start text-sm">
 <caption class="sr-only">{{ c.caption }}</caption>
+<colgroup><col class="w-1/3"><col span="{{ c.columns.length }}"></colgroup>
 <thead class="bg-surface-alt">
 <tr>
 <th scope="col" class="px-4 py-3 text-start font-semibold">{{ c.firstColumn or ("ui.feature" | t) }}</th>
@@ -35,6 +36,14 @@
 </tr>
 {%- endfor %}
 </tbody>
+{%- if c.foot %}
+<tfoot class="border-t-2 border-line-strong bg-surface-alt">
+<tr>
+<th scope="row" class="px-4 py-3 text-start font-semibold">{{ c.foot.name }}</th>
+{%- for cell in c.foot.cells %}<td class="px-4 py-3 font-semibold tabular-nums">{{ cell }}</td>{% endfor %}
+</tr>
+</tfoot>
+{%- endif %}
 </table>
 </div>
 {% endmacro %}
