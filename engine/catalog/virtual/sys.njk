@@ -1,0 +1,48 @@
+---
+layout: base.njk
+pageType: sys
+noindex: true
+---
+{#- /sys/: the hidden system hub, outside any language (D56). It links each language's system page (/en/sys/) and the
+    site-wide files. noindex, out of both sitemaps, linked from no public page; no locale in the path, so no language links. -#}
+{%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
+{%- set localePages = collections.all | sysPages("locales") -%}
+{%- set rootPages = collections.all | sysPages("hidden", "") -%}
+{%- set files = [
+  ["/sitemap.xml", "XML sitemap"], ["/robots.txt", "robots.txt"], ["/.well-known/security.txt", "security.txt"],
+  ["/headers.json", "Response headers and CSP"], ["/_redirects", "Redirects"], ["/assets/files/line-notes-12.wav", "Podcast clip"], ["/assets/files/commissioning-checklist.pdf", "Sample PDF"]
+] -%}
+{%- set row = "flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6" -%}
+<div class="mx-auto w-full max-w-4xl px-4 pt-16 pb-24 sm:px-6 md:pt-24 lg:px-8">
+<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">System</p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">System pages</h1>
+<p class="mt-4 text-lg text-ink-muted">The entry point for checking the site by hand. Each language has its own system page with its style guide, test pages and hidden pages; the files below belong to the whole site. Nothing under <code>/sys/</code> is in the sitemap, linked from a public page or indexed.</p>
+
+<section id="sys-locales" class="mt-16 scroll-mt-24" aria-labelledby="sys-locales-h">
+<h2 id="sys-locales-h" class="text-2xl font-semibold tracking-tight">By language</h2>
+<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
+{%- for p in localePages %}
+<li class="{{ row }}"><a href="{{ p.url }}" class="font-medium {{ link }}">{{ p.title }}</a><code class="text-sm text-ink-muted">{{ p.url }}</code></li>
+{%- endfor %}
+</ul>
+<p class="mt-3 text-sm text-ink-muted">German and Arabic have no system pages: the style guide and the test pages use English sample data.</p>
+</section>
+
+<section id="sys-root" class="mt-16 scroll-mt-24" aria-labelledby="sys-root-h">
+<h2 id="sys-root-h" class="text-2xl font-semibold tracking-tight">Pages outside a language</h2>
+<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
+{%- for p in rootPages %}
+<li class="{{ row }}"><a href="{{ p.url }}" class="font-medium {{ link }}">{{ p.title }}</a><code class="text-sm text-ink-muted">{{ p.url }}</code></li>
+{%- endfor %}
+</ul>
+</section>
+
+<section id="sys-files" class="mt-16 scroll-mt-24" aria-labelledby="sys-files-h">
+<h2 id="sys-files-h" class="text-2xl font-semibold tracking-tight">System files</h2>
+<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
+{%- for f in files %}
+<li class="{{ row }}"><a href="{{ f[0] }}" class="font-medium {{ link }}">{{ f[1] }}</a><code class="text-sm text-ink-muted">{{ f[0] }}</code></li>
+{%- endfor %}
+</ul>
+</section>
+</div>

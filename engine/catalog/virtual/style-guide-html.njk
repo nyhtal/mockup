@@ -10,7 +10,7 @@ baseTarget: "_self"
 {%- set groups = [] %}{% for e in htmlElements %}{% if e.group not in groups %}{% set groups = (groups.push(e.group), groups) %}{% endif %}{% endfor -%}
 {%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
 <div class="mx-auto w-full max-w-7xl px-4 pt-16 pb-24 sm:px-6 md:pt-24 lg:px-8">
-<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
+<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Test page</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">HTML elements</h1>
 <p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">All {{ htmlElements.length }} elements of the HTML standard, what each is for, and a page of this site that uses it. The ones with no content role elsewhere are shown working at the end of this page.</p>
 <nav aria-label="Element groups" class="mt-8"><ul class="flex flex-wrap gap-2">{% for g in groups %}<li><a href="#{{ g | slugify }}" class="inline-flex min-h-9 items-center rounded-full border border-line-strong px-3 text-sm text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ g }}</a></li>{% endfor %}<li><a href="#live-examples" class="inline-flex min-h-9 items-center rounded-full border border-line-strong px-3 text-sm text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Live examples</a></li></ul></nav>
@@ -40,7 +40,7 @@ baseTarget: "_self"
 
 <div id="live-base" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;base&gt;</code></h3>
-<p class="mt-2 text-sm text-ink-muted">This page's head carries <code>&lt;base href="/en/style-guide/html/" target="_self"&gt;</code>: the URL relative links resolve against and the default target for every link and form here. Both equal what the browser would use anyway, so nothing changes; any other <code>href</code> would rewrite every relative URL and fragment on the page.</p>
+<p class="mt-2 text-sm text-ink-muted">This page's head carries <code>&lt;base href="/en/qa/html/" target="_self"&gt;</code>: the URL relative links resolve against and the default target for every link and form here. Both equal what the browser would use anyway, so nothing changes; any other <code>href</code> would rewrite every relative URL and fragment on the page.</p>
 </div>
 
 <div id="live-style" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">

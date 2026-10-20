@@ -474,7 +474,7 @@
   "newsletter-preview": {
     "required": []
   },
-  "qa": {
+  "sys": {
     "required": [
       "Organization",
       "WebSite",

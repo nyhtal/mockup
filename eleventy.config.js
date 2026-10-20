@@ -287,11 +287,20 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("figure", function (value) { return parseFigure(value, fmtLocale(this.ctx?.page?.lang || site.defaultLocale, site)); });
   eleventyConfig.addFilter("formatCurrency", function (n, code) { return formatCurrency(n, this.ctx?.page?.lang || site.defaultLocale, code, site); });
   eleventyConfig.addFilter("htmlPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType));
-  // /qa/: "test" = style-guide pages, "hidden" = every other noindex page; sorted by locale then URL (owner's request, 2026-10-19).
-  eleventyConfig.addFilter("qaPages", (all, kind) => all
-    .filter((p) => p.url && p.url !== "/qa/" && p.data.pageType && (kind === "test" ? p.data.pageType === "style-guide" : p.data.pageType !== "style-guide" && (p.data.noindex || ["thank-you", "error"].includes(p.data.pageType))))
-    .map((p) => ({ url: p.url, title: p.data.title || p.url, lang: p.data.page?.lang || p.data.lang || site.defaultLocale }))
-    .sort((x, y) => x.url.localeCompare(y.url)));
+  // System pages (D56): "locales" = each language's system page; for a locale (or "" for root pages): "style" = its style
+  // guide, "qa" = its test pages, "hidden" = every other noindex page (a locale without a system page is listed under the default one).
+  const sysLocales = () => site.locales.filter((l) => l === site.defaultLocale);
+  eleventyConfig.addFilter("sysPages", (all, kind, locale) => {
+    const inLocale = (u) => (locale === "" ? !/^\/[a-z]{2}\//.test(u) : locale === site.defaultLocale ? !sysLocales().filter((l) => l !== locale).some((l) => u.startsWith(`/${l}/`)) && /^\/[a-z]{2}\//.test(u) : u.startsWith(`/${locale}/`));
+    return all
+      .filter((p) => p.url && p.data.pageType && (
+        kind === "locales" ? p.data.pageType === "sys" && /^\/[a-z]{2}\/sys\/$/.test(p.url)
+        : kind === "style" ? p.data.pageType === "style-guide" && p.url.startsWith(`/${locale}/sys/style-guide/`)
+        : kind === "qa" ? p.data.pageType === "style-guide" && p.url.startsWith(`/${locale}/qa/`)
+        : !["style-guide", "sys"].includes(p.data.pageType) && (p.data.noindex || ["thank-you", "error"].includes(p.data.pageType)) && inLocale(p.url)))
+      .map((p) => ({ url: p.url, title: p.data.title || p.url, lang: p.data.page?.lang || p.data.lang || site.defaultLocale }))
+      .sort((x, y) => x.url.localeCompare(y.url));
+  });
   eleventyConfig.addFilter("sitemapPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType && !p.data.noindex));
   // Every locale version of a page including itself, in site.locales order (R-I18N-04).
   // Render-time only: the plugin's locale map is built after computed data runs.
@@ -335,19 +344,21 @@ export default function (eleventyConfig) {
   eleventyConfig.addTemplate("_engine/sitemap.njk", virtual("sitemap.njk"));
   eleventyConfig.addTemplate("_engine/og-manifest.njk", virtual("og-manifest.njk"));
   eleventyConfig.addTemplate("_engine/files.njk", virtual("files.njk"));
-  // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, in the default locale only (its sample data is English).
+  // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, under /en/sys/style-guide/; the test pages under /en/qa/; /sys/ links them all. No other locale has them, so they show no language links (D56). Written in the default locale (its sample data is English).
   for (const locale of [site.defaultLocale]) {
-    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"], ["style-guide-widgets.njk", "widgets/", "Style guide: widgets"], ["style-guide-html.njk", "html/", "Style guide: HTML elements"]]) {
-      eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, htmlElements: name === "style-guide-html.njk" ? JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8")) : undefined, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: `/${locale}/style-guide/${slug}index.html` });
+    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"], ["style-guide-widgets.njk", "widgets/", "Widgets test page"], ["style-guide-html.njk", "html/", "HTML element reference"]]) {
+      eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, htmlElements: name === "style-guide-html.njk" ? JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8")) : undefined, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: ["style-guide-widgets.njk", "style-guide-html.njk"].includes(name) ? `/${locale}/qa/${slug}index.html` : `/${locale}/sys/style-guide/${slug}index.html` });
     }
-    // The hidden QA index of test pages (owner's request, 2026-10-19).
-    eleventyConfig.addTemplate(`${locale}/_engine/qa.njk`, virtual("qa.njk"), { lang: locale, title: "QA test pages", breadcrumbs: [], description: `Every test and hidden page of ${site.name}: the style guide, the widgets test page, the HTML element reference, hidden pages and generated files.`, permalink: "/qa/index.html" });
+    // The hidden system index at /sys/ (D56): links to the style guide, the test pages, hidden pages and system files.
+    eleventyConfig.addTemplate(`${locale}/_engine/sys.njk`, virtual("sys.njk"), { lang: locale, title: "System pages", breadcrumbs: [], description: `The system hub of ${site.name}: each language's system page with its style guide and test pages, the pages outside a language, and the site files.`, permalink: "/sys/index.html" });
+    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: "English system pages", description: `The English system page of ${site.name}: the QA test pages, the style guide, every hidden page in each language and the English files.`, permalink: `/${locale}/sys/index.html` });
+    eleventyConfig.addTemplate(`${locale}/_engine/qa.njk`, virtual("qa.njk"), { lang: locale, title: "QA test pages", description: `The QA test pages of ${site.name}: every interactive widget working on one page, and every HTML element with a page of the site that uses it.`, permalink: `/${locale}/qa/index.html` });
     // Every sample section, split into five pages so each stays within the HTML budget (R-PERF-01).
     const ids = samples.sections.map((s) => s.id);
     const per = Math.ceil(ids.length / 5);
     ["a", "b", "c", "d", "e"].forEach((letter, i) => {
       const slug = i === 0 ? "sections/" : `sections-${letter}/`;
-      eleventyConfig.addTemplate(`${locale}/_engine/style-guide-sections-${letter}.njk`, virtual("style-guide-sections.njk"), { lang: locale, title: `Style guide: sections ${letter.toUpperCase()}`, description: `Every section in the ${site.name} catalog, rendered from its sample data exactly as a page would show it. Part ${letter.toUpperCase()} of five.`, permalink: `/${locale}/style-guide/${slug}index.html`, sections: ids.slice(i * per, (i + 1) * per) });
+      eleventyConfig.addTemplate(`${locale}/_engine/style-guide-sections-${letter}.njk`, virtual("style-guide-sections.njk"), { lang: locale, title: `Style guide: sections ${letter.toUpperCase()}`, description: `Every section in the ${site.name} catalog, rendered from its sample data exactly as a page would show it. Part ${letter.toUpperCase()} of five.`, permalink: `/${locale}/sys/style-guide/${slug}index.html`, sections: ids.slice(i * per, (i + 1) * per) });
     });
   }
   for (const [code, key] of [["404", "notFound"], ["500", "server"]]) {

@@ -10,11 +10,11 @@
       "lede": "Northwind turns a plain description of a production line into validated PLC logic, so changes take hours instead of weeks and nobody waits for a programmer.",
       "primary": {
         "label": "Book a demo",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       },
       "secondary": {
         "label": "See how it works",
-        "href": "/en/style-guide/sections/"
+        "href": "/en/sys/style-guide/sections/"
       },
       "image": {
         "slug": "hero-automation",
@@ -32,11 +32,11 @@
       "lede": "Line leads adjust fill volumes, speeds and interlocks within limits your engineers set. Every change is logged.",
       "primary": {
         "label": "Talk to sales",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       },
       "secondary": {
         "label": "Read the Alder Foods story",
-        "href": "/en/style-guide/components/"
+        "href": "/en/sys/style-guide/components/"
       },
       "image": {
         "slug": "hero-food",
@@ -68,11 +68,11 @@
       "lede": "A walk through describing a line, generating the logic and running the acceptance tests.",
       "primary": {
         "label": "Book a demo",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       },
       "secondary": {
         "label": "Download the brochure",
-        "href": "/en/style-guide/components/"
+        "href": "/en/sys/style-guide/components/"
       },
       "video": {
         "id": "hero",
@@ -94,7 +94,7 @@
       "title": "Request a demo",
       "lede": "Thirty minutes with an engineer who has commissioned a line like yours.",
       "form": {
-        "action": "/en/style-guide/",
+        "action": "/en/sys/style-guide/",
         "title": "Tell us about your plant",
         "submit": "Request a demo",
         "fields": [
@@ -145,7 +145,7 @@
       "lede": "Measured across 1,284 lines in 19 countries.",
       "primary": {
         "label": "See customer results",
-        "href": "/en/style-guide/components/"
+        "href": "/en/sys/style-guide/components/"
       },
       "stats": [
         {
@@ -175,11 +175,11 @@
         },
         {
           "name": "Style guide",
-          "url": "/en/style-guide/"
+          "url": "/en/sys/style-guide/"
         },
         {
           "name": "Sections",
-          "url": "/en/style-guide/sections/"
+          "url": "/en/sys/style-guide/sections/"
         }
       ]
     },
@@ -253,7 +253,7 @@
           },
           "link": {
             "label": "See a description",
-            "href": "/en/style-guide/components/"
+            "href": "/en/sys/style-guide/components/"
           }
         },
         {
@@ -403,11 +403,11 @@
       "text": "Thirty minutes with an engineer. No slides, just your process.",
       "primary": {
         "label": "Book a demo",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       },
       "secondary": {
         "label": "Talk to sales",
-        "href": "/en/style-guide/primitives/"
+        "href": "/en/sys/style-guide/primitives/"
       }
     },
     {
@@ -416,9 +416,9 @@
       "title": "Monthly notes from the plant floor",
       "lede": "One email a month: what we shipped, what customers learned, no sales pitch.",
       "form": {
-        "action": "/en/style-guide/",
+        "action": "/en/sys/style-guide/",
         "submit": "Subscribe",
-        "privacyHref": "/en/style-guide/"
+        "privacyHref": "/en/sys/style-guide/"
       }
     },
     {
@@ -435,10 +435,10 @@
       },
       "form": {
         "id": "contact",
-        "action": "/en/style-guide/",
+        "action": "/en/sys/style-guide/",
         "title": "Send a message",
         "submit": "Send message",
-        "privacyHref": "/en/style-guide/",
+        "privacyHref": "/en/sys/style-guide/",
         "fields": [
           {
             "pair": [
@@ -494,22 +494,22 @@
         {
           "name": "Priya Natarajan",
           "role": "Chief Technology Officer",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "name": "Jonas Weber",
           "role": "Chief Executive",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "name": "Mei Chen",
           "role": "Head of Safety",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "name": "Alex Morgan",
           "role": "Head of Delivery",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -537,7 +537,7 @@
       ],
       "cta": {
         "label": "Meet the whole team",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       }
     },
     {
@@ -550,7 +550,7 @@
       "links": [
         {
           "label": "Articles by Priya",
-          "href": "/en/style-guide/components/"
+          "href": "/en/sys/style-guide/components/"
         }
       ]
     },
@@ -564,19 +564,19 @@
           "title": "Manchester",
           "address": "4 Canal Street, Manchester M1 3HE, United Kingdom",
           "phone": "+44 20 7946 0000",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "title": "Hamburg",
           "address": "Speicherstadt 12, 20457 Hamburg, Deutschland",
           "phone": "+49 40 123456",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "title": "Riyadh",
           "address": "King Fahd Road 88, Riyadh 12212, Saudi Arabia",
           "phone": "+966 11 123 4567",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -625,19 +625,19 @@
           "icon": "cpu",
           "title": "Line automation",
           "text": "Describe one line and run it in two weeks.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "factory",
           "title": "Plant programmes",
           "text": "Every line on a site under one description and one audit trail.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "shield-check",
           "title": "Safety reviews",
           "text": "Generated logic with the evidence auditors ask for.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -656,7 +656,7 @@
           },
           "title": "Northwind Describe",
           "text": "Write the line down with an engineer; generate the logic.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "image": {
@@ -667,7 +667,7 @@
           },
           "title": "Northwind Operate",
           "text": "Let line leads change recipes within limits.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "image": {
@@ -678,7 +678,7 @@
           },
           "title": "Northwind Audit",
           "text": "Export the change log your auditors want.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -692,19 +692,19 @@
           "icon": "leaf",
           "title": "Food and beverage",
           "text": "Recipes, allergens and washdown cycles.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "package",
           "title": "Pharmaceutical",
           "text": "Batch records and validation evidence.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "truck",
           "title": "Automotive",
           "text": "Takt time and traceability.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -726,7 +726,7 @@
           ],
           "cta": {
             "label": "Start a trial",
-            "href": "/en/style-guide/"
+            "href": "/en/sys/style-guide/"
           }
         },
         {
@@ -742,7 +742,7 @@
           ],
           "cta": {
             "label": "Talk to sales",
-            "href": "/en/style-guide/"
+            "href": "/en/sys/style-guide/"
           },
           "recommended": true
         },
@@ -757,7 +757,7 @@
           ],
           "cta": {
             "label": "Request a quote",
-            "href": "/en/style-guide/"
+            "href": "/en/sys/style-guide/"
           }
         }
       ]
@@ -1008,7 +1008,7 @@
           "metricLabel": "less unplanned downtime",
           "quote": "Our line leads fix most stops themselves now.",
           "title": "Alder Foods cuts downtime",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "company": "Brightline Pharma",
@@ -1016,7 +1016,7 @@
           "metricLabel": "to commission",
           "quote": "Validation evidence came out of the same description.",
           "title": "Brightline Pharma validates faster",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "company": "Castor Automotive",
@@ -1024,12 +1024,12 @@
           "metricLabel": "safety findings",
           "quote": "First review with nothing to fix.",
           "title": "Castor passes safety review",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ],
       "cta": {
         "label": "All customer stories",
-        "href": "/en/style-guide/components/"
+        "href": "/en/sys/style-guide/components/"
       }
     },
     {
@@ -1049,7 +1049,7 @@
           "dateIso": "2026-10-03",
           "title": "Why we moved sensor logic to the edge",
           "text": "Latency, resilience and a smaller attack surface.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "image": {
@@ -1063,7 +1063,7 @@
           "dateIso": "2026-09-19",
           "title": "Letting line leads change recipes safely",
           "text": "Limits, logs and the two rules that make it work.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "image": {
@@ -1077,7 +1077,7 @@
           "dateIso": "2026-09-02",
           "title": "What auditors actually ask for",
           "text": "Four exports that answered every question last year.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -1092,7 +1092,7 @@
           "dateIso": "2026-10-01",
           "title": "Northwind opens Riyadh office",
           "text": "Arabic-language support in local hours for Gulf customers.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "eyebrow": "Press release",
@@ -1100,7 +1100,7 @@
           "dateIso": "2026-06-12",
           "title": "1,000th line goes live",
           "text": "A dairy in Norway becomes the thousandth Northwind line.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "eyebrow": "Press release",
@@ -1108,7 +1108,7 @@
           "dateIso": "2026-03-04",
           "title": "Northwind 4 released",
           "text": "Generated acceptance tests and a new audit export.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -1122,21 +1122,21 @@
           "pages": "12 pages",
           "title": "Commissioning checklist 2026",
           "text": "Every step from factory acceptance to first production run.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "type": "PDF",
           "pages": "28 pages",
           "title": "Safety evidence for generated code",
           "text": "What assessors look for and how to produce it.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "type": "XLSX",
           "pages": "1 sheet",
           "title": "Downtime cost calculator",
           "text": "Put in your line rate; see what an hour costs.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -1160,7 +1160,7 @@
       },
       "cta": {
         "label": "Download the checklist",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       }
     },
     {
@@ -1170,9 +1170,9 @@
       "lede": "We email you the PDF and nothing else unless you ask.",
       "form": {
         "id": "gate",
-        "action": "/en/style-guide/",
+        "action": "/en/sys/style-guide/",
         "submit": "Send me the checklist",
-        "privacyHref": "/en/style-guide/",
+        "privacyHref": "/en/sys/style-guide/",
         "fields": [
           {
             "type": "email",
@@ -1203,7 +1203,7 @@
           "type": "Webinar",
           "title": "Safety PLCs without the paperwork",
           "location": "Online",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "date": "3 December 2026",
@@ -1211,7 +1211,7 @@
           "type": "Workshop",
           "title": "Describe your first line",
           "location": "Manchester",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "date": "21 January 2027",
@@ -1219,7 +1219,7 @@
           "type": "Conference",
           "title": "Northwind at SPS Nuremberg",
           "location": "Nuremberg",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -1240,9 +1240,9 @@
       "lede": "You will get a calendar invitation and the recording afterwards.",
       "form": {
         "id": "reg",
-        "action": "/en/style-guide/",
+        "action": "/en/sys/style-guide/",
         "submit": "Register",
-        "privacyHref": "/en/style-guide/",
+        "privacyHref": "/en/sys/style-guide/",
         "fields": [
           {
             "pair": [
@@ -1295,7 +1295,7 @@
       "title": "Open roles",
       "lede": "Engineering in Manchester and Hamburg, support in all three offices, remote where the role allows.",
       "filters": {
-        "action": "/en/style-guide/sections/",
+        "action": "/en/sys/style-guide/sections/",
         "filters": [
           {
             "type": "select",
@@ -1338,7 +1338,7 @@
             ]
           }
         ],
-        "resetHref": "/en/style-guide/sections/"
+        "resetHref": "/en/sys/style-guide/sections/"
       },
       "items": [
         {
@@ -1346,28 +1346,28 @@
           "team": "Engineering",
           "location": "Manchester or remote",
           "type": "Full time",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "title": "Support engineer (German)",
           "team": "Support",
           "location": "Hamburg",
           "type": "Full time",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "title": "Safety assessor",
           "team": "Engineering",
           "location": "Remote, EU",
           "type": "Full time",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "title": "Technical writer",
           "team": "Product",
           "location": "Manchester",
           "type": "Part time",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -1382,7 +1382,7 @@
         "text": "Subscribe to job alerts and we will email you when something opens.",
         "cta": {
           "label": "Subscribe to job alerts",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       }
     },
@@ -1403,9 +1403,9 @@
       "lede": "A CV and a sentence or two are enough. No cover letter needed.",
       "form": {
         "id": "apply",
-        "action": "/en/style-guide/",
+        "action": "/en/sys/style-guide/",
         "submit": "Send application",
-        "privacyHref": "/en/style-guide/",
+        "privacyHref": "/en/sys/style-guide/",
         "fields": [
           {
             "pair": [
@@ -1484,25 +1484,25 @@
           "icon": "layers",
           "title": "Siemens TIA Portal",
           "text": "Import tag tables and keep them in sync.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "cpu",
           "title": "Rockwell Studio 5000",
           "text": "Generate AOIs and routines.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "settings",
           "title": "Beckhoff TwinCAT",
           "text": "Structured text with your libraries.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "chart-bar",
           "title": "OSIsoft PI",
           "text": "Historian tags from the description.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -1520,13 +1520,13 @@
               "type": "PDF",
               "pages": "12 pages",
               "title": "Commissioning checklist 2026",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             },
             {
               "type": "PDF",
               "pages": "28 pages",
               "title": "Safety evidence for generated code",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             }
           ]
         },
@@ -1540,7 +1540,7 @@
               "type": "Webinar",
               "title": "Safety PLCs without the paperwork",
               "location": "Online",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             }
           ]
         },
@@ -1552,7 +1552,7 @@
               "type": "XLSX",
               "pages": "1 sheet",
               "title": "Downtime cost calculator",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             }
           ]
         }
@@ -1716,11 +1716,11 @@
           "links": [
             {
               "label": "Describe your first line",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             },
             {
               "label": "Connect a controller",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             }
           ]
         },
@@ -1730,11 +1730,11 @@
           "links": [
             {
               "label": "Change a recipe",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             },
             {
               "label": "Read the audit trail",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             }
           ]
         },
@@ -1744,7 +1744,7 @@
           "links": [
             {
               "label": "Interlock review",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             }
           ]
         }
@@ -1763,12 +1763,12 @@
       "items": [
         {
           "title": "Safety PLCs without the paperwork",
-          "href": "/en/style-guide/",
+          "href": "/en/sys/style-guide/",
           "excerpt": "How generated logic passes a TÜV review without a line-by-line walkthrough."
         },
         {
           "title": "Interlock verification",
-          "href": "/en/style-guide/components/",
+          "href": "/en/sys/style-guide/components/",
           "excerpt": "Every interlock in the description is checked against the generated code."
         }
       ]
@@ -1787,7 +1787,7 @@
             },
             {
               "label": "Style guide",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             }
           ]
         },
@@ -1796,19 +1796,19 @@
           "links": [
             {
               "label": "Foundations",
-              "href": "/en/style-guide/"
+              "href": "/en/sys/style-guide/"
             },
             {
               "label": "Primitives",
-              "href": "/en/style-guide/primitives/"
+              "href": "/en/sys/style-guide/primitives/"
             },
             {
               "label": "Content components",
-              "href": "/en/style-guide/components/"
+              "href": "/en/sys/style-guide/components/"
             },
             {
               "label": "Navigation, overlays and states",
-              "href": "/en/style-guide/controls/"
+              "href": "/en/sys/style-guide/controls/"
             }
           ]
         }
@@ -1847,7 +1847,7 @@
       "author": {
         "name": "Priya Natarajan",
         "role": "CTO",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       },
       "date": "3 October 2026",
       "dateIso": "2026-10-03",
@@ -1855,14 +1855,14 @@
       "tags": [
         {
           "label": "Engineering",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "label": "Edge"
         }
       ],
       "share": {
-        "url": "https://example.com/en/style-guide/sections/",
+        "url": "https://example.com/en/sys/style-guide/sections/",
         "title": "Why we moved sensor logic to the edge"
       }
     },
@@ -1874,7 +1874,7 @@
         "name": "Priya Natarajan",
         "role": "Chief Technology Officer",
         "bio": "Priya has led controls teams in food, pharma and automotive plants for sixteen years.",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       }
     },
     {
@@ -1887,19 +1887,19 @@
           "icon": "factory",
           "title": "Plant programmes",
           "text": "Every line on a site under one description.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "shield-check",
           "title": "Safety reviews",
           "text": "Generated logic with the evidence auditors ask for.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "icon": "users",
           "title": "Operator training",
           "text": "A half day on site with every commissioning.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -1920,7 +1920,7 @@
           "dateIso": "2026-09-19",
           "title": "Letting line leads change recipes safely",
           "text": "Limits, logs and the two rules that make it work.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "image": {
@@ -1934,7 +1934,7 @@
           "dateIso": "2026-09-02",
           "title": "What auditors actually ask for",
           "text": "Four exports that answered every question last year.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "image": {
@@ -1948,7 +1948,7 @@
           "dateIso": "2026-10-03",
           "title": "Why we moved sensor logic to the edge",
           "text": "Latency, resilience and a smaller attack surface.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ]
     },
@@ -1968,7 +1968,7 @@
       "text": "Logos, product shots and leadership portraits in one download.",
       "cta": {
         "label": "Download the media kit",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       }
     },
     {
@@ -2016,7 +2016,7 @@
       "next": "Meanwhile, the commissioning checklist is a good read.",
       "cta": {
         "label": "Read the checklist",
-        "href": "/en/style-guide/"
+        "href": "/en/sys/style-guide/"
       }
     },
     {
@@ -2037,7 +2037,7 @@
           "dateIso": "2026-10-03",
           "title": "Why we moved sensor logic to the edge",
           "text": "Latency, resilience and a smaller attack surface.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "image": {
@@ -2051,7 +2051,7 @@
           "dateIso": "2026-09-19",
           "title": "Letting line leads change recipes safely",
           "text": "Limits, logs and the two rules that make it work.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         },
         {
           "image": {
@@ -2065,38 +2065,38 @@
           "dateIso": "2026-09-02",
           "title": "What auditors actually ask for",
           "text": "Four exports that answered every question last year.",
-          "href": "/en/style-guide/"
+          "href": "/en/sys/style-guide/"
         }
       ],
       "cta": {
         "label": "All notes",
-        "href": "/en/style-guide/components/"
+        "href": "/en/sys/style-guide/components/"
       }
     },
     {
       "id": "pagination",
       "type": "pagination",
       "current": 2,
-      "prev": "/en/style-guide/",
-      "next": "/en/style-guide/components/",
+      "prev": "/en/sys/style-guide/",
+      "next": "/en/sys/style-guide/components/",
       "pages": [
         {
           "n": 1,
-          "url": "/en/style-guide/"
+          "url": "/en/sys/style-guide/"
         },
         {
           "n": 2
         },
         {
           "n": 3,
-          "url": "/en/style-guide/components/"
+          "url": "/en/sys/style-guide/components/"
         }
       ]
     },
     {
       "id": "filter-bar",
       "type": "filter-bar",
-      "action": "/en/style-guide/sections/",
+      "action": "/en/sys/style-guide/sections/",
       "filters": [
         {
           "type": "select",
@@ -2119,7 +2119,7 @@
           ]
         }
       ],
-      "resetHref": "/en/style-guide/sections/"
+      "resetHref": "/en/sys/style-guide/sections/"
     },
     {
       "id": "was-this-helpful",
@@ -2132,7 +2132,7 @@
       "lede": "Choose what we send. Changes apply immediately.",
       "form": {
         "id": "prefs",
-        "action": "/en/style-guide/",
+        "action": "/en/sys/style-guide/",
         "submit": "Save preferences",
         "fields": [
           {
@@ -2168,7 +2168,7 @@
       "lede": "Enter the address we have been writing to and we stop.",
       "form": {
         "id": "unsub",
-        "action": "/en/style-guide/",
+        "action": "/en/sys/style-guide/",
         "submit": "Unsubscribe",
         "fields": [
           {

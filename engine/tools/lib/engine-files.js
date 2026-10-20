@@ -13,7 +13,7 @@ export function engineFiles(site) {
       content: `/*\n  Content-Security-Policy: ${csp}\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()\n  Strict-Transport-Security: max-age=31536000; includeSubDomains\n\n/assets/*\n  Cache-Control: public, max-age=31536000\n`,
     },
     { path: "/headers.json", content: JSON.stringify({ "/*": { "Content-Security-Policy": csp, "X-Content-Type-Options": "nosniff", "Referrer-Policy": "strict-origin-when-cross-origin", "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=()", "Strict-Transport-Security": "max-age=31536000; includeSubDomains" }, "/assets/*": { "Cache-Control": "public, max-age=31536000" } }, null, 2) + "\n" },
-    { path: "/_redirects", content: `/  /${site.defaultLocale}/  301\n` },
-    { path: "/redirects.json", content: JSON.stringify([{ from: "/", to: `/${site.defaultLocale}/`, status: 301 }], null, 2) + "\n" },
+    { path: "/_redirects", content: `/  /${site.defaultLocale}/  301\n/${site.defaultLocale}/style-guide/widgets/  /${site.defaultLocale}/qa/widgets/  301\n/${site.defaultLocale}/style-guide/html/  /${site.defaultLocale}/qa/html/  301\n/${site.defaultLocale}/style-guide/*  /${site.defaultLocale}/sys/style-guide/:splat  301\n` },
+    { path: "/redirects.json", content: JSON.stringify([{ from: "/", to: `/${site.defaultLocale}/`, status: 301 }, { from: `/${site.defaultLocale}/style-guide/widgets/`, to: `/${site.defaultLocale}/qa/widgets/`, status: 301 }, { from: `/${site.defaultLocale}/style-guide/html/`, to: `/${site.defaultLocale}/qa/html/`, status: 301 }, { from: `/${site.defaultLocale}/style-guide/*`, to: `/${site.defaultLocale}/sys/style-guide/:splat`, status: 301 }], null, 2) + "\n" },
   ];
 }

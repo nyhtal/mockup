@@ -1,0 +1,46 @@
+---
+layout: base.njk
+pageType: sys
+noindex: true
+---
+{#- /<locale>/sys/: one language's system page (D56), linked from /sys/. It leads to the language's QA page (/<locale>/qa/),
+    lists the style guide and every hidden page of the language, and the language's files. Built from the page collection. -#}
+{%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
+{%- set stylePages = collections.all | sysPages("style", locale) -%}
+{%- set hiddenPages = collections.all | sysPages("hidden", locale) -%}
+{%- set row = "flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6" -%}
+<div class="mx-auto w-full max-w-4xl px-4 pt-16 pb-24 sm:px-6 md:pt-24 lg:px-8">
+<p class="text-sm font-medium uppercase tracking-wide text-ink-brand"><a href="/sys/" class="{{ link }}">System</a></p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ title }}</h1>
+<p class="mt-4 text-lg text-ink-muted">The style guide, the test pages and every hidden page in this language. Not in the sitemap, not linked from a public page, not indexed.</p>
+
+<a href="/{{ locale }}/qa/" class="mt-10 flex items-center justify-between gap-4 rounded-lg border border-brand-300 bg-surface-raised p-6 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span><span class="block text-lg font-semibold">QA test pages</span><span class="mt-1 block text-sm text-ink-muted">Every widget working on one page, and every HTML element with a page that uses it.</span></span><svg aria-hidden="true" class="size-5 shrink-0 text-ink-brand rtl:-scale-x-100"><use href="#i-arrow-right"></use></svg></a>
+
+<section id="sys-style" class="mt-16 scroll-mt-24" aria-labelledby="sys-style-h">
+<h2 id="sys-style-h" class="text-2xl font-semibold tracking-tight">Style guide <span class="text-base font-normal text-ink-muted">({{ stylePages.length }})</span></h2>
+<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
+{%- for p in stylePages %}
+<li class="{{ row }}"><a href="{{ p.url }}" class="font-medium {{ link }}">{{ p.title }}</a><code class="text-sm text-ink-muted">{{ p.url }}</code></li>
+{%- endfor %}
+</ul>
+</section>
+
+<section id="sys-hidden" class="mt-16 scroll-mt-24" aria-labelledby="sys-hidden-h">
+<h2 id="sys-hidden-h" class="text-2xl font-semibold tracking-tight">Hidden pages <span class="text-base font-normal text-ink-muted">({{ hiddenPages.length }})</span></h2>
+<p class="mt-2 text-sm text-ink-muted">Real pages that ask not to be indexed: search results, thank-you pages, tag archives, error pages, the framed newsletter issue. The German and Arabic ones are listed too, since those languages have no system page.</p>
+<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
+{%- for p in hiddenPages %}
+<li class="{{ row }}"><a href="{{ p.url }}" class="font-medium {{ link }}">{{ p.title }}</a><code class="text-sm text-ink-muted">{{ p.url }}</code></li>
+{%- endfor %}
+</ul>
+</section>
+
+<section id="sys-files" class="mt-16 scroll-mt-24" aria-labelledby="sys-files-h">
+<h2 id="sys-files-h" class="text-2xl font-semibold tracking-tight">Files in this language</h2>
+<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
+{%- for f in [["/" + locale + "/feed.xml", "Atom feed"], ["/assets/files/" + locale + "/office-map.svg", "Office map picture"], ["/assets/files/" + locale + "/line-notes-12.vtt", "Podcast captions"], ["/assets/files/" + locale + "/hamburg.vcf", "Contact card, Hamburg"]] %}
+<li class="{{ row }}"><a href="{{ f[0] }}" class="font-medium {{ link }}">{{ f[1] }}</a><code class="text-sm text-ink-muted">{{ f[0] }}</code></li>
+{%- endfor %}
+</ul>
+</section>
+</div>

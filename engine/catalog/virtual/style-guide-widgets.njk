@@ -3,7 +3,7 @@ layout: base.njk
 pageType: style-guide
 noindex: true
 ---
-{#- Every interactive widget on one page, working, each with where the site uses it (owner's request, 2026-10-19: "add test page with all widgets on it"). -#}
+{#- /en/qa/widgets/ (D56). Every interactive widget on one page, working, each with where the site uses it (owner's request, 2026-10-19: "add test page with all widgets on it"). -#}
 {% from "sections/_render.njk" import section with context %}
 {% from "components/theme-toggle.njk" import themeToggle with context %}
 {% from "components/sound-toggle.njk" import soundToggle with context %}
@@ -25,7 +25,7 @@ noindex: true
 {% from "components/contact-launcher.njk" import contactLauncher with context %}
 {% from "components/sticky-cta.njk" import stickyCta with context %}
 {% from "primitives/field.njk" import field with context %}
-{%- set sg = "/" + locale + "/style-guide/" -%}
+{%- set sg = "/" + locale + "/sys/style-guide/" -%}
 {%- set L = "/" + locale + "/" -%}
 {%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
 {%- set ctx = { locale: locale, pageUrl: page.url, density: "comfortable", surface: "bg-surface", reveal: false, demote: false } -%}
@@ -46,7 +46,7 @@ noindex: true
 {% macro note(id, used) %}<div id="w-{{ id }}" class="scroll-mt-24 border-t border-line pt-12"><p class="mx-auto w-full max-w-7xl px-4 text-sm text-ink-muted sm:px-6 lg:px-8">{{ used | safe }}</p></div>{% endmacro %}
 
 <div class="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 md:pt-24 lg:px-8">
-<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
+<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Test page</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Widgets</h1>
 <p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">Every interactive widget of the site on one page, working as it does on the page that uses it. Each one says where that is. Widgets that need script say so; everything else works without it.</p>
 <nav aria-label="Widgets on this page" class="mt-8"><ul class="flex flex-wrap gap-2">{% for w in widgets %}<li><a href="#w-{{ w[0] }}" class="inline-flex min-h-9 items-center rounded-full border border-line-strong px-3 text-sm text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ w[1] }}</a></li>{% endfor %}</ul></nav>

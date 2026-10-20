@@ -5,8 +5,12 @@
   "page": 307200,
   "mobileWidth": 720,
   "overrides": {
-    "/qa/": {
+    "/sys/index.html": {
       "html": 98304
+    },
+    "/qa/": {
+      "html": 139264,
+      "page": 409600
     },
     "/style-guide/": {
       "html": 139264,

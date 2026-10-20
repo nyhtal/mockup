@@ -126,7 +126,7 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   // Depth (R-MOT-15): md+ only, scroll(root) in the hero, the element's own view() elsewhere, drift mirrored in RTL, nothing on hero text.
   assert.match(hero, /bg-hero-backdrop"[^>]*>|md:motion-safe:sda:animate-parallax-sm md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\][^"]*bg-hero-backdrop/, "the hero glows sink on scroll(root)");
   assert.doesNotMatch(/<div class="lg:col-span-7[\s\S]*?<\/ul>/.exec(hero)?.[0] || "", /parallax|drift/, "no depth on the hero's text column");
-  const guide = readFileSync("dist/reference/en/style-guide/sections/index.html", "utf8");
+  const guide = readFileSync("dist/reference/en/sys/style-guide/sections/index.html", "utf8");
   assert.match(guide, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\]/, "the split hero picture sinks, overscanned, at identity at rest");
   assert.match(home, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-110 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:view\(\)\] md:motion-safe:sda:\[animation-range:cover_0%_cover_100%\] pending:scale-115 motion-safe:data-revealed:transition-\[scale\] motion-safe:data-revealed:duration-1200 motion-safe:data-revealed:ease-reveal"/, "media-row pictures settle from 115 % as they enter, then sit deeper on their own passage");
   assert.match(stats, /before:to-accent-600\/25 md:motion-safe:sda:before:animate-parallax-sm/, "the stats backdrop moves slower than the band");
@@ -428,21 +428,21 @@ test("widgets (to-do 7b, part four): native date, time and range inputs; progres
 });
 
 test("widgets test page (owner's request): every widget on one page, each linked from its list and live", () => {
-  const page = readFileSync("dist/reference/en/style-guide/widgets/index.html", "utf8");
+  const page = readFileSync("dist/reference/en/qa/widgets/index.html", "utf8");
   const anchors = [...page.matchAll(/<a href="#(w-[a-z]+)"/g)].map((m) => m[1]);
   assert.equal(anchors.length, 20);
   for (const id of anchors) assert.match(page, new RegExp(`id="${id}"`), `${id} is on the page`);
   for (const marker of ['data-theme-toggle', 'data-component="announcement-bar"', "data-copy=", 'data-toast', 'popover="hint"', 'command="show-modal"', "data-lightbox", 'data-component="accordion"', 'data-component="tabs"', 'type="date"', 'type="time"', 'type="range"', "<datalist", "<progress", 'data-component="skeleton"', "data-count=", 'data-component="video-facade"', 'data-component="map-facade"', 'group/billing', "data-estimate=", 'class="carousel"', "★", 'ring-2 ring-surface', "data-ba-frame", "usemap=", "<iframe ", 'data-component="contact-launcher"', 'data-component="sticky-cta"']) {
     assert.ok(page.includes(marker), `widget marker ${marker}`);
   }
-  assert.match(readFileSync("dist/reference/en/style-guide/index.html", "utf8"), /href="\/en\/style-guide\/widgets\/"/, "linked from the style guide");
+  assert.match(readFileSync("dist/reference/en/sys/style-guide/index.html", "utf8"), /href="\/en\/qa\/widgets\/"/, "linked from the style guide");
 });
 
 test("HTML element reference (to-do 8): every element of the standard is listed, each linked page really uses it, and every element appears on the site", () => {
   const list = JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8"));
   assert.ok(list.length >= 110, `${list.length} elements`);
-  const ref = readFileSync("dist/reference/en/style-guide/html/index.html", "utf8");
-  assert.match(ref, /<base href="\/en\/style-guide\/html\/" target="_self">/);
+  const ref = readFileSync("dist/reference/en/qa/html/index.html", "utf8");
+  assert.match(ref, /<base href="\/en\/qa\/html\/" target="_self">/);
   const has = (html, el) => new RegExp(`<${el}[\\s>/]`).test(html);
   for (const e of list) {
     assert.ok(ref.includes(`<tr id="el-${e.el}"`), `${e.el} is listed`);
@@ -451,33 +451,41 @@ test("HTML element reference (to-do 8): every element of the standard is listed,
   }
 });
 
-test("hidden /qa/ page: lists every style-guide page and every hidden page, is noindex, and is in no sitemap and no link (owner's request)", () => {
-  const qa = readFileSync("dist/reference/qa/index.html", "utf8");
-  assert.match(qa, /<meta name="robots" content="noindex/);
-  const listed = new Set([...qa.matchAll(/<a href="([^"]+)" class="font-medium/g)].map((m) => m[1]));
+test("system pages (D56): /sys/ links each language's system page, /en/sys/ links the QA page and lists the style guide and every hidden page, /en/qa/ lists the test pages; all hidden, none with language links", () => {
+  const read = (u) => readFileSync(`dist/reference${u}index.html`, "utf8");
+  const links = (html) => new Set([...html.matchAll(/<a href="([^"#]+)" class="(?:font-medium|mt-10|block)/g)].map((m) => m[1]));
+  const enSys = read("/en/sys/"), qa = read("/en/qa/");
+  const hub = read("/sys/");
+  assert.ok(links(hub).has("/en/sys/"), "/sys/ links the English system page");
+  assert.ok(links(enSys).has("/en/qa/"), "/en/sys/ links the QA page");
+  for (const u of ["/en/qa/widgets/", "/en/qa/html/"]) assert.ok(links(qa).has(u), `/en/qa/ lists ${u}`);
+  for (const html of [hub, enSys, qa]) {
+    assert.match(html, /<meta name="robots" content="noindex/);
+    assert.doesNotMatch(html, /hreflang="(de|ar)"/, "no language links");
+    assert.doesNotMatch(html, /data-component="locale-switcher"/);
+  }
+  const listed = new Set([...links(hub), ...links(enSys), ...links(qa)]);
   const pages = [];
   const walk = (dir) => { for (const e of readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith(".html")) pages.push(p); } };
   walk("dist/reference");
   for (const p of pages) {
     const html = readFileSync(p, "utf8");
     const url = "/" + path.relative("dist/reference", p).split(path.sep).join("/").replace(/index\.html$/, "");
-    if (url === "/qa/" || /data-page="redirect"/.test(html)) continue;
-    const hidden = /<meta name="robots" content="noindex/.test(html) && /<body [^>]*data-page="/.test(html);
-    if (hidden) assert.ok(listed.has(url), `${url} is listed on /qa/`);
-    assert.doesNotMatch(html, /href="\/qa\/"/, `${url} does not link to /qa/`);
+    if (/data-page="(redirect|sys)"/.test(html)) continue;
+    if (/<meta name="robots" content="noindex/.test(html)) assert.ok(listed.has(url), `${url} is reachable from /sys/`);
+    else assert.doesNotMatch(html, /href="\/(en\/)?(sys|qa)\//, `${url}: no public page links to a system page`);
   }
-  for (const sg of ["/en/style-guide/", "/en/style-guide/widgets/", "/en/style-guide/html/", "/en/style-guide/sections-e/"]) assert.ok(listed.has(sg), `${sg} listed`);
-  assert.doesNotMatch(readFileSync("dist/reference/sitemap.xml", "utf8"), /\/qa\//);
-  for (const f of ["/sitemap.xml", "/robots.txt", "/assets/files/line-notes-12.wav"]) assert.ok(listed.has(f) && existsSync(`dist/reference${f}`), `${f} listed and present`);
+  const sitemap = readFileSync("dist/reference/sitemap.xml", "utf8");
+  assert.doesNotMatch(sitemap, /\/sys\/|\/qa\//);
+  for (const u of ["/sitemap.xml", "/robots.txt"]) assert.ok(links(hub).has(u) && existsSync(`dist/reference${u}`));
 });
-
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {
     for (const name of readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, name.name);
       if (name.isDirectory()) walk(p);
-      else if (name.name.endsWith(".html") && !p.replace(/\\/g, "/").includes("style-guide/html/") && /&lt;\/?(?:p|strong|em|ul|ol|li|h[1-6]|br)\b|&lt;a href/.test(readFileSync(p, "utf8"))) offenders.push(p);
+      else if (name.name.endsWith(".html") && !p.replace(/\\/g, "/").includes("qa/html/") && /&lt;\/?(?:p|strong|em|ul|ol|li|h[1-6]|br)\b|&lt;a href/.test(readFileSync(p, "utf8"))) offenders.push(p);
     }
   };
   walk("dist/reference");
@@ -504,7 +512,7 @@ test("three locales: alternates pair the same slug per locale, Arabic pages prel
   assert.match(readFileSync("dist/reference/en/index.html", "utf8"), /<link rel="preload" href="\/assets\/fonts\/inter-latin-wght-normal\.woff2"/);
   // Language names in the switcher render in the system font so no page downloads another script's face for one word (R-PERF-01).
   assert.match(ar, /lang="de"[^>]*class="[^"]*font-system/);
-  assert.ok(existsSync("dist/reference/en/style-guide/index.html"));
+  assert.ok(existsSync("dist/reference/en/sys/style-guide/index.html"));
   assert.ok(!existsSync("dist/reference/de/style-guide/index.html"), "the style guide shows English sample data: one copy, in the default locale (R-PAGE-09)");
 });
 
@@ -575,7 +583,7 @@ test("motion: smooth scrolling, floating back-to-top under sda, time-based item 
   assert.match(html, /<header class="[^"]*motion-safe:sda:after:animate-fade[^"]*motion-safe:sda:after:\[animation-timeline:scroll\(\)\]/);
   assert.match(html, /pending:-translate-x-\(--reveal-distance\)/);
   assert.match(html, /pending:translate-x-\(--reveal-distance\) rtl:pending:-translate-x-\(--reveal-distance\)/);
-  const guide = readFileSync("dist/reference/en/style-guide/controls/index.html", "utf8");
+  const guide = readFileSync("dist/reference/en/sys/style-guide/controls/index.html", "utf8");
   assert.match(guide, /<dialog [^>]*class="[^"]*motion-safe:starting:open:backdrop:opacity-0/);
   assert.match(guide, /id="drawer"[^>]*class="[^"]*motion-safe:translate-x-full[^"]*motion-safe:starting:open:translate-x-full/);
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
@@ -608,7 +616,7 @@ test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA p
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.ok(css.includes(".bg-hero-backdrop{background-image:radial-gradient(44rem 26rem at 18% 20%,light-dark("), "hero backdrop glows in the CSS");
   assert.ok(!css.includes("var(--color-line) 1px") && css.includes("mask-image:radial-gradient(#000 25%,#0000 78%)"), "hero backdrop has an edge mask and no dot texture (0.5.0)");
-  const guide = readFileSync("dist/reference/en/style-guide/sections/index.html", "utf8");
+  const guide = readFileSync("dist/reference/en/sys/style-guide/sections/index.html", "utf8");
   assert.match(guide, /data-variant="centered">[\s\S]*?<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/, "centered hero media in a framed rounded-2xl box");
   assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-6 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);
   assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-clip rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600/);
@@ -637,7 +645,7 @@ test("review fixes: transitions name translate and scale, feature rows clip and 
   const en = readFileSync("dist/reference/en/index.html", "utf8");
   const ar = readFileSync("dist/reference/ar/index.html", "utf8");
   const svc = readFileSync("dist/reference/en/services/index.html", "utf8");
-  const guide = readFileSync("dist/reference/en/style-guide/controls/index.html", "utf8");
+  const guide = readFileSync("dist/reference/en/sys/style-guide/controls/index.html", "utf8");
   for (const [name, html] of [["en", en], ["ar", ar], ["controls", guide]]) {
     const lists = [...html.matchAll(/transition-\[([^\]]+)\]/g)].map((m) => m[1]);
     assert.ok(lists.length > 0, `${name} has transition lists`);
@@ -659,7 +667,7 @@ test("gate fixes: the floating back-to-top lives inside the footer landmark and 
   const en = readFileSync("dist/reference/en/index.html", "utf8");
   assert.match(en, /<footer[^>]*>[\s\S]*data-component="back-to-top" data-variant="float"[\s\S]*<\/footer>/, "floating back-to-top inside the footer");
   assert.doesNotMatch(en, /<\/footer>[\s\S]*data-component="back-to-top" data-variant="float"/, "not after the footer");
-  for (const page of ["en/resources/index.html", "en/products/northwind-studio/index.html", "en/style-guide/sections/index.html", "en/style-guide/sections-c/index.html", "en/style-guide/sections-d/index.html"]) {
+  for (const page of ["en/resources/index.html", "en/products/northwind-studio/index.html", "en/sys/style-guide/sections/index.html", "en/sys/style-guide/sections-c/index.html", "en/sys/style-guide/sections-d/index.html"]) {
     const html = readFileSync(`dist/reference/${page}`, "utf8");
     assert.doesNotMatch(html, /<ul class="grid gap-6 (?!md:gap-8)/, `${page}: bare gap-6 body grid`);
   }

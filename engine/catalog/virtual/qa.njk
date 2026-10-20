@@ -1,51 +1,18 @@
 ---
 layout: base.njk
-pageType: qa
+pageType: sys
 noindex: true
 ---
-{#- /qa/: a hidden site map of every test and hidden page (owner's request, 2026-10-19). noindex, out of sitemap.xml and the
-    HTML site map, linked from nowhere. Built from the page collection, so a new style-guide page or noindex page appears
-    here by itself. -#}
+{#- /<locale>/qa/: the language's QA page (D56), linked from its system page. Lists the test pages under /<locale>/qa/. -#}
 {%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
-{%- set testPages = collections.all | qaPages("test") -%}
-{%- set hiddenPages = collections.all | qaPages("hidden") -%}
-{%- set files = [
-  ["/sitemap.xml", "XML sitemap"], ["/en/feed.xml", "Atom feed, English"], ["/de/feed.xml", "Atom feed, German"], ["/ar/feed.xml", "Atom feed, Arabic"],
-  ["/robots.txt", "robots.txt"], ["/.well-known/security.txt", "security.txt"], ["/headers.json", "Response headers and CSP"],
-  ["/assets/files/en/office-map.svg", "Office map picture, English"], ["/assets/files/line-notes-12.wav", "Podcast clip"], ["/assets/files/commissioning-checklist.pdf", "Sample PDF"]
-] -%}
-{% macro list(pages) %}
-<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
-{%- for p in pages %}
-<li class="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"><a href="{{ p.url }}" class="font-medium {{ link }}">{{ p.title }}</a><span class="flex shrink-0 items-baseline gap-3 text-sm text-ink-muted"><code>{{ p.url }}</code><span class="rounded-full bg-surface-alt px-2 text-xs">{{ p.lang }}</span></span></li>
-{%- endfor %}
-</ul>
-{% endmacro %}
+{%- set testPages = collections.all | sysPages("qa", locale) -%}
 <div class="mx-auto w-full max-w-4xl px-4 pt-16 pb-24 sm:px-6 md:pt-24 lg:px-8">
-<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">QA</p>
-<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Test pages</h1>
-<p class="mt-4 text-lg text-ink-muted">Every test and hidden page of the site, for checking by hand. This page is not in the sitemap, not linked from the site and asks search engines not to index it.</p>
-<nav aria-label="On this page" class="mt-8"><ul class="flex flex-wrap gap-2">{% for id, label in { "qa-test": "Style guide and test pages", "qa-hidden": "Hidden pages", "qa-files": "Generated files" } %}<li><a href="#{{ id }}" class="inline-flex min-h-9 items-center rounded-full border border-line-strong px-3 text-sm text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ label }}</a></li>{% endfor %}</ul></nav>
-
-<section id="qa-test" class="mt-16 scroll-mt-24" aria-labelledby="qa-test-h">
-<h2 id="qa-test-h" class="text-2xl font-semibold tracking-tight">Style guide and test pages <span class="text-base font-normal text-ink-muted">({{ testPages.length }})</span></h2>
-<p class="mt-2 text-sm text-ink-muted">The catalog rendered with sample data, the widgets test page and the HTML element reference.</p>
-{{ list(testPages) }}
-</section>
-
-<section id="qa-hidden" class="mt-16 scroll-mt-24" aria-labelledby="qa-hidden-h">
-<h2 id="qa-hidden-h" class="text-2xl font-semibold tracking-tight">Hidden pages <span class="text-base font-normal text-ink-muted">({{ hiddenPages.length }})</span></h2>
-<p class="mt-2 text-sm text-ink-muted">Real pages that ask not to be indexed: search results, thank-you pages, error pages, the framed newsletter issue.</p>
-{{ list(hiddenPages) }}
-</section>
-
-<section id="qa-files" class="mt-16 scroll-mt-24" aria-labelledby="qa-files-h">
-<h2 id="qa-files-h" class="text-2xl font-semibold tracking-tight">Generated files</h2>
-<p class="mt-2 text-sm text-ink-muted">Machine-readable files and a sample of the files the build generates.</p>
-<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
-{%- for f in files %}
-<li class="flex flex-col gap-1 px-4 py-3 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"><a href="{{ f[0] }}" class="font-medium {{ link }}">{{ f[1] }}</a><code class="text-sm text-ink-muted">{{ f[0] }}</code></li>
+<p class="text-sm font-medium uppercase tracking-wide text-ink-brand"><a href="/{{ locale }}/sys/" class="{{ link }}">System</a></p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ title }}</h1>
+<p class="mt-4 text-lg text-ink-muted">Pages built to check the site by hand. Not in the sitemap, not linked from a public page, not indexed.</p>
+<ul class="mt-10 grid gap-6 sm:grid-cols-2">
+{%- for p in testPages %}
+<li><a href="{{ p.url }}" class="block h-full rounded-lg border border-line bg-surface-raised p-6 hover:border-brand-300 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span class="block text-lg font-semibold">{{ p.title }}</span><code class="mt-2 block text-sm text-ink-muted">{{ p.url }}</code></a></li>
 {%- endfor %}
 </ul>
-</section>
 </div>

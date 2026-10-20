@@ -43,7 +43,7 @@ Why: Static hosts cannot negotiate language; the root must still resolve.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PAGE-09 Style guide
-MUST. `/<default locale>/style-guide/` exists with `noindex` and shows every catalog entry used on the site (R-COMP-16). It is built once, in the default locale, because its sample data is English; the locale coverage check exempts it, and the site's own pages show the chrome in every other locale.
+MUST. `/<default locale>/sys/style-guide/` exists with `noindex` and shows every catalog entry used on the site (R-COMP-16). It is built once, in the default locale, because its sample data is English; the locale coverage check exempts it, and the site's own pages show the chrome in every other locale.
 Why: Regression page and designer reference; a German URL with English content would be a validator warning and a lie to search engines.
 Gate: manual: checklists/pre-delivery.md
 
@@ -117,7 +117,7 @@ Title patterns use `{T}` = page title, `{S}` = site name, `{C}` = company name f
 | thank-you | core | `/<form>/thank-you/` | `Thank you · {S}` | page-header, confirmation | related-items | generic |
 | search | core | `/search/` | `Search · {S}` | page-header, search-box, search-results | — | search |
 | sitemap | core | `/sitemap/` | `Site map · {S}` | page-header, sitemap-list | — | generic |
-| style-guide | core | `/style-guide/` | `Style guide · {S}` | page-header, style-guide-sections | — | generic |
+| style-guide | core | `/sys/style-guide/` (default locale) | `Style guide · {S}` | page-header, style-guide-sections | — | generic |
 | privacy, cookies, terms, accessibility, imprint | core | `/legal/<slug>/` | `{T} · {S}` | page-header, prose | — | generic |
 | 404, 500, maintenance, coming-soon | core | root and `/<locale>/` | `{T} · {S}` | error-state | — | generic |
 

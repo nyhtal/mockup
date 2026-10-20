@@ -30,7 +30,7 @@ noindex: true
 {% from "components/error-summary.njk" import errorSummary with context %}
 {% from "components/prose.njk" import prose with context %}
 {% from "components/announcement-bar.njk" import announcementBar with context %}
-{%- set sg = "/" + locale + "/style-guide/" -%}
+{%- set sg = "/" + locale + "/sys/style-guide/" -%}
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Components: navigation, overlays and states</h1>
@@ -39,7 +39,7 @@ noindex: true
 <section class="mt-16">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Navigation</h2>
 <div class="mt-8">{{ breadcrumbs([{ name: "Home", url: "/" + locale + "/" }, { name: "Style guide", url: sg }, { name: "Controls", url: sg + "controls/" }]) }}</div>
-<div class="mt-8">{{ announcementBar({ text: "Northwind 4 ships on 12 November.", href: "/style-guide/", label: "See what is new" }, locale) }}</div>
+<div class="mt-8">{{ announcementBar({ text: "Northwind 4 ships on 12 November.", href: "/sys/style-guide/", label: "See what is new" }, locale) }}</div>
 <div class="mt-8 grid gap-8 lg:grid-cols-3">
 <div>{{ sidebarNav([{ title: "Getting started", links: [{ label: "Overview", href: sg }, { label: "Install", href: sg + "primitives/" }] }, { title: "Reference", links: [{ label: "Stations", href: sg + "components/" }, { label: "Recipes", href: sg + "controls/" }] }], sg + "controls/") }}</div>
 <div>{{ toc([{ id: "h-nav", text: "Navigation", level: 2 }, { id: "h-overlays", text: "Overlays", level: 2 }, { id: "h-states", text: "States", level: 2 }, { id: "h-states-empty", text: "Empty", level: 3 }]) }}</div>
