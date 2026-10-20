@@ -473,5 +473,12 @@
   },
   "newsletter-preview": {
     "required": []
+  },
+  "qa": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage"
+    ]
   }
 }

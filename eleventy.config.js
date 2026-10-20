@@ -287,6 +287,11 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("figure", function (value) { return parseFigure(value, fmtLocale(this.ctx?.page?.lang || site.defaultLocale, site)); });
   eleventyConfig.addFilter("formatCurrency", function (n, code) { return formatCurrency(n, this.ctx?.page?.lang || site.defaultLocale, code, site); });
   eleventyConfig.addFilter("htmlPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType));
+  // /qa/: "test" = style-guide pages, "hidden" = every other noindex page; sorted by locale then URL (owner's request, 2026-10-19).
+  eleventyConfig.addFilter("qaPages", (all, kind) => all
+    .filter((p) => p.url && p.url !== "/qa/" && p.data.pageType && (kind === "test" ? p.data.pageType === "style-guide" : p.data.pageType !== "style-guide" && (p.data.noindex || ["thank-you", "error"].includes(p.data.pageType))))
+    .map((p) => ({ url: p.url, title: p.data.title || p.url, lang: p.data.page?.lang || p.data.lang || site.defaultLocale }))
+    .sort((x, y) => x.url.localeCompare(y.url)));
   eleventyConfig.addFilter("sitemapPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType && !p.data.noindex));
   // Every locale version of a page including itself, in site.locales order (R-I18N-04).
   // Render-time only: the plugin's locale map is built after computed data runs.
@@ -335,12 +340,14 @@ export default function (eleventyConfig) {
     for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"], ["style-guide-widgets.njk", "widgets/", "Style guide: widgets"], ["style-guide-html.njk", "html/", "Style guide: HTML elements"]]) {
       eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, htmlElements: name === "style-guide-html.njk" ? JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8")) : undefined, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: `/${locale}/style-guide/${slug}index.html` });
     }
+    // The hidden QA index of test pages (owner's request, 2026-10-19).
+    eleventyConfig.addTemplate(`${locale}/_engine/qa.njk`, virtual("qa.njk"), { lang: locale, title: "QA test pages", breadcrumbs: [], description: `Every test and hidden page of ${site.name}: the style guide, the widgets test page, the HTML element reference, hidden pages and generated files.`, permalink: "/qa/index.html" });
     // Every sample section, split into five pages so each stays within the HTML budget (R-PERF-01).
     const ids = samples.sections.map((s) => s.id);
     const per = Math.ceil(ids.length / 5);
     ["a", "b", "c", "d", "e"].forEach((letter, i) => {
       const slug = i === 0 ? "sections/" : `sections-${letter}/`;
-      eleventyConfig.addTemplate(`${locale}/_engine/style-guide-sections-${letter}.njk`, virtual("style-guide-sections.njk"), { lang: locale, title: `Style guide: sections ${letter.toUpperCase()}`, description: `Every section in the ${site.name} catalog, rendered from its sample data exactly as a page would show it. Part ${letter.toUpperCase()} of four.`, permalink: `/${locale}/style-guide/${slug}index.html`, sections: ids.slice(i * per, (i + 1) * per) });
+      eleventyConfig.addTemplate(`${locale}/_engine/style-guide-sections-${letter}.njk`, virtual("style-guide-sections.njk"), { lang: locale, title: `Style guide: sections ${letter.toUpperCase()}`, description: `Every section in the ${site.name} catalog, rendered from its sample data exactly as a page would show it. Part ${letter.toUpperCase()} of five.`, permalink: `/${locale}/style-guide/${slug}index.html`, sections: ids.slice(i * per, (i + 1) * per) });
     });
   }
   for (const [code, key] of [["404", "notFound"], ["500", "server"]]) {

@@ -5,6 +5,9 @@
   "page": 307200,
   "mobileWidth": 720,
   "overrides": {
+    "/qa/": {
+      "html": 98304
+    },
     "/style-guide/": {
       "html": 139264,
       "page": 409600

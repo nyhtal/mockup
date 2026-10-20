@@ -451,6 +451,26 @@ test("HTML element reference (to-do 8): every element of the standard is listed,
   }
 });
 
+test("hidden /qa/ page: lists every style-guide page and every hidden page, is noindex, and is in no sitemap and no link (owner's request)", () => {
+  const qa = readFileSync("dist/reference/qa/index.html", "utf8");
+  assert.match(qa, /<meta name="robots" content="noindex/);
+  const listed = new Set([...qa.matchAll(/<a href="([^"]+)" class="font-medium/g)].map((m) => m[1]));
+  const pages = [];
+  const walk = (dir) => { for (const e of readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith(".html")) pages.push(p); } };
+  walk("dist/reference");
+  for (const p of pages) {
+    const html = readFileSync(p, "utf8");
+    const url = "/" + path.relative("dist/reference", p).split(path.sep).join("/").replace(/index\.html$/, "");
+    if (url === "/qa/" || /data-page="redirect"/.test(html)) continue;
+    const hidden = /<meta name="robots" content="noindex/.test(html) && /<body [^>]*data-page="/.test(html);
+    if (hidden) assert.ok(listed.has(url), `${url} is listed on /qa/`);
+    assert.doesNotMatch(html, /href="\/qa\/"/, `${url} does not link to /qa/`);
+  }
+  for (const sg of ["/en/style-guide/", "/en/style-guide/widgets/", "/en/style-guide/html/", "/en/style-guide/sections-e/"]) assert.ok(listed.has(sg), `${sg} listed`);
+  assert.doesNotMatch(readFileSync("dist/reference/sitemap.xml", "utf8"), /\/qa\//);
+  for (const f of ["/sitemap.xml", "/robots.txt", "/assets/files/line-notes-12.wav"]) assert.ok(listed.has(f) && existsSync(`dist/reference${f}`), `${f} listed and present`);
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {
