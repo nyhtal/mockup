@@ -6,11 +6,11 @@ export const checks = ["broken", "external"];
 
 /**
  * internal: served by this site (localhost base) or an absolute URL on the site's own origin.
- * scheme:   mailto:/tel:/sms: links, which are not web requests and never leave the page.
+ * scheme:   mailto:/tel:/sms:/geo: links, which are not web requests and never leave the page.
  * external: anything else.
  */
 export function classifyLink(url, base, own) {
-  if (/^(mailto|tel|sms):/i.test(url)) return "scheme";
+  if (/^(mailto|tel|sms|geo):/i.test(url)) return "scheme";
   if (url.startsWith(base) || (own && url.startsWith(own))) return "internal";
   return "external";
 }

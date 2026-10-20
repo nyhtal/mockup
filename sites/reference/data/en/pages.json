@@ -1445,7 +1445,10 @@
           "map": {
             "slug": "{e.map.slug}",
             "address": "{e.map.address}"
-          }
+          },
+          "slug": "{e.slug}",
+          "city": "{e.city}",
+          "geo": "{e.geo.lat},{e.geo.lng}"
         },
         {
           "type": "image-gallery",
@@ -1623,7 +1626,9 @@
             "ratio": "3:4",
             "alt": "",
             "max": 480
-          }
+          },
+          "slug": "{e.slug}",
+          "gated": "{e.gated}"
         },
         "gated-form",
         {
@@ -1654,7 +1659,8 @@
           "location": "{e.location}",
           "format": "{e.format}",
           "md": "e.body",
-          "into": "body"
+          "into": "body",
+          "slug": "{e.slug}"
         },
         "registration-form",
         {

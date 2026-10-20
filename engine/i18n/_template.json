@@ -122,7 +122,13 @@
       "jobs": "",
       "events": "",
       "resources": ""
-    }
+    },
+    "textUs": "",
+    "saveContact": "",
+    "addToCalendar": "",
+    "downloadSample": "",
+    "downloadFile": "",
+    "visitSubject": ""
   },
   "footer": {
     "rights": "",

@@ -90,7 +90,7 @@
     "mostPopular": "Am beliebtesten",
     "feature": "Funktion",
     "recommended": "Empfohlen",
-    "openInMaps": "In Karten öffnen",
+    "openInMaps": "In einer Karten-App öffnen",
     "whatIsInside": "Das ist enthalten",
     "openingHours": "Öffnungszeiten",
     "day": "Tag",
@@ -122,7 +122,13 @@
       "jobs": "Stellen",
       "events": "Veranstaltungen",
       "resources": "Anleitungen und Downloads"
-    }
+    },
+    "textUs": "SMS senden",
+    "saveContact": "Kontaktkarte speichern",
+    "addToCalendar": "Zum Kalender hinzufügen",
+    "downloadSample": "Beispielseite herunterladen (PDF)",
+    "downloadFile": "{type} herunterladen",
+    "visitSubject": "Besuch im Büro {city}"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

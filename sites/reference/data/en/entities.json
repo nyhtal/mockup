@@ -882,7 +882,11 @@
         "priya-natarajan",
         "alex-morgan",
         "sofia-lindqvist"
-      ]
+      ],
+      "geo": {
+        "lat": 53.4794,
+        "lng": -2.2453
+      }
     },
     {
       "slug": "hamburg",
@@ -916,7 +920,11 @@
       "team": [
         "jonas-weber",
         "mei-chen"
-      ]
+      ],
+      "geo": {
+        "lat": 53.5438,
+        "lng": 9.9861
+      }
     },
     {
       "slug": "riyadh",
@@ -949,7 +957,11 @@
       "lede": "Arabic-language support in Gulf hours.",
       "team": [
         "alex-morgan"
-      ]
+      ],
+      "geo": {
+        "lat": 24.7136,
+        "lng": 46.6753
+      }
     }
   ],
   "jobs": [
@@ -1169,7 +1181,7 @@
     {
       "slug": "downtime-calculator",
       "title": "Downtime cost calculator",
-      "fileType": "XLSX",
+      "fileType": "CSV",
       "pages": "1 sheet",
       "summary": "Enter your line rate, margin and stoppage history; the sheet shows what an hour of unplanned downtime costs and what a 38% reduction is worth.",
       "description": "A one-sheet calculator: enter your line rate, margin and stoppage history to see what an hour of unplanned downtime costs your plant each year.",

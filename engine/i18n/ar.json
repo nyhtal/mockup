@@ -90,7 +90,7 @@
     "mostPopular": "الأكثر شيوعًا",
     "feature": "الميزة",
     "recommended": "موصى به",
-    "openInMaps": "فتح في الخرائط",
+    "openInMaps": "الفتح في تطبيق خرائط",
     "whatIsInside": "ما الذي يتضمنه",
     "openingHours": "ساعات العمل",
     "day": "اليوم",
@@ -122,7 +122,13 @@
       "jobs": "الوظائف",
       "events": "الفعاليات",
       "resources": "الأدلة والتنزيلات"
-    }
+    },
+    "textUs": "إرسال رسالة نصية",
+    "saveContact": "حفظ بطاقة جهة الاتصال",
+    "addToCalendar": "إضافة إلى التقويم",
+    "downloadSample": "تنزيل صفحة نموذجية (PDF)",
+    "downloadFile": "تنزيل ملف {type}",
+    "visitSubject": "زيارة مكتب {city}"
   },
   "footer": {
     "rights": "جميع الحقوق محفوظة.",

@@ -2,7 +2,8 @@
   name: office-detail
   purpose: One office: address, hours, phone, email, and a map facade (R-I18N-14).
   anatomy: shell(center false) > grid > address block + map-facade
-  data: s = { title, address, phone, email, hours: [["Weekdays", "08:00–18:00"]], map: { slug, address } }
+  data: s = { title, slug, city, address, phone, email, geo: "lat,lng", hours: [["Weekdays", "08:00–18:00"]], map: { slug, address } }
+  links: tel:, sms:, mailto: with a subject, geo: for a maps app, and the office's vCard (download, type="text/vcard"; to-do 5)
 #}
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/map-facade.njk" import mapFacade with context %}
@@ -14,7 +15,10 @@
 <address class="space-y-2 text-base not-italic leading-relaxed">
 <p>{{ s.address }}</p>
 {%- if s.phone %}<p><a href="tel:{{ s.phone | replace(' ', '') }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.phone }}</a></p>{% endif %}
-{%- if s.email %}<p><a href="mailto:{{ s.email }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.email }}</a></p>{% endif %}
+{%- if s.phone %}<p><a href="sms:{{ s.phone | replace(' ', '') }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.textUs" | t }}</a></p>{% endif %}
+{%- if s.email %}<p><a href="mailto:{{ s.email }}{% if s.city %}?subject={{ "ui.visitSubject" | t | replace("{city}", s.city) | urlencode }}{% endif %}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ s.email }}</a></p>{% endif %}
+{%- if s.geo and s.geo != "," %}<p><a href="geo:{{ s.geo }}" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.openInMaps" | t }}</a></p>{% endif %}
+{%- if s.slug %}<p><a href="/assets/files/{{ ctx.locale }}/{{ s.slug }}.vcf" download type="text/vcard" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.saveContact" | t }} <span class="text-ink-muted">(vCard)</span></a></p>{% endif %}
 </address>
 {%- if s.hours %}<div class="mt-8">{{ dataTable({ caption: s.hoursCaption or ("ui.openingHours" | t), columns: [s.hoursColumns[0] if s.hoursColumns else ("ui.day" | t), s.hoursColumns[1] if s.hoursColumns else ("ui.hours" | t)], rows: s.hours }, { rowHeaders: true }) }}</div>{% endif %}
 </div>

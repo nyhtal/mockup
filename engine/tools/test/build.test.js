@@ -213,6 +213,29 @@ test("in-page links: legal pages carry a table of contents whose links land on h
   for (const id of jumps) assert.match(faq, new RegExp(`<h3 id="${id}"`));
 });
 
+test("link types and files: tel, sms, mailto with a subject, geo, and downloads that resolve to generated files (to-do 5)", () => {
+  const office = readFileSync("dist/reference/de/about/locations/hamburg/index.html", "utf8");
+  assert.match(office, /href="tel:\+4940123456"/);
+  assert.match(office, /href="sms:\+4940123456"/);
+  assert.match(office, /href="mailto:hamburg@example\.com\?subject=Besuch%20im%20B%C3%BCro%20Hamburg"/);
+  assert.match(office, /href="geo:53\.5438,9\.9861"/);
+  assert.match(office, /href="\/assets\/files\/de\/hamburg\.vcf" download type="text\/vcard"/);
+  const event = readFileSync("dist/reference/ar/events/safety-plcs-webinar/index.html", "utf8");
+  assert.match(event, /href="\/assets\/files\/ar\/safety-plcs-webinar\.ics"[^>]* download="" type="text\/calendar"/);
+  const gated = readFileSync("dist/reference/de/resources/downloads/commissioning-checklist/index.html", "utf8");
+  assert.match(gated, /href="\/assets\/files\/commissioning-checklist\.pdf" download type="application\/pdf" hreflang="en"/);
+  const open = readFileSync("dist/reference/en/resources/downloads/downtime-calculator/index.html", "utf8");
+  assert.match(open, /href="\/assets\/files\/downtime-calculator\.csv"[^>]* download="" type="text\/csv">/);
+  // Every /assets/files/ link on every page points at a file the build wrote.
+  const hrefs = new Set();
+  for (const f of readdirSync("dist/reference", { recursive: true })) if (String(f).endsWith(".html")) for (const m of readFileSync(`dist/reference/${f}`, "utf8").matchAll(/href="(\/assets\/files\/[^"]+)"/g)) hrefs.add(m[1]);
+  assert.ok(hrefs.size >= 3 * 6 + 3, `${hrefs.size} file links`);
+  for (const h of hrefs) assert.ok(existsSync(`dist/reference${h}`), `${h} exists`);
+  assert.match(readFileSync("dist/reference/assets/files/en/northwind-at-automation-fair.ics", "utf8"), /BEGIN:VEVENT\r\nUID:northwind-at-automation-fair@example\.com/);
+  assert.match(readFileSync("dist/reference/assets/files/ar/riyadh.vcf", "utf8"), /GEO:geo:24\.7136,46\.6753/);
+  assert.ok(readFileSync("dist/reference/assets/files/safety-evidence-guide.pdf", "latin1").startsWith("%PDF-1.4"));
+});
+
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
   const offenders = [];
   const walk = (dir) => {

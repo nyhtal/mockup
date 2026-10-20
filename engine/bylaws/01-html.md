@@ -78,7 +78,7 @@ Why: Styling lives in utilities; spacer markup is invisible to the consistency g
 Gate: consistency/inline-style
 
 ### R-HTML-16 External links
-MUST. Mockups contain no external links except those listed in `site.json` `allowedExternal`. Any allowed external link that opens a new tab carries `rel="noopener"` and a visible "opens in new tab" hint via an icon with `sr-only` text.
+MUST. Mockups contain no external links except those listed in `site.json` `allowedExternal`. Any allowed external link that opens a new tab carries `rel="noopener"` and a visible "opens in new tab" hint via an icon with `sr-only` text. `mailto:`, `tel:`, `sms:` and `geo:` links are not web requests and are not external links.
 Why: External requests cost Lighthouse points and surprise users.
 Gate: links/external
 

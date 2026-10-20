@@ -8,6 +8,7 @@ import { fontPlan, copyFonts } from "./build-fonts.js";
 import { injectSprites } from "./build-icons.js";
 import { generateImages, generateFavicons, generateOgImages } from "./build-images.js";
 import { generateVideos } from "./build-video.js";
+import { generateFiles } from "./build-files.js";
 
 export function parseArgs(argv) {
   const i = argv.indexOf("--site");
@@ -42,7 +43,7 @@ export async function build({ site }) {
   const dist = `dist/${site}`;
   rmSync(dist, { recursive: true, force: true });
   process.env.SITE = site;
-  const { site: siteConfig } = loadSite(site);
+  const { site: siteConfig, data: siteData } = loadSite(site);
 
   const { default: Eleventy } = await import("@11ty/eleventy");
   const eleventy = new Eleventy(undefined, undefined, { quietMode: true, configPath: "eleventy.config.js" });
@@ -67,6 +68,7 @@ export async function build({ site }) {
   await generateVideos(dist, siteConfig.brand || {});
   await generateFavicons(dist, { letter: siteConfig.name.trim()[0], hue: siteConfig.brand?.hue ?? 250 });
   await generateOgImages(dist, siteConfig.brand || {});
+  generateFiles(dist, siteConfig, siteData);
 
   for (const f of ["fonts", "images", "icons"]) {
     const src = `sites/${site}/assets/${f}`;

@@ -882,7 +882,11 @@
         "priya-natarajan",
         "alex-morgan",
         "sofia-lindqvist"
-      ]
+      ],
+      "geo": {
+        "lat": 53.4794,
+        "lng": -2.2453
+      }
     },
     {
       "slug": "hamburg",
@@ -916,7 +920,11 @@
       "team": [
         "jonas-weber",
         "mei-chen"
-      ]
+      ],
+      "geo": {
+        "lat": 53.5438,
+        "lng": 9.9861
+      }
     },
     {
       "slug": "riyadh",
@@ -949,7 +957,11 @@
       "lede": "Arabischsprachiger Support zu Golfzeiten.",
       "team": [
         "alex-morgan"
-      ]
+      ],
+      "geo": {
+        "lat": 24.7136,
+        "lng": 46.6753
+      }
     }
   ],
   "jobs": [
@@ -1169,7 +1181,7 @@
     {
       "slug": "downtime-calculator",
       "title": "Stillstandskostenrechner",
-      "fileType": "XLSX",
+      "fileType": "CSV",
       "pages": "1 Tabelle",
       "summary": "Geben Sie Linienleistung, Marge und Stillstandshistorie ein; die Tabelle zeigt, was eine Stunde ungeplanter Stillstand kostet und was 38 % weniger Stillstand wert sind.",
       "description": "Ein Rechner auf einer Tabelle: Linienleistung, Marge und Stillstandshistorie eingeben und sehen, was eine Stunde ungeplanter Stillstand jedes Jahr kostet.",

@@ -9,10 +9,11 @@ test("links on the served site and on the site's own origin are internal", () =>
   assert.equal(classifyLink("https://example.com/en/about/", base, own), "internal");
 });
 
-test("mailto, tel and sms links are not web requests and are neither internal nor external", () => {
+test("mailto, tel, sms and geo links are not web requests and are neither internal nor external", () => {
   assert.equal(classifyLink("mailto:security@example.com", base, own), "scheme");
   assert.equal(classifyLink("tel:+442079460000", base, own), "scheme");
   assert.equal(classifyLink("sms:+442079460000", base, own), "scheme");
+  assert.equal(classifyLink("geo:53.5438,9.9861", base, own), "scheme");
 });
 
 test("anything else is external", () => {

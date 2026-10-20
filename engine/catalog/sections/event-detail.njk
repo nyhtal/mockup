@@ -2,19 +2,24 @@
   name: event-detail
   purpose: Date, time, place and description of one event (R-SCH-07 Event).
   anatomy: shell(center false) > grid > dl(div > dt(icon + label) + dd) + prose
-  data: s = { date, dateIso, time, location, format, body (html), labels: { date, location, format } }
+  data: s = { slug, date, dateIso, time, location, format, body (html), labels: { date, location, format } }
+  links: "Add to calendar" downloads the event's .ics (download, type="text/calendar"; to-do 5)
 #}
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/prose.njk" import prose with context %}
 {% from "primitives/icon.njk" import icon with context %}
+{% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
 {% call shell("event-detail", s, ctx, { center: false, noReveal: true }) %}
 <div class="grid gap-12 lg:grid-cols-3">
+<div>
 <dl class="space-y-4 text-base">
 <div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("calendar", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.date if s.labels else ("ui.date" | t) }}</dt><dd class="ms-6"><time datetime="{{ s.dateIso }}">{{ s.date }}</time>{% if s.time %}, {{ s.time }}{% endif %}</dd></div>
 <div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("map-pin", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.location if s.labels else ("ui.location" | t) }}</dt><dd class="ms-6">{{ s.location }}</dd></div>
 {%- if s.format %}<div><dt class="flex items-center gap-2 text-sm text-ink-muted">{{ icon("users", { size: "size-4", class: "text-ink-brand" }) }}{{ s.labels.format if s.labels else ("ui.format" | t) }}</dt><dd class="ms-6">{{ s.format }}</dd></div>{% endif %}
 </dl>
+{%- if s.slug %}<div class="mt-8">{{ button("ui.addToCalendar" | t, { href: "/assets/files/" + ctx.locale + "/" + s.slug + ".ics", variant: "secondary", size: "sm", icon: "calendar", attrs: { download: "", type: "text/calendar" } }) }}</div>{% endif %}
+</div>
 <div class="lg:col-span-2">{{ prose(s.body, { class: "hyphens-auto" if ctx.locale == "de", loose: ctx.locale == "ar" }) }}</div>
 </div>
 {% endcall %}
