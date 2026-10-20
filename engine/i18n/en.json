@@ -159,7 +159,8 @@
     "testimonials": "What customers say",
     "before": "Before",
     "after": "After",
-    "compareSlider": "Compare before and after"
+    "compareSlider": "Compare before and after",
+    "stickyPitch": "See your line described in thirty minutes."
   },
   "footer": {
     "rights": "All rights reserved.",

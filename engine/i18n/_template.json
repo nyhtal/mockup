@@ -159,7 +159,8 @@
     "testimonials": "",
     "before": "",
     "after": "",
-    "compareSlider": ""
+    "compareSlider": "",
+    "stickyPitch": ""
   },
   "footer": {
     "rights": "",

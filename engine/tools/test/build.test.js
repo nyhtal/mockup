@@ -401,8 +401,8 @@ test("widgets (to-do 7b, part three): a carousel, a sticky phone CTA, a contact 
   assert.match(css, /::scroll-button\(inline-start\)/);
   assert.match(css, /::scroll-marker/);
   const home = read("en");
-  const sticky = /<div class="sticky bottom-0[^"]*sda:block lg:hidden[^"]*\[animation-range:0_60vh\][^"]*" data-component="sticky-cta"><a href="\/en\/demo\/"/.exec(home);
-  assert.ok(sticky, "a sticky CTA on the home page");
+  const sticky = /<div class="sticky bottom-0[^"]*sda:flex[^"]*lg:hidden[^"]*\[animation-range:0_60vh\][^"]*" data-component="sticky-cta"><p class="text-sm text-ink-muted">See your line described in thirty minutes\.<\/p><a href="\/en\/demo\/" class="[^"]*min-h-9/.exec(home);
+  assert.ok(sticky, "a sticky CTA on the home page: a line of text and a small button, not a full-width bar");
   assert.ok(home.indexOf('data-component="sticky-cta"') < home.indexOf("</main>"), "inside main, so it stops above the footer");
   assert.doesNotMatch(read("en/about"), /data-component="sticky-cta"/);
   const pricing = read("ar/pricing");
