@@ -46,16 +46,20 @@ export function motionFindings(root) {
   return out;
 }
 
-/** The rhythm scale of R-LAY-02 (engine/DESIGN.md §2): the padding pairs each kind of section may carry, and the body grid gaps. */
+/** The rhythm scale of R-LAY-02 (engine/DESIGN.md §2): the padding sets each kind of section may carry, and the body grid gaps.
+ *  The opening group: a page header joined to the plain section after it carries JOINED, and that section OPENING (comfortable or compact). */
+const JOINED = [["pt-12", "md:pt-16"]];
+const OPENING = [["pt-12", "md:pt-16", "pb-16", "md:pb-24"], ["pt-12", "md:pt-16", "pb-12", "md:pb-16"]];
+const FULL_HEADER = [["py-12", "md:py-16"]];
 const PADDINGS = {
-  section: [["py-16", "md:py-24"], ["py-12", "md:py-16"]],
+  section: [["py-16", "md:py-24"], ["py-12", "md:py-16"], ...OPENING],
   hero: [["py-16", "md:py-28"], ["py-12", "md:py-20"]],
-  "page-header": [["py-12", "md:py-16"]],
+  "page-header": [...FULL_HEADER, ...JOINED],
   strip: [["py-6"]],
 };
 const STRIPS = new Set(["article-meta", "filter-bar", "pagination", "was-this-helpful"]);
 const GAPS = [["gap-6", "md:gap-8"], ["gap-8"], ["gap-12"], ["gap-4", "md:gap-8"]];
-const PY = /^(sm:|md:|lg:|xl:|2xl:)?py-/, GAP = /^(sm:|md:|lg:|xl:|2xl:)?gap-/;
+const PY = /^(sm:|md:|lg:|xl:|2xl:)?p[ytb]-/, GAP = /^(sm:|md:|lg:|xl:|2xl:)?gap-/;
 const tokens = (classes, re) => classes.filter((c) => re.test(c)).sort();
 const onScale = (classes, re, tuples) => { const t = tokens(classes, re); return tuples.some((p) => p.length === t.length && [...p].sort().every((c, i) => c === t[i])); };
 const kindOf = (name) => (name === "hero" ? "hero" : name === "page-header" ? "page-header" : STRIPS.has(name) ? "strip" : "section");
@@ -64,10 +68,21 @@ const gapOf = (classes) => tokens(classes, GAP).join(" ");
 /** Rhythm findings for one parsed page: sections, heading groups and top-level body grids outside the scale. */
 export function rhythmFindings(root) {
   const out = [];
-  for (const section of root.querySelectorAll("section[data-component]")) {
+  const classesOf = (el) => (el?.getAttribute("class") || "").split(/\s+/);
+  // An article's page header is its <header>; it carries the same padding as the section form.
+  for (const section of root.querySelectorAll('section[data-component], header[data-component="page-header"]')) {
     const name = section.getAttribute("data-component");
-    const classes = (section.getAttribute("class") || "").split(/\s+/);
+    const classes = classesOf(section);
     if (!onScale(classes, PY, PADDINGS[kindOf(name)])) out.push(`section "${name}" padding "${tokens(classes, PY).join(" ")}" is not on the rhythm scale for a ${kindOf(name)} (R-LAY-02)`);
+    // The opening group comes as a pair: a joined header is followed by an opening section, and an opening section follows a joined header.
+    if (name === "page-header" && onScale(classes, PY, JOINED)) {
+      const next = section.nextElementSibling;
+      if (!next || next.tagName !== "SECTION" || kindOf(next.getAttribute("data-component")) !== "section" || !onScale(classesOf(next), PY, OPENING)) out.push(`page header with the joined padding "pt-12 md:pt-16" must be followed by a section with the opening padding "pt-12 md:pt-16 pb-…" (R-LAY-02)`);
+    }
+    if (name !== "page-header" && kindOf(name) === "section" && onScale(classes, PY, OPENING)) {
+      const prev = section.previousElementSibling;
+      if (!prev || prev.getAttribute("data-component") !== "page-header" || onScale(classesOf(prev), PY, FULL_HEADER)) out.push(`section "${name}" has the opening padding but does not follow a joined page header (R-LAY-02)`);
+    }
     const container = section.querySelector(":scope > div");
     if (!container) continue;
     const children = container.childNodes.filter((n) => n.nodeType === 1);

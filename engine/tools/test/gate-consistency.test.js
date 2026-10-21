@@ -157,3 +157,31 @@ test("rhythm: off-scale extra breakpoints, hero padding outside heroes, strip pa
   assert.deepEqual(rhythmFindings(sec("py-16 md:py-24", "resource-tabs")), [], "resource-tabs is a full section, not a strip");
   assert.deepEqual(rhythmFindings(sec("py-16 md:py-24", "x", "grid gap-12")), []);
 });
+
+test("rhythm: the opening group (R-LAY-02) — a joined page header and the opening section are valid only as a pair, in a section or an article's header", async () => {
+  const { rhythmFindings } = await import("../gates/consistency.js");
+  const { parse: parseHtml } = await import("node-html-parser");
+  const header = (cls, tag = "section") => `<${tag} class="${cls} bg-surface" data-component="page-header"><div class="mx-auto"><hgroup class="max-w-3xl"><h1>T</h1></hgroup></div></${tag}>`;
+  const body = (cls, name = "x") => `<section class="${cls} bg-surface" data-component="${name}"><div class="mx-auto"><div class="grid gap-6 md:gap-8"><p>a</p></div></div></section>`;
+  const run = (html) => rhythmFindings(parseHtml(html));
+  assert.deepEqual(run(header("pt-12 md:pt-16") + "\n" + body("pt-12 md:pt-16 pb-16 md:pb-24")), [], "comfortable");
+  assert.deepEqual(run(header("pt-12 md:pt-16") + body("pt-12 md:pt-16 pb-12 md:pb-16")), [], "compact");
+  assert.deepEqual(run(`<article>${header("pt-12 md:pt-16", "header")}${body("pt-12 md:pt-16 pb-16 md:pb-24", "prose")}</article>`), [], "an article's header");
+  assert.deepEqual(run(header("py-12 md:py-16") + body("py-16 md:py-24")), [], "the unjoined pair stays valid");
+  assert.deepEqual(run(header("py-12 md:py-16") + body("py-6", "article-meta")), [], "a strip after the full header");
+  for (const [html, re] of [
+    [header("pt-12 md:pt-16") + body("py-16 md:py-24"), /page header .*joined.* must be followed by a section with the opening padding/],
+    [header("pt-12 md:pt-16"), /page header .*joined.* must be followed by a section with the opening padding/],
+    [header("pt-12 md:pt-16") + body("py-6", "article-meta"), /page header .*joined.* must be followed by a section with the opening padding/],
+    [header("py-12 md:py-16") + body("pt-12 md:pt-16 pb-16 md:pb-24"), /section "x" has the opening padding but does not follow a joined page header/],
+    [body("pt-12 md:pt-16 pb-16 md:pb-24"), /section "x" has the opening padding but does not follow a joined page header/],
+    [header("pt-12 md:pt-16 pb-4") + body("pt-12 md:pt-16 pb-16 md:pb-24"), /section "page-header" padding "md:pt-16 pb-4 pt-12" is not on the rhythm scale/],
+    [header("pt-12 md:pt-16 pb-4", "header") + body("pt-12 md:pt-16 pb-16 md:pb-24"), /section "page-header" padding "md:pt-16 pb-4 pt-12" is not on the rhythm scale/],
+  ]) {
+    const m = run(html);
+    assert.equal(m.length, 1, `${html.slice(0, 90)}…: ${m.join(" | ") || "no finding"}`);
+    assert.match(m[0], re);
+  }
+  // The opening padding is for the section after a header only; a strip or hero never carries it.
+  for (const name of ["pagination", "hero"]) assert.equal(run(header("pt-12 md:pt-16") + body("pt-12 md:pt-16 pb-16 md:pb-24", name)).filter((m) => /padding/.test(m)).length >= 1, true, name);
+});

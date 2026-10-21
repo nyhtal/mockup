@@ -2,15 +2,16 @@
 layout: base.njk
 ---
 {#- Article pages: posts, press releases, case studies, docs, legal (R-PAGE inventory). The markdown body renders through
-    the prose section inside one <article> with its header, byline and author box (to-do 6); front matter supplies author, date, readingTime, tags, toc, related, and optional extra sections. -#}
+    the prose section inside one <article> with its header, byline and author box (to-do 6); front matter supplies author, date, readingTime, tags, toc, related, and optional extra sections.
+    Without a byline the header and the prose form the opening group (R-LAY-02); with one, the byline strip sits between them. -#}
 {% from "sections/_render.njk" import section with context %}
 {%- set ctx = { locale: locale, pageUrl: page.url, density: site.brand.density or "comfortable", surface: "bg-surface", reveal: false, index: 0, demote: false } -%}
 <article>
-{{ section({ type: "page-header", eyebrow: eyebrow, title: title, lede: lede, breadcrumbs: breadcrumbs }, ctx | merge({ inArticle: true })) }}
+{{ section({ type: "page-header", eyebrow: eyebrow, title: title, lede: lede, breadcrumbs: breadcrumbs }, ctx | merge({ inArticle: true, joined: not author })) }}
 {%- if author %}
 {{ section({ type: "article-meta", author: author, date: (published | formatDate), dateIso: (published | isoDate), readingTime: readingTime, tags: tags, share: { url: canonical, title: title } }, ctx) }}
 {%- endif %}
-{{ section({ type: "prose", html: content, toc: toc, label: title }, ctx) }}
+{{ section({ type: "prose", html: content, toc: toc, label: title }, ctx | merge({ opening: not author })) }}
 {%- if author and author.bio %}
 {{ section({ type: "author-box", label: ("ui.aboutAuthor" | t), author: author }, ctx) }}
 {%- endif %}

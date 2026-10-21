@@ -100,3 +100,16 @@ test("a site section id that exists in the default locale but not in this locale
   // Catalog sample ids that no locale redefines still resolve.
   assert.equal(planSections(samples, ["hero"], { ...full, siteSections: {}, defaultSiteSections })[0].s.type, "hero");
 });
+
+test("opening group (R-LAY-02): a page header joins the plain section after it; strips, bands, own backgrounds, an alternate surface and non-shell sections keep the full header padding", () => {
+  const s = { byId: { ...samples.byId, statsBand: { type: "stats" }, statsPlain: { type: "stats", variant: "plain" }, filter: { type: "filter-bar" }, err: { type: "error-state" }, alt: { type: "feature-grid", surface: "bg-surface-alt" } } };
+  const flags = (list, o = {}) => planSections(s, list, { ...opts, header: { title: "About" }, ...o }).map((p) => [p.s.type, !!p.ctx.joined, !!p.ctx.opening]);
+  assert.deepEqual(flags(["grid", "grid"]), [["page-header", true, false], ["feature-grid", false, true], ["feature-grid", false, false]]);
+  assert.deepEqual(flags(["statsPlain"]), [["page-header", true, false], ["stats", false, true]]);
+  for (const id of ["filter", "band", "statsBand", "alt", "err"]) assert.deepEqual(flags([id]).map((f) => f.slice(1)), [[false, false], [false, false]], `${id} after a page header`);
+  assert.deepEqual(flags([]), [["page-header", false, false]], "a header with nothing after it keeps its padding");
+  assert.deepEqual(flags(["filter", "grid"]).map((f) => f.slice(1)), [[false, false], [false, false], [false, false]], "the section after a strip is an ordinary section");
+  assert.deepEqual(flags(["hero", "grid"], { header: undefined }).map((f) => f.slice(1)), [[false, false], [false, false]], "a hero page has no opening group");
+  // The surfaces are unchanged: the opening section stays on the page surface and the next one alternates.
+  assert.deepEqual(planSections(s, ["grid", "grid"], { ...opts, header: { title: "About" } }).map((p) => p.ctx.surface), ["bg-surface", "bg-surface", "bg-surface-alt"]);
+});

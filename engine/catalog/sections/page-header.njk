@@ -4,7 +4,7 @@
   anatomy: section[data-component=page-header] > container > breadcrumbs + eyebrow + h1 + lede (+ meta)
   variants: none
   states: none
-  spacing: py-12 md:py-16; h1 mt-2; lede mt-4
+  spacing: py-12 md:py-16; joined to a plain section that follows it (ctx.joined, the opening group of R-LAY-02) pt-12 md:pt-16 with no bottom padding, the section then opening at pt-12 md:pt-16; h1 mt-2; lede mt-4
   motion: none (contains the h1: R-SEC-10)
   keyboard: breadcrumb links
   a11y: the only h1 on the page
@@ -16,7 +16,7 @@
 {% macro render(s, ctx) %}
 {#- Inside an <article> the page header is that article's <header>, so its h1 heads the article (to-do 6). -#}
 {%- set el = "header" if ctx.inArticle else "section" %}
-<{{ el }} class="py-12 md:py-16 {{ s.surface or 'bg-surface' }}" data-component="page-header">
+<{{ el }} class="{{ 'pt-12 md:pt-16' if ctx.joined else 'py-12 md:py-16' }} {{ s.surface or 'bg-surface' }}" data-component="page-header">
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 {%- set crumbs = s.breadcrumbs or ctx.breadcrumbs -%}
 {%- if crumbs and crumbs.length %}<div class="mb-6">{{ breadcrumbs(crumbs) }}</div>{% endif %}

@@ -38,7 +38,7 @@ Why: The hero is the LCP and the first impression; it is the most constrained se
 Gate: manual: checklists/new-page.md
 
 ### R-SEC-08 Page header
-MUST. Non-home pages that are not landing pages start with the `page-header` section (breadcrumbs, eyebrow, `h1`, lede) instead of a hero.
+MUST. Non-home pages that are not landing pages start with the `page-header` section (breadcrumbs, eyebrow, `h1`, lede) instead of a hero. Followed by a plain section on the page surface, it joins that section as the opening group of R-LAY-02.
 Why: Interior pages need orientation, not a billboard.
 Gate: manual: checklists/new-page.md
 

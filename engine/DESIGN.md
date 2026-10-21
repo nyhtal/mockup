@@ -30,6 +30,7 @@ What the bylaws enforce, written as the taste behind them. Read this before the 
 |---|---|---|
 | Section padding | `py-16 md:py-24` (comfortable), `py-12 md:py-16` (compact) | every section; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; strips (article meta, filter bar, pagination, feedback) `py-6` |
 | Heading group to body | `mt-12 md:mt-16` | every section with a title |
+| Page header to content | header `pt-12 md:pt-16` with no bottom padding, then the section at `pt-12 md:pt-16` and its usual bottom padding | the opening group: a page header followed by a plain section on the page surface, so the h1 group reads as the heading of the content below (D57); after a strip, a band or another surface the header keeps `py-12 md:py-16` |
 | Eyebrow to title, title to lede | `mt-2`, `mt-4` | section and page headers |
 | Body items | `gap-6 md:gap-8` (grids), `gap-4 md:gap-8` (tile grids, two across from 320 px), `gap-8` (stats), `gap-12` (media rows) | grids and two-column layouts |
 | Card internals | `mt-2` text, `mt-4` meta, `mt-auto pt-4` footer | cards |

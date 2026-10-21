@@ -2,7 +2,7 @@
   name: _shell (helper, not a section)
   purpose: The section skeleton every section uses (R-SEC-01, R-SEC-06, R-SEC-10, R-TOK-15, R-LAY-02): padding by density, surface, container, eyebrow + h2 + lede, body via caller, optional CTA, entrances below the fold (R-MOT-05).
   usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}; opts: itemsReveal (items carry their own entrances; the heading group arrives on its own and the section clips horizontal overflow because items may slide), clipX (overflow-x-clip for sliding rows), noReveal, center (true centres the heading group; the default is start-aligned, DESIGN §4), kind ("scale" for a framed object; the default rise), extra (classes appended to the section, e.g. a depth backdrop)
-  ctx: { locale, pageUrl, density, surface, reveal, index, flair }; flair = the booleans of the brief's motion level (R-TOK-12): vocabulary, pop, rule, …
+  ctx: { locale, pageUrl, density, surface, reveal, index, flair, opening }; flair = the booleans of the brief's motion level (R-TOK-12): vocabulary, pop, rule, …; opening = the section follows a joined page header (the opening group, R-LAY-02) and opens at pt-12 md:pt-16 instead of its full top padding
   macros: enter (one entrance: from-state + transition + delay), revealClasses (section entrance), headingClasses (heading group), item (grid item: treatment and delay by column, R-MOT-16), stagger (list item: delay by index), pop (icon pop), zoom (picture settle), depth (R-MOT-15), eyebrowRule (the marker that draws). Below the standard level (no flair.vocabulary) every kind falls back to a rise: calm is rise only (R-TOK-12).
   how entrances work (R-MOT-05, R-MOT-10): an element carrying `pending:` utilities waits in its from-state (faded and offset) until enhance.js marks it data-revealed when its top crosses 88 % of the viewport height, then transitions to its final state over --reveal-duration on --ease-reveal after its delay. The transition utilities sit under data-revealed: so they exist only for the entrance itself: entering the from-state when the script starts is instant, never a fade-out. Time-based, once, independent of scroll speed. `pending:` exists only on screen, with JS and with motion allowed, so without any of those the page shows final states; elements already in view at load are marked before `pending:` can apply, so nothing above the fold animates (R-MOT-11).
 #}
@@ -28,7 +28,7 @@
 {#- The eyebrow marker (DESIGN §4): a 24 px accent rule before the label that draws from the start edge 200 ms after its heading group starts to rise. -#}
 {% macro eyebrowRule(inverse=false, draw=false) %}before:h-0.5 before:w-6 before:rounded-full {{ 'before:bg-ink-inverse/70' if inverse else 'before:bg-accent-600' }}{% if draw %} before:origin-left rtl:before:origin-right pending:before:scale-x-0 motion-safe:data-revealed:before:transition-transform motion-safe:data-revealed:before:duration-(--reveal-duration) motion-safe:data-revealed:before:ease-reveal motion-safe:data-revealed:before:delay-200{% endif %}{% endmacro %}
 {% macro shell(name, s, ctx, opts={}) %}
-{%- set pad = "py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24" -%}
+{%- set pad = ("pt-12 md:pt-16 " + ("pb-12 md:pb-16" if ctx.density == "compact" else "pb-16 md:pb-24")) if ctx.opening else ("py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24") -%}
 {%- set surface = s.surface or ctx.surface or "bg-surface" -%}
 {%- set inverse = surface == "bg-brand-700" -%}
 {%- set reveal = ctx.reveal and not opts.noReveal -%}

@@ -1,14 +1,24 @@
 /**
  * Resolve a page's `sections` list into render steps: ids become section data (site sections first, then the
  * catalog samples), `from` lists expand entities into card items, `{e.path}` placeholders read the page's entity,
- * surfaces alternate (R-SEC-06), reveals are marked below the fold (R-SEC-10), and every step carries the page
- * context. Lives in JS because Nunjucks cannot carry state across loop iterations.
+ * surfaces alternate (R-SEC-06), reveals are marked below the fold (R-SEC-10), a page header and the plain section
+ * after it form the opening group (R-LAY-02), and every step carries the page context. Lives in JS because Nunjucks
+ * cannot carry state across loop iterations.
  */
 import { cardOf, sortEntities } from "./entities.js";
 import { flairFor } from "./theme.js";
 
 const MEDIA = new Set(["hero", "cta-band", "page-header", "article-meta", "pagination", "filter-bar", "was-this-helpful"]);
 const STATIC = new Set(["search-box", "search-results", "person-bio", "download-detail", "event-detail", "job-detail", "prose", "confirmation", "error-state"]);
+
+/**
+ * The opening group (R-LAY-02): a page header and the section right after it read as one block when that section is a
+ * plain one on the page surface. The header then drops its bottom padding and the section opens at the heading-to-body
+ * distance (pt-12 md:pt-16), so the lede sits 48/64 px above the content in both themes. A strip, a hero or CTA band, a
+ * section with its own background (the stats band, an explicit surface) or one that does not render through the shell
+ * (error-state) keeps the header's full padding.
+ */
+export const joinsPageHeader = (s, ctx) => !MEDIA.has(s.type) && s.type !== "error-state" && !(s.type === "stats" && s.variant !== "plain") && (s.surface || ctx.surface) === "bg-surface";
 
 const get = (obj, path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj);
 
@@ -92,6 +102,13 @@ export function planSections(samples, sections, opts) {
     steps.push({ s, ctx: { locale, pageUrl, density: density || "comfortable", surface, reveal, index: i, demote: !!demote, breadcrumbs, flair } });
     if (MEDIA.has(s.type)) surface = "bg-surface";
     else if (!s.surface) surface = surface === "bg-surface" ? "bg-surface-alt" : "bg-surface";
+  }
+  for (let i = 0; i + 1 < steps.length; i++) {
+    const [head, next] = [steps[i], steps[i + 1]];
+    if (head.s.type === "page-header" && (head.s.surface || "bg-surface") === "bg-surface" && joinsPageHeader(next.s, next.ctx)) {
+      head.ctx.joined = true;
+      next.ctx.opening = true;
+    }
   }
   return steps;
 }

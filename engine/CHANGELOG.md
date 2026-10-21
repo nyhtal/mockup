@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.8.0 — 2026-10-20
+
+Opening group (D57). A page header followed by a plain section on the page surface joins it: the header is `pt-12 md:pt-16` with no bottom padding and the section opens at `pt-12 md:pt-16` with its usual bottom padding, so the lede sits 48/64 px above the content instead of about 190 px (R-LAY-02, R-SEC-08, DESIGN §2). Strips, bands, the stats band, the alternate surface and the error state keep the header's full padding. `consistency/rhythm` reads `pt-` and `pb-` as well as `py-`, checks an article's `<header>` like a page-header section, and accepts the two opening paddings only as a pair. Minor by R-PREC-05: the unjoined pair stays valid, so a 0.7.2 site keeps its green gates.
+
 ## 0.7.2 — 2026-10-20
 
 Patch, no rule change. The locale switcher's panel is anchored under its button with CSS anchor positioning, as the compact nav dropdown already was (R-COMP-09 pattern); the viewport-fixed placement stays as the fallback. Its classes cost about 0.3 KB on every page, so the page-weight override for the culture pages and the Arabic home page rises from 308 to 310 KB (R-PERF-01, D45). Every language gets a system page (D56 amended): `/de/sys/` and `/ar/sys/` list their own hidden pages and files, the three carry the language switcher, and `/en/sys/` no longer lists German or Arabic pages.

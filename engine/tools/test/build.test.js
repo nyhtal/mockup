@@ -165,6 +165,32 @@ test("locale switcher: the panel is anchored under its own button, with the view
   assert.match(sw, /<div popover id="locales" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-56 [^"]*supports-\[position-area:block-end\]:inset-auto[^"]*\[position-anchor:--locales\][^"]*\[position-area:block-end_span-inline-end\][^"]*\[position-try-fallbacks:flip-inline\]/);
 });
 
+test("opening group (R-LAY-02): a page header joins a plain first section at 48/64 px; strips and brand bands keep the full header padding; no page misses a join", () => {
+  const read = (u) => readFileSync(`dist/reference${u}index.html`, "utf8");
+  const pair = (u) => {
+    const m = /<(section|header) class="([^"]*)" data-component="page-header">[\s\S]*?<\/\1>\s*<section class="([^"]*)"[^>]*data-component="([a-z-]+)"/.exec(read(u));
+    assert.ok(m, `${u}: page header followed by a section`);
+    const pad = (c) => c.split(/\s+/).filter((t) => /^(md:)?p[ytb]-/.test(t)).join(" ");
+    return { tag: m[1], header: pad(m[2]), next: m[4], nextPad: pad(m[3]) };
+  };
+  assert.deepEqual(pair("/en/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-rows", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" });
+  assert.deepEqual(pair("/ar/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-rows", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" });
+  assert.deepEqual(pair("/en/legal/privacy/"), { tag: "header", header: "pt-12 md:pt-16", next: "prose", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" }, "an article without a byline joins its header to the prose");
+  assert.deepEqual(pair("/en/blog/reading-generated-code/"), { tag: "header", header: "py-12 md:py-16", next: "article-meta", nextPad: "py-6" }, "the byline strip sits between header and prose");
+  assert.deepEqual(pair("/en/customers/alder-foods/"), { tag: "header", header: "py-12 md:py-16", next: "stats", nextPad: "py-16 md:py-24" }, "a brand band after the header");
+  const missed = [];
+  // The element right after the header's own closing tag (a page header holds no nested section or header) is a plain section with full padding.
+  const unjoined = (html) => {
+    const m = /<(section|header) class="[^"]*" data-component="page-header">/.exec(html);
+    if (!m) return false;
+    const end = html.indexOf(`</${m[1]}>`, m.index) + m[1].length + 3;
+    return /^\s*<section class="py-1[26] md:py-(?:24|16) bg-surface[ "]/.test(html.slice(end));
+  };
+  const walk = (dir) => { for (const e of readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) walk(p); else if (e.name === "index.html" && unjoined(readFileSync(p, "utf8"))) missed.push(p); } };
+  walk("dist/reference");
+  assert.deepEqual(missed, [], "every page header above a plain section on the page surface is joined to it");
+});
+
 test("top navigation: wide menus put every link on one row; Company is a compact single-column dropdown anchored to its button and lists the culture page", () => {
   const en = readFileSync("dist/reference/en/careers/culture/index.html", "utf8");
   const nav = /<nav [^>]*data-component="nav-menu">[\s\S]*?<\/nav>/.exec(en)[0];
