@@ -348,7 +348,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("englishName", (l) => englishName.of(l));
   for (const locale of site.locales) {
     const name = englishName.of(locale);
-    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: `${name} system pages`, description: `The ${name} system page of ${site.name}: ${locale === site.defaultLocale ? "the QA test pages, the style guide, " : ""}every hidden ${name} page and the ${name} files.`, permalink: `/${locale}/sys/index.html` });
+    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: `${name} system pages`, description: `The ${name} system page of ${site.name}: ${locale === site.defaultLocale ? "the QA test pages, the style guide, " : ""}every hidden ${name} page${locale === site.defaultLocale ? "" : ", such as search results, thank-you and error pages,"} and the ${name} files.`, permalink: `/${locale}/sys/index.html` });
   }
   // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, under /en/sys/style-guide/; the test pages under /en/qa/; /sys/ links them all. No other locale has them, so they show no language links (D56). Written in the default locale (its sample data is English).
   for (const locale of [site.defaultLocale]) {
