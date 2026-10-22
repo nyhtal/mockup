@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.8.1 — 2026-10-21
+
+Patch, no rule change. The testimonials carousel hides its scrollbar (the peeking card and the markers show there is more; `scrollbar-width: none`). Selects are `appearance-none` with `ps-3 pe-10` and the sprite chevron at `end-3`, since browsers draw the native arrow against the border. The widgets test page and `/en/qa/` are removed; the HTML element reference lives at `/en/sys/html/` and the `/qa/` page-weight override becomes `/sys/html/` (D56). The style guide's entrance demo gets a "Play again" button; `enhance.js` replays an entrance by clearing and re-setting `data-revealed` (R-PREC-08, still under 5 KB). The header is the `--header` anchor and the wide nav panels hang from its bottom edge (`top: anchor(--header bottom)`), so they open below the links while the announcement bar pushes the header down instead of 64 px from the window top (R-COMP-09 pattern; the fixed placement stays as the fallback).
+
 ## 0.8.0 — 2026-10-20
 
 Opening group (D57). A page header followed by a plain section on the page surface joins it: the header is `pt-12 md:pt-16` with no bottom padding and the section opens at `pt-12 md:pt-16` with its usual bottom padding, so the lede sits 48/64 px above the content instead of about 190 px (R-LAY-02, R-SEC-08, DESIGN §2). Strips, bands, the stats band, the alternate surface and the error state keep the header's full padding. `consistency/rhythm` reads `pt-` and `pb-` as well as `py-`, checks an article's `<header>` like a page-header section, and accepts the two opening paddings only as a pair. Minor by R-PREC-05: the unjoined pair stays valid, so a 0.7.2 site keeps its green gates.

@@ -7,7 +7,7 @@
   spacing: gap-1 between items, px-2 at lg and px-3 at xl (the lg bar holds the logo lockup, four German items and three actions in 960 px); panel py-8, columns gap-8
   motion: panel enters with the R-MOT-06 popover pattern
   keyboard: Tab through items; Enter/Space opens a menu; Escape closes it and focus returns to the button (native)
-  a11y: nav labelled; the button's expanded state is exposed by the Popover API; panels are full-width under the header so no anchor positioning is needed
+  a11y: nav labelled; the button's expanded state is exposed by the Popover API; the wide panels hang from the header's bottom edge (top: anchor(--header bottom)) so they open below the links even while the announcement bar pushes the header down; without anchor positioning they sit 64 px from the window top
   i18n: labels via i18n keys; hrefs are prefixed with the locale
   content limits: ≤ 7 top-level items, labels ≤ 18 chars; a menu holds 2–8 children with ≤ 12-word descriptions
 #}
@@ -33,7 +33,7 @@
 {%- else %}
 {#- Wide panel: one column per link (two to four) so the links sit on one row and line up. -#}
 {%- set n = item.children.length if item.children.length <= 4 else 4 -%}
-<div popover id="menu-{{ loop.index }}" class="fixed inset-x-0 top-16 bottom-auto m-0 w-full max-w-none border-0 border-b border-line bg-surface-raised p-0 text-ink shadow-md {{ motion }}">
+<div popover id="menu-{{ loop.index }}" class="fixed inset-x-0 top-16 bottom-auto m-0 w-full max-w-none border-0 border-b border-line bg-surface-raised p-0 text-ink shadow-md supports-[position-area:block-end]:[top:anchor(--header_bottom)] {{ motion }}">
 <ul class="mx-auto grid w-full max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:px-8 {{ 'grid-cols-4' if n == 4 else ('grid-cols-3' if n == 3 else 'grid-cols-2') }}">
 {%- for child in item.children %}
 <li><a href="/{{ locale }}{{ child.href }}" class="block h-full rounded-lg p-4 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"{% if currentUrl == "/" + locale + child.href %} aria-current="page"{% endif %}><span class="block font-medium">{{ child.key | t }}</span>{% if child.descKey %}<span class="mt-1 block text-sm text-ink-muted">{{ child.descKey | t }}</span>{% endif %}</a></li>

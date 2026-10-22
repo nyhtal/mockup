@@ -288,14 +288,13 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("formatCurrency", function (n, code) { return formatCurrency(n, this.ctx?.page?.lang || site.defaultLocale, code, site); });
   eleventyConfig.addFilter("htmlPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType));
   // System pages (D56): "locales" = each language's system page; for a locale (or "" for root pages): "style" = its style
-  // guide, "qa" = its test pages, "hidden" = every other noindex page of that language only (each language has its own system page).
+  // guide, "hidden" = every other noindex page of that language only (each language has its own system page).
   eleventyConfig.addFilter("sysPages", (all, kind, locale) => {
     const inLocale = (u) => (locale === "" ? !/^\/[a-z]{2}\//.test(u) : u.startsWith(`/${locale}/`));
     return all
       .filter((p) => p.url && p.data.pageType && (
         kind === "locales" ? p.data.pageType === "sys" && /^\/[a-z]{2}\/sys\/$/.test(p.url)
         : kind === "style" ? p.data.pageType === "style-guide" && p.url.startsWith(`/${locale}/sys/style-guide/`)
-        : kind === "qa" ? p.data.pageType === "style-guide" && p.url.startsWith(`/${locale}/qa/`)
         : !["style-guide", "sys"].includes(p.data.pageType) && (p.data.noindex || ["thank-you", "error"].includes(p.data.pageType)) && inLocale(p.url)))
       .map((p) => ({ url: p.url, title: p.data.title || p.url, lang: p.data.page?.lang || p.data.lang || site.defaultLocale }))
       .sort((x, y) => x.url.localeCompare(y.url));
@@ -348,16 +347,15 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("englishName", (l) => englishName.of(l));
   for (const locale of site.locales) {
     const name = englishName.of(locale);
-    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: `${name} system pages`, description: `The ${name} system page of ${site.name}: ${locale === site.defaultLocale ? "the QA test pages, the style guide, " : ""}every hidden ${name} page${locale === site.defaultLocale ? "" : ", such as search results, thank-you and error pages,"} and the ${name} files.`, permalink: `/${locale}/sys/index.html` });
+    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: `${name} system pages`, description: `The ${name} system page of ${site.name}: ${locale === site.defaultLocale ? "the HTML element reference, the style guide, " : ""}every hidden ${name} page${locale === site.defaultLocale ? "" : ", such as search results, thank-you and error pages,"} and the ${name} files.`, permalink: `/${locale}/sys/index.html` });
   }
-  // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, under /en/sys/style-guide/; the test pages under /en/qa/; /sys/ links them all. No other locale has them, so they show no language links (D56). Written in the default locale (its sample data is English).
+  // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, under /en/sys/style-guide/; the HTML element reference at /en/sys/html/; /sys/ links them all. No other locale has them, so they show no language links (D56). Written in the default locale (its sample data is English).
   for (const locale of [site.defaultLocale]) {
-    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"], ["style-guide-widgets.njk", "widgets/", "Widgets test page"], ["style-guide-html.njk", "html/", "HTML element reference"]]) {
-      eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, htmlElements: name === "style-guide-html.njk" ? JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8")) : undefined, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: ["style-guide-widgets.njk", "style-guide-html.njk"].includes(name) ? `/${locale}/qa/${slug}index.html` : `/${locale}/sys/style-guide/${slug}index.html` });
+    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"], ["style-guide-html.njk", "html/", "HTML element reference"]]) {
+      eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, htmlElements: name === "style-guide-html.njk" ? JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8")) : undefined, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: name === "style-guide-html.njk" ? `/${locale}/sys/${slug}index.html` : `/${locale}/sys/style-guide/${slug}index.html` });
     }
-    // The hidden system index at /sys/ (D56): links to the style guide, the test pages, hidden pages and system files.
-    eleventyConfig.addTemplate(`${locale}/_engine/sys.njk`, virtual("sys.njk"), { lang: locale, title: "System pages", breadcrumbs: [], description: `The system hub of ${site.name}: each language's system page with its style guide and test pages, the pages outside a language, and the site files.`, permalink: "/sys/index.html" });
-    eleventyConfig.addTemplate(`${locale}/_engine/qa.njk`, virtual("qa.njk"), { lang: locale, title: "QA test pages", description: `The QA test pages of ${site.name}: every interactive widget working on one page, and every HTML element with a page of the site that uses it.`, permalink: `/${locale}/qa/index.html` });
+    // The hidden system index at /sys/ (D56): links to the style guide, the HTML element reference, hidden pages and system files.
+    eleventyConfig.addTemplate(`${locale}/_engine/sys.njk`, virtual("sys.njk"), { lang: locale, title: "System pages", breadcrumbs: [], description: `The system hub of ${site.name}: each language's system page, the style guide and HTML reference, the pages outside a language, and the site files.`, permalink: "/sys/index.html" });
     // Every sample section, split into five pages so each stays within the HTML budget (R-PERF-01).
     const ids = samples.sections.map((s) => s.id);
     const per = Math.ceil(ids.length / 5);

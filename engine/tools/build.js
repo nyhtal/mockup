@@ -33,7 +33,7 @@ export function checkLocaleCoverage(dist, site) {
     if (locale === site.defaultLocale) continue;
     const have = new Set(htmlPaths(path.join(dist, locale)));
     for (const p of base) {
-      if (/^(style-guide|sys|qa)[\\/]/.test(p)) continue; // default locale only: the style guide and test pages (R-PAGE-09, D56)
+      if (/^(style-guide|sys)[\\/]/.test(p)) continue; // default locale only: the style guide and test pages (R-PAGE-09, D56)
       if (!have.has(p)) throw new Error(`Locale "${locale}" is missing page /${locale}/${p.replace(/\\/g, "/")}`);
     }
   }

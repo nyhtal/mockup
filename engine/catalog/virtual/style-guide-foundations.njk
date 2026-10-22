@@ -16,8 +16,7 @@ noindex: true
 <li><a href="/{{ locale }}/sys/style-guide/primitives/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Primitives</a></li>
 <li><a href="/{{ locale }}/sys/style-guide/components/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Content components</a></li>
 <li><a href="/{{ locale }}/sys/style-guide/controls/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Navigation, overlays and states</a></li>
-<li><a href="/{{ locale }}/qa/widgets/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Widgets</a></li>
-<li><a href="/{{ locale }}/qa/html/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">HTML elements</a></li>
+<li><a href="/{{ locale }}/sys/html/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">HTML elements</a></li>
 <li><a href="/{{ locale }}/sys/style-guide/sections/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Sections A</a></li>
 <li><a href="/{{ locale }}/sys/style-guide/sections-b/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Sections B</a></li>
 <li><a href="/{{ locale }}/sys/style-guide/sections-c/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Sections C</a></li>
@@ -101,8 +100,9 @@ noindex: true
 </tbody>
 </table>
 </div>
-<p class="mt-8 text-sm text-ink-muted">The entrance vocabulary of R-MOT-16 and the icon pop, cascading 90 ms apart the way a grid row does; reload with this row below the fold and scroll to it to see it play:</p>
-<div class="mt-4 grid grid-cols-2 gap-6 overflow-x-clip sm:grid-cols-5">
+<p class="mt-8 text-sm text-ink-muted">The entrance vocabulary of R-MOT-16 and the icon pop, cascading 90 ms apart the way a grid row does; reload with this row below the fold and scroll to it to see it play, or press the button to play it again (the script replays the entrances; without it the row simply stands):</p>
+<button type="button" data-replay aria-controls="motion-demo" class="hidden js:inline-flex mt-4 min-h-9 items-center gap-2 rounded-md border border-line-strong px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-4"><use href="#i-play"></use></svg>Play again</button>
+<div id="motion-demo" class="mt-4 grid grid-cols-2 gap-6 overflow-x-clip sm:grid-cols-5">
 {%- set demo = { reveal: true, flair: flair } -%}
 <figure><div class="h-24 rounded-lg bg-brand-600{{ enter('start', 0) }}"></div><figcaption class="mt-2 text-sm text-ink-muted">slide-in</figcaption></figure>
 <figure><div class="h-24 rounded-lg bg-brand-500{{ enter('', 90) }}"></div><figcaption class="mt-2 text-sm text-ink-muted">rise</figcaption></figure>

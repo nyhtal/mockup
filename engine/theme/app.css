@@ -111,6 +111,7 @@
   }
 }
 /* Carousel (to-do 7b): a snapping row inside a `relative` wrapper (the scroll buttons position against it); browsers with ::scroll-button and ::scroll-marker add previous/next buttons and one dot per item.
+   No scrollbar (owner, 2026-10-21): the next card peeks in at the end edge and the markers show the position; the row stays focusable and scrolls with the keyboard and the wheel.
    The buttons' accessible names come from the list's data-prev / data-next attributes, so they follow the page's language. */
 @utility carousel {
   display: grid;
@@ -120,7 +121,7 @@
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
+  scrollbar-width: none;
   padding-block-end: calc(var(--spacing) * 4);
   scroll-marker-group: after;
   @media (prefers-reduced-motion: no-preference) {

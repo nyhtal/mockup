@@ -4,7 +4,7 @@ pageType: sys
 noindex: true
 ---
 {#- /<locale>/sys/: one language's system page (D56), linked from /sys/. It lists every hidden page of the language and the
-    language's files, and in the default locale leads to the QA page (/<locale>/qa/) and lists the style guide; the other
+    language's files, and in the default locale leads to the HTML element reference (/<locale>/sys/html/) and lists the style guide; the other
     languages point to the default locale's page for those. The language switcher pairs the three; the prose is English on every one, so the content block is lang="en" dir="ltr" outside English. Built from the page collection. -#}
 {%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
 {%- set stylePages = collections.all | sysPages("style", locale) -%}
@@ -14,12 +14,12 @@ noindex: true
 <div class="mx-auto w-full max-w-4xl px-4 pt-16 pb-24 sm:px-6 md:pt-24 lg:px-8"{% if locale != "en" %} lang="en" dir="ltr"{% endif %}>
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand"><a href="/sys/" class="{{ link }}">System</a></p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ title }}</h1>
-<p class="mt-4 text-lg text-ink-muted">{% if isDefault %}The style guide, the test pages and every hidden page in this language.{% else %}Every hidden page and file in this language; the style guide and the test pages are on the {{ site.defaultLocale | englishName }} system page.{% endif %} Not in the sitemap, not linked from a public page, not indexed.</p>
+<p class="mt-4 text-lg text-ink-muted">{% if isDefault %}The style guide, the HTML element reference and every hidden page in this language.{% else %}Every hidden page and file in this language; the style guide and the HTML element reference are on the {{ site.defaultLocale | englishName }} system page.{% endif %} Not in the sitemap, not linked from a public page, not indexed.</p>
 
 {% if isDefault -%}
-<a href="/{{ locale }}/qa/" class="mt-10 flex items-center justify-between gap-4 rounded-lg border border-brand-300 bg-surface-raised p-6 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span><span class="block text-lg font-semibold">QA test pages</span><span class="mt-1 block text-sm text-ink-muted">Every widget working on one page, and every HTML element with a page that uses it.</span></span><svg aria-hidden="true" class="size-5 shrink-0 text-ink-brand [&:dir(rtl)]:-scale-x-100"><use href="#i-arrow-right"></use></svg></a>
+<a href="/{{ locale }}/sys/html/" class="mt-10 flex items-center justify-between gap-4 rounded-lg border border-brand-300 bg-surface-raised p-6 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span><span class="block text-lg font-semibold">HTML element reference</span><span class="mt-1 block text-sm text-ink-muted">Every element of the HTML standard, what it is for, a page of the site that uses it, and the rest shown live.</span></span><svg aria-hidden="true" class="size-5 shrink-0 text-ink-brand [&:dir(rtl)]:-scale-x-100"><use href="#i-arrow-right"></use></svg></a>
 {%- else -%}
-<a href="/{{ site.defaultLocale }}/sys/" class="mt-10 flex items-center justify-between gap-4 rounded-lg border border-brand-300 bg-surface-raised p-6 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span><span class="block text-lg font-semibold">{{ site.defaultLocale | englishName }} system pages</span><span class="mt-1 block text-sm text-ink-muted">The QA test pages and the style guide live there: their sample data is {{ site.defaultLocale | englishName }}.</span></span><svg aria-hidden="true" class="size-5 shrink-0 text-ink-brand [&:dir(rtl)]:-scale-x-100"><use href="#i-arrow-right"></use></svg></a>
+<a href="/{{ site.defaultLocale }}/sys/" class="mt-10 flex items-center justify-between gap-4 rounded-lg border border-brand-300 bg-surface-raised p-6 hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><span><span class="block text-lg font-semibold">{{ site.defaultLocale | englishName }} system pages</span><span class="mt-1 block text-sm text-ink-muted">The HTML element reference and the style guide live there: their sample data is {{ site.defaultLocale | englishName }}.</span></span><svg aria-hidden="true" class="size-5 shrink-0 text-ink-brand [&:dir(rtl)]:-scale-x-100"><use href="#i-arrow-right"></use></svg></a>
 {%- endif %}
 
 {% if isDefault -%}

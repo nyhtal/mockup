@@ -4,7 +4,7 @@
   anatomy: div[data-component=field] > label[for] + control + (p.help#id-help) + (p.error#id-error)
   variants: types text | email | tel | url | number | search | date | time | range (with <output>) | textarea | select | checkbox | radio (group) | switch | file
   states: default, focus-visible (ring), user-invalid (danger border), disabled (opacity-60), error (opts.error renders the message and sets aria-describedby), prefilled (value)
-  spacing: label mb-2; help/error mt-2; the form stacks fields with space-y-6 (R-FORM-13)
+  spacing: label mb-2; help/error mt-2; the form stacks fields with space-y-6 (R-FORM-13); a select is appearance-none with ps-3 pe-10 and the sprite chevron at end-3, since browsers draw the native arrow against the border whatever the padding (owner, 2026-10-21)
   motion: motion-safe:transition-colors on the control border
   keyboard: native controls only
   a11y: visible label always; "(required)" in the label text; aria-describedby names only ids that exist; checkbox/radio labels wrap the control
@@ -41,7 +41,7 @@
 {%- if type == "textarea" %}
 <textarea id="{{ id }}" rows="{{ f.rows or 4 }}" class="{{ control }} py-2" {{ common | safe }}{% if f.placeholder %} placeholder="{{ f.placeholder }}"{% endif %}>{{ f.value }}</textarea>
 {%- elif type == "select" %}
-<select id="{{ id }}" class="{{ control }} min-h-11" {{ common | safe }}>
+<div class="relative"><select id="{{ id }}" class="{{ control | replace('px-3', 'ps-3 pe-10') }} min-h-11 appearance-none" {{ common | safe }}>
 {%- for o in f.options %}
 {%- if o.options %}
 <optgroup label="{{ o.label }}">
@@ -53,7 +53,7 @@
 <option value="{{ o.value }}"{% if o.selected or (f.value and f.value == o.value) %} selected{% endif %}>{{ o.label }}</option>
 {%- endif %}
 {%- endfor %}
-</select>
+</select><svg aria-hidden="true" class="pointer-events-none absolute end-3 top-1/2 size-4 -translate-y-1/2 text-ink-muted"><use href="#i-chevron-down"></use></svg></div>
 {%- elif type == "range" %}
 <div class="flex items-center gap-4"><input type="range" id="{{ id }}" class="block min-h-11 w-full accent-brand-600" {{ common | safe }} value="{{ f.value }}" data-estimate="{n}{{ f.unit or '' }}"><output for="{{ id }}" class="w-16 shrink-0 text-end font-semibold tabular-nums">{{ f.value }}{{ f.unit or "" }}</output></div>
 {%- elif type == "file" %}

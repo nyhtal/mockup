@@ -134,7 +134,7 @@ test("the visual layer of 0.5.0: mark in header and favicon, proof strip and hig
   assert.match(home, /gap-y-8 reveal-items md:motion-safe:sda:animate-drift rtl:md:motion-safe:sda:animate-drift-end/, "the logo cloud drifts");
   assert.doesNotMatch(home, /(?<!md:)motion-safe:sda:(?:before:)?animate-(?:parallax|drift)/, "no depth below md");
   // Accents (Task 5): the reading-progress hairline on every page's header; the sticky editorial row on the about page (expressive).
-  assert.match(home, /<header class="sticky top-0[^"]*before:-bottom-px before:hidden before:h-px before:origin-left rtl:before:origin-right before:bg-linear-to-r before:from-brand-600 before:to-accent-600 motion-safe:sda:before:block motion-safe:sda:before:animate-progress motion-safe:sda:before:\[animation-timeline:scroll\(root\)\]/, "progress hairline under the header (R-MOT-08)");
+  assert.match(home, /<header class="\[anchor-name:--header\] sticky top-0[^"]*before:-bottom-px before:hidden before:h-px before:origin-left rtl:before:origin-right before:bg-linear-to-r before:from-brand-600 before:to-accent-600 motion-safe:sda:before:block motion-safe:sda:before:animate-progress motion-safe:sda:before:\[animation-timeline:scroll\(root\)\]/, "progress hairline under the header (R-MOT-08)");
   const about = readFileSync("dist/reference/en/about/index.html", "utf8");
   assert.match(about, /data-component="feature-rows" data-variant="sticky"[\s\S]*?<div class="grid gap-12 lg:grid-cols-2 lg:items-start">\n<div class="overflow-clip rounded-2xl ring-1 ring-line lg:sticky lg:top-24 lg:self-start/, "the sticky editorial row pins its picture");
   assert.match(stats, /to-accent-200/, "numerals end in the evidence colour");
@@ -195,6 +195,9 @@ test("top navigation: wide menus put every link on one row; Company is a compact
   const en = readFileSync("dist/reference/en/careers/culture/index.html", "utf8");
   const nav = /<nav [^>]*data-component="nav-menu">[\s\S]*?<\/nav>/.exec(en)[0];
   assert.match(nav, /<div popover id="menu-1"[^>]*>\n<ul class="mx-auto grid [^"]*grid-cols-4">/, "Services: four links, four columns");
+  // The wide panels hang from the header itself, not from the window's top edge, so they open below the links even while the announcement bar pushes the header down (owner, 2026-10-21).
+  assert.match(en, /<header class="\[anchor-name:--header\] sticky top-0 /);
+  assert.match(nav, /<div popover id="menu-1" class="fixed inset-x-0 top-16 bottom-auto m-0 w-full max-w-none [^"]*supports-\[position-area:block-end\]:\[top:anchor\(--header_bottom\)\]/);
   assert.match(nav, /<button type="button" popovertarget="menu-4" class="\[anchor-name:--menu-4\] /);
   assert.match(nav, /<div popover id="menu-4" class="fixed top-16 end-4 start-auto bottom-auto m-0 w-72 [^"]*\[position-anchor:--menu-4\][^"]*\[position-area:block-end_span-inline-end\]/);
   assert.match(nav, /href="\/en\/careers\/culture\/"[^>]*aria-current="page"><span class="block text-sm font-medium">Life at Northwind<\/span>/, "the culture page is in the Company list and marked current on itself");
@@ -433,6 +436,7 @@ test("widgets (to-do 7b, part three): a carousel, a sticky phone CTA, a contact 
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.match(css, /::scroll-button\(inline-start\)/);
   assert.match(css, /::scroll-marker/);
+  assert.match(css, /\.carousel\{[^}]*scrollbar-width:none/, "the carousel shows no scrollbar: the peeking next card and the markers show there is more (owner, 2026-10-21)");
   const home = read("en");
   const sticky = /<div class="sticky bottom-0[^"]*sda:flex[^"]*lg:hidden[^"]*\[animation-range:0_60vh\][^"]*" data-component="sticky-cta"><p class="text-sm text-ink-muted">See your line described in thirty minutes\.<\/p><a href="\/en\/demo\/" class="[^"]*min-h-9/.exec(home);
   assert.ok(sticky, "a sticky CTA on the home page: a line of text and a small button, not a full-width bar");
@@ -460,22 +464,47 @@ test("widgets (to-do 7b, part four): native date, time and range inputs; progres
   assert.match(nl, /<div class="relative">\n<div class="absolute inset-0[^"]*">\s*<div aria-hidden="true" class="motion-safe:animate-pulse" data-component="skeleton"[\s\S]*?<iframe /);
 });
 
-test("widgets test page (owner's request): every widget on one page, each linked from its list and live", () => {
-  const page = readFileSync("dist/reference/en/qa/widgets/index.html", "utf8");
-  const anchors = [...page.matchAll(/<a href="#(w-[a-z]+)"/g)].map((m) => m[1]);
-  assert.equal(anchors.length, 20);
-  for (const id of anchors) assert.match(page, new RegExp(`id="${id}"`), `${id} is on the page`);
-  for (const marker of ['data-theme-toggle', 'data-component="announcement-bar"', "data-copy=", 'data-toast', 'popover="hint"', 'command="show-modal"', "data-lightbox", 'data-component="accordion"', 'data-component="tabs"', 'type="date"', 'type="time"', 'type="range"', "<datalist", "<progress", 'data-component="skeleton"', "data-count=", 'data-component="video-facade"', 'data-component="map-facade"', 'group/billing', "data-estimate=", 'class="carousel"', "★", 'ring-2 ring-surface', "data-ba-frame", "usemap=", "<iframe ", 'data-component="contact-launcher"', 'data-component="sticky-cta"']) {
-    assert.ok(page.includes(marker), `widget marker ${marker}`);
+test("selects draw their own chevron clear of the end edge (owner, 2026-10-21): appearance-none, end padding for it, the sprite icon after the control", () => {
+  for (const u of ["/en/demo/", "/ar/demo/", "/en/careers/"]) {
+    const html = readFileSync(`dist/reference${u}index.html`, "utf8");
+    const m = /<div class="relative"><select id="[^"]+" class="([^"]*)"[^>]*>[\s\S]*?<\/select><svg aria-hidden="true" class="pointer-events-none absolute end-3 top-1\/2 size-4 -translate-y-1\/2 text-ink-muted"><use href="#i-chevron-down"><\/use><\/svg><\/div>/.exec(html);
+    assert.ok(m, `${u}: select wrapped with its chevron`);
+    assert.match(m[1], /\bappearance-none\b/);
+    assert.match(m[1], /\bpe-10\b/);
+    assert.doesNotMatch(m[1], /\bpx-3\b/, "the end padding replaces the symmetric one");
+    assert.match(m[1], /\bps-3\b/);
+    assert.match(html, /<symbol id="i-chevron-down"/, "the sprite carries the chevron");
   }
-  assert.match(readFileSync("dist/reference/en/sys/style-guide/index.html", "utf8"), /href="\/en\/qa\/widgets\/"/, "linked from the style guide");
+});
+
+test("the widgets test page is gone and the HTML element reference lives under /sys/ (owner, 2026-10-21): old URLs redirect, the style guide nav and the system page link the new one", () => {
+  assert.ok(!existsSync("dist/reference/en/qa"), "no /en/qa/ pages");
+  assert.ok(existsSync("dist/reference/en/sys/html/index.html"));
+  assert.ok(!existsSync("dist/reference/en/sys/style-guide/widgets"));
+  const redirects = readFileSync("dist/reference/_redirects", "utf8");
+  for (const line of ["/en/qa/html/  /en/sys/html/  301","/en/style-guide/html/  /en/sys/html/  301", "/en/qa/*  /en/sys/  301", "/en/style-guide/widgets/  /en/sys/  301"]) assert.ok(redirects.includes(line + "\n"), line);
+  const json = JSON.parse(readFileSync("dist/reference/redirects.json", "utf8"));
+  assert.deepEqual(json.filter((r) => r.from.includes("qa") || r.from.includes("widgets")).map((r) => r.to), ["/en/sys/", "/en/sys/html/", "/en/sys/"]);
+  const guide = readFileSync("dist/reference/en/sys/style-guide/index.html", "utf8");
+  assert.match(guide, /href="\/en\/sys\/html\/"/);
+  assert.doesNotMatch(guide, /widgets/i);
+  assert.match(readFileSync("dist/reference/en/sys/index.html", "utf8"), /<a href="\/en\/sys\/html\/" class="mt-10 [^"]*"><span><span class="block text-lg font-semibold">HTML element reference<\/span>/, "the system page's card leads to the reference");
+});
+
+test("the style guide's entrance demo replays on demand (owner, 2026-10-21): a button the script shows, wired to the demo row", () => {
+  const page = readFileSync("dist/reference/en/sys/style-guide/index.html", "utf8");
+  assert.match(page, /<div id="motion-demo" class="mt-4 grid grid-cols-2 gap-6 overflow-x-clip sm:grid-cols-5">/);
+  assert.match(page, /<button type="button" data-replay aria-controls="motion-demo" class="hidden js:inline-flex [^"]*">[\s\S]*?Play again<\/button>/);
+  const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
+  assert.match(js, /\[data-replay\]/);
+  assert.ok(js.length <= 5120, `enhance.js is ${js.length} B`);
 });
 
 test("HTML element reference (to-do 8): every element of the standard is listed, each linked page really uses it, and every element appears on the site", () => {
   const list = JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8"));
   assert.ok(list.length >= 110, `${list.length} elements`);
-  const ref = readFileSync("dist/reference/en/qa/html/index.html", "utf8");
-  assert.match(ref, /<base href="\/en\/qa\/html\/" target="_self">/);
+  const ref = readFileSync("dist/reference/en/sys/html/index.html", "utf8");
+  assert.match(ref, /<base href="\/en\/sys\/html\/" target="_self">/);
   const has = (html, el) => new RegExp(`<${el}[\\s>/]`).test(html);
   for (const e of list) {
     assert.ok(ref.includes(`<tr id="el-${e.el}"`), `${e.el} is listed`);
@@ -484,17 +513,17 @@ test("HTML element reference (to-do 8): every element of the standard is listed,
   }
 });
 
-test("system pages (D56): /sys/ links each language's system page; each lists only its own hidden pages and carries the language switcher; /en/sys/ links the QA page and lists the style guide; /en/qa/ lists the test pages; all hidden", () => {
+test("system pages (D56): /sys/ links each language's system page; each lists only its own hidden pages and carries the language switcher; /en/sys/ links the HTML element reference and lists the style guide; all hidden", () => {
   const read = (u) => readFileSync(`dist/reference${u}index.html`, "utf8");
   const links = (html) => new Set([...html.matchAll(/<a href="([^"#]+)" class="(?:font-medium|mt-10|block)/g)].map((m) => m[1]));
-  const enSys = read("/en/sys/"), deSys = read("/de/sys/"), arSys = read("/ar/sys/"), qa = read("/en/qa/");
+  const enSys = read("/en/sys/"), deSys = read("/de/sys/"), arSys = read("/ar/sys/");
   const hub = read("/sys/");
   for (const l of ["en", "de", "ar"]) assert.ok(links(hub).has(`/${l}/sys/`), `/sys/ links the ${l} system page`);
-  assert.ok(links(enSys).has("/en/qa/"), "/en/sys/ links the QA page");
+  assert.ok(links(enSys).has("/en/sys/html/"), "/en/sys/ links the HTML element reference");
   assert.match(enSys, /<h1[^>]*>English system pages<\/h1>/);
   assert.match(deSys, /<h1[^>]*>German system pages<\/h1>/);
   assert.match(arSys, /<h1[^>]*>Arabic system pages<\/h1>/);
-  // Each language's page lists only its own pages; the language switcher pairs the three system pages, and German and Arabic point to the English one for the QA pages and the style guide (owner, 2026-10-20).
+  // Each language's page lists only its own pages; the language switcher pairs the three system pages, and German and Arabic point to the English one for the HTML reference and the style guide (owner, 2026-10-20).
   for (const [l, html] of [["en", enSys], ["de", deSys], ["ar", arSys]]) {
     const foreign = [...links(html)].filter((u) => /^\/[a-z]{2}\//.test(u) && !u.startsWith(`/${l}/`));
     assert.deepEqual(foreign, l === "en" ? [] : ["/en/sys/"], `/${l}/sys/ lists no other language's pages`);
@@ -503,14 +532,10 @@ test("system pages (D56): /sys/ links each language's system page; each lists on
     assert.match(html, /data-component="locale-switcher"/, `/${l}/sys/ has the language switcher`);
     for (const o of ["en", "de", "ar"]) assert.match(html, new RegExp(`<link rel="alternate" hreflang="${o}" href="[^"]*/${o}/sys/"`), `/${l}/sys/ names /${o}/sys/ as its ${o} alternate`);
   }
-  assert.doesNotMatch(deSys, /href="\/de\/qa\/"|style-guide/, "German has no QA page or style guide of its own");
-  for (const u of ["/en/qa/widgets/", "/en/qa/html/"]) assert.ok(links(qa).has(u), `/en/qa/ lists ${u}`);
-  for (const html of [hub, enSys, deSys, arSys, qa]) assert.match(html, /<meta name="robots" content="noindex/);
-  for (const html of [hub, qa]) {
-    assert.doesNotMatch(html, /hreflang="(de|ar)"/, "the hub and the QA page exist in one place only: no language links");
-    assert.doesNotMatch(html, /data-component="locale-switcher"/);
-  }
-  const listed = new Set([...links(hub), ...links(enSys), ...links(deSys), ...links(arSys), ...links(qa)]);
+  assert.doesNotMatch(deSys, /href="\/de\/sys\/html\/"|style-guide/, "German has no HTML reference or style guide of its own");
+  for (const html of [hub, enSys, deSys, arSys]) assert.match(html, /<meta name="robots" content="noindex/);
+  assert.doesNotMatch(hub, /hreflang="(de|ar)"|data-component="locale-switcher"/, "the hub exists in one place only: no language links");
+  const listed = new Set([...links(hub), ...links(enSys), ...links(deSys), ...links(arSys)]);
   const pages = [];
   const walk = (dir) => { for (const e of readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith(".html")) pages.push(p); } };
   walk("dist/reference");
@@ -522,7 +547,7 @@ test("system pages (D56): /sys/ links each language's system page; each lists on
     else assert.doesNotMatch(html, /href="\/(en\/)?(sys|qa)\//, `${url}: no public page links to a system page`);
   }
   const sitemap = readFileSync("dist/reference/sitemap.xml", "utf8");
-  assert.doesNotMatch(sitemap, /\/sys\/|\/qa\//);
+  assert.doesNotMatch(sitemap, /\/sys\//);
   for (const u of ["/sitemap.xml", "/robots.txt"]) assert.ok(links(hub).has(u) && existsSync(`dist/reference${u}`));
 });
 test("no page shows escaped markup: HTML meant to render never reaches a template as text", () => {
@@ -531,7 +556,7 @@ test("no page shows escaped markup: HTML meant to render never reaches a templat
     for (const name of readdirSync(dir, { withFileTypes: true })) {
       const p = path.join(dir, name.name);
       if (name.isDirectory()) walk(p);
-      else if (name.name.endsWith(".html") && !p.replace(/\\/g, "/").includes("qa/html/") && /&lt;\/?(?:p|strong|em|ul|ol|li|h[1-6]|br)\b|&lt;a href/.test(readFileSync(p, "utf8"))) offenders.push(p);
+      else if (name.name.endsWith(".html") && !p.replace(/\\/g, "/").includes("sys/html/") && /&lt;\/?(?:p|strong|em|ul|ol|li|h[1-6]|br)\b|&lt;a href/.test(readFileSync(p, "utf8"))) offenders.push(p);
     }
   };
   walk("dist/reference");
