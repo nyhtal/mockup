@@ -88,6 +88,10 @@ test("enhance.js ships under 5 KB (D55) and only does what bylaw 06 allows", () 
   assert.match(js, /IntersectionObserver/);
   assert.match(js, /pending:/, "entrances are triggered by the script, once, as each element crosses 88 % of the viewport (R-MOT-10 behaviour 1)");
   assert.match(js, /innerHeight\*\.88/, "elements already in view at load are revealed before the pending: state can apply (R-MOT-11)");
+  assert.doesNotMatch(js, /getBoundingClientRect/, "positions at load come from the observer's first report, never a forced layout: that layout was a 170 ms long task on the home page (Lighthouse mobile TBT, 2026-10-22)");
+  assert.match(js, /boundingClientRect\.top<innerHeight\*\.88/, "the first report marks what is in view or above it");
+  assert.match(js, /^const [^\n]*;\nh\.dataset\.js="";/, "data-js is set synchronously, so js: controls are there at first paint and shift nothing");
+  assert.match(js, /h\.dataset\.entrances=""/, "data-entrances is set after the first report");
   assert.match(js, /commandfor/);
   assert.match(js, /data-count/, "count-up (R-MOT-10 behaviour 3)");
   assert.match(js, /dataset\.decimals/, "precision comes from the build, not from parsing text");
@@ -728,7 +732,7 @@ test("review fixes: transitions name translate and scale, feature rows clip and 
   assert.match(en, /<section class="[^"]*overflow-x-clip[^"]*"[^>]*data-component="feature-rows"/, "feature rows clip horizontal overflow while rows slide in");
   assert.match(ar, /pending:translate-x-\(--reveal-distance\) rtl:pending:-translate-x-\(--reveal-distance\)/, "rows mirror their slide in RTL");
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
-  assert.ok(css.includes(":where([data-js] *):not([data-revealed])"), "the pending: variant: only with JS, only until revealed");
+  assert.ok(css.includes(":where([data-entrances] *):not([data-revealed])"), "the pending: variant: only once the observer has marked what is in view (data-entrances), only until revealed");
   assert.ok(/@media screen and \(prefers-reduced-motion:\s?no-preference\)/.test(css), "the pending: variant: only on screen and only with motion allowed");
   assert.ok(!css.includes("@supports not (animation-timeline:view())"), "the nosda fallback is gone: entrances work the same in every browser");
   assert.match(svc, /<li class="flex pending:opacity-0[^"]*motion-safe:data-revealed:delay-90"[^>]*>\n<div class="group relative[^"]*motion-safe:hover:-translate-y-0\.5/, "entrance and column delay on the wrapper, hover on the inner card (R-MOT-05)");

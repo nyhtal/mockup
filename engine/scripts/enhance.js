@@ -1,7 +1,7 @@
 const d=document,h=d.documentElement,R=requestAnimationFrame,M=matchMedia("(prefers-reduced-motion: reduce)"),P='[class*="pending:"]';
-d.querySelectorAll(P).forEach(e=>e.getBoundingClientRect().top<innerHeight*.88&&(e.dataset.revealed=""));h.dataset.js="";
+h.dataset.js="";
 const io=(q,f,o)=>{if("IntersectionObserver"in window){const w=new IntersectionObserver(a=>{for(const e of a)if(e.isIntersecting){w.unobserve(e.target);f(e.target)}},o);d.querySelectorAll(q).forEach(e=>w.observe(e))}else d.querySelectorAll(q).forEach(f)};
-io(P+":not([data-revealed])",e=>{e.dataset.revealed=""},{rootMargin:"0px 0px -12% 0px"});
+if("IntersectionObserver"in window){let f=1;const w=new IntersectionObserver(a=>{for(const e of a)if(f?e.boundingClientRect.top<innerHeight*.88:e.isIntersecting){w.unobserve(e.target);e.target.dataset.revealed=""}f&&(f=0,h.dataset.entrances="")},{rootMargin:"0px 0px -12% 0px"});d.querySelectorAll(P).forEach(e=>w.observe(e))}
 "command"in HTMLButtonElement.prototype||d.addEventListener("click",e=>{const b=e.target.closest("button[commandfor]");if(!b)return;const t=d.getElementById(b.getAttribute("commandfor")),c=b.getAttribute("command");t instanceof HTMLDialogElement&&(c=="show-modal"?t.showModal():c=="close"&&t.close())});
 let q=0,ql=0;M.matches||io("[data-count]",e=>{const s=e.textContent,n=+e.dataset.count,k=+e.dataset.decimals||0,F=new Intl.NumberFormat(h.lang+"-u-nu-"+(e.dataset.nu||"latn"),{minimumFractionDigits:k,maximumFractionDigits:k}),fin=F.format(n),i=s.indexOf(fin);if(i<0)return;const a=s.slice(0,i),z=s.slice(i+fin.length),now=performance.now();now-ql>400&&(q=0);ql=now;const delay=Math.min(240,q++*80);let t0,prev,f=t=>{t0??=t;const p=M.matches?1:Math.min(1,(t-t0)/1500),x=p<1?a+F.format(n*(1-(1-p)**3))+z:s;x!==prev&&(e.textContent=prev=x);p<1?R(f):e.dataset.counted=""};setTimeout(()=>R(f),delay)},{threshold:.3});
 let A,on=0;try{on=sessionStorage.sound=="1"}catch{}

@@ -4,10 +4,11 @@
 
 /* The two progressive-enhancement variants of bylaw 06: JS present (set by enhance.js) and scroll-driven animation support. */
 @custom-variant js (&:where([data-js], [data-js] *));
-/* The from-state of a time-based entrance (R-MOT-05): on screen, with motion allowed and JS running, an element waits faded and offset until enhance.js marks it data-revealed as it crosses 88 % of the viewport. Print, reduced motion and no JS never match, so they show final states (R-MOT-04). */
+/* The from-state of a time-based entrance (R-MOT-05): on screen, with motion allowed and JS running, an element waits faded and offset until enhance.js marks it data-revealed as it crosses 88 % of the viewport. Print, reduced motion and no JS never match, so they show final states (R-MOT-04).
+   It keys on data-entrances, which the script sets after its observer's first report has marked everything already in view: positions come from that report, never a forced layout during load, and data-js stays synchronous for the js: controls. */
 @custom-variant pending {
   @media screen and (prefers-reduced-motion: no-preference) {
-    &:where([data-js] *):not([data-revealed]) {
+    &:where([data-entrances] *):not([data-revealed]) {
       @slot;
     }
   }

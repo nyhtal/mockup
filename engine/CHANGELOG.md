@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.8.2 — 2026-10-22
+
+Patch, no new rule. Lighthouse mobile performance on the home page was 99: `enhance.js` read every waiting element's position at startup, which forced a full-page layout inside the script (a 170 ms long task, 100 ms of Total Blocking Time). Positions now come from the entrance observer's first report; the script marks what is already in view, then sets a new `data-entrances` flag, and `pending:` keys on that flag instead of `data-js`. `data-js` is still set first and synchronously, so the `js:` controls are there at first paint. Content in view at load still never fades in (R-MOT-11). R-MOT-04, R-MOT-10 and R-MOT-11 describe the new order. Home page mobile: performance 100, TBT 0 ms, FCP 1.1 → 0.9 s.
+
 ## 0.8.1 — 2026-10-21
 
 Patch, no rule change. The testimonials carousel hides its scrollbar (the peeking card and the markers show there is more; `scrollbar-width: none`). Selects are `appearance-none` with `ps-3 pe-10` and the sprite chevron at `end-3`, since browsers draw the native arrow against the border. The widgets test page and `/en/qa/` are removed; the HTML element reference lives at `/en/sys/html/` and the `/qa/` page-weight override becomes `/sys/html/` (D56). The style guide's entrance demo gets a "Play again" button; `enhance.js` replays an entrance by clearing and re-setting `data-revealed` (R-PREC-08, still under 5 KB). The header is the `--header` anchor and the wide nav panels hang from its bottom edge (`top: anchor(--header bottom)`), so they open below the links while the announcement bar pushes the header down instead of 64 px from the window top (R-COMP-09 pattern; the fixed placement stays as the fallback).
