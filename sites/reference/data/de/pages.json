@@ -1653,7 +1653,13 @@
           "type": "page-header",
           "eyebrow": "Büro",
           "title": "{e.city}",
-          "lede": "{e.lede}"
+          "lede": "{e.lede}",
+          "variant": "split",
+          "image": {
+            "slug": "office-{e.slug}-card",
+            "alt": "",
+            "tone": "dark"
+          }
         },
         {
           "type": "office-detail",

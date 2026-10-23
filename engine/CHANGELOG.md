@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.17.1 — 2026-10-23
+
+Patch, no rule change (owner, 2026-10-23: "the thumbnail images on the offices should be the same on the detail pages"). The reference site's office detail recipe opens on a `split` page header whose picture declares the tile's slug and tone (`office-<slug>-card`, dark), so the library piece seeded by that slug heads the page in a 4:3 frame: the same artwork as the 16:9 tile on the locations page.
+
 ## 0.17.0 — 2026-10-23
 
 Locations as image tiles (owner, 2026-10-23: "locations page map shows scrollbars, should just fit", then "just get rid of that map image, its too data specific. just have the tiles", "maybe used image tiles where the image would be a picture of the place maybe but use the normal graphic images instead"). The locations page drops the office map: its offices are `office-cards` image tiles, two across when the offices pair up (2 or 4) and three otherwise, each card topped by a dark-tone art-library picture seeded by the office's slug, standing in for a photograph of the place (`card` variant `office` gains the picture the article variant has). The `office-map` section stays in the catalog and no longer scrolls: it was a native image map whose `<area>` hot spots are fixed pixels, so the 640 × 200 picture kept its size in any narrower column; it is now an inline SVG (`officeMapInline` in `engine/tools/lib/office-map.js`, sharing its geometry with the picture file) that scales to its column, in the theme's colours in both schemes, each office a link around its dot and label with a 22-unit hit circle and an underlined label on focus. The native image map moves to the style guide's components page, where the HTML element reference now points for `map` and `area`. CSS rises to 103 KB for the map's theme colours (R-PERF-01). Minor by R-PREC-05.

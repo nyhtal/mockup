@@ -400,6 +400,11 @@ test("locations (0.17.0): image tiles instead of a map; the catalog's office map
     const tiles = [...loc.matchAll(/data-component="card" data-variant="office">[\s\S]*?<img src="\/assets\/images\/office-[a-z]+-card-16x9-480\.webp"[^>]*data-tone="dark"/g)];
     assert.equal(tiles.length, 4, `${l}: four office tiles, each with a dark-tone library picture`);
     assert.match(loc, /data-component="office-cards"[\s\S]*?<ul class="grid gap-6 md:gap-8 md:grid-cols-2[ "]/, `${l}: two across`);
+    // Each detail page opens with the tile's picture (same slug and tone, so the same artwork) in a split header (0.17.1).
+    for (const o of ["manchester", "tokyo"]) {
+      const detail = readFileSync(`dist/reference/${l}/about/locations/${o}/index.html`, "utf8");
+      assert.match(detail, new RegExp(`data-component="page-header" data-variant="split">[\\s\\S]*?<img src="/assets/images/office-${o}-card-4x3-480\\.webp"[^>]*data-tone="dark"`), `${l}/${o}: the tile's picture heads its page`);
+    }
   }
   // The office-map section stays in the catalog, inline and scaling (shown in the style guide).
   const page = readFileSync("dist/reference/sys/style-guide/sections/company/index.html", "utf8");
