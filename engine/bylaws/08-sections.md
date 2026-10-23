@@ -13,12 +13,12 @@ Why: The outline stays flat and predictable.
 Gate: manual: checklists/new-page.md
 
 ### R-SEC-03 Content limits
-MUST. Feature grid 3–6 items; alternating feature rows 2–4; stats 3–4; logo cloud 5–8; testimonials 1–3 (carousel up to 6); FAQ 4–10; steps 3–5; timeline 4–8; team 4–12; pricing 2–4 tiers; case-study cards 3 or 6; related items 3; office cards 2–6; job list 1–20 with pagination beyond.
+MUST. Feature grid 3–6 items; alternating feature rows 2–4; feature bento 3–6 (the first is the lead); feature index 3–6; feature spotlight 2–4 beside one picture; feature disclosures 2–5; stats 3–4; logo cloud 5–8; testimonials 1–3 (carousel up to 6); FAQ 4–10; steps 3–5; timeline 4–8; team 4–12; pricing 2–4 tiers; case-study cards 3 or 6; related items 3; office cards 2–6; job list 1–20 with pagination beyond.
 Why: Fewer than the minimum looks unfinished; more than the maximum stops being scanned.
 Gate: manual: checklists/new-page.md
 
 ### R-SEC-04 Word limits
-MUST. Lede ≤ 35 words; card body ≤ 40 words; testimonial quote ≤ 50 words; stat label ≤ 4 words; feature title ≤ 6 words; step description ≤ 25 words; CTA band copy ≤ 20 words.
+MUST. Lede ≤ 35 words; card body ≤ 40 words; testimonial quote ≤ 50 words; stat label ≤ 4 words; feature title ≤ 6 words (index, spotlight and disclosure titles ≤ 8); feature-index text ≤ 45 words, spotlight point ≤ 30, disclosure text ≤ 50, the bento lead ≤ 50; step description ≤ 25 words; CTA band copy ≤ 20 words.
 Why: Corporate pages are skimmed; limits force the point.
 Gate: manual: checklists/new-page.md
 

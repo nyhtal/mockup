@@ -1,0 +1,44 @@
+{#
+  name: feature-bento
+  purpose: 3–6 features with one lead: an art-led tile over two rows, two supporting tiles beside it, up to three plain tiles under them (R-SEC-03, R-SEC-04).
+  anatomy: shell > ul.grid(lg:grid-cols-3) > li.lead[lg:col-span-2 lg:row-span-2](picture + caption: h3 + p) + li.tile(icon + h3 + p) × 2–5
+  variants: none (a lead without an image renders as a plain tile)
+  states: none
+  spacing: grid gap-6 md:gap-8; tiles rounded-lg, hairline ring, p-6 md:p-8; the lead's caption on a solid area under its picture (text never sits on art)
+  motion: items arrive by column (R-MOT-16), the lead takes the framed settle and its picture settles from 115 % inside the frame; icon tiles pop (expressive)
+  keyboard: none unless items carry href (then the title is a link)
+  a11y: list; icons aria-hidden; the lead picture takes its declared alt ("" when it only decorates)
+  i18n: none; the grid flows by writing direction
+  content limits: 3–6 items; title ≤ 6 words; text ≤ 40 words (lead ≤ 50)
+  data: s = { eyebrow, title, lede, image (the lead's picture, or items[0].image): { slug, alt, art, tone }, items: [{ icon, title, text, href }], cta }
+#}
+{% from "sections/_shell.njk" import shell, item, pop, zoom with context %}
+{% from "primitives/icon.njk" import icon with context %}
+{% from "primitives/picture.njk" import picture with context %}
+{% macro title(f, size) %}<h3 class="{{ size }} font-semibold tracking-tight">{% if f.href %}<a href="{{ f.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ f.title }}</a>{% else %}{{ f.title }}{% endif %}</h3>{% endmacro %}
+{% macro render(s, ctx) %}
+{%- set lead = s.image or s.items[0].image -%}
+{% call shell("feature-bento", s, ctx, { itemsReveal: ctx.reveal }) %}
+<ul class="grid gap-6 md:gap-8 lg:grid-cols-3{{ ' reveal-items' if ctx.reveal }}">
+{%- for f in s.items %}
+{%- if loop.first and lead %}
+{%- set img = { slug: lead.slug, ratio: "4:3", alt: lead.alt or "", max: 1200, art: lead.art, tone: lead.tone } %}
+<li class="lg:col-span-2 lg:row-span-2{{ item(0, 3, ctx, 'settle') }}">
+<div class="flex h-full flex-col overflow-clip rounded-lg bg-surface-raised ring-1 ring-line">
+<div class="relative min-h-64 flex-1 overflow-clip">{{ picture(img, { sizes: "(min-width: 64rem) 60vw, 100vw", class: "absolute inset-0 size-full object-cover" + zoom(ctx) }) }}</div>
+<div class="p-6 md:p-8">{{ title(f, "text-2xl") }}<p class="mt-2 max-w-2xl text-base leading-relaxed text-ink-muted">{{ f.text }}</p></div>
+</div>
+</li>
+{%- else %}
+<li class="{{ item(loop.index0, 3, ctx) }}">
+<div class="h-full rounded-lg bg-surface-raised p-6 ring-1 ring-line md:p-8">
+<span class="inline-flex size-12 items-center justify-center rounded-md bg-brand-100 text-brand-800{{ pop(ctx, (loop.index0 % 3) * 90) }}">{{ icon(f.icon or "layers", { size: "size-6" }) }}</span>
+<div class="mt-4">{{ title(f, "text-xl") }}</div>
+<p class="mt-2 text-base leading-relaxed text-ink-muted">{{ f.text }}</p>
+</div>
+</li>
+{%- endif %}
+{%- endfor %}
+</ul>
+{% endcall %}
+{% endmacro %}

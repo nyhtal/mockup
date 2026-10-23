@@ -61,6 +61,9 @@ Every entrance is a fade plus a move, time-based and once (R-MOT-05): it waits f
 | CTA panel | settles from 96 %; its highlight drifts across (expressive) | a framed object with light on it |
 | timeline | the rule draws down; entries rise, staggered | time passes down the rule |
 | pricing | the column vocabulary; the recommended tier always takes the framed settle | the one to look at lands last |
+| feature bento | the column vocabulary; the lead tile always takes the framed settle and its picture settles from 115 % | one main idea, two supporting |
+| feature index, spotlight points | rows rise in sequence, 70 ms apart; the spotlight picture slides in from the start and settles | a numbered list reads down |
+| feature disclosures | the list rises as one; panels open on request with the disclosure transition | detail on demand |
 | FAQ, forms, contact, footer | no entrance; interaction feedback only | reading and doing |
 
 **The column vocabulary** (R-MOT-16): three columns are slide-in / rise / framed settle; four columns add slide-from-end; two columns are slide-in / slide-from-end. Slides mirror in RTL. From `standard`; `calm` rises everything.

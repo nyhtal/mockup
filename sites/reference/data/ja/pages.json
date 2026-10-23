@@ -46,7 +46,7 @@
       "from": "customers"
     },
     "feature-grid-home": {
-      "type": "feature-grid",
+      "type": "feature-bento",
       "eyebrow": "Northwindが選ばれる理由",
       "title": "ラインに必要なものはすべて揃い、手書きのコードは不要",
       "lede": "工程を一度記述するだけ。Northwindが同じ記述から、ロジック、テスト、ドキュメントを生成します。",
@@ -81,7 +81,13 @@
           "title": "日本語でサポート",
           "text": "マンチェスター、ハンブルク、リヤド、東京のエンジニアが、各地の営業時間内に対応します。"
         }
-      ]
+      ],
+      "image": {
+        "slug": "home-bento-lead",
+        "art": "airflow",
+        "tone": "dark",
+        "alt": ""
+      }
     },
     "feature-rows-home": {
       "type": "feature-rows",
@@ -833,8 +839,7 @@
       "from": "integrations"
     },
     "about-rows": {
-      "type": "feature-rows",
-      "variant": "sticky",
+      "type": "feature-spotlight",
       "eyebrow": "当社について",
       "title": "ラインの立ち上げを生業としてきた人たちがつくりました",
       "items": [
@@ -1042,12 +1047,11 @@
       }
     },
     "sustainability-rows": {
-      "type": "feature-rows",
+      "type": "feature-disclosures",
       "eyebrow": "サステナビリティ",
       "title": "廃棄を減らし、移動を減らし、ラインを長く使う",
       "items": [
         {
-          "eyebrow": "廃棄",
           "title": "バッチを無駄にしない段取り替え",
           "text": "レシピの上限設定と記録された段取り替えにより、食品ラインの立ち上げ時の廃棄が初年度で3分の1減りました。",
           "image": {
@@ -1058,7 +1062,6 @@
           }
         },
         {
-          "eyebrow": "移動",
           "title": "記述をもとに立ち上げ",
           "text": "受け入れ試験はStudioから実行するため、エンジニアの出張が減り、初回の量産立ち上げも3回ではなく1回の訪問で済みます。",
           "image": {
@@ -1100,27 +1103,23 @@
       ]
     },
     "trust-grid": {
-      "type": "feature-grid",
+      "type": "feature-index",
       "eyebrow": "信頼とセキュリティ",
       "title": "記述とログを安全に守る仕組み",
       "items": [
         {
-          "icon": "lock",
           "title": "署名付きアップデート",
           "text": "ランタイムのアップデートはすべて署名付きです。適用のタイミングは各工場が決められます。"
         },
         {
-          "icon": "scroll-text",
           "title": "追記専用のログ",
           "text": "変更ログは編集できず、エクスポートにはチェックサムが付きます。"
         },
         {
-          "icon": "globe",
           "title": "EU内でのホスティング",
           "text": "標準でEUの2リージョンを使用します。Enterpriseはオンプレミスにも対応します。"
         },
         {
-          "icon": "users",
           "title": "許可したときだけのアクセス",
           "text": "サポートがデータを閲覧できるのはお客様が許可している間だけで、すべてのアクセスが記録されます。"
         }

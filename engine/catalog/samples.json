@@ -474,6 +474,152 @@
       ]
     },
     {
+      "id": "feature-bento",
+      "type": "feature-bento",
+      "eyebrow": "Platform",
+      "title": "One description, everything the line needs",
+      "lede": "Describe the process once; the logic, the tests and the documentation come from the same source.",
+      "image": {
+        "slug": "sg-bento-lead",
+        "art": "airflow",
+        "tone": "dark",
+        "alt": ""
+      },
+      "items": [
+        {
+          "icon": "cpu",
+          "title": "Generated PLC logic",
+          "text": "Validated ladder and structured text for Siemens, Rockwell and Beckhoff, from one plain-language description your engineers can read back."
+        },
+        {
+          "icon": "shield-check",
+          "title": "Interlocks you can audit",
+          "text": "Every safety rule traced from requirement to tested logic."
+        },
+        {
+          "icon": "scroll-text",
+          "title": "Changes with history",
+          "text": "Each edit is versioned, reviewed and reversible."
+        },
+        {
+          "icon": "gauge",
+          "title": "Live line health",
+          "text": "Cycle times and stops in one view per line."
+        },
+        {
+          "icon": "users",
+          "title": "Shift-friendly",
+          "text": "Line leads change recipes within limits engineers set."
+        },
+        {
+          "icon": "file-text",
+          "title": "Docs that keep up",
+          "text": "Manuals regenerate with every approved change."
+        }
+      ]
+    },
+    {
+      "id": "feature-index",
+      "type": "feature-index",
+      "eyebrow": "How we work",
+      "title": "Four commitments to every plant",
+      "items": [
+        {
+          "title": "Signed updates",
+          "text": "Every runtime update is signed; plants apply it in their own maintenance window and can roll back in one step.",
+          "link": {
+            "label": "Read the security note",
+            "href": "/sys/style-guide/"
+          }
+        },
+        {
+          "title": "Your logic, your files",
+          "text": "Generated code exports as plain project files for your own toolchain. Nothing is locked to our editor."
+        },
+        {
+          "title": "Engineers on the phone",
+          "text": "Support is answered by controls engineers who have commissioned lines, in your time zone."
+        },
+        {
+          "title": "Evidence by default",
+          "text": "Every change ships with its test record and the reviewer who approved it."
+        }
+      ]
+    },
+    {
+      "id": "feature-spotlight",
+      "type": "feature-spotlight",
+      "eyebrow": "Commissioning",
+      "title": "Nine days from description to running line",
+      "image": {
+        "slug": "sg-spotlight",
+        "art": "fins-quiet",
+        "tone": "dark",
+        "alt": ""
+      },
+      "caption": "Average across 212 lines commissioned in 2026.",
+      "items": [
+        {
+          "eyebrow": "Days 1–2",
+          "title": "Walk the line",
+          "text": "Stations, sensors and rules written down in plain language with your engineers."
+        },
+        {
+          "eyebrow": "Days 3–6",
+          "title": "Generate and simulate",
+          "text": "Logic, tests and HMI screens generated and run against a model of the line."
+        },
+        {
+          "eyebrow": "Days 7–9",
+          "title": "Commission",
+          "text": "Validated logic loaded shift by shift, with a rollback for every step."
+        }
+      ]
+    },
+    {
+      "id": "feature-disclosures",
+      "type": "feature-disclosures",
+      "eyebrow": "Capabilities",
+      "title": "Open a capability to see how it works",
+      "group": "sg-capabilities",
+      "items": [
+        {
+          "title": "Describe the line in plain language",
+          "text": "Stations, sensors, actuators and the rules between them, written in words your team can read back and correct.",
+          "image": {
+            "slug": "sg-disc-describe",
+            "art": "contours-field",
+            "tone": "light",
+            "alt": ""
+          },
+          "link": {
+            "label": "See line automation",
+            "href": "/sys/style-guide/"
+          }
+        },
+        {
+          "title": "Generate validated logic",
+          "text": "Northwind writes ladder and structured text for your PLC family and proves it against the description before anyone loads it.",
+          "image": {
+            "slug": "sg-disc-generate",
+            "art": "traces-quiet",
+            "tone": "dark",
+            "alt": ""
+          }
+        },
+        {
+          "title": "Operate with history",
+          "text": "Every change is versioned, reviewed and reversible, so a recipe tweak on the night shift is as safe as a planned release.",
+          "image": {
+            "slug": "sg-disc-operate",
+            "art": "glass",
+            "tone": "light",
+            "alt": ""
+          }
+        }
+      ]
+    },
+    {
       "id": "stats",
       "type": "stats",
       "title": "Measured across customers",

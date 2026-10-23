@@ -1,0 +1,32 @@
+{#
+  name: feature-index
+  purpose: 3–6 points as a numbered editorial list: number, title and text on ruled rows, no icons (R-SEC-03, R-SEC-04).
+  anatomy: shell > ol > li.grid(md:grid-cols-12)[hairline above](span.number[1 col] + h3[4 cols] + div(p + link)[7 cols]), a hairline under the last row
+  variants: none
+  states: none
+  spacing: rows py-8 md:py-10; columns gap-2 md:gap-8; the number in tabular figures
+  motion: rows rise in sequence, 70 ms apart (the list stagger, R-MOT-03)
+  keyboard: optional link per row
+  a11y: an ordered list, so the numbers are the list's own; the visible number is aria-hidden to avoid reading it twice
+  i18n: columns follow the writing direction; numbers stay in Latin digits as every figure on the site (D42)
+  content limits: 3–6 items; title ≤ 8 words; text ≤ 45 words
+  data: s = { eyebrow, title, lede, items: [{ title, text, link: {label, href} }] | from }
+#}
+{% from "sections/_shell.njk" import shell, stagger with context %}
+{% from "primitives/button.njk" import button with context %}
+{% macro render(s, ctx) %}
+{% call shell("feature-index", s, ctx, { itemsReveal: ctx.reveal }) %}
+<ol class="border-b border-line">
+{%- for f in s.items %}
+<li class="grid gap-2 border-t border-line py-8 md:grid-cols-12 md:gap-8 md:py-10{{ stagger(loop.index0) if ctx.reveal }}">
+<span aria-hidden="true" class="text-sm font-semibold tabular-nums text-ink-brand md:col-span-1 md:pt-1.5">{{ "0" if loop.index < 10 }}{{ loop.index }}</span>
+<h3 class="text-xl font-semibold tracking-tight text-balance md:col-span-4 md:text-2xl">{{ f.title }}</h3>
+<div class="md:col-span-7">
+<p class="text-base leading-relaxed text-ink-muted">{{ f.text }}</p>
+{%- if f.link %}<div class="mt-4">{{ button(f.link.label, { href: f.link.href, variant: "link", iconEnd: "arrow-right" }) }}</div>{% endif %}
+</div>
+</li>
+{%- endfor %}
+</ol>
+{% endcall %}
+{% endmacro %}

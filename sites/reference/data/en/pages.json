@@ -46,7 +46,7 @@
       "from": "customers"
     },
     "feature-grid-home": {
-      "type": "feature-grid",
+      "type": "feature-bento",
       "eyebrow": "Why Northwind",
       "title": "Everything a line needs, nothing a programmer has to hand-write",
       "lede": "Describe the process once. Northwind generates the logic, the tests and the documentation from the same source.",
@@ -81,7 +81,13 @@
           "title": "Support in your language",
           "text": "Engineers in Manchester, Hamburg, Riyadh and Tokyo answer in local hours."
         }
-      ]
+      ],
+      "image": {
+        "slug": "home-bento-lead",
+        "art": "airflow",
+        "tone": "dark",
+        "alt": ""
+      }
     },
     "feature-rows-home": {
       "type": "feature-rows",
@@ -833,8 +839,7 @@
       "from": "integrations"
     },
     "about-rows": {
-      "type": "feature-rows",
-      "variant": "sticky",
+      "type": "feature-spotlight",
       "eyebrow": "About us",
       "title": "Built by people who commissioned lines for a living",
       "items": [
@@ -1042,12 +1047,11 @@
       }
     },
     "sustainability-rows": {
-      "type": "feature-rows",
+      "type": "feature-disclosures",
       "eyebrow": "Sustainability",
       "title": "Less waste, fewer trips, longer-lived lines",
       "items": [
         {
-          "eyebrow": "Waste",
           "title": "Changeovers that do not scrap a batch",
           "text": "Recipe limits and logged changeovers cut start-up scrap on food lines by a third in the first year.",
           "image": {
@@ -1058,7 +1062,6 @@
           }
         },
         {
-          "eyebrow": "Travel",
           "title": "Commissioning from the description",
           "text": "Acceptance tests run from Studio, so engineers fly less and the first production run needs one visit, not three.",
           "image": {
@@ -1100,27 +1103,23 @@
       ]
     },
     "trust-grid": {
-      "type": "feature-grid",
+      "type": "feature-index",
       "eyebrow": "Trust and security",
       "title": "How we keep your descriptions and logs safe",
       "items": [
         {
-          "icon": "lock",
           "title": "Signed updates",
           "text": "Every runtime update is signed; plants apply it in their own window."
         },
         {
-          "icon": "scroll-text",
           "title": "Append-only logs",
           "text": "Change logs cannot be edited; exports carry a checksum."
         },
         {
-          "icon": "globe",
           "title": "EU hosting",
           "text": "Two EU regions by default; on premise for Enterprise."
         },
         {
-          "icon": "users",
           "title": "Access you grant",
           "text": "Support sees your data only while you allow it, and every access is logged."
         }

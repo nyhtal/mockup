@@ -9,9 +9,9 @@
   {
     "slug": "marketing",
     "title": "Features, proof and calls to action",
-    "summary": "The sections that sell: features, steps, figures, customer quotes and stories, integrations, the before/after slider, the call-to-action band and the newsletter signup.",
+    "summary": "The sections that sell: features (grid, rows, bento, numbered index, spotlight, disclosures), steps, figures, customer quotes and stories, integrations, the before/after slider, the call-to-action band and the newsletter signup.",
     "description": "Feature, proof and conversion sections of the catalog: features, steps, stats, testimonials, case studies, integrations, CTA band and newsletter signup.",
-    "sections": ["feature-grid", "feature-rows", "steps", "stats", "stats-plain", "testimonials-single", "testimonials-grid", "testimonials-carousel", "case-study-cards", "integration-grid", "before-after", "cta-band", "newsletter"]
+    "sections": ["feature-grid", "feature-rows", "feature-bento", "feature-index", "feature-spotlight", "feature-disclosures", "steps", "stats", "stats-plain", "testimonials-single", "testimonials-grid", "testimonials-carousel", "case-study-cards", "integration-grid", "before-after", "cta-band", "newsletter"]
   },
   {
     "slug": "offer",

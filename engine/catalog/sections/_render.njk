@@ -9,6 +9,10 @@
 {% from "sections/logo-cloud.njk" import render as logoCloud with context %}
 {% from "sections/feature-grid.njk" import render as featureGrid with context %}
 {% from "sections/feature-rows.njk" import render as featureRows with context %}
+{% from "sections/feature-bento.njk" import render as featureBento with context %}
+{% from "sections/feature-index.njk" import render as featureIndex with context %}
+{% from "sections/feature-spotlight.njk" import render as featureSpotlight with context %}
+{% from "sections/feature-disclosures.njk" import render as featureDisclosures with context %}
 {% from "sections/stats.njk" import render as stats with context %}
 {% from "sections/testimonials.njk" import render as testimonials with context %}
 {% from "sections/cta-band.njk" import render as ctaBand with context %}
@@ -82,6 +86,10 @@
 {%- elif t == "logo-cloud" %}{{ logoCloud(s, ctx) }}
 {%- elif t == "feature-grid" %}{{ featureGrid(s, ctx) }}
 {%- elif t == "feature-rows" %}{{ featureRows(s, ctx) }}
+{%- elif t == "feature-bento" %}{{ featureBento(s, ctx) }}
+{%- elif t == "feature-index" %}{{ featureIndex(s, ctx) }}
+{%- elif t == "feature-spotlight" %}{{ featureSpotlight(s, ctx) }}
+{%- elif t == "feature-disclosures" %}{{ featureDisclosures(s, ctx) }}
 {%- elif t == "stats" %}{{ stats(s, ctx) }}
 {%- elif t == "testimonials" %}{{ testimonials(s, ctx) }}
 {%- elif t == "cta-band" %}{{ ctaBand(s, ctx) }}

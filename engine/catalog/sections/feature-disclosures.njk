@@ -1,0 +1,43 @@
+{#
+  name: feature-disclosures
+  purpose: 2–5 capabilities shown on demand: native disclosures, one open at a time, each opening onto its text and its picture (R-SEC-03, R-SEC-04, R-COMP-10).
+  anatomy: shell > div.divide-y > details[name][disclosure] > summary(number + h3 + chevron) + div.grid(md:grid-cols-2)(text + link? | picture)
+  variants: none
+  states: closed, open (the first by default; the chevron turns, the panel opens with the disclosure height transition of R-MOT-06)
+  spacing: summary py-6; the open panel pb-8, its text and picture gap-8; picture rounded-xl with a hairline ring
+  motion: user-initiated only: the disclosure height and opacity transition, the chevron rotation; the list rises as one (R-MOT-05)
+  keyboard: Tab to each summary, Enter or Space toggles (native)
+  a11y: the summary holds the h3 text; pictures take their declared alt ("" when they only decorate); a closed panel's picture is not rendered, so it loads when opened (lazy)
+  i18n: none; the number and chevron follow the writing direction
+  content limits: 2–5 items; title ≤ 8 words; text ≤ 50 words
+  data: s = { eyebrow, title, lede, group, items: [{ title, text, image: { slug, alt, art, tone }, link: {label, href} }] }
+#}
+{% from "sections/_shell.njk" import shell with context %}
+{% from "primitives/disclosure.njk" import disclosure with context %}
+{% from "primitives/picture.njk" import picture with context %}
+{% from "primitives/button.njk" import button with context %}
+{% macro render(s, ctx) %}
+{% call shell("feature-disclosures", s, ctx) %}
+<div class="divide-y divide-line border-y border-line">
+{%- for f in s.items %}
+<details class="group{{ disclosure() }}" name="{{ s.group or ('features-' + ctx.index) }}"{% if loop.first %} open{% endif %}>
+<summary class="flex cursor-pointer list-none items-center gap-4 py-6 text-start focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">
+<span aria-hidden="true" class="w-8 shrink-0 text-sm font-semibold tabular-nums text-ink-brand">{{ "0" if loop.index < 10 }}{{ loop.index }}</span>
+<h3 class="flex-1 text-xl font-semibold tracking-tight md:text-2xl">{{ f.title }}</h3>
+<svg aria-hidden="true" class="size-5 shrink-0 text-ink-muted motion-safe:transition-transform motion-safe:duration-150 group-open:rotate-180"><use href="#i-chevron-down"></use></svg>
+</summary>
+<div class="grid items-center gap-8 pb-8 md:grid-cols-2 md:ps-12">
+<div>
+<p class="text-base leading-relaxed text-ink-muted md:text-lg">{{ f.text }}</p>
+{%- if f.link %}<div class="mt-6">{{ button(f.link.label, { href: f.link.href, variant: "link", iconEnd: "arrow-right" }) }}</div>{% endif %}
+</div>
+{%- if f.image %}
+{%- set img = { slug: f.image.slug, ratio: "16:9", alt: f.image.alt or "", max: 1200, art: f.image.art, tone: f.image.tone } %}
+<div class="overflow-clip rounded-xl ring-1 ring-line">{{ picture(img, { sizes: "(min-width: 48rem) 40vw, 100vw", class: "aspect-video w-full object-cover" }) }}</div>
+{%- endif %}
+</div>
+</details>
+{%- endfor %}
+</div>
+{% endcall %}
+{% endmacro %}

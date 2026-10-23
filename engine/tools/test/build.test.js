@@ -177,10 +177,10 @@ test("opening group (R-LAY-02): a page header joins a plain first section at 48/
     const pad = (c) => c.split(/\s+/).filter((t) => /^(md:)?p[ytb]-/.test(t)).join(" ");
     return { tag: m[1], header: pad(m[2]), next: m[4], nextPad: pad(m[3]) };
   };
-  assert.deepEqual(pair("/en/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-rows", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" }, "a split header joins like a plain one");
+  assert.deepEqual(pair("/en/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-spotlight", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" }, "a split header joins like a plain one");
   assert.deepEqual(pair("/en/services/"), { tag: "section", header: "py-16 md:py-24", next: "service-cards", nextPad: "py-16 md:py-24" }, "a banner header is a band of its own (0.11.0)");
   assert.deepEqual(pair("/en/careers/"), { tag: "section", header: "py-12 md:py-16", next: "feature-grid", nextPad: "py-16 md:py-24" }, "a band header keeps its padding under its picture (0.11.0)");
-  assert.deepEqual(pair("/ar/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-rows", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" });
+  assert.deepEqual(pair("/ar/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-spotlight", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" });
   assert.deepEqual(pair("/en/legal/privacy/"), { tag: "header", header: "pt-12 md:pt-16", next: "prose", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" }, "an article without a byline joins its header to the prose");
   assert.deepEqual(pair("/en/blog/reading-generated-code/"), { tag: "header", header: "py-12 md:py-16", next: "article-meta", nextPad: "py-6" }, "the byline strip sits between header and prose");
   assert.deepEqual(pair("/en/customers/alder-foods/"), { tag: "header", header: "py-12 md:py-16", next: "stats", nextPad: "py-16 md:py-24" }, "a brand band after the header");
@@ -649,7 +649,8 @@ test("motion: smooth scrolling, floating back-to-top under sda, time-based item 
   assert.match(html, /data-component="back-to-top" data-variant="float"/);
   assert.match(html, /motion-safe:sda:animate-rise-in[^"]*motion-safe:sda:\[animation-timeline:scroll\(\)\]/);
   // Grid items are time-based entrances (R-MOT-05, R-MOT-16): a from-state under pending:, a transition that exists only once revealed, a delay by column.
-  const feat = /data-component="feature-grid"[\s\S]*?<\/section>/.exec(html)[0];
+  // The home features became a bento in 0.12.0; the careers page keeps a three-column feature grid.
+  const feat = /data-component="feature-grid"[\s\S]*?<\/section>/.exec(readFileSync("dist/reference/en/careers/index.html", "utf8"))[0];
   assert.match(feat, /<li class=" pending:opacity-0 pending:-translate-x-\(--reveal-distance\) rtl:pending:translate-x-\(--reveal-distance\) motion-safe:data-revealed:transition-\[opacity,translate,scale\] motion-safe:data-revealed:duration-\(--reveal-duration\) motion-safe:data-revealed:ease-reveal">/, "the first column slides in at once");
   assert.match(feat, /<li class=" pending:opacity-0 pending:translate-y-\(--reveal-distance\) motion-safe:data-revealed:transition-\[opacity,translate,scale\][^"]*motion-safe:data-revealed:delay-90">/, "the second column rises 90 ms later");
   assert.match(feat, /<li class=" pending:opacity-0 pending:translate-y-\(--reveal-distance\) pending:scale-94 [^"]*motion-safe:data-revealed:delay-180">/, "the third column settles 180 ms later");

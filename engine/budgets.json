@@ -24,7 +24,7 @@
     },
     "/ar/index.html": {
       "html": 88064,
-      "page": 337920
+      "page": 344064
     },
     "/ja/index.html": {
       "html": 88064
@@ -32,6 +32,10 @@
     "/careers/culture/": {
       "html": 86016,
       "page": 370688
+    },
+    "/ar/lp/": {
+      "html": 84992,
+      "page": 337920
     },
     "/lp/": {
       "html": 84992

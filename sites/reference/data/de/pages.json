@@ -46,7 +46,7 @@
       "from": "customers"
     },
     "feature-grid-home": {
-      "type": "feature-grid",
+      "type": "feature-bento",
       "eyebrow": "Warum Northwind",
       "title": "Alles, was eine Linie braucht, nichts, was ein Programmierer von Hand schreiben muss",
       "lede": "Beschreiben Sie den Prozess einmal. Northwind erzeugt Logik, Tests und Dokumentation aus derselben Quelle.",
@@ -81,7 +81,13 @@
           "title": "Support in Ihrer Sprache",
           "text": "Ingenieure in Manchester, Hamburg, Riad und Tokio antworten zu lokalen Zeiten."
         }
-      ]
+      ],
+      "image": {
+        "slug": "home-bento-lead",
+        "art": "airflow",
+        "tone": "dark",
+        "alt": ""
+      }
     },
     "feature-rows-home": {
       "type": "feature-rows",
@@ -810,8 +816,7 @@
       "from": "integrations"
     },
     "about-rows": {
-      "type": "feature-rows",
-      "variant": "sticky",
+      "type": "feature-spotlight",
       "eyebrow": "Über uns",
       "title": "Gebaut von Leuten, die beruflich Linien in Betrieb genommen haben",
       "items": [
@@ -1019,12 +1024,11 @@
       }
     },
     "sustainability-rows": {
-      "type": "feature-rows",
+      "type": "feature-disclosures",
       "eyebrow": "Nachhaltigkeit",
       "title": "Weniger Ausschuss, weniger Reisen, langlebigere Linien",
       "items": [
         {
-          "eyebrow": "Ausschuss",
           "title": "Umrüstungen, die keine Charge verwerfen",
           "text": "Rezeptgrenzen und protokollierte Umrüstungen senkten den Anfahrausschuss auf Lebensmittellinien im ersten Jahr um ein Drittel.",
           "image": {
@@ -1035,7 +1039,6 @@
           }
         },
         {
-          "eyebrow": "Reisen",
           "title": "Inbetriebnahme aus der Beschreibung",
           "text": "Abnahmetests laufen aus Studio, sodass Ingenieure weniger fliegen und der erste Produktionslauf einen Besuch braucht, nicht drei.",
           "image": {
@@ -1077,27 +1080,23 @@
       ]
     },
     "trust-grid": {
-      "type": "feature-grid",
+      "type": "feature-index",
       "eyebrow": "Vertrauen und Sicherheit",
       "title": "Wie wir Ihre Beschreibungen und Protokolle schützen",
       "items": [
         {
-          "icon": "lock",
           "title": "Signierte Updates",
           "text": "Jedes Laufzeit-Update ist signiert; Werke spielen es in ihrem eigenen Fenster ein."
         },
         {
-          "icon": "scroll-text",
           "title": "Nur anfügbare Protokolle",
           "text": "Änderungsprotokolle können nicht bearbeitet werden; Exporte tragen eine Prüfsumme."
         },
         {
-          "icon": "globe",
           "title": "EU-Hosting",
           "text": "Standardmäßig zwei EU-Regionen; On-Premise für Enterprise."
         },
         {
-          "icon": "users",
           "title": "Zugang, den Sie gewähren",
           "text": "Der Support sieht Ihre Daten nur, solange Sie es erlauben, und jeder Zugriff wird protokolliert."
         }
