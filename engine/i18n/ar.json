@@ -116,6 +116,10 @@
     "pageOf": "الصفحة {n} من {total}",
     "filterResults": "عرض",
     "all": "الكل",
+    "resultsView": "طريقة العرض",
+    "viewList": "قائمة",
+    "viewCards": "بطاقات",
+    "popularSearches": "عمليات بحث شائعة",
     "searchGroups": {
       "offer": "الخدمات والمنتجات",
       "articles": "المقالات والأخبار",

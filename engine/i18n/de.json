@@ -116,6 +116,10 @@
     "pageOf": "Seite {n} von {total}",
     "filterResults": "Anzeigen",
     "all": "Alle",
+    "resultsView": "Ansicht",
+    "viewList": "Liste",
+    "viewCards": "Karten",
+    "popularSearches": "Häufige Suchen",
     "searchGroups": {
       "offer": "Leistungen und Produkte",
       "articles": "Artikel und Presse",

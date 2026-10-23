@@ -1,11 +1,38 @@
 {#
   name: search-box (section)
-  purpose: Large search form on the search and help pages.
-  anatomy: shell > search-box(hero)
-  data: s = { title, lede }
+  purpose: Large search form on the search and help pages. When it opens the page it is the page's header (R-SEC-08): breadcrumbs, eyebrow, h1 and lede from the page, then the search field with the current query and the popular searches, so the page never shows a page header and a search title one under the other.
+  anatomy: header form: section[data-variant=header] > container > breadcrumbs + hgroup(eyebrow + h1 + lede) + search-box(hero, value = query) + p(popular searches: links) | inside the page: shell > search-box(hero)
+  variants: header (s.opener, set by the section planner when the section comes first) | inline (anywhere else)
+  states: the field shows the query the results below are for
+  spacing: header py-12 md:py-16 on the alternate surface, hgroup to form mt-8, form to popular searches mt-4
+  motion: none (it carries the h1, R-SEC-10)
+  keyboard: the field, the submit button, then each popular search
+  a11y: the search landmark names itself; the popular searches are plain links, labelled by the text before them
+  i18n: ui.popularSearches
+  content limits: up to 6 suggestions of ≤ 3 words
+  data: s = { title, lede, suggestions, query (filled from the page's search-results), opener: { eyebrow, title, lede } (set by the planner) }
 #}
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/search-box.njk" import searchBox with context %}
+{% from "components/breadcrumbs.njk" import breadcrumbs with context %}
 {% macro render(s, ctx) %}
+{%- if s.opener %}
+{%- set h = "h2" if ctx.demote else "h1" -%}
+<section class="py-12 md:py-16 {{ s.surface or 'bg-surface-alt' }}" data-component="search-box" data-variant="header"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
+<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+{%- if ctx.breadcrumbs and ctx.breadcrumbs.length %}<div class="mb-6">{{ breadcrumbs(ctx.breadcrumbs) }}</div>{% endif %}
+<hgroup class="max-w-3xl">
+{%- if s.opener.eyebrow %}<p class="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-ink-brand before:h-0.5 before:w-6 before:rounded-full before:bg-accent-600">{{ s.opener.eyebrow }}</p>{% endif -%}
+<{{ h }} class="{{ 'mt-2' if s.opener.eyebrow }} text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ s.opener.title | wbr | safe }}</{{ h }}>
+{%- if s.opener.lede %}<p class="mt-4 text-lg md:text-xl text-ink-muted">{{ s.opener.lede }}</p>{% endif %}
+</hgroup>
+<div class="mt-8 max-w-2xl">{{ searchBox(ctx.locale, { suggestions: s.suggestions, variant: "hero", id: "q-page", value: s.query }) }}</div>
+{%- if s.suggestions and s.suggestions.length %}
+<p class="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm"><span class="text-ink-muted">{{ "ui.popularSearches" | t }}:</span>{% for o in s.suggestions %}<a href="/{{ ctx.locale }}/search/?q={{ o | urlencode }}" class="font-medium text-ink-brand hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ o }}</a>{% endfor %}</p>
+{%- endif %}
+</div>
+</section>
+{%- else %}
 {% call shell("search-box", s, ctx, { noReveal: true, center: true }) %}<div class="mx-auto max-w-2xl">{{ searchBox(ctx.locale, { suggestions: s.suggestions, variant: "hero", id: "q-page" }) }}</div>{% endcall %}
+{%- endif %}
 {% endmacro %}

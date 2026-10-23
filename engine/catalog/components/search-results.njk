@@ -1,14 +1,14 @@
 {#
   name: search-results
   purpose: One page of search results with type filters and paging (R-PAGE-11; to-do 4).
-  anatomy: div[data-component=search-results] > p(count, page n of N) + fieldset(legend + radio chips: all + one per group, with counts) + ol > li[data-group] > (badge + h2 > a(title with <mark>) + p(excerpt with <mark>) + p(url)) + pagination
-  variants: none
+  anatomy: div[data-component=search-results] > p(count, page n of N) + div(fieldset(legend + radio chips: all + one per group, with counts) + fieldset(legend + list | cards chips)) + ol > li[data-group] > (badge + h2 > a(title with <mark>) + p(excerpt with <mark>) + p(url)) + pagination
+  variants: none; a list or card layout chosen by the reader (the Cards chip turns the list into a grid of raised cards, two across from sm, three from lg)
   states: a filter chip is checked (brand), disabled when no result on this page belongs to it; the list hides the other groups through CSS :has() on the wrapper, so filtering needs no script
   spacing: chips gap-2 mt-6; list mt-6 space-y-6; pagination mt-12
   motion: none
   keyboard: the chips are native radio buttons (arrow keys move between them, the focus ring sits on the chip); links
   a11y: the filters are a fieldset with a legend; the radios are visually hidden but focusable, their labels carry the focus ring; matched terms are <mark>; the current page is aria-current in the pagination
-  i18n: ui.resultsFor (plural), ui.pageOf, ui.filterResults, ui.all, ui.searchGroups.*
+  i18n: ui.resultsFor (plural), ui.pageOf, ui.filterResults, ui.all, ui.searchGroups.*, ui.resultsView, ui.viewList, ui.viewCards
   content limits: 12 results per page
   note: the filter class list is printed with | safe: Nunjucks would escape its "&" to "&amp;", which browsers decode but Tailwind's scanner does not, so the rules would never be generated
   data: r = { query, items: [{ href, titleHtml, excerptHtml, group }], total, page, pages, counts, groups }, opts = { level, base (the first page's URL), id }
@@ -21,25 +21,39 @@
 {%- set id = opts.id or "sf" -%}
 {%- set hide = [] -%}
 {%- for g in r.groups %}{% set hide = (hide.push("[&:has(#" + id + "-" + g + ":checked)_li[data-group]:not([data-group=" + g + "])]:hidden"), hide) %}{% endfor -%}
+{#- The card view: with the Cards chip checked the list becomes a grid of raised cards, two across from sm and three from lg; the list view keeps the reading measure. Printed once on the wrapper, like the filters; the selector names the chip by its value, not its id, so every instance shares one set of rules (the id-based set cost 3 KB of CSS per instance). -#}
+{%- set cv = "[&:has([value=cards]:checked)_" -%}
+{%- for c in [cv + "ol]:grid", cv + "ol]:max-w-none", cv + "ol]:gap-6", "sm:" + cv + "ol]:grid-cols-2", "lg:" + cv + "ol]:grid-cols-3", cv + "ol>li]:m-0", cv + "ol>li]:rounded-lg", cv + "ol>li]:bg-surface-raised", cv + "ol>li]:p-6", cv + "ol>li]:ring-1", cv + "ol>li]:ring-line"] %}{% set hide = (hide.push(c), hide) %}{% endfor -%}
+{%- set chip = "inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:bg-surface-alt has-checked:border-brand-600 has-checked:bg-brand-600 has-checked:text-ink-inverse has-disabled:cursor-not-allowed has-disabled:opacity-60 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150" -%}
 <div data-component="search-results" class="{{ hide | join(' ') | safe }}">
 {%- if r.items.length %}
 <p class="text-sm text-ink-muted">{%- set rf = "ui.resultsFor" | t(r.total) -%}{{ rf.split("{query}")[0] }}<bdi>{{ r.query }}</bdi>{{ rf.split("{query}")[1] }}{% if r.pages > 1 %} · {{ "ui.pageOf" | t | replace("{n}", r.page) | replace("{total}", r.pages) }}{% endif %}</p>
-<fieldset class="mt-6">
+<div class="mt-6 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
+<fieldset>
 <legend class="text-sm font-medium">{{ "ui.filterResults" | t }}</legend>
 <div class="mt-2 flex flex-wrap gap-2">
 {%- for g in ["all"].concat(r.groups) %}
 {%- set n = r.counts[g] -%}
-<label class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:bg-surface-alt has-checked:border-brand-600 has-checked:bg-brand-600 has-checked:text-ink-inverse has-disabled:cursor-not-allowed has-disabled:opacity-60 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150"><input type="radio" name="{{ id }}" id="{{ id }}-{{ g }}" value="{{ g }}" class="sr-only"{% if g == "all" %} checked{% endif %}{% if not n %} disabled{% endif %}>{{ ("ui.all" if g == "all" else "ui.searchGroups." + g) | t }} <span class="tabular-nums">({{ n }})</span></label>
+<label class="{{ chip }}"><input type="radio" name="{{ id }}" id="{{ id }}-{{ g }}" value="{{ g }}" class="sr-only"{% if g == "all" %} checked{% endif %}{% if not n %} disabled{% endif %}>{{ ("ui.all" if g == "all" else "ui.searchGroups." + g) | t }} <span class="tabular-nums">({{ n }})</span></label>
 {%- endfor %}
 </div>
 </fieldset>
-<ol class="mt-6 space-y-6">
+<fieldset>
+<legend class="text-sm font-medium">{{ "ui.resultsView" | t }}</legend>
+<div class="mt-2 flex gap-2">
+{%- for v in ["list", "cards"] %}
+<label class="{{ chip }}"><input type="radio" name="{{ id }}-view" id="{{ id }}-{{ v }}" value="{{ v }}" class="sr-only"{% if v == "list" %} checked{% endif %}><svg aria-hidden="true" class="size-4"><use href="#i-{{ 'list' if v == 'list' else 'layout-grid' }}"></use></svg>{{ ("ui.viewList" if v == "list" else "ui.viewCards") | t }}</label>
+{%- endfor %}
+</div>
+</fieldset>
+</div>
+<ol class="mt-6 max-w-3xl space-y-6">
 {%- for item in r.items %}
 <li data-group="{{ item.group }}">
 <p>{{ badge(("ui.searchGroups." + item.group) | t) }}</p>
 <{{ h }} class="mt-2 text-xl font-semibold"><a href="{{ item.href }}" class="hover:underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ item.titleHtml | safe }}</a></{{ h }}>
 <p class="mt-1 text-base leading-relaxed text-ink-muted">{{ item.excerptHtml | safe }}</p>
-<p class="mt-1 text-sm text-ink-muted">{{ item.href }}</p>
+<p class="mt-1 text-sm text-ink-muted wrap-anywhere">{{ item.href }}</p>
 </li>
 {%- endfor %}
 </ol>

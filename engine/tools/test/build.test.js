@@ -231,7 +231,21 @@ test("search: results from the site's own content, filters that work without scr
   assert.match(w[1], /\[&:has\(#sf\d-jobs:checked\)_li\[data-group\]:not\(\[data-group=jobs\]\)\]:hidden/, "the filter classes reach the HTML unescaped, so Tailwind compiles them");
   assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes(":has(#sf"), "and the CSS has the rules");
   assert.match(p1, /31 results for “<bdi>safety<\/bdi>” · Page 1 of 3/);
-  assert.match(p1, /<fieldset class="mt-6">\n<legend[^>]*>Show<\/legend>/);
+  assert.match(p1, /<fieldset>\n<legend[^>]*>Show<\/legend>/);
+  // 0.13.0: the search box is the page's header, so the title and lede appear once, and the field shows the query.
+  assert.equal((p1.match(/>Search<\/h[12]>/g) || []).length, 1, "one search title");
+  assert.equal(p1.split("Pages, guides, events and press releases.").length - 1, 1, "one search lede");
+  assert.doesNotMatch(p1, /data-component="page-header"/, "no page header above the search header");
+  assert.match(p1, /data-component="search-box" data-variant="header">[\s\S]*?<h1[^>]*>Search<\/h1>[\s\S]*?<input type="search" id="q-page" name="q"[^>]* value="safety"/);
+  assert.match(p1, /<a href="\/en\/search\/\?q=audit%20trail" class="[^"]*">audit trail<\/a>/, "popular searches are links");
+  const help = readFileSync("dist/reference/en/help/index.html", "utf8");
+  assert.equal((help.match(/<h1[^>]*>Help centre<\/h1>/g) || []).length, 1);
+  assert.doesNotMatch(help, />Search<\/h2>/, "the help page no longer repeats a search title under its header");
+  // The card view: a radio chip turns the list into a grid of cards, no script.
+  assert.match(p1, /<input type="radio" name="sf\d-view" id="sf\d-cards" value="cards" class="sr-only">/);
+  assert.match(w[1], /\[&:has\(\[value=cards\]:checked\)_ol\]:grid/);
+  assert.match(w[1], /lg:\[&:has\(\[value=cards\]:checked\)_ol\]:grid-cols-3/);
+  assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes(":has([value=cards]:checked) ol{display:grid}"), "the card rules are compiled, once for every instance");
   assert.match(p1, /<input type="radio" name="sf\d" id="sf\d-all" value="all" class="sr-only" checked>/);
   assert.equal((w[0].match(/<li data-group=/g) || []).length, 12);
   assert.match(w[0], /<mark class="rounded-sm bg-accent-100 px-0\.5 text-ink">[Ss]afety<\/mark>/);

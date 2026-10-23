@@ -124,3 +124,16 @@ test("page-header variants (R-SEC-08): a banner or band header with a picture ke
   assert.equal(noImage[0].s.variant, undefined, "a variant without a picture is a plain header");
   assert.equal(noImage[0].ctx.joined, true);
 });
+
+test("a search box that opens the page is its header: no page header is added, it takes the page's title and the results' query, and sits on the alternate surface (0.13.0)", () => {
+  const s = { byId: { ...samples.byId, sb: { type: "search-box", title: "Search", suggestions: ["a"] }, sr: { type: "search-results", query: "safety", items: [] } } };
+  const steps = planSections(s, ["sb", "sr"], { ...opts, header: { eyebrow: "Search", title: "Search", lede: "Find it" } });
+  assert.deepEqual(steps.map((p) => p.s.type), ["search-box", "search-results"]);
+  assert.deepEqual(steps[0].s.opener, { eyebrow: "Search", title: "Search", lede: "Find it" });
+  assert.equal(steps[0].s.query, "safety");
+  assert.equal(steps[0].s.surface, "bg-surface-alt");
+  assert.equal(steps[1].ctx.surface, "bg-surface", "the results sit on the page surface");
+  const inside = planSections(s, ["grid", "sb"], { ...opts, header: { title: "Help" } });
+  assert.equal(inside[0].s.type, "page-header", "a search box further down is an ordinary section");
+  assert.equal(inside[2].s.opener, undefined);
+});

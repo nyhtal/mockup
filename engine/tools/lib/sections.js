@@ -87,10 +87,13 @@ export function planSections(samples, sections, opts) {
   let surface = "bg-surface";
   const steps = [];
   const list = [...(sections || [])];
+  let opener = null;
   // Non-home pages open with a page-header (R-SEC-08): prepend one from the page's title unless the page brings its own opener.
   if (header) {
     const first = typeof list[0] === "string" ? siteSections[list[0]] || samples.byId[list[0]] : list[0];
-    if (!first || !["hero", "page-header"].includes(first.type)) list.unshift({ type: "page-header", eyebrow: header.eyebrow, title: header.title, lede: header.lede, ...(header.variant && header.image ? { variant: header.variant, image: header.image } : {}) });
+    // A search box that opens the page is its header (the search and help pages): it takes the title, eyebrow and lede, so nothing repeats.
+    if (first && first.type === "search-box") opener = header;
+    else if (!first || !["hero", "page-header"].includes(first.type)) list.unshift({ type: "page-header", eyebrow: header.eyebrow, title: header.title, lede: header.lede, ...(header.variant && header.image ? { variant: header.variant, image: header.image } : {}) });
   }
   for (const item of list) {
     // A site section the default locale defines must exist in this locale too: no silent fallback to English sample copy (R-I18N-12).
@@ -101,11 +104,15 @@ export function planSections(samples, sections, opts) {
     if (s.skipEmpty && (!s[s.skipEmpty === true ? "items" : s.skipEmpty] || s[s.skipEmpty === true ? "items" : s.skipEmpty].length === 0)) continue;
     delete s.skipEmpty;
     const i = steps.length;
+    if (i === 0 && opener && s.type === "search-box") Object.assign(s, { opener: { eyebrow: opener.eyebrow, title: opener.title, lede: opener.lede }, surface: s.surface || "bg-surface-alt" });
     const reveal = i > 0 && !MEDIA.has(s.type) && !STATIC.has(s.type);
     steps.push({ s, ctx: { locale, pageUrl, density: density || "comfortable", surface, reveal, index: i, demote: !!demote, breadcrumbs, flair } });
     if (MEDIA.has(s.type)) surface = "bg-surface";
     else if (!s.surface) surface = surface === "bg-surface" ? "bg-surface-alt" : "bg-surface";
   }
+  // The search header shows the query the results on the page are for.
+  const results = steps.find((p) => p.s.type === "search-results");
+  if (steps[0]?.s.opener && results && steps[0].s.query === undefined) steps[0].s.query = results.s.query;
   for (let i = 0; i + 1 < steps.length; i++) {
     const [head, next] = [steps[i], steps[i + 1]];
     if (head.s.type === "page-header" && (head.s.surface || "bg-surface") === "bg-surface" && headerJoins(head.s) && joinsPageHeader(next.s, next.ctx)) {

@@ -7,5 +7,5 @@
 {% from "sections/_shell.njk" import shell with context %}
 {% from "components/search-results.njk" import searchResults with context %}
 {% macro render(s, ctx) %}
-{% call shell("search-results", s, ctx, { center: false, noReveal: true }) %}<div class="max-w-3xl">{{ searchResults((s.items | searchPage(s.query, s.page, s.perPage)) | merge({ query: s.query, cta: s.cta }), { base: "/" + ctx.locale + "/search/", id: "sf" + ctx.index }) }}</div>{% endcall %}
+{% call shell("search-results", s, ctx, { center: false, noReveal: true }) %}<div>{{ searchResults((s.items | searchPage(s.query, s.page, s.perPage)) | merge({ query: s.query, cta: s.cta }), { base: "/" + ctx.locale + "/search/", id: "sf" + ctx.index }) }}</div>{% endcall %}
 {% endmacro %}

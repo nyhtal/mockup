@@ -116,6 +116,10 @@
     "pageOf": "{n}／{total}ページ",
     "filterResults": "表示",
     "all": "すべて",
+    "resultsView": "表示形式",
+    "viewList": "リスト",
+    "viewCards": "カード",
+    "popularSearches": "よく検索される語",
     "searchGroups": {
       "offer": "サービスと製品",
       "articles": "記事とニュース",
