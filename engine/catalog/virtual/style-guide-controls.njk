@@ -3,6 +3,7 @@ layout: base.njk
 pageType: style-guide
 noindex: true
 ---
+{% from "components/style-guide-nav.njk" import styleGuideNav with context %}
 {% from "components/video-facade.njk" import videoFacade with context %}
 {% from "components/map-facade.njk" import mapFacade with context %}
 {% from "components/video.njk" import video with context %}
@@ -30,11 +31,12 @@ noindex: true
 {% from "components/error-summary.njk" import errorSummary with context %}
 {% from "components/prose.njk" import prose with context %}
 {% from "components/announcement-bar.njk" import announcementBar with context %}
-{%- set sg = "/" + locale + "/sys/style-guide/" -%}
+{%- set sg = "/sys/style-guide/" -%}
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Components: navigation, overlays and states</h1>
 <p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">Everything that moves, navigates or reports a state. Overlays are native popovers and dialogs; nothing here needs the script.</p>
+{{ styleGuideNav(styleGuide.pages, page.url) }}
 
 <section class="mt-16">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Navigation</h2>
@@ -62,7 +64,7 @@ noindex: true
 </div>
 <div class="mt-8 grid gap-8 lg:grid-cols-2">
 {{ authorBox({ name: "Priya Natarajan", role: "Chief Technology Officer", bio: "Priya has led controls teams in food, pharma and automotive plants for sixteen years.", href: sg }) }}
-<div class="space-y-6">{{ shareLinks({ url: "https://example.com" + sg, title: "Style guide" }) }}{{ wasThisHelpful(sg + "controls/") }}</div>
+<div class="space-y-6">{{ shareLinks({ url: "https://northwind-dynamics.com" + sg, title: "Style guide" }) }}{{ wasThisHelpful(sg + "controls/") }}</div>
 </div>
 <div class="mt-8">{{ prose("<h2>Prose sample</h2><p>Article bodies are rendered from markdown and styled by the prose component, so every legal page, post and doc shares one typography. <a href='" + sg + "'>Links are underlined</a>.</p><h3>Lists and quotes</h3><ul><li>One idea per bullet</li><li>Two at most per paragraph</li></ul><blockquote>The best control code is the code nobody has to read.</blockquote><table><thead><tr><th>Station</th><th>Tags</th></tr></thead><tbody><tr><td>Fill</td><td>12</td></tr></tbody></table>") }}</div>
 </section>

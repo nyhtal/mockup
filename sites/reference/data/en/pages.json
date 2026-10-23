@@ -84,7 +84,7 @@
         {
           "icon": "globe",
           "title": "Support in your language",
-          "text": "Engineers in Manchester, Hamburg and Riyadh answer in local hours."
+          "text": "Engineers in Manchester, Hamburg, Riyadh and Tokyo answer in local hours."
         }
       ]
     },
@@ -228,7 +228,7 @@
       "aside": {
         "text": "Prefer to call or write? Our Manchester office handles every first conversation.",
         "address": "4 Canal Street, Manchester M1 3HE, United Kingdom",
-        "email": "hello@example.com",
+        "email": "hello@northwind-dynamics.com",
         "phone": "+44 20 7946 0000"
       },
       "form": {
@@ -291,7 +291,7 @@
       "aside": {
         "text": "No slides. We describe one of your stations live and show the logic it produces.",
         "address": "4 Canal Street, Manchester M1 3HE, United Kingdom",
-        "email": "hello@example.com",
+        "email": "hello@northwind-dynamics.com",
         "phone": "+44 20 7946 0000"
       },
       "form": {
@@ -600,7 +600,7 @@
     "office-cards": {
       "type": "office-cards",
       "eyebrow": "Locations",
-      "title": "Three offices, one support queue",
+      "title": "Four offices, one support queue",
       "from": "offices"
     },
     "service-cards": {
@@ -975,7 +975,7 @@
     "job-list": {
       "type": "job-list",
       "title": "Open roles",
-      "lede": "Engineering in Manchester and Hamburg, support in all three offices, remote where the role allows.",
+      "lede": "Engineering in Manchester and Hamburg, support in all four offices, remote where the role allows.",
       "from": "jobs",
       "filters": {
         "action": "/en/careers/",
@@ -1137,14 +1137,14 @@
       "name": "Omar Haddad",
       "role": "Security lead",
       "text": "Report a vulnerability and we reply within two working days.",
-      "email": "security@example.com"
+      "email": "security@northwind-dynamics.com"
     },
     "media-contact": {
       "type": "media-contact",
       "title": "Press contact",
       "name": "Sofia Lindqvist",
       "role": "Head of Communications",
-      "email": "press@example.com",
+      "email": "press@northwind-dynamics.com",
       "phone": "+44 20 7946 0001"
     },
     "media-kit-cta": {

@@ -1,0 +1,2092 @@
+{
+  "feedTitle": "生産現場からのノート",
+  "sitemap": {
+    "title": "サイトマップ",
+    "description": "Northwind Dynamicsのサイトにある全ページを1か所にまとめています。サービス、製品、業界、導入事例、リソース、会社情報、法務関連のページです。",
+    "lede": "すべてのページをセクションごとにまとめています。"
+  },
+  "sections": {
+    "hero-home": {
+      "type": "hero",
+      "variant": "video",
+      "eyebrow": "産業オートメーション",
+      "title": "工場のエンジニアが読める制御ソフトウェア",
+      "lede": "Northwindは、生産ラインを平易な言葉で記述するだけで、検証済みのPLCロジックに変換します。変更は数週間ではなく数時間で終わり、プログラマーを待つ必要もありません。",
+      "primary": {
+        "label": "デモを予約",
+        "href": "/ja/demo/"
+      },
+      "secondary": {
+        "label": "仕組みを見る",
+        "href": "/ja/services/line-automation/"
+      },
+      "video": {
+        "slug": "northwind-sample",
+        "title": "8秒でわかるNorthwind",
+        "duration": "0:08"
+      },
+      "proof": [
+        {
+          "value": "1,284",
+          "label": "自動化したライン数"
+        },
+        {
+          "value": "19",
+          "label": "導入国数"
+        },
+        {
+          "value": "99.98%",
+          "label": "稼働率"
+        }
+      ],
+      "highlight": {
+        "icon": "trending-up",
+        "value": "38%",
+        "label": "ダウンタイム削減"
+      }
+    },
+    "logo-cloud": {
+      "type": "logo-cloud",
+      "label": "19か国の工場が採用しています",
+      "from": "customers"
+    },
+    "feature-grid-home": {
+      "type": "feature-grid",
+      "eyebrow": "Northwindが選ばれる理由",
+      "title": "ラインに必要なものはすべて揃い、手書きのコードは不要",
+      "lede": "工程を一度記述するだけ。Northwindが同じ記述から、ロジック、テスト、ドキュメントを生成します。",
+      "items": [
+        {
+          "icon": "cpu",
+          "title": "PLCロジックを自動生成",
+          "text": "1つの記述から、Siemens、Rockwell、Beckhoff向けの検証済みラダーと構造化テキストを生成します。"
+        },
+        {
+          "icon": "shield-check",
+          "title": "安全性を最初から組み込み",
+          "text": "インターロックと安全ゾーンは記述の一部なので、書き直しの際に抜け落ちることがありません。"
+        },
+        {
+          "icon": "users",
+          "title": "現場が主導する運用",
+          "text": "ラインリーダーはエンジニアが設定した範囲内でレシピを変更でき、すべての変更が記録されます。"
+        },
+        {
+          "icon": "file-text",
+          "title": "ドキュメントは自動で",
+          "text": "テスト計画、エビデンス一式、変更履歴が、同じ記述から出力されます。"
+        },
+        {
+          "icon": "clock",
+          "title": "6週間ではなく2週間",
+          "text": "ほとんどの単一ラインは、工場出荷試験（FAT）を含めて2週間以内に稼働します。"
+        },
+        {
+          "icon": "globe",
+          "title": "日本語でサポート",
+          "text": "マンチェスター、ハンブルク、リヤド、東京のエンジニアが、各地の営業時間内に対応します。"
+        }
+      ]
+    },
+    "feature-rows-home": {
+      "type": "feature-rows",
+      "eyebrow": "仕組み",
+      "title": "記述から、稼働するラインへ",
+      "items": [
+        {
+          "eyebrow": "記述する",
+          "title": "エンジニアと一緒にラインを歩く",
+          "text": "ステーション、センサー、アクチュエーター、そしてその間のルールを、チームが読み返せる平易な言葉で書き出します。",
+          "image": {
+            "slug": "row-describe",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "ライン自動化を見る",
+            "href": "/ja/services/line-automation/"
+          }
+        },
+        {
+          "eyebrow": "生成する",
+          "title": "ロジックを文書のようにレビュー",
+          "text": "Northwindが、PLCプログラム、HMI画面、テスト計画を生成します。何かを動かす前に、エンジニアがレビューします。",
+          "image": {
+            "slug": "row-generate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "Northwind Studioを見る",
+            "href": "/ja/products/northwind-studio/"
+          }
+        },
+        {
+          "eyebrow": "運用する",
+          "title": "ラインリーダーが自らレシピを変更",
+          "text": "速度、充填量、インターロックは、エンジニアが設定した範囲内で調整できます。すべての変更は、誰が・いつ・何を変えたかとともに記録されます。",
+          "image": {
+            "slug": "row-operate",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          },
+          "link": {
+            "label": "Northwind Edgeを見る",
+            "href": "/ja/products/northwind-edge/"
+          }
+        }
+      ]
+    },
+    "stats-home": {
+      "type": "stats",
+      "title": "導入企業での実測値",
+      "from": "stats"
+    },
+    "testimonials-home": {
+      "type": "testimonials",
+      "variant": "grid",
+      "eyebrow": "導入企業",
+      "title": "工場チームの声",
+      "from": "testimonials",
+      "limit": 3
+    },
+    "cases-home": {
+      "type": "case-study-cards",
+      "eyebrow": "導入企業",
+      "title": "現場での成果",
+      "from": "cases",
+      "limit": 3,
+      "cta": {
+        "label": "導入事例をすべて見る",
+        "href": "/ja/customers/"
+      }
+    },
+    "latest-posts": {
+      "type": "resources-latest",
+      "eyebrow": "ブログ",
+      "title": "工場の現場からの最新記事",
+      "from": "posts",
+      "limit": 3,
+      "cta": {
+        "label": "ブログを読む",
+        "href": "/ja/blog/"
+      }
+    },
+    "cta-demo": {
+      "type": "cta-band",
+      "title": "半日で、御社のラインを記述してみませんか",
+      "text": "エンジニアと30分。スライドは使わず、御社の工程だけを扱います。",
+      "primary": {
+        "label": "デモを予約",
+        "href": "/ja/demo/"
+      },
+      "secondary": {
+        "label": "営業に相談",
+        "href": "/ja/contact/"
+      }
+    },
+    "cta-careers": {
+      "type": "cta-band",
+      "title": "工場のエンジニアが読めるものを、一緒につくる",
+      "text": "エンジニアリング、サポート、プロダクトの3部門で、4つのポジションを募集しています。",
+      "primary": {
+        "label": "募集職種を見る",
+        "href": "/ja/careers/"
+      },
+      "secondary": {
+        "label": "Northwindでの働き方",
+        "href": "/ja/careers/culture/"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "title": "毎月届く、生産現場からのノート",
+      "lede": "月に1通。リリースした機能と、お客様が得た知見をお届けします。売り込みはありません。",
+      "form": {
+        "action": "/ja/newsletter/thank-you/",
+        "submit": "登録する",
+        "privacyHref": "/ja/legal/privacy/"
+      },
+      "readers": {
+        "names": [
+          "プリヤ・ナタラジャン",
+          "メイ・チェン",
+          "ダナ・オカフォー",
+          "ヨナス・ヴェーバー"
+        ],
+        "text": "毎月1,400人のエンジニアが購読しています"
+      }
+    },
+    "contact-form": {
+      "type": "contact-form",
+      "eyebrow": "お問い合わせ",
+      "title": "エンジニアに相談する",
+      "lede": "1営業日以内にご返信します。",
+      "aside": {
+        "text": "お電話やメールをご希望ですか？日本語での最初のご相談は、東京オフィスが承ります。",
+        "address": "〒140-0002 東京都品川区東品川2-5-8",
+        "email": "tokyo@northwind-dynamics.com",
+        "phone": "+81 3 1234 5678"
+      },
+      "form": {
+        "id": "contact",
+        "action": "/ja/contact/thank-you/",
+        "title": "メッセージを送る",
+        "submit": "送信する",
+        "privacyHref": "/ja/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "c-name",
+                "label": "氏名",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "c-email",
+                "label": "勤務先メールアドレス",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "c-company",
+            "label": "会社名",
+            "autocomplete": "organization"
+          },
+          {
+            "type": "textarea",
+            "name": "message",
+            "id": "c-message",
+            "label": "お問い合わせ内容",
+            "required": true,
+            "rows": 5
+          }
+        ],
+        "consent": {
+          "type": "checkbox",
+          "name": "updates",
+          "id": "c-updates",
+          "label": "製品のアップデート情報をメールで受け取る",
+          "value": "yes"
+        }
+      }
+    },
+    "demo-form": {
+      "type": "contact-form",
+      "eyebrow": "デモ",
+      "title": "エンジニアと30分",
+      "lede": "1本のラインについてお聞かせください。同様のラインの立ち上げ経験があるエンジニアが担当します。",
+      "aside": {
+        "text": "スライドは使いません。御社のステーションの1つをその場で記述し、生成されるロジックをお見せします。日本語でのデモは東京オフィスが担当します。",
+        "address": "〒140-0002 東京都品川区東品川2-5-8",
+        "email": "tokyo@northwind-dynamics.com",
+        "phone": "+81 3 1234 5678"
+      },
+      "form": {
+        "id": "demo",
+        "action": "/ja/demo/thank-you/",
+        "title": "御社の工場について",
+        "submit": "デモを申し込む",
+        "privacyHref": "/ja/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "d-name",
+                "label": "氏名",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "d-email",
+                "label": "勤務先メールアドレス",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "d-company",
+            "label": "会社名",
+            "required": true,
+            "autocomplete": "organization"
+          },
+          {
+            "type": "select",
+            "name": "industry",
+            "id": "d-industry",
+            "label": "業種",
+            "options": [
+              {
+                "value": "",
+                "label": "業種を選択"
+              },
+              {
+                "value": "food",
+                "label": "食品・飲料"
+              },
+              {
+                "value": "pharma",
+                "label": "医薬品"
+              },
+              {
+                "value": "auto",
+                "label": "自動車"
+              },
+              {
+                "value": "other",
+                "label": "その他"
+              }
+            ]
+          },
+          {
+            "pair": [
+              {
+                "type": "date",
+                "name": "day",
+                "id": "d-day",
+                "label": "希望日",
+                "attrs": {
+                  "min": "2026-10-20"
+                },
+                "help": "月曜日〜金曜日。"
+              },
+              {
+                "type": "time",
+                "name": "time",
+                "id": "d-time",
+                "label": "希望時間",
+                "attrs": {
+                  "min": "09:00",
+                  "max": "18:00",
+                  "step": "1800"
+                },
+                "help": "日本時間9:00〜18:00。"
+              }
+            ]
+          },
+          {
+            "type": "range",
+            "name": "lines",
+            "id": "d-lines",
+            "label": "拠点内のライン数",
+            "value": "4",
+            "attrs": {
+              "min": "1",
+              "max": "40"
+            }
+          },
+          {
+            "type": "textarea",
+            "name": "line",
+            "id": "d-line",
+            "label": "ラインを1文で説明してください",
+            "rows": 3
+          }
+        ]
+      }
+    },
+    "gated-form": {
+      "type": "gated-form",
+      "title": "ファイルをメールで受け取る",
+      "lede": "ダウンロードリンクをメールでお送りします。ご希望がない限り、それ以外のメールはお送りしません。",
+      "form": {
+        "id": "gate",
+        "action": "/ja/resources/downloads/thank-you/",
+        "submit": "ファイルを受け取る",
+        "privacyHref": "/ja/legal/privacy/",
+        "fields": [
+          {
+            "type": "email",
+            "name": "email",
+            "id": "g-email",
+            "label": "勤務先メールアドレス",
+            "required": true,
+            "autocomplete": "email"
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "g-company",
+            "label": "会社名",
+            "autocomplete": "organization"
+          }
+        ]
+      }
+    },
+    "registration-form": {
+      "type": "registration-form",
+      "title": "参加登録",
+      "lede": "カレンダーの招待をお送りします。オンラインイベントの場合は、終了後に録画もお届けします。",
+      "form": {
+        "id": "reg",
+        "action": "/ja/events/thank-you/",
+        "submit": "登録する",
+        "privacyHref": "/ja/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "r-name",
+                "label": "氏名",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "r-email",
+                "label": "勤務先メールアドレス",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "company",
+            "id": "r-company",
+            "label": "会社名",
+            "autocomplete": "organization"
+          }
+        ]
+      }
+    },
+    "apply-form": {
+      "type": "apply-form",
+      "title": "この職種に応募する",
+      "lede": "履歴書と、ひと言ふた言のメッセージがあれば十分です。カバーレターは不要です。",
+      "form": {
+        "id": "apply",
+        "action": "/ja/careers/thank-you/",
+        "submit": "応募する",
+        "privacyHref": "/ja/legal/privacy/",
+        "fields": [
+          {
+            "pair": [
+              {
+                "type": "text",
+                "name": "name",
+                "id": "a-name",
+                "label": "氏名",
+                "required": true,
+                "autocomplete": "name"
+              },
+              {
+                "type": "email",
+                "name": "email",
+                "id": "a-email",
+                "label": "メールアドレス",
+                "required": true,
+                "autocomplete": "email"
+              }
+            ]
+          },
+          {
+            "type": "file",
+            "name": "cv",
+            "id": "a-cv",
+            "label": "履歴書・職務経歴書",
+            "required": true,
+            "accept": ".pdf,.doc,.docx",
+            "help": "PDFまたはWord形式、5MBまで。"
+          },
+          {
+            "type": "textarea",
+            "name": "note",
+            "id": "a-note",
+            "label": "その他、お伝えしたいこと",
+            "rows": 3
+          }
+        ]
+      },
+      "progress": {
+        "value": 1,
+        "max": 3,
+        "label": "基本情報"
+      }
+    },
+    "preferences-form": {
+      "type": "preferences-form",
+      "title": "メール配信設定",
+      "lede": "受け取る内容を選べます。変更はすぐに反映されます。",
+      "form": {
+        "id": "prefs",
+        "action": "/ja/newsletter/preferences/thank-you/",
+        "submit": "設定を保存",
+        "fields": [
+          {
+            "type": "switch",
+            "name": "notes",
+            "id": "p-notes",
+            "label": "生産現場からのノート（月刊）",
+            "checked": true,
+            "value": "1"
+          },
+          {
+            "type": "switch",
+            "name": "events",
+            "id": "p-events",
+            "label": "イベントのご案内",
+            "value": "1"
+          },
+          {
+            "type": "switch",
+            "name": "product",
+            "id": "p-product",
+            "label": "製品アップデート",
+            "checked": true,
+            "value": "1"
+          }
+        ]
+      }
+    },
+    "unsubscribe-form": {
+      "type": "unsubscribe-form",
+      "title": "配信停止",
+      "lede": "配信先のメールアドレスを入力すると、配信を停止します。",
+      "form": {
+        "id": "unsub",
+        "action": "/ja/newsletter/unsubscribe/thank-you/",
+        "submit": "配信を停止",
+        "fields": [
+          {
+            "type": "email",
+            "name": "email",
+            "id": "u-email",
+            "label": "メールアドレス",
+            "required": true,
+            "autocomplete": "email"
+          }
+        ]
+      }
+    },
+    "team-preview": {
+      "type": "team-preview",
+      "title": "経営陣",
+      "from": "people",
+      "limit": 4,
+      "cta": {
+        "label": "チーム全員を見る",
+        "href": "/ja/about/team/"
+      }
+    },
+    "team-grid": {
+      "type": "team-grid",
+      "eyebrow": "経営陣",
+      "title": "お電話に出るのは、このメンバーです",
+      "from": "people"
+    },
+    "office-cards": {
+      "type": "office-cards",
+      "eyebrow": "拠点",
+      "title": "4拠点、ひとつのサポート窓口",
+      "from": "offices"
+    },
+    "service-cards": {
+      "type": "service-cards",
+      "eyebrow": "サービス",
+      "title": "当社との3つの進め方",
+      "from": "services"
+    },
+    "product-cards": {
+      "type": "product-cards",
+      "eyebrow": "製品",
+      "title": "すべてのラインを支えるソフトウェア",
+      "from": "products"
+    },
+    "industry-cards": {
+      "type": "industry-cards",
+      "eyebrow": "業界",
+      "title": "現場を熟知している業界",
+      "from": "industries"
+    },
+    "pricing": {
+      "type": "pricing",
+      "eyebrow": "料金",
+      "title": "ライン単位の料金、毎月解約可能",
+      "tiers": [
+        {
+          "name": "Starter",
+          "price": "80,000円",
+          "amount": 80000,
+          "currency": "JPY",
+          "period": "1ラインあたり月額（税別）",
+          "text": "1ライン、1拠点。",
+          "features": [
+            "タグ50個まで",
+            "メールサポート",
+            "週次バックアップ"
+          ],
+          "cta": {
+            "label": "トライアルを開始",
+            "href": "/ja/demo/"
+          },
+          "annual": "68,000円",
+          "annualAmount": 68000
+        },
+        {
+          "name": "Plant",
+          "price": "300,000円",
+          "amount": 300000,
+          "currency": "JPY",
+          "period": "1拠点あたり月額（税別）",
+          "text": "拠点内のすべてのライン。",
+          "features": [
+            "タグ無制限",
+            "4時間以内の電話サポート",
+            "日次バックアップ",
+            "監査証跡"
+          ],
+          "cta": {
+            "label": "営業に相談",
+            "href": "/ja/contact/"
+          },
+          "recommended": true,
+          "was": "350,000円",
+          "annual": "250,000円",
+          "annualAmount": 250000
+        },
+        {
+          "name": "Enterprise",
+          "price": "個別見積もり",
+          "period": "グループ単位",
+          "text": "オンプレミス、SSO、専任エンジニア。",
+          "features": [
+            "Plantの全機能",
+            "オンプレミスでの運用",
+            "シングルサインオン",
+            "専任サポートエンジニア"
+          ],
+          "cta": {
+            "label": "見積もりを依頼",
+            "href": "/ja/contact/"
+          }
+        }
+      ],
+      "estimate": {
+        "value": 4,
+        "amount": 80000,
+        "label": "Starterで運用するライン数は？",
+        "template": "{n} × Starter：月額{total}円",
+        "initial": "4 × Starter：月額320,000円",
+        "note": "価格は税別です。1拠点で4ライン以上なら、月額300,000円のPlantのほうが割安です。",
+        "tip": {
+          "label": "1ラインの数え方は？",
+          "text": "1台のコントローラーで制御する1本の生産ラインで、投入からパレタイザーまでを指します。1台のPLCを共有する2本のラインは、2ラインとして数えます。"
+        }
+      }
+    },
+    "comparison": {
+      "type": "comparison",
+      "title": "プランを比較",
+      "table": {
+        "caption": "プラン別の機能比較",
+        "columns": [
+          {
+            "name": "Starter"
+          },
+          {
+            "name": "Plant",
+            "recommended": true
+          },
+          {
+            "name": "Enterprise"
+          }
+        ],
+        "rows": [
+          {
+            "name": "タグ数",
+            "cells": [
+              "50",
+              "無制限",
+              "無制限"
+            ]
+          },
+          {
+            "name": "監査証跡",
+            "cells": [
+              false,
+              true,
+              true
+            ]
+          },
+          {
+            "name": "オンプレミス",
+            "cells": [
+              false,
+              false,
+              true
+            ]
+          },
+          {
+            "name": "サポート応答時間",
+            "cells": [
+              "2日",
+              "4時間",
+              "1時間"
+            ]
+          }
+        ],
+        "foot": {
+          "name": "価格（月額・税別）",
+          "cells": [
+            "80,000円",
+            "300,000円",
+            "個別見積もり"
+          ]
+        }
+      }
+    },
+    "faq-pricing": {
+      "type": "faq",
+      "eyebrow": "よくあるご質問",
+      "title": "プランを選ぶ前に",
+      "group": "faq-pricing",
+      "from": "faqPricing"
+    },
+    "faq-trust": {
+      "type": "faq",
+      "eyebrow": "よくあるご質問",
+      "title": "セキュリティ担当者からよくある質問",
+      "group": "faq-trust",
+      "from": "faqTrust"
+    },
+    "faq-groups": {
+      "type": "faq-groups",
+      "title": "よくあるご質問",
+      "lede": "質問される方の立場ごとにまとめています。",
+      "from": "faqGroups",
+      "into": "groups"
+    },
+    "steps-home": {
+      "type": "steps",
+      "eyebrow": "仕組み",
+      "title": "稼働までの4ステップ",
+      "items": [
+        {
+          "title": "ラインを記述",
+          "text": "エンジニアと一緒にステーションを順に確認します。所要時間は半日ほどです。"
+        },
+        {
+          "title": "生成してレビュー",
+          "text": "Northwindがロジックを生成し、チームが文書のようにレビューします。"
+        },
+        {
+          "title": "立ち上げ",
+          "text": "同じ記述から工場出荷試験（FAT）を実施します。"
+        },
+        {
+          "title": "運用",
+          "text": "ラインリーダーが、設定された範囲内でレシピを調整します。"
+        }
+      ]
+    },
+    "timeline": {
+      "type": "timeline",
+      "eyebrow": "沿革",
+      "title": "7年間、ひとつのアイデア",
+      "from": "timeline"
+    },
+    "values-grid": {
+      "type": "values-grid",
+      "eyebrow": "大切にしていること",
+      "title": "私たちの働き方",
+      "from": "values"
+    },
+    "awards": {
+      "type": "awards",
+      "title": "受賞歴",
+      "from": "awards"
+    },
+    "badges": {
+      "type": "badges",
+      "title": "認証",
+      "lede": "第三者機関の監査を受け、毎年更新しています。",
+      "from": "badges"
+    },
+    "benefits-grid": {
+      "type": "benefits-grid",
+      "eyebrow": "福利厚生",
+      "title": "入社後に得られるもの",
+      "from": "benefits"
+    },
+    "integration-grid": {
+      "type": "integration-grid",
+      "eyebrow": "連携",
+      "title": "お使いの環境とそのまま連携",
+      "from": "integrations"
+    },
+    "about-rows": {
+      "type": "feature-rows",
+      "variant": "sticky",
+      "eyebrow": "当社について",
+      "title": "ラインの立ち上げを生業としてきた人たちがつくりました",
+      "items": [
+        {
+          "eyebrow": "なぜ",
+          "title": "ラダーロジックの書き直しに消えた、数えきれない週末",
+          "text": "Northwindは、3人の制御エンジニアと、充填量を変えるたびにプログラマーを待たされることに疲れていた1つの食品工場から始まりました。",
+          "image": {
+            "slug": "about-why",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "どのように",
+          "title": "プログラムではなく、記述を",
+          "text": "ラインリーダーは記述を読めます。エンジニアは生成されたロジックをレビューできます。審査員は出力されたエビデンスを確認できます。",
+          "image": {
+            "slug": "about-how",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "company-stats": {
+      "type": "stats",
+      "variant": "plain",
+      "label": "数字で見るNorthwind",
+      "from": "companyStats"
+    },
+    "culture-rows": {
+      "type": "feature-rows",
+      "eyebrow": "Northwindでの働き方",
+      "title": "工場の現場、テストラボ、静かなデスク",
+      "items": [
+        {
+          "eyebrow": "現場で",
+          "title": "すべてのエンジニアが工場を訪問",
+          "text": "デリバリーチームは、3週間のうち約1週間をお客様の工場で過ごします。その他のメンバーも、年に2回以上は現場を訪れます。",
+          "image": {
+            "slug": "culture-site",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "ラボで",
+          "title": "ハンブルクに3本のテストライン",
+          "text": "サポートチームは実機で問題を再現します。誰でも自分のプロジェクトのためにラボを予約できます。",
+          "image": {
+            "slug": "culture-lab-row",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "gallery": {
+      "type": "image-gallery",
+      "title": "各拠点の様子",
+      "items": [
+        {
+          "slug": "culture-floor",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "マンチェスターのフロア",
+          "max": 768
+        },
+        {
+          "slug": "culture-lab",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "ハンブルクのテストラボ",
+          "max": 768
+        },
+        {
+          "slug": "culture-team",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "東京のチームデー",
+          "max": 768
+        },
+        {
+          "slug": "culture-workshop",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "マンチェスターの作業台",
+          "max": 768
+        },
+        {
+          "slug": "culture-desk",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "ハンブルクの静かなデスク",
+          "max": 768
+        },
+        {
+          "slug": "culture-kitchen",
+          "ratio": "4:3",
+          "alt": "",
+          "caption": "リヤドのキッチンテーブル",
+          "max": 768
+        }
+      ]
+    },
+    "careers-grid": {
+      "type": "feature-grid",
+      "eyebrow": "採用情報",
+      "title": "エンジニアが長く働き続ける理由",
+      "items": [
+        {
+          "icon": "wrench",
+          "title": "本物の工場、本物のライン",
+          "text": "自分でつくったものを自分で立ち上げ、稼働する様子を見届けます。"
+        },
+        {
+          "icon": "users",
+          "title": "少人数の固定チーム",
+          "text": "4人のチームが、記述から引き渡しまで1本のラインを担当します。"
+        },
+        {
+          "icon": "book-open",
+          "title": "書き残すための時間",
+          "text": "ガイドやテンプレートの作成は、残業ではなく業務として扱います。"
+        }
+      ]
+    },
+    "job-list": {
+      "type": "job-list",
+      "title": "募集中の職種",
+      "lede": "エンジニアリングはマンチェスターとハンブルク、サポートはマンチェスター、ハンブルク、リヤドで募集しています。職種によってはリモート勤務も可能です。",
+      "from": "jobs",
+      "filters": {
+        "action": "/ja/careers/",
+        "filters": [
+          {
+            "type": "select",
+            "name": "team",
+            "id": "jl-team",
+            "label": "チーム",
+            "options": [
+              {
+                "value": "",
+                "label": "すべてのチーム"
+              },
+              {
+                "value": "eng",
+                "label": "エンジニアリング"
+              },
+              {
+                "value": "support",
+                "label": "サポート"
+              },
+              {
+                "value": "product",
+                "label": "プロダクト"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "name": "location",
+            "id": "jl-location",
+            "label": "勤務地",
+            "options": [
+              {
+                "value": "",
+                "label": "すべての勤務地"
+              },
+              {
+                "label": "拠点",
+                "options": [
+                  {
+                    "value": "man",
+                    "label": "マンチェスター"
+                  },
+                  {
+                    "value": "ham",
+                    "label": "ハンブルク"
+                  },
+                  {
+                    "value": "riy",
+                    "label": "リヤド"
+                  }
+                ]
+              },
+              {
+                "value": "remote",
+                "label": "リモート"
+              }
+            ]
+          }
+        ],
+        "resetHref": "/ja/careers/"
+      },
+      "empty": {
+        "icon": "info",
+        "title": "現在募集中の職種はありません",
+        "text": "ニュースレターにご登録いただければ、募集を開始した際にお知らせします。"
+      }
+    },
+    "sustainability-rows": {
+      "type": "feature-rows",
+      "eyebrow": "サステナビリティ",
+      "title": "廃棄を減らし、移動を減らし、ラインを長く使う",
+      "items": [
+        {
+          "eyebrow": "廃棄",
+          "title": "バッチを無駄にしない段取り替え",
+          "text": "レシピの上限設定と記録された段取り替えにより、食品ラインの立ち上げ時の廃棄が初年度で3分の1減りました。",
+          "image": {
+            "slug": "sus-waste",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        },
+        {
+          "eyebrow": "移動",
+          "title": "記述をもとに立ち上げ",
+          "text": "受け入れ試験はStudioから実行するため、エンジニアの出張が減り、初回の量産立ち上げも3回ではなく1回の訪問で済みます。",
+          "image": {
+            "slug": "sus-travel",
+            "ratio": "4:3",
+            "alt": "",
+            "max": 1200
+          }
+        }
+      ]
+    },
+    "sustainability-stats": {
+      "type": "stats",
+      "title": "2025年の実績",
+      "items": [
+        {
+          "value": "33%",
+          "label": "立ち上げ時の廃棄削減",
+          "meter": {
+            "value": 33
+          }
+        },
+        {
+          "value": "3回中2回",
+          "label": "削減できた立ち上げ出張",
+          "meter": {
+            "value": 2,
+            "max": 3
+          },
+          "dataValue": "0.667"
+        },
+        {
+          "value": "100%",
+          "label": "オフィス電力の再生可能エネルギー比率",
+          "meter": {
+            "value": 100
+          }
+        }
+      ]
+    },
+    "trust-grid": {
+      "type": "feature-grid",
+      "eyebrow": "信頼とセキュリティ",
+      "title": "記述とログを安全に守る仕組み",
+      "items": [
+        {
+          "icon": "lock",
+          "title": "署名付きアップデート",
+          "text": "ランタイムのアップデートはすべて署名付きです。適用のタイミングは各工場が決められます。"
+        },
+        {
+          "icon": "scroll-text",
+          "title": "追記専用のログ",
+          "text": "変更ログは編集できず、エクスポートにはチェックサムが付きます。"
+        },
+        {
+          "icon": "globe",
+          "title": "EU内でのホスティング",
+          "text": "標準でEUの2リージョンを使用します。Enterpriseはオンプレミスにも対応します。"
+        },
+        {
+          "icon": "users",
+          "title": "許可したときだけのアクセス",
+          "text": "サポートがデータを閲覧できるのはお客様が許可している間だけで、すべてのアクセスが記録されます。"
+        }
+      ]
+    },
+    "security-contact": {
+      "type": "contact-card",
+      "title": "セキュリティ窓口",
+      "name": "オマル・ハッダード",
+      "role": "セキュリティ責任者",
+      "text": "脆弱性をご報告いただければ、2営業日以内にご返信します。",
+      "email": "security@northwind-dynamics.com"
+    },
+    "media-contact": {
+      "type": "media-contact",
+      "title": "報道関係者の窓口",
+      "name": "ソフィア・リンドクヴィスト",
+      "role": "広報責任者",
+      "email": "press@northwind-dynamics.com",
+      "phone": "+44 20 7946 0001"
+    },
+    "media-kit-cta": {
+      "type": "media-kit-cta",
+      "title": "メディアキット",
+      "text": "ロゴ、製品画像、経営陣のポートレートをまとめてダウンロードできます。",
+      "cta": {
+        "label": "メディアキットを開く",
+        "href": "/ja/news/media-kit/"
+      }
+    },
+    "media-kit-downloads": {
+      "type": "download-cards",
+      "title": "メディアキットのファイル",
+      "items": [
+        {
+          "type": "ZIP",
+          "pages": "4ファイル",
+          "title": "ロゴ",
+          "text": "ワードマークとモノグラム。SVGとPNG、ライト版とダーク版。",
+          "href": "/ja/news/media-kit/"
+        },
+        {
+          "type": "ZIP",
+          "pages": "12ファイル",
+          "title": "製品スクリーンショット",
+          "text": "Studio、Edge、Cloudの2倍解像度画像。キャプション付き。",
+          "href": "/ja/news/media-kit/"
+        },
+        {
+          "type": "ZIP",
+          "pages": "5ファイル",
+          "title": "経営陣のポートレート",
+          "text": "報道用にそのまま使える経営陣のポートレートです。",
+          "href": "/ja/news/media-kit/"
+        }
+      ],
+      "license": {
+        "label": "これらのファイルの利用規約",
+        "href": "/ja/legal/terms/"
+      }
+    },
+    "press-cards": {
+      "type": "press-cards",
+      "title": "プレスリリース",
+      "from": "press"
+    },
+    "article-cards": {
+      "type": "article-cards",
+      "title": "すべての記事",
+      "from": "posts",
+      "feed": true
+    },
+    "download-cards": {
+      "type": "download-cards",
+      "title": "ガイドとツール",
+      "from": "downloads"
+    },
+    "event-cards": {
+      "type": "event-cards",
+      "title": "今後のイベント",
+      "from": "events",
+      "empty": {
+        "icon": "calendar",
+        "title": "予定されているイベントはありません",
+        "text": "ニュースレターにご登録いただければ、次回のイベントをお知らせします。"
+      }
+    },
+    "case-study-cards": {
+      "type": "case-study-cards",
+      "eyebrow": "導入企業",
+      "title": "現場での成果",
+      "from": "cases"
+    },
+    "resource-tabs": {
+      "type": "resource-tabs",
+      "title": "リソース",
+      "lede": "ガイド、イベント、ツールを形式別に掲載しています。",
+      "tabs": [
+        {
+          "label": "ガイド",
+          "variant": "download",
+          "items": [
+            {
+              "type": "PDF",
+              "pages": "12ページ",
+              "title": "立ち上げ（試運転調整）のチェックリスト2026",
+              "href": "/ja/resources/downloads/commissioning-checklist/"
+            },
+            {
+              "type": "PDF",
+              "pages": "28ページ",
+              "title": "生成コードの安全性エビデンス",
+              "href": "/ja/resources/downloads/safety-evidence-guide/"
+            }
+          ]
+        },
+        {
+          "label": "イベント",
+          "variant": "event",
+          "items": [
+            {
+              "date": "2026年11月12日",
+              "dateIso": "2026-11-12",
+              "type": "ウェビナー",
+              "title": "書類作業に追われない安全PLC",
+              "location": "オンライン",
+              "href": "/ja/events/safety-plcs-webinar/"
+            },
+            {
+              "date": "2026年12月3日",
+              "dateIso": "2026-12-03",
+              "type": "ワークショップ",
+              "title": "最初のラインを記述しよう",
+              "location": "マンチェスター",
+              "href": "/ja/events/describe-your-first-line/"
+            }
+          ]
+        },
+        {
+          "label": "ツール",
+          "variant": "download",
+          "items": [
+            {
+              "type": "XLSX",
+              "pages": "1シート",
+              "title": "ダウンタイムコスト計算ツール",
+              "href": "/ja/resources/downloads/downtime-calculator/"
+            }
+          ]
+        }
+      ]
+    },
+    "glossary-list": {
+      "type": "glossary-list",
+      "title": "用語集",
+      "lede": "当社で使う用語を、出てくる順に並べています。",
+      "from": "glossary"
+    },
+    "help-categories": {
+      "type": "help-categories",
+      "title": "どのようなご用件ですか？",
+      "from": "helpCategories"
+    },
+    "search-box": {
+      "type": "search-box",
+      "title": "検索",
+      "lede": "ページ、ガイド、イベント、プレスリリースを検索できます。",
+      "suggestions": [
+        "PLC",
+        "立ち上げ",
+        "レシピ",
+        "監査証跡",
+        "安全"
+      ]
+    },
+    "search-results": {
+      "type": "search-results",
+      "query": "安全",
+      "from": "searchIndex",
+      "page": 1,
+      "perPage": 12
+    },
+    "landing-hero": {
+      "type": "hero",
+      "variant": "stats",
+      "title": "1四半期で投資を回収できるオートメーション",
+      "lede": "19か国、1,284本のラインでの実測値です。",
+      "primary": {
+        "label": "デモを予約",
+        "href": "/ja/demo/"
+      },
+      "secondary": {
+        "label": "導入企業の成果を見る",
+        "href": "/ja/customers/"
+      },
+      "stats": [
+        {
+          "value": "38%",
+          "label": "ダウンタイム削減"
+        },
+        {
+          "value": "9日",
+          "label": "立ち上げまでの日数"
+        },
+        {
+          "value": "99.98%",
+          "label": "稼働率"
+        }
+      ]
+    },
+    "landing-faq": {
+      "type": "faq",
+      "eyebrow": "よくあるご質問",
+      "title": "ご予約の前に",
+      "group": "faq-landing",
+      "items": [
+        {
+          "title": "デモでは何をしますか？",
+          "body": "<p>エンジニアが御社のステーションの1つをその場で記述し、生成されるロジックをお見せします。所要時間は30分で、スライドは使いません。</p>"
+        },
+        {
+          "title": "誰が参加すればよいですか？",
+          "body": "<p>制御エンジニア1名と、日々ラインを運用している方1名です。</p>"
+        },
+        {
+          "title": "デモの後にトライアルはありますか？",
+          "body": "<p>1ラインで30日間お試しいただけます。最初の1週間はエンジニアが待機します。</p>"
+        },
+        {
+          "title": "対応しているコントローラーは？",
+          "body": "<p>同じ記述から、Siemens、Rockwell、Beckhoffに対応します。</p>"
+        }
+      ]
+    },
+    "changelog": {
+      "type": "changelog",
+      "releases": [
+        {
+          "version": "2.4.0",
+          "name": "Studio 2.4",
+          "dateIso": "2026-10-06",
+          "items": [
+            {
+              "kind": "added",
+              "text": "ラインリーダーごとのレシピ上限を`limits.yaml`で設定できるようになりました。"
+            },
+            {
+              "kind": "changed",
+              "text": "生成時にルールより先にインターロックを検査するようになりました。インターロックが欠けていれば、最初の段階で実行が止まります。"
+            },
+            {
+              "kind": "fixed",
+              "text": "アンパサンド（&）を含むステーション名で、レビュー用エクスポートが壊れる問題を修正しました。"
+            }
+          ]
+        },
+        {
+          "version": "1.9.0",
+          "name": "Edge 1.9",
+          "dateIso": "2026-09-15",
+          "items": [
+            {
+              "kind": "added",
+              "text": "Edgeダッシュボードにセンサーの状態を表示します。5秒ごとに更新されます。"
+            },
+            {
+              "kind": "fixed",
+              "text": "停電後の再起動で、直前のレシピ変更が再実行される問題を修正しました。"
+            }
+          ]
+        },
+        {
+          "version": "3.2.0",
+          "name": "Cloud 3.2",
+          "dateIso": "2026-08-28",
+          "items": [
+            {
+              "kind": "changed",
+              "text": "監査証跡のエクスポートに、工場独自の鍵で署名するようになりました。"
+            },
+            {
+              "kind": "removed",
+              "text": "旧CSVインポートを廃止しました。代わりに`northwind import --format=xlsx`を使用してください。"
+            }
+          ]
+        },
+        {
+          "version": "2.3.0",
+          "name": "Studio 2.3",
+          "dateIso": "2026-07-30",
+          "items": [
+            {
+              "kind": "added",
+              "text": "ドイツ語とアラビア語でのライン記述に対応しました。"
+            },
+            {
+              "kind": "fixed",
+              "text": "[[Ctrl]]+[[Z]]で、削除したステーションを再び元に戻せるようになりました。"
+            }
+          ]
+        }
+      ],
+      "title": "すべてのリリース"
+    },
+    "podcast-episode": {
+      "type": "podcast-episode",
+      "title": "立ち上げまで9日",
+      "episode": {
+        "number": 12,
+        "dateIso": "2026-10-08",
+        "duration": "PT6S",
+        "durationLabel": "0:06",
+        "audio": "/assets/files/line-notes-12.wav",
+        "captions": {
+          "src": "/assets/files/ja/line-notes-12.vtt",
+          "srclang": "ja",
+          "label": "日本語",
+          "cues": [
+            {
+              "start": "00:00.000",
+              "end": "00:06.000",
+              "text": "［チャイム］仮の音声クリップです。エピソードの内容は、このページの文字起こしをご覧ください。"
+            }
+          ]
+        },
+        "notes": "*[FAT]: 工場出荷試験\n\nメイ・チェンが、Brightline Pharmaの品質責任者ダナ・オカフォーに話を聞きます。記述から9日で量産に入った充填ラインと、2回目で合格したFATについてです。",
+        "transcript": [
+          {
+            "speaker": "メイ・チェン",
+            "text": "ダナさん、9日間でしたね。初日の朝はどんな様子でしたか？"
+          },
+          {
+            "speaker": "ダナ・オカフォー",
+            "text": "ラインリーダーと一緒に、記述を声に出して読みました。どの文も、現場で実際にそのとおりでなければなりませんでした。"
+          },
+          {
+            "speaker": "メイ・チェン",
+            "text": "受け入れ試験はどうでしたか？"
+          },
+          {
+            "speaker": "ダナ・オカフォー",
+            "text": "ハンブルクの同僚は{term}と呼んでいます。7日目に実施して、2回目で合格しました。",
+            "term": {
+              "text": "Werksabnahme",
+              "lang": "de"
+            }
+          }
+        ]
+      }
+    },
+    "office-map": {
+      "type": "office-map",
+      "title": "拠点所在地",
+      "lede": "地図または一覧から拠点を選ぶと、住所と営業時間が表示されます。",
+      "from": "offices"
+    },
+    "newsletter-preview": {
+      "type": "newsletter-preview",
+      "title": "最新号を見る",
+      "lede": "購読者に届いた10月号を、そのまま掲載しています。",
+      "src": "/ja/newsletter/preview/",
+      "frameTitle": "『生産現場からのノート』2026年10月号"
+    },
+    "testimonials-carousel": {
+      "type": "testimonials",
+      "variant": "carousel",
+      "eyebrow": "導入企業",
+      "title": "工場チームの声",
+      "from": "testimonials",
+      "limit": 3
+    }
+  },
+  "detail": {
+    "service": {
+      "each": "services",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "サービス",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "提供内容",
+          "from": "e.features"
+        },
+        {
+          "type": "steps",
+          "eyebrow": "進め方",
+          "title": "導入の流れ",
+          "from": "e.steps"
+        },
+        {
+          "type": "stats",
+          "title": "導入企業での実測値",
+          "from": "e.stats"
+        },
+        {
+          "type": "testimonials",
+          "variant": "single",
+          "label": "お客様の声",
+          "from": "testimonials",
+          "limit": 1
+        },
+        {
+          "type": "faq",
+          "eyebrow": "よくあるご質問",
+          "title": "お問い合わせの前に",
+          "group": "faq-service",
+          "from": "e.faq",
+          "skipEmpty": true
+        },
+        {
+          "type": "case-study-cards",
+          "eyebrow": "導入事例",
+          "title": "このサービスを導入した工場",
+          "from": "cases",
+          "only": "e.cases",
+          "skipEmpty": true
+        },
+        "cta-demo"
+      ]
+    },
+    "product": {
+      "each": "products",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "製品",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "できること",
+          "from": "e.features"
+        },
+        {
+          "type": "feature-grid",
+          "eyebrow": "機能",
+          "title": "標準で備わる機能",
+          "from": "e.capabilities"
+        },
+        {
+          "type": "pricing",
+          "eyebrow": "料金",
+          "title": "{e.title}の料金プラン",
+          "from": "e.tiers",
+          "into": "tiers"
+        },
+        {
+          "type": "faq",
+          "eyebrow": "よくあるご質問",
+          "title": "お問い合わせの前に",
+          "group": "faq-product",
+          "from": "e.faq"
+        },
+        {
+          "type": "integration-grid",
+          "eyebrow": "連携",
+          "title": "連携できる製品",
+          "from": "integrations",
+          "only": "e.integrations",
+          "skipEmpty": true
+        },
+        "cta-demo"
+      ]
+    },
+    "industry": {
+      "each": "industries",
+      "conversion": "demo",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "業界",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "feature-rows",
+          "title": "この業界のラインで重要なこと",
+          "from": "e.features"
+        },
+        {
+          "type": "case-study-cards",
+          "eyebrow": "導入事例",
+          "title": "この業界の導入工場",
+          "from": "cases",
+          "filter": {
+            "industry": "{e.slug}"
+          },
+          "skipEmpty": true
+        },
+        {
+          "type": "stats",
+          "title": "この業界での実測値",
+          "from": "e.stats"
+        },
+        {
+          "type": "faq",
+          "eyebrow": "よくあるご質問",
+          "title": "お問い合わせの前に",
+          "group": "faq-industry",
+          "from": "e.faq",
+          "skipEmpty": true
+        },
+        "cta-demo"
+      ]
+    },
+    "person": {
+      "each": "people",
+      "conversion": "none",
+      "title": "{e.name}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "経営陣",
+          "title": "{e.name}",
+          "lede": "{e.role}"
+        },
+        {
+          "type": "person-bio",
+          "label": "経歴",
+          "name": "{e.name}",
+          "role": "{e.role}",
+          "md": "e.bio",
+          "into": "bio"
+        },
+        {
+          "type": "related-articles",
+          "title": "{e.name}の記事",
+          "from": "posts",
+          "filter": {
+            "author": "{e.slug}"
+          },
+          "skipEmpty": true
+        }
+      ]
+    },
+    "office": {
+      "each": "offices",
+      "conversion": "contact",
+      "title": "{e.city}オフィス",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "拠点",
+          "title": "{e.city}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "office-detail",
+          "title": "アクセス",
+          "address": "{e.address}",
+          "phone": "{e.phone}",
+          "email": "{e.email}",
+          "from": "e.hours",
+          "into": "hours",
+          "map": {
+            "slug": "{e.map.slug}",
+            "address": "{e.map.address}"
+          },
+          "slug": "{e.slug}",
+          "city": "{e.city}",
+          "geo": "{e.geo.lat},{e.geo.lng}"
+        },
+        {
+          "type": "image-gallery",
+          "title": "オフィスの様子",
+          "items": [
+            {
+              "slug": "office-{e.slug}-floor",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "{e.city}オフィスの執務スペース",
+              "max": 768
+            },
+            {
+              "slug": "office-{e.slug}-meeting",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "{e.city}オフィスの会議室",
+              "max": 768
+            },
+            {
+              "slug": "office-{e.slug}-workshop",
+              "ratio": "4:3",
+              "alt": "",
+              "caption": "{e.city}オフィスの作業場",
+              "max": 768
+            }
+          ]
+        },
+        {
+          "type": "team-preview",
+          "title": "担当メンバー",
+          "from": "people",
+          "only": "e.team",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "case-study": {
+      "each": "cases",
+      "conversion": "demo",
+      "title": "{e.title}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.company}",
+          "title": "{e.title}",
+          "lede": "{e.excerpt}"
+        },
+        {
+          "type": "stats",
+          "title": "数字で見る成果",
+          "from": "e.stats"
+        },
+        {
+          "type": "prose",
+          "md": "e.body",
+          "label": "{e.title}"
+        },
+        {
+          "type": "before-after",
+          "title": "{e.compare.title}",
+          "before": {
+            "slug": "{e.slug}-hmi-before",
+            "alt": "{e.compare.before}"
+          },
+          "after": {
+            "slug": "{e.slug}-hmi-after",
+            "alt": "{e.compare.after}"
+          },
+          "caption": "{e.compare.caption}"
+        },
+        {
+          "type": "testimonials",
+          "variant": "single",
+          "label": "お客様の声",
+          "items": [
+            {
+              "quote": "{e.quote}",
+              "name": "{e.quoteName}",
+              "role": "{e.quoteRole}",
+              "company": "{e.company}"
+            }
+          ]
+        },
+        {
+          "type": "related-items",
+          "title": "この事例で使われたサービス",
+          "cardVariant": "service",
+          "from": "services",
+          "only": "e.services"
+        },
+        "cta-demo"
+      ]
+    },
+    "post": {
+      "each": "posts",
+      "layout": "article",
+      "conversion": "subscribe",
+      "toc": true,
+      "sections": [
+        {
+          "type": "related-articles",
+          "title": "あわせて読みたい",
+          "from": "posts",
+          "only": "e.related"
+        },
+        "newsletter"
+      ]
+    },
+    "archive": {
+      "each": "tags",
+      "kind": "tags",
+      "noindex": true,
+      "conversion": "none",
+      "title": "{e.label}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "ブログ",
+          "title": "{e.label}",
+          "lede": "「{e.label}」タグが付いた記事の一覧です。"
+        },
+        {
+          "type": "article-cards",
+          "title": "記事",
+          "from": "posts",
+          "filter": {
+            "tags": "{e.slug}"
+          }
+        }
+      ]
+    },
+    "author": {
+      "each": "people",
+      "kind": "authors",
+      "where": {
+        "posts": true
+      },
+      "conversion": "none",
+      "title": "{e.name}の記事",
+      "description": "{e.authorDescription}",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "執筆者",
+          "title": "{e.name}",
+          "lede": "{e.role}"
+        },
+        {
+          "type": "person-bio",
+          "label": "執筆者について",
+          "name": "{e.name}",
+          "role": "{e.role}",
+          "md": "e.bio",
+          "into": "bio"
+        },
+        {
+          "type": "article-cards",
+          "title": "記事",
+          "from": "posts",
+          "filter": {
+            "author": "{e.slug}"
+          }
+        }
+      ]
+    },
+    "download": {
+      "each": "downloads",
+      "conversion": "download",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "ダウンロード",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "download-detail",
+          "fileType": "{e.fileType}",
+          "pages": "{e.pages}",
+          "md": {
+            "summary": "e.summary"
+          },
+          "from": "e.contents",
+          "into": "contents",
+          "cover": {
+            "slug": "{e.cover.slug}",
+            "ratio": "3:4",
+            "alt": "",
+            "max": 480
+          },
+          "slug": "{e.slug}",
+          "gated": "{e.gated}",
+          "preview": "{e.preview}"
+        },
+        "gated-form",
+        {
+          "type": "related-items",
+          "title": "こちらもおすすめ",
+          "cardVariant": "download",
+          "from": "downloads",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "event": {
+      "each": "events",
+      "conversion": "subscribe",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.format}",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "event-detail",
+          "date": "{e.date|date}",
+          "dateIso": "{e.date}",
+          "time": "{e.timeLabel}",
+          "location": "{e.location}",
+          "format": "{e.format}",
+          "md": "e.body",
+          "into": "body",
+          "slug": "{e.slug}"
+        },
+        "registration-form",
+        {
+          "type": "speakers",
+          "title": "登壇者",
+          "from": "people",
+          "only": "e.speakers",
+          "skipEmpty": true
+        },
+        {
+          "type": "faq",
+          "eyebrow": "よくあるご質問",
+          "title": "お申し込みの前に",
+          "group": "faq-event",
+          "from": "e.faq",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "job": {
+      "each": "jobs",
+      "conversion": "apply",
+      "sections": [
+        {
+          "type": "page-header",
+          "eyebrow": "{e.team}",
+          "title": "{e.title}",
+          "lede": "{e.lede}"
+        },
+        {
+          "type": "job-detail",
+          "team": "{e.team}",
+          "location": "{e.location}",
+          "employment": "{e.employment}",
+          "posted": "{e.posted|date}",
+          "postedIso": "{e.posted}",
+          "md": "e.body",
+          "into": "body"
+        },
+        "apply-form",
+        {
+          "type": "related-items",
+          "title": "その他の募集職種",
+          "cardVariant": "job",
+          "from": "jobs",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "doc": {
+      "each": "docs",
+      "layout": "article",
+      "conversion": "none",
+      "toc": true,
+      "eyebrow": "ヘルプセンター",
+      "sections": [
+        {
+          "type": "was-this-helpful"
+        },
+        {
+          "type": "related-items",
+          "title": "関連ガイド",
+          "cardVariant": "article",
+          "from": "docs",
+          "only": "e.related",
+          "skipEmpty": true
+        }
+      ]
+    },
+    "press-release": {
+      "each": "press",
+      "layout": "article",
+      "conversion": "none",
+      "sections": [
+        "media-contact"
+      ]
+    }
+  },
+  "thankYou": {
+    "contact": {
+      "title": "お問い合わせありがとうございます",
+      "description": "メッセージを受け付けました。1営業日以内にエンジニアが返信します。それまでの間に、立ち上げ（試運転調整）のチェックリストもぜひご覧ください。",
+      "heading": "メッセージを受け付けました",
+      "text": "1営業日以内にエンジニアが返信します。",
+      "next": "それまでの間に、立ち上げチェックリストをご覧ください。",
+      "cta": {
+        "label": "チェックリストを読む",
+        "href": "/ja/resources/downloads/commissioning-checklist/"
+      }
+    },
+    "demo": {
+      "title": "デモのお申し込みありがとうございます",
+      "description": "デモのお申し込みを受け付けました。日程調整のため、1営業日以内にエンジニアからメールをお送りします。それまでの間に導入事例もご覧ください。",
+      "heading": "お申し込みを受け付けました",
+      "text": "日程調整のため、1営業日以内にエンジニアからメールをお送りします。",
+      "next": "それまでの間に、ほかの工場の実測値をご覧ください。",
+      "cta": {
+        "label": "導入事例を見る",
+        "href": "/ja/customers/"
+      }
+    },
+    "newsletter": {
+      "title": "ご登録ありがとうございます",
+      "description": "月刊ニュースレター「生産現場からのノート」へのご登録が完了しました。初回のメールは来月初めに届きます。配信はいつでも停止できます。",
+      "heading": "登録が完了しました",
+      "text": "初回のメールは来月初めに届きます。",
+      "next": "配信内容はいつでも変更できます。",
+      "cta": {
+        "label": "配信設定を開く",
+        "href": "/ja/newsletter/preferences/"
+      }
+    },
+    "newsletter/preferences": {
+      "title": "設定を保存しました",
+      "description": "メール配信の設定を保存しました。次回お送りするメールから反映されます。設定の変更や配信の停止は、いつでもこちらのページから行えます。",
+      "heading": "設定を保存しました",
+      "text": "次回お送りするメールから反映されます。",
+      "next": "設定はいつでも変更できます。",
+      "cta": {
+        "label": "ブログを読む",
+        "href": "/ja/blog/"
+      }
+    },
+    "newsletter/unsubscribe": {
+      "title": "配信を停止しました",
+      "description": "Northwindからのすべてのメール配信を停止しました。送信準備済みのメールが1通だけ届く場合があります。再登録はいつでも可能です。",
+      "heading": "配信を停止しました",
+      "text": "送信準備済みのメールが1通だけ届く場合がありますが、それ以降は届きません。",
+      "next": "いつでも再登録できます。",
+      "cta": {
+        "label": "ホームに戻る",
+        "href": "/ja/"
+      }
+    },
+    "resources/downloads": {
+      "title": "ファイルをお送りしました",
+      "description": "ご請求のファイルをメールでお送りしました。通常1分以内に届きます。届かない場合は迷惑メールフォルダをご確認ください。ほかの資料もご覧いただけます。",
+      "heading": "受信トレイをご確認ください",
+      "text": "ファイルは通常1分以内に届きます。",
+      "next": "届かない場合は、迷惑メールフォルダをご確認いただくか、当社までご連絡ください。",
+      "cta": {
+        "label": "資料一覧を見る",
+        "href": "/ja/resources/downloads/"
+      }
+    },
+    "events": {
+      "title": "お申し込みが完了しました",
+      "description": "イベントへのお申し込みが完了しました。カレンダーの招待状をお送りします。オンラインイベントは、開催の翌日に録画をお届けします。",
+      "heading": "お申し込みが完了しました",
+      "text": "カレンダーの招待状をお送りします。",
+      "next": "オンラインイベントは、開催の翌日に録画をお届けします。",
+      "cta": {
+        "label": "イベント一覧を見る",
+        "href": "/ja/events/"
+      }
+    },
+    "careers": {
+      "title": "ご応募ありがとうございます",
+      "description": "ご応募を受け付けました。応募書類にはすべて採用責任者が目を通します。選考の結果にかかわらず、2週間以内に当社からご連絡します。",
+      "heading": "ご応募を受け付けました",
+      "text": "すべての応募書類に採用責任者が自ら目を通します。",
+      "next": "結果にかかわらず、2週間以内にご連絡します。",
+      "cta": {
+        "label": "Northwindの働き方を知る",
+        "href": "/ja/careers/culture/"
+      }
+    }
+  }
+}

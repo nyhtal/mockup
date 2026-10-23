@@ -65,7 +65,7 @@ export function resolveFont(name) {
   return FONTS[name] === undefined ? FONTS.inter : FONTS[name];
 }
 
-export function brandTokens(brand, { scriptFamilies = [] } = {}) {
+export function brandTokens(brand, { scriptFamilies = [], localeFamilies = {} } = {}) {
   const h = Number(brand.hue) || 0;
   const a = Number(brand.accentHue ?? brand.hue) || 0;
   const r = RADIUS[brand.radius] || RADIUS.soft;
@@ -73,7 +73,10 @@ export function brandTokens(brand, { scriptFamilies = [] } = {}) {
   const font = resolveFont(brand.font);
   // Brand font, then each script font (its unicode-range keeps it to its script), then the matching metric fallbacks (R-TYPO-12).
   const fb = (family) => `"${family.replace(" Variable", "")} Fallback"`;
-  const fontSans = font ? [`"${font.family}"`, ...scriptFamilies.map((f) => `"${f}"`), fb(font.family), ...scriptFamilies.map(fb), "system-ui, sans-serif"].join(", ") : "system-ui, sans-serif";
+  const stack = (system = []) => [...(font ? [`"${font.family}"`, ...scriptFamilies.map((f) => `"${f}"`), fb(font.family), ...scriptFamilies.map(fb)] : []), ...system.map((f) => `"${f}"`), "system-ui, sans-serif"].join(", ");
+  const fontSans = stack();
+  // A script set in system faces (D58) gets its own stack on that locale's pages only (R-TYPO-12).
+  const localeStacks = Object.entries(localeFamilies).map(([l, families]) => `\n:root:lang(${l}) {\n  --font-sans: ${stack(families)};\n}\n`).join("");
   return `@theme {
   --color-*: initial;
 ${scale("brand", h)}
@@ -106,7 +109,7 @@ ${state("danger", 25)}
   --font-sans: ${fontSans};
   --font-system: system-ui, sans-serif;
 }
-`;
+${localeStacks}`;
 }
 
 /** OKLCH → sRGB hex (gamut-clamped). l in 0..1, c ≥ 0, h in degrees. */

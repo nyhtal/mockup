@@ -1,6 +1,6 @@
 {
   "html": 75776,
-  "css": 98304,
+  "css": 100352,
   "js": 5120,
   "page": 307200,
   "mobileWidth": 720,
@@ -20,21 +20,27 @@
       "html": 83968
     },
     "/de/index.html": {
-      "html": 83968
+      "html": 86016
     },
     "/ar/index.html": {
-      "html": 86016,
-      "page": 317440
+      "html": 88064,
+      "page": 320512
+    },
+    "/ja/index.html": {
+      "html": 88064
     },
     "/careers/culture/": {
       "html": 86016,
-      "page": 317440
+      "page": 320512
     },
     "/lp/": {
       "html": 81920
     },
     "/ar/": {
-      "html": 77824
+      "html": 79872
+    },
+    "/ja/": {
+      "html": 79872
     }
   }
 }

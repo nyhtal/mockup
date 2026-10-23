@@ -16,7 +16,7 @@
 {% from "primitives/button.njk" import button with context %}
 {% macro render(s, ctx) %}
 {%- set pad = "py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24" -%}
-<section class="{{ pad }} {{ s.surface or ctx.surface or 'bg-surface' }}{{ revealClasses(ctx.reveal, 'scale') }}" data-component="cta-band">
+<section class="{{ pad }} {{ s.surface or ctx.surface or 'bg-surface' }}{{ revealClasses(ctx.reveal, 'scale') }}" data-component="cta-band"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 <div class="relative isolate overflow-clip rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600 px-6 py-12 text-center text-ink-inverse shadow-xl shadow-brand-900/20 sm:px-12 md:py-16 before:absolute before:-top-32 before:-start-32 before:-z-10 before:size-96 before:rounded-full before:bg-ink-inverse/15 before:blur-3xl{{ depth('drift', 'view()', 'cover_0%_cover_100%', 'before:') if ctx.flair and ctx.flair.drift }}">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>

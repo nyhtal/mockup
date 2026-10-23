@@ -20,7 +20,7 @@
 </dl>
 {%- if s.slug %}<div class="mt-8">{{ button("ui.addToCalendar" | t, { href: "/assets/files/" + ctx.locale + "/" + s.slug + ".ics", variant: "secondary", size: "sm", icon: "calendar", attrs: { download: "", type: "text/calendar" } }) }}</div>{% endif %}
 </div>
-<div class="lg:col-span-2">{{ prose(s.body, { class: "hyphens-auto" if ctx.locale == "de", loose: ctx.locale == "ar" }) }}</div>
+<div class="lg:col-span-2">{{ prose(s.body, { class: "hyphens-auto" if ctx.locale == "de", loose: ctx.locale in ["ar", "ja"] }) }}</div>
 </div>
 {% endcall %}
 {% endmacro %}

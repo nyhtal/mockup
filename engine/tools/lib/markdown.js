@@ -64,8 +64,16 @@ export function tocOf(md) {
   return headings(md).filter((h) => h.level === 2 || h.level === 3).map(({ id, text, level }) => ({ id, text, level }));
 }
 
-/** Words in the rendered text, any script (for reading time). */
+const CJK = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}ー]/gu;
+
+/** Words in the rendered text, any spaced script; Japanese characters are left out (readingMinutes counts them). */
 export function wordCount(md) {
-  const text = renderMarkdown(md).replace(/<[^>]+>/g, " ");
+  const text = renderMarkdown(md).replace(/<[^>]+>/g, " ").replace(CJK, " ");
   return (text.match(/[\p{L}\p{N}]+(?:['’][\p{L}]+)?/gu) || []).length;
+}
+
+/** Reading time in minutes, at least 1: 200 words a minute, and 500 characters a minute for Japanese, which has no spaces to count words by. */
+export function readingMinutes(md) {
+  const cjk = (renderMarkdown(md).replace(/<[^>]+>/g, " ").match(CJK) || []).length;
+  return Math.max(1, Math.round(wordCount(md) / 200 + cjk / 500));
 }

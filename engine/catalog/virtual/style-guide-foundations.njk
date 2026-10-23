@@ -3,27 +3,14 @@ layout: base.njk
 pageType: style-guide
 noindex: true
 ---
+{% from "components/style-guide-nav.njk" import styleGuideNav with context %}
 {% from "sections/_shell.njk" import enter, pop with context %}
 {%- set roles = ["surface", "surface-alt", "surface-raised", "ink", "ink-muted", "ink-inverse", "line", "line-strong", "focus", "success", "success-soft", "success-strong", "warning", "warning-soft", "warning-strong", "danger", "danger-soft", "danger-strong"] -%}
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Foundations</h1>
 <p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">The tokens every page draws from: colour roles, type scale, spacing, radius, shadows and motion. Change the brief, not these pages.</p>
-<nav aria-label="Style guide pages" class="mt-8">
-<ul class="flex flex-wrap gap-2">
-<li><a href="/{{ locale }}/sys/" class="inline-flex min-h-9 items-center rounded-md bg-brand-100 px-4 text-sm font-medium text-brand-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">System pages</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/" aria-current="page" class="inline-flex min-h-9 items-center rounded-md bg-brand-100 px-4 text-sm font-medium text-brand-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Foundations</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/primitives/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Primitives</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/components/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Content components</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/controls/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Navigation, overlays and states</a></li>
-<li><a href="/{{ locale }}/sys/html/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">HTML elements</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/sections/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Sections A</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/sections-b/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Sections B</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/sections-c/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Sections C</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/sections-d/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Sections D</a></li>
-<li><a href="/{{ locale }}/sys/style-guide/sections-e/" class="inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">Sections E</a></li>
-</ul>
-</nav>
+{{ styleGuideNav(styleGuide.pages, page.url) }}
 
 <section class="mt-16">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Colour roles</h2>
@@ -95,7 +82,7 @@ noindex: true
 <thead><tr class="border-b border-line-strong"><th scope="col" class="py-3 pe-4 text-start font-semibold">Level</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Sections</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Items</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Items below md</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Duration</th><th scope="col" class="py-3 text-start font-semibold">Enables</th></tr></thead>
 <tbody>
 {%- for l in motionLevels %}
-<tr class="border-b border-line{{ ' font-medium text-ink-brand' if l.level == flair.level }}"><th scope="row" class="py-3 pe-4 text-start font-medium">{{ l.level }}</th><td class="py-3 pe-4 tabular-nums">{{ l.section }} px</td><td class="py-3 pe-4 tabular-nums">{{ l.item }} px</td><td class="py-3 pe-4 tabular-nums">{{ l.itemSm }} px</td><td class="py-3 pe-4 tabular-nums">{{ l.duration }} ms</td><td class="py-3">{{ l.enables | join(", ") if l.enables.length else "rise only" }}</td></tr>
+<tr class="border-b border-line{{ ' font-medium text-ink-brand' if l.level == flair.level }}"><th scope="row" class="py-3 pe-4 text-start font-medium whitespace-nowrap">{{ l.level }}</th><td class="py-3 pe-4 tabular-nums whitespace-nowrap">{{ l.section }} px</td><td class="py-3 pe-4 tabular-nums whitespace-nowrap">{{ l.item }} px</td><td class="py-3 pe-4 tabular-nums whitespace-nowrap">{{ l.itemSm }} px</td><td class="py-3 pe-4 tabular-nums whitespace-nowrap">{{ l.duration }} ms</td><td class="py-3">{{ l.enables | join(", ") if l.enables.length else "rise only" }}</td></tr>
 {%- endfor %}
 </tbody>
 </table>

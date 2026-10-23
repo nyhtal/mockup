@@ -7,12 +7,12 @@ The filled-in example for `engine/site-brief/TEMPLATE.md`. Everything here is fi
 | Field | Value |
 |---|---|
 | Company name | Northwind Dynamics |
-| Tagline | en "Industrial automation, simplified" · de "Industrielle Automatisierung, vereinfacht" · ar "أتمتة صناعية مبسّطة" |
+| Tagline | en "Industrial automation, simplified" · de "Industrielle Automatisierung, vereinfacht" · ar "أتمتة صناعية مبسّطة" · ja "産業オートメーションを、もっとシンプルに" |
 | What it does | Turns a plain description of a production line into validated PLC logic. Changes take hours instead of weeks and nobody waits for a programmer. |
 | Industry | Industrial automation software for food and beverage, pharmaceutical and automotive plants |
-| Public URL | https://example.com |
+| Public URL | https://northwind-dynamics.com |
 | Copyright year | 2026 |
-| Contact | hello@example.com, +44 20 7946 0000 (Manchester) |
+| Contact | hello@northwind-dynamics.com, +44 20 7946 0000 (Manchester) |
 
 ## 2. Voice and conversion
 
@@ -27,7 +27,7 @@ The filled-in example for `engine/site-brief/TEMPLATE.md`. Everything here is fi
 | Field | Value |
 |---|---|
 | Default locale | en |
-| Other locales | de, ar |
+| Other locales | de, ar, ja |
 | Right-to-left | ar |
 | Native digits | none (Latin digits everywhere) |
 | Locale-specific legal pages | imprint for de |
@@ -41,7 +41,7 @@ The filled-in example for `engine/site-brief/TEMPLATE.md`. Everything here is fi
 | Radius | soft |
 | Density | comfortable |
 | Motion | standard |
-| Font | inter (Noto Sans Arabic added for ar) |
+| Font | inter (Noto Sans Arabic added for ar; system Japanese faces for ja, D58) |
 
 ## 5. Pages
 
@@ -49,7 +49,7 @@ Every core and every optional page of the inventory; no module pages. Navigation
 
 ## 6. Entities
 
-3 services, 3 products, 3 industries, 5 people (3 write posts), 3 offices (Manchester, Hamburg, Riyadh), 4 jobs (1 fully remote, 1 office-or-remote), 3 events, 3 downloads (2 gated), 3 posts, 3 press releases, 3 case studies, 3 help articles, 3 tags, 6 customers, 4 testimonials, 4 integrations, 3 values, 4 benefits, 3 awards, 3 badges, 4 timeline entries, 4 stats, 2 FAQ groups of 4, 8 glossary terms, 3 help categories.
+3 services, 3 products, 3 industries, 5 people (3 write posts), 4 offices (Manchester, Hamburg, Riyadh, Tokyo), 4 jobs (1 fully remote, 1 office-or-remote), 3 events, 3 downloads (2 gated), 3 posts, 3 press releases, 3 case studies, 3 help articles, 3 tags, 6 customers, 4 testimonials, 4 integrations, 3 values, 4 benefits, 3 awards, 3 badges, 4 timeline entries, 4 stats, 2 FAQ groups of 4, 8 glossary terms, 3 help categories.
 
 ## 7. Forms
 
@@ -57,7 +57,7 @@ contact, demo, newsletter, preferences, unsubscribe, gated download, event regis
 
 ## 8. Legal and external
 
-Northwind Dynamics Ltd, 4 Canal Street, Manchester M1 3HE (en); Northwind Dynamics GmbH, Speicherstadt 12, 20457 Hamburg for the German imprint. Contacts privacy@, accessibility@, security@ on example.com. No allowed external links. Third-party platforms named as compatibility facts: Siemens TIA Portal, Rockwell Studio 5000, Beckhoff TwinCAT, OSIsoft PI (see `DECISIONS.md`).
+Northwind Dynamics Ltd, 4 Canal Street, Manchester M1 3HE (en); Northwind Dynamics GmbH, Speicherstadt 12, 20457 Hamburg for the German imprint. Contacts privacy@, accessibility@, security@ on northwind-dynamics.com. No allowed external links. Third-party platforms named as compatibility facts: Siemens TIA Portal, Rockwell Studio 5000, Beckhoff TwinCAT, OSIsoft PI (see `DECISIONS.md`).
 
 ## 9. Statement
 

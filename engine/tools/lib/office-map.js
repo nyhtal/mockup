@@ -1,8 +1,9 @@
 /**
  * The office map (to-do 7): one equirectangular frame shared by the generated picture and the <area> hot spots, so a
- * hot spot always sits on its dot. 8 px per degree, longitude 20° W to 60° E, latitude 65° N to 15° N: 640 × 400.
+ * hot spot always sits on its dot. 4 px per degree, longitude 10° W to 150° E (Manchester to Tokyo), latitude 65° N
+ * to 15° N: 640 × 200.
  */
-export const MAP = { width: 640, height: 400, west: -20, north: 65, scale: 8 };
+export const MAP = { width: 640, height: 200, west: -10, north: 65, scale: 4 };
 export const project = ({ lat, lng }) => ({ x: Math.round((lng - MAP.west) * MAP.scale), y: Math.round((MAP.north - lat) * MAP.scale) });
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
@@ -11,8 +12,9 @@ const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&l
 export function officeMapSvg(offices, { label = (o) => o.city } = {}) {
   const pts = offices.filter((o) => o.geo).map((o) => ({ ...project(o.geo), o }));
   const grid = [];
-  for (let lng = -10; lng <= 50; lng += 10) { const { x } = project({ lat: 0, lng }); grid.push(`<line x1="${x}" y1="0" x2="${x}" y2="${MAP.height}"/>`); }
-  for (let lat = 20; lat <= 60; lat += 10) { const { y } = project({ lat, lng: 0 }); grid.push(`<line x1="0" y1="${y}" x2="${MAP.width}" y2="${y}"/>`); }
+  const east = MAP.west + MAP.width / MAP.scale, south = MAP.north - MAP.height / MAP.scale;
+  for (let lng = MAP.west + 10; lng < east; lng += 10) { const { x } = project({ lat: 0, lng }); grid.push(`<line x1="${x}" y1="0" x2="${x}" y2="${MAP.height}"/>`); }
+  for (let lat = south + 5; lat < MAP.north; lat += 10) { const { y } = project({ lat, lng: 0 }); grid.push(`<line x1="0" y1="${y}" x2="${MAP.width}" y2="${y}"/>`); }
   const route = pts.map((p) => `${p.x},${p.y}`).join(" ");
   // Labels go to the side with room: away from a neighbour on the same row, and inwards near the edges.
   const labels = pts.map((p) => {

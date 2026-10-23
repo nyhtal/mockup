@@ -1,6 +1,6 @@
 # Mockup engine
 
-A rulebook, a catalog and a build that turn a one-page Site Brief into a static, multi-locale corporate website mockup: Tailwind-only markup, no runtime JavaScript library, native overlays and disclosures, schema.org on every page, and nine quality gates (bylaws, HTML validity, consistency, structured data, page weight, i18n, links, accessibility, Lighthouse). The reference site in `sites/reference/` is Northwind Dynamics, a fictional industrial-automation company, in English, German and Arabic.
+A rulebook, a catalog and a build that turn a one-page Site Brief into a static, multi-locale corporate website mockup: Tailwind-only markup, no runtime JavaScript library, native overlays and disclosures, schema.org on every page, and nine quality gates (bylaws, HTML validity, consistency, structured data, page weight, i18n, links, accessibility, Lighthouse). The reference site in `sites/reference/` is Northwind Dynamics, a fictional industrial-automation company, in English, German, Arabic and Japanese.
 
 ## Prerequisites
 

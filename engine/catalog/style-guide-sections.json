@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "heroes",
+    "title": "Heroes and page headers",
+    "summary": "How a page opens: the five hero variants for home and landing pages, the interior page header, and the logo cloud that often follows.",
+    "description": "The opening sections of the catalog: every hero variant, the interior page header and the logo cloud, rendered from sample data as a page shows them.",
+    "sections": ["hero-centered", "hero-split", "hero-video", "hero-form", "hero-stats", "page-header", "logo-cloud"]
+  },
+  {
+    "slug": "marketing",
+    "title": "Features, proof and calls to action",
+    "summary": "The sections that sell: features, steps, figures, customer quotes and stories, integrations, the before/after slider, the call-to-action band and the newsletter signup.",
+    "description": "Feature, proof and conversion sections of the catalog: features, steps, stats, testimonials, case studies, integrations, CTA band and newsletter signup.",
+    "sections": ["feature-grid", "feature-rows", "steps", "stats", "stats-plain", "testimonials-single", "testimonials-grid", "testimonials-carousel", "case-study-cards", "integration-grid", "before-after", "cta-band", "newsletter"]
+  },
+  {
+    "slug": "offer",
+    "title": "Offer, pricing and answers",
+    "summary": "What the company sells and the questions around it: service, product and industry cards, pricing tiers, the comparison table, FAQs, the help centre and the glossary.",
+    "description": "Offer sections of the catalog: service, product and industry cards, pricing tiers, the comparison table, FAQ groups, help categories and the glossary.",
+    "sections": ["service-cards", "product-cards", "industry-cards", "pricing", "comparison", "faq", "faq-groups", "help-categories", "glossary-list"]
+  },
+  {
+    "slug": "company",
+    "title": "Company, people and places",
+    "summary": "Who the company is and where: team listings and profiles, values, history, awards and trust marks, benefits, the gallery, offices with maps, and press and named contacts.",
+    "description": "Company sections of the catalog: team and profiles, values, timeline, awards, badges, benefits, gallery, offices and maps, press and contact blocks.",
+    "sections": ["team-grid", "team-preview", "person-bio", "values-grid", "timeline", "awards", "badges", "benefits-grid", "image-gallery", "office-cards", "office-detail", "office-map", "map-facade", "contact-card", "media-contact", "media-kit-cta"]
+  },
+  {
+    "slug": "content",
+    "title": "Articles, events and resources",
+    "summary": "Everything people read, watch or download: article and press listings, the resource hub, downloads, events and speakers, the podcast, the newsletter issue, the changelog, and the parts of an article page.",
+    "description": "Content sections of the catalog: article and press cards, resource hub, downloads, events and speakers, podcast, changelog and article page parts.",
+    "sections": ["article-cards", "press-cards", "resources-latest", "resource-tabs", "download-cards", "download-detail", "event-cards", "event-detail", "speakers", "podcast-episode", "newsletter-preview", "changelog", "article-meta", "prose", "author-box", "related-items", "related-articles"]
+  },
+  {
+    "slug": "forms",
+    "title": "Forms, jobs, search and states",
+    "summary": "The sections people act in: every form and its confirmation, the feedback row, open roles with their empty state, search, filters, pagination and the HTML site map.",
+    "description": "Interactive sections of the catalog: contact, download, event, job and email forms, confirmations, job listings, search, filters, pagination, site map.",
+    "sections": ["contact-form", "gated-form", "registration-form", "apply-form", "preferences-form", "unsubscribe-form", "confirmation", "was-this-helpful", "job-list", "job-list-empty", "job-detail", "search-box", "search-results", "filter-bar", "pagination", "sitemap-list"]
+  }
+]

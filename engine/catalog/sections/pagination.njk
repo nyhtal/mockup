@@ -6,7 +6,7 @@
 #}
 {% from "components/pagination.njk" import pagination with context %}
 {% macro render(s, ctx) %}
-<section class="py-6 {{ s.surface or 'bg-surface' }}" aria-label="{{ s.label or ('ui.pagination' | t) }}" data-component="pagination">
+<section class="py-6 {{ s.surface or 'bg-surface' }}" aria-label="{{ s.label or ('ui.pagination' | t) }}" data-component="pagination"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
 <div class="mx-auto flex w-full max-w-7xl justify-center px-4 sm:px-6 lg:px-8">{{ pagination(s) }}</div>
 </section>
 {% endmacro %}

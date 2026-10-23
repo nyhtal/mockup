@@ -63,7 +63,7 @@ Why: Terminology drift is the subtle inconsistency readers notice without naming
 Gate: manual: checklists/new-page.md
 
 ### R-CONT-13 Lengths from the sections bylaw
-MUST. Word and character limits in R-TYPO-07 and R-SEC-04 apply to every locale's copy, not only English.
+MUST. Word and character limits in R-TYPO-07 and R-SEC-04 apply to every locale's copy, not only English. Characters are display widths (R-HTML-03); in Japanese, which has no spaces, two characters count as a word.
 Why: Translations that overflow break the layout limits in bylaw 03.
 Gate: manual: checklists/new-locale.md
 

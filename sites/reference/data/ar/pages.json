@@ -84,7 +84,7 @@
         {
           "icon": "globe",
           "title": "دعم بلغتك",
-          "text": "مهندسون في مانشستر وهامبورغ والرياض يردون في ساعات العمل المحلية."
+          "text": "مهندسون في مانشستر وهامبورغ والرياض وطوكيو يردون في ساعات العمل المحلية."
         }
       ]
     },
@@ -228,7 +228,7 @@
       "aside": {
         "text": "تفضّل الاتصال أو الكتابة؟ يتولى مكتب الرياض كل محادثة أولى بالعربية.",
         "address": "طريق الملك فهد 88، الرياض 12212، المملكة العربية السعودية",
-        "email": "riyadh@example.com",
+        "email": "riyadh@northwind-dynamics.com",
         "phone": "+966 11 123 4567"
       },
       "form": {
@@ -291,7 +291,7 @@
       "aside": {
         "text": "لا شرائح. نصف إحدى محطاتك مباشرة ونعرض المنطق الذي تنتجه.",
         "address": "طريق الملك فهد 88، الرياض 12212، المملكة العربية السعودية",
-        "email": "riyadh@example.com",
+        "email": "riyadh@northwind-dynamics.com",
         "phone": "+966 11 123 4567"
       },
       "form": {
@@ -600,7 +600,7 @@
     "office-cards": {
       "type": "office-cards",
       "eyebrow": "المواقع",
-      "title": "ثلاثة مكاتب، قائمة دعم واحدة",
+      "title": "أربعة مكاتب، قائمة دعم واحدة",
       "from": "offices"
     },
     "service-cards": {
@@ -952,7 +952,7 @@
     "job-list": {
       "type": "job-list",
       "title": "الوظائف الشاغرة",
-      "lede": "الهندسة في مانشستر وهامبورغ، والدعم في المكاتب الثلاثة، وعن بُعد حيث تسمح الوظيفة.",
+      "lede": "الهندسة في مانشستر وهامبورغ، والدعم في المكاتب الأربعة، وعن بُعد حيث تسمح الوظيفة.",
       "from": "jobs",
       "filters": {
         "action": "/ar/careers/",
@@ -1114,14 +1114,14 @@
       "name": "عمر حداد",
       "role": "رئيس الأمن",
       "text": "أبلغ عن ثغرة وسنرد خلال يومي عمل.",
-      "email": "security@example.com"
+      "email": "security@northwind-dynamics.com"
     },
     "media-contact": {
       "type": "media-contact",
       "title": "جهة الاتصال الصحفية",
       "name": "صوفيا ليندكفيست",
       "role": "رئيسة الاتصال",
-      "email": "press@example.com",
+      "email": "press@northwind-dynamics.com",
       "phone": "+44 20 7946 0001"
     },
     "media-kit-cta": {

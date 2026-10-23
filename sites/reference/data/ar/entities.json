@@ -857,7 +857,7 @@
       "country": "GB",
       "address": "4 Canal Street, Manchester M1 3HE، المملكة المتحدة",
       "phone": "+44 20 7946 0000",
-      "email": "manchester@example.com",
+      "email": "manchester@northwind-dynamics.com",
       "hours": [
         [
           "الاثنين إلى الجمعة",
@@ -896,7 +896,7 @@
       "country": "DE",
       "address": "Speicherstadt 12, 20457 Hamburg، ألمانيا",
       "phone": "+49 40 123456",
-      "email": "hamburg@example.com",
+      "email": "hamburg@northwind-dynamics.com",
       "hours": [
         [
           "الاثنين إلى الجمعة",
@@ -934,7 +934,7 @@
       "country": "SA",
       "address": "طريق الملك فهد 88، الرياض 12212، المملكة العربية السعودية",
       "phone": "+966 11 123 4567",
-      "email": "riyadh@example.com",
+      "email": "riyadh@northwind-dynamics.com",
       "hours": [
         [
           "الأحد إلى الخميس",
@@ -961,6 +961,43 @@
       "geo": {
         "lat": 24.7136,
         "lng": 46.6753
+      }
+    },
+    {
+      "slug": "tokyo",
+      "city": "طوكيو",
+      "street": "2-5-8 Higashi-Shinagawa",
+      "postalCode": "140-0002",
+      "country": "JP",
+      "address": "2-5-8 Higashi-Shinagawa, Shinagawa-ku, Tokyo 140-0002، اليابان",
+      "phone": "+81 3 1234 5678",
+      "email": "tokyo@northwind-dynamics.com",
+      "hours": [
+        [
+          "الاثنين إلى الجمعة",
+          "09:00–18:00"
+        ],
+        [
+          "السبت",
+          "مغلق"
+        ],
+        [
+          "الأحد والعطلات الرسمية",
+          "مغلق"
+        ]
+      ],
+      "map": {
+        "slug": "map-tokyo",
+        "address": "2-5-8 Higashi-Shinagawa, Shinagawa-ku, Tokyo 140-0002"
+      },
+      "description": "مكتب Northwind Dynamics في طوكيو: دعم باللغة اليابانية بتوقيت اليابان وفرق تسليم لمصانع السيارات والأغذية في أنحاء اليابان.",
+      "lede": "دعم باللغة اليابانية بتوقيت اليابان.",
+      "team": [
+        "alex-morgan"
+      ],
+      "geo": {
+        "lat": 35.6223,
+        "lng": 139.7505
       }
     }
   ],
@@ -1663,7 +1700,7 @@
       "label": "موظفًا"
     },
     {
-      "value": "3",
+      "value": "4",
       "label": "مكاتب"
     },
     {

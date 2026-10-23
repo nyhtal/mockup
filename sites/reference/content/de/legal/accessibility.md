@@ -25,6 +25,6 @@ Karten- und Video-Platzhalter öffnen den Drittanbieterdienst erst, wenn Sie es 
 
 ## Sagen Sie es uns
 
-Wenn etwas auf dieser Website schwer zu bedienen ist, schreiben Sie an accessibility@example.com, und wir antworten innerhalb von zwei Werktagen mit einer Lösung oder einem Umweg.
+Wenn etwas auf dieser Website schwer zu bedienen ist, schreiben Sie an accessibility@northwind-dynamics.com, und wir antworten innerhalb von zwei Werktagen mit einer Lösung oder einem Umweg.
 
 <p>Zuletzt geprüft: <time datetime="2026-10-01">1. Oktober 2026</time></p>

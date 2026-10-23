@@ -22,7 +22,7 @@ Jonas Weber, Geschäftsführer
 ## Kontakt
 
 Telefon: +49 40 123456
-E-Mail: hamburg@example.com
+E-Mail: hamburg@northwind-dynamics.com
 
 ## Registereintrag
 

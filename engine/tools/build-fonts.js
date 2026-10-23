@@ -21,6 +21,16 @@ const SUBSET_RANGES = {
 };
 const WEIGHTS = { min: 400, max: 700 };
 
+/**
+ * Scripts no web font can serve within the page budget (D58): a Japanese face needs a glyph per kanji, and Noto Sans
+ * JP cut down to the 1,200-odd characters one site uses is still about 450 KB against the 300 KB page (R-PERF-01).
+ * These locales use the platform's own faces, as Japanese sites do: Hiragino on Apple systems, BIZ UDPGothic or
+ * Meiryo on Windows, Noto Sans CJK on Android and Linux. The brand font stays first for Latin text.
+ */
+const SYSTEM_SCRIPTS = [
+  [/^ja\b/, ["Hiragino Sans", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Meiryo", "Noto Sans CJK JP", "Noto Sans JP"]],
+];
+
 function rangeText(ranges) {
   let text = "";
   for (const r of ranges.split(",")) {
@@ -50,11 +60,17 @@ function facesFrom(pkg, subsets) {
 
 /**
  * Which font files a site ships and the @font-face CSS for them (R-TYPO-01, R-TYPO-02, R-I18N-11).
- * Latin + Latin-ext always; other scripts by locale. Returns { faces, preload, css }.
+ * Latin + Latin-ext always; other scripts by locale. Returns { faces, preload, preloadFor, scriptFamilies, localeFamilies, css };
+ * localeFamilies maps a locale to the system families its pages add to the stack (SYSTEM_SCRIPTS).
  */
 export function fontPlan(brand, locales) {
   const main = resolveFont(brand.font);
-  if (!main) return { faces: [], preload: null, preloadFor: () => null, scriptFamilies: [], css: "" };
+  const localeFamilies = {};
+  for (const l of locales) {
+    const sys = SYSTEM_SCRIPTS.find(([re]) => re.test(l));
+    if (sys) localeFamilies[l] = sys[1];
+  }
+  if (!main) return { faces: [], preload: null, preloadFor: () => null, scriptFamilies: [], localeFamilies, css: "" };
   const faces = facesFrom(main.pkg, ["latin", "latin-ext"]);
   for (const [re, subset, pkg] of SCRIPT_SUBSETS) {
     if (!locales.some((l) => re.test(l))) continue;
@@ -79,7 +95,7 @@ export function fontPlan(brand, locales) {
     const face = script && faces.find((f) => f.subset === script[1]);
     return fileOf(face || latin);
   };
-  return { faces, preload: fileOf(latin), preloadFor, scriptFamilies, css: [...faceCss, ...fallbackCss].join("\n") + "\n" };
+  return { faces, preload: fileOf(latin), preloadFor, scriptFamilies, localeFamilies, css: [...faceCss, ...fallbackCss].join("\n") + "\n" };
 }
 
 export async function copyFonts(plan, distDir) {

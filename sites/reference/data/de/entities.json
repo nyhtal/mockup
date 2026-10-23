@@ -857,7 +857,7 @@
       "country": "GB",
       "address": "4 Canal Street, Manchester M1 3HE, Vereinigtes Königreich",
       "phone": "+44 20 7946 0000",
-      "email": "manchester@example.com",
+      "email": "manchester@northwind-dynamics.com",
       "hours": [
         [
           "Montag bis Freitag",
@@ -896,7 +896,7 @@
       "country": "DE",
       "address": "Speicherstadt 12, 20457 Hamburg, Deutschland",
       "phone": "+49 40 123456",
-      "email": "hamburg@example.com",
+      "email": "hamburg@northwind-dynamics.com",
       "hours": [
         [
           "Montag bis Freitag",
@@ -934,7 +934,7 @@
       "country": "SA",
       "address": "King Fahd Road 88, Riad 12212, Saudi-Arabien",
       "phone": "+966 11 123 4567",
-      "email": "riyadh@example.com",
+      "email": "riyadh@northwind-dynamics.com",
       "hours": [
         [
           "Sonntag bis Donnerstag",
@@ -961,6 +961,43 @@
       "geo": {
         "lat": 24.7136,
         "lng": 46.6753
+      }
+    },
+    {
+      "slug": "tokyo",
+      "city": "Tokio",
+      "street": "2-5-8 Higashi-Shinagawa",
+      "postalCode": "140-0002",
+      "country": "JP",
+      "address": "2-5-8 Higashi-Shinagawa, Shinagawa-ku, Tokio 140-0002, Japan",
+      "phone": "+81 3 1234 5678",
+      "email": "tokyo@northwind-dynamics.com",
+      "hours": [
+        [
+          "Montag bis Freitag",
+          "09:00–18:00"
+        ],
+        [
+          "Samstag",
+          "Geschlossen"
+        ],
+        [
+          "Sonntag und Feiertage",
+          "Geschlossen"
+        ]
+      ],
+      "map": {
+        "slug": "map-tokyo",
+        "address": "2-5-8 Higashi-Shinagawa, Shinagawa-ku, Tokio 140-0002"
+      },
+      "description": "Das Büro von Northwind Dynamics in Tokio: japanischsprachiger Support zu japanischen Zeiten und Delivery-Teams für Automobil- und Lebensmittelwerke.",
+      "lede": "Japanischsprachiger Support zu japanischen Zeiten.",
+      "team": [
+        "alex-morgan"
+      ],
+      "geo": {
+        "lat": 35.6223,
+        "lng": 139.7505
       }
     }
   ],
@@ -1663,7 +1700,7 @@
       "label": "Menschen"
     },
     {
-      "value": "3",
+      "value": "4",
       "label": "Büros"
     },
     {

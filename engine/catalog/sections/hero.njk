@@ -24,7 +24,7 @@
 {%- set variant = s.variant or "centered" -%}
 {%- set pad = "py-12 md:py-20" if ctx.density == "compact" else "py-16 md:py-28" -%}
 {%- set split = variant == "split" or variant == "video" or variant == "form" -%}
-<section class="relative isolate overflow-hidden {{ pad }} {{ s.surface or 'bg-surface' }}" data-component="hero" data-variant="{{ variant }}">
+<section class="relative isolate overflow-hidden {{ pad }} {{ s.surface or 'bg-surface' }}" data-component="hero"{% if s.anchor %} id="{{ s.anchor }}"{% endif %} data-variant="{{ variant }}">
 {#- Depth (R-MOT-15, expressive): the glows sink 16 px over the first 80 vh of scroll; a static half-travel offset keeps them at identity at rest; the layer is taller than the section so no edge shows. -#}
 {%- set hd = ctx.flair and ctx.flair.parallaxHero -%}
 <div aria-hidden="true" class="pointer-events-none absolute {{ 'inset-x-0 -inset-y-8 md:motion-safe:sda:translate-y-2' + depth('parallax-sm', 'scroll(root)', '0_80vh') if hd else 'inset-0' }} -z-10 bg-hero-backdrop"></div>

@@ -6,14 +6,15 @@ import { themeColors, flairFor, motionLevels } from "./engine/tools/lib/theme.js
 import { fontPlan } from "./engine/tools/build-fonts.js";
 import { engineFiles } from "./engine/tools/lib/engine-files.js";
 import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
-import { renderMarkdown, renderInline, tocOf, wordCount, headingIds } from "./engine/tools/lib/markdown.js";
+import { renderMarkdown, renderInline, tocOf, readingMinutes, headingIds, slugify } from "./engine/tools/lib/markdown.js";
 import { semantics } from "./engine/tools/lib/markdown-semantics.js";
 import { wordBreaks } from "./engine/tools/lib/word-breaks.js";
-import { project } from "./engine/tools/lib/office-map.js";
+import { project, MAP as OFFICE_MAP } from "./engine/tools/lib/office-map.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
 import { searchIndex, searchPage } from "./engine/tools/lib/search-index.js";
+import { sectionGroups } from "./engine/tools/lib/style-guide.js";
 
 const OG_LOCALES = { en: "en_GB", de: "de_DE", ar: "ar_SA", fr: "fr_FR", es: "es_ES", it: "it_IT", nl: "nl_NL", pt: "pt_PT", ja: "ja_JP", zh: "zh_CN" };
 
@@ -160,6 +161,7 @@ export default function (eleventyConfig) {
   const samples = JSON.parse(readFileSync(path.join("engine", "catalog", "samples.json"), "utf8"));
   samples.byId = Object.fromEntries(samples.sections.map((s) => [s.id, s]));
   eleventyConfig.addGlobalData("samples", samples);
+  eleventyConfig.addGlobalData("officeMapFrame", { width: OFFICE_MAP.width, height: OFFICE_MAP.height });
   // A Nunjucks global, not global data: Eleventy would call a function-valued global datum to compute its value.
   eleventyConfig.addNunjucksGlobal("unknownSection", (type) => { throw new Error(`Unknown section type "${type}" (R-SEC-12): add it to engine/catalog/sections and the dispatcher`); });
 
@@ -201,7 +203,7 @@ export default function (eleventyConfig) {
     readingTime: (data) => {
       if (data.readingTime || !data.e?.body || data.layout !== "article.njk") return data.readingTime;
       const lang = data.page.lang || site.defaultLocale;
-      return t(lang, "ui.readingTime", Math.max(1, Math.round(wordCount(data.e.body) / 200)));
+      return t(lang, "ui.readingTime", readingMinutes(data.e.body));
     },
     author: (data) => {
       if (data.author || !data.e?.author) return data.author;
@@ -262,6 +264,8 @@ export default function (eleventyConfig) {
     return value;
   });
   eleventyConfig.addFilter("md", renderMarkdown);
+  // Fragment ids that keep letters of every script (Eleventy's slugify drops Japanese, leaving "term-" for every glossary entry).
+  eleventyConfig.addFilter("anchor", slugify);
   eleventyConfig.addFilter("mdInline", renderInline);
   // The office map's frame: { x, y } in the picture for a { lat, lng } (to-do 7).
   eleventyConfig.addFilter("mapPoint", (geo) => (geo ? project(geo) : null));
@@ -287,14 +291,13 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("figure", function (value) { return parseFigure(value, fmtLocale(this.ctx?.page?.lang || site.defaultLocale, site)); });
   eleventyConfig.addFilter("formatCurrency", function (n, code) { return formatCurrency(n, this.ctx?.page?.lang || site.defaultLocale, code, site); });
   eleventyConfig.addFilter("htmlPages", (all) => all.filter((p) => p.url && p.url.endsWith("/") && p.data.pageType));
-  // System pages (D56): "locales" = each language's system page; for a locale (or "" for root pages): "style" = its style
-  // guide, "hidden" = every other noindex page of that language only (each language has its own system page).
+  // System pages (D56): "locales" = each language's system page; for a locale (or "" for root pages):
+  // "hidden" = every noindex page of that language only (each language has its own system page).
   eleventyConfig.addFilter("sysPages", (all, kind, locale) => {
     const inLocale = (u) => (locale === "" ? !/^\/[a-z]{2}\//.test(u) : u.startsWith(`/${locale}/`));
     return all
       .filter((p) => p.url && p.data.pageType && (
         kind === "locales" ? p.data.pageType === "sys" && /^\/[a-z]{2}\/sys\/$/.test(p.url)
-        : kind === "style" ? p.data.pageType === "style-guide" && p.url.startsWith(`/${locale}/sys/style-guide/`)
         : !["style-guide", "sys"].includes(p.data.pageType) && (p.data.noindex || ["thank-you", "error"].includes(p.data.pageType)) && inLocale(p.url)))
       .map((p) => ({ url: p.url, title: p.data.title || p.url, lang: p.data.page?.lang || p.data.lang || site.defaultLocale }))
       .sort((x, y) => x.url.localeCompare(y.url));
@@ -342,27 +345,40 @@ export default function (eleventyConfig) {
   eleventyConfig.addTemplate("_engine/sitemap.njk", virtual("sitemap.njk"));
   eleventyConfig.addTemplate("_engine/og-manifest.njk", virtual("og-manifest.njk"));
   eleventyConfig.addTemplate("_engine/files.njk", virtual("files.njk"));
-  // Each language's system page (D56): /<locale>/sys/ lists that language's hidden pages and files, and in the default locale the QA page and the style guide. The three share a slug, so the language switcher pairs them (owner, 2026-10-20).
+  // Each language's system page (D56): /<locale>/sys/ lists that language's hidden pages and files; the style guide is on /sys/ (D59). The three share a slug, so the language switcher pairs them (owner, 2026-10-20).
   const englishName = new Intl.DisplayNames(["en"], { type: "language" });
   eleventyConfig.addFilter("englishName", (l) => englishName.of(l));
   for (const locale of site.locales) {
     const name = englishName.of(locale);
-    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: `${name} system pages`, description: `The ${name} system page of ${site.name}: ${locale === site.defaultLocale ? "the HTML element reference, the style guide, " : ""}every hidden ${name} page${locale === site.defaultLocale ? "" : ", such as search results, thank-you and error pages,"} and the ${name} files.`, permalink: `/${locale}/sys/index.html` });
+    eleventyConfig.addTemplate(`${locale}/_engine/sys-locale.njk`, virtual("sys-locale.njk"), { lang: locale, title: `${name} system pages`, description: `The ${name} system page of ${site.name}: every hidden ${name} page, such as search results, thank-you and error pages, and the ${name} files.`, permalink: `/${locale}/sys/index.html` });
   }
-  // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, under /en/sys/style-guide/; the HTML element reference at /en/sys/html/; /sys/ links them all. No other locale has them, so they show no language links (D56). Written in the default locale (its sample data is English).
+  // Style guide (R-COMP-16, R-PAGE-09): one page per catalog layer, noindex, under /sys/style-guide/ with the HTML element reference at /sys/html/, all listed on /sys/ (D56, D59). Outside any locale, so no language links; written in the default locale because the sample data is English.
+  // Sample sections are grouped by purpose in engine/catalog/style-guide-sections.json, one page per group so each stays within the HTML budget (R-PERF-01); sectionGroups fails the build when a section is in no group.
+  const htmlElements = JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8"));
+  const groups = sectionGroups(samples, JSON.parse(readFileSync("engine/catalog/style-guide-sections.json", "utf8")));
+  const sg = "/sys/style-guide/";
+  const sgPages = [
+    { file: "style-guide-foundations.njk", href: sg, label: "Foundations", title: "Style guide: foundations", summary: "Colour roles in both schemes, the type scale, spacing, radius, shadows and the three motion levels." },
+    { file: "style-guide-primitives.njk", href: `${sg}primitives/`, label: "Primitives", title: "Style guide: primitives", summary: "Buttons, links, badges, icons and form controls: every primitive in every variant and state." },
+    { file: "style-guide-components.njk", href: `${sg}components/`, label: "Content components", title: "Style guide: content components", summary: "Cards, figures, tables, quotes, steps, timelines and disclosure blocks in every variant." },
+    { file: "style-guide-controls.njk", href: `${sg}controls/`, label: "Navigation and overlays", title: "Style guide: navigation, overlays and states", summary: "Everything that moves, navigates or reports a state: menus, popovers, dialogs, toasts, notices and empty states." },
+    { file: "style-guide-sections-index.njk", href: `${sg}sections/`, label: "Sections", title: "Style guide: sections", summary: `All ${samples.sections.length} sections of the catalog in ${groups.length} groups by purpose, with a line on what each is for.` },
+    ...groups.map((g) => ({ file: "style-guide-sections.njk", href: `${sg}sections/${g.slug}/`, label: g.title, title: `Sections: ${g.title}`, summary: g.summary, description: g.description, group: g, contents: g.items.map((i) => i.label) })),
+    { file: "style-guide-html.njk", href: "/sys/html/", label: "HTML elements", title: "HTML element reference", summary: `All ${htmlElements.length} elements of the HTML standard, what each is for, a page of this site that uses it, and the rest shown working.` },
+  ];
+  eleventyConfig.addGlobalData("styleGuide", { pages: sgPages.map(({ file, group, ...p }) => p), groups });
   for (const locale of [site.defaultLocale]) {
-    for (const [name, slug, title] of [["style-guide-foundations.njk", "", "Style guide: foundations"], ["style-guide-primitives.njk", "primitives/", "Style guide: primitives"], ["style-guide-components.njk", "components/", "Style guide: content components"], ["style-guide-controls.njk", "controls/", "Style guide: navigation, overlays and states"], ["style-guide-html.njk", "html/", "HTML element reference"]]) {
-      eleventyConfig.addTemplate(`${locale}/_engine/${name}`, virtual(name), { lang: locale, title, htmlElements: name === "style-guide-html.njk" ? JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8")) : undefined, description: `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`, permalink: name === "style-guide-html.njk" ? `/${locale}/sys/${slug}index.html` : `/${locale}/sys/style-guide/${slug}index.html` });
+    for (const p of sgPages) {
+      eleventyConfig.addTemplate(`${locale}/_engine/${p.group ? `style-guide-sections-${p.group.slug}.njk` : p.file}`, virtual(p.file), {
+        lang: locale, title: p.title, summary: p.summary, group: p.group, htmlElements: p.file === "style-guide-html.njk" ? htmlElements : undefined,
+        // Ids resolve as on any page, the site's own section before the sample (planSections), plus the id the "On this page" list links to.
+        sections: p.group ? p.group.items.map((i) => ({ ...(siteData[locale]?.pages?.sections?.[i.id] || samples.byId[i.id]), anchor: i.anchor })) : undefined,
+        description: p.description || `Tokens, primitives, components and sections of ${site.name}, rendered exactly as the catalog produces them, with every variant and state on display.`,
+        permalink: `${p.href}index.html`,
+      });
     }
-    // The hidden system index at /sys/ (D56): links to the style guide, the HTML element reference, hidden pages and system files.
-    eleventyConfig.addTemplate(`${locale}/_engine/sys.njk`, virtual("sys.njk"), { lang: locale, title: "System pages", breadcrumbs: [], description: `The system hub of ${site.name}: each language's system page, the style guide and HTML reference, the pages outside a language, and the site files.`, permalink: "/sys/index.html" });
-    // Every sample section, split into five pages so each stays within the HTML budget (R-PERF-01).
-    const ids = samples.sections.map((s) => s.id);
-    const per = Math.ceil(ids.length / 5);
-    ["a", "b", "c", "d", "e"].forEach((letter, i) => {
-      const slug = i === 0 ? "sections/" : `sections-${letter}/`;
-      eleventyConfig.addTemplate(`${locale}/_engine/style-guide-sections-${letter}.njk`, virtual("style-guide-sections.njk"), { lang: locale, title: `Style guide: sections ${letter.toUpperCase()}`, description: `Every section in the ${site.name} catalog, rendered from its sample data exactly as a page would show it. Part ${letter.toUpperCase()} of five.`, permalink: `/${locale}/sys/style-guide/${slug}index.html`, sections: ids.slice(i * per, (i + 1) * per) });
-    });
+    // The hidden system index at /sys/ (D56): the style guide and HTML reference, each language's system page, the pages outside a language and the site files.
+    eleventyConfig.addTemplate(`${locale}/_engine/sys.njk`, virtual("sys.njk"), { lang: locale, title: "System pages", breadcrumbs: [], description: `The system hub of ${site.name}: the style guide and HTML reference, each language's system page, the pages outside a language, and the site files.`, permalink: "/sys/index.html" });
   }
   for (const [code, key] of [["404", "notFound"], ["500", "server"]]) {
     for (const locale of site.locales) {

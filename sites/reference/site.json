@@ -1,13 +1,14 @@
 {
   "name": "Northwind Dynamics",
   "tagline": "Industrial automation, simplified",
-  "url": "https://example.com",
+  "url": "https://northwind-dynamics.com",
   "year": "2026",
   "defaultLocale": "en",
   "locales": [
     "en",
     "de",
-    "ar"
+    "ar",
+    "ja"
   ],
   "rtl": [
     "ar"
@@ -15,7 +16,7 @@
   "hasSearch": true,
   "voice": "plain",
   "contact": {
-    "email": "hello@example.com",
+    "email": "hello@northwind-dynamics.com",
     "phone": "+44 20 7946 0000"
   },
   "errorLinks": [

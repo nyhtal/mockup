@@ -11,7 +11,7 @@
 {% call shell("prose", s, ctx, { center: false, noReveal: true }) %}
 <div class="{{ 'grid gap-12 lg:grid-cols-4' if s.toc }}">
 {%- if s.toc %}<div class="order-2 lg:order-1">{{ toc(s.toc) }}</div>{% endif %}
-<div class="{{ 'order-1 min-w-0 lg:order-2 lg:col-span-3' if s.toc }}">{{ prose(s.html, { class: "hyphens-auto" if ctx.locale == "de", loose: ctx.locale == "ar" }) }}</div>
+<div class="{{ 'order-1 min-w-0 lg:order-2 lg:col-span-3' if s.toc }}">{{ prose(s.html, { class: "hyphens-auto" if ctx.locale == "de", loose: ctx.locale in ["ar", "ja"] }) }}</div>
 </div>
 {% endcall %}
 {% endmacro %}

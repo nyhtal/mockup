@@ -29,7 +29,7 @@ Northwind staff who need it for their work, and the hosting provider in the EU. 
 
 ## Your rights
 
-You can ask for a copy of your data, correct it, or have it deleted by writing to privacy@example.com. We reply within one month.
+You can ask for a copy of your data, correct it, or have it deleted by writing to privacy@northwind-dynamics.com. We reply within one month.
 
 ## Where data is kept
 

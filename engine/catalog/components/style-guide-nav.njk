@@ -1,0 +1,24 @@
+{#
+  name: style-guide-nav
+  purpose: The menu of the style guide's pages, on each of them (D59): the system hub, then every page of the guide in order, from the styleGuide global so a new page appears by itself.
+  anatomy: nav[aria-label] > ul > li > a (current: aria-current="page")
+  variants: none
+  states: current page
+  spacing: mt-8, gap-2
+  motion: none
+  keyboard: links in reading order
+  a11y: the current page carries aria-current="page" and the filled style
+  i18n: English only, like the style guide
+  content limits: labels ≤ 40 characters
+#}
+{% macro styleGuideNav(pages, current) %}
+{%- set base = "inline-flex min-h-9 items-center rounded-md px-4 text-sm font-medium focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
+<nav aria-label="Style guide pages" class="mt-8">
+<ul class="flex flex-wrap gap-2">
+<li><a href="/sys/" class="{{ base }} border border-line-strong text-ink hover:bg-surface-alt">System pages</a></li>
+{%- for p in pages %}
+<li><a href="{{ p.href }}"{% if p.href == current %} aria-current="page"{% endif %} class="{{ base }} {{ 'bg-brand-100 text-brand-800' if p.href == current else 'text-ink hover:bg-surface-alt' }}">{{ p.label }}</a></li>
+{%- endfor %}
+</ul>
+</nav>
+{% endmacro %}

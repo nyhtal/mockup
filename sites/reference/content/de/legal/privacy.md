@@ -29,7 +29,7 @@ Mitarbeitende von Northwind, die sie für ihre Arbeit brauchen, und der Hosting-
 
 ## Ihre Rechte
 
-Sie können eine Kopie Ihrer Daten anfordern, sie berichtigen oder löschen lassen, indem Sie an privacy@example.com schreiben. Wir antworten innerhalb eines Monats.
+Sie können eine Kopie Ihrer Daten anfordern, sie berichtigen oder löschen lassen, indem Sie an privacy@northwind-dynamics.com schreiben. Wir antworten innerhalb eines Monats.
 
 ## Wo Daten liegen
 

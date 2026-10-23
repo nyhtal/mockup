@@ -25,6 +25,6 @@ Map and video placeholders open the third-party service only after you choose to
 
 ## Tell us
 
-If anything on this site is hard to use, write to accessibility@example.com and we reply within two working days with a fix or a workaround.
+If anything on this site is hard to use, write to accessibility@northwind-dynamics.com and we reply within two working days with a fix or a workaround.
 
 <p>Last reviewed: <time datetime="2026-10-01">1 October 2026</time></p>

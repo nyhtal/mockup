@@ -4,8 +4,23 @@ pageType: style-guide
 noindex: true
 demote: true
 ---
+{% from "components/style-guide-nav.njk" import styleGuideNav with context %}
+{#- One group of sample sections (engine/catalog/style-guide-sections.json, D59): the group's summary, the list of its
+    sections with what each is for (from each section's catalog header), then the sections themselves, rendered by page.njk
+    from the `sections` data, each with the id the list links to. -#}
+{%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
 <div class="mx-auto w-full max-w-7xl px-4 pt-16 sm:px-6 md:pt-24 lg:px-8">
-<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
-<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ title | replace("Style guide: ", "") | capitalize }}</h1>
-<p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">Each section below is rendered from its sample data through the dispatcher, exactly as a page would render it. Section h1s are shown as h2s here.</p>
+<p class="text-sm font-medium uppercase tracking-wide text-ink-brand"><a href="/sys/style-guide/sections/" class="{{ link }}">Style guide: sections</a></p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ group.title }}</h1>
+<p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">{{ group.summary }}</p>
+{{ styleGuideNav(styleGuide.pages, page.url) }}
+<section class="mt-12" aria-labelledby="on-this-page">
+<h2 id="on-this-page" class="text-xl font-semibold">On this page <span class="text-base font-normal text-ink-muted">({{ group.items.length }} sections)</span></h2>
+<p class="mt-2 max-w-prose text-sm text-ink-muted">Each section is rendered from its sample data through the dispatcher, exactly as a page would render it; section h1s are shown as h2s here.</p>
+<ol class="mt-4 grid gap-x-8 gap-y-3 md:grid-cols-2">
+{%- for i in group.items %}
+<li><a href="#{{ i.anchor }}" class="font-medium {{ link }}">{{ i.label }}</a>{% if i.purpose %}<span class="block text-sm text-ink-muted">{{ i.purpose }}</span>{% endif %}</li>
+{%- endfor %}
+</ol>
+</section>
 </div>

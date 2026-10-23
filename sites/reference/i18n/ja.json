@@ -1,0 +1,63 @@
+{
+  "nav": {
+    "cta": "デモを予約",
+    "services": "サービス",
+    "servicesDesc": "ライン自動化、工場単位のプログラム、安全レビュー。",
+    "products": "製品",
+    "productsDesc": "Studio、Edge、Cloud：すべてのラインを支えるソフトウェア。",
+    "industries": "業界",
+    "industriesDesc": "食品・飲料、医薬品、自動車の工場向け。",
+    "pricing": "料金",
+    "pricingDesc": "ライン単位、拠点単位、グループ全体で。",
+    "customers": "導入事例",
+    "resources": "リソース",
+    "blog": "ブログ",
+    "blogDesc": "製造現場からのレポートを毎月お届け。",
+    "downloads": "資料ダウンロード",
+    "downloadsDesc": "チェックリスト、ガイド、計算ツール。",
+    "events": "イベント",
+    "eventsDesc": "ウェビナー、ワークショップ、出展情報。",
+    "help": "ヘルプセンター",
+    "helpDesc": "エンジニアとラインリーダー向けの手順ガイド。",
+    "company": "会社情報",
+    "about": "当社について",
+    "aboutDesc": "当社の概要と仕事の進め方。",
+    "team": "経営陣",
+    "locations": "拠点",
+    "careers": "採用情報",
+    "careersDesc": "マンチェスター、ハンブルク、リヤドで募集中。",
+    "culture": "カルチャー",
+    "cultureDesc": "工場の現場、試験ラボ、静かなデスク。",
+    "news": "ニュース",
+    "newsDesc": "プレスリリースとメディアキット。",
+    "contactDesc": "1営業日以内にエンジニアがご対応します。",
+    "partners": "パートナー",
+    "faq": "よくあるご質問",
+    "glossary": "用語集",
+    "trust": "トラストセンター",
+    "sustainability": "サステナビリティ",
+    "newsletter": "ニュースレター",
+    "sitemap": "サイトマップ",
+    "privacy": "プライバシー",
+    "cookies": "Cookie",
+    "terms": "利用規約",
+    "accessibility": "アクセシビリティ",
+    "imprint": "運営者情報",
+    "changelog": "更新履歴",
+    "podcast": "ポッドキャスト"
+  },
+  "footer": {
+    "offer": "事業内容",
+    "resources": "リソース",
+    "more": "その他"
+  },
+  "sitemap": {
+    "legal": "法的情報",
+    "lp": "キャンペーンページ"
+  },
+  "site": {
+    "tagline": "産業オートメーションを、もっとシンプルに",
+    "notice": "11月12日開催のウェビナー：書類作業なしで進める安全PLC。",
+    "noticeLink": "席を予約"
+  }
+}

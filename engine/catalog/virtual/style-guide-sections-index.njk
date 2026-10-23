@@ -1,0 +1,27 @@
+---
+layout: base.njk
+pageType: style-guide
+noindex: true
+---
+{% from "components/style-guide-nav.njk" import styleGuideNav with context %}
+{#- The sections overview (D59): every group of engine/catalog/style-guide-sections.json with its summary and its
+    sections, each linking to where it is rendered. Built from the same data as the group pages, so it never falls behind. -#}
+{%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
+{%- set count = 0 %}{% for g in styleGuide.groups %}{% set count = count + g.items.length %}{% endfor -%}
+<div class="mx-auto w-full max-w-7xl px-4 pt-16 pb-24 sm:px-6 md:pt-24 lg:px-8">
+<p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
+<h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Sections</h1>
+<p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">All {{ count }} sections of the catalog, in {{ styleGuide.groups.length }} groups by what they are for. Each group is one page that renders its sections from sample data, exactly as a site page would.</p>
+{{ styleGuideNav(styleGuide.pages, page.url) }}
+{%- for g in styleGuide.groups %}
+<section class="mt-16" aria-labelledby="group-{{ g.slug }}">
+<h2 id="group-{{ g.slug }}" class="text-2xl font-semibold tracking-tight"><a href="/sys/style-guide/sections/{{ g.slug }}/" class="{{ link }}">{{ g.title }}</a> <span class="text-base font-normal text-ink-muted">({{ g.items.length }})</span></h2>
+<p class="mt-2 max-w-prose text-ink-muted">{{ g.summary }}</p>
+<ul class="mt-4 grid gap-x-8 gap-y-3 md:grid-cols-2 lg:grid-cols-3">
+{%- for i in g.items %}
+<li><a href="/sys/style-guide/sections/{{ g.slug }}/#{{ i.anchor }}" class="font-medium {{ link }}">{{ i.label }}</a>{% if i.purpose %}<span class="block text-sm text-ink-muted">{{ i.purpose }}</span>{% endif %}</li>
+{%- endfor %}
+</ul>
+</section>
+{%- endfor %}
+</div>

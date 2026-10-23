@@ -84,7 +84,7 @@
         {
           "icon": "globe",
           "title": "Support in Ihrer Sprache",
-          "text": "Ingenieure in Manchester, Hamburg und Riad antworten zu lokalen Zeiten."
+          "text": "Ingenieure in Manchester, Hamburg, Riad und Tokio antworten zu lokalen Zeiten."
         }
       ]
     },
@@ -228,7 +228,7 @@
       "aside": {
         "text": "Lieber anrufen oder schreiben? Unser Hamburger Büro übernimmt jedes erste Gespräch auf Deutsch.",
         "address": "Speicherstadt 12, 20457 Hamburg, Deutschland",
-        "email": "hamburg@example.com",
+        "email": "hamburg@northwind-dynamics.com",
         "phone": "+49 40 123456"
       },
       "form": {
@@ -291,7 +291,7 @@
       "aside": {
         "text": "Keine Folien. Wir beschreiben eine Ihrer Stationen live und zeigen die Logik, die daraus entsteht.",
         "address": "Speicherstadt 12, 20457 Hamburg, Deutschland",
-        "email": "hamburg@example.com",
+        "email": "hamburg@northwind-dynamics.com",
         "phone": "+49 40 123456"
       },
       "form": {
@@ -600,7 +600,7 @@
     "office-cards": {
       "type": "office-cards",
       "eyebrow": "Standorte",
-      "title": "Drei Büros, eine Support-Warteschlange",
+      "title": "Vier Büros, eine Support-Warteschlange",
       "from": "offices"
     },
     "service-cards": {
@@ -952,7 +952,7 @@
     "job-list": {
       "type": "job-list",
       "title": "Offene Stellen",
-      "lede": "Entwicklung in Manchester und Hamburg, Support in allen drei Büros, remote, wo die Stelle es erlaubt.",
+      "lede": "Entwicklung in Manchester und Hamburg, Support in allen vier Büros, remote, wo die Stelle es erlaubt.",
       "from": "jobs",
       "filters": {
         "action": "/de/careers/",
@@ -1114,14 +1114,14 @@
       "name": "Omar Haddad",
       "role": "Leitung Sicherheit",
       "text": "Melden Sie eine Schwachstelle, und wir antworten innerhalb von zwei Werktagen.",
-      "email": "security@example.com"
+      "email": "security@northwind-dynamics.com"
     },
     "media-contact": {
       "type": "media-contact",
       "title": "Pressekontakt",
       "name": "Sofia Lindqvist",
       "role": "Leiterin Kommunikation",
-      "email": "press@example.com",
+      "email": "press@northwind-dynamics.com",
       "phone": "+44 20 7946 0001"
     },
     "media-kit-cta": {

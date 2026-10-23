@@ -19,3 +19,4 @@ Use this when a site adds a language. The reference site added German (text expa
 - German compounds in headings ("Stillstandskostenrechner") overflow 320 px unless the body hyphenates (`hyphens-auto` for `de`) and wraps (`wrap-break-word`).
 - The header holds four nav groups, the switcher, search and the CTA only from `xl`; between `lg` and `xl` the switcher is icon-only and the wordmark one step smaller.
 - Arabic plurals: "1 دقائق قراءة" is wrong; `t(key, n)` with the five forms fixes it.
+- Japanese (D58): no web font fits the page budget, so the system faces carry it; write no spaces between Japanese and Latin text (`text-autospace` adds them); descriptions are 60–77 Japanese characters because widths count double.

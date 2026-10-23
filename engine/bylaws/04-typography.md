@@ -3,7 +3,7 @@
 Purpose: which font, size, weight and leading each kind of text uses, so a heading on the careers page looks like a heading on the pricing page. Sources: https://fontsource.org (OFL fonts), https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/size-adjust, https://developer.mozilla.org/en-US/docs/Web/CSS/text-wrap.
 
 ### R-TYPO-01 Approved fonts
-MUST. The brief's `font` is one of: `inter`, `figtree`, `ibm-plex-sans`, `source-sans-3`, `noto-sans`, or `system`. Arabic locales add `noto-sans-arabic`; the build only ships the files a site's locales need. Each is the variable `woff2` from `@fontsource-variable/<name>` (OFL 1.1); Latin faces ship as delivered, script faces are subset at build time to the script's core blocks and the weights the catalog uses (400–700), which takes the Arabic face from 166 KB to 53 KB so an Arabic page fits R-PERF-01.
+MUST. The brief's `font` is one of: `inter`, `figtree`, `ibm-plex-sans`, `source-sans-3`, `noto-sans`, or `system`. Arabic locales add `noto-sans-arabic`; the build only ships the files a site's locales need. Each is the variable `woff2` from `@fontsource-variable/<name>` (OFL 1.1); Latin faces ship as delivered, script faces are subset at build time to the script's core blocks and the weights the catalog uses (400–700), which takes the Arabic face from 166 KB to 53 KB so an Arabic page fits R-PERF-01. Japanese ships no face (D58): it uses the platform's own (Hiragino Sans, BIZ UDPGothic, Meiryo, Noto Sans CJK JP), added after the brand font on Japanese pages only, because a Japanese web font cut to one site's characters still weighs about 450 KB.
 Why: Variable fonts give every weight in one file; a short list keeps sites recognisably related.
 Gate: manual: checklists/new-site.md
 
@@ -23,8 +23,8 @@ Why: Mapping element to class once removes the question forever.
 Gate: manual: checklists/new-component.md
 
 ### R-TYPO-05 Line height
-MUST. Headings use the scale's paired leading (`tracking-tight`, no override); body uses `leading-relaxed`; Arabic pages use `leading-loose` on prose and `leading-snug` on headings.
-Why: Arabic script needs more vertical room for marks; Latin does not.
+MUST. Headings use the scale's paired leading (`tracking-tight`, no override); body uses `leading-relaxed`; Arabic and Japanese pages use `leading-loose` on prose and `leading-snug` on headings, with no letter-spacing.
+Why: Arabic script needs more vertical room for marks, and Japanese characters fill the whole em square, so lines need air between them; Latin does not.
 Gate: manual: checklists/new-locale.md
 
 ### R-TYPO-06 Balance, not pretty
@@ -33,7 +33,7 @@ Why: Balanced headings avoid orphans; `pretty` is not yet Baseline.
 Gate: manual: checklists/new-component.md
 
 ### R-TYPO-07 Length limits
-MUST. h1 ≤ 60 characters, h2 ≤ 80, eyebrow ≤ 30, button label ≤ 25, nav item ≤ 18, card title ≤ 70, lede ≤ 35 words. Limits apply to every locale.
+MUST. h1 ≤ 60 characters, h2 ≤ 80, eyebrow ≤ 30, button label ≤ 25, nav item ≤ 18, card title ≤ 70, lede ≤ 35 words. Limits apply to every locale; characters are display widths (R-HTML-03) and in Japanese two characters count as a word.
 Why: Over-long headings wrap into walls and break the rhythm.
 Gate: manual: checklists/new-page.md
 
@@ -62,6 +62,11 @@ MUST. A locale whose script the brief's font does not cover gets its script font
 Why: Tofu boxes are the most visible i18n failure.
 Gate: manual: checklists/new-locale.md
 
+### R-TYPO-13 Japanese typesetting
+MUST. Japanese pages break lines strictly (`line-break: strict`: no small kana or closing bracket starts a line), break headings between phrases (`word-break: auto-phrase` on h1–h3), space Japanese from Latin text and digits (`text-autospace: normal`) instead of typed spaces, never synthesise italics (`font-synthesis-style: none`; emphasis is bold) and quote with 「」, which the Markdown renders as `<q>`. Reading time counts 500 characters a minute.
+Why: Japanese has no spaces between words, so the browser's defaults break lines inside words and leave punctuation at line starts; the system faces have no italics, and an oblique kanji reads as a rendering fault.
+Gate: manual: checklists/new-locale.md
+
 ## Checklist
 
 - [ ] R-TYPO-01 font from the approved list
@@ -76,3 +81,4 @@ Gate: manual: checklists/new-locale.md
 - [ ] R-TYPO-10 prose component, no typography plugin
 - [ ] R-TYPO-11 sentence case
 - [ ] R-TYPO-12 script fonts per locale
+- [ ] R-TYPO-13 Japanese line breaking, spacing and emphasis

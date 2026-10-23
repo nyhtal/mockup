@@ -25,7 +25,7 @@
 </audio>
 <p class="mt-4 text-sm"><a href="{{ ep.audio }}" download type="audio/wav" class="inline-block py-1 underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ "ui.downloadAudio" | t }}</a></p>
 </figure>
-<div class="mt-8">{{ prose(ep.notes | md, { loose: ctx.locale == "ar" }) }}</div>
+<div class="mt-8">{{ prose(ep.notes | md, { loose: ctx.locale in ["ar", "ja"] }) }}</div>
 </div>
 <div>{{ accordion([{ title: "ui.transcript" | t, body: lines, open: true }], { level: 3 }) }}</div>
 </div>

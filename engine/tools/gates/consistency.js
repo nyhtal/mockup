@@ -1,6 +1,7 @@
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import path from "node:path";
 import { pagesFor, parse } from "../lib/html.js";
+import { displayWidth } from "../lib/text-width.js";
 
 export const id = "consistency";
 export const checks = [
@@ -241,9 +242,11 @@ export async function run(ctx) {
       const title = head.querySelector("title")?.text?.trim() || "";
       const parts = title.split(" · ");
       const pageTitle = parts.length > 1 ? parts.slice(0, -1).join(" · ") : title;
-      if (pageTitle.length > 60) add("meta-length", `title "${pageTitle.slice(0, 40)}…" is ${pageTitle.length} chars (max 60, R-HTML-03)`);
+      const titleWidth = displayWidth(pageTitle);
+      if (titleWidth > 60) add("meta-length", `title "${pageTitle.slice(0, 40)}…" is ${titleWidth} wide (max 60, R-HTML-03)`);
       const desc = head.querySelector('meta[name="description"]')?.getAttribute("content") || "";
-      if (desc.length < 120 || desc.length > 155) add("meta-length", `description is ${desc.length} chars (120–155, R-HTML-03)`);
+      const descWidth = displayWidth(desc);
+      if (descWidth < 120 || descWidth > 155) add("meta-length", `description is ${descWidth} wide (120–155, R-HTML-03)`);
     }
   }
   return { id, ok: findings.length === 0, findings };

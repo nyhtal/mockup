@@ -13,8 +13,8 @@ Why: A fixed order makes diffs readable, puts render-critical tags first and kee
 Gate: consistency/head-order
 
 ### R-HTML-03 Title and description
-MUST. `<title>` follows `{Page title} · {Site name}` (home: `{Site name} · {Tagline}`) and is at most 60 characters. `<meta name="description">` is 120–155 characters of plain text.
-Why: Both are shown in search results and truncated beyond these lengths.
+MUST. `<title>` follows `{Page title} · {Site name}` (home: `{Site name} · {Tagline}`) and is at most 60 characters. `<meta name="description">` is 120–155 characters of plain text. Lengths are display widths: a wide or full-width character (kanji, kana, Hangul, full-width punctuation) counts 2, so a Japanese title holds about 30 characters and a description 60–77.
+Why: Both are shown in search results and truncated beyond these lengths; the truncation is in pixels, and a Japanese character is about twice as wide as a Latin one.
 Gate: consistency/meta-length
 
 ### R-HTML-04 Exactly one h1
@@ -101,7 +101,7 @@ Gate: html/error
 
 - [ ] R-HTML-01 lang/dir/scheme on html
 - [ ] R-HTML-02 head order exact
-- [ ] R-HTML-03 title ≤ 60, description 120–155
+- [ ] R-HTML-03 title ≤ 60, description 120–155 (display width)
 - [ ] R-HTML-04 one h1, no skipped levels
 - [ ] R-HTML-05 header/main/footer, labelled navs, skip link first
 - [ ] R-HTML-06 every section/article starts with a heading

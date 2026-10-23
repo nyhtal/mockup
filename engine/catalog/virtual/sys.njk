@@ -3,8 +3,8 @@ layout: base.njk
 pageType: sys
 noindex: true
 ---
-{#- /sys/: the hidden system hub, outside any language (D56). It links each language's system page (/en/sys/) and the
-    site-wide files. noindex, out of both sitemaps, linked from no public page; no locale in the path, so no language links. -#}
+{#- /sys/: the hidden system hub, outside any language (D56). It lists the style guide and the HTML element reference with
+    what each page shows (from the styleGuide global, D59), links each language's system page (/en/sys/) and the site-wide files. noindex, out of both sitemaps, linked from no public page; no locale in the path, so no language links. -#}
 {%- set link = "underline underline-offset-4 hover:text-ink-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus" -%}
 {%- set localePages = collections.all | sysPages("locales") -%}
 {%- set rootPages = collections.all | sysPages("hidden", "") -%}
@@ -16,7 +16,17 @@ noindex: true
 <div class="mx-auto w-full max-w-4xl px-4 pt-16 pb-24 sm:px-6 md:pt-24 lg:px-8">
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">System</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">System pages</h1>
-<p class="mt-4 text-lg text-ink-muted">The entry point for checking the site by hand. Each language has its own system page with its hidden pages and files; the default language's also carries the style guide and the HTML element reference. The files below belong to the whole site. Nothing under <code>/sys/</code> is in the sitemap, linked from a public page or indexed.</p>
+<p class="mt-4 text-lg text-ink-muted">The entry point for checking the site by hand: the style guide and the HTML element reference, each language's system page with its hidden pages and files, and the files that belong to the whole site. Nothing under <code>/sys/</code> is in the sitemap, linked from a public page or indexed.</p>
+
+<section id="sys-style" class="mt-16 scroll-mt-24" aria-labelledby="sys-style-h">
+<h2 id="sys-style-h" class="text-2xl font-semibold tracking-tight">Style guide <span class="text-base font-normal text-ink-muted">({{ styleGuide.pages.length }})</span></h2>
+<p class="mt-2 text-sm text-ink-muted">Every primitive, component and section of the catalog as the site renders it, in English (the sample data is English).</p>
+<ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
+{%- for p in styleGuide.pages %}
+<li class="px-4 py-3"><div class="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"><a href="{{ p.href }}" class="font-medium {{ link }}">{{ p.title }}</a><code class="text-sm text-ink-muted">{{ p.href }}</code></div><p class="mt-1 text-sm text-ink-muted">{{ p.summary }}</p>{% if p.contents %}<p class="mt-1 text-sm text-ink-muted"><span class="font-medium text-ink">Sections:</span> {{ p.contents | join(", ") }}</p>{% endif %}</li>
+{%- endfor %}
+</ul>
+</section>
 
 <section id="sys-locales" class="mt-16 scroll-mt-24" aria-labelledby="sys-locales-h">
 <h2 id="sys-locales-h" class="text-2xl font-semibold tracking-tight">By language</h2>

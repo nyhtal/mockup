@@ -3,6 +3,7 @@ layout: base.njk
 pageType: style-guide
 noindex: true
 ---
+{% from "components/style-guide-nav.njk" import styleGuideNav with context %}
 {% from "primitives/button.njk" import button with context %}
 {% from "primitives/link.njk" import link with context %}
 {% from "primitives/field.njk" import field with context %}
@@ -19,6 +20,7 @@ noindex: true
 <p class="text-sm font-medium uppercase tracking-wide text-ink-brand">Style guide</p>
 <h1 class="mt-2 text-4xl md:text-5xl font-bold tracking-tight text-balance">Primitives</h1>
 <p class="mt-4 max-w-2xl text-lg md:text-xl text-ink-muted">Every primitive in every variant and state. Pages never write these elements by hand; they call the macro.</p>
+{{ styleGuideNav(styleGuide.pages, page.url) }}
 
 <section class="mt-16">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Buttons</h2>
@@ -49,7 +51,7 @@ noindex: true
 {{ field({ type: "text", name: "name", label: "Full name", required: true, autocomplete: "name", placeholder: "Alex Morgan" }) }}
 {{ field({ type: "email", name: "email", label: "Work email", required: true, autocomplete: "email", help: "We reply from a person, not a bot.", placeholder: "alex@company.com" }) }}
 {{ field({ type: "tel", name: "phone", label: "Phone", autocomplete: "tel", inputmode: "tel", placeholder: "+44 20 7946 0000" }) }}
-{{ field({ type: "url", name: "website", label: "Company website", autocomplete: "url", value: "https://example.com" }) }}
+{{ field({ type: "url", name: "website", label: "Company website", autocomplete: "url", value: "https://northwind-dynamics.com" }) }}
 {{ field({ type: "number", name: "sites", label: "Number of sites", inputmode: "numeric", help: "Factories, plants or warehouses you operate." }) }}
 {{ field({ type: "select", name: "industry", label: "Industry", required: true, options: [{ value: "", label: "Choose an industry" }, { value: "auto", label: "Automotive" }, { value: "food", label: "Food and beverage" }, { value: "pharma", label: "Pharmaceutical" }] }) }}
 {{ field({ type: "email", name: "email-bad", label: "Work email", required: true, autocomplete: "email", value: "alex@", error: "Enter an email address like alex@company.com" }) }}

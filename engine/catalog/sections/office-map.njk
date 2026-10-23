@@ -12,7 +12,7 @@
 {%- set names = [] %}{% for o in s.items %}{% set names = (names.push(o.title), names) %}{% endfor -%}
 <div class="grid gap-8 lg:grid-cols-5 lg:items-center">
 <div class="w-fit max-w-full overflow-x-auto rounded-xl border border-line lg:col-span-3" tabindex="0" role="region" aria-label="{{ 'ui.officeMap' | t }}">
-<img src="/assets/files/{{ ctx.locale }}/office-map.svg" usemap="#office-map-{{ ctx.index }}" width="640" height="400" alt="{{ 'ui.officeMapAlt' | t | replace('{list}', names | join('ui.comma' | t)) }}" loading="lazy" decoding="async" class="block max-w-none">
+<img src="/assets/files/{{ ctx.locale }}/office-map.svg" usemap="#office-map-{{ ctx.index }}" width="{{ officeMapFrame.width }}" height="{{ officeMapFrame.height }}" alt="{{ 'ui.officeMapAlt' | t | replace('{list}', names | join('ui.comma' | t)) }}" loading="lazy" decoding="async" class="block max-w-none">
 <map name="office-map-{{ ctx.index }}">
 {%- for o in s.items %}{% set p = o.geo | mapPoint %}{% if p %}
 <area shape="circle" coords="{{ p.x }},{{ p.y }},18" href="{{ o.href }}" alt="{{ 'ui.officeIn' | t | replace('{city}', o.title) }}">

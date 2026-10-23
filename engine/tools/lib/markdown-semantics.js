@@ -6,7 +6,7 @@
  *   CO~2~   m^2^                              <sub>, <sup>
  *   [[Ctrl]]+[[G]]                            <kbd>
  *   $n$                                       <var> (a single identifier between dollar signs)
- *   "…"  „…“  «…»                             <q>, each locale's own quotation marks (the browser draws them back)
+ *   "…"  „…“  «…»  「…」                       <q>, each locale's own quotation marks (the browser draws them back)
  *   ```samp                                   <pre><samp>: program output rather than code
  *   > quote … > — Name, *Work*                 figure > blockquote + figcaption, the work's title in <cite>
  */
@@ -32,9 +32,11 @@ export function semantics(md) {
       String.raw`~([^~\s]{1,12})~`, // 2 sub
       String.raw`\^([^^\s]{1,12})\^`, // 3 sup
       String.raw`\$([A-Za-z][\w′']{0,15})\$`, // 4 var
-      String.raw`"([^"\n]+)"|„([^“\n]+)“|«([^»\n]+)»`, // 5, 6, 7 q
+      String.raw`"([^"\n]+)"|„([^“\n]+)“|«([^»\n]+)»|「([^」\n]+)」`, // 5, 6, 7, 8 q
     ];
-    if (names.length) parts.push(String.raw`(?<![\p{L}\p{N}])(${names.map(escapeRe).join("|")})(?![\p{L}\p{N}])`); // 8 abbr
+    // Word edges: not inside a word, where Japanese kana and kanji count as an edge (no spaces between words there).
+    const cjk = String.raw`[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}ー]`;
+    if (names.length) parts.push(String.raw`(?:(?<![\p{L}\p{N}])|(?<=${cjk}))(${names.map(escapeRe).join("|")})(?:(?![\p{L}\p{N}])|(?=${cjk}))`); // 9 abbr
     const re = new RegExp(parts.join("|"), "gu");
     const html = (content) => Object.assign(new state.Token("html_inline", "", 0), { content });
     const text = (content) => Object.assign(new state.Token("text", "", 0), { content });
@@ -47,12 +49,12 @@ export function semantics(md) {
         let last = 0;
         for (const m of tok.content.matchAll(re)) {
           if (m.index > last) out.push(text(tok.content.slice(last, m.index)));
-          const [, kbd, sub, sup, v, q1, q2, q3, abbr] = m;
+          const [, kbd, sub, sup, v, q1, q2, q3, q4, abbr] = m;
           if (kbd) out.push(html(`<kbd>${esc(kbd)}</kbd>`));
           else if (sub) out.push(html(`<sub>${esc(sub)}</sub>`));
           else if (sup) out.push(html(`<sup>${esc(sup)}</sup>`));
           else if (v) out.push(html(`<var>${esc(v)}</var>`));
-          else if (q1 || q2 || q3) out.push(html(`<q>${esc(q1 || q2 || q3)}</q>`));
+          else if (q1 || q2 || q3 || q4) out.push(html(`<q>${esc(q1 || q2 || q3 || q4)}</q>`));
           else if (abbr) out.push(html(`<abbr title="${esc(defs[abbr])}">${esc(abbr)}</abbr>`));
           last = m.index + m[0].length;
         }
