@@ -1281,7 +1281,7 @@
     },
     "landing-hero": {
       "type": "hero",
-      "variant": "video",
+      "variant": "cinema",
       "title": "أتمتة تدفع كلفتها في ربع سنة",
       "lede": "مقاسة عبر 1,284 خطًا في 19 دولة.",
       "primary": {
@@ -1310,11 +1310,6 @@
         "slug": "northwind-sample",
         "title": "نورثويند في ثماني ثوانٍ",
         "duration": "0:08"
-      },
-      "highlight": {
-        "icon": "trending-up",
-        "value": "38%",
-        "label": "توقف أقل"
       }
     },
     "landing-faq": {

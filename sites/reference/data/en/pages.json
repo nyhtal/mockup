@@ -1304,7 +1304,7 @@
     },
     "landing-hero": {
       "type": "hero",
-      "variant": "video",
+      "variant": "cinema",
       "title": "Automation that pays for itself in a quarter",
       "lede": "Measured across 1,284 lines in 19 countries.",
       "primary": {
@@ -1333,11 +1333,6 @@
         "slug": "northwind-sample",
         "title": "Northwind in eight seconds",
         "duration": "0:08"
-      },
-      "highlight": {
-        "icon": "trending-up",
-        "value": "38%",
-        "label": "less downtime"
       }
     },
     "landing-faq": {

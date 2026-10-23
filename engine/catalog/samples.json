@@ -88,6 +88,27 @@
       }
     },
     {
+      "id": "hero-cinema",
+      "type": "hero",
+      "variant": "cinema",
+      "eyebrow": "See it run",
+      "title": "Eight seconds of a line that rewrites itself",
+      "lede": "Press play: the clip runs right here, full width, and the headline steps aside until it ends.",
+      "primary": {
+        "label": "Book a demo",
+        "href": "/sys/style-guide/"
+      },
+      "secondary": {
+        "label": "Read the case study",
+        "href": "/sys/style-guide/components/"
+      },
+      "video": {
+        "slug": "northwind-sample",
+        "title": "Northwind in eight seconds",
+        "duration": "0:08"
+      }
+    },
+    {
       "id": "hero-form",
       "type": "hero",
       "variant": "form",

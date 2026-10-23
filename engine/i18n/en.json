@@ -42,6 +42,7 @@
     "notIncluded": "Not included",
     "playVideo": "Play video",
     "videoCaption": "Sample clip: shapes in the brand colours drift and turn for eight seconds. There is no speech.",
+    "playClip": "Play the video: {title} ({duration})",
     "videoNote": "In the live site the player loads here, after you choose to play, from {provider}.",
     "aboutAuthor": "About the author",
     "share": "Share",

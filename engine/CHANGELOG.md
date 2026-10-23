@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.14.0 — 2026-10-22
+
+The `cinema` hero (owner, 2026-10-22: "should be a hero version where the video plays inline"; asked how, the owner chose click to play in place over autoplay, so D52's no-autoplay rule stands). R-SEC-07: the sample clip fills the hero behind the art scrim, poster first, text in inverse ink and a round play button; `enhance.js` (4.9 KB of 5) removes the native controls at start, and the button plays the clip in place with the controls back, sets `data-playing` on the section so the text and scrim fade out of the way (and out of the focus order), moves focus to the player, and restores both and the focus when the clip ends. Without the script the native player shows its controls. New string `ui.playClip`. The landing page's hero moves from the framed `video` to `cinema`; the framed variant stays in the style guide beside the new one. Minor by R-PREC-05.
+
 ## 0.13.0 — 2026-10-22
 
 Search page (owner, 2026-10-22: "redesign the search page, ends up with duplicate content for search header"; "support a card view on search page"). The search and help pages showed a page header and then the search box's own title and lede under it. A `search-box` that opens a page is now that page's header (R-SEC-08): breadcrumbs, eyebrow, h1 and lede from the page, the field filled with the query the results are for, and the popular searches as links, on the alternate surface; no page header is added. The results gain a layout choice beside the filters: List (the reading measure) or Cards (raised cards, two across from `sm`, three from `lg`), radio chips with no script, like the filters. New UI strings `ui.resultsView`, `ui.viewList`, `ui.viewCards`, `ui.popularSearches` in every locale; icons `list` and `layout-grid` join the allow-list. The card rules name the chip by its value, not its id, so the style guide's instance shares the search page's rules (an id-based set cost 3 KB per instance); CSS rises to 102 KB (R-PERF-01). Minor by R-PREC-05.

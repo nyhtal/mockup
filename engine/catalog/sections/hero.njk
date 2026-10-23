@@ -2,7 +2,7 @@
   name: hero
   purpose: The first section of home and landing pages: h1, lede, two buttons, LCP media (R-SEC-07, R-MOT-11, R-PERF-05).
   anatomy: section[data-component=hero data-variant] > container > (grid lg:grid-cols-12) text(h1 + lede + buttons + proof strip)[7 columns at lg, 6 at xl, so a German compound fits the measure] + media[5, then 6]; the h1 is one size smaller in German at xl ("Steuerungssoftware," needs about 620 px at text-6xl, more than the column) (+ highlight card over its top-end corner) | form | stats
-  variants: centered | split (text + picture) | video (text + native video when s.video.slug is set, else a third-party facade) | form (text + short form) | stats (text + 3 stats) | backdrop (the art fills the section behind the eased scrim, text over the quiet start side in inverse ink; s.inset puts it in a rounded frame inside the container, text at its bottom-start) | panel (the art fills the section, the text sits on an opaque raised panel) | editorial (a large light-weight headline, lede and actions on one row, a 21:9 panorama under them)
+  variants: centered | split (text + picture) | video (text + native video when s.video.slug is set, else a third-party facade) | form (text + short form) | stats (text + 3 stats) | backdrop (the art fills the section behind the eased scrim, text over the quiet start side in inverse ink; s.inset puts it in a rounded frame inside the container, text at its bottom-start) | panel (the art fills the section, the text sits on an opaque raised panel) | editorial (a large light-weight headline, lede and actions on one row, a 21:9 panorama under them) | cinema (the sample clip fills the hero behind the scrim, poster first; a round play button plays it in place with the native controls while the words step aside, and they return when it ends; no script: the native player)
   states: none
   spacing: py-16 md:py-28 (backdrop inset: pt-4 md:pt-6 pb-16 md:pb-28, the frame px-6 py-12 → md:px-14 md:py-16); backdrop and panel at least min-h-144 (36 rem) at lg, inset min-h-160; grid gap-12; a brand glow behind the text and an accent glow behind the media (DESIGN §4, R-COL-09); proof strip mt-12, three columns with hairlines, value above label so long labels wrap inside their column in every locale
   motion: none on load; nothing in the hero reveals or counts (R-MOT-11); in expressive the split picture and the glows carry depth that is at identity at rest and moves only with the scroll (R-MOT-15)
@@ -113,9 +113,30 @@
 </div>
 </section>
 {% endmacro %}
+{#- cinema: the sample clip fills the hero behind the scrim, showing its poster (visibility transitions only on the way out, so the words and the play button are focusable again the moment the clip ends); the play button plays it in place, full-bleed with the native controls, while the words and the scrim step aside (enhance.js sets data-playing on the section and clears it when the clip ends). Without the script the native player shows its own controls. Nothing plays on its own (D52). -#}
+{% macro cinema(s, ctx) %}
+{%- set v = s.video -%}
+<section class="group/cinema relative isolate overflow-hidden {{ 'py-12 md:py-20' if ctx.density == 'compact' else 'py-16 md:py-28' }} bg-brand-950 text-ink-inverse" data-component="hero" data-variant="cinema"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
+<video class="absolute inset-0 -z-10 size-full bg-brand-950 object-cover" controls playsinline preload="none" poster="/assets/video/{{ v.slug }}-poster.webp" width="1280" height="720" data-cinema>
+<source src="/assets/video/{{ v.slug }}.webm" type="video/webm">
+<source src="/assets/video/{{ v.slug }}.mp4" type="video/mp4">
+<track kind="captions" src="/assets/video/{{ v.slug }}-{{ locale }}.vtt" srclang="{{ locale }}" data-cue="{{ 'ui.videoCaption' | t }}">
+</video>
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-art-scrim rtl:-scale-x-100 motion-safe:transition-opacity motion-safe:duration-300 group-data-playing/cinema:opacity-0"></div>
+<div class="pointer-events-none mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 motion-safe:transition-opacity motion-safe:duration-300 group-data-playing/cinema:invisible group-data-playing/cinema:opacity-0 motion-safe:group-data-playing/cinema:transition-[opacity,visibility]">
+<div class="grid items-center gap-12 lg:min-h-144 lg:grid-cols-12">
+<div class="pointer-events-auto lg:col-span-7">{{ inverseText(s, ctx) }}</div>
+<div class="hidden lg:col-span-5 js:flex js:justify-center">
+<button type="button" data-play class="pointer-events-auto group inline-flex size-20 items-center justify-center rounded-full bg-ink-inverse text-brand-800 shadow-xl shadow-ink/30 ring-8 ring-ink-inverse/20 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink-inverse motion-safe:transition-[scale] motion-safe:duration-150 motion-safe:hover:scale-105 motion-safe:active:scale-[0.98]"><svg aria-hidden="true" class="ms-1 size-8"><use href="#i-play"></use></svg><span class="sr-only">{{ "ui.playClip" | t | replace("{title}", v.title) | replace("{duration}", v.duration) }}</span></button>
+</div>
+</div>
+</div>
+</section>
+{% endmacro %}
 {% macro render(s, ctx) %}
 {%- set variant = s.variant or "centered" -%}
 {%- if variant == "backdrop" %}{{ backdrop(s, ctx) }}
+{%- elif variant == "cinema" and s.video and s.video.slug %}{{ cinema(s, ctx) }}
 {%- elif variant == "panel" %}{{ panel(s, ctx) }}
 {%- elif variant == "editorial" %}{{ editorial(s, ctx) }}
 {%- else %}

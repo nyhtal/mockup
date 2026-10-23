@@ -1304,7 +1304,7 @@
     },
     "landing-hero": {
       "type": "hero",
-      "variant": "video",
+      "variant": "cinema",
       "title": "1四半期で投資を回収できるオートメーション",
       "lede": "19か国、1,284本のラインでの実測値です。",
       "primary": {
@@ -1333,11 +1333,6 @@
         "slug": "northwind-sample",
         "title": "8秒でわかるNorthwind",
         "duration": "0:08"
-      },
-      "highlight": {
-        "icon": "trending-up",
-        "value": "38%",
-        "label": "ダウンタイム削減"
       }
     },
     "landing-faq": {

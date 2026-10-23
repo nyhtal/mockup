@@ -1281,7 +1281,7 @@
     },
     "landing-hero": {
       "type": "hero",
-      "variant": "video",
+      "variant": "cinema",
       "title": "Automatisierung, die sich in einem Quartal bezahlt macht",
       "lede": "Gemessen über 1.284 Linien in 19 Ländern.",
       "primary": {
@@ -1310,11 +1310,6 @@
         "slug": "northwind-sample",
         "title": "Northwind in acht Sekunden",
         "duration": "0:08"
-      },
-      "highlight": {
-        "icon": "trending-up",
-        "value": "38 %",
-        "label": "weniger Stillstand"
       }
     },
     "landing-faq": {

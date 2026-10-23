@@ -688,9 +688,9 @@ test("motion: smooth scrolling, floating back-to-top under sda, time-based item 
 
 test("micro-interactions: primary buttons lift, press and nudge their arrow (mirrored in RTL); cards warm their border; disclosure chevrons rotate; nav links grow an underline", () => {
   const en = readFileSync("dist/reference/en/index.html", "utf8");
-  // The home hero sits on the art with inverse buttons since 0.11.0; the landing hero still carries a primary one.
-  const lp = readFileSync("dist/reference/en/lp/line-automation-2026/index.html", "utf8");
-  const primary = /<a href="\/en\/demo\/" class="group inline-flex [^"]*"[^>]*data-variant="primary"[^>]*>[\s\S]*?<\/a>/.exec(lp.slice(lp.indexOf('data-component="hero"')))[0];
+  // The home and landing heroes sit on art or video with inverse buttons since 0.11.0 and 0.14.0; the style guide's centered hero carries a primary one.
+  const sg = readFileSync("dist/reference/sys/style-guide/sections/heroes/index.html", "utf8");
+  const primary = /<a href="\/sys\/style-guide\/" class="group inline-flex [^"]*"[^>]*data-variant="primary"[^>]*>[\s\S]*?<\/a>/.exec(sg.slice(sg.indexOf('data-component="hero"')))[0];
   assert.match(primary, /motion-safe:hover:-translate-y-px/);
   assert.match(primary, /active:scale-\[0\.98\]/);
   assert.match(primary, /hover:shadow-md/);
@@ -705,9 +705,10 @@ test("micro-interactions: primary buttons lift, press and nudge their arrow (mir
 
 test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA panel, logo cloud hover, footer hairline, testimonial quote mark", () => {
   const en = readFileSync("dist/reference/en/index.html", "utf8");
-  const lpHero = readFileSync("dist/reference/en/lp/line-automation-2026/index.html", "utf8");
-  assert.match(lpHero, /<section class="relative isolate overflow-hidden [^"]*"[^>]*data-component="hero"/);
-  assert.match(lpHero, /data-component="hero"[^>]*>\s*<div aria-hidden="true" class="pointer-events-none absolute [^"]*bg-hero-backdrop"><\/div>/);
+  // The glow belongs to the centered, split, video, form and stats heroes; the style guide shows them (the site's home and landing heroes sit on art and video since 0.11.0 and 0.14.0).
+  const glowHero = readFileSync("dist/reference/sys/style-guide/sections/heroes/index.html", "utf8");
+  assert.match(glowHero, /<section class="relative isolate overflow-hidden [^"]*"[^>]*data-component="hero"/);
+  assert.match(glowHero, /data-component="hero"[^>]*>\s*<div aria-hidden="true" class="pointer-events-none absolute [^"]*bg-hero-backdrop"><\/div>/);
   assert.match(en, /data-component="hero" data-variant="backdrop">[\s\S]*?class="absolute inset-0 -z-10 bg-art-scrim rtl:-scale-x-100"/, "the home hero sits on the art behind the scrim (0.11.0)");
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.ok(css.includes(".bg-hero-backdrop{background-image:radial-gradient(44rem 26rem at 18% 20%,light-dark("), "hero backdrop glows in the CSS");
@@ -722,13 +723,14 @@ test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA p
   assert.match(svc, /data-component="testimonial" data-variant="single">\n<span aria-hidden="true" class="block h-12 select-none text-7xl font-bold leading-none text-brand-200">“<\/span>/);
 });
 
-test("the landing hero carries the generated sample clip (the home hero until 0.11.0): native video, poster, preload none, captions per locale, both formats under 1.5 MB", () => {
+test("the landing hero plays the generated sample clip in place (cinema, 0.14.0; the home hero until 0.11.0): native video under the play button, poster, preload none, captions per locale, both formats under 1.5 MB", () => {
   for (const [loc, title] of [["en", "Northwind in eight seconds"], ["de", "Northwind in acht Sekunden"], ["ar", "نورثويند في ثماني ثوانٍ"]]) {
     const html = readFileSync(`dist/reference/${loc}/lp/line-automation-2026/index.html`, "utf8");
-    assert.match(html, /data-component="hero" data-variant="video"/, `${loc} hero variant`);
-    assert.match(html, /<video class="aspect-video w-full" controls playsinline preload="none" poster="\/assets\/video\/northwind-sample-poster\.webp" width="1280" height="720">\n<source src="\/assets\/video\/northwind-sample\.webm" type="video\/webm">\n<source src="\/assets\/video\/northwind-sample\.mp4" type="video\/mp4">/, `${loc} video element`);
+    assert.match(html, /data-component="hero" data-variant="cinema"/, `${loc} hero variant`);
+    assert.match(html, /<video class="absolute inset-0 -z-10 size-full bg-brand-950 object-cover" controls playsinline preload="none" poster="\/assets\/video\/northwind-sample-poster\.webp" width="1280" height="720" data-cinema>\n<source src="\/assets\/video\/northwind-sample\.webm" type="video\/webm">\n<source src="\/assets\/video\/northwind-sample\.mp4" type="video\/mp4">/, `${loc} video element, with native controls until the script takes over`);
     assert.match(html, new RegExp(`<track kind="captions" src="/assets/video/northwind-sample-${loc}\.vtt" srclang="${loc}" data-cue="[^"]+">`), `${loc} captions track`);
-    assert.ok(html.includes(`<span class="font-medium text-ink">${title}</span><span class="tabular-nums text-ink-muted">0:08</span>`), `${loc} title and duration`);
+    assert.match(html, new RegExp(`<button type="button" data-play [^>]*>[\\s\\S]*?<span class="sr-only">[^<]*${title}[^<]*0:08[^<]*</span></button>`), `${loc} the play button names the clip and its length`);
+    assert.match(html, /group-data-playing\/cinema:invisible/, `${loc} the words step aside while it plays`);
     assert.match(readFileSync(`dist/reference/assets/video/northwind-sample-${loc}.vtt`, "utf8"), /^WEBVTT\n\n00:00\.000 --> 00:08\.000\n.+\n$/, `${loc} vtt`);
   }
   for (const f of ["northwind-sample.mp4", "northwind-sample.webm", "northwind-sample-poster.webp"]) {
