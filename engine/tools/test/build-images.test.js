@@ -65,3 +65,47 @@ test("two fresh builds encode byte-identical images (Review Focus 4)", { timeout
     for (const d of dirs) rmSync(d, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
   }
 });
+
+const pic = (slug, attrs = "") => `<picture><source type="image/avif" srcset="/assets/images/${slug}-16x9-480.avif 480w"><img src="/assets/images/${slug}-16x9-480.webp" width="480" height="270" alt=""${attrs}></picture>`;
+const site = (pages) => {
+  const d = mkdtempSync(path.join(tmpdir(), "art-"));
+  for (const [rel, body] of Object.entries(pages)) { mkdirSync(path.join(d, path.dirname(rel)), { recursive: true }); writeFileSync(path.join(d, rel), page(body)); }
+  return d;
+};
+const drop = (d) => rmSync(d, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
+
+test("referencedImages carries data-art and data-tone to every format of that slug", () => {
+  const d = site({ "en/index.html": pic("bg", ' data-art="glow" data-tone="dark"') + pic("plain") });
+  try {
+    const refs = referencedImages(d);
+    assert.ok(refs.filter((r) => r.slug === "bg").every((r) => r.art === "glow" && r.tone === "dark"));
+    assert.ok(refs.filter((r) => r.slug === "plain").every((r) => r.art === undefined && r.tone === undefined));
+  } finally { drop(d); }
+});
+
+test("the same slug declared with two different arts fails, naming the slug and both pages (Review Focus 1)", () => {
+  const d = site({ "en/index.html": pic("bg", ' data-art="glow"'), "de/index.html": pic("bg", ' data-art="folds"') });
+  try {
+    assert.throws(() => referencedImages(d), (e) => /"bg"/.test(e.message) && /en[\\/]index\.html/.test(e.message) && /de[\\/]index\.html/.test(e.message));
+  } finally { drop(d); }
+});
+
+test("the same slug declared once with an art and once without is fine (the declaration travels by slug)", () => {
+  const d = site({ "en/index.html": pic("bg", ' data-art="glow"'), "de/index.html": pic("bg") });
+  try { assert.ok(referencedImages(d).every((r) => r.art === "glow")); } finally { drop(d); }
+});
+
+test("an unknown art id fails the image build with the slug and the id (Review Focus 2)", { timeout: 60000 }, async () => {
+  const d = site({ "en/index.html": pic("bg", ' data-art="nope"') });
+  try { await assert.rejects(generateImages(d, { hue: 250, accentHue: 160 }), /image "bg": unknown art "nope"/); } finally { drop(d); }
+});
+
+test("a declared dark tone renders a dark picture, a light tone a light one", { timeout: 60000 }, async () => {
+  const d = site({ "en/index.html": pic("night", ' data-art="glow" data-tone="dark"') + pic("day", ' data-art="glow" data-tone="light"') });
+  try {
+    await generateImages(d, { hue: 250, accentHue: 160 });
+    const mean = async (f) => { const s = await sharp(readFileSync(path.join(d, "assets", "images", f))).png().toBuffer(); return (await sharp(s).greyscale().stats()).channels[0].mean; };
+    assert.ok((await mean("night-16x9-480.webp")) < 90);
+    assert.ok((await mean("day-16x9-480.webp")) > 180);
+  } finally { drop(d); }
+});

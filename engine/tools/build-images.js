@@ -2,7 +2,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "node
 import path from "node:path";
 import sharp from "sharp";
 import { listHtml } from "./lib/html.js";
-import { placeholderSvg } from "./lib/placeholder.js";
+import { loadLibrary, pickArt, pickTone, renderArt } from "./lib/art.js";
 import { encodeIco } from "./lib/ico.js";
 import { oklchToHex } from "./lib/theme.js";
 
@@ -81,9 +81,15 @@ export function parseImageName(url) {
   return { slug: m[1], ratio, width, height: Math.round((width * ratio[1]) / ratio[0]), format: m[4], url };
 }
 
-/** Every distinct placeholder image URL referenced by any page under distDir. */
+const attr = (tag, name) => new RegExp(`\\s${name}="([^"]*)"`).exec(tag)?.[1];
+
+/**
+ * Every distinct placeholder image URL referenced by any page under distDir, with the art and tone its slug declares
+ * (`data-art` / `data-tone` on the picture's <img>, R-ASSET-06). Two pages declaring different values for one slug fail.
+ */
 export function referencedImages(distDir) {
   const seen = new Map();
+  const declared = new Map(); // slug → { art, tone, from: { art: page, tone: page } }
   for (const file of listHtml(distDir)) {
     const html = readFileSync(file, "utf8");
     for (const m of html.matchAll(/\/assets\/images\/[a-z0-9-]+-\d+x\d+-\d+\.(?:avif|webp)/g)) {
@@ -91,20 +97,45 @@ export function referencedImages(distDir) {
       if (parsed) seen.set(m[0], parsed);
       else throw new Error(`${file}: image "${m[0]}" uses an unknown ratio; allowed: ${Object.keys(RATIOS).join(", ")}`);
     }
+    for (const [tag] of html.matchAll(/<img\s[^>]*>/g)) {
+      const src = attr(tag, "src");
+      const parsed = src && parseImageName(src);
+      if (!parsed) continue;
+      const d = declared.get(parsed.slug) || { from: {} };
+      for (const key of ["art", "tone"]) {
+        const value = attr(tag, `data-${key}`);
+        if (value === undefined) continue;
+        if (d[key] !== undefined && d[key] !== value) throw new Error(`image "${parsed.slug}": data-${key} "${d[key]}" on ${path.relative(distDir, d.from[key])} but "${value}" on ${path.relative(distDir, file)}`);
+        d[key] = value;
+        d.from[key] = file;
+      }
+      declared.set(parsed.slug, d);
+    }
   }
-  return [...seen.values()];
+  return [...seen.values()].map((img) => {
+    const d = declared.get(img.slug);
+    return d && (d.art || d.tone) ? { ...img, art: d.art, tone: d.tone } : img;
+  });
 }
 
-/** Render every referenced image that does not exist yet (AVIF q50, WebP q75). Returns counts. */
+/**
+ * Render every referenced image that does not exist yet from the art library (R-ASSET-05): the declared piece and tone,
+ * or ones seeded by the slug from `brand.art`; recoloured to the brand hues; AVIF q50, WebP q75. Returns counts.
+ */
 export async function generateImages(distDir, brand = {}) {
   const out = path.join(distDir, "assets", "images");
   mkdirSync(out, { recursive: true });
+  const library = loadLibrary();
+  const hue = brand.hue ?? 250, accentHue = brand.accentHue ?? brand.hue ?? 250;
   let generated = 0, skipped = 0;
   for (const img of referencedImages(distDir)) {
     const file = path.join(distDir, img.url);
     if (existsSync(file)) { skipped++; continue; }
-    const svg = Buffer.from(placeholderSvg({ slug: img.slug, width: img.width, height: img.height, hue: brand.hue ?? 250, accentHue: brand.accentHue ?? brand.hue ?? 250 }));
-    const pipeline = sharp(svg, { density: 72 });
+    const id = img.art ?? pickArt(img.slug, library, brand.art);
+    if (!library.pieces.has(id)) throw new Error(`image "${img.slug}": unknown art "${id}"; the library has ${[...library.pieces.keys()].join(", ")}`);
+    const tone = img.tone ?? pickTone(img.slug);
+    if (tone !== "dark" && tone !== "light") throw new Error(`image "${img.slug}": data-tone must be "dark" or "light", not "${tone}"`);
+    const pipeline = await renderArt({ library, id, tone, width: img.width, height: img.height, hue, accentHue });
     const buf = img.format === "avif" ? await pipeline.avif({ quality: 50, effort: 4 }).toBuffer() : await pipeline.webp({ quality: 75 }).toBuffer();
     writeFileSync(file, buf);
     generated++;
