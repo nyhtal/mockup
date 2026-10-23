@@ -10,7 +10,7 @@ pageHeader:
   variant: "banner"
   image:
     slug: "services-banner"
-    art: "traces-quiet"
+    art: "planes-network"
 sections:
   - "service-cards"
   - "faq-groups"

@@ -200,7 +200,7 @@
       },
       "image": {
         "slug": "sg-hero-backdrop",
-        "art": "contours-quiet"
+        "art": "planes-flow"
       },
       "proof": [
         {
@@ -235,7 +235,7 @@
       },
       "image": {
         "slug": "sg-hero-inset",
-        "art": "fins-quiet"
+        "art": "planes-structure"
       }
     },
     {
@@ -255,7 +255,7 @@
       },
       "image": {
         "slug": "sg-hero-panel",
-        "art": "ribbon-quiet"
+        "art": "planes-energy"
       }
     },
     {
@@ -275,7 +275,7 @@
       },
       "image": {
         "slug": "sg-hero-editorial",
-        "art": "airflow",
+        "art": "planes-routing",
         "tone": "dark",
         "alt": ""
       },
@@ -338,7 +338,7 @@
       ],
       "image": {
         "slug": "sg-header-banner",
-        "art": "traces-quiet"
+        "art": "planes-network"
       }
     },
     {
@@ -364,7 +364,7 @@
       ],
       "image": {
         "slug": "sg-header-band",
-        "art": "contours-field",
+        "art": "planes-continuity",
         "tone": "light",
         "alt": ""
       }
@@ -392,7 +392,7 @@
       ],
       "image": {
         "slug": "sg-header-split",
-        "art": "folds",
+        "art": "planes-logistics",
         "tone": "dark",
         "alt": ""
       }
@@ -502,7 +502,7 @@
       "lede": "Describe the process once; the logic, the tests and the documentation come from the same source.",
       "image": {
         "slug": "sg-bento-lead",
-        "art": "airflow",
+        "art": "planes-routing",
         "tone": "dark",
         "alt": ""
       },
@@ -574,7 +574,7 @@
       "title": "Nine days from description to running line",
       "image": {
         "slug": "sg-spotlight",
-        "art": "fins-quiet",
+        "art": "planes-structure",
         "tone": "dark",
         "alt": ""
       },
@@ -609,7 +609,7 @@
           "text": "Stations, sensors, actuators and the rules between them, written in words your team can read back and correct.",
           "image": {
             "slug": "sg-disc-describe",
-            "art": "contours-field",
+            "art": "planes-continuity",
             "tone": "light",
             "alt": ""
           },
@@ -623,7 +623,7 @@
           "text": "Northwind writes ladder and structured text for your PLC family and proves it against the description before anyone loads it.",
           "image": {
             "slug": "sg-disc-generate",
-            "art": "traces-quiet",
+            "art": "planes-network",
             "tone": "dark",
             "alt": ""
           }
@@ -633,7 +633,7 @@
           "text": "Every change is versioned, reviewed and reversible, so a recipe tweak on the night shift is as safe as a planned release.",
           "image": {
             "slug": "sg-disc-operate",
-            "art": "glass",
+            "art": "planes-coordination",
             "tone": "light",
             "alt": ""
           }

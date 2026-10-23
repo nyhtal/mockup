@@ -10,7 +10,7 @@ pageHeader:
   variant: "split"
   image:
     slug: "about-split"
-    art: "folds"
+    art: "planes-logistics"
     tone: "dark"
     alt: ""
 sections:

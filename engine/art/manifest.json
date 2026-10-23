@@ -1,81 +1,106 @@
 {
-  "version": 1,
-  "about": "The engine's art library (R-ASSET-05). Abstract greyscale sources, recoloured to each site's brand and accent hues at build time by engine/tools/lib/art.js. composition: quiet = structure in the end 55-60 %, the start side calm (text may sit there); field = structure across the frame; glow = light only. crop: the sharp position kept when a piece is cropped to another ratio. Generated with OpenAI's image model through the Codex CLI on 2026-10-22 from the shared prompt plus each piece's subject, then reviewed.",
+  "version": 2,
+  "about": "The engine's art library (R-ASSET-05): the Offset Planes system. Flat greyscale geometry on a dark ground, recoloured to each site's brand and accent hues at build time by engine/tools/lib/art.js. composition: quiet = the start 40 % one empty dark field, for text; field = structure across the frame; calm = almost empty, for text-heavy cards (used only when declared). crop: the sharp position kept when a piece is cropped to another ratio. inverted: the source was drawn on a light ground and inverted on import so every piece sits on a dark one. Generated with OpenAI's image model through the Codex CLI on 2026-10-22 from the shared prompt plus each piece's subject (the system proposed by Codex, refined with Grok's critique), then reviewed.",
   "model": "OpenAI image generation via Codex CLI 0.163.0",
   "date": "2026-10-22",
-  "prompt": "landscape 16:9, as large as the tool allows. Strictly MONOCHROME grayscale: a near-black charcoal background with luminous white and silver structure and soft diffuse light glow; no colour at all (the image will be recoloured to a brand palette later by mapping brightness). Abstract only: no text, no letters, no numbers, no logos, no people, no hands, no faces, no recognisable products or buildings, no photographs of real places. No film grain, no noise, no dust, no vignette texture. Smooth tonal gradients, crisp fine lines. Premium, restrained, quiet, engineering precision; the feel of a high-end annual report cover or an architecture studio website.",
+  "system": "Offset Planes",
+  "prompt": "Create a premium abstract corporate graphic in the \"Offset Planes\" system. Landscape 16:9. Flat vector-like geometry only: rectangles, parallelograms, quarter-discs and broad bands; horizontal, vertical or 45-degree edges. Use only five opaque greys: #141414, #474747, #808080, #B8B8B8, #F0F0F0. Include light, middle and dark values. Align shapes to a 12-column, 8-row grid with half-module offsets. Use 5-9 large shapes unless the subject requests fewer; minimum band or gap width 1.5% of canvas width. Keep essential relationships within x32-68%, y20-80%; secondary shapes may bleed. Suggest depth only through crisp overlap, maximum two layers. Refinement rule: beside each major plane run one or two narrow parallel offset channels (0.5-0.8% of canvas width) in a lighter grey, like precise lines of light separating layers, and use three scales of offset in every image (micro channels, medium shifts, one large displacement). The background is always the darkest grey. No outlines, gradients, texture, noise, shadows, perspective, photography, 3D, text, symbols, people or recognisable objects. Never let shapes form letters, digits, arrows, pipes, logos or icon-like silhouettes. Restrained editorial design; purposeful negative space. Perfectly flat fills, crisp edges.",
   "pieces": [
     {
-      "id": "contours-quiet",
+      "id": "planes-flow",
       "composition": "quiet",
       "crop": "right",
-      "subject": "Fine topographic contour lines flowing like terrain or airflow, concentrated in the RIGHT 55% of the frame with a soft glow behind them; the LEFT 40% is calm, dark and nearly empty because text will sit there."
+      "subject": "Keep the left 40% of the canvas one uniform field of the darkest grey (#141414), completely empty; on the right, broad horizontal bands in three greys pass behind one another and step down through a single quarter-disc turn, meeting in a calm interlocking junction around x62%."
     },
     {
-      "id": "contours-field",
+      "id": "planes-process",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Keep the left 40% of the canvas one uniform field of the darkest grey (#141414), completely empty; the background everywhere is the darkest grey; on the right, three broad horizontal parallelogram bands of different greys overlap in a staggered sequence from upper right toward the centre, their shared overlap around x62%; nothing should resemble a chart, bars or arrows."
+    },
+    {
+      "id": "planes-network",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Keep the left 40% of the canvas one uniform field of the darkest grey (#141414), completely empty; on the right, broad orthogonal bands converge on one shared square junction around x62%, with two secondary bands leaving the right and top edges."
+    },
+    {
+      "id": "planes-structure",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Keep the left 40% of the canvas one uniform field of the darkest grey (#141414), completely empty; on the right, a balanced assembly of tall upright rectangles with one broad diagonal brace, their crossing concentrated around x62%, like an abstract facade."
+    },
+    {
+      "id": "planes-growth",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Keep the left 40% of the canvas one uniform field of the darkest grey (#141414), completely empty; on the right, three adjoining planes rise in steps from bottom to top in dark, middle and light grey, the steps readable around x62%."
+    },
+    {
+      "id": "planes-energy",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Keep the left 40% of the canvas one uniform field of the darkest grey (#141414), completely empty; the background everywhere is the darkest grey; on the right, two broad parallel 45-degree bands of light and middle grey slice past a large dark-middle rectangle, the bands offset by half a module so they never cross; strong but calm, nothing resembling a letter."
+    },
+    {
+      "id": "planes-routing",
       "composition": "field",
       "crop": "centre",
-      "subject": "Fine topographic contour lines like a terrain map seen from above, evenly spread across the whole frame, a few brighter index lines, gentle light pooling in two places."
+      "subject": "Carry broad horizontal and vertical bands in several greys across the whole canvas, interrupted by two quarter-disc turns, the main change of direction inside the central crop zone."
     },
     {
-      "id": "ribbon-quiet",
-      "composition": "quiet",
-      "crop": "right",
-      "subject": "A single silk-like ribbon made of hundreds of ultra-thin parallel lines, sweeping and twisting in a graceful S-curve through the RIGHT half of the frame, catching light along its folds; LEFT 40% calm, dark and empty for text."
-    },
-    {
-      "id": "airflow",
+      "id": "planes-precision",
       "composition": "field",
       "crop": "centre",
-      "subject": "Several ribbons of ultra-thin parallel lines crossing the full frame diagonally, gently twisting, like airflow visualisation in a wind tunnel, light catching the crests."
+      "subject": "Distribute seven large rectangular planes across the grid with consistent gaps, one centrally placed half-module offset as the defining event."
     },
     {
-      "id": "fins-quiet",
-      "composition": "quiet",
-      "crop": "right",
-      "subject": "Architectural vertical fins or louvres in a long repeating row receding in perspective, raking light from the side producing soft gradients on each fin, occupying the RIGHT 60%; LEFT side dark and calm for text. Minimal, like a modern facade detail at night."
-    },
-    {
-      "id": "folds",
+      "id": "planes-logistics",
       "composition": "field",
       "crop": "centre",
-      "subject": "Close abstract detail of large smooth folded planes, like sheets of brushed metal or folded paper, meeting at crisp edges, lit softly from above with long gentle gradients; fills the frame."
+      "subject": "Arrange interlocking rectangular territories of different greys across the frame, one broad diagonal passage linking their central junction and reaching toward opposite corners."
     },
     {
-      "id": "rings-quiet",
-      "composition": "quiet",
-      "crop": "right",
-      "subject": "Concentric thin rings and arcs like an optical lens or radar sweep, centred off the RIGHT edge of the frame, with a soft luminous core; LEFT 40% dark and calm for text."
-    },
-    {
-      "id": "horizon",
-      "composition": "field",
-      "crop": "bottom",
-      "subject": "An infinite perspective grid floor of fine lines receding to a horizon in the right third, a soft dawn-like glow on the horizon, the upper half dark and empty."
-    },
-    {
-      "id": "glow",
-      "composition": "glow",
-      "crop": "right",
-      "subject": "Only soft diffuse light: two or three large gentle glows drifting through darkness, like an aurora or light through frosted glass, very low detail, brighter towards the RIGHT; nothing sharp at all."
-    },
-    {
-      "id": "dots-quiet",
-      "composition": "quiet",
-      "crop": "right",
-      "subject": "A field of tiny evenly spaced dots forming a gently undulating wave surface, like a data landscape, dots catching light on the crests, mostly in the RIGHT 60%; LEFT side dark for text."
-    },
-    {
-      "id": "traces-quiet",
-      "composition": "quiet",
-      "crop": "right",
-      "subject": "Fine orthogonal circuit-like traces with 45-degree bends and small round nodes, a few traces glowing softly as if carrying signal, sparse and elegant, denser toward the RIGHT; LEFT 40% nearly empty."
-    },
-    {
-      "id": "glass",
+      "id": "planes-continuity",
       "composition": "field",
       "crop": "centre",
-      "subject": "Abstract architectural geometry: overlapping translucent glass-like rectangular planes at slight angles, thin bright edges, layered depth with soft light passing through, filling the frame but calm."
+      "subject": "Build a cropped chain of broad quarter-disc bends and straight bands across the frame, the central bend complete, peripheral sections leaving the edges."
+    },
+    {
+      "id": "planes-capacity",
+      "composition": "field",
+      "crop": "centre",
+      "subject": "Alternate large light and dark vertical planes across the canvas, with a central stepped widening that suggests growing space without charts or arrows."
+    },
+    {
+      "id": "planes-coordination",
+      "composition": "field",
+      "crop": "centre",
+      "subject": "Interleave horizontal rectangles and 45-degree parallelograms across the frame, one clear central overlap echoed at larger scale near the edges."
+    },
+    {
+      "id": "planes-balance",
+      "composition": "field",
+      "crop": "centre",
+      "subject": "Centre a vertically stacked assembly of two rectangles and two quarter-discs within x38-62%, broad plain lateral planes extending outward as expendable context, so it crops well to square and portrait."
+    },
+    {
+      "id": "planes-momentum",
+      "composition": "field",
+      "crop": "centre",
+      "subject": "Centre two broad overlapping planes within x36-64%: a tall upright rectangle and a wide 45-degree parallelogram crossing it at mid-height, plus one narrow horizontal band behind both reaching toward the edges; the combined silhouette inside y20-80%, generous empty dark space around it, so it crops well to square and portrait; nothing zigzag, nothing resembling a bolt, letter or arrow."
+    },
+    {
+      "id": "planes-interval",
+      "composition": "calm",
+      "crop": "centre",
+      "subject": "Very calm: the whole canvas is the darkest grey (#141414) with only one broad vertical rectangular plane in the second-darkest grey (#474747) occupying the right third, and a thin offset strip of middle grey along its left edge; everything else empty."
+    },
+    {
+      "id": "planes-turn",
+      "composition": "calm",
+      "crop": "right",
+      "subject": "Very calm: a uniform darkest-grey background and one slightly lighter oversized quarter-disc entering from the lower right, the upper half and left 55% empty."
     }
   ]
 }

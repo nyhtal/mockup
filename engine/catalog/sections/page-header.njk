@@ -19,7 +19,7 @@
 {%- set crumbs = s.breadcrumbs or ctx.breadcrumbs -%}
 {%- set h = "h2" if ctx.demote else "h1" -%}
 {%- if variant == "banner" %}
-{%- set img = { slug: s.image.slug, ratio: "21:9", alt: "", max: 1600, art: s.image.art or "contours-quiet", tone: "dark" } %}
+{%- set img = { slug: s.image.slug, ratio: "21:9", alt: "", max: 1600, art: s.image.art or "planes-flow", tone: "dark" } %}
 <section class="relative isolate overflow-hidden py-16 md:py-24 bg-brand-950 text-ink-inverse" data-component="page-header" data-variant="banner"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
 <div aria-hidden="true" class="absolute inset-0 -z-10 overflow-clip rtl:-scale-x-100">{{ picture(img, { priority: true, sizes: "(min-width: 48rem) 100vw, 200vw", class: "absolute inset-0 size-full object-cover" }) }}</div>
 <div aria-hidden="true" class="absolute inset-0 -z-10 bg-art-scrim rtl:-scale-x-100"></div>

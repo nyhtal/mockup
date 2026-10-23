@@ -16,10 +16,10 @@ function lightness(r, g, b) {
   return 0.2104542553 * l + 0.793617785 * m - 0.0040720468 * s;
 }
 
-test("the library has twelve pieces, each with a file and a known composition", () => {
-  assert.equal(lib.pieces.size, 12);
+test("the library has sixteen pieces, each with a file and a known composition", () => {
+  assert.equal(lib.pieces.size, 16);
   for (const p of lib.pieces.values()) {
-    assert.ok(["quiet", "field", "glow"].includes(p.composition), p.id);
+    assert.ok(["quiet", "field", "calm"].includes(p.composition), p.id);
     assert.ok(["right", "centre", "bottom"].includes(p.crop), p.id);
   }
   assert.ok(lib.prompt.length > 100, "the shared prompt travels with the library");
@@ -47,23 +47,23 @@ test("for any hue the dark ramp keeps its first quarter at L ≤ .25 and the lig
   }
 });
 
-test("pickArt and pickTone are stable per slug; pickArt keeps to the allowed list and never picks a glow by default", () => {
+test("pickArt and pickTone are stable per slug; pickArt keeps to the allowed list and never picks a calm piece by default", () => {
   assert.equal(pickArt("hero-automation", lib), pickArt("hero-automation", lib));
-  assert.equal(pickArt("anything", lib, ["folds"]), "folds");
+  assert.equal(pickArt("anything", lib, ["planes-logistics"]), "planes-logistics");
   const picks = new Set(Array.from({ length: 200 }, (_, i) => pickArt(`s${i}`, lib)));
-  assert.ok(picks.size >= 8, "the default pool spreads over the library");
-  assert.ok(!picks.has("glow"), "glow is only used when declared");
+  assert.ok(picks.size >= 10, "the default pool spreads over the library");
+  assert.ok(![...picks].some((id) => lib.pieces.get(id).composition === "calm"), "calm pieces are only used when declared");
   assert.equal(pickTone("hero-automation"), pickTone("hero-automation"));
   const tones = new Set(Array.from({ length: 50 }, (_, i) => pickTone(`t${i}`)));
   assert.deepEqual([...tones].sort(), ["dark", "light"]);
 });
 
 test("brand.art naming a piece that does not exist fails with its id (Review Focus 3)", () => {
-  assert.throws(() => pickArt("a", lib, ["contours-quiet", "nope"]), /unknown piece "nope"/);
+  assert.throws(() => pickArt("a", lib, ["planes-flow", "nope"]), /unknown piece "nope"/);
 });
 
 test("renderArt gives the requested size, recoloured, deterministic", { timeout: 60000 }, async () => {
-  const opts = { library: lib, id: "ribbon-quiet", tone: "dark", width: 320, height: 180, hue: 250, accentHue: 160 };
+  const opts = { library: lib, id: "planes-energy", tone: "dark", width: 320, height: 180, hue: 250, accentHue: 160 };
   const a = await (await renderArt(opts)).png().toBuffer();
   const b = await (await renderArt(opts)).png().toBuffer();
   assert.deepEqual(a, b);
@@ -77,7 +77,7 @@ test("renderArt gives the requested size, recoloured, deterministic", { timeout:
 test("a quiet piece cropped square or portrait keeps its structured end side (Review Focus 4)", { timeout: 60000 }, async () => {
   // sharp's stats() reads the input, not the pipeline's output, so every measurement encodes first.
   const mean = async (img) => (await sharp(await img.png().toBuffer()).stats()).channels[0].mean;
-  const piece = lib.pieces.get("contours-quiet");
+  const piece = lib.pieces.get("planes-flow");
   for (const [w, h] of [[240, 240], [180, 240]]) {
     const img = await renderArt({ library: lib, id: piece.id, tone: "dark", width: w, height: h, hue: 250, accentHue: 160 });
     const kept = await mean(img.greyscale());

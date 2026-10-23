@@ -10,7 +10,7 @@ pageHeader:
   variant: "band"
   image:
     slug: "careers-band"
-    art: "contours-field"
+    art: "planes-continuity"
     tone: "light"
     alt: ""
 sections:

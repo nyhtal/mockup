@@ -37,7 +37,7 @@
       "image": {
         "slug": "home-backdrop",
         "ratio": "16:9",
-        "art": "contours-quiet"
+        "art": "planes-flow"
       }
     },
     "logo-cloud": {
@@ -84,7 +84,7 @@
       ],
       "image": {
         "slug": "home-bento-lead",
-        "art": "airflow",
+        "art": "planes-routing",
         "tone": "dark",
         "alt": ""
       }

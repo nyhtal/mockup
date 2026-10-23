@@ -42,7 +42,7 @@ One page. Each field names the file and key it lands in. The last column is the 
 | Radius | sharp / soft / round | `brand.radius` | `soft` |
 | Density | compact / comfortable | `brand.density` | `comfortable` |
 | Motion (the flair dial) | calm (rise only, static figures) / standard (entrance vocabulary, count-up, heading rule, media depth, progress hairline) / expressive (plus icon pop, hero and stats depth, CTA and logo drift, sticky row, count settle) | `brand.motion` | `standard` |
-| Art | any of contours-quiet, contours-field, ribbon-quiet, airflow, fins-quiet, folds, rings-quiet, horizon, glow, dots-quiet, traces-quiet, glass (`engine/art/manifest.json`) | `brand.art` (R-ASSET-05; pictures that declare no piece are drawn from this list) | the whole library |
+| Art | any of the sixteen Offset Planes pieces: planes-flow, -process, -network, -structure, -growth, -energy (quiet, for text over art), planes-routing, -precision, -logistics, -continuity, -capacity, -coordination, -balance, -momentum (field), planes-interval, -turn (calm) (`engine/art/manifest.json`) | `brand.art` (R-ASSET-05; pictures that declare no piece are drawn from this list) | the whole library |
 | Font | inter / figtree / ibm-plex-sans / source-sans-3 / noto-sans / system | `brand.font` (R-TYPO-01; only `inter` is installed, add the `@fontsource-variable/<name>` package for another; Arabic, Cyrillic, Greek and Vietnamese script faces are added per locale by the build, other scripts need an engine change) | `inter` |
 
 ### Look and feel (DESIGN.md)

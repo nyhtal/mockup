@@ -47,11 +47,11 @@ export function ramp(tone, hue, accentHue) {
   return out;
 }
 
-/** The piece for an image that declares none: seeded by the slug over the site's `brand.art` (or the whole library), glow pieces excluded. */
+/** The piece for an image that declares none: seeded by the slug over the site's `brand.art` (or the whole library), calm pieces excluded (they are for text-heavy cards and are declared). */
 export function pickArt(slug, library, allowed) {
   for (const id of allowed || []) if (!library.pieces.has(id)) throw new Error(`brand.art: unknown piece "${id}"`);
-  const pool = [...(allowed && allowed.length ? allowed : library.pieces.keys())].filter((id) => library.pieces.get(id).composition !== "glow");
-  if (!pool.length) throw new Error("brand.art: no piece left once glow pieces are excluded");
+  const pool = [...(allowed && allowed.length ? allowed : library.pieces.keys())].filter((id) => library.pieces.get(id).composition !== "calm");
+  if (!pool.length) throw new Error("brand.art: no piece left once calm pieces are excluded");
   return pool[seed(slug) % pool.length];
 }
 

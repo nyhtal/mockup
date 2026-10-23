@@ -271,15 +271,20 @@
     "motion": "expressive",
     "font": "inter",
     "art": [
-      "contours-quiet",
-      "contours-field",
-      "ribbon-quiet",
-      "airflow",
-      "fins-quiet",
-      "folds",
-      "traces-quiet",
-      "glass",
-      "dots-quiet"
+      "planes-flow",
+      "planes-process",
+      "planes-network",
+      "planes-structure",
+      "planes-growth",
+      "planes-energy",
+      "planes-routing",
+      "planes-precision",
+      "planes-logistics",
+      "planes-continuity",
+      "planes-capacity",
+      "planes-coordination",
+      "planes-balance",
+      "planes-momentum"
     ]
   },
   "allowedExternal": [
