@@ -54,8 +54,10 @@ const OPENING = [["pt-12", "md:pt-16", "pb-16", "md:pb-24"], ["pt-12", "md:pt-16
 const FULL_HEADER = [["py-12", "md:py-16"]];
 const PADDINGS = {
   section: [["py-16", "md:py-24"], ["py-12", "md:py-16"], ...OPENING],
-  hero: [["py-16", "md:py-28"], ["py-12", "md:py-20"]],
-  "page-header": [...FULL_HEADER, ...JOINED],
+  // The inset backdrop hero sits a small gap under the header, its frame carrying the space (R-SEC-07).
+  hero: [["py-16", "md:py-28"], ["py-12", "md:py-20"], ["pt-4", "md:pt-6", "pb-16", "md:pb-28"], ["pt-4", "md:pt-6", "pb-12", "md:pb-20"]],
+  // The banner page header is a band on its own art (R-SEC-08).
+  "page-header": [...FULL_HEADER, ...JOINED, ["py-16", "md:py-24"]],
   strip: [["py-6"]],
 };
 const STRIPS = new Set(["article-meta", "filter-bar", "pagination", "was-this-helpful"]);

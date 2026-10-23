@@ -42,11 +42,12 @@ One page. Each field names the file and key it lands in. The last column is the 
 | Radius | sharp / soft / round | `brand.radius` | `soft` |
 | Density | compact / comfortable | `brand.density` | `comfortable` |
 | Motion (the flair dial) | calm (rise only, static figures) / standard (entrance vocabulary, count-up, heading rule, media depth, progress hairline) / expressive (plus icon pop, hero and stats depth, CTA and logo drift, sticky row, count settle) | `brand.motion` | `standard` |
+| Art | any of contours-quiet, contours-field, ribbon-quiet, airflow, fins-quiet, folds, rings-quiet, horizon, glow, dots-quiet, traces-quiet, glass (`engine/art/manifest.json`) | `brand.art` (R-ASSET-05; pictures that declare no piece are drawn from this list) | the whole library |
 | Font | inter / figtree / ibm-plex-sans / source-sans-3 / noto-sans / system | `brand.font` (R-TYPO-01; only `inter` is installed, add the `@fontsource-variable/<name>` package for another; Arabic, Cyrillic, Greek and Vietnamese script faces are added per locale by the build, other scripts need an engine change) | `inter` |
 
 ### Look and feel (DESIGN.md)
 
-The engine's look is fixed: quiet surfaces, two hues with meanings, the motion table and flair dial in `engine/DESIGN.md` (R-TOK-12 says what each level enables). A brief chooses only the six brand inputs above and may ask for a sample video (`hero-home` variant `split` with a `video`) or none. The home hero may carry a proof strip (up to three figures) and a highlight card (one figure over the media); both are content in `pages.json`, not brief fields. Anything else is a bylaw change, not a brief field.
+The engine's look is fixed: quiet surfaces, two hues with meanings, the motion table and flair dial in `engine/DESIGN.md` (R-TOK-12 says what each level enables). A brief chooses only the seven brand inputs above and may ask for a sample video (`hero-home` variant `split` with a `video`) or none. The home hero may carry a proof strip (up to three figures) and a highlight card (one figure over the media); both are content in `pages.json`, not brief fields. Anything else is a bylaw change, not a brief field.
 
 ## 5. Pages (R-PAGE-01)
 

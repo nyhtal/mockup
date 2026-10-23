@@ -113,3 +113,14 @@ test("opening group (R-LAY-02): a page header joins the plain section after it; 
   // The surfaces are unchanged: the opening section stays on the page surface and the next one alternates.
   assert.deepEqual(planSections(s, ["grid", "grid"], { ...opts, header: { title: "About" } }).map((p) => p.ctx.surface), ["bg-surface", "bg-surface", "bg-surface-alt"]);
 });
+
+test("page-header variants (R-SEC-08): a banner or band header with a picture keeps its padding, a split header joins, the variant travels from the header", () => {
+  const img = { slug: "h" };
+  const flags = (variant) => planSections(samples, ["grid"], { ...opts, header: { title: "About", variant, image: img } }).map((p) => [p.s.variant, !!p.ctx.joined, !!p.ctx.opening]);
+  assert.deepEqual(flags("banner")[0], ["banner", false, false]);
+  assert.deepEqual(flags("band"), [["band", false, false], [undefined, false, false]]);
+  assert.deepEqual(flags("split"), [["split", true, false], [undefined, false, true]]);
+  const noImage = planSections(samples, ["grid"], { ...opts, header: { title: "About", variant: "banner" } });
+  assert.equal(noImage[0].s.variant, undefined, "a variant without a picture is a plain header");
+  assert.equal(noImage[0].ctx.joined, true);
+});

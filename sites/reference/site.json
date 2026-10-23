@@ -269,7 +269,18 @@
     "radius": "soft",
     "density": "comfortable",
     "motion": "expressive",
-    "font": "inter"
+    "font": "inter",
+    "art": [
+      "contours-quiet",
+      "contours-field",
+      "ribbon-quiet",
+      "airflow",
+      "fins-quiet",
+      "folds",
+      "traces-quiet",
+      "glass",
+      "dots-quiet"
+    ]
   },
   "allowedExternal": [
     "https://www.w3.org/TR/WCAG22/"

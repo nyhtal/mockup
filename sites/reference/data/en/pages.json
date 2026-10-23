@@ -8,7 +8,7 @@
   "sections": {
     "hero-home": {
       "type": "hero",
-      "variant": "video",
+      "variant": "backdrop",
       "eyebrow": "Industrial automation",
       "title": "Control software your plant engineers can read",
       "lede": "Northwind turns a plain description of a production line into validated PLC logic, so changes take hours instead of weeks and nobody waits for a programmer.",
@@ -19,11 +19,6 @@
       "secondary": {
         "label": "See how it works",
         "href": "/en/services/line-automation/"
-      },
-      "video": {
-        "slug": "northwind-sample",
-        "title": "Northwind in eight seconds",
-        "duration": "0:08"
       },
       "proof": [
         {
@@ -39,10 +34,10 @@
           "label": "uptime"
         }
       ],
-      "highlight": {
-        "icon": "trending-up",
-        "value": "38%",
-        "label": "less downtime"
+      "image": {
+        "slug": "home-backdrop",
+        "ratio": "16:9",
+        "art": "contours-quiet"
       }
     },
     "logo-cloud": {
@@ -1310,7 +1305,7 @@
     },
     "landing-hero": {
       "type": "hero",
-      "variant": "stats",
+      "variant": "video",
       "title": "Automation that pays for itself in a quarter",
       "lede": "Measured across 1,284 lines in 19 countries.",
       "primary": {
@@ -1321,7 +1316,7 @@
         "label": "See customer results",
         "href": "/en/customers/"
       },
-      "stats": [
+      "proof": [
         {
           "value": "38%",
           "label": "Less downtime"
@@ -1334,7 +1329,17 @@
           "value": "99.98%",
           "label": "Uptime"
         }
-      ]
+      ],
+      "video": {
+        "slug": "northwind-sample",
+        "title": "Northwind in eight seconds",
+        "duration": "0:08"
+      },
+      "highlight": {
+        "icon": "trending-up",
+        "value": "38%",
+        "label": "less downtime"
+      }
     },
     "landing-faq": {
       "type": "faq",

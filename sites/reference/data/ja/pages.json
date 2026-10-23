@@ -8,7 +8,7 @@
   "sections": {
     "hero-home": {
       "type": "hero",
-      "variant": "video",
+      "variant": "backdrop",
       "eyebrow": "産業オートメーション",
       "title": "工場のエンジニアが読める制御ソフトウェア",
       "lede": "Northwindは、生産ラインを平易な言葉で記述するだけで、検証済みのPLCロジックに変換します。変更は数週間ではなく数時間で終わり、プログラマーを待つ必要もありません。",
@@ -19,11 +19,6 @@
       "secondary": {
         "label": "仕組みを見る",
         "href": "/ja/services/line-automation/"
-      },
-      "video": {
-        "slug": "northwind-sample",
-        "title": "8秒でわかるNorthwind",
-        "duration": "0:08"
       },
       "proof": [
         {
@@ -39,10 +34,10 @@
           "label": "稼働率"
         }
       ],
-      "highlight": {
-        "icon": "trending-up",
-        "value": "38%",
-        "label": "ダウンタイム削減"
+      "image": {
+        "slug": "home-backdrop",
+        "ratio": "16:9",
+        "art": "contours-quiet"
       }
     },
     "logo-cloud": {
@@ -1310,7 +1305,7 @@
     },
     "landing-hero": {
       "type": "hero",
-      "variant": "stats",
+      "variant": "video",
       "title": "1四半期で投資を回収できるオートメーション",
       "lede": "19か国、1,284本のラインでの実測値です。",
       "primary": {
@@ -1321,7 +1316,7 @@
         "label": "導入企業の成果を見る",
         "href": "/ja/customers/"
       },
-      "stats": [
+      "proof": [
         {
           "value": "38%",
           "label": "ダウンタイム削減"
@@ -1334,7 +1329,17 @@
           "value": "99.98%",
           "label": "稼働率"
         }
-      ]
+      ],
+      "video": {
+        "slug": "northwind-sample",
+        "title": "8秒でわかるNorthwind",
+        "duration": "0:08"
+      },
+      "highlight": {
+        "icon": "trending-up",
+        "value": "38%",
+        "label": "ダウンタイム削減"
+      }
     },
     "landing-faq": {
       "type": "faq",

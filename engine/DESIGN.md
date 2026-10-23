@@ -28,7 +28,7 @@ What the bylaws enforce, written as the taste behind them. Read this before the 
 
 | Distance | Utilities | Where |
 |---|---|---|
-| Section padding | `py-16 md:py-24` (comfortable), `py-12 md:py-16` (compact) | every section; heroes `py-16 md:py-28` / `py-12 md:py-20`; page headers `py-12 md:py-16`; strips (article meta, filter bar, pagination, feedback) `py-6` |
+| Section padding | `py-16 md:py-24` (comfortable), `py-12 md:py-16` (compact) | every section; heroes `py-16 md:py-28` / `py-12 md:py-20` (the inset backdrop `pt-4 md:pt-6` on top); page headers `py-12 md:py-16`, the banner header `py-16 md:py-24`; strips (article meta, filter bar, pagination, feedback) `py-6` |
 | Heading group to body | `mt-12 md:mt-16` | every section with a title |
 | Page header to content | header `pt-12 md:pt-16` with no bottom padding, then the section at `pt-12 md:pt-16` and its usual bottom padding | the opening group: a page header followed by a plain section on the page surface, so the h1 group reads as the heading of the content below (D57); after a strip, a band or another surface the header keeps `py-12 md:py-16` |
 | Eyebrow to title, title to lede | `mt-2`, `mt-4` | section and page headers |
@@ -110,6 +110,7 @@ Rules that hold everything above together: compositor properties only (transform
 
 - **Mark**: a rounded tile in brand-600 carrying the site's initial in inverse ink, its bottom-end corner cut on the diagonal. The same path is every favicon. In the header and footer it sits 28 px tall beside the wordmark set in ink; the mark carries the colour.
 - **Hero**: an asymmetric split on twelve columns (text seven at `lg`, six at `xl`; German headings one size smaller at `xl` so compounds never break); the h1 at `xl:text-6xl`; a proof strip of up to three figures under the buttons, separated by hairlines; the media in a `rounded-2xl` frame with a hairline ring and the long soft shadow, with an optional highlight card (icon tile, figure, label) overlapping its top-end corner on desktop; behind it a brand glow behind the text and an accent glow behind the media, faded to the surface, no texture. In `expressive` the picture inside its frame and the glows sink slowly as the page scrolls; the words and the card stay.
+- **Image-led openings** (art library, §5): the `backdrop` hero is one strong picture with one statement over its calm side: the eased scrim darkens only the side the words sit on (measured on Siemens and Porsche: one-sided, .45–.8 at the peak, several stops so no band edge shows), at least 36 rem tall on a laptop and never a 100 vh billboard on a tall monitor, no floating highlight card. Its `inset` form frames the picture inside the container, text at the bottom-start, the more editorial of the two. `panel` keeps the text on a solid raised panel over the art, for briefs that want imagery without text on it. `editorial` is the annual-report spread: a large `font-medium` headline (premium openings sit at weights 300–500, not bold), lede and actions on one row, a 21:9 panorama. Interior pages pick `banner` (art behind the title, the quiet version of the backdrop), `band` (a wide art strip under the lede, as Ramp opens) or `split` (a 4:3 frame beside the title).
 - **Eyebrow**: small caps in the brand colour with a 24 px accent rule before it; on a revealing section the rule draws itself from the start edge.
 - **Reading-progress hairline**: one pixel, brand to accent, under the header, growing with the page.
 - **Stats band**: brand-700 surface, numerals at `text-3xl sm:text-4xl md:text-5xl lg:text-6xl` in a light gradient from inverse ink to accent-200 that count up one after another and settle, labels at 80 % inverse ink; in `expressive` a deeper tone sits behind the band and moves slower than it.
@@ -125,7 +126,10 @@ Rules that hold everything above together: compositor properties only (transform
 
 What "pizzazz" is allowed to be: glow, hairlines, gradients on large numerals and panels, the motion table, two layers of depth, the four sounds. What it is not: parallax on words or everywhere, auto-playing media, text that fades in word by word, hover-only content, more than one accent, texture, blur, clip-path reveals, magnetic cursors, card flips, digit slot machines, scroll hijacking, marquees. One device is deferred rather than refused: a picture "curtain" (a surface-coloured panel sliding off a picture as it enters); it is evaluated after the devices above are in, because it hides imagery until scrolled.
 
-## 5. Sample media
+## 5. Art and sample media
+
+Every picture is a crop of the art library (`engine/art/`, R-ASSET-05): twelve abstract pieces, recoloured to the brief's two hues. In the dark tone the brightest structure takes the accent, the hue of evidence, so the light in a picture is where the eye goes; the light tone stays in the brand hue alone. `quiet` pieces keep their start 40 % calm so a headline can sit there; `field` pieces carry structure edge to edge for frames and cards; `glow` is light without edges, for text at small sizes. A site narrows the library with `brand.art` to give itself a signature (the reference site leaves out the rings and the horizon). Abstract art may mirror in right-to-left layouts; a photograph never would.
+
 
 The reference site ships a generated eight-second clip (brand shapes in motion, 1280×720, MP4 and WebM, about a megabyte each) behind a native `<video>` with a generated poster, `preload="none"` and controls. It proves the video pattern without a third-party player and without a request before play.
 

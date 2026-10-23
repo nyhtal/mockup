@@ -20,6 +20,13 @@
     radial-gradient(36rem 22rem at 85% 85%, color-mix(in oklab, light-dark(var(--color-accent-200), var(--color-accent-800)) 35%, transparent), transparent 70%);
   mask-image: radial-gradient(ellipse at center, black 25%, transparent 78%);
 }
+/* The art scrim (R-COL-09): the one gradient over a picture, behind text on the image-led hero and page-header variants. Below lg the text spans the width, so the whole art darkens, most at the bottom; from lg an eased side band (several stops, no visible edge) covers the quiet start side and leaves the structure clear. The layer mirrors in RTL with rtl:-scale-x-100. */
+@utility bg-art-scrim {
+  background-image: linear-gradient(to top, color-mix(in oklab, var(--color-brand-950) 90%, transparent), color-mix(in oklab, var(--color-brand-950) 62%, transparent));
+  @media (width >= 64rem) {
+    background-image: linear-gradient(to right, color-mix(in oklab, var(--color-brand-950) 88%, transparent) 0%, color-mix(in oklab, var(--color-brand-950) 74%, transparent) 30%, color-mix(in oklab, var(--color-brand-950) 45%, transparent) 50%, color-mix(in oklab, var(--color-brand-950) 16%, transparent) 68%, transparent 84%);
+  }
+}
 /* Grid items travel further than sections (R-TOK-12): the grid sets the item distance once for its children, shorter below md. The keyframes read --reveal-distance, so one utility on the list is enough. */
 @utility reveal-items {
   --reveal-distance: var(--reveal-distance-item-sm);

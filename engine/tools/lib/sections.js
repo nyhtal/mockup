@@ -20,6 +20,9 @@ const STATIC = new Set(["search-box", "search-results", "person-bio", "download-
  */
 export const joinsPageHeader = (s, ctx) => !MEDIA.has(s.type) && s.type !== "error-state" && !(s.type === "stats" && s.variant !== "plain") && (s.surface || ctx.surface) === "bg-surface";
 
+/** A banner (a band on its own art) and a band header (its picture closes it) keep their padding; plain and split headers join. */
+const headerJoins = (s) => !(s.image && (s.variant === "banner" || s.variant === "band"));
+
 const get = (obj, path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj);
 
 /** "e.steps" → the entity's list; "posts" → the site's entities of that kind. */
@@ -87,7 +90,7 @@ export function planSections(samples, sections, opts) {
   // Non-home pages open with a page-header (R-SEC-08): prepend one from the page's title unless the page brings its own opener.
   if (header) {
     const first = typeof list[0] === "string" ? siteSections[list[0]] || samples.byId[list[0]] : list[0];
-    if (!first || !["hero", "page-header"].includes(first.type)) list.unshift({ type: "page-header", eyebrow: header.eyebrow, title: header.title, lede: header.lede });
+    if (!first || !["hero", "page-header"].includes(first.type)) list.unshift({ type: "page-header", eyebrow: header.eyebrow, title: header.title, lede: header.lede, ...(header.variant && header.image ? { variant: header.variant, image: header.image } : {}) });
   }
   for (const item of list) {
     // A site section the default locale defines must exist in this locale too: no silent fallback to English sample copy (R-I18N-12).
@@ -105,7 +108,7 @@ export function planSections(samples, sections, opts) {
   }
   for (let i = 0; i + 1 < steps.length; i++) {
     const [head, next] = [steps[i], steps[i + 1]];
-    if (head.s.type === "page-header" && (head.s.surface || "bg-surface") === "bg-surface" && joinsPageHeader(next.s, next.ctx)) {
+    if (head.s.type === "page-header" && (head.s.surface || "bg-surface") === "bg-surface" && headerJoins(head.s) && joinsPageHeader(next.s, next.ctx)) {
       head.ctx.joined = true;
       next.ctx.opening = true;
     }

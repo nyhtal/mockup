@@ -136,7 +136,7 @@ export async function generateImages(distDir, brand = {}) {
     const tone = img.tone ?? pickTone(img.slug);
     if (tone !== "dark" && tone !== "light") throw new Error(`image "${img.slug}": data-tone must be "dark" or "light", not "${tone}"`);
     const pipeline = await renderArt({ library, id, tone, width: img.width, height: img.height, hue, accentHue });
-    const buf = img.format === "avif" ? await pipeline.avif({ quality: 50, effort: 4 }).toBuffer() : await pipeline.webp({ quality: 75 }).toBuffer();
+    const buf = img.format === "avif" ? await pipeline.avif({ quality: 42, effort: 6 }).toBuffer() : await pipeline.webp({ quality: 75 }).toBuffer();
     writeFileSync(file, buf);
     generated++;
   }

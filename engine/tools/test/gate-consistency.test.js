@@ -185,3 +185,14 @@ test("rhythm: the opening group (R-LAY-02) — a joined page header and the open
   // The opening padding is for the section after a header only; a strip or hero never carries it.
   for (const name of ["pagination", "hero"]) assert.equal(run(header("pt-12 md:pt-16") + body("pt-12 md:pt-16 pb-16 md:pb-24", name)).filter((m) => /padding/.test(m)).length >= 1, true, name);
 });
+
+test("rhythm: the inset backdrop hero and the banner page header have their own padding pairs, only on their kind", async () => {
+  const { rhythmFindings } = await import("../gates/consistency.js");
+  const { parse: parseHtml } = await import("node-html-parser");
+  const sec = (cls, name) => parseHtml(`<section class="${cls} bg-surface" data-component="${name}"><div class="mx-auto"><p>a</p></div></section>`);
+  assert.deepEqual(rhythmFindings(sec("pt-4 md:pt-6 pb-16 md:pb-28", "hero")), []);
+  assert.deepEqual(rhythmFindings(sec("pt-4 md:pt-6 pb-12 md:pb-20", "hero")), []);
+  assert.deepEqual(rhythmFindings(sec("py-16 md:py-24", "page-header")), []);
+  assert.equal(rhythmFindings(sec("pt-4 md:pt-6 pb-16 md:pb-28", "faq")).length, 1, "the inset pair is for heroes only");
+  assert.equal(rhythmFindings(sec("pt-4 md:pt-6 pb-16 md:pb-24", "hero")).length, 1, "half an inset pair is off the scale");
+});

@@ -23,12 +23,12 @@ Why: Self-hosted, subset, licensed.
 Gate: manual: checklists/new-site.md
 
 ### R-ASSET-05 Placeholder images
-MUST. `engine/tools/build-images.js` generates every image a page declares: an SVG composed of brand-hue gradients and simple geometric shapes, seeded by the image's slug so rebuilds are identical, rendered by `sharp` to AVIF (quality 50) and WebP (quality 75) at widths 480, 768, 1200 and 1600 (capped at the declared max) in the declared aspect ratio. No photographs, no faces, no text in images.
-Why: Deterministic, brand-matched, rights-free, and honest about being a mockup.
+MUST. `engine/tools/build-images.js` renders every image a page declares from the engine's art library (`engine/art/`: abstract greyscale sources with a `manifest.json` giving each piece's composition, crop and prompt): the declared piece, or one seeded by the slug from the site's `brand.art` list (glow pieces only when declared), cropped to the declared ratio from the piece's crop position, recoloured through a 256-step ramp built from the brand and accent hues (`dark` or `light` tone, declared or seeded by the slug; the dark ramp keeps its first quarter at OKLCH L ≤ .25), and encoded by `sharp` to AVIF (quality 42, effort 6) and WebP (quality 75) at widths 480, 768, 1200 and 1600 (capped at the declared max). A library piece is abstract and reviewed before it is committed: no photographs, no faces, no text, no recognisable product or place. The code-drawn generator of `engine/tools/lib/placeholder.js` remains only for the sample clip's frames (R-ASSET-13).
+Why: Deterministic, brand-matched, rights-free and honest about being a mockup, and art-directed enough to sit behind a headline.
 Gate: budget/missing-asset
 
 ### R-ASSET-06 Image declaration
-MUST. A page or section declares an image as `{ "slug": "hero-automation", "ratio": "16:9", "alt": "…", "max": 1600 }`; the catalog's `picture` primitive renders the `<picture>` with AVIF and WebP `srcset`, `sizes` from the section's layout rule, `width`/`height` and the alt.
+MUST. A page or section declares an image as `{ "slug": "hero-automation", "ratio": "16:9", "alt": "…", "max": 1600 }`, optionally with `"art"` (a piece id from `engine/art/manifest.json`) and `"tone"` (`dark` | `light`); the catalog's `picture` primitive renders the `<picture>` with AVIF and WebP `srcset`, `sizes` from the section's layout rule, `width`/`height`, the alt, and `data-art` / `data-tone` when declared. One slug carries one art and one tone across the site: two pages declaring different values fail the build, as does an unknown piece.
 Why: Authors declare intent; the engine does the markup.
 Gate: a11y/image-alt
 

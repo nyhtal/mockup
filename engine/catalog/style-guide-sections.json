@@ -2,9 +2,9 @@
   {
     "slug": "heroes",
     "title": "Heroes and page headers",
-    "summary": "How a page opens: the five hero variants for home and landing pages, the interior page header, and the logo cloud that often follows.",
-    "description": "The opening sections of the catalog: every hero variant, the interior page header and the logo cloud, rendered from sample data as a page shows them.",
-    "sections": ["hero-centered", "hero-split", "hero-video", "hero-form", "hero-stats", "page-header", "logo-cloud"]
+    "summary": "How a page opens: the eight hero variants for home and landing pages (four of them on the art library), the interior page header in its four forms, and the logo cloud that often follows.",
+    "description": "The opening sections of the catalog: every hero variant, every page-header variant and the logo cloud, rendered from sample data as a page shows them.",
+    "sections": ["hero-centered", "hero-split", "hero-backdrop", "hero-backdrop-inset", "hero-panel", "hero-editorial", "hero-video", "hero-form", "hero-stats", "page-header", "page-header-banner", "page-header-band", "page-header-split", "logo-cloud"]
   },
   {
     "slug": "marketing",

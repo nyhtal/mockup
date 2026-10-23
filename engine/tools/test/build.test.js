@@ -172,12 +172,14 @@ test("locale switcher: the panel is anchored under its own button, with the view
 test("opening group (R-LAY-02): a page header joins a plain first section at 48/64 px; strips and brand bands keep the full header padding; no page misses a join", () => {
   const read = (u) => readFileSync(`dist/reference${u}index.html`, "utf8");
   const pair = (u) => {
-    const m = /<(section|header) class="([^"]*)" data-component="page-header">[\s\S]*?<\/\1>\s*<section class="([^"]*)"[^>]*data-component="([a-z-]+)"/.exec(read(u));
+    const m = /<(section|header) class="([^"]*)" data-component="page-header"[^>]*>[\s\S]*?<\/\1>\s*<section class="([^"]*)"[^>]*data-component="([a-z-]+)"/.exec(read(u));
     assert.ok(m, `${u}: page header followed by a section`);
     const pad = (c) => c.split(/\s+/).filter((t) => /^(md:)?p[ytb]-/.test(t)).join(" ");
     return { tag: m[1], header: pad(m[2]), next: m[4], nextPad: pad(m[3]) };
   };
-  assert.deepEqual(pair("/en/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-rows", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" });
+  assert.deepEqual(pair("/en/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-rows", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" }, "a split header joins like a plain one");
+  assert.deepEqual(pair("/en/services/"), { tag: "section", header: "py-16 md:py-24", next: "service-cards", nextPad: "py-16 md:py-24" }, "a banner header is a band of its own (0.11.0)");
+  assert.deepEqual(pair("/en/careers/"), { tag: "section", header: "py-12 md:py-16", next: "feature-grid", nextPad: "py-16 md:py-24" }, "a band header keeps its padding under its picture (0.11.0)");
   assert.deepEqual(pair("/ar/about/"), { tag: "section", header: "pt-12 md:pt-16", next: "feature-rows", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" });
   assert.deepEqual(pair("/en/legal/privacy/"), { tag: "header", header: "pt-12 md:pt-16", next: "prose", nextPad: "pt-12 md:pt-16 pb-16 md:pb-24" }, "an article without a byline joins its header to the prose");
   assert.deepEqual(pair("/en/blog/reading-generated-code/"), { tag: "header", header: "py-12 md:py-16", next: "article-meta", nextPad: "py-6" }, "the byline strip sits between header and prose");
@@ -295,7 +297,7 @@ test("rel values: tag and author on an article, bookmark on article cards, priva
 test("element semantics (to-do 6a): hgroup, menu, small, dfn, data, meter, s, colgroup and tfoot, optgroup, datalist, bdi", () => {
   const read = (p) => readFileSync(`dist/reference/${p}/index.html`, "utf8");
   const about = read("en/about");
-  assert.match(about, /<hgroup class="max-w-3xl"><p[^>]*>[^<]+<\/p><h1/, "page header: eyebrow and h1 in an hgroup");
+  assert.match(about, /<hgroup class="max-w-3xl[^"]*"><p[^>]*>[^<]+<\/p><h1/, "page header: eyebrow and h1 in an hgroup");
   assert.match(about, /<hgroup class="[^"]*"[^>]*>[\s\S]{0,600}?<h2/, "section heading groups are hgroups");
   assert.match(read("en/blog/reading-generated-code"), /<menu class="flex gap-2">/, "the share toolbar is a menu");
   assert.match(about, /<p><small class="text-sm">© /, "the copyright line is small print");
@@ -671,7 +673,9 @@ test("motion: smooth scrolling, floating back-to-top under sda, time-based item 
 
 test("micro-interactions: primary buttons lift, press and nudge their arrow (mirrored in RTL); cards warm their border; disclosure chevrons rotate; nav links grow an underline", () => {
   const en = readFileSync("dist/reference/en/index.html", "utf8");
-  const primary = /<a href="\/en\/demo\/" class="group inline-flex [^"]*"[^>]*data-variant="primary"[^>]*>[\s\S]*?<\/a>/.exec(en)[0];
+  // The home hero sits on the art with inverse buttons since 0.11.0; the landing hero still carries a primary one.
+  const lp = readFileSync("dist/reference/en/lp/line-automation-2026/index.html", "utf8");
+  const primary = /<a href="\/en\/demo\/" class="group inline-flex [^"]*"[^>]*data-variant="primary"[^>]*>[\s\S]*?<\/a>/.exec(lp.slice(lp.indexOf('data-component="hero"')))[0];
   assert.match(primary, /motion-safe:hover:-translate-y-px/);
   assert.match(primary, /active:scale-\[0\.98\]/);
   assert.match(primary, /hover:shadow-md/);
@@ -686,12 +690,14 @@ test("micro-interactions: primary buttons lift, press and nudge their arrow (mir
 
 test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA panel, logo cloud hover, footer hairline, testimonial quote mark", () => {
   const en = readFileSync("dist/reference/en/index.html", "utf8");
-  assert.match(en, /<section class="relative isolate overflow-hidden [^"]*"[^>]*data-component="hero"/);
-  assert.match(en, /data-component="hero"[^>]*>\s*<div aria-hidden="true" class="pointer-events-none absolute [^"]*bg-hero-backdrop"><\/div>/);
+  const lpHero = readFileSync("dist/reference/en/lp/line-automation-2026/index.html", "utf8");
+  assert.match(lpHero, /<section class="relative isolate overflow-hidden [^"]*"[^>]*data-component="hero"/);
+  assert.match(lpHero, /data-component="hero"[^>]*>\s*<div aria-hidden="true" class="pointer-events-none absolute [^"]*bg-hero-backdrop"><\/div>/);
+  assert.match(en, /data-component="hero" data-variant="backdrop">[\s\S]*?class="absolute inset-0 -z-10 bg-art-scrim rtl:-scale-x-100"/, "the home hero sits on the art behind the scrim (0.11.0)");
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.ok(css.includes(".bg-hero-backdrop{background-image:radial-gradient(44rem 26rem at 18% 20%,light-dark("), "hero backdrop glows in the CSS");
   assert.ok(!css.includes("var(--color-line) 1px") && css.includes("mask-image:radial-gradient(#000 25%,#0000 78%)"), "hero backdrop has an edge mask and no dot texture (0.5.0)");
-  const guide = readFileSync("dist/reference/sys/style-guide/sections/index.html", "utf8");
+  const guide = readFileSync("dist/reference/sys/style-guide/sections/heroes/index.html", "utf8");
   assert.match(guide, /data-variant="centered">[\s\S]*?<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/, "centered hero media in a framed rounded-2xl box");
   assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-6 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);
   assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-clip rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600/);
@@ -701,9 +707,9 @@ test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA p
   assert.match(svc, /data-component="testimonial" data-variant="single">\n<span aria-hidden="true" class="block h-12 select-none text-7xl font-bold leading-none text-brand-200">“<\/span>/);
 });
 
-test("home hero carries the generated sample clip: native video, poster, preload none, captions per locale, both formats under 1.5 MB", () => {
+test("the landing hero carries the generated sample clip (the home hero until 0.11.0): native video, poster, preload none, captions per locale, both formats under 1.5 MB", () => {
   for (const [loc, title] of [["en", "Northwind in eight seconds"], ["de", "Northwind in acht Sekunden"], ["ar", "نورثويند في ثماني ثوانٍ"]]) {
-    const html = readFileSync(`dist/reference/${loc}/index.html`, "utf8");
+    const html = readFileSync(`dist/reference/${loc}/lp/line-automation-2026/index.html`, "utf8");
     assert.match(html, /data-component="hero" data-variant="video"/, `${loc} hero variant`);
     assert.match(html, /<video class="aspect-video w-full" controls playsinline preload="none" poster="\/assets\/video\/northwind-sample-poster\.webp" width="1280" height="720">\n<source src="\/assets\/video\/northwind-sample\.webm" type="video\/webm">\n<source src="\/assets\/video\/northwind-sample\.mp4" type="video\/mp4">/, `${loc} video element`);
     assert.match(html, new RegExp(`<track kind="captions" src="/assets/video/northwind-sample-${loc}\.vtt" srclang="${loc}" data-cue="[^"]+">`), `${loc} captions track`);

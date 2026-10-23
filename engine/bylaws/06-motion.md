@@ -90,7 +90,7 @@ MUST. Depth is set dressing that moves slower than the content. Only these layer
 
 | Layer | Keyframe and travel | Timeline and range | Level |
 |---|---|---|---|
-| hero media interior (the split picture only, never video controls or a form) | `parallax-md`, 32 px, with a static `translate-y-4` under `sda:` so the picture is at identity at rest and sinks as the page scrolls; overscanned `scale-115` | `scroll(root)`, `0 → 80vh` | expressive |
+| hero media interior (the split picture or the art of a `backdrop` or `panel` hero, never video controls, a form or the text) | `parallax-md`, 32 px, with a static `translate-y-4` under `sda:` so the picture is at identity at rest and sinks as the page scrolls; overscanned `scale-115` | `scroll(root)`, `0 → 80vh` | expressive |
 | hero glows (the backdrop layer, `-inset-y-8`) | `parallax-sm`, 16 px, with `translate-y-2` likewise | `scroll(root)`, `0 → 80vh` | expressive |
 | media-row pictures | `parallax-md`, 32 px | the row's `view()`, `cover 0% → cover 100%` | standard |
 | stats band backdrop (`before:` layer: a diagonal tint from brand-800 to a trace of accent, R-COL-09) | `parallax-sm`, 16 px | the band's `view()`, `cover 0% → cover 100%` | expressive |

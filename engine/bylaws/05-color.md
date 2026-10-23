@@ -43,7 +43,7 @@ Why: Contrast over photographs cannot be guaranteed any other way.
 Gate: manual: checklists/new-component.md
 
 ### R-COL-09 Gradients
-MUST. Gradients appear only as: the hero glow (two radial gradients, brand behind the text and accent behind the media at ≤ 40 % alpha, no texture), the CTA panel (`bg-linear-to-br from-brand-700 via-brand-600 to-accent-600`), the stats band numerals (`from-ink-inverse to-accent-200` clipped to text, with `text-ink-inverse` as the fallback colour) the footer hairline (`from-brand-600 to-accent-600`, one pixel) and, in `expressive`, the stats band's depth layer (`from-brand-800/70 via-brand-700/0 to-accent-600/25`, behind the band). No other text gradients.
+MUST. Gradients appear only as: the hero glow (two radial gradients, brand behind the text and accent behind the media at ≤ 40 % alpha, no texture), the CTA panel (`bg-linear-to-br from-brand-700 via-brand-600 to-accent-600`), the stats band numerals (`from-ink-inverse to-accent-200` clipped to text, with `text-ink-inverse` as the fallback colour) the footer hairline (`from-brand-600 to-accent-600`, one pixel), in `expressive` the stats band's depth layer (`from-brand-800/70 via-brand-700/0 to-accent-600/25`, behind the band) and the art scrim (`bg-art-scrim`: brand-950 over the art behind the text of the `backdrop` hero and the `banner` page header; below `lg` 62 → 90 % from top to bottom, from `lg` an eased side band 88 % → 74 % at 30 % → 45 % at 50 % → 16 % at 68 % → clear at 84 %, mirrored in RTL). No other text gradients.
 Why: A few gradients in fixed places read as a system; gradient body text fails contrast tools and prints badly.
 Gate: manual: checklists/new-component.md
 
@@ -62,5 +62,5 @@ Gate: manual: checklists/pre-delivery.md
 - [ ] R-COL-06 no colour-only meaning
 - [ ] R-COL-07 no dark: classes
 - [ ] R-COL-08 overlay under text on media
-- [ ] R-COL-09 gradients only the hero glow, CTA panel, stats numerals and footer hairline
+- [ ] R-COL-09 gradients only the hero glow, CTA panel, stats numerals, footer hairline and the art scrim
 - [ ] R-COL-10 forced-colors check

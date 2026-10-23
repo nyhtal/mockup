@@ -1,31 +1,59 @@
 {#
   name: page-header
-  purpose: Top of every interior page: breadcrumbs, eyebrow, h1, lede (R-SEC-08).
-  anatomy: section[data-component=page-header] > container > breadcrumbs + eyebrow + h1 + lede (+ meta)
-  variants: none
+  purpose: Top of every interior page: breadcrumbs, eyebrow, h1, lede (R-SEC-08), plain or with a picture from the art library.
+  anatomy: section[data-component=page-header data-variant] > container > breadcrumbs + hgroup(eyebrow + h1 + lede) (+ the variant's picture)
+  variants: plain (default) | banner (a dark-tone library piece behind the whole header with the art scrim, text and breadcrumbs in inverse ink) | band (the plain header, then a rounded 21:9 art band mt-12 md:mt-16 under the lede (the heading-to-body distance)) | split (text in seven columns, a 4:3 art frame in five, stacked below lg)
   states: none
-  spacing: py-12 md:py-16; joined to a plain section that follows it (ctx.joined, the opening group of R-LAY-02) pt-12 md:pt-16 with no bottom padding, the section then opening at pt-12 md:pt-16; h1 mt-2; lede mt-4
+  spacing: py-12 md:py-16; joined to a plain section that follows it (ctx.joined, the opening group of R-LAY-02) pt-12 md:pt-16 with no bottom padding, the section then opening at pt-12 md:pt-16; banner py-16 md:py-24 and never joined (it is a band of its own); band never joined (its picture closes the header, mt-12 md:mt-16 under the lede); h1 mt-2; lede mt-4
   motion: none (contains the h1: R-SEC-10)
   keyboard: breadcrumb links
-  a11y: the only h1 on the page
-  i18n: none
+  a11y: the only h1 on the page; the banner art is decoration (alt "", aria-hidden layer); band and split pictures take the declared alt, "" when they only decorate
+  i18n: the banner art and its scrim mirror in RTL; band and split need no mirroring
   content limits: h1 ≤ 60 chars; lede ≤ 35 words
-  data: s = { eyebrow, title, lede, breadcrumbs: [{name,url}] }
+  data: s = { variant, eyebrow, title, lede, breadcrumbs: [{name,url}], image: { slug, ratio, alt, art, tone } (banner forces tone dark; band uses 21:9, split 4:3) }
 #}
 {% from "components/breadcrumbs.njk" import breadcrumbs with context %}
+{% from "primitives/picture.njk" import picture with context %}
 {% macro render(s, ctx) %}
+{%- set variant = s.variant if (s.variant and s.image) else "plain" -%}
+{%- set crumbs = s.breadcrumbs or ctx.breadcrumbs -%}
+{%- set h = "h2" if ctx.demote else "h1" -%}
+{%- if variant == "banner" %}
+{%- set img = { slug: s.image.slug, ratio: "21:9", alt: "", max: 1600, art: s.image.art or "contours-quiet", tone: "dark" } %}
+<section class="relative isolate overflow-hidden py-16 md:py-24 bg-brand-950 text-ink-inverse" data-component="page-header" data-variant="banner"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
+<div aria-hidden="true" class="absolute inset-0 -z-10 overflow-clip rtl:-scale-x-100">{{ picture(img, { priority: true, sizes: "(min-width: 48rem) 100vw, 200vw", class: "absolute inset-0 size-full object-cover" }) }}</div>
+<div aria-hidden="true" class="absolute inset-0 -z-10 bg-art-scrim rtl:-scale-x-100"></div>
+<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+{%- if crumbs and crumbs.length %}<div class="mb-6">{{ breadcrumbs(crumbs, { inverse: true }) }}</div>{% endif %}
+<hgroup class="max-w-3xl">
+{%- if s.eyebrow %}<p class="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-ink-inverse/85 before:h-0.5 before:w-6 before:rounded-full before:bg-accent-300">{{ s.eyebrow }}</p>{% endif -%}
+<{{ h }} class="{{ 'mt-2' if s.eyebrow }} text-4xl md:text-5xl font-semibold tracking-tight text-balance">{{ s.title | wbr | safe }}</{{ h }}>
+{%- if s.lede %}<p class="mt-4 text-lg md:text-xl text-ink-inverse/85">{{ s.lede }}</p>{% endif %}
+</hgroup>
+</div>
+</section>
+{%- else %}
 {#- Inside an <article> the page header is that article's <header>, so its h1 heads the article (to-do 6). -#}
 {%- set el = "header" if ctx.inArticle else "section" %}
-<{{ el }} class="{{ 'pt-12 md:pt-16' if ctx.joined else 'py-12 md:py-16' }} {{ s.surface or 'bg-surface' }}" data-component="page-header"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
+{%- set joined = ctx.joined and variant != "band" %}
+<{{ el }} class="{{ 'pt-12 md:pt-16' if joined else 'py-12 md:py-16' }} {{ s.surface or 'bg-surface' }}" data-component="page-header"{% if variant != "plain" %} data-variant="{{ variant }}"{% endif %}{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-{%- set crumbs = s.breadcrumbs or ctx.breadcrumbs -%}
 {%- if crumbs and crumbs.length %}<div class="mb-6">{{ breadcrumbs(crumbs) }}</div>{% endif %}
-<hgroup class="max-w-3xl">
-{%- if s.eyebrow %}<p class="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-ink-brand before:h-0.5 before:w-6 before:rounded-full before:bg-accent-600">{{ s.eyebrow }}</p>{% endif %}
-{%- set h = "h2" if ctx.demote else "h1" -%}
+{%- if variant == "split" %}<div class="grid items-center gap-12 lg:grid-cols-12">{% endif %}
+<hgroup class="max-w-3xl{{ ' lg:col-span-7' if variant == 'split' }}">
+{%- if s.eyebrow %}<p class="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-ink-brand before:h-0.5 before:w-6 before:rounded-full before:bg-accent-600">{{ s.eyebrow }}</p>{% endif -%}
 <{{ h }} class="{{ 'mt-2' if s.eyebrow }} text-4xl md:text-5xl font-bold tracking-tight text-balance">{{ s.title | wbr | safe }}</{{ h }}>
 {%- if s.lede %}<p class="mt-4 text-lg md:text-xl text-ink-muted">{{ s.lede }}</p>{% endif %}
 </hgroup>
+{%- if variant == "split" %}
+{%- set img = { slug: s.image.slug, ratio: "4:3", alt: s.image.alt or "", max: 1200, art: s.image.art, tone: s.image.tone } %}
+<div class="overflow-clip rounded-2xl ring-1 ring-line lg:col-span-5">{{ picture(img, { priority: true, sizes: "(min-width: 64rem) 40vw, 100vw", class: "aspect-[4/3] w-full object-cover" }) }}</div>
+</div>
+{%- elif variant == "band" %}
+{%- set img = { slug: s.image.slug, ratio: "21:9", alt: s.image.alt or "", max: 1600, art: s.image.art, tone: s.image.tone } %}
+<div class="mt-12 overflow-clip rounded-2xl ring-1 ring-line md:mt-16">{{ picture(img, { priority: true, sizes: "(min-width: 80rem) 80rem, 100vw", class: "aspect-video w-full object-cover md:aspect-[21/9]" }) }}</div>
+{%- endif %}
 </div>
 </{{ el }}>
+{%- endif %}
 {% endmacro %}

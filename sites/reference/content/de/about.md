@@ -6,6 +6,13 @@ title: "Über uns"
 eyebrow: "Unternehmen"
 lede: "Drei Steuerungsingenieure gründeten Northwind 2019, weil das Ändern einer Füllmenge keine Woche dauern sollte."
 description: "Über Northwind Dynamics: 2019 in Manchester von Steuerungsingenieuren gegründet, heute 140 Menschen in vier Büros, die 1.284 Produktionslinien betreuen."
+pageHeader:
+  variant: "split"
+  image:
+    slug: "about-split"
+    art: "folds"
+    tone: "dark"
+    alt: ""
 sections:
   - "about-rows"
   - "company-stats"

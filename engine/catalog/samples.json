@@ -163,6 +163,117 @@
       ]
     },
     {
+      "id": "hero-backdrop",
+      "type": "hero",
+      "variant": "backdrop",
+      "eyebrow": "Industrial automation",
+      "title": "Control software your plant engineers can read",
+      "lede": "Northwind turns a plain description of a production line into validated PLC logic, so changes take hours instead of weeks.",
+      "primary": {
+        "label": "Book a demo",
+        "href": "/sys/style-guide/"
+      },
+      "secondary": {
+        "label": "See how it works",
+        "href": "/sys/style-guide/components/"
+      },
+      "image": {
+        "slug": "sg-hero-backdrop",
+        "art": "contours-quiet"
+      },
+      "proof": [
+        {
+          "value": "1,284",
+          "label": "lines automated"
+        },
+        {
+          "value": "19",
+          "label": "countries"
+        },
+        {
+          "value": "99.98%",
+          "label": "uptime"
+        }
+      ]
+    },
+    {
+      "id": "hero-backdrop-inset",
+      "type": "hero",
+      "variant": "backdrop",
+      "inset": true,
+      "eyebrow": "Plant programmes",
+      "title": "Every line on the site, one source of truth",
+      "lede": "Standardise logic across lines and shifts without freezing the plant while you do it.",
+      "primary": {
+        "label": "Plan a programme",
+        "href": "/sys/style-guide/"
+      },
+      "secondary": {
+        "label": "Read the case study",
+        "href": "/sys/style-guide/components/"
+      },
+      "image": {
+        "slug": "sg-hero-inset",
+        "art": "fins-quiet"
+      }
+    },
+    {
+      "id": "hero-panel",
+      "type": "hero",
+      "variant": "panel",
+      "eyebrow": "Safety reviews",
+      "title": "Evidence your auditor can read in an afternoon",
+      "lede": "Every interlock traced from requirement to tested logic, exported as one signed pack.",
+      "primary": {
+        "label": "Book a review",
+        "href": "/sys/style-guide/"
+      },
+      "secondary": {
+        "label": "See a sample pack",
+        "href": "/sys/style-guide/components/"
+      },
+      "image": {
+        "slug": "sg-hero-panel",
+        "art": "ribbon-quiet"
+      }
+    },
+    {
+      "id": "hero-editorial",
+      "type": "hero",
+      "variant": "editorial",
+      "eyebrow": "Annual report 2026",
+      "title": "A year of lines that changed without stopping",
+      "lede": "1,284 lines in 19 countries, 38% less unplanned downtime, and not one recipe change that needed a maintenance window.",
+      "primary": {
+        "label": "Read the report",
+        "href": "/sys/style-guide/"
+      },
+      "secondary": {
+        "label": "Download the PDF",
+        "href": "/sys/style-guide/components/"
+      },
+      "image": {
+        "slug": "sg-hero-editorial",
+        "art": "airflow",
+        "tone": "dark",
+        "alt": ""
+      },
+      "proof": [
+        {
+          "value": "38%",
+          "label": "less downtime"
+        },
+        {
+          "value": "9 days",
+          "label": "to commission"
+        },
+        {
+          "value": "0",
+          "label": "line stops"
+        }
+      ]
+    },
+    {
       "id": "page-header",
       "type": "page-header",
       "eyebrow": "About",
@@ -182,6 +293,88 @@
           "url": "/sys/style-guide/sections/"
         }
       ]
+    },
+    {
+      "id": "page-header-banner",
+      "type": "page-header",
+      "variant": "banner",
+      "eyebrow": "What we do",
+      "title": "Services for one line or a whole plant",
+      "lede": "Line automation, plant programmes and safety reviews, delivered by controls engineers.",
+      "breadcrumbs": [
+        {
+          "name": "Home",
+          "url": "/en/"
+        },
+        {
+          "name": "Style guide",
+          "url": "/sys/style-guide/"
+        },
+        {
+          "name": "Sections",
+          "url": "/sys/style-guide/sections/"
+        }
+      ],
+      "image": {
+        "slug": "sg-header-banner",
+        "art": "traces-quiet"
+      }
+    },
+    {
+      "id": "page-header-band",
+      "type": "page-header",
+      "variant": "band",
+      "eyebrow": "Careers",
+      "title": "Build the software plants run on",
+      "lede": "Four open roles across engineering, support and product, in three offices and remote.",
+      "breadcrumbs": [
+        {
+          "name": "Home",
+          "url": "/en/"
+        },
+        {
+          "name": "Style guide",
+          "url": "/sys/style-guide/"
+        },
+        {
+          "name": "Sections",
+          "url": "/sys/style-guide/sections/"
+        }
+      ],
+      "image": {
+        "slug": "sg-header-band",
+        "art": "contours-field",
+        "tone": "light",
+        "alt": ""
+      }
+    },
+    {
+      "id": "page-header-split",
+      "type": "page-header",
+      "variant": "split",
+      "eyebrow": "Company",
+      "title": "Built by controls engineers who were tired of waiting",
+      "lede": "Northwind started in a Manchester food plant in 2019. Today 140 people in four offices keep 1,284 lines running.",
+      "breadcrumbs": [
+        {
+          "name": "Home",
+          "url": "/en/"
+        },
+        {
+          "name": "Style guide",
+          "url": "/sys/style-guide/"
+        },
+        {
+          "name": "Sections",
+          "url": "/sys/style-guide/sections/"
+        }
+      ],
+      "image": {
+        "slug": "sg-header-split",
+        "art": "folds",
+        "tone": "dark",
+        "alt": ""
+      }
     },
     {
       "id": "logo-cloud",
