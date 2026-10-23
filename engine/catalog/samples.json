@@ -239,6 +239,42 @@
       }
     },
     {
+      "id": "hero-backdrop-light",
+      "type": "hero",
+      "variant": "backdrop",
+      "light": true,
+      "eyebrow": "Plant programmes",
+      "title": "Every line on the site, one source of truth",
+      "lede": "Standardise logic across lines and shifts without freezing the plant while you do it.",
+      "primary": {
+        "label": "Plan a programme",
+        "href": "/sys/style-guide/"
+      },
+      "secondary": {
+        "label": "Read the case study",
+        "href": "/sys/style-guide/components/"
+      },
+      "image": {
+        "slug": "sg-hero-light",
+        "art": "planes-network",
+        "tone": "light"
+      },
+      "proof": [
+        {
+          "value": "212",
+          "label": "lines in 2026"
+        },
+        {
+          "value": "9 days",
+          "label": "to commission"
+        },
+        {
+          "value": "0",
+          "label": "line stops"
+        }
+      ]
+    },
+    {
       "id": "hero-panel",
       "type": "hero",
       "variant": "panel",
@@ -374,7 +410,7 @@
       "type": "page-header",
       "variant": "split",
       "eyebrow": "Company",
-      "title": "Built by controls engineers who were tired of waiting",
+      "title": "Three engineers, one food plant, 1,284 lines",
       "lede": "Northwind started in a Manchester food plant in 2019. Today 140 people in four offices keep 1,284 lines running.",
       "breadcrumbs": [
         {
@@ -396,6 +432,14 @@
         "tone": "dark",
         "alt": ""
       }
+    },
+    {
+      "id": "page-header-brand",
+      "type": "page-header",
+      "variant": "brand",
+      "eyebrow": "Industries",
+      "title": "Built for the lines you run",
+      "lede": "Food and beverage, packaging, automotive and pharma: the same engine, tuned to each."
     },
     {
       "id": "logo-cloud",
@@ -448,6 +492,87 @@
           "text": "Factory and site acceptance tests are generated from the same description."
         }
       ]
+    },
+    {
+      "id": "feature-grid-brand",
+      "type": "feature-grid",
+      "eyebrow": "The brand version",
+      "title": "Any section, on the brand colour",
+      "lede": "Describe the process once. Northwind generates the logic, the tests and the documentation from the same source.",
+      "items": [
+        {
+          "icon": "cpu",
+          "title": "Generated PLC logic",
+          "text": "Validated ladder and structured text for Siemens, Rockwell and Beckhoff, from one description."
+        },
+        {
+          "icon": "shield-check",
+          "title": "Safety built in",
+          "text": "Interlocks and zones are part of the description, so they are never forgotten in a rewrite."
+        },
+        {
+          "icon": "users",
+          "title": "Operators change recipes",
+          "text": "Within the limits engineers set, with every change logged and reversible."
+        },
+        {
+          "icon": "chart-line",
+          "title": "Audit trail",
+          "text": "Who changed what, when, and what the line was doing at the time."
+        },
+        {
+          "icon": "layers",
+          "title": "Integrations",
+          "text": "Tag tables, historians and MES systems stay in sync without scripts."
+        },
+        {
+          "icon": "gauge",
+          "title": "Acceptance tests",
+          "text": "Factory and site acceptance tests are generated from the same description."
+        }
+      ],
+      "tone": "brand"
+    },
+    {
+      "id": "feature-grid-brand-contained",
+      "type": "feature-grid",
+      "eyebrow": "The contained version",
+      "title": "The same block as a panel in the margins",
+      "lede": "Describe the process once. Northwind generates the logic, the tests and the documentation from the same source.",
+      "items": [
+        {
+          "icon": "cpu",
+          "title": "Generated PLC logic",
+          "text": "Validated ladder and structured text for Siemens, Rockwell and Beckhoff, from one description."
+        },
+        {
+          "icon": "shield-check",
+          "title": "Safety built in",
+          "text": "Interlocks and zones are part of the description, so they are never forgotten in a rewrite."
+        },
+        {
+          "icon": "users",
+          "title": "Operators change recipes",
+          "text": "Within the limits engineers set, with every change logged and reversible."
+        },
+        {
+          "icon": "chart-line",
+          "title": "Audit trail",
+          "text": "Who changed what, when, and what the line was doing at the time."
+        },
+        {
+          "icon": "layers",
+          "title": "Integrations",
+          "text": "Tag tables, historians and MES systems stay in sync without scripts."
+        },
+        {
+          "icon": "gauge",
+          "title": "Acceptance tests",
+          "text": "Factory and site acceptance tests are generated from the same description."
+        }
+      ],
+      "tone": "brand",
+      "frame": "contained"
     },
     {
       "id": "feature-rows",

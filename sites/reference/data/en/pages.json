@@ -970,7 +970,8 @@
           "title": "Time to write it down",
           "text": "Guides and templates count as work, not overtime."
         }
-      ]
+      ],
+      "tone": "brand"
     },
     "job-list": {
       "type": "job-list",
@@ -1123,7 +1124,9 @@
           "title": "Access you grant",
           "text": "Support sees your data only while you allow it, and every access is logged."
         }
-      ]
+      ],
+      "tone": "brand",
+      "frame": "contained"
     },
     "security-contact": {
       "type": "contact-card",

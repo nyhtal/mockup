@@ -1,7 +1,7 @@
 {#
   name: _shell (helper, not a section)
   purpose: The section skeleton every section uses (R-SEC-01, R-SEC-06, R-SEC-10, R-TOK-15, R-LAY-02): padding by density, surface, container, eyebrow + h2 + lede, body via caller, optional CTA, entrances below the fold (R-MOT-05).
-  usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}; opts: itemsReveal (items carry their own entrances; the heading group arrives on its own and the section clips horizontal overflow because items may slide), clipX (overflow-x-clip for sliding rows), noReveal, center (true centres the heading group; the default is start-aligned, DESIGN §4), kind ("scale" for a framed object; the default rise), extra (classes appended to the section, e.g. a depth backdrop)
+  usage: {% call shell("feature-grid", s, ctx) %} …body… {% endcall %}; s.tone "brand" gives any section its brand-colour version, a full-width bar (s.frame "contained": a rounded panel in the container); opts: itemsReveal (items carry their own entrances; the heading group arrives on its own and the section clips horizontal overflow because items may slide), clipX (overflow-x-clip for sliding rows), noReveal, center (true centres the heading group; the default is start-aligned, DESIGN §4), kind ("scale" for a framed object; the default rise), extra (classes appended to the section, e.g. a depth backdrop)
   ctx: { locale, pageUrl, density, surface, reveal, index, flair, opening }; flair = the booleans of the brief's motion level (R-TOK-12): vocabulary, pop, rule, …; opening = the section follows a joined page header (the opening group, R-LAY-02) and opens at pt-12 md:pt-16 instead of its full top padding
   macros: enter (one entrance: from-state + transition + delay), revealClasses (section entrance), headingClasses (heading group), item (grid item: treatment and delay by column, R-MOT-16), stagger (list item: delay by index), pop (icon pop), zoom (picture settle), depth (R-MOT-15), eyebrowRule (the marker that draws). Below the standard level (no flair.vocabulary) every kind falls back to a rise: calm is rise only (R-TOK-12).
   how entrances work (R-MOT-05, R-MOT-10): an element carrying `pending:` utilities waits in its from-state (faded and offset) until enhance.js marks it data-revealed when its top crosses 88 % of the viewport height, then transitions to its final state over --reveal-duration on --ease-reveal after its delay. The transition utilities sit under data-revealed: so they exist only for the entrance itself: entering the from-state when the script starts is instant, never a fade-out. Time-based, once, independent of scroll speed. `pending:` exists only on screen, with JS and with motion allowed, so without any of those the page shows final states; elements already in view at load are marked before `pending:` can apply, so nothing above the fold animates (R-MOT-11).
@@ -29,12 +29,16 @@
 {% macro eyebrowRule(inverse=false, draw=false) %}before:h-0.5 before:w-6 before:rounded-full {{ 'before:bg-ink-inverse/70' if inverse else 'before:bg-accent-600' }}{% if draw %} before:origin-left rtl:before:origin-right pending:before:scale-x-0 motion-safe:data-revealed:before:transition-transform motion-safe:data-revealed:before:duration-(--reveal-duration) motion-safe:data-revealed:before:ease-reveal motion-safe:data-revealed:before:delay-200{% endif %}{% endmacro %}
 {% macro shell(name, s, ctx, opts={}) %}
 {%- set pad = ("pt-12 md:pt-16 " + ("pb-12 md:pb-16" if ctx.density == "compact" else "pb-16 md:pb-24")) if ctx.opening else ("py-12 md:py-16" if ctx.density == "compact" else "py-16 md:py-24") -%}
-{%- set surface = s.surface or ctx.surface or "bg-surface" -%}
+{#- The brand version (R-SEC-13): tone "brand" is a full-width bar in the stats band's blue (brand-700) whose tone-brand utility re-points the role colours inside it (ink and muted ink to inverse, lines to translucent inverse, raised cards a step lighter, brand text to the pale accent), so every component reads on it; frame "contained" puts the same panel, rounded, inside the container on the page surface. -#}
+{%- set brand = s.tone == "brand" -%}
+{%- set contained = brand and s.frame == "contained" -%}
+{%- set surface = ("tone-brand" if (brand and not contained) else (s.surface or ctx.surface or "bg-surface")) -%}
 {%- set inverse = surface == "bg-brand-700" -%}
 {%- set reveal = ctx.reveal and not opts.noReveal -%}
 {%- set center = opts.center === true -%}
 <section class="{{ pad }} {{ surface }}{% if inverse %} text-ink-inverse{% endif %}{% if opts.clipX or (opts.itemsReveal and reveal) %} overflow-x-clip{% endif %}{% if opts.extra %} {{ opts.extra }}{% endif %}{% if not opts.itemsReveal %}{{ revealClasses(reveal, opts.kind) }}{% endif %}" data-component="{{ name }}"{% if s.variant %} data-variant="{{ s.variant }}"{% endif %}{% if s.anchor %} id="{{ s.anchor }}"{% endif %}{% if not s.title and s.label %} aria-label="{{ s.label }}"{% endif %}>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+{%- if contained %}<div class="rounded-3xl tone-brand px-6 py-12 sm:px-10 md:px-14 md:py-16">{% endif %}
 {%- if s.title or s.eyebrow or s.lede %}
 {%- set hg = "hgroup" if s.title else "div" %}
 <{{ hg }} class="{{ 'mx-auto max-w-3xl text-center' if center else 'max-w-3xl' }}{{ headingClasses(reveal and opts.itemsReveal) }}">
@@ -49,6 +53,7 @@
 {%- if s.cta %}
 <div class="mt-12 {{ 'text-center' if center }}">{{ button(s.cta.label, { href: s.cta.href, variant: s.cta.variant or "secondary", iconEnd: "arrow-right" }) }}</div>
 {%- endif %}
+{%- if contained %}</div>{% endif %}
 </div>
 </section>
 {% endmacro %}

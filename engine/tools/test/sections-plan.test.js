@@ -137,3 +137,16 @@ test("a search box that opens the page is its header: no page header is added, i
   assert.equal(inside[0].s.type, "page-header", "a search box further down is an ordinary section");
   assert.equal(inside[2].s.opener, undefined);
 });
+
+test("brand version (R-SEC-13): a brand bar never joins a page header and restarts the alternation; a contained brand panel joins like a plain section; a brand header keeps its padding", () => {
+  const s = { byId: { ...samples.byId, bar: { type: "feature-grid", tone: "brand" }, box: { type: "feature-grid", tone: "brand", frame: "contained" } } };
+  const plan = (list, header = { title: "About" }) => planSections(s, list, { ...opts, header });
+  const bar = plan(["bar", "grid"]);
+  assert.deepEqual(bar.map((p) => [p.s.type, !!p.ctx.joined, !!p.ctx.opening]), [["page-header", false, false], ["feature-grid", false, false], ["feature-grid", false, false]]);
+  assert.equal(bar[2].ctx.surface, "bg-surface", "after a brand bar the alternation restarts on the page surface");
+  const box = plan(["box"]);
+  assert.deepEqual(box.map((p) => [!!p.ctx.joined, !!p.ctx.opening]), [[true, false], [false, true]], "the contained panel sits on the page surface, so it joins");
+  const brandHeader = plan(["grid"], { title: "Industries", variant: "brand" });
+  assert.equal(brandHeader[0].s.variant, "brand", "a brand header needs no image");
+  assert.equal(brandHeader[0].ctx.joined, undefined, "and keeps its padding");
+});

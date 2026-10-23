@@ -150,7 +150,7 @@ export function roleHex(brand) {
   const h = Number(brand.hue) || 0;
   const a = Number(brand.accentHue ?? brand.hue) || 0;
   const px = (l, c, hue) => oklchToHex(l / 100, c, hue);
-  const fixed = { "ink-inverse": px(99, 0.002, h), "brand-50": px(L[0], C[0], h), "brand-100": px(L[1], C[1], h), "brand-600": px(L[6], C[6], h), "brand-700": px(L[7], C[7], h), "brand-800": px(L[8], C[8], h), "accent-600": px(L[6], C[6], a) };
+  const fixed = { "ink-inverse": px(99, 0.002, h), "brand-50": px(L[0], C[0], h), "brand-100": px(L[1], C[1], h), "brand-600": px(L[6], C[6], h), "brand-700": px(L[7], C[7], h), "brand-800": px(L[8], C[8], h), "accent-600": px(L[6], C[6], a), "accent-200": px(L[2], C[2], a) };
   return {
     light: { ...fixed, surface: px(99, 0.002, h), "surface-alt": px(96.5, 0.005, h), "surface-raised": px(100, 0, h), ink: px(20, 0.02, h), "ink-muted": px(ROLE_MUTED.light, 0.02, h), "ink-brand": px(ROLE_BRAND_TEXT.light, 0.14, h), "line-strong": px(ROLE_LINE_STRONG.light, 0.015, h) },
     dark: { ...fixed, surface: px(18, 0.01, h), "surface-alt": px(22, 0.012, h), "surface-raised": px(26, 0.014, h), ink: px(95, 0.01, h), "ink-muted": px(ROLE_MUTED.dark, 0.015, h), "ink-brand": px(ROLE_BRAND_TEXT.dark, 0.11, h), "line-strong": px(ROLE_LINE_STRONG.dark, 0.02, h) },
@@ -163,7 +163,7 @@ const CONTRAST_PAIRS = [
   ["ink-muted", "surface", 4.5], ["ink-muted", "surface-alt", 4.5], ["ink-muted", "surface-raised", 4.5],
   ["ink-brand", "surface", 4.5], ["ink-brand", "surface-alt", 4.5], ["ink-brand", "surface-raised", 4.5],
   ["ink-inverse", "brand-600", 4.5], ["ink-inverse", "brand-700", 4.5], ["ink-inverse", "accent-600", 4.5],
-  ["brand-800", "brand-100", 4.5], ["brand-800", "brand-50", 4.5], ["brand-100", "brand-700", 3],
+  ["brand-800", "brand-100", 4.5], ["brand-800", "brand-50", 4.5], ["brand-100", "brand-700", 3], ["accent-200", "brand-700", 4.5],
   ["line-strong", "surface", 3], ["line-strong", "surface-alt", 3], ["line-strong", "surface-raised", 3],
 ];
 

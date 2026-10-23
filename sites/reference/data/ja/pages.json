@@ -970,7 +970,8 @@
           "title": "書き残すための時間",
           "text": "ガイドやテンプレートの作成は、残業ではなく業務として扱います。"
         }
-      ]
+      ],
+      "tone": "brand"
     },
     "job-list": {
       "type": "job-list",
@@ -1123,7 +1124,9 @@
           "title": "許可したときだけのアクセス",
           "text": "サポートがデータを閲覧できるのはお客様が許可している間だけで、すべてのアクセスが記録されます。"
         }
-      ]
+      ],
+      "tone": "brand",
+      "frame": "contained"
     },
     "security-contact": {
       "type": "contact-card",

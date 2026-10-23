@@ -947,7 +947,8 @@
           "title": "وقت لتدوين الأمور",
           "text": "الأدلة والقوالب تُحسب عملًا، لا وقتًا إضافيًا."
         }
-      ]
+      ],
+      "tone": "brand"
     },
     "job-list": {
       "type": "job-list",
@@ -1100,7 +1101,9 @@
           "title": "وصول تمنحه أنت",
           "text": "يرى الدعم بياناتك فقط ما دمت تسمح، ويُسجَّل كل وصول."
         }
-      ]
+      ],
+      "tone": "brand",
+      "frame": "contained"
     },
     "security-contact": {
       "type": "contact-card",

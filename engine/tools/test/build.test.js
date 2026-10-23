@@ -788,3 +788,16 @@ test("gate fixes: the floating back-to-top lives inside the footer landmark and 
     assert.doesNotMatch(html, /<ul class="grid gap-6 (?!md:gap-8)/, `${page}: bare gap-6 body grid`);
   }
 });
+
+test("brand version and light backdrop (0.18.0): tone-brand re-points the role colours; Industries, Careers and Trust show the header, bar and contained forms; the light backdrop holds the light scheme", () => {
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  // The minifier splits the utility into blocks, each color-mix() declaration after a hex fallback for browsers without it.
+  const body = [...css.matchAll(/\.tone-brand\{([^}]*)\}/g)].map((m) => m[1]).join(";");
+  assert.ok(body, "the tone-brand utility is compiled");
+  for (const v of ["--color-ink:", "--color-ink-muted:", "--color-line:", "--color-surface-raised:", "--color-ink-brand:", "background-color:"]) assert.ok(body.includes(v), `tone-brand sets ${v}`);
+  assert.match(readFileSync("dist/reference/en/industries/index.html", "utf8"), /<section class="py-12 md:py-16 tone-brand" data-component="page-header" data-variant="brand">/);
+  assert.match(readFileSync("dist/reference/de/careers/index.html", "utf8"), /<section class="py-16 md:py-24 tone-brand[^"]*" data-component="feature-grid"/, "a full-width brand bar");
+  assert.match(readFileSync("dist/reference/ar/trust/index.html", "utf8"), /data-component="feature-index"[^>]*>\n<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8"><div class="rounded-3xl tone-brand /, "a contained brand panel");
+  const guide = readFileSync("dist/reference/sys/style-guide/sections/heroes/index.html", "utf8");
+  assert.match(guide, /<section class="relative isolate overflow-hidden py-16 md:py-28 bg-surface text-ink scheme-light" data-component="hero" data-variant="backdrop"[^>]*>[\s\S]*?data-tone="light"[\s\S]*?bg-art-scrim-light/, "the light backdrop: light art, light scrim, light scheme");
+});

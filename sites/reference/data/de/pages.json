@@ -947,7 +947,8 @@
           "title": "Zeit, es aufzuschreiben",
           "text": "Anleitungen und Vorlagen zählen als Arbeit, nicht als Überstunden."
         }
-      ]
+      ],
+      "tone": "brand"
     },
     "job-list": {
       "type": "job-list",
@@ -1100,7 +1101,9 @@
           "title": "Zugang, den Sie gewähren",
           "text": "Der Support sieht Ihre Daten nur, solange Sie es erlauben, und jeder Zugriff wird protokolliert."
         }
-      ]
+      ],
+      "tone": "brand",
+      "frame": "contained"
     },
     "security-contact": {
       "type": "contact-card",

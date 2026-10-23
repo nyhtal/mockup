@@ -1,6 +1,6 @@
 {
   "html": 75776,
-  "css": 105472,
+  "css": 107520,
   "js": 5120,
   "page": 307200,
   "mobileWidth": 720,
@@ -13,7 +13,7 @@
       "page": 409600
     },
     "/style-guide/": {
-      "html": 139264,
+      "html": 147456,
       "page": 409600
     },
     "/en/index.html": {

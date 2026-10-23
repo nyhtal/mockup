@@ -18,10 +18,13 @@ const STATIC = new Set(["search-box", "search-results", "person-bio", "download-
  * section with its own background (the stats band, an explicit surface) or one that does not render through the shell
  * (error-state) keeps the header's full padding.
  */
-export const joinsPageHeader = (s, ctx) => !MEDIA.has(s.type) && s.type !== "error-state" && !(s.type === "stats" && s.variant !== "plain") && (s.surface || ctx.surface) === "bg-surface";
+/** A section in its brand version as a full-width bar (R-SEC-13); a contained brand panel sits on the page surface. */
+const brandBar = (s) => s.tone === "brand" && s.frame !== "contained";
 
-/** A banner (a band on its own art) and a band header (its picture closes it) keep their padding; plain and split headers join. */
-const headerJoins = (s) => !(s.image && (s.variant === "banner" || s.variant === "band"));
+export const joinsPageHeader = (s, ctx) => !MEDIA.has(s.type) && s.type !== "error-state" && !brandBar(s) && !(s.type === "stats" && s.variant !== "plain") && (s.surface || ctx.surface) === "bg-surface";
+
+/** A banner (a band on its own art), a band header (its picture closes it) and a brand header keep their padding; plain and split headers join. */
+const headerJoins = (s) => !(s.image && (s.variant === "banner" || s.variant === "band")) && s.variant !== "brand" && s.tone !== "brand";
 
 const get = (obj, path) => path.split(".").reduce((o, k) => (o == null ? undefined : o[k]), obj);
 
@@ -93,7 +96,7 @@ export function planSections(samples, sections, opts) {
     const first = typeof list[0] === "string" ? siteSections[list[0]] || samples.byId[list[0]] : list[0];
     // A search box that opens the page is its header (the search and help pages): it takes the title, eyebrow and lede, so nothing repeats.
     if (first && first.type === "search-box") opener = header;
-    else if (!first || !["hero", "page-header"].includes(first.type)) list.unshift({ type: "page-header", eyebrow: header.eyebrow, title: header.title, lede: header.lede, ...(header.variant && header.image ? { variant: header.variant, image: header.image } : {}) });
+    else if (!first || !["hero", "page-header"].includes(first.type)) list.unshift({ type: "page-header", eyebrow: header.eyebrow, title: header.title, lede: header.lede, ...(header.variant && (header.image || header.variant === "brand") ? { variant: header.variant, image: header.image } : {}) });
   }
   for (const item of list) {
     // A site section the default locale defines must exist in this locale too: no silent fallback to English sample copy (R-I18N-12).
@@ -107,7 +110,7 @@ export function planSections(samples, sections, opts) {
     if (i === 0 && opener && s.type === "search-box") Object.assign(s, { opener: { eyebrow: opener.eyebrow, title: opener.title, lede: opener.lede }, surface: s.surface || "bg-surface-alt" });
     const reveal = i > 0 && !MEDIA.has(s.type) && !STATIC.has(s.type);
     steps.push({ s, ctx: { locale, pageUrl, density: density || "comfortable", surface, reveal, index: i, demote: !!demote, breadcrumbs, flair } });
-    if (MEDIA.has(s.type)) surface = "bg-surface";
+    if (MEDIA.has(s.type) || brandBar(s)) surface = "bg-surface";
     else if (!s.surface) surface = surface === "bg-surface" ? "bg-surface-alt" : "bg-surface";
   }
   // The search header shows the query the results on the page are for.

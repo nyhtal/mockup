@@ -21,9 +21,9 @@
 {% from "components/stat.njk" import stat with context %}
 {% from "sections/_shell.njk" import depth with context %}
 {#- The art layer of the image-led variants (DESIGN §5): a dark-tone library piece filling its box, mirrored in RTL on the wrapper (abstract art may mirror; the picture's own scale carries the depth). -#}
-{% macro artLayer(s, ctx, defaultArt) %}
+{% macro artLayer(s, ctx, defaultArt, tone="dark") %}
 {%- set hd = ctx.flair and ctx.flair.parallaxHero -%}
-{%- set img = { slug: s.image.slug, ratio: s.image.ratio or "16:9", alt: "", max: 1600, art: s.image.art or defaultArt, tone: "dark" } -%}
+{%- set img = { slug: s.image.slug, ratio: s.image.ratio or "16:9", alt: "", max: 1600, art: s.image.art or defaultArt, tone: tone } -%}
 <div aria-hidden="true" class="absolute inset-0 -z-10 overflow-clip rtl:-scale-x-100">{{ picture(img, { priority: true, sizes: "(min-width: 48rem) 100vw, 200vw", class: "absolute inset-0 size-full object-cover" + (" md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4" + depth('parallax-md', 'scroll(root)', '0_80vh') if hd) }) }}</div>
 {% endmacro %}
 {#- Eyebrow, h1, lede, buttons and proof in inverse ink, for text that sits on the dark art behind the scrim. -#}
@@ -42,25 +42,46 @@
 </ul>
 {%- endif %}
 {% endmacro %}
+{#- Eyebrow, h1, lede, buttons and proof in the page's own ink, for the light backdrop. -#}
+{% macro lightText(s, ctx) %}
+{%- if s.eyebrow %}<p class="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-ink-brand before:h-0.5 before:w-6 before:rounded-full before:bg-accent-600">{{ s.eyebrow }}</p>{% endif %}
+{%- set h = "h2" if ctx.demote else "h1" -%}
+<{{ h }} class="{{ 'mt-3' if s.eyebrow }} text-4xl md:text-5xl xl:text-6xl xl:[&:lang(de)]:text-5xl font-semibold tracking-tight text-balance">{{ s.title | wbr | safe }}</{{ h }}>
+<p class="mt-6 max-w-2xl text-lg md:text-xl text-ink-muted">{{ s.lede }}</p>
+<div class="mt-8 flex flex-wrap gap-3">
+{%- if s.primary %}{{ button(s.primary.label, { href: s.primary.href }) }}{% endif %}
+{%- if s.secondary %}{{ button(s.secondary.label, { href: s.secondary.href, variant: "secondary" }) }}{% endif %}
+</div>
+{%- if s.proof and s.proof.length %}
+<ul class="mt-12 grid max-w-md grid-cols-3 gap-4">
+{%- for p in s.proof %}<li class="border-s border-line ps-4 first:border-s-0 first:ps-0"><span class="block whitespace-nowrap text-xl font-semibold tabular-nums text-ink md:text-2xl">{{ p.value }}</span><span class="mt-1 block text-sm text-ink-muted">{{ p.label }}</span></li>{% endfor %}
+</ul>
+{%- endif %}
+{% endmacro %}
 {#- backdrop: the art fills the section (or, inset, a rounded frame in the container); the text sits over the quiet start side behind the eased scrim (R-COL-09). -#}
 {% macro backdrop(s, ctx) %}
 {%- set compact = ctx.density == "compact" -%}
+{#- s.light (or image tone "light"): the light-tone art, its calm start near-white, the light scrim and the page's ink; the light colour scheme holds in a dark-theme page too, since the art is light. -#}
+{%- set light = s.light or (s.image and s.image.tone == "light") -%}
+{%- set tone = "light" if light else "dark" -%}
+{%- set frameBg = "bg-surface text-ink scheme-light" if light else "bg-brand-950 text-ink-inverse" -%}
+{%- set scrim = "bg-art-scrim-light" if light else "bg-art-scrim" -%}
 {%- if s.inset %}
 <section class="{{ 'pt-4 md:pt-6 pb-12 md:pb-20' if compact else 'pt-4 md:pt-6 pb-16 md:pb-28' }} {{ s.surface or 'bg-surface' }}" data-component="hero" data-variant="backdrop"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-<div class="relative isolate overflow-hidden rounded-3xl bg-brand-950 text-ink-inverse">
-{{ artLayer(s, ctx, "planes-flow") }}
-<div aria-hidden="true" class="absolute inset-0 -z-10 bg-art-scrim rtl:-scale-x-100"></div>
-<div class="flex items-end px-6 py-12 sm:px-10 md:px-14 md:py-16 lg:min-h-160"><div class="max-w-2xl">{{ inverseText(s, ctx) }}</div></div>
+<div class="relative isolate overflow-hidden rounded-3xl {{ frameBg }}{{ ' ring-1 ring-line' if light }}">
+{{ artLayer(s, ctx, "planes-flow", tone) }}
+<div aria-hidden="true" class="absolute inset-0 -z-10 {{ scrim }} rtl:-scale-x-100"></div>
+<div class="flex items-end px-6 py-12 sm:px-10 md:px-14 md:py-16 lg:min-h-160"><div class="max-w-2xl">{{ lightText(s, ctx) if light else inverseText(s, ctx) }}</div></div>
 </div>
 </div>
 </section>
 {%- else %}
-<section class="relative isolate overflow-hidden {{ 'py-12 md:py-20' if compact else 'py-16 md:py-28' }} bg-brand-950 text-ink-inverse" data-component="hero" data-variant="backdrop"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
-{{ artLayer(s, ctx, "planes-flow") }}
-<div aria-hidden="true" class="absolute inset-0 -z-10 bg-art-scrim rtl:-scale-x-100"></div>
+<section class="relative isolate overflow-hidden {{ 'py-12 md:py-20' if compact else 'py-16 md:py-28' }} {{ frameBg }}" data-component="hero" data-variant="backdrop"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
+{{ artLayer(s, ctx, "planes-flow", tone) }}
+<div aria-hidden="true" class="absolute inset-0 -z-10 {{ scrim }} rtl:-scale-x-100"></div>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-<div class="flex items-center lg:min-h-144"><div class="max-w-2xl lg:w-7/12">{{ inverseText(s, ctx) }}</div></div>
+<div class="flex items-center lg:min-h-144"><div class="max-w-2xl lg:w-7/12">{{ lightText(s, ctx) if light else inverseText(s, ctx) }}</div></div>
 </div>
 </section>
 {%- endif %}
@@ -142,7 +163,7 @@
 {%- else %}
 {%- set pad = "py-12 md:py-20" if ctx.density == "compact" else "py-16 md:py-28" -%}
 {%- set split = variant == "split" or variant == "video" or variant == "form" -%}
-<section class="relative isolate overflow-hidden {{ pad }} {{ s.surface or 'bg-surface' }}" data-component="hero"{% if s.anchor %} id="{{ s.anchor }}"{% endif %} data-variant="{{ variant }}">
+<section class="relative isolate overflow-hidden {{ pad }} {{ 'tone-brand' if s.tone == 'brand' else (s.surface or 'bg-surface') }}" data-component="hero"{% if s.anchor %} id="{{ s.anchor }}"{% endif %} data-variant="{{ variant }}">
 {#- Depth (R-MOT-15, expressive): the glows sink 16 px over the first 80 vh of scroll; a static half-travel offset keeps them at identity at rest; the layer is taller than the section so no edge shows. -#}
 {%- set hd = ctx.flair and ctx.flair.parallaxHero -%}
 <div aria-hidden="true" class="pointer-events-none absolute {{ 'inset-x-0 -inset-y-8 md:motion-safe:sda:translate-y-2' + depth('parallax-sm', 'scroll(root)', '0_80vh') if hd else 'inset-0' }} -z-10 bg-hero-backdrop"></div>

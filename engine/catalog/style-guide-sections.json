@@ -4,14 +4,14 @@
     "title": "Heroes and page headers",
     "summary": "How a page opens: the nine hero variants for home and landing pages (four on the art library, two with the sample clip), the interior page header in its four forms, and the logo cloud that often follows.",
     "description": "The opening sections of the catalog: every hero variant, every page-header variant and the logo cloud, rendered from sample data as a page shows them.",
-    "sections": ["hero-centered", "hero-split", "hero-backdrop", "hero-backdrop-inset", "hero-panel", "hero-editorial", "hero-video", "hero-cinema", "hero-form", "hero-stats", "page-header", "page-header-banner", "page-header-band", "page-header-split", "logo-cloud"]
+    "sections": ["hero-centered", "hero-split", "hero-backdrop", "hero-backdrop-inset", "hero-backdrop-light", "hero-panel", "hero-editorial", "hero-video", "hero-cinema", "hero-form", "hero-stats", "page-header", "page-header-banner", "page-header-band", "page-header-split", "page-header-brand", "logo-cloud"]
   },
   {
     "slug": "marketing",
     "title": "Features, proof and calls to action",
     "summary": "The sections that sell: features (grid, rows, bento, numbered index, spotlight, disclosures), steps, figures, customer quotes and stories, integrations, the before/after slider, the call-to-action band and the newsletter signup.",
     "description": "Feature, proof and conversion sections of the catalog: features, steps, stats, testimonials, case studies, integrations, CTA band and newsletter signup.",
-    "sections": ["feature-grid", "feature-rows", "feature-bento", "feature-index", "feature-spotlight", "feature-disclosures", "steps", "stats", "stats-plain", "testimonials-single", "testimonials-grid", "testimonials-carousel", "case-study-cards", "integration-grid", "before-after", "cta-band", "newsletter"]
+    "sections": ["feature-grid", "feature-grid-brand", "feature-grid-brand-contained", "feature-rows", "feature-bento", "feature-index", "feature-spotlight", "feature-disclosures", "steps", "stats", "stats-plain", "testimonials-single", "testimonials-grid", "testimonials-carousel", "case-study-cards", "integration-grid", "before-after", "cta-band", "newsletter"]
   },
   {
     "slug": "offer",
