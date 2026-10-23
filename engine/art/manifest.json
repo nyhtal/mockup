@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "about": "The engine's art library (R-ASSET-05). Abstract greyscale sources, recoloured to each site's brand and accent hues at build time by engine/tools/lib/art.js. composition: quiet = structure in the end 55-60 %, the start side calm (text may sit there); field = structure across the frame; glow = light only. crop: the sharp position kept when a piece is cropped to another ratio. Generated with OpenAI's image model through the Codex CLI on 2026-10-22 from the shared prompt plus each piece's subject, then reviewed.",
+  "model": "OpenAI image generation via Codex CLI 0.163.0",
+  "date": "2026-10-22",
+  "prompt": "landscape 16:9, as large as the tool allows. Strictly MONOCHROME grayscale: a near-black charcoal background with luminous white and silver structure and soft diffuse light glow; no colour at all (the image will be recoloured to a brand palette later by mapping brightness). Abstract only: no text, no letters, no numbers, no logos, no people, no hands, no faces, no recognisable products or buildings, no photographs of real places. No film grain, no noise, no dust, no vignette texture. Smooth tonal gradients, crisp fine lines. Premium, restrained, quiet, engineering precision; the feel of a high-end annual report cover or an architecture studio website.",
+  "pieces": [
+    {
+      "id": "contours-quiet",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Fine topographic contour lines flowing like terrain or airflow, concentrated in the RIGHT 55% of the frame with a soft glow behind them; the LEFT 40% is calm, dark and nearly empty because text will sit there."
+    },
+    {
+      "id": "contours-field",
+      "composition": "field",
+      "crop": "centre",
+      "subject": "Fine topographic contour lines like a terrain map seen from above, evenly spread across the whole frame, a few brighter index lines, gentle light pooling in two places."
+    },
+    {
+      "id": "ribbon-quiet",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "A single silk-like ribbon made of hundreds of ultra-thin parallel lines, sweeping and twisting in a graceful S-curve through the RIGHT half of the frame, catching light along its folds; LEFT 40% calm, dark and empty for text."
+    },
+    {
+      "id": "airflow",
+      "composition": "field",
+      "crop": "centre",
+      "subject": "Several ribbons of ultra-thin parallel lines crossing the full frame diagonally, gently twisting, like airflow visualisation in a wind tunnel, light catching the crests."
+    },
+    {
+      "id": "fins-quiet",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Architectural vertical fins or louvres in a long repeating row receding in perspective, raking light from the side producing soft gradients on each fin, occupying the RIGHT 60%; LEFT side dark and calm for text. Minimal, like a modern facade detail at night."
+    },
+    {
+      "id": "folds",
+      "composition": "field",
+      "crop": "centre",
+      "subject": "Close abstract detail of large smooth folded planes, like sheets of brushed metal or folded paper, meeting at crisp edges, lit softly from above with long gentle gradients; fills the frame."
+    },
+    {
+      "id": "rings-quiet",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Concentric thin rings and arcs like an optical lens or radar sweep, centred off the RIGHT edge of the frame, with a soft luminous core; LEFT 40% dark and calm for text."
+    },
+    {
+      "id": "horizon",
+      "composition": "field",
+      "crop": "bottom",
+      "subject": "An infinite perspective grid floor of fine lines receding to a horizon in the right third, a soft dawn-like glow on the horizon, the upper half dark and empty."
+    },
+    {
+      "id": "glow",
+      "composition": "glow",
+      "crop": "right",
+      "subject": "Only soft diffuse light: two or three large gentle glows drifting through darkness, like an aurora or light through frosted glass, very low detail, brighter towards the RIGHT; nothing sharp at all."
+    },
+    {
+      "id": "dots-quiet",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "A field of tiny evenly spaced dots forming a gently undulating wave surface, like a data landscape, dots catching light on the crests, mostly in the RIGHT 60%; LEFT side dark for text."
+    },
+    {
+      "id": "traces-quiet",
+      "composition": "quiet",
+      "crop": "right",
+      "subject": "Fine orthogonal circuit-like traces with 45-degree bends and small round nodes, a few traces glowing softly as if carrying signal, sparse and elegant, denser toward the RIGHT; LEFT 40% nearly empty."
+    },
+    {
+      "id": "glass",
+      "composition": "field",
+      "crop": "centre",
+      "subject": "Abstract architectural geometry: overlapping translucent glass-like rectangular planes at slight angles, thin bright edges, layered depth with soft light passing through, filling the frame but calm."
+    }
+  ]
+}
