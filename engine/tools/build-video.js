@@ -1,5 +1,5 @@
 /**
- * The sample clip (R-ASSET-13, R-PERF-17, DESIGN §5): brand shapes in motion, rendered frame by frame from SVG
+ * The sample clip (R-ASSET-13, R-PERF-17, DESIGN §5): Offset Planes in motion, the art library's system, rendered frame by frame from SVG
  * through sharp and piped raw into ffmpeg-static, which writes H.264 (MP4) and VP9 (WebM) in one pass. The first
  * frame is the poster. Every parameter is in the cache key, so a rebuild copies and an unchanged clip never re-encodes.
  */
@@ -10,52 +10,65 @@ import sharp from "sharp";
 import ffmpegPath from "ffmpeg-static";
 import { listHtml, parse } from "./lib/html.js";
 import { seed, rng } from "./lib/placeholder.js";
-import { oklchToHex } from "./lib/theme.js";
+import { ramp } from "./lib/art.js";
 
 /** Clip length in seconds for every generated sample (DESIGN §5; R-PERF-17 allows up to 10). */
 export const SECONDS = 8;
 export const FPS = 24;
 export const WIDTH = 1280;
 /** Bump when videoFrameSvg or the encoder arguments change, so cached clips are re-encoded. */
-export const VERSION = 1;
+export const VERSION = 2;
 const CACHE_DIR = "engine/.cache/video";
 
 const TAU = Math.PI * 2;
 const fix = (n) => Number(n.toFixed(2));
 
 /**
- * One frame at time t ∈ [0, 1) of the clip for `slug`: a tinted field, a slow gradient band, a rotating ring and
- * seven shapes drifting on closed paths, so frame 1 follows the last frame and the clip loops. No text, no faces.
+ * One frame at time t ∈ [0, 1] of the clip for `slug`, in the art library's system (Offset Planes, DESIGN §5): flat
+ * planes in five steps of the brand's dark ramp on a dark ground, the start 40 % empty for the cinema hero's words. A
+ * ribbon turning through a quarter-disc holds still while a tall plane, a band, a 45-degree accent band and a small
+ * square glide along their own axes by up to half a grid module, each on its own phase (seeded by the slug), and their
+ * narrow channels of light trail 6 % of the clip behind. Every offset is zero at t = 0 and t = 1, so the poster is the
+ * composition at rest and the clip loops. No text, no faces.
  */
 export function videoFrameSvg({ slug, hue = 250, accentHue = 160, width = WIDTH, t = 0 }) {
-  const height = Math.round((width * 9) / 16);
+  const W = width, H = Math.round((width * 9) / 16);
   const r = rng(seed(slug));
-  const u = width / 1280; // scale every length from the 1280-wide design
-  const field = oklchToHex(0.97, 0.015, hue);
-  const band1 = oklchToHex(0.9, 0.05, hue), band2 = oklchToHex(0.92, 0.05, accentHue);
-  const shapes = [];
-  for (let i = 0; i < 7; i++) {
-    const accent = r() < 0.3;
-    const colour = oklchToHex(0.5 + r() * 0.3, 0.1 + r() * 0.06, accent ? accentHue : hue);
-    const size = (80 + r() * 200) * u;
-    const cx = (120 + r() * 1040) * u, cy = (90 + r() * 540) * u;
-    const ax = (40 + r() * 140) * u, ay = (30 + r() * 100) * u;
-    const phase = r(), turns = 1 + Math.floor(r() * 2), spin = r() < 0.5 ? 1 : -1;
-    const x = cx + ax * Math.sin(TAU * (t * turns + phase)), y = cy + ay * Math.cos(TAU * (t * turns + phase));
-    const kind = r();
-    if (kind < 0.45) shapes.push(`<circle cx="${fix(x)}" cy="${fix(y)}" r="${fix(size / 2)}" fill="${colour}" fill-opacity="0.85"/>`);
-    else if (kind < 0.8) shapes.push(`<rect x="${fix(x - size / 2)}" y="${fix(y - size / 2)}" width="${fix(size)}" height="${fix(size)}" rx="${fix(size * 0.22)}" fill="${colour}" fill-opacity="0.85" transform="rotate(${fix(spin * 360 * t * turns + phase * 90)} ${fix(x)} ${fix(y)})"/>`);
-    else shapes.push(`<circle cx="${fix(x)}" cy="${fix(y)}" r="${fix(size / 2)}" fill="none" stroke="${colour}" stroke-width="${fix(10 * u)}" stroke-opacity="0.9"/>`);
-  }
-  const ringR = 230 * u, ringCx = width * 0.68, ringCy = height * 0.5;
-  const bandShift = fix(Math.sin(TAU * t) * 60 * u);
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">` +
-    `<defs><linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${band1}"/><stop offset="1" stop-color="${band2}"/></linearGradient></defs>` +
-    `<rect width="${width}" height="${height}" fill="${field}"/>` +
-    `<rect x="${fix(-200 * u + bandShift)}" y="${fix(height * 0.55)}" width="${fix(width + 400 * u)}" height="${fix(height * 0.6)}" fill="url(#b)" transform="rotate(-8 ${fix(width / 2)} ${fix(height / 2)})"/>` +
-    `<circle cx="${fix(ringCx)}" cy="${fix(ringCy)}" r="${fix(ringR)}" fill="none" stroke="${oklchToHex(0.6, 0.12, hue)}" stroke-width="${fix(14 * u)}" stroke-dasharray="${fix(ringR * 1.2)} ${fix(ringR * 0.8)}" stroke-linecap="round" stroke-opacity="0.7" transform="rotate(${fix(360 * t)} ${fix(ringCx)} ${fix(ringCy)})"/>` +
-    shapes.join("") +
-    `</svg>`;
+  const u = width / 1280; // designed on 1280 × 720, a 12 × 8 grid of 106.67 × 90
+  const col = (1280 / 12) * u, row = 90 * u, thin = 7 * u, gap = 12 * u;
+  const lut = ramp("dark", hue, accentHue);
+  const tone = [6, 70, 128, 186, 250].map((g) => "#" + [0, 1, 2].map((c) => lut[g * 3 + c].toString(16).padStart(2, "0")).join(""));
+  const phase = Array.from({ length: 4 }, () => r() * TAU);
+  // The slug also sets the composition: the accent band steps up to half a module toward the end, the small square up to 0.6 of a row up.
+  const vary = (Math.round(r() * 8) / 8) * 0.5 * col, sq = (Math.round(r() * 6) / 6) * 0.6 * row;
+  /** Offset of layer i along its axis: amp × (sin(2π(t − lag) + φ) − sin(φ − 2π·lag)), zero at rest and periodic. */
+  const glide = (i, amp, lag = 0) => amp * (Math.sin(TAU * (t - lag) + phase[i]) - Math.sin(phase[i] - TAU * lag));
+  const rect = (x, y, w, h, fill) => `<rect x="${fix(x)}" y="${fix(y)}" width="${fix(w)}" height="${fix(h)}" fill="${fill}"/>`;
+  const poly = (pts, fill) => `<path d="M${pts.map(([x, y]) => `${fix(x)} ${fix(y)}`).join("L")}Z" fill="${fill}"/>`;
+  const parts = [];
+  // A quarter-disc resting in the bottom-end corner.
+  const qd = 2.2 * row;
+  parts.push(`<path d="M${fix(W - qd)} ${fix(H)}A ${fix(qd)} ${fix(qd)} 0 0 1 ${fix(W)} ${fix(H - qd)}L${fix(W)} ${fix(H)}Z" fill="${tone[1]}"/>`);
+  // The tall plane glides vertically, its channel beside it.
+  parts.push(rect(col * 9.6, row * 0.5 + glide(0, row * 0.5), col, row * 6, tone[1]));
+  parts.push(rect(col * 9.6 - gap - thin, row * 0.9 + glide(0, row * 0.5, 0.06), thin, row * 5.2, tone[2]));
+  // The ribbon: a band from the end edge turning down through a quarter-annulus into a vertical band; it holds still.
+  const top = row * 2.5, band = row, cx = col * 6.6, R = band * 2;
+  parts.push(rect(cx, top, W - cx, band, tone[2]));
+  parts.push(`<path d="M${fix(cx - R)} ${fix(top + R)}A ${fix(R)} ${fix(R)} 0 0 1 ${fix(cx)} ${fix(top)}L${fix(cx)} ${fix(top + band)}A ${fix(band)} ${fix(band)} 0 0 0 ${fix(cx - band)} ${fix(top + R)}Z" fill="${tone[2]}"/>`);
+  parts.push(rect(cx - R, top + R, band, H - top - R, tone[2]));
+  parts.push(rect(cx + col * 0.6 + glide(1, col * 0.5, 0.06), top - gap - thin, W, thin, tone[4]));
+  // A lighter band below glides horizontally, its channel under it.
+  parts.push(rect(col * 7.2 + glide(1, col * 0.5), row * 4.5, W, row * 0.8, tone[3]));
+  parts.push(rect(col * 7.6 + glide(1, col * 0.5, 0.06), row * 5.3 + gap, W, thin, tone[3]));
+  // The 45-degree accent band glides along its own diagonal, a channel of light beside it.
+  const w = 80 * u, rise = row * 6.7, slope = (p, d, wd) => [[p + d, H - d], [p + wd + d, H - d], [p + wd + rise + d, H - rise - d], [p + rise + d, H - rise - d]];
+  parts.push(poly(slope(col * 6.2 + vary - 18 * u - thin, glide(2, col * 0.4, 0.06), thin), tone[3]));
+  parts.push(poly(slope(col * 6.2 + vary, glide(2, col * 0.4), w), tone[4]));
+  // A small square, the micro offset.
+  parts.push(rect(col * 10.9 + glide(3, col * 0.25), row * 6.6 - sq, col * 0.55, col * 0.55, tone[4]));
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
+    `<rect width="${W}" height="${H}" fill="${tone[0]}"/>` + parts.join("") + `</svg>`;
 }
 
 const stamp = (s) => `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(Math.floor(s % 60)).padStart(2, "0")}.${String(Math.round((s % 1) * 1000)).padStart(3, "0")}`;

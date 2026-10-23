@@ -16,6 +16,20 @@ test("videoFrameSvg is seeded by slug, sized 16:9 from width, moves with time an
   assert.doesNotMatch(a, /<text|<image/);
 });
 
+test("videoFrameSvg is in the Offset Planes system (0.16.0): flat fills from the brand ramp, no gradients or transparency, it loops, and the left 40 % stays empty", async () => {
+  const { ramp } = await import("../lib/art.js");
+  const a = frame();
+  assert.doesNotMatch(a, /Gradient|opacity|stroke=/, "flat fills only");
+  const r = ramp("dark", 250, 160), hex = (i) => "#" + [0, 1, 2].map((c) => r[i * 3 + c].toString(16).padStart(2, "0")).join("");
+  assert.ok(a.includes(`fill="${hex(6)}"`), "the ground is the ramp's darkest step");
+  assert.notEqual(a, frame({ hue: 25, accentHue: 60 }), "another brand recolours it");
+  assert.equal(frame({ t: 0 }), frame({ t: 1 }), "the last frame returns to the first, so the clip loops");
+  for (const t of [0, 0.25, 0.5, 0.75]) {
+    const xs = [...frame({ t, width: 1280 }).matchAll(/(?:x="|M|L|A [\d.]+ [\d.]+ 0 0 [01] )(-?[\d.]+)/g)].map((m) => Number(m[1]));
+    assert.ok(Math.min(...xs.filter((x) => x > 0)) >= 1280 * 0.4, `t=${t}: nothing starts left of 40 %`);
+  }
+});
+
 test("captionsVtt covers the whole clip with one cue", () => {
   assert.equal(captionsVtt(8, "Sample clip"), "WEBVTT\n\n00:00.000 --> 00:08.000\nSample clip\n");
 });
@@ -31,7 +45,7 @@ test("generateVideo writes mp4, webm and a poster, caches them, and skips the en
     assert.equal(mp4.subarray(4, 8).toString(), "ftyp", "mp4 starts with an ftyp box");
     assert.equal(webm.readUInt32BE(0), 0x1a45dfa3, "webm starts with the EBML header");
     assert.ok(statSync(path.join(dir, "out", "clip-poster.webp")).size > 0);
-    assert.ok(existsSync(path.join(dir, "cache", "clip-320x180-6fps-1s-250-160-v1.mp4")), "mp4 cached under a key with every parameter and the generator version");
+    assert.ok(existsSync(path.join(dir, "cache", "clip-320x180-6fps-1s-250-160-v2.mp4")), "mp4 cached under a key with every parameter and the generator version");
     assert.deepEqual(readdirSync(path.join(dir, "cache")).filter((f) => f.includes(".tmp")), [], "no temporary files left in the cache");
     const second = await generateVideo(opts);
     assert.equal(second.generated, false);

@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.16.0 — 2026-10-23
+
+The sample clip joins the art library's system (owner, 2026-10-23: "the video is using the old style create a new video and placeholder image for it"). R-ASSET-13: the clip is no longer translucent circles and rings on a pale field but Offset Planes in motion: on a dark ground, with the start 40 % empty for the cinema hero's words, a ribbon turning through a quarter-disc holds still while a tall plane, a band, a 45-degree accent band and a small square glide along their own axes by up to half a grid module, each on its own phase, their channels of light trailing a beat behind. Colours are five steps of the brand's dark ramp, the same as the pictures; flat fills only. The poster is the first frame, the composition at rest, and the clip loops. `VERSION` 2 re-encodes cached clips. Minor by R-PREC-05.
+
 ## 0.15.0 — 2026-10-22
 
 One graphic system for every picture (D61; owner, 2026-10-22: "consult codex and grok. come up with new image designs across the board, they should all have the same look feel. just graphic type images"). The twelve mixed-style pieces (glowing contours, silk ribbons, rendered fins, metal folds, glass) are replaced by sixteen pieces of **Offset Planes**: flat geometry in five greys on a dark ground, a 12 × 8 grid with half-module offsets, depth by overlap only, and narrow parallel channels of light beside the large planes. Six `quiet` pieces (planes-flow, -process, -network, -structure, -growth, -energy) keep the start 40 % one empty dark field for headlines; eight `field` pieces carry structure edge to edge (two of them centred for square and portrait crops); two `calm` pieces replace `glow` and are used only when declared. Every page, sample and default that named an old piece names its Offset Planes counterpart. `import-art.js` inverts a source drawn on a light ground, so every piece sits on a dark one. The library falls from 1.4 MB to 0.4 MB, and the pictures, flat fills now, are lighter on every page. R-ASSET-05 and DESIGN §5 describe the system. Minor by R-PREC-05.
