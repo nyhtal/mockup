@@ -8,5 +8,4 @@ lede: "マンチェスター、ハンブルク、リヤド、東京。各拠点�
 description: "マンチェスター、ハンブルク、リヤド、東京にあるNorthwind Dynamicsの拠点の所在地、営業時間、電話番号。英語・ドイツ語・アラビア語・日本語で対応します。"
 sections:
   - "office-cards"
-  - "office-map"
 ---

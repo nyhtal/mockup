@@ -124,4 +124,18 @@ noindex: true
   { slug: "culture-team", ratio: "4:3", alt: "", caption: "Hamburg team day", max: 768 }
 ], { id: "sg-gallery" }) }}</div>
 </section>
+
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Image map</h2>
+<p class="mt-4 max-w-2xl text-lg text-ink-muted">The native image map (<code>&lt;img usemap&gt;</code>, <code>&lt;map&gt;</code>, <code>&lt;area&gt;</code>): hot spots in the picture's own pixels, so the picture keeps its size and scrolls in a narrow column. The locations page draws the same frame as an inline SVG with links instead, which scales.</p>
+{%- set sgOffices = [{ title: "Manchester", href: "/en/about/locations/manchester/", geo: { lat: 53.4794, lng: -2.2453 } }, { title: "Hamburg", href: "/en/about/locations/hamburg/", geo: { lat: 53.5438, lng: 9.9861 } }, { title: "Riyadh", href: "/en/about/locations/riyadh/", geo: { lat: 24.7136, lng: 46.6753 } }, { title: "Tokyo", href: "/en/about/locations/tokyo/", geo: { lat: 35.6223, lng: 139.7505 } }] %}
+<div class="mt-8 w-fit max-w-full overflow-x-auto rounded-xl border border-line" tabindex="0" role="region" aria-label="Image map demo">
+<img src="/assets/files/en/office-map.svg" usemap="#sg-office-map" width="{{ officeMapFrame.width }}" height="{{ officeMapFrame.height }}" alt="Office map: Manchester, Hamburg, Riyadh and Tokyo" loading="lazy" decoding="async" class="block max-w-none">
+<map name="sg-office-map">
+{%- for o in sgOffices %}{% set p = o.geo | mapPoint %}
+<area shape="circle" coords="{{ p.x }},{{ p.y }},18" href="{{ o.href }}" alt="Office in {{ o.title }}">
+{%- endfor %}
+</map>
+</div>
+</section>
 </div>

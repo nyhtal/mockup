@@ -8,5 +8,4 @@ lede: "Manchester, Hamburg, Riad und Tokio, jedes Büro antwortet in seiner Spra
 description: "Die Büros von Northwind Dynamics in Manchester, Hamburg, Riad und Tokio: Adressen, Öffnungszeiten und Telefonnummern, Support in vier Sprachen."
 sections:
   - "office-cards"
-  - "office-map"
 ---

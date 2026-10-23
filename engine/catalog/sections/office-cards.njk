@@ -1,8 +1,9 @@
 {#
   name: office-cards
   purpose: Locations, 2–6 offices (R-SEC-03, R-I18N-14).
-  anatomy: cardGrid(office, 3)
-  data: s = { eyebrow, title, items: [{ title: city, address, phone, href }] }
+  anatomy: cardGrid(office, 2 or 3): image tiles, the picture a library piece standing in for the place
+  data: s = { eyebrow, title, items: [{ image, title: city, address, phone, href }] }
 #}
 {% from "sections/_grid.njk" import cardGrid with context %}
-{% macro render(s, ctx) %}{{ cardGrid("office-cards", s, ctx, "office", 3) }}{% endmacro %}
+{#- Image tiles: two across when the offices pair up (2 or 4), three otherwise, so no row is left with one tile. -#}
+{% macro render(s, ctx) %}{{ cardGrid("office-cards", s, ctx, "office", 2 if (s.items and (s.items.length == 2 or s.items.length == 4)) else 3) }}{% endmacro %}

@@ -471,13 +471,13 @@
     "el": "map",
     "group": "Embedded content",
     "purpose": "An image map.",
-    "href": "/en/about/locations/"
+    "href": "/sys/style-guide/components/"
   },
   {
     "el": "area",
     "group": "Embedded content",
     "purpose": "A hot spot in an image map.",
-    "href": "/en/about/locations/"
+    "href": "/sys/style-guide/components/"
   },
   {
     "el": "canvas",

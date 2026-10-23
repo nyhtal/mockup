@@ -24,7 +24,8 @@ const CARDS = {
   industries: (e) => ({ icon: e.icon, title: e.title, text: e.lede }),
   products: (e) => ({ image: withMax(e.image, 768), title: e.title, text: e.lede }),
   people: (e) => ({ name: e.name, role: e.role }),
-  offices: (e) => ({ title: e.city, address: e.address, phone: e.phone, slug: e.slug, geo: e.geo }),
+  // The picture stands in for a photograph of the place: a library piece seeded by the office's slug, all in the dark tone so a row reads as one (R-ASSET-05).
+  offices: (e) => ({ image: { slug: `office-${e.slug}-card`, ratio: "16:9", alt: "", max: 768, tone: "dark" }, title: e.city, address: e.address, phone: e.phone, slug: e.slug, geo: e.geo }),
   jobs: (e) => ({ title: e.title, team: e.team, location: e.location, type: e.employment }),
   events: (e, c) => ({ title: e.title, date: c.fmt.date(e.date), dateIso: e.date, type: e.format, location: e.location }),
   downloads: (e) => ({ title: e.title, type: e.fileType, pages: e.pages, text: e.summary }),

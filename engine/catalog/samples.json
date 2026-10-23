@@ -924,19 +924,37 @@
           "title": "Manchester",
           "address": "4 Canal Street, Manchester M1 3HE, United Kingdom",
           "phone": "+44 20 7946 0000",
-          "href": "/sys/style-guide/"
+          "href": "/sys/style-guide/",
+          "image": {
+            "slug": "sg-office-manchester",
+            "ratio": "16:9",
+            "alt": "",
+            "max": 768
+          }
         },
         {
           "title": "Hamburg",
           "address": "Speicherstadt 12, 20457 Hamburg, Deutschland",
           "phone": "+49 40 123456",
-          "href": "/sys/style-guide/"
+          "href": "/sys/style-guide/",
+          "image": {
+            "slug": "sg-office-hamburg",
+            "ratio": "16:9",
+            "alt": "",
+            "max": 768
+          }
         },
         {
           "title": "Riyadh",
           "address": "King Fahd Road 88, Riyadh 12212, Saudi Arabia",
           "phone": "+966 11 123 4567",
-          "href": "/sys/style-guide/"
+          "href": "/sys/style-guide/",
+          "image": {
+            "slug": "sg-office-riyadh",
+            "ratio": "16:9",
+            "alt": "",
+            "max": 768
+          }
         }
       ]
     },

@@ -392,20 +392,33 @@ test("new pages (to-do 7a): a changelog of release articles, a podcast episode w
   assert.match(footer, /<a href="\/de\/resources\/podcast\/"[^>]*>Podcast<\/a>/);
 });
 
-test("office map (to-do 7b): an image map whose areas sit on the offices' dots and link to their pages", () => {
-  const page = readFileSync("dist/reference/ar/about/locations/index.html", "utf8");
-  const img = /<img src="\/assets\/files\/ar\/office-map\.svg" usemap="#(office-map-\d+)" width="640" height="400" alt="([^"]+)"/.exec(page);
-  assert.ok(img, "an img with usemap");
-  assert.match(img[2], /مانشستر، هامبورغ، الرياض/);
-  const areas = [...page.matchAll(/<area shape="circle" coords="(\d+),(\d+),18" href="([^"]+)" alt="([^"]+)">/g)];
-  assert.equal(areas.length, 3);
-  assert.ok(page.includes(`<map name="${img[1]}">`));
-  const svg = readFileSync("dist/reference/assets/files/ar/office-map.svg", "utf8");
-  for (const [, x, y, href] of areas) {
-    assert.ok(svg.includes(`<circle cx="${x}" cy="${y}" r="8"/>`), `${href}: the hot spot is on its dot`);
-    assert.ok(existsSync(`dist/reference${href}index.html`), `${href} exists`);
+test("locations (0.17.0): image tiles instead of a map; the catalog's office map scales to its column with links; the image map lives on in the style guide", () => {
+  // The locations page shows the offices as image tiles, two across; the map is gone from the site (owner: "too data specific").
+  for (const l of ["en", "ar"]) {
+    const loc = readFileSync(`dist/reference/${l}/about/locations/index.html`, "utf8");
+    assert.doesNotMatch(loc, /data-component="office-map"/, `${l}: no map`);
+    const tiles = [...loc.matchAll(/data-component="card" data-variant="office">[\s\S]*?<img src="\/assets\/images\/office-[a-z]+-card-16x9-480\.webp"[^>]*data-tone="dark"/g)];
+    assert.equal(tiles.length, 4, `${l}: four office tiles, each with a dark-tone library picture`);
+    assert.match(loc, /data-component="office-cards"[\s\S]*?<ul class="grid gap-6 md:gap-8 md:grid-cols-2[ "]/, `${l}: two across`);
   }
-  assert.match(svg, /<text [^>]*>الرياض<\/text>/, "labels in the page's language");
+  // The office-map section stays in the catalog, inline and scaling (shown in the style guide).
+  const page = readFileSync("dist/reference/sys/style-guide/sections/company/index.html", "utf8");
+  const svg = /<figure class="[^"]*">(<svg viewBox="0 0 640 200" width="640" height="200" class="block h-auto w-full" role="group" aria-label="([^"]+)">[\s\S]*?<\/svg>)<\/figure>/.exec(page);
+  assert.ok(svg, "an inline svg that scales to its column");
+  const section = /data-component="office-map"[\s\S]*?<\/section>/.exec(page)[0];
+  assert.doesNotMatch(section, /overflow-x-auto/, "no scrolling region around the map");
+  const links = [...svg[1].matchAll(/<a href="([^"]+)" aria-label="([^"]+)"[^>]*><circle cx="(\d+)" cy="(\d+)" r="22" fill="transparent"\/><circle cx="\3" cy="\4" r="9"[^>]*\/><text [^>]*>([^<]+)<\/text><\/a>/g)];
+  assert.ok(links.length >= 3, "each office a link around its hit area, dot and label");
+  for (const [, href, name] of links) {
+    assert.ok(existsSync(`dist/reference${href}index.html`), `${href} exists`);
+    assert.ok(name.length > 2, `${href} has an accessible name`);
+  }
+  const guide = readFileSync("dist/reference/sys/style-guide/components/index.html", "utf8");
+  assert.match(guide, /<img src="\/assets\/files\/en\/office-map\.svg" usemap="#sg-office-map" width="640" height="200"/, "the style guide keeps a native image map");
+  const file = readFileSync("dist/reference/assets/files/en/office-map.svg", "utf8");
+  const areas = [...guide.matchAll(/<area shape="circle" coords="(\d+),(\d+),18"/g)];
+  assert.equal(areas.length, 4);
+  for (const [, x, y] of areas) assert.ok(file.includes(`<circle cx="${x}" cy="${y}" r="8"/>`), "its hot spots sit on the dots");
 });
 
 test("frames and objects (to-do 7c): a same-origin iframe of a newsletter issue, PDF previews in object and embed, a CSP that allows only the site itself", () => {

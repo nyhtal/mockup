@@ -9,7 +9,7 @@ import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
 import { renderMarkdown, renderInline, tocOf, readingMinutes, headingIds, slugify } from "./engine/tools/lib/markdown.js";
 import { semantics } from "./engine/tools/lib/markdown-semantics.js";
 import { wordBreaks } from "./engine/tools/lib/word-breaks.js";
-import { project, MAP as OFFICE_MAP } from "./engine/tools/lib/office-map.js";
+import { project, officeMapInline, MAP as OFFICE_MAP } from "./engine/tools/lib/office-map.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
@@ -269,6 +269,8 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("mdInline", renderInline);
   // The office map's frame: { x, y } in the picture for a { lat, lng } (to-do 7).
   eleventyConfig.addFilter("mapPoint", (geo) => (geo ? project(geo) : null));
+  // The locations page map, inline so it scales to its column with its links (office-map section).
+  eleventyConfig.addFilter("officeMapInline", (items, linkPattern, label) => officeMapInline(items, { linkLabel: (o) => linkPattern.replace("{city}", o.title), label }));
   // Headings: escaped text with <wbr> at the joints of long compounds in the page's language (site.json wordBreaks).
   eleventyConfig.addFilter("wbr", function (text) { return wordBreaks(text, site.wordBreaks?.[this.ctx?.page?.lang]); });
   // The tagline in the page's language: the site's string overlay (site.tagline) or site.json's tagline.
