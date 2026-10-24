@@ -53,7 +53,7 @@ Why: One container width makes every section line up.
 Gate: manual: checklists/new-component.md
 
 ### R-TOK-11 Durations and easings
-MUST. Durations are `duration-150` (hover, focus, press), `duration-200` (dropdown, popover, drawer), `duration-300` (dialog, page transition), `duration-(--reveal-duration)` (entrances, set by the flair dial in R-TOK-12) and `duration-1200` (the picture settle and the timeline rule, which travel further). Easings are `ease-out` for overlays, `ease-in-out` for movement, `ease-reveal` (`--ease-reveal: cubic-bezier(0.16, 1, 0.3, 1)`, an exponential ease-out: fast away, long settle) for every entrance, `ease-spring` (`--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1)`, a slight overshoot) for the icon pop only, and `--ease-smooth` for the scroll-driven conveniences of R-MOT-14. The flowing art's 12 s cycle (D62) is the one duration outside this list.
+MUST. Durations are `duration-150` (hover, focus, press), `duration-200` (dropdown, popover, drawer), `duration-300` (dialog, page transition), `duration-(--reveal-duration)` (entrances, set by the flair dial in R-TOK-12) and `duration-1200` (the picture settle and the timeline rule, which travel further). Easings are `ease-out` for overlays, `ease-in-out` for movement, `ease-reveal` (`--ease-reveal: cubic-bezier(0.16, 1, 0.3, 1)`, an exponential ease-out: fast away, long settle) for every entrance, `ease-spring` (`--ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1)`, a slight overshoot) for the icon pop only, and `--ease-smooth` for the scroll-driven conveniences of R-MOT-14. The assembling art (D62) uses 800 ms (the expressive reveal duration, on `ease-reveal`) and 1200 ms, plus `linear` for its notches: the one time-based animation that is not eased, because a steady flow reads as something travelling along a pipe.
 Why: Five durations and four named curves make motion feel like one system; the exponential ease-out is what makes an entrance read as deliberate rather than mechanical.
 Gate: manual: checklists/new-component.md
 
@@ -71,8 +71,8 @@ Why: Three levels give a brief a motion dial without exposing numbers, and "whic
 Gate: manual: checklists/new-site.md
 
 ### R-TOK-13 Animation tokens
-MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes; entrances are transitions (R-MOT-05) and have none. Scroll-tracking: `progress` (scaleX 0 → 1, linear, the reading-progress hairline), `parallax-sm` (translateY −8px → 8px), `parallax-md` (−16px → 16px), `parallax-lg` (−24px → 24px), `drift` (translateX −12px → 12px) and its mirror `drift-end` for `rtl:`. Feedback: `settle` (scale 1.015 → 1 over 160 ms, after a count-up). Overlays and conveniences: `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1) and `rise-in` (opacity 0 → 1, translateY(0.5rem) → none, visibility hidden → visible, for scroll-driven appearance only). Ambient: `flow` (translate along x to `--flow-x` and back, 12 s ease-in-out infinite, the flowing art of D62 only, reached only through the `art-flow` utility: there is no `animate-flow` class, and the motion gate still reports one). All animate only `opacity`, `transform`, `translate` and, in `rise-in`, `visibility`.
-Why: Twelve keyframes cover everything that tracks the scroll or answers an action; a fixed list keeps the CSS small and lets a gate list what is allowed.
+MUST. The `@theme` block defines exactly these `--animate-*` tokens and their keyframes; entrances are transitions (R-MOT-05) and have none, except the one-shot assembly of D62 below, which is the art building itself rather than content arriving. Scroll-tracking: `progress` (scaleX 0 → 1, linear, the reading-progress hairline), `parallax-sm` (translateY −8px → 8px), `parallax-md` (−16px → 16px), `parallax-lg` (−24px → 24px), `drift` (translateX −12px → 12px) and its mirror `drift-end` for `rtl:`. Feedback: `settle` (scale 1.015 → 1 over 160 ms, after a count-up). Overlays and conveniences: `drop` (opacity 0 → 1, translateY(-0.5rem) → none), `scale-in` (opacity 0 → 1, scale 0.96 → 1), `fade` (opacity 0 → 1) and `rise-in` (opacity 0 → 1, translateY(0.5rem) → none, visibility hidden → visible, for scroll-driven appearance only). Ambient, once on load and only for the assembling art of D62, reached only through the `art-flow` utility (there is no `animate-assemble` or `animate-run` class, and the motion gate still reports them): `assemble` (800 ms `ease-reveal`, from an end-side offset `--art-x` and a horizontal scale `--art-sx` to the part at rest) and `run` (1200 ms linear, translate from 0 to `--art-run` with opacity 0 → 1 → 0, a lit notch travelling along a pipe). All animate only `opacity`, `transform`, `translate`, `scale` and, in `rise-in`, `visibility`.
+Why: Thirteen keyframes cover everything that tracks the scroll or answers an action; a fixed list keeps the CSS small and lets a gate list what is allowed.
 Gate: consistency/motion-vocabulary
 
 ### R-TOK-14 Brand inputs from the brief
@@ -99,6 +99,6 @@ Gate: manual: checklists/new-site.md
 - [ ] R-TOK-10 container string exact
 - [ ] R-TOK-11 five durations, four named easings
 - [ ] R-TOK-12 flair level tokens set; sections read booleans, not the level
-- [ ] R-TOK-13 twelve animation tokens, opacity/transform/translate only; no entrance keyframes
+- [ ] R-TOK-13 thirteen animation tokens, opacity/transform/translate/scale only; no entrance keyframes but D62's assembly
 - [ ] R-TOK-14 brand inputs limited to the six keys
 - [ ] R-TOK-15 density touches padding only

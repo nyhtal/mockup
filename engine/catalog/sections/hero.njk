@@ -5,12 +5,12 @@
   variants: centered | split (text + picture) | video (text + native video when s.video.slug is set, else a third-party facade) | form (text + short form) | stats (text + 3 stats) | backdrop (the art fills the section behind the eased scrim, text over the quiet start side in inverse ink; s.inset puts it in a rounded frame inside the container, text at its bottom-start) | panel (the art fills the section, the text sits on an opaque raised panel) | editorial (a large light-weight headline, lede and actions on one row, a 21:9 panorama under them) | cinema (the sample clip fills the hero behind the scrim, poster first; a round play button plays it in place with the native controls while the words step aside, and they return when it ends; no script: the native player)
   states: none
   spacing: py-16 md:py-28 (backdrop inset: pt-4 md:pt-6 pb-16 md:pb-28, the frame px-6 py-12 → md:px-14 md:py-16); backdrop and panel at least min-h-144 (36 rem) at lg, inset min-h-160; grid gap-12; a brand glow behind the text and an accent glow behind the media (DESIGN §4, R-COL-09); proof strip mt-12, three columns with hairlines, value above label so long labels wrap inside their column in every locale
-  motion: none on load; nothing in the hero reveals or counts (R-MOT-11); in expressive the split picture and the glows carry depth that is at identity at rest and moves only with the scroll (R-MOT-15); a backdrop whose image declares `animate` draws planes-flow's SVG twin, which flows on a 12 s loop behind the words from the first frame (D62)
+  motion: none on load; nothing in the hero reveals or counts (R-MOT-11); in expressive the split picture and the glows carry depth that is at identity at rest and moves only with the scroll (R-MOT-15); a backdrop whose image declares `animate` draws planes-flow's SVG twin, which assembles itself once on load behind the words, in 4 s (D62)
   keyboard: buttons, then the form or facade
-  a11y: the h1 lives here; the picture is the LCP image with fetchpriority=high (a backdrop hero whose image declares animate draws the flowing SVG twin instead, so its LCP is the h1); the proof strip is a list; the highlight card is plain text; the flowing art has a pause switch (WCAG 2.2.2) in the bottom-end corner
+  a11y: the h1 lives here; the picture is the LCP image with fetchpriority=high (a backdrop hero whose image declares animate draws the assembling SVG twin instead, so its LCP is the h1); the proof strip is a list; the highlight card is plain text
   i18n: buttons ≤ 25 chars; the highlight card mirrors to the top-start corner in RTL through logical end-*
   content limits: h1 ≤ 60 chars, lede ≤ 35 words, exactly one primary and one secondary button; proof ≤ 3 items of value ≤ 8 chars and label ≤ 4 words; highlight value ≤ 8 chars, label ≤ 4 words
-  data: s = { variant, inset, eyebrow, title, lede, primary: {label, href}, secondary: {label, href}, image: {slug, ratio, alt, art, tone, animate} (animate: the flowing twin of planes-flow, full-bleed dark backdrop at comfortable density only; backdrop and panel force tone dark and alt "": the art is decoration behind the words), video: {slug, title, duration} | facade data, form: [fields], stats: [{value,label}], proof: [{value,label}], highlight: {icon, value, label} }
+  data: s = { variant, inset, eyebrow, title, lede, primary: {label, href}, secondary: {label, href}, image: {slug, ratio, alt, art, tone, animate} (animate: the assembling twin of planes-flow, dark backdrop only; backdrop and panel force tone dark and alt "": the art is decoration behind the words), video: {slug, title, duration} | facade data, form: [fields], stats: [{value,label}], proof: [{value,label}], highlight: {icon, value, label} }
 #}
 {% from "primitives/button.njk" import button with context %}
 {% from "primitives/picture.njk" import picture with context %}
@@ -29,10 +29,6 @@
 {%- if s.image.animate %}{{ planesFlowSvg("art-flow absolute inset-0 size-full" + depthClass) | safe }}
 {%- else %}{{ picture(img, { priority: true, sizes: "(min-width: 48rem) 100vw, 200vw", class: "absolute inset-0 size-full object-cover" + depthClass }) }}{% endif -%}
 </div>
-{% endmacro %}
-{#- The flowing art's pause switch (WCAG 2.2.2, D62): a checkbox the art-flow utility reads through :has(), so it works without script; nothing to pause under reduced motion or in print. -#}
-{% macro flowPause(s) %}
-{%- if s.image and s.image.animate %}<label class="absolute bottom-4 end-4 z-10 flex min-h-11 cursor-pointer items-center gap-2 rounded-full bg-brand-950/70 px-4 text-sm text-ink-inverse ring-1 ring-ink-inverse/25 motion-reduce:hidden print:hidden"><input type="checkbox" role="switch" data-flow-pause class="size-4 accent-accent-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink-inverse"><span>{{ "ui.pauseAnimation" | t }}</span></label>{% endif -%}
 {% endmacro %}
 {#- Eyebrow, h1, lede, buttons and proof in inverse ink, for text that sits on the dark art behind the scrim. -#}
 {% macro inverseText(s, ctx) %}
@@ -81,7 +77,6 @@
 {{ artLayer(s, ctx, "planes-flow", tone) }}
 <div aria-hidden="true" class="absolute inset-0 -z-10 {{ scrim }} rtl:-scale-x-100"></div>
 <div class="flex items-end px-6 py-12 sm:px-10 md:px-14 md:py-16 lg:min-h-160"><div class="max-w-2xl">{{ lightText(s, ctx) if light else inverseText(s, ctx) }}</div></div>
-{{ flowPause(s) }}
 </div>
 </div>
 </section>
@@ -92,7 +87,6 @@
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 <div class="flex items-center lg:min-h-144"><div class="max-w-2xl lg:w-7/12">{{ lightText(s, ctx) if light else inverseText(s, ctx) }}</div></div>
 </div>
-{{ flowPause(s) }}
 </section>
 {%- endif %}
 {% endmacro %}

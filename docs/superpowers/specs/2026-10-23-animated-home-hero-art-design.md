@@ -1,5 +1,7 @@
 # Animated home hero art: design
 
+> **Superseded 2026-10-24.** The loop and pause switch described here were built, then rejected by the owner for a one-shot assembly toward the words. What ships is recorded in D62 (`engine/DECISIONS.md`) and the 0.21.0 changelog entry.
+
 Date: 2026-10-23. Owner request: "animate the home page image"; asked how, the owner chose "animate the shapes themselves", a "slow continuous flow", for the "home hero only". Approach approved in chat ("do it").
 
 ## Intent

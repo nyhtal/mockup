@@ -43,7 +43,6 @@
     "playVideo": "動画を再生",
     "videoCaption": "サンプル映像：ブランドカラーの図形が8秒間ゆっくりと動き、回転します。音声はありません。",
     "playClip": "動画を再生: {title}（{duration}）",
-    "pauseAnimation": "アニメーションを一時停止",
     "videoNote": "本番サイトでは、再生を選んだ後に{provider}のプレーヤーがここに読み込まれます。",
     "aboutAuthor": "執筆者について",
     "share": "共有",
