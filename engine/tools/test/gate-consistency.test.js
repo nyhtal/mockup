@@ -196,18 +196,3 @@ test("rhythm: the inset backdrop hero and the banner page header have their own 
   assert.equal(rhythmFindings(sec("pt-4 md:pt-6 pb-16 md:pb-28", "faq")).length, 1, "the inset pair is for heroes only");
   assert.equal(rhythmFindings(sec("pt-4 md:pt-6 pb-16 md:pb-24", "hero")).length, 1, "half an inset pair is off the scale");
 });
-
-test("art-flow moves only inside a backdrop hero (R-MOT-03, D62)", async () => {
-  const { motionFindings } = await import("../gates/consistency.js");
-  const { parse: parseHtml } = await import("node-html-parser");
-  assert.deepEqual(motionFindings(parseHtml('<section data-component="hero" data-variant="backdrop"><div aria-hidden="true"><svg class="art-flow absolute"></svg></div></section>')), []);
-  assert.ok(motionFindings(parseHtml('<section data-component="hero" data-variant="split"><svg class="art-flow"></svg></section>')).some((m) => /art-flow.*backdrop hero/.test(m)));
-  assert.ok(motionFindings(parseHtml('<div><svg class="art-flow"></svg></div>')).some((m) => /art-flow.*backdrop hero/.test(m)));
-});
-
-test("a decorative aria-hidden svg in a backdrop hero may carry scroll depth; one that is not hidden may not (R-MOT-11, R-MOT-15)", async () => {
-  const { motionFindings } = await import("../gates/consistency.js");
-  const { parse: parseHtml } = await import("node-html-parser");
-  assert.deepEqual(motionFindings(parseHtml('<section data-component="hero" data-variant="backdrop"><div aria-hidden="true"><svg aria-hidden="true" class="art-flow md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:[animation-range:0_80vh]"></svg></div></section>')), []);
-  assert.ok(motionFindings(parseHtml('<section data-component="hero"><svg class="md:motion-safe:sda:animate-parallax-md"></svg></section>')).some((m) => /depth/.test(m)));
-});

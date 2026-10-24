@@ -37,8 +37,7 @@
       "image": {
         "slug": "home-backdrop",
         "ratio": "16:9",
-        "art": "planes-flow",
-        "animate": true
+        "art": "planes-flow"
       }
     },
     "logo-cloud": {

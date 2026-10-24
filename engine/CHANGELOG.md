@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.24.0 — 2026-10-24
+
+The home hero shows its picture again (owner, 2026-10-24: "undo all the homepage svg animation you did. go back to just the image"). 0.21.0 is withdrawn: `engine/tools/lib/art-flow.js` and its test are gone, the `animate` image declaration, the `assemble` and `run` keyframes and the `art-flow` utility with it, and the reference home page renders the `planes-flow` AVIF in its backdrop hero in all four locales, sinking on scroll as before. R-MOT-01, R-MOT-03, R-MOT-11, R-TOK-11, R-TOK-13 (eleven animation tokens), R-PREC-07, R-ASSET-05/06, R-SEC-07 and DESIGN §3 and §5 read as they did at 0.20.1; D64 supersedes D62. Minor by R-PREC-05: a rule changes and a site green before stays green.
+
 ## 0.23.0 — 2026-10-24
 
 Counting figures sound (owner, 2026-10-24: "the counters should make a sound while counting up also like the measured across customers section"). R-SND-03 gains two ambient cues: `count`, a quiet triangle tick (18 ms, .008) each time a figure's eased value passes a twelfth of its target, climbing C5 D5 E5 G5 A5 C6 two ticks a step, so the ticks crowd at the start and slow as the figure settles; and `land`, one sine G5→C6 (70 ms, .01) when it reaches its value. `enhance.js` asks for both from its count-up (R-MOT-10); rate limits 40 ms and 150 ms keep a stats band of four figures to a ratchet, not a roll; `calm` and reduced motion (which skips the count) stay silent. A count leaves R-SND-09's silent list; R-SND-07 names it as the one item with a sound of its own (D63 updated). The style guide's Sound section gains both rows. Minor by R-PREC-05.
