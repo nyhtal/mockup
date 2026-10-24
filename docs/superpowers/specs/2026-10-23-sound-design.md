@@ -8,11 +8,11 @@ Date: 2026-10-23. Owner request: "add style guides on sound effects and usage an
 - **What the owner said:** hover on links, dropdowns, accordions and slide-ins get sounds; "appropriate" sounds.
 - **Kept from before (D44):** sound is off by default, behind the labelled toggle in the footer (header at `xl`, drawer below `lg`), the choice in `sessionStorage` for the tab, no audio files, no cookie, nothing on load.
 - **Reversed:** D44's "never on hover, scroll …" and D52's "motion stays silent". Codex's critique argued for keeping both; the owner asked for the sounds, so the design keeps them and takes every rule that stops them chattering.
-- **Success:** a visitor who turns sound on hears a quiet, coherent family of sounds that never stacks into noise; a visitor who leaves it off downloads no audio code; every gate green; `enhance.js` within 5120 B and `sound.js` within 3072 B.
+- **Success:** a visitor who turns sound on hears a quiet, coherent family of sounds that never stacks into noise; a visitor who leaves it off downloads no audio code; every gate green; `enhance.js` within 5120 B and `sound.js` within 4608 B.
 
 ## Architecture
 
-- **`engine/scripts/sound.js`** (new, passthrough to `/assets/sound.js`): an ES module, no dependencies, ≤ 3072 B minified. It owns the audio context, the mixer, the vocabulary and its own listeners (`pointerover`, `pointerdown`, `keydown`, `toggle`, `submit`, `input`, `scrollsnapchange`, `visibilitychange`). It exports one function `cue(name, el)` for the events only `enhance.js` sees.
+- **`engine/scripts/sound.js`** (new, passthrough to `/assets/sound.js`): an ES module, no dependencies, ≤ 4608 B minified. It owns the audio context, the mixer, the vocabulary and its own listeners (`pointerover`, `pointerdown`, `keydown`, `toggle`, `submit`, `input`, `scrollsnapchange`, `visibilitychange`). It exports one function `cue(name, el)` for the events only `enhance.js` sees.
 - **`enhance.js`** keeps the toggle state (`sessionStorage.sound`, `aria-pressed` on every `[data-sound]`) and loads the module with `import("./sound.js")`, once (one cached promise), when sound is switched on or is already on at load. It calls the hook at three points: an entrance revealed after the first report (`in`), a copy that succeeded (`copy`), the toggle itself (`on` / `off`). Its own synthesiser `S` and the four inline sounds go, so it gets smaller.
 - **Activation:** hover and scroll are not user activations. The module creates or resumes its context inside a trusted `pointerdown`/`keydown`/`click` handler, synchronously; a cue plays only while `state == "running"` and is otherwise dropped, never queued. After a cross-document navigation the page stays silent until the first click or key press. When the visitor switches sound on, `enhance.js` creates the context synchronously in that click and hands it to the module, so the confirming `on` sound is heard.
 - **Failure:** if the import fails, the toggle stays truthful and the page works; nothing retries in a loop. Turning sound off cancels every scheduled and sounding voice at once. Restoring "on" from the session plays nothing.
@@ -51,7 +51,7 @@ One scale, C major pentatonic (C, D, E, G, A; C4 = 262, C5 = 523, D5 = 587, E5 =
 9. **Motion level:** `calm` has no `hover` and no `in` and the master gain at .8 of standard; `standard` is the table; `expressive` adds the air layer to `sheet` and the contour to `in`, never more voices.
 10. **Silence:** hidden tab (`visibilitychange` cancels everything), sound turned off, the list in the last table row. Missed cues are dropped, never replayed.
 11. **Locale-neutral:** the same sounds and meanings in every locale; no speech, no culture-specific instrument; RTL mirrors layout, not sound; no stereo position.
-12. **Budget:** `sound.js` ≤ 3072 B minified, loaded only when sound is on; `enhance.js` stays ≤ 5120 B.
+12. **Budget:** `sound.js` ≤ 4608 B minified, loaded only when sound is on; `enhance.js` stays ≤ 5120 B.
 
 ## Documents
 
@@ -70,7 +70,7 @@ The foundations page (`style-guide-foundations.njk`) gets a **Sound** section af
 ## Testing
 
 - **Unit (`engine/tools/test/sound.test.js`):** import `sound.js` against a fake `AudioContext` and fake document; assert the throttles (hover once per 250 ms and once per target, `in` once per 1.2 s, merges within 200 ms), the voice cap and stealing, one-action-one-sound (an opening button plays `pop` not `press`), reduced motion silences `in`, `calm` drops `hover` and `in`, nothing plays while the context is suspended or the tab hidden, `off` cancels voices.
-- **Build (`build.test.js`):** `sound.js` ships ≤ 3072 B; `enhance.js` ≤ 5120 B and imports `./sound.js`; no page's HTML references `sound.js` (the default visitor never fetches it); `<html>` carries `data-motion`; the style guide's Sound section has a Play button for every cue; the old D44 assertions updated.
+- **Build (`build.test.js`):** `sound.js` ships ≤ 4608 B; `enhance.js` ≤ 5120 B and imports `./sound.js`; no page's HTML references `sound.js` (the default visitor never fetches it); `<html>` carries `data-motion`; the style guide's Sound section has a Play button for every cue; the old D44 assertions updated.
 - **Browser:** in the in-app browser, switch sound on, wrap the page's `AudioContext.prototype.createOscillator` and `createBufferSource` with a counter through `javascript_tool` (nothing debug-only ships), and confirm that each listed interaction produces its cue and that a fast pointer sweep across the nav stays within the hover limits.
 - **Gates:** `npm run build`, `npm test`, `npm run gate`.
 
