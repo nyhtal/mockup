@@ -33,7 +33,7 @@ Read the files in the order listed. Bylaws are numbered rule files in `bylaws/`;
 ## Add or change a catalog component
 
 1. `DESIGN.md` §3–§4 (motion table, visual vocabulary), then `bylaws/07-components.md` (anatomy block, states, patterns)
-2. `bylaws/01-html.md`, `bylaws/02-tokens.md`, `bylaws/03-layout.md`, `bylaws/04-typography.md`, `bylaws/05-color.md`, `bylaws/06-motion.md`
+2. `bylaws/01-html.md`, `bylaws/02-tokens.md`, `bylaws/03-layout.md`, `bylaws/04-typography.md`, `bylaws/05-color.md`, `bylaws/06-motion.md`, `bylaws/20-sound.md`
 3. `bylaws/14-accessibility.md` and, for forms, `bylaws/16-forms.md`
 4. `checklists/new-component.md`
 

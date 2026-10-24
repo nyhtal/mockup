@@ -29,7 +29,7 @@ The gate exits non-zero on any finding. Every gate but Lighthouse runs on every 
 
 ```
 engine/
-  bylaws/            00–19: the rules, each with an ID, MUST/SHOULD, Why and the gate that checks it
+  bylaws/            00–20: the rules, each with an ID, MUST/SHOULD, Why and the gate that checks it
   catalog/           Nunjucks macros: primitives, components, sections, templates, virtual pages
   checklists/        generated from the bylaws (+ _preambles/ with the hand-written procedures)
   i18n/              engine UI strings per locale (_template.json lists every key)
@@ -57,7 +57,7 @@ reports/latest.md                 the last gate report
 
 ## The bylaws
 
-`engine/bylaws/` is the binding rulebook: 274 rules across 20 files, each a `### R-AREA-NN Title` heading with a MUST or SHOULD sentence, a reason and the gate check or checklist that verifies it. Precedence between rules, how a site may override one (an entry in its `DECISIONS.md`) and how the rulebook is versioned are in `bylaws/00-precedence.md`; engine-wide decisions are numbered in `engine/DECISIONS.md`. A change to the bylaws bumps `CHANGELOG.md` and rebuilds and gates the reference site.
+`engine/bylaws/` is the binding rulebook: 293 rules across 21 files, each a `### R-AREA-NN Title` heading with a MUST or SHOULD sentence, a reason and the gate check or checklist that verifies it. Precedence between rules, how a site may override one (an entry in its `DECISIONS.md`) and how the rulebook is versioned are in `bylaws/00-precedence.md`; engine-wide decisions are numbered in `engine/DECISIONS.md`. A change to the bylaws bumps `CHANGELOG.md` and rebuilds and gates the reference site.
 
 `engine/INDEX.md` gives the reading order for the common tasks: build a new site, add a page, add a component, add a locale, deliver.
 

@@ -22,7 +22,7 @@ What the bylaws enforce, written as the taste behind them. Read this before the 
 - **Space is the layout.** One rhythm scale (below) decides every vertical distance. Headings sit on the start edge; only symmetric content (a logo cloud, a single quote, a form) is centred.
 - **Same in every language and direction.** German is a third longer, Arabic reads from the right; a design that only works in English is not finished. Every slide mirrors.
 - **The dial is the brief's.** `calm`, `standard` and `expressive` (R-TOK-12) decide how far things move and which devices a site gets. The reference site runs `expressive` because it is the showcase; a new brief defaults to `standard`.
-- **Signature devices.** The cut-corner mark, the accent marker rule that draws itself, the proof strip, the counting figures, the column vocabulary and the four quiet sounds are what make one site built on this engine recognisable; they are the same on every site, and the brief's two hues, radius and motion level make each site its own.
+- **Signature devices.** The cut-corner mark, the accent marker rule that draws itself, the proof strip, the counting figures, the column vocabulary and the quiet sounds are what make one site built on this engine recognisable; they are the same on every site, and the brief's two hues, radius and motion level make each site its own.
 
 ## 2. Rhythm scale
 
@@ -125,9 +125,9 @@ Rules that hold everything above together: compositor properties only (transform
 - **Media rows**: the picture in a `rounded-2xl` frame with a hairline ring, overscanned so it can sit deeper than the words; the `sticky` variant pins one picture beside several points.
 - **Footer**: a one-pixel brand-to-accent hairline above the columns.
 - **Pictures**: every placeholder in a `rounded-xl` frame with a hairline ring; only the hero media gets the long shadow.
-- **Sound**: four synthesised UI sounds behind a labelled toggle in the footer (also the header at `xl`, the drawer below `lg`; off by default, kept for the tab): a tick when switched on, a muted tone when an overlay opens, a soft tap on a primary button, two rising notes on a form submission. Never on hover, scroll, navigation, a count or an error; motion stays silent.
+- **Sound**: one quiet family of synthesised sounds behind a labelled toggle in the footer (also the header at `xl`, the drawer below `lg`; off by default, kept for the tab, loaded only when switched on): a faint tick when the mouse rests on something clickable, a tap on a press, rising and falling pairs as menus, accordions and dialogs open and close, a tick per carousel or lightbox step, two notes for a toggle, a copy and a form sent, and one soft breath as a section slides in. Never on a count, an error, navigation or keyboard focus; calm sites have no hover or entrance sounds. The vocabulary and its limits are bylaw 20.
 
-What "pizzazz" is allowed to be: glow, hairlines, gradients on large numerals and panels, the motion table, two layers of depth, the four sounds. What it is not: parallax on words or everywhere, auto-playing media, text that fades in word by word, hover-only content, more than one accent, texture, blur, clip-path reveals, magnetic cursors, card flips, digit slot machines, scroll hijacking, marquees. One device is deferred rather than refused: a picture "curtain" (a surface-coloured panel sliding off a picture as it enters); it is evaluated after the devices above are in, because it hides imagery until scrolled.
+What "pizzazz" is allowed to be: glow, hairlines, gradients on large numerals and panels, the motion table, two layers of depth, the sound family. What it is not: parallax on words or everywhere, auto-playing media, text that fades in word by word, hover-only content, more than one accent, texture, blur, clip-path reveals, magnetic cursors, card flips, digit slot machines, scroll hijacking, marquees. One device is deferred rather than refused: a picture "curtain" (a surface-coloured panel sliding off a picture as it enters); it is evaluated after the devices above are in, because it hides imagery until scrolled.
 
 ## 5. Art and sample media
 

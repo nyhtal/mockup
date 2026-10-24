@@ -66,7 +66,7 @@ MUST. The brief's motion level is the flair dial. It sets four tokens and decide
 | `standard` (default) | 32px | 40px / 24px | 700ms | the entrance vocabulary by column (R-MOT-16), picture settle, count-up v2, the heading rule draw, media-row depth, the reading-progress hairline |
 | `expressive` | 40px | 56px / 32px | 800ms | everything in `standard` plus icon pop, hero depth (media and glows), the stats backdrop layer, CTA light drift, logo-cloud drift, the sticky editorial row, the count-up settle |
 
-Keyframes and transitions read the distances via `var(--reveal-distance)` (a grid sets it to the item distance with `reveal-items`). Reduced motion overrides every level; sound is a separate opt-in (R-MOT-10).
+Keyframes and transitions read the distances via `var(--reveal-distance)` (a grid sets it to the item distance with `reveal-items`). Reduced motion overrides every level; sound is a separate opt-in (bylaw 20).
 Why: Three levels give a brief a motion dial without exposing numbers, and "which effects" belongs to the dial as much as "how far": a calm site with parallax is a contradiction.
 Gate: manual: checklists/new-site.md
 
