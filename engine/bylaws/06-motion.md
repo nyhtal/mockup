@@ -13,7 +13,7 @@ Why: WCAG 2.3.3 and vestibular safety; "reduce" means reduce, not "fade instead"
 Gate: consistency/motion-safe
 
 ### R-MOT-03 Budget
-MUST. At most three groups enter at once; a heading group, a grid row (its columns cascade 90 ms apart, so a four-column row finishes 270 ms after its first item) and a decorative depth layer each count as one, and a list cascades 70 ms per item for at most eight items. Entrance travel ≤ 64 px (the `expressive` item distance is 56 px), except the drawer, which slides its own width from the inline end. Depth (R-MOT-15): total travel ≤ 48 px per layer and at most two depth layers moving in any viewport. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons, `animate-spin` on a pending button and the art clip of a backdrop hero (D65), which has a pause button.
+MUST. At most three groups enter at once; a heading group, a grid row (its columns cascade 90 ms apart, so a four-column row finishes 270 ms after its first item) and a decorative depth layer each count as one, and a list cascades 70 ms per item for at most eight items. Entrance travel ≤ 64 px (the `expressive` item distance is 56 px), except the drawer, which slides its own width from the inline end. Depth (R-MOT-15): total travel ≤ 48 px per layer and at most two depth layers moving in any viewport. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons, `animate-spin` on a pending button, the art clip of a backdrop hero (D65), which has a pause button, and two capped repeats of R-MOT-17: the CTA glow's three pulses and the header logo's three rare glints.
 Why: Below 32 px an entrance competes with the page's own scrolling and goes unnoticed; past 64 px, or with more than three things moving, the page reads as a slideshow.
 Gate: manual: checklists/new-component.md
 
@@ -66,7 +66,7 @@ Why: The entrance trigger, one fallback and two enhancements, all feature-detect
 Gate: budget/js
 
 ### R-MOT-11 No motion on load above the fold
-MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state; the hero's proof strip and highlight card do not count. `enhance.js` marks every entrance whose top is already above 88 % of the window as revealed before it sets `data-entrances`, the flag `pending:` waits for, so content visible at load never fades in. Scroll-linked movement that is at identity while `scrollY` is 0 (the depth layers of R-MOT-15 on the hero media and glows) is not an entrance and is allowed; the hero's text column and highlight card never move. The art clip of a backdrop hero (D65) is allowed too: its frames are the picture with light running along its rails, it starts only after load (behaviour 5), and it fades in over the picture, which is painted first and stays the LCP image.
+MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state; the hero's proof strip and highlight card do not count. `enhance.js` marks every entrance whose top is already above 88 % of the window as revealed before it sets `data-entrances`, the flag `pending:` waits for, so content visible at load never fades in. Scroll-linked movement that is at identity while `scrollY` is 0 (the depth layers of R-MOT-15 on the hero media and glows) is not an entrance and is allowed; the hero's text column and highlight card never move. The art clip of a backdrop hero (D65) is allowed too: its frames are the picture with light running along its rails, it starts only after load (behaviour 5), and it fades in over the picture, which is painted first and stays the LCP image. The gestures of R-MOT-17 are allowed too: they start at least 800 ms after their element is marked `data-revealed` (so after load even for a section already in view), never in the hero, and the logo's rare glint first plays 20 s after load.
 Why: Load animation delays LCP and reads as slowness; a layer that only moves when the visitor scrolls cannot.
 Gate: manual: checklists/new-page.md
 
@@ -106,6 +106,11 @@ MUST. A grid item arrives with the treatment of its column, never a random one a
 Why: Different behaviours in one row, cascading, show the system; the same behaviour everywhere is wallpaper, and random behaviour is noise.
 Gate: manual: checklists/new-component.md
 
+### R-MOT-17 Gestures
+MUST. Small decorations may come alive once through six generic utilities in `app.css` (D66), and through nothing else: `gesture-nudge`, `gesture-glow`, `gesture-glow-repeat`, `gesture-trace`, `gesture-glint` and `gesture-glint-rare`. A template opts in by writing the class on an existing decorative (`aria-hidden`) element; no per-element keyframes and no script. `gesture-nudge` moves 3 px toward the reading direction and back (600 ms, 2 000 ms after arrival, as the glow fills); `gesture-glow` grows from nothing (opacity 0, scale 0.2) to its full size (2 000 ms `ease-in-out`, 600 ms after arrival); `gesture-glow-repeat` adds three soft pulses 24 s apart and then stops; `gesture-trace` runs a soft band of light once down the element's start edge, a line or a list whose start rule is a line (1 200 ms, 2 000 ms after arrival, after the line's draw; the band is a fifth of the edge, so it never overflows); `gesture-glint` sweeps a band across a clipped mark when its link or button is hovered or focused; `gesture-glint-rare` sweeps it 20 s after load, then every 60 s, three times at most. "Arrival" is the `arrived` custom variant: on screen, motion allowed, inside an element the script marked `data-revealed` (a section without an entrance arms itself with the invisible `pending:visible`). Templates write the classes only when the flair dial's `gesture` boolean is on (`standard`, `expressive`), and the repeating forms only with `gestureRepeat` (`expressive`). At most one gesture per section; never in the hero, on text, focus rings or hit areas. Used today: the closing CTA panel (glow, repeating in expressive; the primary arrow's nudge), the timeline's line (trace), the header logo (glint, rare in expressive).
+Why: The owner asked for a site that feels alive but not busy. Peripheral vision is tuned to motion, so each gesture plays once where the eye already is; generic utilities keep it to one class per use and one place to tune.
+Gate: consistency/motion-vocabulary
+
 ## Checklist
 
 - [ ] R-MOT-01 transform/opacity only
@@ -124,3 +129,4 @@ Gate: manual: checklists/new-component.md
 - [ ] R-MOT-14 scroll-driven appearance under sda only
 - [ ] R-MOT-15 depth only on the listed layers, md+, overscanned, two at most
 - [ ] R-MOT-16 item treatment and delay by column, never random
+- [ ] R-MOT-17 gestures only through the six utilities, one per section, none in the hero

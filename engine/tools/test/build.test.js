@@ -954,7 +954,8 @@ test("the header logo glints (D66): once on hover or focus, and rarely on its ow
 test("the timeline's line carries a trace once it has drawn (D66)", () => {
   const html = listHtml("dist/reference").map((f) => readFileSync(f, "utf8")).find((h) => h.includes('data-component="timeline"'));
   const ol = /<ol [^>]*data-component="timeline"[^>]*>[\s\S]*?<\/ol>/.exec(html)[0];
-  assert.match(ol, /^<ol [^>]*><span aria-hidden="true" class="absolute inset-y-0 start-0 w-px gesture-trace"><\/span>/);
+  assert.match(ol, /^<ol class="[^"]*before:start-0[^"]*gesture-trace[^"]*"/, "the list carries the trace along its start rule");
+  assert.doesNotMatch(ol, /^<ol [^>]*><span/, "nothing but li inside the list");
 });
 
 test("gestures (D66): generic utilities, played once after arrival, only with motion allowed, compositor-only", () => {
@@ -971,6 +972,9 @@ test("gestures (D66): generic utilities, played once after arrival, only with mo
   const media = /@media screen and \(prefers-reduced-motion: ?no-preference\)/g;
   const safe = [...css.matchAll(media)].map((m) => block(m.index));
   const inside = safe.join("\n");
+  const band = /\.gesture-trace:after\{([^}]*)\}/.exec(css)?.[1] || "";
+  assert.match(band, /height:20%/, "the trace's band is a fifth of the start edge, so it never overflows the element");
+  assert.match(band, /inset-inline-start:-1px/, "the band rides the start edge, where the line is");
   for (const [g, a] of [["gesture-nudge", "nudge"], ["gesture-glow-repeat", "glow"], ["gesture-trace", "trace"]]) {
     const rule = new RegExp(`\\.${g}:where\\(\\[data-revealed\\], ?\\[data-revealed\\] \\*\\)(::?after)?\\{animation:var\\(--animate-${a}\\)`);
     assert.match(inside, rule, `${g} animates only after arrival, with motion allowed, on screen`);
@@ -987,4 +991,6 @@ test("gestures (D66): generic utilities, played once after arrival, only with mo
   }
   assert.match(css, /--animate-nudge: ?nudge (600ms|\.6s)[^;]* 1 none/, "the nudge plays once and leaves no fill, so hover still nudges");
   assert.match(css, /--animate-glow-pulse: ?glow-pulse 24s[^;]* 3 none/, "the CTA glow pulses three times, then stops");
+  assert.match(css, /@keyframes glow\{(0%|from)\{opacity:0;scale:\.2\}/, "the glow starts from nothing (owner: 'start with none then grow to its full size')");
+  assert.match(css, /--animate-glow: ?glow (2000ms|2s) ease-in-out/, "and grows smoothly over 2 s");
 });

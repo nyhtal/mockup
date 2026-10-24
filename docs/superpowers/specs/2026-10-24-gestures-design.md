@@ -29,7 +29,7 @@ All three live in `engine/theme/app.css`. Each is an `@utility` whose animation 
 | Utility | Effect | Keyframes (compositor only) | Timing |
 |---|---|---|---|
 | `gesture-nudge` | moves toward the reading direction and back, once | `translate: 0` → `calc(3px * var(--g-dir))` → `0`; `--g-dir` is 1, and −1 under `:dir(rtl)` (set inside the utility) | 600 ms `ease-in-out`, fill `none` so it hands back to the hover nudge |
-| `gesture-glow` | brightens and grows a little, then settles, once | `opacity: .55, scale: .92` → `opacity: 1, scale: 1` | 1 200 ms `ease-reveal`, fill `backwards` |
+| `gesture-glow` | grows from nothing to its full size, once (revised after the owner saw it: "start with none then grow to its full size in a smooth motion") | `opacity: 0, scale: .2` → `opacity: 1, scale: 1` | 2 000 ms `ease-in-out`, 600 ms after arrival, fill `backwards` |
 | `gesture-glow-repeat` | `gesture-glow`, then up to three soft pulses, then still | the arrival glow, then `glow-pulse`: rest for 90 % of a 24 s cycle, then `opacity: 1 → .7 → 1` over the last 10 %; `animation-iteration-count: 3` | pulses at about 26, 50 and 74 s after arrival, then none |
 | `gesture-glint` / `gesture-glint-rare` | a slanted band of light crosses a clipped mark: once on hover or focus of its link; the rare form sweeps once 20 s after load, then every 60 s, 3 times at most | `glint`: `translate: -24px 0 → 100px 0`; `glint-rare`: the same sweep in the first 1.5 % of a 60 s cycle | 900 ms `ease-in-out`; the rare one 60 s `linear`, delay 20 s, 3 iterations |
 | `gesture-trace` | a soft notch of light runs once along a line (the element is the line; its `::after` is the light) | `::after` is a strip as tall as the line, transparent with one accent band in its middle; `translate: 0 -50%` → `0 50%`, `opacity: 0 → 1 → 1 → 0` | 1 200 ms `ease-in-out`, fill `none` |
@@ -50,6 +50,9 @@ Shared rules:
 - **Arrow.** The primary (`inverse`) button's trailing arrow takes `gesture-nudge`. The button primitive gains one option, `opts.gesture`, which appends the class to the trailing icon. Only the CTA band passes it; every other button is unchanged.
 
 ### Timeline
+
+As built: the line stays a pseudo-element and the `<ol>` itself carries `gesture-trace`, whose band runs down the element's start edge (a span inside the list would be invalid HTML). The CTA band has no entrance, so its panel carries `pending:visible`, an invisible from-state the script observes, to be marked `data-revealed` on arrival.
+
 
 The line is now a `before:` pseudo-element of the `<ol>`. It becomes a real `<span aria-hidden="true">` (absolute, start edge, 1 px, `bg-line`), so it can carry `gesture-trace`. Its draw-in stays keyed on the list's reveal: the list becomes a named group, and the span's `pending:`/`data-revealed:` classes become their `group-…/timeline` forms. The trace starts after the draw-in finishes (the draw takes 1 200 ms, so the trace's delay is 1 200 ms plus `--gesture-delay`).
 

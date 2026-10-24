@@ -255,10 +255,10 @@
   --animate-drop: drop 200ms var(--ease-smooth) both;
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
-  /* Gestures (D66): once after arrival; the CTA glow's pulse three times. Delays order them: the glow first, the arrow nudge after it, a trace after its line's 1 200 ms draw. The logo glint plays on hover or focus; its rare form sweeps 20 s after load, then every 60 s, three times at most. */
-  --animate-nudge: nudge 600ms ease-in-out 1200ms 1 none;
-  --animate-glow: glow 1200ms var(--ease-reveal) 800ms 1 backwards;
-  --animate-glow-pulse: glow-pulse 24s ease-in-out 2000ms 3 none;
+  /* Gestures (D66): once after arrival; the CTA glow's pulse three times. Delays order them: the glow grows from nothing first (owner: "start with none then grow to its full size in a smooth motion"), the arrow nudge as it fills, a trace after its line's 1 200 ms draw. The logo glint plays on hover or focus; its rare form sweeps 20 s after load, then every 60 s, three times at most. */
+  --animate-nudge: nudge 600ms ease-in-out 2000ms 1 none;
+  --animate-glow: glow 2000ms ease-in-out 600ms 1 backwards;
+  --animate-glow-pulse: glow-pulse 24s ease-in-out 2600ms 3 none;
   --animate-trace: trace 1200ms ease-in-out 2000ms 1 none;
   --animate-glint: glint 900ms ease-in-out 1 none;
   --animate-glint-rare: glint-rare 60s linear 20s 3 none;
@@ -312,16 +312,16 @@
     50% { translate: calc(3px * var(--g-dir, 1)) 0; }
   }
   @keyframes glow {
-    from { opacity: 0.55; scale: 0.92; }
+    from { opacity: 0; scale: 0.2; }
   }
   @keyframes glow-pulse {
     0%, 90%, 100% { opacity: 1; scale: 1; }
     95% { opacity: 0.6; scale: 0.96; }
   }
   @keyframes trace {
-    from { translate: 0 -50%; opacity: 0; }
+    from { translate: 0 0; opacity: 0; }
     15%, 85% { opacity: 1; }
-    to { translate: 0 50%; opacity: 0; }
+    to { translate: 0 400%; opacity: 0; }
   }
   @keyframes glint {
     from { translate: 0 0; }
@@ -361,15 +361,17 @@
     animation: var(--animate-glow), var(--animate-glow-pulse);
   }
 }
-/* The element is a line; its ::after is a strip as long as the line with one soft band of light, swept from its start to its end. */
+/* A soft band of light runs once down the element's start edge: a 1 px line, or a list whose start rule is its ::before (the timeline). The band is a fifth of the edge and travels four times its own height, so it never leaves the element. The element is positioned. */
 @utility gesture-trace {
   &::after {
     content: "";
     position: absolute;
-    inset-block: 0;
-    inset-inline: -1px;
+    top: 0;
+    inset-inline-start: -1px;
+    width: 3px;
+    height: 20%;
     border-radius: 9999px;
-    background: linear-gradient(to bottom, transparent 42%, var(--color-accent-400) 50%, transparent 58%);
+    background: linear-gradient(to bottom, transparent, var(--color-accent-400), transparent);
     opacity: 0;
   }
   @variant arrived {

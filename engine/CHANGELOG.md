@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.26.0 — 2026-10-24
+
+Gestures (D66, new R-MOT-17): six generic utilities make small decorations come alive once, after their section arrives, with motion allowed: `gesture-nudge`, `gesture-glow`, `gesture-glow-repeat`, `gesture-trace`, `gesture-glint`, `gesture-glint-rare`. A template opts in with one class; the flair dial gates them (`gesture` from standard, `gestureRepeat` in expressive); no script change. First uses: the closing CTA panel's green glow grows from nothing to full size over 2 s (and in expressive pulses three times, 24 s apart) and its primary arrow nudges once; the timeline's line carries a band of light once; the header logo glints on hover or focus, and in expressive 20 s after load, then every 60 s, three times at most. The consistency gate flags an unknown `gesture-*` class or one in the hero. Budgets: CSS 110 KB (0.25.0 had already passed 105 KB by 102 B), the English home page 83 KB. Changed: R-PREC-07, R-TOK-11, R-TOK-12, R-TOK-13, R-MOT-03, R-MOT-11, R-A11Y-09, R-PERF-01.
+
 ## 0.25.0 — 2026-10-24
 
 The home hero's art flows as video (D65; owner, 2026-10-24: "make the home page hero a version where the image is a video that animates", then "light flows, looping"). An art clip (`engine/tools/lib/art-clip.js`, built by `build-video.js` for a `<video data-art>`) is the piece's dark-tone picture, pixel for pixel, with soft notches of light streaming along its measured rails toward the words, in an 8 s loop that ends on its first frame, 1600×900, about 35 KB per format. A dark backdrop hero whose image declares `video` lays it over the picture (still the LCP image and the poster) and adds a round pause button (WCAG 2.2.2); `enhance.js` behaviour 5 plays it only while motion is allowed, on screen and not paused, and it fades in once it plays. The reference home page declares it in all four locales. The script cap rises to 5 632 bytes (R-PREC-08). New: `ui.pauseAnimation`, the `pause` icon. Changed: R-PREC-08, R-MOT-03, R-MOT-10, R-MOT-11, R-A11Y-09, R-SEC-07, R-PERF-17, R-ASSET-13.
