@@ -3,7 +3,7 @@
 Purpose: the exact checks, commands and thresholds that decide whether a site is done. The gates are code in `engine/tools/gates/`; this file is their contract. Every other bylaw's `Gate:` line points here.
 
 ### R-GATE-01 The command
-MUST. A site is gated with `npm run build -- --site <name>` followed by `npm run gate -- --site <name>`; the gate exits non-zero on any failing check and writes `reports/latest.md`.
+MUST. A site is gated with `npm run build -- --site <name>` followed by `npm run gate -- --site <name>`, which runs all nine gates; the gate exits non-zero on any failing check and writes `reports/latest.md`. While iterating, `npm run gate:fast -- --site <name>` runs the seven offline gates and leaves the two browser-driven ones, `a11y` and `lighthouse`, to the full run; only a full run counts for delivery.
 Why: One command, one report, no interpretation.
 Gate: manual: checklists/pre-delivery.md
 
@@ -43,7 +43,7 @@ Why: Dead links and stray third parties are both defects.
 Gate: links/broken
 
 ### R-GATE-09 Accessibility
-MUST. `a11y`: axe-core injected into every page through puppeteer with `prefers-reduced-motion: reduce` emulated (so entrances show their final state and every element is checked at full opacity, R-MOT-04), the WCAG 2.2 AA tag set plus axe best practices, zero violations on every page whatever their impact; "incomplete" results are listed under "Needs human review" and resolved by the manual checklist before delivery; and `reflow`: every page loaded at 320 px and 375 px must not be wider than its viewport at any scroll position (the gate steps through the page half a viewport at a time). The gate runs on one shared browser, four pages at a time, with a 90 s ceiling per page; a page whose tooling fails or stalls is an `a11y/chrome` finding, and a page that redirects itself (meta refresh) is skipped and listed as such. During development `npm run gate -- --skip lighthouse --sample` checks one page per page type and locale (about thirty seconds instead of five minutes); the full sweep is the pre-delivery run.
+MUST. `a11y`: axe-core injected into every page through puppeteer with `prefers-reduced-motion: reduce` emulated (so entrances show their final state and every element is checked at full opacity, R-MOT-04), the WCAG 2.2 AA tag set plus axe best practices, zero violations on every page whatever their impact; "incomplete" results are listed under "Needs human review" and resolved by the manual checklist before delivery; and `reflow`: every page loaded at 320 px and 375 px must not be wider than its viewport at any scroll position (the gate steps through the page half a viewport at a time). The gate runs on one shared browser, four pages at a time, with a 90 s ceiling per page; a page whose tooling fails or stalls is an `a11y/chrome` finding, and a page that redirects itself (meta refresh) is skipped and listed as such. During development, when `npm run gate:fast` leaves it out, `npm run gate -- --only a11y --sample` checks one page per page type and locale (about thirty seconds instead of five minutes); the full sweep runs with Lighthouse in the full gate.
 Why: Automated floor plus a human ceiling; horizontal scrolling on a phone is the defect visitors notice first.
 Gate: a11y/heading-order
 

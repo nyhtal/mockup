@@ -47,6 +47,8 @@ export async function reflowOf(browser, url, widths = REFLOW_WIDTHS) {
 }
 
 export const id = "a11y";
+/** Browser-driven and minutes long: left out of `--fast`, run with Lighthouse in the full gate (R-GATE-01). */
+export const slow = true;
 /** Findings are named after axe rule ids (a11y/<rule>). This list is the subset the bylaws may cite; "chrome" is the tooling failure. */
 export const checks = [
   "chrome",

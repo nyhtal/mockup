@@ -11,7 +11,7 @@ Use this once per site, from the Site Brief to the first green gate. It took the
 5. **Create the singular pages** `sites/<name>/content/<locale>/*.md` (front matter only; legal pages carry their markdown body with a "Last reviewed" `<time>`), plus `legal/imprint.md` for `de`.
 6. **Write `sites/<name>/DECISIONS.md`**: the brief summary, the fictional-content statement, every override of a bylaw with rule ID, replacement, reason and date (R-PREC-02), and any third-party assets with their rights.
 7. **Write `sites/<name>/glossary.json`** with the product and industry terms per locale.
-8. **Build and gate**: `npm run build -- --site <name>` then `npm run gate -- --site <name> --skip lighthouse` while iterating; the full gate (with Lighthouse, several hours on a large site) before delivery. Fix findings in the data, never in the catalog.
+8. **Build and gate**: `npm run build -- --site <name>` then `npm run gate:fast -- --site <name>` while iterating; the full gate (with the a11y pass and Lighthouse, several hours on a large site) before delivery. Fix findings in the data, never in the catalog.
 9. **Run the checks in `pre-delivery.md`** and record them in `reports/latest.md`.
 
 ## Learned on the reference site

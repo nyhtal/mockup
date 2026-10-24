@@ -9,7 +9,7 @@ Use this for every page added to a site, whether a singular page (one front-matt
 3. **Entity page**: add the entity to `data/<locale>/entities.json` in every locale with the same slug, and if the kind is new, a `detail` recipe in `pages.json` (`each`, `layout`, `sections` with `{e.field}` placeholders, `from: "e.<list>"`). The engine generates the URL from the kind's index path.
 4. **Forms**: a page with a form names its thank-you page in `pages.json` `thankYou` keyed by the form page's path, and the form's `action` points at it.
 5. **Copy**: title ≤ 60 characters, description 120–155 characters, lede ≤ 35 words, no forbidden words, sentence case, verb-first button labels, in every locale.
-6. **Build and gate** with `--skip lighthouse`; the consistency gate reports title and description lengths, the schema gate the contract, the links gate every href.
+6. **Build and gate** with `npm run gate:fast`; the consistency gate reports title and description lengths, the schema gate the contract, the links gate every href.
 7. **Open the page at 320 px and 1024 px** in every locale: no horizontal scrolling, no wrapped CTA, no truncated label.
 
 ## Learned on the reference site

@@ -15,6 +15,7 @@
     "build": "node engine/tools/build.js",
     "serve": "node engine/tools/serve.js",
     "gate": "node engine/tools/gate.js",
+    "gate:fast": "node engine/tools/gate.js --fast",
     "test": "node --test \"engine/tools/test/*.test.js\"",
     "checklists": "node engine/tools/build-checklists.js"
   },

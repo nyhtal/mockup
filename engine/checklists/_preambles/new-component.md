@@ -10,7 +10,7 @@ Use this for a new primitive, component or section in `engine/catalog/`, and for
 4. **Classes**: Tailwind utilities only, logical properties for direction (`ps-`, `ms-`, `start-`, `text-start`), `motion-safe:` on every transition and animation, the focus-ring triple on every interactive element, `rtl:-scale-x-100` on directional icons, no arbitrary lengths, no palette colours (role tokens only).
 5. **UI strings** through `t` with keys added to `engine/i18n/_template.json` and every engine locale file; plural strings as objects of CLDR forms.
 6. **Add a sample** to `engine/catalog/samples.json` (sections) or to the style-guide page for the layer, so the style guide and the consistency gate exercise it.
-7. **Build the reference site and gate** with `--skip lighthouse`; then open the style-guide page and one real page using it at 320 px, 1024 px and 1280 px, in an RTL locale too.
+7. **Build the reference site and gate** with `npm run gate:fast`, then `npm run gate -- --only a11y` for the accessibility pass the fast run leaves out; then open the style-guide page and one real page using it at 320 px, 1024 px and 1280 px, in an RTL locale too.
 8. **Budget**: a section used on every page costs its markup times the page count; check the home page's HTML size in `reports/latest.md`.
 
 ## Learned on the reference site

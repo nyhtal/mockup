@@ -19,19 +19,27 @@ import * as lighthouse from "./gates/lighthouse.js";
 /** Gate order: cheap and offline first, browser-driven last. */
 export const GATES = [bylaws, html, consistency, schema, budget, i18n, links, a11y, lighthouse];
 export const GATE_IDS = GATES.map((g) => g.id);
+/** The browser-driven gates (a11y, Lighthouse): `--fast` leaves them out, so iterating runs the offline gates only. */
+export const SLOW_GATE_IDS = GATES.filter((g) => g.slow).map((g) => g.id);
 /** gate id → the check names it can emit; the bylaws gate validates every `Gate:` line against this. */
 export const GATE_CHECKS = Object.fromEntries(GATES.map((g) => [g.id, g.checks]));
 
 export function parseArgs(argv) {
   const get = (flag) => { const i = argv.indexOf(flag); return i >= 0 ? argv[i + 1] : undefined; };
   const list = (v) => (v ? v.split(",").map((s) => s.trim()).filter(Boolean) : []);
-  return { site: get("--site") || "reference", skip: list(get("--skip")), only: list(get("--only")), runs: get("--runs") ? Number(get("--runs")) : undefined, sample: argv.includes("--sample") };
+  return { site: get("--site") || "reference", skip: list(get("--skip")), only: list(get("--only")), runs: get("--runs") ? Number(get("--runs")) : undefined, sample: argv.includes("--sample"), fast: argv.includes("--fast") };
 }
 
 const version = (pkg) => { try { return JSON.parse(readFileSync(path.join("node_modules", pkg, "package.json"), "utf8")).version; } catch { return "n/a"; } };
 const sh = (cmd) => { try { return execSync(cmd, { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim(); } catch { return "n/a"; } };
 
-export async function runGates({ site, skip = [], only = [], runs, sample = false }) {
+/** The ids of the gates a run executes: `--only` names them outright (and wins over `--fast`), `--skip` removes some, `--fast` the slow ones. */
+export function gatesToRun({ skip = [], only = [], fast = false } = {}) {
+  return GATE_IDS.filter((g) => (only.length ? only.includes(g) : !skip.includes(g) && !(fast && SLOW_GATE_IDS.includes(g))));
+}
+
+export async function runGates({ site, skip = [], only = [], runs, sample = false, fast = false }) {
+  const selected = gatesToRun({ skip, only, fast });
   const distDir = `dist/${site}`;
   if (!existsSync(distDir)) throw new Error(`${distDir} not found; run npm run build -- --site ${site}`);
   if (listHtml(distDir).length === 0) throw new Error(`${distDir} contains no pages; nothing to gate`);
@@ -41,7 +49,7 @@ export async function runGates({ site, skip = [], only = [], runs, sample = fals
   const results = [];
   try {
     for (const gate of GATES) {
-      if (skip.includes(gate.id) || (only.length && !only.includes(gate.id))) { results.push({ id: gate.id, skipped: true, ok: true, findings: [] }); continue; }
+      if (!selected.includes(gate.id)) { results.push({ id: gate.id, skipped: true, ok: true, findings: [] }); continue; }
       const started = Date.now();
       const r = await gate.run(ctx);
       results.push({ ...r, ms: Date.now() - started });

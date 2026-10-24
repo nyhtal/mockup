@@ -6,6 +6,8 @@ import { chromePath, pages } from "../lib/browser.js";
 import { lighthousePages } from "../lib/sampling.js";
 
 export const id = "lighthouse";
+/** Browser-driven and hours long on a large site: left out of `--fast` (R-GATE-01). */
+export const slow = true;
 export const CATEGORIES = ["performance", "accessibility", "best-practices", "seo"];
 export const checks = ["mobile/performance", "mobile/accessibility", "mobile/best-practices", "mobile/seo", "desktop/performance", "desktop/accessibility", "desktop/best-practices", "desktop/seo", "runtime"];
 

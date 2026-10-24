@@ -10,7 +10,7 @@ Use this when a site adds a language. The reference site added German (text expa
 4. **Content**: `data/<locale>/entities.json` and `pages.json` with every slug and section id of the default locale (a missing site section fails the build; a missing page fails the coverage check), and `content/<locale>/*.md` for every singular page. Locale-specific legal pages (imprint for `de`/`at`) exist only where required.
 5. **Lengths in the new language**: descriptions 120–155 characters, titles ≤ 60, button labels ≤ 25, nav items ≤ 18; the consistency gate measures the first two.
 6. **Script coverage**: if the brand font does not cover the script, `build-fonts.js` adds the script face, subsets it, puts it in the stack and preloads it on that locale's pages. Check the built CSS `--font-sans` and the `<link rel="preload">` on a page of the locale.
-7. **Build and gate** with `--skip lighthouse`; `i18n/keys` and `i18n/lang-attr` must be clean.
+7. **Build and gate** with `npm run gate:fast`; `i18n/keys` and `i18n/lang-attr` must be clean.
 8. **Open the locale in the browser pane**: one page per template at 320 px, 1024 px and 1280 px. Check the header, drawer, breadcrumbs, cards, forms, footer and locale switcher. For RTL: the wordmark reads left to right, chevrons and arrows mirror, the drawer opens from the end edge, numbers and dates are formatted (Latin digits unless opted in).
 9. **Native-speaker proofread** of the strings and the content before delivery; record who read it in the site's `DECISIONS.md`.
 

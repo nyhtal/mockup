@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { GATES, GATE_CHECKS, parseArgs, runGates, formatReport } from "../gate.js";
+import { GATES, GATE_CHECKS, SLOW_GATE_IDS, gatesToRun, parseArgs, runGates, formatReport } from "../gate.js";
 
 test("every gate exports a non-empty list of check names", () => {
   for (const gate of GATES) {
@@ -12,9 +12,19 @@ test("every gate exports a non-empty list of check names", () => {
   }
 });
 
-test("parseArgs reads site, skip, only, runs and the development sample flag", () => {
-  assert.deepEqual(parseArgs(["--site", "x", "--skip", "a,b", "--runs", "2"]), { site: "x", skip: ["a", "b"], only: [], runs: 2, sample: false });
+test("parseArgs reads site, skip, only, runs and the development sample and fast flags", () => {
+  assert.deepEqual(parseArgs(["--site", "x", "--skip", "a,b", "--runs", "2"]), { site: "x", skip: ["a", "b"], only: [], runs: 2, sample: false, fast: false });
   assert.equal(parseArgs(["--skip", "lighthouse", "--sample"]).sample, true, "--sample checks one page per page type and locale in the a11y gate (R-GATE-09)");
+  assert.equal(parseArgs(["--fast"]).fast, true);
+});
+
+test("--fast leaves out the browser-driven gates; the plain gate runs all nine; --only wins over --fast (R-GATE-01)", () => {
+  assert.deepEqual(SLOW_GATE_IDS, ["a11y", "lighthouse"]);
+  assert.deepEqual(gatesToRun(), ["bylaws", "html", "consistency", "schema", "budget", "i18n", "links", "a11y", "lighthouse"]);
+  assert.deepEqual(gatesToRun({ fast: true }), ["bylaws", "html", "consistency", "schema", "budget", "i18n", "links"]);
+  assert.deepEqual(gatesToRun({ fast: true, skip: ["links"] }), ["bylaws", "html", "consistency", "schema", "budget", "i18n"]);
+  assert.deepEqual(gatesToRun({ skip: ["lighthouse"] }), ["bylaws", "html", "consistency", "schema", "budget", "i18n", "links", "a11y"]);
+  assert.deepEqual(gatesToRun({ fast: true, only: ["a11y"] }), ["a11y"]);
 });
 
 test("an output folder with no pages is a failure, not a green run", async () => {
