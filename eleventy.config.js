@@ -337,6 +337,7 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy({ "engine/scripts/enhance.js": "assets/enhance.js" });
+  eleventyConfig.addPassthroughCopy({ "engine/scripts/sound.js": "assets/sound.js" });
 
   // Engine-owned pages every site ships (R-PAGE-07, R-PAGE-08, R-DEPLOY-04, R-DEPLOY-06, R-SEO-07).
   eleventyConfig.addTemplate("_engine/root.njk", virtual("root.njk"));
