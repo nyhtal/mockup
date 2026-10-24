@@ -994,3 +994,20 @@ test("gestures (D66): generic utilities, played once after arrival, only with mo
   assert.match(css, /@keyframes glow\{(0%|from)\{opacity:0;scale:\.2\}/, "the glow starts from nothing (owner: 'start with none then grow to its full size')");
   assert.match(css, /--animate-glow: ?glow (2000ms|2s) ease-in-out/, "and grows smoothly over 2 s");
 });
+
+test("cards draw a gradient border on hover (D67): blue from the top-left corner along both sides to green at the bottom-right", () => {
+  const html = readFileSync("dist/reference/en/about/index.html", "utf8");
+  const card = /<(div|article) class="group relative flex w-full flex-col rounded-lg border border-line[^"]*"/.exec(html)?.[0];
+  assert.ok(card, "a card on the about page");
+  assert.match(card, /\bborder-draw\b/, "the card carries the border draw");
+  assert.doesNotMatch(card, /hover:border-brand-300/, "the gradient replaces the light-blue border warm-up");
+  assert.match(card, /motion-safe:hover:-translate-y-0\.5[^"]*hover:shadow-md/, "the lift and the deeper shadow stay");
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  assert.match(css, /@property --border-draw\{syntax:"<angle>";inherits:false;initial-value:0(deg)?\}/, "the drawn angle is a registered, non-inherited angle");
+  const before = /\.border-draw:before\{([^}]*)\}/.exec(css)?.[1] || "";
+  assert.match(before, /linear-gradient\(to bottom right, ?var\(--color-brand-600\), ?var\(--color-accent-500\)\)/,"blue at the top-left, green at the bottom-right");
+  assert.match(before, /conic-gradient\(from 315deg/, "the draw starts at the top-left corner");
+  assert.match(before, /mask-composite:intersect,exclude/, "the conic sweep is cut to the border ring");
+  assert.match(css, /\.border-draw:is\(:hover,:focus-within\):before\{--border-draw:180deg\}/, "hover or keyboard focus inside the card completes the ring: 180 degrees each way");
+  assert.match(css, /@media \(prefers-reduced-motion: ?no-preference\)\{\.border-draw:before\{transition:--border-draw \.8s ease-in-out/,"it draws over 0.8 s, evenly, only with motion allowed; reduced motion shows the ring at once");
+});

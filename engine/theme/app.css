@@ -394,3 +394,31 @@
     animation: var(--animate-glint-rare);
   }
 }
+
+/* The card hover of D67 (R-MOT-07): a blue-to-green border draws itself from the top-left corner along both sides and meets at the bottom-right. The angle is registered so it can transition; the ring is the ::before, cut to the border by a mask, so the per-frame paint is that thin ring only (R-MOT-01's exception). Reduced motion shows the finished ring at once. */
+@property --border-draw {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@utility border-draw {
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1.5px;
+    pointer-events: none;
+    background: linear-gradient(to bottom right, var(--color-brand-600), var(--color-accent-500));
+    mask: conic-gradient(from 315deg, #000 var(--border-draw), #0000 var(--border-draw) calc(360deg - var(--border-draw)), #000 calc(360deg - var(--border-draw))), linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: intersect, exclude;
+  }
+  &:is(:hover, :focus-within)::before {
+    --border-draw: 180deg;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    &::before {
+      transition: --border-draw 800ms ease-in-out;
+    }
+  }
+}
