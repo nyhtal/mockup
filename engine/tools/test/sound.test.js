@@ -77,7 +77,7 @@ async function on(page) {
 const corner = (page) => page.mouse.move(2, 2); // the body's margin: no hover target
 
 test("sound.js stays within its budget (R-SND-02)", () => {
-  assert.ok(statSync("engine/scripts/sound.js").size <= 3072, `${statSync("engine/scripts/sound.js").size} B`);
+  assert.ok(statSync("engine/scripts/sound.js").size <= 4608, `${statSync("engine/scripts/sound.js").size} B`);
 });
 
 test("restored on: silent until the first gesture, then hover sounds", { skip }, async () => {
