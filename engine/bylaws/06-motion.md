@@ -13,7 +13,7 @@ Why: WCAG 2.3.3 and vestibular safety; "reduce" means reduce, not "fade instead"
 Gate: consistency/motion-safe
 
 ### R-MOT-03 Budget
-MUST. At most three groups enter at once; a heading group, a grid row (its columns cascade 90 ms apart, so a four-column row finishes 270 ms after its first item) and a decorative depth layer each count as one, and a list cascades 70 ms per item for at most eight items. Entrance travel ≤ 64 px (the `expressive` item distance is 56 px), except the drawer, which slides its own width from the inline end. Depth (R-MOT-15): total travel ≤ 48 px per layer and at most two depth layers moving in any viewport. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons and `animate-spin` on a pending button.
+MUST. At most three groups enter at once; a heading group, a grid row (its columns cascade 90 ms apart, so a four-column row finishes 270 ms after its first item) and a decorative depth layer each count as one, and a list cascades 70 ms per item for at most eight items. Entrance travel ≤ 64 px (the `expressive` item distance is 56 px), except the drawer, which slides its own width from the inline end. Depth (R-MOT-15): total travel ≤ 48 px per layer and at most two depth layers moving in any viewport. Durations from R-TOK-11 only. Nothing loops except `animate-pulse` on skeletons and `animate-spin` on a pending button, and the flowing art of a backdrop hero whose image declares `animate` (D62): 30 s, at most 40 px, paused by its switch.
 Why: Below 32 px an entrance competes with the page's own scrolling and goes unnoticed; past 64 px, or with more than three things moving, the page reads as a slideshow.
 Gate: manual: checklists/new-component.md
 
@@ -66,7 +66,7 @@ Why: The entrance trigger, one fallback and two enhancements, all feature-detect
 Gate: budget/js
 
 ### R-MOT-11 No motion on load above the fold
-MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state; the hero's proof strip and highlight card do not count. `enhance.js` marks every entrance whose top is already above 88 % of the window as revealed before it sets `data-entrances`, the flag `pending:` waits for, so content visible at load never fades in. Scroll-linked movement that is at identity while `scrollY` is 0 (the depth layers of R-MOT-15 on the hero media and glows) is not an entrance and is allowed; the hero's text column and highlight card never move.
+MUST. Nothing above the fold animates on first paint: the hero, header and first section render in their final state; the hero's proof strip and highlight card do not count. `enhance.js` marks every entrance whose top is already above 88 % of the window as revealed before it sets `data-entrances`, the flag `pending:` waits for, so content visible at load never fades in. Scroll-linked movement that is at identity while `scrollY` is 0 (the depth layers of R-MOT-15 on the hero media and glows) is not an entrance and is allowed; the hero's text column and highlight card never move. One exception: the flowing art of a backdrop hero (D62) loops behind the words from first paint under `motion-safe`, starting from the composition at rest, with a pause switch (WCAG 2.2.2); its text column still never moves.
 Why: Load animation delays LCP and reads as slowness; a layer that only moves when the visitor scrolls cannot.
 Gate: manual: checklists/new-page.md
 
