@@ -12,7 +12,7 @@ const executablePath = chromePath();
 const skip = !executablePath && "no local Chrome";
 const C5 = 523, E5 = 659, G5 = 784, C4 = 262, G4 = 392;
 
-const FIXTURE = `<!DOCTYPE html><html lang="en" data-motion="standard"><head><meta charset="utf-8"><title>sound</title>
+const FIXTURE = `<!DOCTYPE html><html lang="en" data-motion="standard"><head><meta charset="utf-8"><title>sound</title><link rel="icon" href="data:,">
 <style>a,button,summary{display:block;width:200px;height:30px}.far{margin-top:3000px;height:80px}</style></head><body>
 <button type="button" data-sound aria-pressed="false" id="toggle">Sound effects</button>
 <a href="#a" id="l1">one</a><a href="#b" id="l2">two</a><a href="#c" id="l3">three</a>
@@ -22,6 +22,8 @@ const FIXTURE = `<!DOCTYPE html><html lang="en" data-motion="standard"><head><me
 <button type="button" popovertarget="pop2" id="popbtn2">menu 2</button><div popover id="pop2">menu 2</div>
 <details name="g" id="d1"><summary id="s1">one</summary>x</details><details name="g" id="d2"><summary id="s2">two</summary>y</details>
 <button type="button" commandfor="dlg" command="show-modal" id="dlgbtn">open</button><dialog id="dlg"><button type="button" commandfor="dlg" command="close" id="dlgclose">close</button></dialog>
+<button type="button" commandfor="dlg2" command="show-modal" id="dlgbtn2">open form dialog</button><dialog id="dlg2"><form method="dialog"><button type="submit" id="dlgsubmit">Close</button></form></dialog>
+<button type="button" popovertarget="drw" id="drwbtn">drawer</button><div popover id="drw" data-component="mobile-drawer"><button type="button" popovertarget="inner" id="innerbtn">inner</button><div popover id="inner">inner</div></div>
 <button type="button" commandfor="lb-1" command="show-modal" id="lbbtn">picture</button>
 <dialog id="lb-1" data-lightbox><button type="button" data-lb="lb-2" id="next">next</button></dialog>
 <dialog id="lb-2" data-lightbox><button type="button" data-lb="lb-1">previous</button></dialog>
@@ -149,6 +151,30 @@ test("dialogs: sheet and unsheet; lightbox next is one step", { skip }, async ()
   assert.deepEqual(await take(page, 250), [E5], "one step, no unsheet or sheet");
   await page.keyboard.press("Escape");
   assert.deepEqual(await take(page), [G4], "closing the lightbox afterwards is an unsheet");
+  await page.close();
+});
+
+test("a dialog closed by its method=dialog form is one unsheet, not a submit", { skip }, async () => {
+  const page = await open();
+  await on(page);
+  await key(page, "#dlgbtn2");
+  assert.deepEqual(await take(page), [C4]);
+  await key(page, "#dlgsubmit");
+  assert.deepEqual(await take(page, 250), [G4]);
+  await page.close();
+});
+
+test("drawers are sheets; a menu inside an open drawer still pops", { skip }, async () => {
+  const page = await open();
+  await on(page);
+  await key(page, "#drwbtn");
+  assert.deepEqual(await take(page), [C4], "drawer opens as a sheet");
+  await key(page, "#innerbtn");
+  assert.deepEqual(await take(page), [C5], "a plain popover inside it pops");
+  await page.keyboard.press("Escape");
+  assert.deepEqual(await take(page), [E5], "and unpops, though the drawer is open");
+  await page.keyboard.press("Escape");
+  assert.deepEqual(await take(page), [G4], "the drawer closes as an unsheet");
   await page.close();
 });
 
