@@ -151,11 +151,16 @@ test("brand version (R-SEC-13): a brand bar never joins a page header and restar
   assert.equal(brandHeader[0].ctx.joined, undefined, "and keeps its padding");
 });
 
-test("animate is accepted only on a backdrop hero with the planes-flow art (Review Focus 5)", () => {
+test("animate is accepted only on a full-bleed dark backdrop hero with the planes-flow art at comfortable density (Review Focus 5)", () => {
   const img = { slug: "home-backdrop", ratio: "16:9", art: "planes-flow", animate: true };
   assert.equal(planSections(samples, [{ type: "hero", variant: "backdrop", image: img }], opts)[0].s.image.animate, true);
   assert.equal(planSections(samples, [{ type: "hero", variant: "backdrop", image: { ...img, art: undefined } }], opts)[0].s.image.animate, true);
   assert.throws(() => planSections(samples, [{ type: "hero", variant: "split", image: img }], opts), /\/en\/about\/: image "home-backdrop" declares animate/);
   assert.throws(() => planSections(samples, [{ type: "hero", variant: "backdrop", image: { ...img, art: "planes-energy" } }], opts), /declares animate/);
   assert.throws(() => planSections(samples, [{ type: "feature-rows", image: img }], opts), /declares animate/);
+  const hero = { type: "hero", variant: "backdrop", image: img };
+  assert.throws(() => planSections(samples, [{ ...hero, light: true }], opts), /declares animate/, "the twin is dark only: a light hero would put dark ink over dark art");
+  assert.throws(() => planSections(samples, [{ ...hero, image: { ...img, tone: "light" } }], opts), /declares animate/);
+  assert.throws(() => planSections(samples, [{ ...hero, inset: true }], opts), /declares animate/, "the pause switch would cover the inset frame's bottom text");
+  assert.throws(() => planSections(samples, [hero], { ...opts, density: "compact" }), /declares animate/, "and so would it at compact density");
 });
