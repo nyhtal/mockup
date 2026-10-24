@@ -161,20 +161,21 @@ test("the visual layer of 0.5.0: mark in header and favicon, a proof strip in th
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Soundeffekte/);
 });
 
-test("the home hero's art flows (D62): the twin in place of the picture, a pause switch, the demo AVIF still built", () => {
-  const labels = { en: "Pause animation", de: "Animation anhalten", ar: "إيقاف الحركة مؤقتًا", ja: "アニメーションを一時停止" };
-  for (const [lang, label] of Object.entries(labels)) {
+test("the home hero's art assembles (D62): the twin in place of the picture, no pause switch, the demo AVIF still built", () => {
+  for (const lang of ["en", "de", "ar", "ja"]) {
     const home = readFileSync(`dist/reference/${lang}/index.html`, "utf8");
     const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
     assert.match(hero, /<div aria-hidden="true" class="absolute inset-0 -z-10 overflow-clip rtl:-scale-x-100"><svg [^>]*class="art-flow /, `${lang}: the twin sits in the mirrored art layer`);
     assert.doesNotMatch(hero, /<img/, `${lang}: no raster in the hero`);
-    for (const g of ["lines", "trail", "body"]) assert.match(hero, new RegExp(`<g data-flow="${g}">`));
-    assert.match(hero, new RegExp(`<label class="[^"]*absolute bottom-4 end-4[^"]*motion-reduce:hidden print:hidden[^"]*"><input type="checkbox" role="switch" data-flow-pause[^>]*><span>${label}</span></label>`), `${lang}: the pause switch`);
+    for (const p of ["lines", "trail", "ribbon", "corner", "reach", "joint", "base"]) assert.match(hero, new RegExp(`<g data-part="${p}">`));
+    assert.match(hero, /<g data-run="in">/);
+    assert.doesNotMatch(hero, /role="switch"|data-flow-pause/, `${lang}: a 4 s assembly needs no pause switch`);
     assert.doesNotMatch(hero, /style=/, `${lang}: no inline style`);
   }
   const css = readdirSync("dist/reference/assets").filter((f) => f.endsWith(".css")).map((f) => readFileSync(`dist/reference/assets/${f}`, "utf8")).join("");
-  assert.match(css, /@keyframes flow/, "the keyframe ships");
-  assert.match(css, /animation-play-state:\s*paused/, "the switch pauses it");
+  assert.match(css, /@keyframes assemble/, "the assembly keyframe ships");
+  assert.match(css, /@keyframes run/, "the notch keyframe ships");
+  assert.doesNotMatch(css, /@keyframes flow\b/, "the loop is gone");
   assert.ok(existsSync("dist/reference/assets/images/home-backdrop-16x9-768.avif"), "the style guide's image-map demo keeps its AVIF (Review Focus 4)");
   assert.match(readFileSync("dist/reference/sys/style-guide/components/index.html", "utf8"), /home-backdrop-16x9-768\.avif"[^>]*data-art="planes-flow" data-tone="dark"/);
 });

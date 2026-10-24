@@ -104,9 +104,9 @@ export function planSections(samples, sections, opts) {
     const raw = typeof item === "string" ? siteSections[item] || samples.byId[item] : item;
     if (!raw) throw new Error(`Unknown section id "${item}"`);
     const s = expand(raw, opts);
-    // The flowing art (D62): one piece has a vector twin, dark only, and only a full-bleed backdrop hero at comfortable density draws it (the light frame, the inset text and the pause switch would collide with it).
-    if (s.image?.animate && !(s.type === "hero" && s.variant === "backdrop" && (s.image.art ?? "planes-flow") === "planes-flow" && !s.light && s.image.tone !== "light" && !s.inset && density !== "compact")) {
-      throw new Error(`${pageUrl}: image "${s.image.slug}" declares animate, which only a full-bleed dark backdrop hero with the planes-flow art at comfortable density supports (R-ASSET-06)`);
+    // The assembling art (D62): one piece has a vector twin, dark only, and only a backdrop hero draws it (a light frame would put dark ink over the dark art).
+    if (s.image?.animate && !(s.type === "hero" && s.variant === "backdrop" && (s.image.art ?? "planes-flow") === "planes-flow" && !s.light && s.image.tone !== "light")) {
+      throw new Error(`${pageUrl}: image "${s.image.slug}" declares animate, which only a dark backdrop hero with the planes-flow art supports (R-ASSET-06)`);
     }
     if (s.skipEmpty && (!s[s.skipEmpty === true ? "items" : s.skipEmpty] || s[s.skipEmpty === true ? "items" : s.skipEmpty].length === 0)) continue;
     delete s.skipEmpty;

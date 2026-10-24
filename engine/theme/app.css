@@ -221,25 +221,49 @@
     outline-offset: 2px;
   }
 }
-/* The flowing art (R-MOT-03, R-MOT-11, D62): planes-flow's twin glides along x, the body as one, the two channel pairs further and a beat behind, so the light trails the bands. Screen and motion allowed only: print and reduced motion keep the composition at rest. The switch in the same hero pauses it. */
+/* The assembling art (R-MOT-03, R-MOT-11, D62): planes-flow's twin builds itself once on load, every movement heading toward the words on the start side so the eye ends on them. The dark base and its corner line and the white ribbon slide in from the end edge onto the joint, which is there from the first frame, the trail pair draws in from that edge, the mid pipe reaches out from the joint and the channel pair draws out beside it; then three lit notches run in along the trail, through the joint, and out along the channels to their open end by the words. All done in 4 s, so nothing needs a pause (WCAG 2.2.2). Screen and motion allowed only: print and reduced motion show the composition at rest. */
 @utility art-flow {
   @media screen and (prefers-reduced-motion: no-preference) {
-    & [data-flow] {
-      animation: var(--animate-flow);
+    & [data-part] {
+      animation: var(--animate-assemble);
+      transform-box: fill-box;
     }
-    & [data-flow="body"] {
-      --flow-x: -56px;
+    & :is([data-part="base"], [data-part="corner"], [data-part="ribbon"]) {
+      --art-x: 680px;
     }
-    & [data-flow="lines"] {
-      --flow-x: -96px;
-      animation-delay: 0.4s;
+    & [data-part="ribbon"] {
+      animation-delay: 150ms;
     }
-    & [data-flow="trail"] {
-      --flow-x: -96px;
-      animation-delay: 0.8s;
+    & :is([data-part="reach"], [data-part="trail"], [data-part="lines"]) {
+      --art-sx: 0;
+      transform-origin: right;
     }
-    :where([data-component="hero"]:has([data-flow-pause]:checked)) & [data-flow] {
-      animation-play-state: paused;
+    & [data-part="reach"] {
+      animation-delay: 300ms;
+    }
+    & [data-part="trail"] {
+      animation-delay: 800ms;
+    }
+    & [data-part="lines"] {
+      animation-delay: 950ms;
+    }
+    & [data-run] > g {
+      animation: var(--animate-run);
+      animation-delay: var(--art-at);
+    }
+    & [data-run] > g + g {
+      animation-delay: calc(var(--art-at) + 150ms);
+    }
+    & [data-run] > g + g + g {
+      animation-delay: calc(var(--art-at) + 300ms);
+    }
+    & [data-run="in"] {
+      --art-run: -600px;
+      --art-at: 1400ms;
+    }
+    & [data-run="out"] {
+      --art-run: -360px;
+      --art-at: 2500ms;
     }
   }
 }
@@ -269,8 +293,9 @@
   --animate-drop: drop 200ms var(--ease-smooth) both;
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
-  /* The home hero's flowing art (R-MOT-03, D62): the one loop on a page, 12 s from the first frame, eased both ways, paused by its switch. */
-  --animate-flow: flow 12s ease-in-out infinite;
+  /* The home hero's assembling art (R-MOT-03, D62): each part arrives once on the entrance curve; then the notches run at a steady speed. */
+  --animate-assemble: assemble 800ms var(--ease-reveal) both;
+  --animate-run: run 1200ms linear both;
   /* Section reveals move but never fade: an element partly in view at load would be mid-fade and fail
      contrast checks, and content must stay readable at every scroll position (R-MOT-04, R-MOT-05). */
   @keyframes progress {
@@ -317,8 +342,14 @@
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  @keyframes flow {
-    50% { translate: var(--flow-x) 0; }
+  @keyframes assemble {
+    from { translate: var(--art-x, 0) 0; scale: var(--art-sx, 1) 1; }
+  }
+  @keyframes run {
+    from { translate: 0 0; opacity: 0; }
+    10% { opacity: 1; }
+    85% { opacity: 1; }
+    to { translate: var(--art-run) 0; opacity: 0; }
   }
 }
 
