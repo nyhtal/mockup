@@ -140,7 +140,7 @@ test("the visual layer of 0.5.0: mark in header and favicon, a proof strip in th
   assert.match(stats, /<span class="inline-grid"><span class="invisible \[grid-area:1\/1\]" aria-hidden="true">99\.98%<\/span><span class="\[grid-area:1\/1\] whitespace-nowrap motion-safe:data-counted:animate-settle" aria-hidden="true" data-count="99.98" data-decimals="2" data-nu="latn">99\.98%<\/span><span class="sr-only">99\.98%<\/span><\/span>/, "the counting triple: sizing copy, animated copy with build-time attributes, screen-reader copy (R-MOT-10)");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /data-count="99.98" data-decimals="2" data-nu="latn">99,98/, "German figures parse with the decimal comma");
   // Depth (R-MOT-15): md+ only, scroll(root) in the hero, the element's own view() elsewhere, drift mirrored in RTL, nothing on hero text.
-  assert.match(hero, /<img[^>]*fetchpriority="high"[^>]*class="absolute inset-0 size-full object-cover md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\]"/, "the backdrop art sinks on scroll(root), overscanned, at identity at rest");
+  assert.match(hero, /<svg [^>]*class="art-flow absolute inset-0 size-full md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\]"/, "the flowing art sinks on scroll(root), overscanned, at identity at rest");
   assert.doesNotMatch(/<div class="max-w-2xl lg:w-7\/12[\s\S]*?<\/ul>/.exec(hero)?.[0] || "", /parallax|drift/, "no depth on the hero's text column");
   assert.match(split, /md:motion-safe:sda:animate-parallax-sm md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\][^"]*bg-hero-backdrop/, "the split hero's glows sink on scroll(root)");
   assert.doesNotMatch(/<div class="lg:col-span-7[\s\S]*?<\/ul>/.exec(split)?.[0] || "", /parallax|drift/, "no depth on the split hero's text column");
@@ -159,6 +159,24 @@ test("the visual layer of 0.5.0: mark in header and favicon, a proof strip in th
   assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");
   assert.match(home, /<button type="button" data-sound aria-pressed="false"[^>]*>[\s\S]*?Sound effects/, "sound toggle is a named toggle button, off by default");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Soundeffekte/);
+});
+
+test("the home hero's art flows (D62): the twin in place of the picture, a pause switch, the demo AVIF still built", () => {
+  const labels = { en: "Pause animation", de: "Animation anhalten", ar: "إيقاف الحركة مؤقتًا", ja: "アニメーションを一時停止" };
+  for (const [lang, label] of Object.entries(labels)) {
+    const home = readFileSync(`dist/reference/${lang}/index.html`, "utf8");
+    const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
+    assert.match(hero, /<div aria-hidden="true" class="absolute inset-0 -z-10 overflow-clip rtl:-scale-x-100"><svg [^>]*class="art-flow /, `${lang}: the twin sits in the mirrored art layer`);
+    assert.doesNotMatch(hero, /<img/, `${lang}: no raster in the hero`);
+    for (const g of ["lines", "trail", "body"]) assert.match(hero, new RegExp(`<g data-flow="${g}">`));
+    assert.match(hero, new RegExp(`<label class="[^"]*absolute bottom-4 end-4[^"]*motion-reduce:hidden print:hidden[^"]*"><input type="checkbox" role="switch" data-flow-pause[^>]*><span>${label}</span></label>`), `${lang}: the pause switch`);
+    assert.doesNotMatch(hero, /style=/, `${lang}: no inline style`);
+  }
+  const css = readdirSync("dist/reference/assets").filter((f) => f.endsWith(".css")).map((f) => readFileSync(`dist/reference/assets/${f}`, "utf8")).join("");
+  assert.match(css, /@keyframes flow/, "the keyframe ships");
+  assert.match(css, /animation-play-state:\s*paused/, "the switch pauses it");
+  assert.ok(existsSync("dist/reference/assets/images/home-backdrop-16x9-768.avif"), "the style guide's image-map demo keeps its AVIF (Review Focus 4)");
+  assert.match(readFileSync("dist/reference/sys/style-guide/components/index.html", "utf8"), /home-backdrop-16x9-768\.avif"[^>]*data-art="planes-flow" data-tone="dark"/);
 });
 
 test("every disclosure opens and closes smoothly: details content animates height and opacity, html interpolates to auto (R-MOT-06)", () => {

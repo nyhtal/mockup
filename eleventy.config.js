@@ -14,6 +14,7 @@ import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
 import { searchIndex, searchPage } from "./engine/tools/lib/search-index.js";
 import { sectionGroups } from "./engine/tools/lib/style-guide.js";
+import { planesFlowSvg, flowTones } from "./engine/tools/lib/art-flow.js";
 
 const OG_LOCALES = { en: "en_GB", de: "de_DE", ar: "ar_SA", fr: "fr_FR", es: "es_ES", it: "it_IT", nl: "nl_NL", pt: "pt_PT", ja: "ja_JP", zh: "zh_CN" };
 
@@ -162,6 +163,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("samples", samples);
   // A Nunjucks global, not global data: Eleventy would call a function-valued global datum to compute its value.
   eleventyConfig.addNunjucksGlobal("unknownSection", (type) => { throw new Error(`Unknown section type "${type}" (R-SEC-12): add it to engine/catalog/sections and the dispatcher`); });
+  // The flowing twin of planes-flow (D62) in the site's hues, for a backdrop hero whose image declares animate.
+  const flowTonesForSite = flowTones(site.brand?.hue ?? 250, site.brand?.accentHue ?? site.brand?.hue ?? 250);
+  eleventyConfig.addNunjucksGlobal("planesFlowSvg", (className) => planesFlowSvg({ tones: flowTonesForSite, className }));
 
   // Section ids → render steps with alternating surfaces, reveal flags and the page context (see lib/sections.js).
   // Site sections (pages.json `sections`) and entities come from the page's locale; `e` is the page's entity when it has one.
