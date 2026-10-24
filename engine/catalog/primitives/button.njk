@@ -9,7 +9,7 @@
   keyboard: native; a for navigation, button for actions, never href="#"
   a11y: label is visible text; external links add an sr-only "opens in a new tab" and rel="noopener"
   i18n: label ≤ 25 chars in every locale (R-TYPO-07); icons that point along the reading direction pass rtl:-scale-x-100
-  content limits: verb-first label, 1–4 words (R-CONT-05); opts = { href, variant, size, icon, iconEnd, type, external, disabled, pending, attrs }
+  content limits: verb-first label, 1–4 words (R-CONT-05); opts = { href, variant, size, icon, iconEnd, type, external, disabled, pending, attrs, gesture }
 #}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro button(label, opts={}) %}
@@ -29,6 +29,8 @@
 } -%}
 {%- set iconEnd = opts.iconEnd or ("arrow-right" if (variant == "primary" or variant == "inverse") and not opts.noArrow) -%}
 {%- set nudge = "motion-safe:transition-transform motion-safe:duration-150 group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" -%}
+{#- opts.gesture: the trailing arrow also nudges once after its section arrives (D66); only the CTA band passes it. -#}
+{%- if opts.gesture %}{% set nudge = nudge + " gesture-nudge" %}{% endif -%}
 {%- set classes = base + " " + (sizes[size] if variant != "link" else "") + " " + variants[variant] + (" " + opts.class if opts.class else "") -%}
 {%- set iconClass = "size-5" if size != "sm" else "size-4" -%}
 {%- if opts.href -%}

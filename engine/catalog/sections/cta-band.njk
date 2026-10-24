@@ -4,8 +4,8 @@
   anatomy: section[data-component=cta-band] > container > h2 + p + buttons
   variants: none
   states: none
-  spacing: py-16 md:py-24; centred; an inset rounded-2xl panel carries the gradient and a radial highlight in the top start corner (R-COL-09)
-  motion: the panel settles from 96 % (a framed object, DESIGN §3); in expressive its highlight drifts 24 px across as the panel passes (R-MOT-15)
+  spacing: py-16 md:py-24; centred; an inset rounded-2xl panel carries the gradient, a radial highlight in the top start corner (R-COL-09) and an accent glow in the bottom end corner
+  motion: the panel settles from 96 % (a framed object, DESIGN §3); in expressive its highlight drifts 24 px across as the panel passes (R-MOT-15); a green glow in the bottom-end corner grows once after the panel arrives and, in expressive, pulses three times 24 s apart, and the primary arrow nudges once after it (gestures, D66)
   keyboard: buttons
   a11y: inverse text on the gradient meets contrast (brand-700 base)
   i18n: none
@@ -19,10 +19,11 @@
 <section class="{{ pad }} {{ s.surface or ctx.surface or 'bg-surface' }}{{ revealClasses(ctx.reveal, 'scale') }}" data-component="cta-band"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
 <div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
 <div class="relative isolate overflow-clip rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600 px-6 py-12 text-center text-ink-inverse shadow-xl shadow-brand-900/20 sm:px-12 md:py-16 before:absolute before:-top-32 before:-start-32 before:-z-10 before:size-96 before:rounded-full before:bg-ink-inverse/15 before:blur-3xl{{ depth('drift', 'view()', 'cover_0%_cover_100%', 'before:') if ctx.flair and ctx.flair.drift }}">
+<span aria-hidden="true" class="pointer-events-none absolute -bottom-32 -end-32 -z-10 size-96 rounded-full bg-accent-300/30 blur-3xl{{ (' gesture-glow-repeat' if ctx.flair.gestureRepeat else ' gesture-glow') if ctx.flair and ctx.flair.gesture }}"></span>
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>
 {%- if s.text %}<p class="mx-auto mt-4 max-w-2xl text-lg text-ink-inverse/85">{{ s.text }}</p>{% endif %}
 <div class="mt-8 flex flex-wrap justify-center gap-3">
-{{ button(s.primary.label, { href: s.primary.href, variant: "inverse" }) }}
+{{ button(s.primary.label, { href: s.primary.href, variant: "inverse", gesture: ctx.flair and ctx.flair.gesture }) }}
 {%- if s.secondary %}{{ button(s.secondary.label, { href: s.secondary.href, variant: "inverse-outline" }) }}{% endif %}
 </div>
 </div>

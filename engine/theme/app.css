@@ -13,6 +13,14 @@
     }
   }
 }
+/* Gestures (D66): a small decoration plays once after its section's entrance, only on screen with motion allowed and the script running (it keys on data-revealed, which enhance.js sets). Print, reduced motion and no JS never match. */
+@custom-variant arrived {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    &:where([data-revealed], [data-revealed] *) {
+      @slot;
+    }
+  }
+}
 /* The hero backdrop (DESIGN §4, R-COL-09): a brand glow behind the text and an accent glow behind the media, both at 35 % alpha and faded to the surface at the edges. One element, no texture, no blur filters. */
 @utility bg-hero-backdrop {
   background-image:
@@ -247,6 +255,13 @@
   --animate-drop: drop 200ms var(--ease-smooth) both;
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
+  /* Gestures (D66): once after arrival; the CTA glow's pulse three times. Delays order them: the glow first, the arrow nudge after it, a trace after its line's 1 200 ms draw. The logo glint plays on hover or focus; its rare form sweeps 20 s after load, then every 60 s, three times at most. */
+  --animate-nudge: nudge 600ms ease-in-out 1200ms 1 none;
+  --animate-glow: glow 1200ms var(--ease-reveal) 800ms 1 backwards;
+  --animate-glow-pulse: glow-pulse 24s ease-in-out 2000ms 3 none;
+  --animate-trace: trace 1200ms ease-in-out 2000ms 1 none;
+  --animate-glint: glint 900ms ease-in-out 1 none;
+  --animate-glint-rare: glint-rare 60s linear 20s 3 none;
   /* Section reveals move but never fade: an element partly in view at load would be mid-fade and fail
      contrast checks, and content must stay readable at every scroll position (R-MOT-04, R-MOT-05). */
   @keyframes progress {
@@ -293,11 +308,87 @@
     from { opacity: 0; }
     to { opacity: 1; }
   }
+  @keyframes nudge {
+    50% { translate: calc(3px * var(--g-dir, 1)) 0; }
+  }
+  @keyframes glow {
+    from { opacity: 0.55; scale: 0.92; }
+  }
+  @keyframes glow-pulse {
+    0%, 90%, 100% { opacity: 1; scale: 1; }
+    95% { opacity: 0.6; scale: 0.96; }
+  }
+  @keyframes trace {
+    from { translate: 0 -50%; opacity: 0; }
+    15%, 85% { opacity: 1; }
+    to { translate: 0 50%; opacity: 0; }
+  }
+  @keyframes glint {
+    from { translate: 0 0; }
+    to { translate: 110px 0; }
+  }
+  @keyframes glint-rare {
+    0% { translate: 0 0; }
+    1.5% { translate: 110px 0; }
+    1.51%, 100% { translate: 0 0; }
+  }
 }
 
 /* Exception list (R-PREC-07): cross-document view transitions, motion-safe only. */
 @media (prefers-reduced-motion: no-preference) {
   @view-transition {
     navigation: auto;
+  }
+}
+
+/* Gestures (D66, DESIGN §3): add one class to an existing decorative element; it plays once after its section arrives. */
+@utility gesture-nudge {
+  --g-dir: 1;
+  &:dir(rtl) {
+    --g-dir: -1;
+  }
+  @variant arrived {
+    animation: var(--animate-nudge);
+  }
+}
+@utility gesture-glow {
+  @variant arrived {
+    animation: var(--animate-glow);
+  }
+}
+@utility gesture-glow-repeat {
+  @variant arrived {
+    animation: var(--animate-glow), var(--animate-glow-pulse);
+  }
+}
+/* The element is a line; its ::after is a strip as long as the line with one soft band of light, swept from its start to its end. */
+@utility gesture-trace {
+  &::after {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline: -1px;
+    border-radius: 9999px;
+    background: linear-gradient(to bottom, transparent 42%, var(--color-accent-400) 50%, transparent 58%);
+    opacity: 0;
+  }
+  @variant arrived {
+    &::after {
+      animation: var(--animate-trace);
+    }
+  }
+}
+/* A band of light in a clipped mark (the header logo): it crosses once when its link is hovered or focused. */
+@utility gesture-glint {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    :where(a, button):is(:hover, :focus-visible) & {
+      animation: var(--animate-glint);
+    }
+  }
+}
+/* The band's wrapper: it sweeps it 20 s after load, then every 60 s, three times at most. */
+@utility gesture-glint-rare {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    animation: var(--animate-glint-rare);
   }
 }

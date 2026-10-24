@@ -917,3 +917,73 @@ test("the home hero's art flows (D65): the picture stays the LCP image, a loopin
   assert.match(readFileSync("dist/reference/en/index.html", "utf8"), /data-flow-pause[\s\S]*?<span class="sr-only">Pause animation<\/span>/);
   for (const ext of ["mp4", "webm"]) assert.ok(statSync(`dist/reference/assets/video/home-flow.${ext}`).size < 1.5 * 1024 * 1024, `the ${ext} clip is built and within R-PERF-17`);
 });
+
+
+test("the closing CTA panel comes alive once (D66): its green glow grows and pulses three times, the primary arrow nudges", () => {
+  for (const lang of ["en", "ar"]) {
+    const home = readFileSync(`dist/reference/${lang}/index.html`, "utf8");
+    const band = /<section[^>]*data-component="cta-band"[\s\S]*?<\/section>/.exec(home)[0];
+    assert.match(band, /<span aria-hidden="true" class="pointer-events-none absolute -bottom-32 -end-32 -z-10 size-96 rounded-full bg-accent-300\/30 blur-3xl gesture-glow-repeat"><\/span>/, `${lang}: the glow layer in the green corner, repeating (expressive)`);
+    const primary = /<a [^>]*data-variant="inverse"[^>]*>[\s\S]*?<\/a>/.exec(band)[0];
+    assert.match(primary, /<svg aria-hidden="true" class="[^"]*rtl:-scale-x-100[^"]* gesture-nudge"><use href="#i-arrow-right">/, `${lang}: the arrow nudges once`);
+    const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
+    assert.doesNotMatch(hero, /gesture-/, `${lang}: nothing gestures in the hero`);
+  }
+  for (const f of listHtml("dist/reference")) {
+    for (const a of readFileSync(f, "utf8").match(/<a [^>]*data-component="button"[^>]*>(?:(?!<\/a>)[\s\S])*?gesture-nudge/g) || []) {
+      assert.match(a, /data-variant="inverse"/, `${f}: only the CTA band's primary button nudges`);
+    }
+  }
+});
+
+test("the header logo glints (D66): once on hover or focus, and rarely on its own (20 s after load, then every 60 s, three times); the footer's stays still", () => {
+  const home = readFileSync("dist/reference/en/index.html", "utf8");
+  const header = /<header[\s\S]*?<\/header>/.exec(home)[0];
+  const mark = /<span class="inline-flex items-center gap-2\.5" data-component="logo">\s*<svg [\s\S]*?<\/svg>/.exec(header)[0];
+  assert.match(mark, /<clipPath id="logo-glint"><path d="M14 0H50/, "the band is clipped to the tile's notched shape");
+  assert.match(mark, /<g clip-path="url\(#logo-glint\)" class="gesture-glint-rare"><path class="fill-ink-inverse\/35 gesture-glint" d="M-26 0h12l-10 64h-12z"\/><\/g><text /, "the band sits over the tile, under the letter");
+  assert.equal((home.match(/id="logo-glint"/g) || []).length, 1, "one clip id per page");
+  const footer = /<footer[\s\S]*?<\/footer>/.exec(home)[0];
+  assert.doesNotMatch(footer, /gesture-|logo-glint/, "the footer logo stays still");
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  assert.match(css, /--animate-glint-rare: ?glint-rare 60s linear 20s 3 none/);
+  assert.match(css, /:where\(a, ?button\):is\(:hover, ?:focus-visible\) \.gesture-glint/, "the glint answers hover and keyboard focus on its link");
+});
+
+test("the timeline's line carries a trace once it has drawn (D66)", () => {
+  const html = listHtml("dist/reference").map((f) => readFileSync(f, "utf8")).find((h) => h.includes('data-component="timeline"'));
+  const ol = /<ol [^>]*data-component="timeline"[^>]*>[\s\S]*?<\/ol>/.exec(html)[0];
+  assert.match(ol, /^<ol [^>]*><span aria-hidden="true" class="absolute inset-y-0 start-0 w-px gesture-trace"><\/span>/);
+});
+
+test("gestures (D66): generic utilities, played once after arrival, only with motion allowed, compositor-only", () => {
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  /** The body of the block that opens at index i (brace matching; the CSS is minified). */
+  const block = (i) => {
+    const open = css.indexOf("{", i);
+    for (let j = open, depth = 0; j < css.length; j++) {
+      if (css[j] === "{") depth++;
+      else if (css[j] === "}" && --depth === 0) return css.slice(open + 1, j);
+    }
+    return "";
+  };
+  const media = /@media screen and \(prefers-reduced-motion: ?no-preference\)/g;
+  const safe = [...css.matchAll(media)].map((m) => block(m.index));
+  const inside = safe.join("\n");
+  for (const [g, a] of [["gesture-nudge", "nudge"], ["gesture-glow-repeat", "glow"], ["gesture-trace", "trace"]]) {
+    const rule = new RegExp(`\\.${g}:where\\(\\[data-revealed\\], ?\\[data-revealed\\] \\*\\)(::?after)?\\{animation:var\\(--animate-${a}\\)`);
+    assert.match(inside, rule, `${g} animates only after arrival, with motion allowed, on screen`);
+  }
+  let outside = css;
+  for (const b of safe) outside = outside.replace(b, "");
+  assert.doesNotMatch(outside, /\.gesture-[a-z-]+[^{]*\{[^}]*animation:var\(--animate-(nudge|glow|trace|glint)/, "no gesture animates outside the motion-allowed screen media query");
+  assert.match(css, /\.gesture-nudge\{--g-dir: ?1\}\.gesture-nudge:dir\(rtl\)\{--g-dir: ?-1\}/, "the nudge heads toward the reading direction in RTL");
+  for (const k of ["nudge", "glow", "glow-pulse", "trace", "glint", "glint-rare"]) {
+    const at = css.search(new RegExp(`@keyframes ${k}\{`));
+    assert.ok(at >= 0, `@keyframes ${k} ships`);
+    const props = [...block(at).matchAll(/([a-z-]+):/g)].map((m) => m[1]);
+    assert.deepEqual(props.filter((p) => !["translate", "scale", "opacity"].includes(p)), [], `${k} animates only translate, scale and opacity`);
+  }
+  assert.match(css, /--animate-nudge: ?nudge (600ms|\.6s)[^;]* 1 none/, "the nudge plays once and leaves no fill, so hover still nudges");
+  assert.match(css, /--animate-glow-pulse: ?glow-pulse 24s[^;]* 3 none/, "the CTA glow pulses three times, then stops");
+});
