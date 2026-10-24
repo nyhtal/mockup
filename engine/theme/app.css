@@ -228,15 +228,15 @@
       animation: var(--animate-flow);
     }
     & [data-flow="body"] {
-      --flow-x: -24px;
+      --flow-x: -56px;
     }
     & [data-flow="lines"] {
-      --flow-x: -40px;
-      animation-delay: 1.5s;
+      --flow-x: -96px;
+      animation-delay: 0.4s;
     }
     & [data-flow="trail"] {
-      --flow-x: -40px;
-      animation-delay: 3s;
+      --flow-x: -96px;
+      animation-delay: 0.8s;
     }
     :where([data-component="hero"]:has([data-flow-pause]:checked)) & [data-flow] {
       animation-play-state: paused;
@@ -269,8 +269,8 @@
   --animate-drop: drop 200ms var(--ease-smooth) both;
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
-  /* The home hero's flowing art (R-MOT-03, D62): the one loop on a page, 30 s, eased both ways, paused by its switch. */
-  --animate-flow: flow 30s ease-in-out infinite;
+  /* The home hero's flowing art (R-MOT-03, D62): the one loop on a page, 12 s from the first frame, eased both ways, paused by its switch. */
+  --animate-flow: flow 12s ease-in-out infinite;
   /* Section reveals move but never fade: an element partly in view at load would be mid-fade and fail
      contrast checks, and content must stay readable at every scroll position (R-MOT-04, R-MOT-05). */
   @keyframes progress {
