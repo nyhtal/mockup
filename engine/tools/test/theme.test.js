@@ -65,6 +65,7 @@ test("the flair dial: calm rises only, standard adds the vocabulary and media de
   assert.ok(Object.entries(calm).every(([k, v]) => k === "level" || v === false), "calm enables nothing");
   assert.deepEqual([standard.vocabulary, standard.count, standard.rule, standard.parallaxMedia, standard.progress], [true, true, true, true, true]);
   assert.deepEqual([standard.pop, standard.parallaxHero, standard.drift, standard.sticky, standard.settle], [false, false, false, false, false]);
+  assert.deepEqual([standard.gesture, standard.gestureRepeat], [true, false], "standard plays gestures once; only expressive repeats the CTA glow and the logo glint (D66)");
   assert.ok(Object.entries(expressive).every(([k, v]) => k === "level" || v === true), "expressive enables everything");
   assert.equal(flairFor("loud").level, "standard", "an unknown level falls back to the default");
   const table = motionLevels();

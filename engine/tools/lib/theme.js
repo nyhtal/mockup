@@ -19,7 +19,7 @@ const MOTION = {
 
 /** The dial as a table for the style guide: each level's distances, fallback duration and enabled devices (R-TOK-12). */
 export function motionLevels() {
-  const names = { vocabulary: "column vocabulary", count: "count-up", rule: "eyebrow rule draw", parallaxMedia: "media-row depth", progress: "progress hairline", pop: "icon pop", parallaxHero: "hero depth", parallaxStats: "stats backdrop", drift: "CTA and logo drift", sticky: "sticky editorial row", settle: "count settle" };
+  const names = { vocabulary: "column vocabulary", count: "count-up", rule: "eyebrow rule draw", parallaxMedia: "media-row depth", progress: "progress hairline", pop: "icon pop", parallaxHero: "hero depth", parallaxStats: "stats backdrop", drift: "CTA and logo drift", sticky: "sticky editorial row", settle: "count settle", gesture: "gestures once on arrival", gestureRepeat: "rare CTA pulse and logo glint" };
   return Object.entries(MOTION).map(([level, m]) => {
     const f = flairFor(level);
     return { level, ...m, enables: Object.keys(names).filter((k) => f[k]).map((k) => names[k]) };
@@ -30,7 +30,7 @@ export function motionLevels() {
 export function flairFor(level) {
   const l = MOTION[level] ? level : "standard";
   const standard = l !== "calm", expressive = l === "expressive";
-  return { level: l, vocabulary: standard, count: standard, rule: standard, parallaxMedia: standard, progress: standard, pop: expressive, parallaxHero: expressive, parallaxStats: expressive, drift: expressive, sticky: expressive, settle: expressive };
+  return { level: l, vocabulary: standard, count: standard, rule: standard, parallaxMedia: standard, progress: standard, pop: expressive, parallaxHero: expressive, parallaxStats: expressive, drift: expressive, sticky: expressive, settle: expressive, gesture: standard, gestureRepeat: expressive };
 }
 /** Lightness of ink-muted per scheme; must keep 4.5:1 on every surface (see contrastFailures). */
 const ROLE_MUTED = { light: 46, dark: 72 };
