@@ -14,6 +14,7 @@ import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
 import { searchIndex, searchPage } from "./engine/tools/lib/search-index.js";
 import { sectionGroups } from "./engine/tools/lib/style-guide.js";
+import { planesFlowSvg, flowTones } from "./engine/tools/lib/art-flow.js";
 
 const OG_LOCALES = { en: "en_GB", de: "de_DE", ar: "ar_SA", fr: "fr_FR", es: "es_ES", it: "it_IT", nl: "nl_NL", pt: "pt_PT", ja: "ja_JP", zh: "zh_CN" };
 
@@ -162,6 +163,9 @@ export default function (eleventyConfig) {
   eleventyConfig.addGlobalData("samples", samples);
   // A Nunjucks global, not global data: Eleventy would call a function-valued global datum to compute its value.
   eleventyConfig.addNunjucksGlobal("unknownSection", (type) => { throw new Error(`Unknown section type "${type}" (R-SEC-12): add it to engine/catalog/sections and the dispatcher`); });
+  // The flowing twin of planes-flow (D62) in the site's hues, for a backdrop hero whose image declares animate.
+  const flowTonesForSite = flowTones(site.brand?.hue ?? 250, site.brand?.accentHue ?? site.brand?.hue ?? 250);
+  eleventyConfig.addNunjucksGlobal("planesFlowSvg", (className) => planesFlowSvg({ tones: flowTonesForSite, className }));
 
   // Section ids → render steps with alternating surfaces, reveal flags and the page context (see lib/sections.js).
   // Site sections (pages.json `sections`) and entities come from the page's locale; `e` is the page's entity when it has one.
@@ -263,6 +267,8 @@ export default function (eleventyConfig) {
     if (value == null) throw new Error(`Missing i18n key "${key}" for locale "${lang}"`);
     return value;
   });
+  // Every form of a plural string, for a script that counts in the browser (the search results).
+  eleventyConfig.addFilter("pluralForms", function (key) { return lookupString(this.ctx?.page?.lang || site.defaultLocale, key); });
   eleventyConfig.addFilter("md", renderMarkdown);
   // Fragment ids that keep letters of every script (Eleventy's slugify drops Japanese, leaving "term-" for every glossary entry).
   eleventyConfig.addFilter("anchor", slugify);
@@ -336,7 +342,7 @@ export default function (eleventyConfig) {
     return [{ title: t(locale, "nav.home") || "Home", links: home.map(({ label, href }) => ({ label, href })) }, ...groups];
   });
 
-  eleventyConfig.addPassthroughCopy({ "engine/scripts/enhance.js": "assets/enhance.js" });
+  eleventyConfig.addPassthroughCopy({ "engine/scripts/enhance.js": "assets/enhance.js", "engine/scripts/search.js": "assets/search.js" });
   eleventyConfig.addPassthroughCopy({ "engine/scripts/sound.js": "assets/sound.js" });
 
   // Engine-owned pages every site ships (R-PAGE-07, R-PAGE-08, R-DEPLOY-04, R-DEPLOY-06, R-SEO-07).
@@ -415,6 +421,10 @@ export default function (eleventyConfig) {
     }
     if (pages.sitemap) {
       eleventyConfig.addTemplate(`${locale}/_engine/sitemap-page.njk`, virtual("sitemap-page.njk"), { lang: locale, ...pages.sitemap, permalink: `/${locale}/sitemap/index.html` });
+    }
+    // The search index as a file: the results page searches it in the browser when its address carries a query (?q=).
+    if (entities.searchIndex) {
+      eleventyConfig.addTemplate(`${locale}/_engine/search-index.njk`, "{{ searchJson | safe }}", { eleventyExcludeFromCollections: true, searchJson: JSON.stringify(entities.searchIndex), permalink: `/${locale}/search/index.json` });
     }
     // Atom feed of the blog (R-SEO-08).
     const posts = [...(entities.posts || [])].sort((a, b) => (a.date < b.date ? 1 : -1)).map((p) => ({ ...p, authorName: (entities.people || []).find((x) => x.slug === p.author)?.name }));

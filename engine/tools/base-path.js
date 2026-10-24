@@ -11,7 +11,7 @@ const prefixUrl = (base, url) => (ROOT.test(url) ? base + url : url);
 
 export function rewriteHtml(html, base) {
   return html
-    .replace(/(\s(?:href|src|action|poster|data)=")([^"]*)"/g, (_, a, v) => `${a}${prefixUrl(base, v)}"`)
+    .replace(/(\s(?:href|src|action|poster|data|data-index)=")([^"]*)"/g, (_, a, v) => `${a}${prefixUrl(base, v)}"`)
     .replace(/(\ssrcset=")([^"]*)"/g, (_, a, v) => `${a}${v.split(",").map((c) => c.replace(/^(\s*)(\S+)/, (m, s, u) => s + prefixUrl(base, u))).join(",")}"`)
     .replace(/(content="\d+;\s*url=)(\/(?!\/))/gi, `$1${base}$2`)
     .replace(/url\((['"]?)\/(?!\/)/g, `url($1${base}/`);
@@ -19,6 +19,11 @@ export function rewriteHtml(html, base) {
 
 export function rewriteCss(css, base) {
   return css.replace(/url\((['"]?)\/(?!\/)/g, `url($1${base}/`);
+}
+
+/** The links in a JSON file the pages read (the search index). */
+export function rewriteJson(json, base) {
+  return json.replace(/("href":")\/(?!\/)/g, `$1${base}/`);
 }
 
 function walk(dir) {
@@ -32,7 +37,7 @@ export function applyBasePath(dist, base) {
   base = "/" + base.replace(/^\/+|\/+$/g, "");
   if (base === "/") return;
   for (const file of walk(dist)) {
-    const rewrite = file.endsWith(".html") ? rewriteHtml : file.endsWith(".css") ? rewriteCss : null;
+    const rewrite = file.endsWith(".html") ? rewriteHtml : file.endsWith(".css") ? rewriteCss : file.endsWith(".json") ? rewriteJson : null;
     if (rewrite) writeFileSync(file, rewrite(readFileSync(file, "utf8"), base));
   }
 }

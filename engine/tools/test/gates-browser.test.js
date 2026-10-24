@@ -1,9 +1,11 @@
 import { test, before, after } from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "node:fs";
+import puppeteer from "puppeteer-core";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { startServer } from "../serve.js";
+import { chromePath } from "../lib/browser.js";
 import * as lighthouse from "../gates/lighthouse.js";
 import * as a11y from "../gates/a11y.js";
 import * as links from "../gates/links.js";
@@ -125,4 +127,36 @@ test("links gate crawls the site and reports broken and external links", { skip,
   assert.equal(r.id, "links");
   assert.ok(r.report.scanned >= 2, "scanned at least the page and its css");
   for (const f of r.findings) assert.match(f.check, /^links\/(broken|external)$/);
+});
+
+test("search: a query in the address shows only its matches, marked, counted and filterable; a query with no match shows the empty state", { skip, timeout: 120000 }, async () => {
+  const browser = await puppeteer.launch({ executablePath: chromePath(), headless: true, args: ["--no-sandbox"] });
+  try {
+    const page = await browser.newPage();
+    const state = () => page.evaluate(() => {
+      const w = document.querySelector("[data-index]");
+      return {
+        count: w.firstElementChild.textContent, field: document.getElementById("q-page").value,
+        items: [...w.querySelectorAll("li[data-group]")].map((li) => ({ group: li.dataset.group, title: li.querySelector("a").textContent, href: li.querySelector("a").getAttribute("href") })),
+        marks: [...w.querySelectorAll("mark")].map((m) => m.textContent.toLowerCase()),
+        chips: Object.fromEntries([...w.querySelectorAll("fieldset:first-of-type input")].map((i) => [i.value, [i.parentNode.lastChild.textContent, i.disabled]])),
+        paging: !!w.querySelector("[data-component=pagination]"), empty: !!w.querySelector("[data-component=empty-state]"),
+      };
+    });
+    await page.goto(`${server.url}/en/search/?q=PLC`, { waitUntil: "networkidle0" });
+    const s = await state();
+    const index = JSON.parse(readFileSync(`${distDir}/en/search/index.json`, "utf8"));
+    const hits = index.filter((r) => `${r.title} ${r.excerpt}`.toLowerCase().includes("plc"));
+    assert.ok(hits.length > 0 && hits.length < index.length, "PLC matches some of the index, not all of it");
+    assert.deepEqual(s.items.map((i) => i.href), hits.map((r) => r.href), "every match, only matches, in index order");
+    assert.equal(s.count, `${hits.length} result${hits.length == 1 ? "" : "s"} for “PLC”`);
+    assert.equal(s.field, "PLC", "the field shows the query");
+    assert.ok(s.marks.length && s.marks.every((m) => m == "plc"), "the matched terms are marked");
+    assert.deepEqual(s.chips.all, [`(${hits.length})`, false]);
+    assert.equal(s.paging, false, "the build's paging is for the default query, so it goes");
+    await page.goto(`${server.url}/en/search/?q=zzzzqx`, { waitUntil: "networkidle0" });
+    assert.equal((await state()).empty, true, "no match: the empty state");
+  } finally {
+    await browser.close();
+  }
 });

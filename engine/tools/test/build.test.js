@@ -4,6 +4,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, copyFileSync, rmSync, statSync } from "node:fs";
 import path from "node:path";
 import { listHtml } from "../lib/html.js";
+import { MARK } from "../lib/search-index.js";
 
 function run(env = {}) {
   return execFileSync("node", ["engine/tools/build.js", "--site", "reference"], {
@@ -148,7 +149,7 @@ test("the visual layer of 0.5.0: mark in header and favicon, a proof strip in th
   assert.match(stats, /<span class="inline-grid"><span class="invisible \[grid-area:1\/1\]" aria-hidden="true">99\.98%<\/span><span class="\[grid-area:1\/1\] whitespace-nowrap motion-safe:data-counted:animate-settle" aria-hidden="true" data-count="99.98" data-decimals="2" data-nu="latn">99\.98%<\/span><span class="sr-only">99\.98%<\/span><\/span>/, "the counting triple: sizing copy, animated copy with build-time attributes, screen-reader copy (R-MOT-10)");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /data-count="99.98" data-decimals="2" data-nu="latn">99,98/, "German figures parse with the decimal comma");
   // Depth (R-MOT-15): md+ only, scroll(root) in the hero, the element's own view() elsewhere, drift mirrored in RTL, nothing on hero text.
-  assert.match(hero, /<img[^>]*fetchpriority="high"[^>]*class="absolute inset-0 size-full object-cover md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\]"/, "the backdrop art sinks on scroll(root), overscanned, at identity at rest");
+  assert.match(hero, /<svg [^>]*class="art-flow absolute inset-0 size-full md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\]"/, "the flowing art sinks on scroll(root), overscanned, at identity at rest");
   assert.doesNotMatch(/<div class="max-w-2xl lg:w-7\/12[\s\S]*?<\/ul>/.exec(hero)?.[0] || "", /parallax|drift/, "no depth on the hero's text column");
   assert.match(split, /md:motion-safe:sda:animate-parallax-sm md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\][^"]*bg-hero-backdrop/, "the split hero's glows sink on scroll(root)");
   assert.doesNotMatch(/<div class="lg:col-span-7[\s\S]*?<\/ul>/.exec(split)?.[0] || "", /parallax|drift/, "no depth on the split hero's text column");
@@ -167,6 +168,24 @@ test("the visual layer of 0.5.0: mark in header and favicon, a proof strip in th
   assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");
   assert.match(home, /<button type="button" data-sound aria-pressed="false"[^>]*>[\s\S]*?Sound effects/, "sound toggle is a named toggle button, off by default");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Soundeffekte/);
+});
+
+test("the home hero's art flows (D62): the twin in place of the picture, a pause switch, the demo AVIF still built", () => {
+  const labels = { en: "Pause animation", de: "Animation anhalten", ar: "إيقاف الحركة مؤقتًا", ja: "アニメーションを一時停止" };
+  for (const [lang, label] of Object.entries(labels)) {
+    const home = readFileSync(`dist/reference/${lang}/index.html`, "utf8");
+    const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
+    assert.match(hero, /<div aria-hidden="true" class="absolute inset-0 -z-10 overflow-clip rtl:-scale-x-100"><svg [^>]*class="art-flow /, `${lang}: the twin sits in the mirrored art layer`);
+    assert.doesNotMatch(hero, /<img/, `${lang}: no raster in the hero`);
+    for (const g of ["lines", "trail", "body"]) assert.match(hero, new RegExp(`<g data-flow="${g}">`));
+    assert.match(hero, new RegExp(`<label class="[^"]*absolute bottom-4 end-4[^"]*motion-reduce:hidden print:hidden[^"]*"><input type="checkbox" role="switch" data-flow-pause[^>]*><span>${label}</span></label>`), `${lang}: the pause switch`);
+    assert.doesNotMatch(hero, /style=/, `${lang}: no inline style`);
+  }
+  const css = readdirSync("dist/reference/assets").filter((f) => f.endsWith(".css")).map((f) => readFileSync(`dist/reference/assets/${f}`, "utf8")).join("");
+  assert.match(css, /@keyframes flow/, "the keyframe ships");
+  assert.match(css, /animation-play-state:\s*paused/, "the switch pauses it");
+  assert.ok(existsSync("dist/reference/assets/images/home-backdrop-16x9-768.avif"), "the style guide's image-map demo keeps its AVIF (Review Focus 4)");
+  assert.match(readFileSync("dist/reference/sys/style-guide/components/index.html", "utf8"), /home-backdrop-16x9-768\.avif"[^>]*data-art="planes-flow" data-tone="dark"/);
 });
 
 test("every disclosure opens and closes smoothly: details content animates height and opacity, html interpolates to auto (R-MOT-06)", () => {
@@ -247,7 +266,7 @@ test("photo galleries open in a lightbox: thumbnails are named buttons with invo
 
 test("search: results from the site's own content, filters that work without script, real paging with rel prev/next, the query in <mark> (to-do 4)", () => {
   const p1 = readFileSync("dist/reference/en/search/index.html", "utf8");
-  const w = /<div data-component="search-results" class="([^"]*)">[\s\S]*?<\/ol>/.exec(p1);
+  const w = /<div data-component="search-results" class="([^"]*)"[^>]*>[\s\S]*?<\/ol>/.exec(p1);
   assert.ok(w, "results render");
   assert.match(w[1], /\[&:has\(#sf\d-jobs:checked\)_li\[data-group\]:not\(\[data-group=jobs\]\)\]:hidden/, "the filter classes reach the HTML unescaped, so Tailwind compiles them");
   assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes(":has(#sf"), "and the CSS has the rules");
@@ -269,12 +288,29 @@ test("search: results from the site's own content, filters that work without scr
   assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes(":has([value=cards]:checked) ol{display:grid}"), "the card rules are compiled, once for every instance");
   assert.match(p1, /<input type="radio" name="sf\d" id="sf\d-all" value="all" class="sr-only" checked>/);
   assert.equal((w[0].match(/<li data-group=/g) || []).length, 12);
-  assert.match(w[0], /<mark class="rounded-sm bg-accent-100 px-0\.5 text-ink">[Ss]afety<\/mark>/);
+  assert.match(w[0], /<mark class="rounded-sm bg-accent-100 px-0\.5 text-accent-800">[Ss]afety<\/mark>/);
   assert.match(p1, /<a href="\/en\/search\/page\/2\/" rel="next"/);
   const p3 = readFileSync("dist/reference/de/search/page/3/index.html", "utf8");
   assert.match(p3, /<a href="\/de\/search\/page\/2\/" rel="prev"/);
   assert.match(p3, /Seite 3 von 3/);
   assert.match(readFileSync("dist/reference/ar/search/index.html", "utf8"), /<mark[^>]*>السلامة<\/mark>/, "Arabic matches are marked (all four are on page 1)");
+});
+
+test("search: a query in the address (?q=) is searched in the browser against the locale's index, the matched terms marked as the build marks them", () => {
+  const index = JSON.parse(readFileSync("dist/reference/de/search/index.json", "utf8"));
+  assert.equal(index.length, 31, "the whole German index");
+  assert.deepEqual(Object.keys(index[0]).sort(), ["excerpt", "group", "href", "title"]);
+  assert.ok(index.every((r) => r.href.startsWith("/de/")), "German results link to German pages");
+  const p1 = readFileSync("dist/reference/ar/search/index.html", "utf8");
+  const w = /<div data-component="search-results" class="[^"]*" data-index="\/ar\/search\/index\.json" data-plural="([^"]*)">/.exec(p1);
+  assert.ok(w, "the results know their index");
+  const forms = JSON.parse(w[1].replace(/&quot;/g, '"'));
+  assert.deepEqual(Object.keys(forms).sort(), ["few", "many", "one", "other", "two"], "every Arabic plural form of the count line");
+  assert.match(p1, /<template data-empty><div class="[^"]*" data-component="empty-state">/, "the empty state waits in a template for a query with no match");
+  assert.match(p1, /<script type="module" src="\/assets\/search\.js"><\/script>/);
+  assert.doesNotMatch(readFileSync("dist/reference/en/help/index.html", "utf8"), /search\.js/, "only pages with results load the script");
+  const js = readFileSync("dist/reference/assets/search.js", "utf8");
+  assert.ok(js.includes(MARK), "the script marks a match with the build's classes");
 });
 
 test("in-page links: legal pages carry a table of contents whose links land on heading ids; the FAQ jumps to its groups (to-do 5)", () => {
