@@ -13,7 +13,7 @@ Why: Most visitors never switch sound on; they should not pay for it.
 Gate: budget/js
 
 ### R-SND-03 The vocabulary
-MUST. The cues are these and no others. Pitches come from C major pentatonic (C4 262, G4 392, C5 523, D5 587, E5 659, G5 784 Hz) so overlaps agree; every voice rises from .0001 to its peak in 4 ms (25 ms for noise) and decays exponentially to .0001 by its length; gains are per voice before a master gain of .6 and a 6 kHz lowpass.
+MUST. The cues are these and no others. Pitches come from C major pentatonic (C4 262, G4 392, C5 523, D5 587, E5 659, G5 784 Hz) so overlaps agree; every voice rises from .0001 to its peak in 4 ms (25 ms for noise) and decays exponentially to .0001 by its length; gains are per voice before a master gain of 1.5 and a 6 kHz lowpass.
 
 | Cue | Plays when | Recipe |
 |---|---|---|
@@ -57,7 +57,7 @@ Why: The breath accompanies the motion the visitor caused by scrolling; per-item
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SND-08 Reduced motion and the motion level
-MUST. `prefers-reduced-motion: reduce` silences `in` and keeps the action cues (it is a motion preference, not an audio one). The page carries the flair level as `data-motion` on `<html>`: `calm` drops `hover` and `in` and sets the master gain to .48; `standard` is the table; `expressive` adds the air layer to `sheet` and the contour to `in`, never more cues (the air layer and the contour are extra voices of a cue that already sounds).
+MUST. `prefers-reduced-motion: reduce` silences `in` and keeps the action cues (it is a motion preference, not an audio one). The page carries the flair level as `data-motion` on `<html>`: `calm` drops `hover` and `in` and sets the master gain to 1.2; `standard` is the table; `expressive` adds the air layer to `sheet` and the contour to `in`, never more cues (the air layer and the contour are extra voices of a cue that already sounds).
 Why: Sound scales with the site's motion so a calm brief stays calm in both.
 Gate: manual: checklists/pre-delivery.md
 
