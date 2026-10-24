@@ -56,7 +56,7 @@ One scale, C major pentatonic (C, D, E, G, A; C4 = 262, C5 = 523, D5 = 587, E5 =
 ## Documents
 
 - `engine/bylaws/20-sound.md`: R-SND-01 … with the vocabulary table and the rules, a checklist, sources (MDN Web Audio best practices and the autoplay guide).
-- `engine/bylaws/00-precedence.md` R-PREC-08: a second module, `sound.js`, loaded only after the visitor turns sound on; its budget.
+- `engine/bylaws/00-precedence.md` R-PREC-08: a second module, `sound.js`, loaded only while sound is on (switched on or restored for the tab) or for an audition; its budget.
 - `engine/bylaws/06-motion.md` R-MOT-10 behaviour 4: the toggle and the hook; the sounds themselves are bylaw 20.
 - `engine/DESIGN.md` §4 Sound, the "pizzazz" line, and the signature-devices line ("the quiet sounds").
 - `engine/DECISIONS.md`: D-new superseding D44's trigger list and D52's last sentence.
