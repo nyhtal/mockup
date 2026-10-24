@@ -16,8 +16,10 @@ export const ANIMATIONS = new Set([
 ]);
 /** The gestures of D66: generic once-per-arrival decorations (and the logo's glint). */
 /** The gestures that play on arrival: they need an element the script observes (a pending: class) on themselves or above. */
-const ARRIVAL = new Set(["gesture-nudge", "gesture-glow", "gesture-glow-repeat", "gesture-trace"]);
-export const GESTURES = new Set(["gesture-nudge", "gesture-glow", "gesture-glow-repeat", "gesture-trace", "gesture-glint", "gesture-glint-rare"]);
+const ARRIVAL = new Set(["gesture-nudge", "gesture-glow", "gesture-glow-repeat", "gesture-trace", "gesture-shine-rare"]);
+/** Gestures that answer the pointer or keyboard only: allowed in the hero. */
+const ANSWERS = new Set(["gesture-glint", "gesture-shine"]);
+export const GESTURES = new Set(["gesture-nudge", "gesture-glow", "gesture-glow-repeat", "gesture-trace", "gesture-glint", "gesture-glint-rare", "gesture-shine", "gesture-shine-rare"]);
 /** Scroll ranges are left only for what tracks the scroll: depth, the header shadow and the floating back to top (entrances are time-based, R-MOT-05). */
 export const RANGES = new Set([
   "cover_0%_cover_100%", // depth on a view() timeline
@@ -42,7 +44,7 @@ export function motionFindings(root) {
       if (anim && !ANIMATIONS.has(anim)) out.push(`class "${c}" names a keyframe outside R-TOK-13`);
       if (base.startsWith("gesture-")) {
         if (!GESTURES.has(base)) out.push(`class "${c}" names a gesture outside D66`);
-        else if (el.closest('[data-component="hero"]')) out.push(`class "${c}" is a gesture in the hero (R-MOT-11, D66)`);
+        else if (!ANSWERS.has(base) && el.closest('[data-component="hero"]')) out.push(`class "${c}" is a gesture in the hero (R-MOT-11, D66)`);
         else if (ARRIVAL.has(base) && !el.closest('[class*="pending:"]')) out.push(`class "${c}" never arrives: no ancestor carries a pending: class for the script to observe (R-MOT-17)`);
       }
       if (range && !RANGES.has(range)) out.push(`class "${c}" uses a scroll range outside the presets of R-MOT-05`);

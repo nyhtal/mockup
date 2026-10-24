@@ -5,11 +5,11 @@
   variants: primary (one per view) | secondary | ghost | link | inverse and inverse-outline (on brand or gradient backgrounds only); sizes sm | md | lg
   states: default, hover, focus-visible (ring), active, disabled (opacity-60, cursor-not-allowed), pending (opts.pending: spinner + "Sending…", disabled)
   spacing: min-h-11 px-5 (md); gap-2 between icon and label
-  motion: motion-safe:transition-colors duration-150
+  motion: motion-safe:transition-colors duration-150; filled CTAs (primary, inverse) sweep a sheen across on hover or focus when the flair dial allows gestures (D67)
   keyboard: native; a for navigation, button for actions, never href="#"
   a11y: label is visible text; external links add an sr-only "opens in a new tab" and rel="noopener"
   i18n: label ≤ 25 chars in every locale (R-TYPO-07); icons that point along the reading direction pass rtl:-scale-x-100
-  content limits: verb-first label, 1–4 words (R-CONT-05); opts = { href, variant, size, icon, iconEnd, type, external, disabled, pending, attrs, gesture }
+  content limits: verb-first label, 1–4 words (R-CONT-05); opts = { href, variant, size, icon, iconEnd, type, external, disabled, pending, attrs, gesture ("once" | "repeat") }
 #}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro button(label, opts={}) %}
@@ -29,19 +29,23 @@
 } -%}
 {%- set iconEnd = opts.iconEnd or ("arrow-right" if (variant == "primary" or variant == "inverse") and not opts.noArrow) -%}
 {%- set nudge = "motion-safe:transition-transform motion-safe:duration-150 group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" -%}
-{#- opts.gesture: the trailing arrow also nudges once after its section arrives (D66); only the CTA band passes it. -#}
+{#- opts.gesture: the trailing arrow also nudges once after its section arrives (D66), and with "repeat" the sheen also sweeps now and then (D67); only the CTA band passes it. -#}
 {%- if opts.gesture %}{% set nudge = nudge + " gesture-nudge" %}{% endif -%}
-{%- set classes = base + " " + (sizes[size] if variant != "link" else "") + " " + variants[variant] + (" " + opts.class if opts.class else "") -%}
+{#- The sheen of D67: filled CTA buttons sweep the logo's band of light across on hover or keyboard focus; it waits beside the button, clipped out of sight. -#}
+{%- set shine = (variant == "primary" or variant == "inverse") and flair and flair.gesture -%}
+{%- set sheen = ('<span class="gesture-shine-rare"><span class="gesture-shine"></span></span>' if opts.gesture == "repeat" else '<span class="gesture-shine"></span>') if shine else "" -%}
+{%- set classes = base + " " + (sizes[size] if variant != "link" else "") + " " + variants[variant] + (" relative overflow-clip" if shine else "") + (" " + opts.class if opts.class else "") -%}
 {%- set iconClass = "size-5" if size != "sm" else "size-4" -%}
 {%- if opts.href -%}
 <a href="{{ opts.href }}" class="{{ classes }}" data-component="button" data-variant="{{ variant }}"{% if opts.external %} rel="noopener" target="_blank"{% endif %}{% for k, v in opts.attrs %} {{ k }}="{{ v }}"{% endfor %}>
+{{ sheen | safe }}
 {%- if opts.icon %}{{ icon(opts.icon, { size: iconClass }) }}{% endif %}{{ label }}{% if iconEnd %}{{ icon(iconEnd, { size: iconClass, class: nudge }) }}{% endif %}
 {%- if opts.external %}{{ icon("external-link", { size: "size-4" }) }}<span class="sr-only">{{ "ui.opensNewTab" | t }}</span>{% endif -%}
 </a>
 {%- else -%}
 <button type="{{ opts.type or 'button' }}" class="{{ classes }} disabled:cursor-not-allowed disabled:opacity-60" data-component="button" data-variant="{{ variant }}"{% if opts.disabled or opts.pending %} disabled{% endif %}{% for k, v in opts.attrs %} {{ k }}="{{ v }}"{% endfor %}>
 {%- if opts.pending %}{{ icon("loader-circle", { size: iconClass, class: "motion-safe:animate-spin" }) }}{{ "ui.sending" | t }}
-{%- else %}{% if opts.icon %}{{ icon(opts.icon, { size: iconClass }) }}{% endif %}{{ label }}{% if iconEnd %}{{ icon(iconEnd, { size: iconClass, class: nudge }) }}{% endif %}{% endif -%}
+{%- else %}{{ sheen | safe }}{% if opts.icon %}{{ icon(opts.icon, { size: iconClass }) }}{% endif %}{{ label }}{% if iconEnd %}{{ icon(iconEnd, { size: iconClass, class: nudge }) }}{% endif %}{% endif -%}
 </button>
 {%- endif %}
 {% endmacro %}

@@ -256,12 +256,15 @@
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
   /* Gestures (D66): once after arrival; the CTA glow's pulse three times. Delays order them: the glow grows from nothing first (owner: "start with none then grow to its full size in a smooth motion"), the arrow nudge as it fills, a trace after its line's 1 200 ms draw. The logo glint plays on hover or focus; its rare form sweeps 20 s after load, then every 60 s, three times at most. */
-  --animate-nudge: nudge 600ms ease-in-out 3000ms 1 none;
-  --animate-glow: glow 2600ms ease-in-out 900ms 1 backwards;
-  --animate-glow-pulse: glow-pulse 24s ease-in-out 3500ms 3 none;
+  --animate-nudge: nudge 600ms ease-in-out 2500ms 1 none;
+  --animate-glow: glow 2600ms ease-in-out 300ms 1 backwards;
+  --animate-glow-pulse: glow-pulse 24s ease-in-out 2900ms 3 none;
   --animate-trace: trace 1200ms ease-in-out 2000ms 1 none;
   --animate-glint: glint 900ms ease-in-out 1 none;
   --animate-glint-rare: glint-rare 60s linear 20s 3 none;
+  /* The CTA sheen (D67): a band crosses its button on hover; the header CTA's and the closing CTA's also 5 s after arrival (the header's arrives at load), then every 30 s, four times (owner: "they should periocally shine not just once"). */
+  --animate-shine: shine 900ms ease-in-out 1 none;
+  --animate-shine-rare: shine-rare 30s linear 5s 4 none;
   /* Section reveals move but never fade: an element partly in view at load would be mid-fade and fail
      contrast checks, and content must stay readable at every scroll position (R-MOT-04, R-MOT-05). */
   @keyframes progress {
@@ -326,6 +329,15 @@
   @keyframes glint {
     from { translate: 0 0; }
     to { translate: 110px 0; }
+  }
+  @keyframes shine {
+    from { translate: 0 0; }
+    to { translate: calc(200% * var(--g-dir, 1)) 0; }
+  }
+  @keyframes shine-rare {
+    0% { translate: 0 0; }
+    3% { translate: calc(200% * var(--g-dir, 1)) 0; }
+    3.01%, 100% { translate: 0 0; }
   }
   @keyframes glint-rare {
     0% { translate: 0 0; }
@@ -431,5 +443,36 @@
     &::before {
       transition: --border-draw 800ms ease-in-out;
     }
+  }
+}
+
+/* The CTA sheen (D67): the logo's band of light on filled buttons. The layer is the button's size and waits beside it (inset-inline-start: -100%), and sweeps two widths across in the reading direction; the button (relative, overflow-clip) clips it. Its colour is the button's text colour, so white on blue and blue on light. For the rare sweep it sits in a gesture-shine-rare wrapper the button's size, which carries it across: two layers, so a hover never restarts the rare count. */
+@utility gesture-shine {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: -100%;
+  width: 100%;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 38%, color-mix(in oklab, currentColor 45%, transparent) 50%, transparent 62%);
+  --g-dir: 1;
+  &:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
+    --g-dir: -1;
+  }
+  @media screen and (prefers-reduced-motion: no-preference) {
+    :where(a, button):is(:hover, :focus-visible) & {
+      animation: var(--animate-shine);
+    }
+  }
+}
+@utility gesture-shine-rare {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  --g-dir: 1;
+  &:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
+    --g-dir: -1;
+  }
+  @variant arrived {
+    animation: var(--animate-shine-rare);
   }
 }

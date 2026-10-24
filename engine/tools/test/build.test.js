@@ -763,7 +763,7 @@ test("micro-interactions: primary buttons lift, press and nudge their arrow (mir
   assert.match(primary, /hover:shadow-md/);
   assert.match(primary, /class="size-5 shrink-0 motion-safe:transition-transform motion-safe:duration-150 group-hover:translate-x-0\.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0\.5"><use href="#i-arrow-right">/);
   const services = readFileSync("dist/reference/en/services/index.html", "utf8");
-  assert.match(services, /<div class="group relative flex w-full flex-col[^"]*hover:border-brand-300/);
+  assert.match(services, /<div class="group relative flex w-full flex-col[^"]*border-draw/, "cards draw a gradient border on hover (D67; it replaced the brand-300 border warm-up)");
   assert.match(services, /<span class="mb-4 inline-flex self-start"><span class="inline-flex size-12[^"]*group-hover:scale-105/, "the hover scale sits on the inner tile, the arrival pop on its wrapper");
   const faq = readFileSync("dist/reference/en/faq/index.html", "utf8");
   assert.match(faq, /<summary class="[^"]*"[^>]*>[\s\S]*?group-open:rotate-180/);
@@ -783,7 +783,7 @@ test("visual layer: hero glow and framed media, eyebrow accent rule, inset CTA p
   const guide = readFileSync("dist/reference/sys/style-guide/sections/heroes/index.html", "utf8");
   assert.match(guide, /data-variant="centered">[\s\S]*?<div class="mt-12 overflow-hidden rounded-2xl ring-1 ring-line shadow-xl shadow-ink\/10">/, "centered hero media in a framed rounded-2xl box");
   assert.match(en, /<p class="[^"]*before:h-0\.5 before:w-6 before:rounded-full before:bg-accent-600[^"]*">Why Northwind<\/p>/);
-  assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-clip rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-accent-600/);
+  assert.match(en, /data-component="cta-band"[\s\S]*?<div class="relative isolate overflow-clip rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-brand-600[\s\S]*?from-transparent from-50% to-accent-600/, "the inset panel's gradient: brand on the panel, the accent half as its own layer (D66)");
   assert.match(en, /data-component="logo-cloud"[\s\S]*?<svg role="img" class="h-6 fill-ink-muted w-auto motion-safe:transition-colors motion-safe:duration-150 hover:fill-ink-brand"/);
   assert.match(en, /<footer class="bg-surface-alt" data-component="footer">\n<div class="h-px bg-linear-to-r from-brand-600 to-accent-600" aria-hidden="true"><\/div>/);
   const svc = readFileSync("dist/reference/en/services/line-automation/index.html", "utf8");
@@ -929,7 +929,7 @@ test("the closing CTA panel comes alive once (D66): its green glow grows and pul
     const primary = /<a [^>]*data-variant="inverse"[^>]*>[\s\S]*?<\/a>/.exec(band)[0];
     assert.match(primary, /<svg aria-hidden="true" class="[^"]*rtl:-scale-x-100[^"]* gesture-nudge"><use href="#i-arrow-right">/, `${lang}: the arrow nudges once`);
     const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
-    assert.doesNotMatch(hero, /gesture-/, `${lang}: nothing gestures in the hero`);
+    assert.doesNotMatch(hero, /gesture-(?!shine"|glint")/, `${lang}: nothing gestures on its own in the hero (its buttons may shine on hover)`);
   }
   for (const f of listHtml("dist/reference")) {
     for (const a of readFileSync(f, "utf8").match(/<a [^>]*data-component="button"[^>]*>(?:(?!<\/a>)[\s\S])*?gesture-nudge/g) || []) {
@@ -993,7 +993,7 @@ test("gestures (D66): generic utilities, played once after arrival, only with mo
   assert.match(css, /--animate-nudge: ?nudge (600ms|\.6s)[^;]* 1 none/, "the nudge plays once and leaves no fill, so hover still nudges");
   assert.match(css, /--animate-glow-pulse: ?glow-pulse 24s[^;]* 3 none/, "the CTA glow pulses three times, then stops");
   assert.match(css, /@keyframes glow\{(0%|from)\{opacity:0;scale:\.2\}/, "the glow starts from nothing (owner: 'start with none then grow to its full size')");
-  assert.match(css, /--animate-glow: ?glow (2600ms|2\.6s) ease-in-out (900ms|\.9s)/, "and grows smoothly over 2.6 s, 0.9 s after arrival (owner: 'its too fast')");
+  assert.match(css, /--animate-glow: ?glow (2600ms|2\.6s) ease-in-out (300ms|\.3s)/, "and grows smoothly over 2.6 s, 0.3 s after arrival (owner: 'its too fast', then 'needs to start a little sooner')");
   for (const g of ["gesture-glow-repeat"]) { // the reference site is expressive, so plain gesture-glow is not emitted here; the source writes both the same way
     assert.match(inside, new RegExp(`\\.${g}:where\\(\\[data-js\\] \\*\\):not\\(:where\\(\\[data-revealed\\], ?\\[data-revealed\\] \\*\\)\\)\\{opacity:0\\}`), `${g} waits hidden until it plays, so a panel in view at load never shows it, drops it and regrows it`);
   }
@@ -1014,4 +1014,30 @@ test("cards draw a gradient border on hover (D67): blue from the top-left corner
   assert.match(before, /mask-composite:intersect,exclude/, "the conic sweep is cut to the border ring");
   assert.match(css, /\.border-draw:is\(:hover,:focus-within\):before\{--border-draw:180deg\}/, "hover or keyboard focus inside the card completes the ring: 180 degrees each way");
   assert.match(css, /@media \(prefers-reduced-motion: ?no-preference\)\{\.border-draw:before\{transition:--border-draw \.8s ease-in-out/,"it draws over 0.8 s, evenly, only with motion allowed; reduced motion shows the ring at once");
+});
+
+test("CTA buttons shine (D67): the logo's sheen on hover or focus; the closing CTA's button also now and then", () => {
+  const home = readFileSync("dist/reference/en/index.html", "utf8");
+  const buttons = [...home.matchAll(/<a [^>]*data-component="button" data-variant="(primary|inverse)"[^>]*>[\s\S]*?<\/a>/g)].map((m) => m[0]);
+  assert.ok(buttons.length >= 3, "the header, hero and closing CTA buttons");
+  const layer = /<span class="gesture-shine"><\/span>|<span class="gesture-shine-rare"><span class="gesture-shine"><\/span><\/span>/;
+  for (const b of buttons) {
+    assert.match(b, /class="[^"]*\brelative\b[^"]*\boverflow-clip\b/, "the button clips its sheen");
+    assert.match(b, layer, "a sheen waits beside the button, out of sight, until hover sweeps it across");
+  }
+  const band = /<section[^>]*data-component="cta-band"[\s\S]*?<\/section>/.exec(home)[0];
+  const primary = /<a [^>]*data-variant="inverse"[^>]*>[\s\S]*?<\/a>/.exec(band)[0];
+  assert.match(primary, /gesture-shine-rare/, "the closing CTA's button also shines now and then (expressive)");
+  const header = /<header[\s\S]*?<\/header>/.exec(home)[0];
+  assert.match(header, /^<header class="[^"]*pending:visible[^"]*"/, "the header arms its gestures (always in view, so they count from load)");
+  const cta = /<a href="\/en\/demo\/" class="[^"]*\brelative\b[^"]*\boverflow-clip\b[^"]*lg:inline-flex">[\s\S]*?<\/a>/.exec(header)?.[0];
+  assert.ok(cta, "the header CTA clips a sheen");
+  assert.match(cta, /<span class="gesture-shine-rare"><span class="gesture-shine"><\/span><\/span>/, "and shines on hover and periodically (owner: 'the cta in the header should shine also')");
+  assert.equal(buttons.filter((b) => b.includes("gesture-shine-rare")).length + 1, (home.match(/gesture-shine-rare/g) || []).length, "the header CTA and the closing CTA's button shine on their own; no other button does");
+  assert.equal((home.match(/gesture-shine-rare/g) || []).length, 2);
+  const css = readFileSync("dist/reference/assets/app.css", "utf8");
+  assert.match(css, /:where\(a, ?button\):is\(:hover, ?:focus-visible\) \.gesture-shine\{animation:var\(--animate-shine\)\}/, "hover or keyboard focus on the button sweeps it");
+  assert.match(css, /\.gesture-shine-rare:where\(\[data-revealed\], ?\[data-revealed\] \*\)\{animation:var\(--animate-shine-rare\)\}/, "the rare sheen waits for arrival");
+  assert.match(css, /--animate-shine-rare: ?shine-rare 30s linear (5000ms|5s) 4 none/, "5 s after arrival, then every 30 s, four times (owner: 'they should periodically shine not just once')");
+  assert.match(css, /\.gesture-shine\{[^}]*inset-inline-start:-100%/, "the sheen waits beside the button, out of sight (its geometry lives in the utility, so each button carries one short span)");
 });

@@ -24,7 +24,7 @@
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">{{ s.title }}</h2>
 {%- if s.text %}<p class="mx-auto mt-4 max-w-2xl text-lg text-ink-inverse/85">{{ s.text }}</p>{% endif %}
 <div class="mt-8 flex flex-wrap justify-center gap-3">
-{{ button(s.primary.label, { href: s.primary.href, variant: "inverse", gesture: ctx.flair and ctx.flair.gesture }) }}
+{{ button(s.primary.label, { href: s.primary.href, variant: "inverse", gesture: (("repeat" if ctx.flair.gestureRepeat else "once") if ctx.flair and ctx.flair.gesture) }) }}
 {%- if s.secondary %}{{ button(s.secondary.label, { href: s.secondary.href, variant: "inverse-outline" }) }}{% endif %}
 </div>
 </div>
