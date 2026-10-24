@@ -2,6 +2,7 @@
   "html": 75776,
   "css": 107520,
   "js": 5120,
+  "sound": 4608,
   "page": 307200,
   "mobileWidth": 720,
   "overrides": {

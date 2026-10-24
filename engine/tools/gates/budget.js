@@ -117,5 +117,8 @@ export async function run(ctx) {
     if (total > budgets.page) add("page", `${total} B > ${budgets.page} B`);
     report.push({ file, html, total, gzip, assets: assets.length });
   }
+  // The opt-in sound module is fetched by enhance.js only after the visitor turns sound on, so no page lists it; it has its own budget (R-SND-02).
+  const sound = path.join(ctx.distDir, "assets", "sound.js");
+  if (existsSync(sound) && statSync(sound).size > (base.sound || 4608)) findings.push({ file: sound, message: `/assets/sound.js ${statSync(sound).size} B > ${base.sound || 4608} B`, check: "budget/js" });
   return { id, ok: findings.length === 0, findings, report };
 }

@@ -107,3 +107,16 @@ test("pageAssets counts a video poster, never its sources or captions (R-PERF-17
   assert.ok(assets.includes("/assets/video/clip-poster.webp"), `poster counted in ${assets}`);
   assert.ok(!assets.some((u) => /\.(mp4|webm|vtt)$/.test(u)), "clip and captions not counted");
 });
+
+test("the opt-in sound module has its own budget (R-SND-02)", async () => {
+  const d = mkdtempSync(path.join(tmpdir(), "budget-sound-"));
+  mkdirSync(path.join(d, "assets"));
+  writeFileSync(path.join(d, "a.html"), page(""));
+  writeFileSync(path.join(d, "assets", "sound.js"), "x".repeat(4609));
+  try {
+    const r = await run({ distDir: d, only: ["a.html"], budgets: { html: 1e6, css: 1e6, js: 5120, sound: 4608, page: 1e7 } });
+    assert.ok(r.findings.some((f) => f.check === "budget/js" && /sound\.js 4609 B > 4608 B/.test(f.message)), JSON.stringify(r.findings));
+  } finally {
+    rmSync(d, { recursive: true, force: true });
+  }
+});

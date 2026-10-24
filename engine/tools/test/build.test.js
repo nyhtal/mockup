@@ -32,7 +32,7 @@ test("build produces the reference home page and css", () => {
   assert.ok(existsSync("dist/reference/en/index.html"));
   assert.ok(existsSync("dist/reference/assets/app.css"));
   const html = readFileSync("dist/reference/en/index.html", "utf8");
-  assert.match(html, /<html lang="en" dir="ltr" class="scheme-light-dark data-\[theme=light\]:scheme-light data-\[theme=dark\]:scheme-dark scroll-pt-20 motion-safe:scroll-smooth \[interpolate-size:allow-keywords\]">/);
+  assert.match(html, /<html lang="en" dir="ltr" data-motion="expressive" class="scheme-light-dark data-\[theme=light\]:scheme-light data-\[theme=dark\]:scheme-dark scroll-pt-20 motion-safe:scroll-smooth \[interpolate-size:allow-keywords\]">/);
   assert.match(html, /<link rel="stylesheet" href="\/assets\/app.css">/);
 });
 
@@ -99,6 +99,12 @@ test("enhance.js ships under 5 KB (D55) and only does what bylaw 06 allows", () 
   assert.match(js, /dataset\.decimals/, "precision comes from the build, not from parsing text");
   assert.match(js, /prefers-reduced-motion/, "count-up respects reduced motion");
   assert.match(js, /data-sound/, "sound toggle (R-MOT-10 behaviour 4)");
+  assert.match(js, /import\("\.\/sound\.js"\)/, "the sound module loads only on demand (R-SND-02)");
+  assert.doesNotMatch(js, /createOscillator|AudioContext\(\)\.create/, "no synthesis in enhance.js");
+  const snd = readFileSync("dist/reference/assets/sound.js", "utf8");
+  assert.ok(Buffer.byteLength(snd) <= 4608, `sound.js ${Buffer.byteLength(snd)} B`);
+  assert.doesNotMatch(snd, /fetch\(|XMLHttpRequest|document\.cookie|localStorage/);
+  for (const p of ["en/index.html", "sys/style-guide/index.html"]) assert.doesNotMatch(readFileSync(`dist/reference/${p}`, "utf8"), /sound\.js/, `${p} never references the module`);
   assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|document\.cookie/);
   assert.deepEqual([...new Set(js.match(/localStorage\.\w+\("[^"]*"/g).map((x) => x.replace(/localStorage\.\w+\(/, "")))], ['"theme"'], "localStorage holds the theme choice and nothing else (D54)");
 });
