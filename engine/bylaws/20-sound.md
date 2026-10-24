@@ -29,6 +29,10 @@ MUST. The cues are these and no others. Pitches come from C major pentatonic (C4
 | `submit` | a form's `submit` event fires | C5 then G5, 65 ms each, 75 ms apart, .03 |
 | `in` | an entrance starts after the first report (R-MOT-05) | noise bandpassed at 900 Hz (Q .7), 180 ms, .005; at `expressive` a rising group adds sine C5→D5 and a settling one D5→C5, 55 ms, .007 |
 
+Loudness order, by what the visitor hears (peak gain, length and timbre together): `hover` and `in` are quieter than `detent`; `detent` is quieter than `press` and `step`; those are quieter than `pop`, `open` and `sheet` (and their closes); and those are quieter than `on`, `copy` and `submit`. A change to any recipe MUST be auditioned on laptop speakers, headphones and a phone before it ships.
+
+Browser gaps: the `toggle` event of a `<dialog>` needs a recent engine (about Chrome 132, Firefox 133, Safari 18); an older one plays no `sheet` or `unsheet` for a `<dialog>`. `scrollsnapchange` is Chromium-only, so a carousel's `step` is silent in other engines.
+
 Why: A fixed, small family is what makes the sound read as one product, the way the motion table does for movement.
 Gate: manual: checklists/new-component.md
 
@@ -53,12 +57,12 @@ Why: The breath accompanies the motion the visitor caused by scrolling; per-item
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SND-08 Reduced motion and the motion level
-MUST. `prefers-reduced-motion: reduce` silences `in` and keeps the action cues (it is a motion preference, not an audio one). The page carries the flair level as `data-motion` on `<html>`: `calm` drops `hover` and `in` and sets the master gain to .48; `standard` is the table; `expressive` adds the air layer to `sheet` and the contour to `in`, never more voices.
+MUST. `prefers-reduced-motion: reduce` silences `in` and keeps the action cues (it is a motion preference, not an audio one). The page carries the flair level as `data-motion` on `<html>`: `calm` drops `hover` and `in` and sets the master gain to .48; `standard` is the table; `expressive` adds the air layer to `sheet` and the contour to `in`, never more cues (the air layer and the contour are extra voices of a cue that already sounds).
 Why: Sound scales with the site's motion so a calm brief stays calm in both.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SND-09 Activation and silence
-MUST. The module creates or resumes its audio context only inside a `pointerdown` or `keydown` handler, or adopts the one `enhance.js` creates synchronously in the click that turns sound on or auditions a cue; never on load. A cue plays only while the context is `running`; otherwise it is dropped, never queued or replayed, so after a navigation the page stays silent until the first click or key press. A hidden tab, and turning sound off, cut every sounding and scheduled voice at once (`off` itself still plays). A failed import leaves the toggle truthful and the page working. Always silent: a count, a validation error, navigation and view transitions, loading, a toast appearing, a video starting, a disabled control.
+MUST. The module creates or resumes its audio context only inside a `pointerdown`, `keydown` or `click` handler, or adopts the one `enhance.js` creates synchronously in the click that turns sound on or auditions a cue; never on load. A cue plays only while the context is `running`; otherwise it is dropped, never queued or replayed, so after a navigation the page stays silent until the first click or key press. A hidden tab, and turning sound off, cut every sounding and scheduled voice at once (`off` itself still plays). A failed import leaves the toggle truthful and the page working. Always silent: a count, a validation error, navigation and view transitions, loading, a toast appearing, a video starting, a disabled control.
 Why: Browsers do not count hover or scroll as a gesture; a sound that arrives late is worse than none.
 Gate: manual: checklists/pre-delivery.md
 
@@ -76,7 +80,7 @@ Gate: manual: checklists/new-component.md
 
 - [ ] R-SND-01 off by default, sessionStorage only, restore is silent
 - [ ] R-SND-02 sound.js ≤ 4608 B, imported on demand, no page references it
-- [ ] R-SND-03 only the listed cues, pentatonic, envelope and gains as in the table
+- [ ] R-SND-03 only the listed cues, pentatonic, envelope and gains as in the table; loudness order kept; recipe changes auditioned on laptop, headphones and phone
 - [ ] R-SND-04 one action, one sound; silent closes in groups; lightbox step
 - [ ] R-SND-05 three voices, ambient stolen first, rate limits
 - [ ] R-SND-06 hover: fine pointer, dwell, once per target; focus silent

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, copyFileSync, rmSync, statSync } from "node:fs";
 import path from "node:path";
+import { listHtml } from "../lib/html.js";
 
 function run(env = {}) {
   return execFileSync("node", ["engine/tools/build.js", "--site", "reference"], {
@@ -104,7 +105,9 @@ test("enhance.js ships under 5 KB (D55) and only does what bylaw 06 allows", () 
   const snd = readFileSync("dist/reference/assets/sound.js", "utf8");
   assert.ok(Buffer.byteLength(snd) <= 4608, `sound.js ${Buffer.byteLength(snd)} B`);
   assert.doesNotMatch(snd, /fetch\(|XMLHttpRequest|document\.cookie|localStorage/);
-  for (const p of ["en/index.html", "sys/style-guide/index.html"]) assert.doesNotMatch(readFileSync(`dist/reference/${p}`, "utf8"), /sound\.js/, `${p} never references the module`);
+  const pages = listHtml("dist/reference");
+  assert.ok(pages.length > 50, `scanned ${pages.length} pages`);
+  for (const p of pages) assert.doesNotMatch(readFileSync(p, "utf8"), /sound\.js/, `${p} never references the module`);
   assert.doesNotMatch(js, /fetch\(|XMLHttpRequest|document\.cookie/);
   assert.deepEqual([...new Set(js.match(/localStorage\.\w+\("[^"]*"/g).map((x) => x.replace(/localStorage\.\w+\(/, "")))], ['"theme"'], "localStorage holds the theme choice and nothing else (D54)");
 });

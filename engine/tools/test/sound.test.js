@@ -41,6 +41,7 @@ before(async () => {
   for (const f of ["enhance.js", "sound.js"]) copyFileSync(path.join("engine/scripts", f), path.join(dir, "assets", f));
   writeFileSync(path.join(dir, "index.html"), FIXTURE);
   server = await startServer(dir);
+  // --autoplay-policy=no-user-gesture-required means these tests prove the code paths, not the browser's autoplay policy.
   browser = await puppeteer.launch({ executablePath, headless: true, args: ["--no-sandbox", "--autoplay-policy=no-user-gesture-required"] });
 });
 after(async () => {
@@ -51,20 +52,26 @@ after(async () => {
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
-/** A fresh page that records the start frequency of every oscillator (0 for a noise source) into window.__v. */
+/** A fresh page that records the start frequency of every oscillator (0 for a noise source) into window.__v,
+ *  and every stop() call, so window.__cuts() names the voices stopped before their natural end. */
 async function open({ restored = false, reduced = false } = {}) {
   const page = await browser.newPage();
   if (reduced) await page.emulateMediaFeatures([{ name: "prefers-reduced-motion", value: "reduce" }]);
   await page.evaluateOnNewDocument((restored) => {
     if (restored) sessionStorage.sound = "1";
     window.__v = [];
+    window.__n = 0; window.__f = []; window.__s = [];
+    const stop = AudioScheduledSourceNode.prototype.stop;
+    AudioScheduledSourceNode.prototype.stop = function (when) { (window.__s[this.__k] ||= []).push(when); return stop.call(this, when); };
+    // The label of every voice whose last stop() is earlier than its first, i.e. cut short (oscillators by start frequency, noise 0).
+    window.__cuts = () => window.__s.flatMap((w, k) => (w && w.length > 1 && w[w.length - 1] < w[0] ? [window.__f[k]] : []));
     const P = AudioContext.prototype, osc = P.createOscillator, src = P.createBufferSource;
     P.createOscillator = function () {
-      const n = osc.call(this), set = n.frequency.setValueAtTime.bind(n.frequency);
-      n.frequency.setValueAtTime = (v, t) => (window.__v.push(Math.round(v)), set(v, t));
+      const n = osc.call(this), set = n.frequency.setValueAtTime.bind(n.frequency), k = (n.__k = window.__n++);
+      n.frequency.setValueAtTime = (v, t) => (window.__v.push((window.__f[k] = Math.round(v))), set(v, t));
       return n;
     };
-    P.createBufferSource = function () { window.__v.push(0); return src.call(this); };
+    P.createBufferSource = function () { const n = src.call(this); window.__v.push((window.__f[(n.__k = window.__n++)] = 0)); return n; };
   }, restored);
   await page.goto(server.url + "/");
   return page;
@@ -225,5 +232,72 @@ test("off plays, then silence; an audition plays without turning sound on", { sk
   await page.hover("#l2");
   await key(page, "#plain");
   assert.deepEqual(await take(page, 300), [], "silent once off");
+  await page.close();
+});
+
+// The mixer guarantees (R-SND-05, R-SND-09). The cues are driven through the module's own export in one synchronous
+// evaluate, so no voice can end by itself between the steps; stop() is observed, not the audio.
+const mixer = (page, body) => page.evaluate(async (body) => {
+  const { S } = await import("/assets/sound.js");
+  window.__v.splice(0);
+  return new Function("S", "return (" + body + ")(S)")(S);
+}, body.toString());
+
+test("mixer: a direct cue steals the ambient voice, then the oldest; an ambient cue among direct voices is dropped", { skip }, async () => {
+  const page = await open();
+  await on(page);
+  const first = await mixer(page, (S) => {
+    S("in", 1); S("submit", 1); // noise + two notes: three voices
+    const v = window.__v.splice(0);
+    S("press", 1);              // needs a voice: the ambient noise goes first
+    return { v, after: window.__v.splice(0), cuts: window.__cuts() };
+  });
+  assert.deepEqual(first.v, [0, C5, G5]);
+  assert.deepEqual(first.after, [E5], "the direct cue still plays");
+  assert.deepEqual(first.cuts, [0], "the ambient voice was stopped early");
+  const second = await mixer(page, (S) => {
+    S("press", 1);              // no ambient left: the oldest voice goes
+    const v = window.__v.splice(0), cuts = window.__cuts();
+    S("hover", 1); S("in", 1);  // three direct voices sound: ambient cues find nothing to cut
+    return { v, cuts, ambient: window.__v.splice(0), after: window.__cuts() };
+  });
+  assert.deepEqual(second.v, [E5]);
+  assert.deepEqual(second.cuts, [0, C5], "the oldest voice (the submit's first note) was cut");
+  assert.deepEqual(second.ambient, [], "ambient cues are dropped, no source created");
+  assert.deepEqual(second.after, second.cuts, "and they cut nothing");
+  await page.close();
+});
+
+test("mixer: turning sound off cuts a sounding voice, and the off pair still plays", { skip }, async () => {
+  const page = await open();
+  await on(page);
+  const r = await page.evaluate(async () => {
+    document.getElementById("dlg").show(); // non-modal: the toggle stays clickable; the toggle event plays the sheet
+    await new Promise((res) => { const t = setInterval(() => window.__v.length && (clearInterval(t), res()), 2); });
+    document.getElementById("toggle").click();
+    await new Promise((res) => setTimeout(res, 20));
+    return { v: window.__v.splice(0), cuts: window.__cuts() };
+  });
+  assert.deepEqual(r.v, [C4, E5, C5], "the sheet, then the falling pair");
+  assert.deepEqual(r.cuts, [C4], "the sheet was cut short; the pair that followed was not");
+  assert.equal(await page.$eval("#toggle", (b) => b.getAttribute("aria-pressed")), "false");
+  await page.close();
+});
+
+test("mixer: a hidden tab cuts every voice and plays nothing", { skip }, async () => {
+  const page = await open();
+  await on(page);
+  const r = await mixer(page, (S) => {
+    S("sheet", 1);
+    const v = window.__v.splice(0);
+    Object.defineProperty(document, "hidden", { get: () => true, configurable: true });
+    document.dispatchEvent(new Event("visibilitychange"));
+    const cuts = window.__cuts();
+    S("press", 1);
+    return { v, cuts, hiddenCue: window.__v.splice(0) };
+  });
+  assert.deepEqual(r.v, [C4]);
+  assert.deepEqual(r.cuts, [C4], "the sounding voice was stopped early");
+  assert.deepEqual(r.hiddenCue, [], "a cue while hidden plays nothing");
   await page.close();
 });
