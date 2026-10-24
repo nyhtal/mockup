@@ -361,7 +361,7 @@ export default function (eleventyConfig) {
     { file: "style-guide-components.njk", href: `${sg}components/`, label: "Content components", title: "Style guide: content components", summary: "Cards, figures, tables, quotes, steps, timelines and disclosure blocks in every variant." },
     { file: "style-guide-controls.njk", href: `${sg}controls/`, label: "Navigation and overlays", title: "Style guide: navigation, overlays and states", summary: "Everything that moves, navigates or reports a state: menus, popovers, dialogs, toasts, notices and empty states." },
     { file: "style-guide-sections-index.njk", href: `${sg}sections/`, label: "Sections", title: "Style guide: sections", summary: `All ${samples.sections.length} sections of the catalog in ${groups.length} groups by purpose, with a line on what each is for.` },
-    ...groups.map((g) => ({ file: "style-guide-sections.njk", href: `${sg}sections/${g.slug}/`, label: g.title, title: `Sections: ${g.title}`, summary: g.summary, description: g.description, group: g, contents: g.items.map((i) => i.label) })),
+    ...groups.map((g) => ({ file: "style-guide-sections.njk", href: `${sg}sections/${g.slug}/`, label: g.title, title: `Style guide sections: ${g.title}`, summary: g.summary, description: g.description, group: g, contents: g.items.map((i) => i.label) })),
     { file: "style-guide-html.njk", href: "/sys/html/", label: "HTML elements", title: "HTML element reference", summary: `All ${htmlElements.length} elements of the HTML standard, what each is for, a page of this site that uses it, and the rest shown working.` },
   ];
   eleventyConfig.addGlobalData("styleGuide", { pages: sgPages.map(({ file, group, ...p }) => p), groups });

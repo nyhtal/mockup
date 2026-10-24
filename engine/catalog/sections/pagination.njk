@@ -2,7 +2,7 @@
   name: pagination (section)
   purpose: Pagination row under an index grid.
   anatomy: section(no title) > container > pagination component
-  data: s = { current, prev, next, pages }
+  data: s = { current, prev, next, pages, label? } (label names the region and its nav where another pagination shares the page)
 #}
 {% from "components/pagination.njk" import pagination with context %}
 {% macro render(s, ctx) %}

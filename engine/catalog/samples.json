@@ -2543,6 +2543,7 @@
     {
       "id": "pagination",
       "type": "pagination",
+      "label": "Pagination · Index grid",
       "current": 2,
       "prev": "/sys/style-guide/",
       "next": "/sys/style-guide/components/",

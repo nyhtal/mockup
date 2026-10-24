@@ -452,8 +452,8 @@
   {
     "el": "video",
     "group": "Embedded content",
-    "purpose": "A video.",
-    "href": "/en/"
+    "purpose": "A video: the landing page's sample clip.",
+    "href": "/en/lp/line-automation-2026/"
   },
   {
     "el": "audio",

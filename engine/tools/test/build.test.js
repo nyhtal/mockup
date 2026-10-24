@@ -14,8 +14,10 @@ function run(env = {}) {
 
 test("missing locale content fails the build naming the page", () => {
   copyFileSync("engine/i18n/en.json", "engine/i18n/xx.json");
+  // Every locale the site has, plus one with no content: dropping one would leave its pages without their section data.
+  const { locales } = JSON.parse(readFileSync("sites/reference/site.json", "utf8"));
   try {
-    assert.throws(() => run({ SITE_LOCALES_OVERRIDE: "en,de,ar,xx" }), (e) => {
+    assert.throws(() => run({ SITE_LOCALES_OVERRIDE: [...locales, "xx"].join(",") }), (e) => {
       assert.match(e.stderr, /Locale "xx" is missing page \/xx\/[a-z/-]*index\.html/);
       return true;
     });
@@ -60,7 +62,7 @@ test("engine-owned files and pages are generated", () => {
   }
   assert.ok(!existsSync("dist/reference/og-manifest.json"), "the OG manifest is consumed and removed");
   assert.match(readFileSync("dist/reference/404.html", "utf8"), /<meta name="robots" content="noindex">/);
-  assert.match(readFileSync("dist/reference/sitemap.xml", "utf8"), /<loc>https:\/\/example\.com\/en\/<\/loc>/);
+  assert.match(readFileSync("dist/reference/sitemap.xml", "utf8"), /<loc>https:\/\/northwind-dynamics\.com\/en\/<\/loc>/);
   assert.doesNotMatch(readFileSync("dist/reference/sitemap.xml", "utf8"), /\/404\//);
   assert.match(readFileSync("dist/reference/index.html", "utf8"), /http-equiv="refresh" content="0; url=\/en\/"/);
 });
@@ -113,34 +115,44 @@ test("light/dark switch: the head script applies a saved choice before first pai
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /Dunkles Design/);
 });
 
-test("the visual layer of 0.5.0: mark in header and favicon, proof strip and highlight in the home hero, counting figures below the fold only, tiles two across, sound toggle with a name", () => {
+test("the visual layer of 0.5.0: mark in header and favicon, a proof strip in the home hero and a highlight in the split hero, counting figures below the fold only, tiles two across, sound toggle with a name", () => {
   const home = readFileSync("dist/reference/en/index.html", "utf8");
   assert.match(home, /<header[^>]*>[\s\S]*?data-component="logo"[\s\S]*?<\/header>/, "the header carries the logo lockup");
   assert.match(readFileSync("dist/reference/icon.svg", "utf8"), /V42L42 64H/, "the favicon is the cut-corner mark");
+  // Since 0.11.0 the home page opens on a backdrop hero: text over the art, no highlight card (R-SEC-07).
   const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
-  assert.match(hero, /lg:grid-cols-12/);
+  assert.match(hero, /data-variant="backdrop"/);
+  assert.match(hero, /lg:min-h-144/);
   assert.match(hero, /xl:text-6xl xl:\[&amp;:lang\(de\)\]:text-5xl|xl:text-6xl xl:\[&:lang\(de\)\]:text-5xl/);
   assert.match(hero, /lines automated/, "proof strip");
-  assert.match(hero, /less downtime/, "highlight card");
+  assert.doesNotMatch(hero, /less downtime/, "a backdrop hero has no highlight card");
   assert.doesNotMatch(hero, /data-count/, "nothing counts above the fold (R-MOT-11)");
+  // The split hero keeps the twelve columns, the proof strip and the highlight card; the style guide shows it.
+  const heroes = readFileSync("dist/reference/sys/style-guide/sections/heroes/index.html", "utf8");
+  const split = /<section[^>]*id="section-hero-split"[\s\S]*?<\/section>/.exec(heroes)[0];
+  assert.match(split, /lg:grid-cols-12/);
+  assert.match(split, /lines automated/, "proof strip");
+  assert.match(split, /less downtime/, "highlight card");
+  assert.doesNotMatch(split, /data-count/, "nothing counts in a hero (R-MOT-11)");
   const stats = /<section[^>]*data-component="stats"[\s\S]*?<\/section>/.exec(home)[0];
   assert.equal((stats.match(/data-count="/g) || []).length, 4, "every stat on the band counts");
   assert.match(stats, /<span class="inline-grid"><span class="invisible \[grid-area:1\/1\]" aria-hidden="true">99\.98%<\/span><span class="\[grid-area:1\/1\] whitespace-nowrap motion-safe:data-counted:animate-settle" aria-hidden="true" data-count="99.98" data-decimals="2" data-nu="latn">99\.98%<\/span><span class="sr-only">99\.98%<\/span><\/span>/, "the counting triple: sizing copy, animated copy with build-time attributes, screen-reader copy (R-MOT-10)");
   assert.match(readFileSync("dist/reference/de/index.html", "utf8"), /data-count="99.98" data-decimals="2" data-nu="latn">99,98/, "German figures parse with the decimal comma");
   // Depth (R-MOT-15): md+ only, scroll(root) in the hero, the element's own view() elsewhere, drift mirrored in RTL, nothing on hero text.
-  assert.match(hero, /bg-hero-backdrop"[^>]*>|md:motion-safe:sda:animate-parallax-sm md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\][^"]*bg-hero-backdrop/, "the hero glows sink on scroll(root)");
-  assert.doesNotMatch(/<div class="lg:col-span-7[\s\S]*?<\/ul>/.exec(hero)?.[0] || "", /parallax|drift/, "no depth on the hero's text column");
-  const guide = readFileSync("dist/reference/sys/style-guide/sections/index.html", "utf8");
-  assert.match(guide, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\]/, "the split hero picture sinks, overscanned, at identity at rest");
+  assert.match(hero, /<img[^>]*fetchpriority="high"[^>]*class="absolute inset-0 size-full object-cover md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\]"/, "the backdrop art sinks on scroll(root), overscanned, at identity at rest");
+  assert.doesNotMatch(/<div class="max-w-2xl lg:w-7\/12[\s\S]*?<\/ul>/.exec(hero)?.[0] || "", /parallax|drift/, "no depth on the hero's text column");
+  assert.match(split, /md:motion-safe:sda:animate-parallax-sm md:motion-safe:sda:\[animation-timeline:scroll\(root\)\] md:motion-safe:sda:\[animation-range:0_80vh\][^"]*bg-hero-backdrop/, "the split hero's glows sink on scroll(root)");
+  assert.doesNotMatch(/<div class="lg:col-span-7[\s\S]*?<\/ul>/.exec(split)?.[0] || "", /parallax|drift/, "no depth on the split hero's text column");
+  assert.match(split, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-115 md:motion-safe:sda:translate-y-4 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:scroll\(root\)\]/, "the split hero picture sinks, overscanned, at identity at rest");
   assert.match(home, /<img[^>]*class="aspect-\[4\/3\] w-full object-cover md:motion-safe:sda:scale-110 md:motion-safe:sda:animate-parallax-md md:motion-safe:sda:\[animation-timeline:view\(\)\] md:motion-safe:sda:\[animation-range:cover_0%_cover_100%\] pending:scale-115 motion-safe:data-revealed:transition-\[scale\] motion-safe:data-revealed:duration-1200 motion-safe:data-revealed:ease-reveal"/, "media-row pictures settle from 115 % as they enter, then sit deeper on their own passage");
   assert.match(stats, /before:to-accent-600\/25 md:motion-safe:sda:before:animate-parallax-sm/, "the stats backdrop moves slower than the band");
   assert.match(home, /before:blur-3xl md:motion-safe:sda:before:animate-drift rtl:md:motion-safe:sda:before:animate-drift-end/, "the CTA highlight drifts and mirrors");
   assert.match(home, /gap-y-8 reveal-items md:motion-safe:sda:animate-drift rtl:md:motion-safe:sda:animate-drift-end/, "the logo cloud drifts");
   assert.doesNotMatch(home, /(?<!md:)motion-safe:sda:(?:before:)?animate-(?:parallax|drift)/, "no depth below md");
-  // Accents (Task 5): the reading-progress hairline on every page's header; the sticky editorial row on the about page (expressive).
+  // Accents (Task 5): the reading-progress hairline on every page's header. About's story has been a feature spotlight since 0.12.0, so no reference page shows the sticky editorial row any more.
   assert.match(home, /<header class="\[anchor-name:--header\] sticky top-0[^"]*before:-bottom-px before:hidden before:h-px before:origin-left rtl:before:origin-right before:bg-linear-to-r before:from-brand-600 before:to-accent-600 motion-safe:sda:before:block motion-safe:sda:before:animate-progress motion-safe:sda:before:\[animation-timeline:scroll\(root\)\]/, "progress hairline under the header (R-MOT-08)");
   const about = readFileSync("dist/reference/en/about/index.html", "utf8");
-  assert.match(about, /data-component="feature-rows" data-variant="sticky"[\s\S]*?<div class="grid gap-12 lg:grid-cols-2 lg:items-start">\n<div class="overflow-clip rounded-2xl ring-1 ring-line lg:sticky lg:top-24 lg:self-start/, "the sticky editorial row pins its picture");
+  assert.match(about, /data-component="feature-spotlight"/, "About's story is a spotlight (0.12.0)");
   assert.match(stats, /to-accent-200/, "numerals end in the evidence colour");
   const team = readFileSync("dist/reference/en/about/team/index.html", "utf8");
   assert.match(team, /<ul class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-4 reveal-items">/, "team tiles two across from 320 px, on the item distance");
@@ -273,7 +285,7 @@ test("link types and files: tel, sms, mailto with a subject, geo, and downloads 
   const office = readFileSync("dist/reference/de/about/locations/hamburg/index.html", "utf8");
   assert.match(office, /href="tel:\+4940123456"/);
   assert.match(office, /href="sms:\+4940123456"/);
-  assert.match(office, /href="mailto:hamburg@example\.com\?subject=Besuch%20im%20B%C3%BCro%20Hamburg"/);
+  assert.match(office, /href="mailto:hamburg@northwind-dynamics\.com\?subject=Besuch%20im%20B%C3%BCro%20Hamburg"/);
   assert.match(office, /href="geo:53\.5438,9\.9861"/);
   assert.match(office, /href="\/assets\/files\/de\/hamburg\.vcf" download type="text\/vcard"/);
   const event = readFileSync("dist/reference/ar/events/safety-plcs-webinar/index.html", "utf8");
@@ -287,7 +299,7 @@ test("link types and files: tel, sms, mailto with a subject, geo, and downloads 
   for (const f of readdirSync("dist/reference", { recursive: true })) if (String(f).endsWith(".html")) for (const m of readFileSync(`dist/reference/${f}`, "utf8").matchAll(/href="(\/assets\/files\/[^"]+)"/g)) hrefs.add(m[1]);
   assert.ok(hrefs.size >= 3 * 6 + 3, `${hrefs.size} file links`);
   for (const h of hrefs) assert.ok(existsSync(`dist/reference${h}`), `${h} exists`);
-  assert.match(readFileSync("dist/reference/assets/files/en/northwind-at-automation-fair.ics", "utf8"), /BEGIN:VEVENT\r\nUID:northwind-at-automation-fair@example\.com/);
+  assert.match(readFileSync("dist/reference/assets/files/en/northwind-at-automation-fair.ics", "utf8"), /BEGIN:VEVENT\r\nUID:northwind-at-automation-fair@northwind-dynamics\.com/);
   assert.match(readFileSync("dist/reference/assets/files/ar/riyadh.vcf", "utf8"), /GEO:geo:24\.7136,46\.6753/);
   assert.ok(readFileSync("dist/reference/assets/files/safety-evidence-guide.pdf", "latin1").startsWith("%PDF-1.4"));
 });
@@ -453,7 +465,7 @@ test("widgets (to-do 7b, part two): copy and share buttons report into a live to
   assert.match(office, /<button type="button" data-copy="Speicherstadt 12, 20457 Hamburg, Deutschland" data-copied="Adresse kopiert" class="hidden js:inline-flex/);
   assert.match(office, /<div role="status" aria-live="polite" class="[^"]*" data-component="toast" data-variant="live" data-toast><div hidden/);
   const post = read("en/blog/reading-generated-code");
-  assert.match(post, /data-copy="https:\/\/example\.com\/en\/blog\/reading-generated-code\/" data-copied="Link copied"><svg[^>]*><use href="#i-link">/);
+  assert.match(post, /data-copy="https:\/\/northwind-dynamics\.com\/en\/blog\/reading-generated-code\/" data-copied="Link copied"><svg[^>]*><use href="#i-link">/);
   assert.match(post, /data-copied="Link copied" data-share><svg[^>]*><use href="#i-share-2">/);
   assert.doesNotMatch(post, /data-component="announcement-bar"/, "the notice is on the home page only");
   const home = read("ar");
@@ -478,7 +490,7 @@ test("widgets (to-do 7b, part three): a carousel, a sticky phone CTA, a contact 
   assert.doesNotMatch(read("en/about"), /data-component="sticky-cta"/);
   const pricing = read("ar/pricing");
   assert.match(pricing, /<button type="button" popovertarget="contact-launcher"[^>]*>[\s\S]*?<div popover id="contact-launcher" role="dialog" aria-labelledby="contact-launcher-title"/);
-  assert.match(pricing, /<a href="tel:\+442079460000">[\s\S]*?<a href="mailto:hello@example\.com">[\s\S]*?<a href="\/ar\/contact\/">/);
+  assert.match(pricing, /<a href="tel:\+442079460000">[\s\S]*?<a href="mailto:hello@northwind-dynamics\.com">[\s\S]*?<a href="\/ar\/contact\/">/);
   assert.doesNotMatch(read("en/products/northwind-studio"), /contact-launcher/);
   const cs = read("de/customers/brightline-pharma");
   assert.match(cs, /<div class="relative overflow-hidden rounded-xl \[--pos:50%\]" data-ba-frame>/);
@@ -518,9 +530,10 @@ test("the widgets test page is gone and the HTML element reference lives under /
   assert.equal(readFileSync("dist/reference/_redirects", "utf8").trim(), "/  /en/  301", "only the root redirects (R-DEPLOY-05)");
   assert.deepEqual(JSON.parse(readFileSync("dist/reference/redirects.json", "utf8")), [{ from: "/", to: "/en/", status: 301 }]);
   const guide = readFileSync("dist/reference/sys/style-guide/index.html", "utf8");
-  assert.match(guide, /href="\/en\/sys\/html\/"/);
+  assert.match(guide, /href="\/sys\/html\/"/);
   assert.doesNotMatch(guide, /widgets/i);
-  assert.match(readFileSync("dist/reference/en/sys/index.html", "utf8"), /<a href="\/en\/sys\/html\/" class="mt-10 [^"]*"><span><span class="block text-lg font-semibold">HTML element reference<\/span>/, "the system page's card leads to the reference");
+  assert.match(readFileSync("dist/reference/sys/index.html", "utf8"), /<a href="\/sys\/html\/" class="font-medium [^"]*">HTML element reference<\/a>/, "the system hub lists the reference");
+  assert.match(readFileSync("dist/reference/en/sys/index.html", "utf8"), /<a href="\/sys\/" /, "the English system page points to the hub for it");
 });
 
 test("the style guide's entrance demo replays on demand (owner, 2026-10-21): a button the script shows, wired to the demo row", () => {
@@ -536,7 +549,7 @@ test("HTML element reference (to-do 8): every element of the standard is listed,
   const list = JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8"));
   assert.ok(list.length >= 110, `${list.length} elements`);
   const ref = readFileSync("dist/reference/sys/html/index.html", "utf8");
-  assert.match(ref, /<base href="\/en\/sys\/html\/" target="_self">/);
+  assert.match(ref, /<base href="\/sys\/html\/" target="_self">/);
   const has = (html, el) => new RegExp(`<${el}[\\s>/]`).test(html);
   for (const e of list) {
     assert.ok(ref.includes(`<tr id="el-${e.el}"`), `${e.el} is listed`);
@@ -545,29 +558,31 @@ test("HTML element reference (to-do 8): every element of the standard is listed,
   }
 });
 
-test("system pages (D56): /sys/ links each language's system page; each lists only its own hidden pages and carries the language switcher; /en/sys/ links the HTML element reference and lists the style guide; all hidden", () => {
+test("system pages (D56, D59): /sys/ links each language's system page, the style guide and the HTML element reference; each language's page lists only its own hidden pages, points to /sys/ for the rest and carries the language switcher; all hidden", () => {
   const read = (u) => readFileSync(`dist/reference${u}index.html`, "utf8");
   const links = (html) => new Set([...html.matchAll(/<a href="([^"#]+)" class="(?:font-medium|mt-10|block)/g)].map((m) => m[1]));
-  const enSys = read("/en/sys/"), deSys = read("/de/sys/"), arSys = read("/ar/sys/");
+  const { locales } = JSON.parse(readFileSync("sites/reference/site.json", "utf8"));
+  const names = { en: "English", de: "German", ar: "Arabic", ja: "Japanese" };
+  const sys = Object.fromEntries(locales.map((l) => [l, read(`/${l}/sys/`)]));
   const hub = read("/sys/");
-  for (const l of ["en", "de", "ar"]) assert.ok(links(hub).has(`/${l}/sys/`), `/sys/ links the ${l} system page`);
-  assert.ok(links(enSys).has("/en/sys/html/"), "/en/sys/ links the HTML element reference");
-  assert.match(enSys, /<h1[^>]*>English system pages<\/h1>/);
-  assert.match(deSys, /<h1[^>]*>German system pages<\/h1>/);
-  assert.match(arSys, /<h1[^>]*>Arabic system pages<\/h1>/);
-  // Each language's page lists only its own pages; the language switcher pairs the three system pages, and German and Arabic point to the English one for the HTML reference and the style guide (owner, 2026-10-20).
-  for (const [l, html] of [["en", enSys], ["de", deSys], ["ar", arSys]]) {
+  for (const l of locales) assert.ok(links(hub).has(`/${l}/sys/`), `/sys/ links the ${l} system page`);
+  // Since 0.9.0 the style guide and the HTML reference live outside any locale, and the hub lists them (D59).
+  for (const u of ["/sys/style-guide/", "/sys/html/"]) assert.ok(links(hub).has(u), `/sys/ links ${u}`);
+  // Each language's page lists only its own pages and points to /sys/ for the style guide and the HTML reference; the language switcher pairs the system pages (owner, 2026-10-20).
+  for (const [l, html] of Object.entries(sys)) {
+    assert.match(html, new RegExp(`<h1[^>]*>${names[l]} system pages</h1>`));
     const foreign = [...links(html)].filter((u) => /^\/[a-z]{2}\//.test(u) && !u.startsWith(`/${l}/`));
-    assert.deepEqual(foreign, l === "en" ? [] : ["/en/sys/"], `/${l}/sys/ lists no other language's pages`);
+    assert.deepEqual(foreign, [], `/${l}/sys/ lists no other language's pages`);
+    assert.match(html, /<a href="\/sys\/" /, `/${l}/sys/ points to the hub`);
+    assert.doesNotMatch(html, /href="\/(?:[a-z]{2}\/)?sys\/(?:html|style-guide)\//, `/${l}/sys/ leaves the style guide and the HTML reference to the hub`);
     assert.ok(links(html).has(`/${l}/search/`), `/${l}/sys/ lists its own hidden pages`);
     assert.ok(links(html).has(`/${l}/feed.xml`), `/${l}/sys/ lists its own files`);
     assert.match(html, /data-component="locale-switcher"/, `/${l}/sys/ has the language switcher`);
-    for (const o of ["en", "de", "ar"]) assert.match(html, new RegExp(`<link rel="alternate" hreflang="${o}" href="[^"]*/${o}/sys/"`), `/${l}/sys/ names /${o}/sys/ as its ${o} alternate`);
+    for (const o of locales) assert.match(html, new RegExp(`<link rel="alternate" hreflang="${o}" href="[^"]*/${o}/sys/"`), `/${l}/sys/ names /${o}/sys/ as its ${o} alternate`);
   }
-  assert.doesNotMatch(deSys, /href="\/de\/sys\/html\/"|style-guide/, "German has no HTML reference or style guide of its own");
-  for (const html of [hub, enSys, deSys, arSys]) assert.match(html, /<meta name="robots" content="noindex/);
-  assert.doesNotMatch(hub, /hreflang="(de|ar)"|data-component="locale-switcher"/, "the hub exists in one place only: no language links");
-  const listed = new Set([...links(hub), ...links(enSys), ...links(deSys), ...links(arSys)]);
+  for (const html of [hub, ...Object.values(sys)]) assert.match(html, /<meta name="robots" content="noindex/);
+  assert.doesNotMatch(hub, /hreflang="[a-z]{2}"|data-component="locale-switcher"/, "the hub exists in one place only: no language links");
+  const listed = new Set([...links(hub), ...Object.values(sys).flatMap((html) => [...links(html)])]);
   const pages = [];
   const walk = (dir) => { for (const e of readdirSync(dir, { withFileTypes: true })) { const p = path.join(dir, e.name); if (e.isDirectory()) walk(p); else if (e.name.endsWith(".html")) pages.push(p); } };
   walk("dist/reference");
@@ -606,9 +621,9 @@ test("the stylesheet is compiled from the built pages only, not from docs or byl
 
 test("three locales: alternates pair the same slug per locale, Arabic pages preload the Arabic face and then the Latin one, the style guide exists in the default locale only", () => {
   const html = readFileSync("dist/reference/de/about/team/mei-chen/index.html", "utf8");
-  assert.match(html, /<link rel="alternate" hreflang="en" href="https:\/\/example\.com\/en\/about\/team\/mei-chen\/">/);
-  assert.match(html, /<link rel="alternate" hreflang="ar" href="https:\/\/example\.com\/ar\/about\/team\/mei-chen\/">/);
-  assert.doesNotMatch(html, /hreflang="en" href="https:\/\/example\.com\/en\/about\/team\/priya/);
+  assert.match(html, /<link rel="alternate" hreflang="en" href="https:\/\/northwind-dynamics\.com\/en\/about\/team\/mei-chen\/">/);
+  assert.match(html, /<link rel="alternate" hreflang="ar" href="https:\/\/northwind-dynamics\.com\/ar\/about\/team\/mei-chen\/">/);
+  assert.doesNotMatch(html, /hreflang="en" href="https:\/\/northwind-dynamics\.com\/en\/about\/team\/priya/);
   const ar = readFileSync("dist/reference/ar/index.html", "utf8");
   assert.match(ar, /<html lang="ar" dir="rtl"/);
   assert.match(ar, /<link rel="preload" href="\/assets\/fonts\/noto-sans-arabic-arabic-wght-normal\.woff2" as="font" type="font\/woff2" crossorigin>\n<link rel="preload" href="\/assets\/fonts\/inter-latin-wght-normal\.woff2"/);
@@ -642,8 +657,8 @@ test("UI strings on German and Arabic pages come from their locale, inside impor
 test("every indexable page is in sitemap.xml, every og:image file exists, and the last breadcrumb is the page title (paginated detail pages included)", () => {
   const sitemap = readFileSync("dist/reference/sitemap.xml", "utf8");
   const de = readFileSync("dist/reference/de/blog/reading-generated-code/index.html", "utf8");
-  assert.match(sitemap, /<loc>https:\/\/example\.com\/de\/blog\/reading-generated-code\/<\/loc>/);
-  const og = /property="og:image" content="https:\/\/example\.com([^"]+)"/.exec(de)[1];
+  assert.match(sitemap, /<loc>https:\/\/northwind-dynamics\.com\/de\/blog\/reading-generated-code\/<\/loc>/);
+  const og = /property="og:image" content="https:\/\/northwind-dynamics\.com([^"]+)"/.exec(de)[1];
   assert.ok(existsSync(`dist/reference${og}`), `${og} exists`);
   const crumbs = /data-component="breadcrumbs">([\s\S]*?)<\/nav>/.exec(de)[1].replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
   assert.match(crumbs, /Generierten SPS-Code an einem Nachmittag lesen$/);
@@ -779,7 +794,9 @@ test("gate fixes: the floating back-to-top lives inside the footer landmark and 
   const en = readFileSync("dist/reference/en/index.html", "utf8");
   assert.match(en, /<footer[^>]*>[\s\S]*data-component="back-to-top" data-variant="float"[\s\S]*<\/footer>/, "floating back-to-top inside the footer");
   assert.doesNotMatch(en, /<\/footer>[\s\S]*data-component="back-to-top" data-variant="float"/, "not after the footer");
-  for (const page of ["en/resources/index.html", "en/products/northwind-studio/index.html", "en/sys/style-guide/sections/index.html", "en/sys/style-guide/sections-c/index.html", "en/sys/style-guide/sections-d/index.html"]) {
+  // The style guide's section pages, one per group since 0.9.0 (D59).
+  const groups = JSON.parse(readFileSync("engine/catalog/style-guide-sections.json", "utf8")).map((g) => `sys/style-guide/sections/${g.slug}/index.html`);
+  for (const page of ["en/resources/index.html", "en/products/northwind-studio/index.html", "sys/style-guide/sections/index.html", ...groups]) {
     const html = readFileSync(`dist/reference/${page}`, "utf8");
     assert.doesNotMatch(html, /<ul class="grid gap-6 (?!md:gap-8)/, `${page}: bare gap-6 body grid`);
   }

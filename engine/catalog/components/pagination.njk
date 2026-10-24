@@ -10,11 +10,11 @@
   a11y: nav labelled; prev/next have visible text plus icons; current page is a span
   i18n: ui.pagination, ui.previous, ui.next; arrows flip in RTL
   content limits: ≤ 7 numbered links; use ellipsis text "…" beyond
-  data: p = { current, total, href(n) → url: pass hrefs as p.pages [{ n, url }] plus p.prev/p.next urls }
+  data: p = { current, total, href(n) → url: pass hrefs as p.pages [{ n, url }] plus p.prev/p.next urls }; p.label names the landmark where several share a page (the style guide)
 #}
 {% from "primitives/icon.njk" import icon with context %}
 {% macro pagination(p) %}
-<nav aria-label="{{ 'ui.pagination' | t }}" data-component="pagination">
+<nav aria-label="{{ p.label or ('ui.pagination' | t) }}" data-component="pagination">
 <ul class="flex flex-wrap items-center gap-1">
 <li>{% if p.prev %}<a href="{{ p.prev }}" rel="prev" class="inline-flex min-h-11 items-center gap-1 rounded-md px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ icon("chevron-left", { size: "size-4", class: "rtl:-scale-x-100" }) }}{{ "ui.previous" | t }}</a>{% else %}<span class="inline-flex min-h-11 items-center gap-1 px-3 text-sm text-ink-muted">{{ icon("chevron-left", { size: "size-4", class: "rtl:-scale-x-100" }) }}{{ "ui.previous" | t }}</span>{% endif %}</li>
 {%- for page in p.pages %}

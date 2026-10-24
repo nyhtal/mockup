@@ -41,13 +41,13 @@ noindex: true
 <section class="mt-16">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Navigation</h2>
 <div class="mt-8">{{ breadcrumbs([{ name: "Home", url: "/" + locale + "/" }, { name: "Style guide", url: sg }, { name: "Controls", url: sg + "controls/" }]) }}</div>
-<div class="mt-8">{{ announcementBar({ text: "Northwind 4 ships on 12 November.", href: "/sys/style-guide/", label: "See what is new" }, locale) }}</div>
+<div class="mt-8">{{ announcementBar({ text: "Northwind 4 ships on 12 November.", href: "/changelog/", label: "See what is new" }, locale) }}</div>
 <div class="mt-8 grid gap-8 lg:grid-cols-3">
 <div>{{ sidebarNav([{ title: "Getting started", links: [{ label: "Overview", href: sg }, { label: "Install", href: sg + "primitives/" }] }, { title: "Reference", links: [{ label: "Stations", href: sg + "components/" }, { label: "Recipes", href: sg + "controls/" }] }], sg + "controls/") }}</div>
 <div>{{ toc([{ id: "h-nav", text: "Navigation", level: 2 }, { id: "h-overlays", text: "Overlays", level: 2 }, { id: "h-states", text: "States", level: 2 }, { id: "h-states-empty", text: "Empty", level: 3 }]) }}</div>
 <div>{{ pagination({ current: 2, prev: sg, next: sg + "components/", pages: [{ n: 1, url: sg }, { n: 2 }, { n: 3, url: sg + "components/" }, { n: "…" }, { n: 8, url: sg + "primitives/" }] }) }}</div>
 </div>
-<div class="mt-8">{{ subNav([{ label: "Overview", href: sg }, { label: "Primitives", href: sg + "primitives/" }, { label: "Content", href: sg + "components/" }, { label: "Controls", href: sg + "controls/" }], sg + "controls/", { label: "Style guide pages" }) }}</div>
+<div class="mt-8">{{ subNav([{ label: "Overview", href: sg }, { label: "Primitives", href: sg + "primitives/" }, { label: "Content", href: sg + "components/" }, { label: "Controls", href: sg + "controls/" }], sg + "controls/", { label: "Section navigation · Sub-nav" }) }}</div>
 <div class="mt-8 flex flex-wrap items-end gap-8">
 {{ searchBox(locale, { id: "q-demo" }) }}
 {{ filterBar({ action: sg + "controls/", filters: [{ type: "select", name: "team", id: "f-team", label: "Team", options: [{ value: "", label: "All teams" }, { value: "eng", label: "Engineering" }, { value: "ops", label: "Operations" }] }, { type: "select", name: "location", id: "f-location", label: "Location", options: [{ value: "", label: "Anywhere" }, { value: "man", label: "Manchester" }, { value: "ham", label: "Hamburg" }] }], resetHref: sg + "controls/" }) }}
