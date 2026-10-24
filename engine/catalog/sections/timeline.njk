@@ -5,7 +5,7 @@
   variants: none
   states: none
   spacing: max-w-3xl
-  motion: reveals
+  motion: reveals; once the line has drawn, a soft band of light runs down it once (gesture-trace, D66)
   keyboard: none
   a11y: ordered list with <time>
   i18n: none
@@ -16,6 +16,6 @@
 {% from "components/timeline.njk" import timeline with context %}
 {% macro render(s, ctx) %}
 {% call shell("timeline", s, ctx, { itemsReveal: ctx.reveal }) %}
-<div class="max-w-3xl">{{ timeline(s.items, { reveal: ctx.reveal }) }}</div>
+<div class="max-w-3xl">{{ timeline(s.items, { reveal: ctx.reveal, gesture: ctx.reveal and ctx.flair and ctx.flair.gesture }) }}</div>
 {% endcall %}
 {% endmacro %}

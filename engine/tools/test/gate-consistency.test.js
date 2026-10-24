@@ -196,3 +196,17 @@ test("rhythm: the inset backdrop hero and the banner page header have their own 
   assert.equal(rhythmFindings(sec("pt-4 md:pt-6 pb-16 md:pb-28", "faq")).length, 1, "the inset pair is for heroes only");
   assert.equal(rhythmFindings(sec("pt-4 md:pt-6 pb-16 md:pb-24", "hero")).length, 1, "half an inset pair is off the scale");
 });
+
+test("motion-vocabulary: only the gestures of D66, and none in the hero", async () => {
+  const { motionFindings } = await import("../gates/consistency.js");
+  const { parse: parseHtml } = await import("node-html-parser");
+  assert.deepEqual(motionFindings(parseHtml('<span class="gesture-glow-repeat"></span><svg class="gesture-nudge"></svg><span class="gesture-trace"></span><header><g class="gesture-glint-rare"><path class="gesture-glint"/></g></header>')), []);
+  assert.ok(motionFindings(parseHtml('<div class="gesture-wobble"></div>')).some((m) => /gesture-wobble.*outside D66/.test(m)));
+  assert.ok(motionFindings(parseHtml('<section data-component="hero"><svg class="gesture-nudge"></svg></section>')).some((m) => /gesture in the hero/.test(m)));
+});
+
+test("motion-vocabulary: a gesture in the hero is found even after the same class outside it", async () => {
+  const { motionFindings } = await import("../gates/consistency.js");
+  const { parse: parseHtml } = await import("node-html-parser");
+  assert.ok(motionFindings(parseHtml('<span class="gesture-glow"></span><section data-component="hero"><span class="gesture-glow"></span></section>')).some((m) => /gesture in the hero/.test(m)));
+});

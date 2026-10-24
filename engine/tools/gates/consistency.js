@@ -14,6 +14,8 @@ export const ANIMATIONS = new Set([
   "progress", "parallax-sm", "parallax-md", "parallax-lg", "drift", "drift-end", "settle", "drop", "scale-in", "fade", "rise-in",
   "spin", "pulse", "none",
 ]);
+/** The gestures of D66: generic once-per-arrival decorations (and the logo's glint). */
+export const GESTURES = new Set(["gesture-nudge", "gesture-glow", "gesture-glow-repeat", "gesture-trace", "gesture-glint", "gesture-glint-rare"]);
 /** Scroll ranges are left only for what tracks the scroll: depth, the header shadow and the floating back to top (entrances are time-based, R-MOT-05). */
 export const RANGES = new Set([
   "cover_0%_cover_100%", // depth on a view() timeline
@@ -32,10 +34,14 @@ export function motionFindings(root) {
       const { variants, base } = splitClass(c);
       const anim = /^animate-(.+)$/.exec(base)?.[1];
       const range = /^\[animation-range:(.+)\]$/.exec(base)?.[1];
-      const key = `${c}|${anim && DEPTH.test(anim) && el.closest('[data-component="hero"]') ? "hero" : ""}`;
+      const key = `${c}|${((anim && DEPTH.test(anim)) || base.startsWith("gesture-")) && el.closest('[data-component="hero"]') ? "hero" : ""}`;
       if (seen.has(key)) continue;
       seen.add(key);
       if (anim && !ANIMATIONS.has(anim)) out.push(`class "${c}" names a keyframe outside R-TOK-13`);
+      if (base.startsWith("gesture-")) {
+        if (!GESTURES.has(base)) out.push(`class "${c}" names a gesture outside D66`);
+        else if (el.closest('[data-component="hero"]')) out.push(`class "${c}" is a gesture in the hero (R-MOT-11, D66)`);
+      }
       if (range && !RANGES.has(range)) out.push(`class "${c}" uses a scroll range outside the presets of R-MOT-05`);
       if (anim && DEPTH.test(anim)) {
         if (!variants.includes("md")) out.push(`class "${c}" moves a depth layer below md (R-MOT-15)`);
