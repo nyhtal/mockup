@@ -99,6 +99,6 @@ Gate: manual: checklists/new-site.md
 - [ ] R-TOK-10 container string exact
 - [ ] R-TOK-11 five durations, four named easings
 - [ ] R-TOK-12 flair level tokens set; sections read booleans, not the level
-- [ ] R-TOK-13 twelve animation tokens, transform/opacity only; no entrance keyframes
+- [ ] R-TOK-13 twelve animation tokens, opacity/transform/translate only; no entrance keyframes
 - [ ] R-TOK-14 brand inputs limited to the six keys
 - [ ] R-TOK-15 density touches padding only
