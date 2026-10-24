@@ -8,7 +8,7 @@ Why: A site that makes noise unasked is not professional; a choice that outlived
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SND-02 The sound module
-MUST. Every sound is synthesised with the Web Audio API in `engine/scripts/sound.js`, an ES module of at most 4608 bytes with no dependencies and no audio files, which `enhance.js` imports only after the visitor turns sound on (or presses an audition button, R-SND-11). No page references it, so a visitor who leaves sound off never downloads it. It exports one function, `S(name, force, element, context)`.
+MUST. Every sound is synthesised with the Web Audio API in `engine/scripts/sound.js`, an ES module of at most 4608 bytes with no dependencies and no audio files, which `enhance.js` imports only while sound is on (switched on, or restored for the tab) or when an audition button is pressed (R-SND-11). No page references it, so a visitor who leaves sound off never downloads it. It exports one function, `S(name, force, element, context)`.
 Why: Most visitors never switch sound on; they should not pay for it.
 Gate: budget/js
 
@@ -21,9 +21,9 @@ MUST. The cues are these and no others. Pitches come from C major pentatonic (C4
 | `press` | a plain button or button-styled link is pressed (pointer down, or a keyboard activation) | triangle E5→C5, 35 ms, .02; primary .026 |
 | `pop` / `unpop` | a popover opens / closes (menus, language switcher, tooltip) | sine C5→E5 45 ms .02 / E5→C5 35 ms .014 |
 | `open` / `close` | a `<details>` opens / closes (accordion, FAQ, tabs, feature disclosures) | sine C5→E5 85 ms .018 / E5→C5 65 ms .012 |
-| `sheet` / `unsheet` | a dialog opens / closes: a `<dialog>`, or a popover that is `[role=dialog]` or `[data-component$=drawer]` (modal, drawer, lightbox, contact launcher) | sine C4→G4 120 ms .028 / G4→C4 90 ms .02; at `expressive` plus noise bandpassed at 900 Hz (Q .7), .004 |
+| `sheet` / `unsheet` | a dialog opens / closes: a `<dialog>`, or a popover that is `[role=dialog]` or `[data-component$=drawer]` (modal, drawer, lightbox, contact launcher) | sine C4→G4 120 ms .028 / G4→C4 90 ms .02; at `expressive` `sheet` alone adds noise bandpassed at 900 Hz (Q .7), 120 ms, .004 |
 | `step` | a carousel snaps to a new item; the lightbox moves to the next or previous picture | triangle E5, 40 ms, .018 |
-| `on`·`up` / `off`·`down` | the sound toggle (`on`/`off`, which also switch the state) and the theme toggle (`up`/`down`) | C5 then E5 / E5 then C5, 40 ms each, 45 ms apart, .022 |
+| `on`·`up` / `off`·`down` | the sound toggle (`on`/`off`, which also switch the state) and the theme toggle (`up`/`down`); the style guide auditions the pair as `up`/`down`, the sound being identical | C5 then E5 / E5 then C5, 40 ms each, 45 ms apart, .022 |
 | `detent` | a range input passes a tenth of its range | sine C5, 18 ms, .009 |
 | `copy` | the clipboard write resolved | E5 then G5, 45 ms each, 55 ms apart, .025 |
 | `submit` | a form's `submit` event fires | C5 then G5, 65 ms each, 75 ms apart, .03 |
@@ -58,7 +58,7 @@ Why: Sound scales with the site's motion so a calm brief stays calm in both.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SND-09 Activation and silence
-MUST. The module creates or resumes its audio context only inside a trusted `pointerdown` or `keydown`, or adopts the one `enhance.js` creates synchronously in the click that turns sound on or auditions a cue; never on load. A cue plays only while the context is `running`; otherwise it is dropped, never queued or replayed, so after a navigation the page stays silent until the first click or key press. A hidden tab, and turning sound off, cut every sounding and scheduled voice at once (`off` itself plays first). A failed import leaves the toggle truthful and the page working. Always silent: a count, a validation error, navigation and view transitions, loading, a toast appearing, a video starting, a disabled control.
+MUST. The module creates or resumes its audio context only inside a `pointerdown` or `keydown` handler, or adopts the one `enhance.js` creates synchronously in the click that turns sound on or auditions a cue; never on load. A cue plays only while the context is `running`; otherwise it is dropped, never queued or replayed, so after a navigation the page stays silent until the first click or key press. A hidden tab, and turning sound off, cut every sounding and scheduled voice at once (`off` itself still plays). A failed import leaves the toggle truthful and the page working. Always silent: a count, a validation error, navigation and view transitions, loading, a toast appearing, a video starting, a disabled control.
 Why: Browsers do not count hover or scroll as a gesture; a sound that arrives late is worse than none.
 Gate: manual: checklists/pre-delivery.md
 
