@@ -17,7 +17,7 @@ MUST. The cues are these and no others. Pitches come from C major pentatonic (C4
 
 | Cue | Plays when | Recipe |
 |---|---|---|
-| `hover` | the mouse rests 100 ms on `a[href]`, an enabled `button`, a `summary` or a `label` | sine G5, 24 ms, .008 |
+| `hover` | the mouse rests 100 ms on `a[href]`, an enabled `button` (not a style-guide audition button), a `summary` or a `label` | sine G5, 24 ms, .008 |
 | `press` | a plain button or button-styled link is pressed (pointer down, or a keyboard activation) | triangle E5→C5, 35 ms, .02; primary .026 |
 | `pop` / `unpop` | a popover opens / closes (menus, language switcher, tooltip) | sine C5→E5 45 ms .02 / E5→C5 35 ms .014 |
 | `open` / `close` | a `<details>` opens / closes (accordion, FAQ, tabs, feature disclosures) | sine C5→E5 85 ms .018 / E5→C5 65 ms .012 |
@@ -27,7 +27,7 @@ MUST. The cues are these and no others. Pitches come from C major pentatonic (C4
 | `detent` | a range input passes a tenth of its range | sine C5, 18 ms, .009 |
 | `copy` | the clipboard write resolved | E5 then G5, 45 ms each, 55 ms apart, .025 |
 | `submit` | a form's `submit` event fires | C5 then G5, 65 ms each, 75 ms apart, .03 |
-| `in` | an entrance starts after the first report (R-MOT-05) | noise bandpassed at 900 Hz (Q .7), 180 ms, .005; at `expressive` a rising group adds sine C5→D5 and a settling one D5→C5, 55 ms, .007 |
+| `in` | an entrance starts after the first report (R-MOT-05) | sine G4→C5, 100 ms, .005; at `expressive` a rising group adds sine C5→D5 and a settling one D5→C5, 55 ms, .007 |
 | `count` / `land` | a figure counts up (R-MOT-10 behaviour 3): one tick each time the eased value passes a twelfth of its target / once when it lands | triangle, 18 ms, .008, climbing C5 D5 E5 G5 A5 C6 two ticks a step / sine G5→C6, 70 ms, .01 |
 
 Loudness order, by what the visitor hears (peak gain, length and timbre together): `hover`, `in`, `count` and `land` are quieter than `detent`; `detent` is quieter than `press` and `step`; those are quieter than `pop`, `open` and `sheet` (and their closes); and those are quieter than `on`, `copy` and `submit`. A change to any recipe MUST be auditioned on laptop speakers, headphones and a phone before it ships.
@@ -53,8 +53,8 @@ Why: A tick on every Tab is a penalty for keyboard users; hover sounds on touch 
 Gate: manual: checklists/new-component.md
 
 ### R-SND-07 Entrances
-MUST. `enhance.js` asks for `in` for each entrance it reveals after its first report; the module's rate limit turns a section's cascade into one breath. Nothing that is in view at load makes a sound, and no card or item has a sound of its own. A counting figure is the one exception: it ticks as it counts and lands on one note (R-SND-03), because the count is motion the visitor watches, like a dial.
-Why: The breath accompanies the motion the visitor caused by scrolling; per-item sounds would be a xylophone.
+MUST. `enhance.js` asks for `in` for each entrance it reveals after its first report; the module's rate limit turns a section's cascade into one soft rising note. Nothing that is in view at load makes a sound, and no card or item has a sound of its own. A counting figure is the one exception: it ticks as it counts and lands on one note (R-SND-03), because the count is motion the visitor watches, like a dial.
+Why: The note accompanies the motion the visitor caused by scrolling; per-item sounds would be a xylophone.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SND-08 Reduced motion and the motion level
@@ -73,7 +73,7 @@ Why: Sound is part of the brand, and a cue that changed meaning by language woul
 Gate: manual: checklists/new-locale.md
 
 ### R-SND-11 The style guide auditions every cue
-MUST. The style guide's foundations page has a Sound section listing every cue of R-SND-03 with when it plays and what it sounds like, each with a Play button (`button[data-sound-demo="<cue>"]`, shown only with the script) that plays that cue once through the production module without turning sound on. A new cue gets a row before it ships.
+MUST. The style guide's foundations page has a Sound section listing every cue of R-SND-03 with when it plays and what it sounds like, each with a Play button (`button[data-sound-demo="<cue>"]`, shown only with the script) that plays that cue once through the production module without turning sound on; the mouse resting 100 ms on a row plays it too, once the page has had a click or key press, and the Play button itself has no `hover` tick. A new cue gets a row before it ships.
 Why: Sound cannot be reviewed from a table of numbers; whoever changes it has to hear it.
 Gate: manual: checklists/new-component.md
 
@@ -85,7 +85,7 @@ Gate: manual: checklists/new-component.md
 - [ ] R-SND-04 one action, one sound; silent closes in groups; lightbox step
 - [ ] R-SND-05 three voices, ambient stolen first, rate limits
 - [ ] R-SND-06 hover: fine pointer, dwell, once per target; focus silent
-- [ ] R-SND-07 one breath per section, nothing at load
+- [ ] R-SND-07 one note per section, nothing at load
 - [ ] R-SND-08 reduced motion silences in; calm, standard, expressive
 - [ ] R-SND-09 context only from a gesture; dropped, never queued; hidden and off cut
 - [ ] R-SND-10 same in every locale, no panning

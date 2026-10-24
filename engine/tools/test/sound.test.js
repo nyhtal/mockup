@@ -29,7 +29,7 @@ const FIXTURE = `<!DOCTYPE html><html lang="en" data-motion="standard"><head><me
 <dialog id="lb-2" data-lightbox><button type="button" data-lb="lb-1">previous</button></dialog>
 <form id="f" action="#sent" onsubmit="return false"><input name="n" required id="n"><button type="submit" id="send">send</button></form>
 <input type="range" id="r" min="0" max="100" value="50">
-<button type="button" data-sound-demo="open" id="demo">play open</button>
+<table><tr id="row"><td>open</td><td><button type="button" data-sound-demo="open" id="demo">play open</button></td></tr></table>
 <div class="far pending:translate-y-4" id="far">far</div>
 <p style="margin-top:3000px"><span id="cnt" data-count="120">120</span></p>
 <script type="module" src="/assets/enhance.js"></script></body></html>`;
@@ -202,11 +202,11 @@ test("submit sounds only when the form really submits; range detents every tenth
   await page.close();
 });
 
-test("entrances: one breath, not under reduced motion; calm drops hover", { skip }, async () => {
+test("entrances: one note, not under reduced motion; calm drops hover", { skip }, async () => {
   const page = await open();
   await on(page);
   await page.evaluate(() => document.getElementById("far").scrollIntoView());
-  assert.deepEqual(await take(page, 400), [0], "a noise breath, no contour at standard");
+  assert.deepEqual(await take(page, 400), [G4], "a soft rising note, no contour at standard");
   await page.close();
   const p2 = await open({ reduced: true });
   await on(p2);
@@ -255,6 +255,25 @@ test("off plays, then silence; an audition plays without turning sound on", { sk
   await page.close();
 });
 
+test("style guide: resting on a row auditions its cue; its Play button has no hover tick", { skip }, async () => {
+  const page = await open();
+  await page.mouse.click(2, 2); // a gesture first: the audition needs a running context
+  await page.hover("#row td");
+  assert.deepEqual(await take(page, 60), [], "no sound before 100 ms of dwell");
+  assert.deepEqual(await take(page, 240), [C5], "the row plays its cue while sound is off");
+  await page.hover("#demo");
+  assert.deepEqual(await take(page, 300), [], "moving onto its Play button stays in the row");
+  assert.equal(await page.$eval("#toggle", (b) => b.getAttribute("aria-pressed")), "false");
+  await corner(page); await wait(300);
+  await on(page);
+  await page.hover("#demo");
+  assert.deepEqual(await take(page, 300), [C5], "with sound on, the cue alone, no hover tick");
+  await corner(page); await wait(300);
+  await page.click("#demo"); // onto the button and pressed before the row's dwell runs out
+  assert.deepEqual(await take(page, 400), [C5], "a click plays its cue once: the row's pending audition is cancelled, no press");
+  await page.close();
+});
+
 // The mixer guarantees (R-SND-05, R-SND-09). The cues are driven through the module's own export in one synchronous
 // evaluate, so no voice can end by itself between the steps; stop() is observed, not the audio.
 const mixer = (page, body) => page.evaluate(async (body) => {
@@ -267,14 +286,14 @@ test("mixer: a direct cue steals the ambient voice, then the oldest; an ambient 
   const page = await open();
   await on(page);
   const first = await mixer(page, (S) => {
-    S("in", 1); S("submit", 1); // noise + two notes: three voices
+    S("in", 1); S("submit", 1); // three voices
     const v = window.__v.splice(0);
-    S("press", 1);              // needs a voice: the ambient noise goes first
+    S("press", 1);              // needs a voice: the ambient one goes first
     return { v, after: window.__v.splice(0), cuts: window.__cuts() };
   });
-  assert.deepEqual(first.v, [0, C5, G5]);
+  assert.deepEqual(first.v, [G4, C5, G5]);
   assert.deepEqual(first.after, [E5], "the direct cue still plays");
-  assert.deepEqual(first.cuts, [0], "the ambient voice was stopped early");
+  assert.deepEqual(first.cuts, [G4], "the ambient voice was stopped early");
   const second = await mixer(page, (S) => {
     S("press", 1);              // no ambient left: the oldest voice goes
     const v = window.__v.splice(0), cuts = window.__cuts();
@@ -282,7 +301,7 @@ test("mixer: a direct cue steals the ambient voice, then the oldest; an ambient 
     return { v, cuts, ambient: window.__v.splice(0), after: window.__cuts() };
   });
   assert.deepEqual(second.v, [E5]);
-  assert.deepEqual(second.cuts, [0, C5], "the oldest voice (the submit's first note) was cut");
+  assert.deepEqual(second.cuts, [G4, C5], "the oldest voice (the submit's first note) was cut");
   assert.deepEqual(second.ambient, [], "ambient cues are dropped, no source created");
   assert.deepEqual(second.after, second.cuts, "and they cut nothing");
   await page.close();
