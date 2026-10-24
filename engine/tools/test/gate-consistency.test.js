@@ -200,7 +200,7 @@ test("rhythm: the inset backdrop hero and the banner page header have their own 
 test("motion-vocabulary: only the gestures of D66, and none in the hero", async () => {
   const { motionFindings } = await import("../gates/consistency.js");
   const { parse: parseHtml } = await import("node-html-parser");
-  assert.deepEqual(motionFindings(parseHtml('<span class="gesture-glow-repeat"></span><svg class="gesture-nudge"></svg><span class="gesture-trace"></span><header><g class="gesture-glint-rare"><path class="gesture-glint"/></g></header>')), []);
+  assert.deepEqual(motionFindings(parseHtml('<div class="pending:visible"><span class="gesture-glow-repeat"></span><svg class="gesture-nudge"></svg><span class="gesture-trace"></span></div><header><g class="gesture-glint-rare"><path class="gesture-glint"/></g></header>')), []);
   assert.ok(motionFindings(parseHtml('<div class="gesture-wobble"></div>')).some((m) => /gesture-wobble.*outside D66/.test(m)));
   assert.ok(motionFindings(parseHtml('<section data-component="hero"><svg class="gesture-nudge"></svg></section>')).some((m) => /gesture in the hero/.test(m)));
 });
@@ -209,4 +209,11 @@ test("motion-vocabulary: a gesture in the hero is found even after the same clas
   const { motionFindings } = await import("../gates/consistency.js");
   const { parse: parseHtml } = await import("node-html-parser");
   assert.ok(motionFindings(parseHtml('<span class="gesture-glow"></span><section data-component="hero"><span class="gesture-glow"></span></section>')).some((m) => /gesture in the hero/.test(m)));
+});
+
+test("motion-vocabulary: an arrival gesture must sit inside an element the script observes (a pending: class), or it would never play", async () => {
+  const { motionFindings } = await import("../gates/consistency.js");
+  const { parse: parseHtml } = await import("node-html-parser");
+  assert.deepEqual(motionFindings(parseHtml('<div class="pending:visible"><span class="gesture-glow"></span></div><ol class="pending:opacity-0 gesture-trace"></ol><a><svg><path class="gesture-glint"/></svg></a>')), []);
+  assert.ok(motionFindings(parseHtml('<div><span class="gesture-glow-repeat"></span></div>')).some((m) => /never arrives/.test(m)));
 });

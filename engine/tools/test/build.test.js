@@ -923,7 +923,8 @@ test("the closing CTA panel comes alive once (D66): its green glow grows and pul
   for (const lang of ["en", "ar"]) {
     const home = readFileSync(`dist/reference/${lang}/index.html`, "utf8");
     const band = /<section[^>]*data-component="cta-band"[\s\S]*?<\/section>/.exec(home)[0];
-    assert.match(band, /<span aria-hidden="true" class="pointer-events-none absolute -bottom-32 -end-32 -z-10 size-96 rounded-full bg-accent-300\/30 blur-3xl gesture-glow-repeat"><\/span>/, `${lang}: the glow layer in the green corner, repeating (expressive)`);
+    assert.match(band, /<div class="relative isolate overflow-clip rounded-2xl bg-linear-to-br from-brand-700 via-brand-600 to-brand-600 /, `${lang}: the panel itself is blue`);
+    assert.match(band, /<span aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 bg-linear-to-br from-transparent from-50% to-accent-600 origin-bottom-right gesture-glow-repeat"><\/span>/, `${lang}: the green half of the gradient is a layer that grows from the bottom-right corner (owner: "start with none then grow to its full size"), repeating its pulse (expressive)`);
     assert.match(band, /<div class="relative isolate overflow-clip rounded-2xl [^"]*pending:visible[^"]*">/, `${lang}: the band has no entrance, so the panel arms its gestures with an invisible pending: marker the script observes`);
     const primary = /<a [^>]*data-variant="inverse"[^>]*>[\s\S]*?<\/a>/.exec(band)[0];
     assert.match(primary, /<svg aria-hidden="true" class="[^"]*rtl:-scale-x-100[^"]* gesture-nudge"><use href="#i-arrow-right">/, `${lang}: the arrow nudges once`);
@@ -937,15 +938,15 @@ test("the closing CTA panel comes alive once (D66): its green glow grows and pul
   }
 });
 
-test("the header logo glints (D66): once on hover or focus, and rarely on its own (20 s after load, then every 60 s, three times); the footer's stays still", () => {
+test("the logos glint (D66): the header's on hover or focus and rarely on its own (20 s after load, then every 60 s, three times); the footer's on hover only", () => {
   const home = readFileSync("dist/reference/en/index.html", "utf8");
-  const header = /<header[\s\S]*?<\/header>/.exec(home)[0];
-  const mark = /<span class="inline-flex items-center gap-2\.5" data-component="logo">\s*<svg [\s\S]*?<\/svg>/.exec(header)[0];
-  assert.match(mark, /<clipPath id="logo-glint"><path d="M14 0H50/, "the band is clipped to the tile's notched shape");
-  assert.match(mark, /<g clip-path="url\(#logo-glint\)" class="gesture-glint-rare"><path class="fill-ink-inverse\/35 gesture-glint" d="M-26 0h12l-10 64h-12z"\/><\/g><text /, "the band sits over the tile, under the letter");
-  assert.equal((home.match(/id="logo-glint"/g) || []).length, 1, "one clip id per page");
-  const footer = /<footer[\s\S]*?<\/footer>/.exec(home)[0];
-  assert.doesNotMatch(footer, /gesture-|logo-glint/, "the footer logo stays still");
+  const mark = (html) => /<span class="inline-flex items-center gap-2\.5" data-component="logo">\s*<svg [\s\S]*?<\/svg>/.exec(html)[0];
+  const header = mark(/<header[\s\S]*?<\/header>/.exec(home)[0]);
+  assert.match(header, /<clipPath id="logo-glint-header"><path d="M14 0H50/, "the band is clipped to the tile's notched shape");
+  assert.match(header, /<g clip-path="url\(#logo-glint-header\)"><g class="gesture-glint-rare"><path class="fill-ink-inverse\/35 gesture-glint" d="M-26 0h12l-10 64h-12z"\/><\/g><\/g><text /, "the rare sweep moves an inner group, so the clip stays on the tile (a clip on the moving group would move with it)");
+  const footer = mark(/<footer[\s\S]*?<\/footer>/.exec(home)[0]);
+  assert.match(footer, /<g clip-path="url\(#logo-glint-footer\)"><g><path class="fill-ink-inverse\/35 gesture-glint"/, "the footer logo glints on hover, never on its own");
+  for (const id of ["logo-glint-header", "logo-glint-footer"]) assert.equal((home.match(new RegExp(`id="${id}"`, "g")) || []).length, 1, `${id}: one clip id per page`);
   const css = readFileSync("dist/reference/assets/app.css", "utf8");
   assert.match(css, /--animate-glint-rare: ?glint-rare 60s linear 20s 3 none/);
   assert.match(css, /:where\(a, ?button\):is\(:hover, ?:focus-visible\) \.gesture-glint/, "the glint answers hover and keyboard focus on its link");
@@ -982,7 +983,7 @@ test("gestures (D66): generic utilities, played once after arrival, only with mo
   let outside = css;
   for (const b of safe) outside = outside.replace(b, "");
   assert.doesNotMatch(outside, /\.gesture-[a-z-]+[^{]*\{[^}]*animation:var\(--animate-(nudge|glow|trace|glint)/, "no gesture animates outside the motion-allowed screen media query");
-  assert.match(css, /\.gesture-nudge\{--g-dir: ?1\}\.gesture-nudge:dir\(rtl\)\{--g-dir: ?-1\}/, "the nudge heads toward the reading direction in RTL");
+  assert.match(css, /\.gesture-nudge\{--g-dir: ?1\}\.gesture-nudge:where\(:dir\(rtl\), ?\[dir=rtl\], ?\[dir=rtl\] \*\)\{--g-dir: ?-1\}/, "the nudge heads toward the reading direction in RTL, with a forgiving selector (a bare :dir() drops the rule in Chrome 111–119)");
   for (const k of ["nudge", "glow", "glow-pulse", "trace", "glint", "glint-rare"]) {
     const at = css.search(new RegExp(`@keyframes ${k}\{`));
     assert.ok(at >= 0, `@keyframes ${k} ships`);
@@ -992,7 +993,10 @@ test("gestures (D66): generic utilities, played once after arrival, only with mo
   assert.match(css, /--animate-nudge: ?nudge (600ms|\.6s)[^;]* 1 none/, "the nudge plays once and leaves no fill, so hover still nudges");
   assert.match(css, /--animate-glow-pulse: ?glow-pulse 24s[^;]* 3 none/, "the CTA glow pulses three times, then stops");
   assert.match(css, /@keyframes glow\{(0%|from)\{opacity:0;scale:\.2\}/, "the glow starts from nothing (owner: 'start with none then grow to its full size')");
-  assert.match(css, /--animate-glow: ?glow (2000ms|2s) ease-in-out/, "and grows smoothly over 2 s");
+  assert.match(css, /--animate-glow: ?glow (2600ms|2\.6s) ease-in-out (900ms|\.9s)/, "and grows smoothly over 2.6 s, 0.9 s after arrival (owner: 'its too fast')");
+  for (const g of ["gesture-glow-repeat"]) { // the reference site is expressive, so plain gesture-glow is not emitted here; the source writes both the same way
+    assert.match(inside, new RegExp(`\\.${g}:where\\(\\[data-js\\] \\*\\):not\\(:where\\(\\[data-revealed\\], ?\\[data-revealed\\] \\*\\)\\)\\{opacity:0\\}`), `${g} waits hidden until it plays, so a panel in view at load never shows it, drops it and regrows it`);
+  }
 });
 
 test("cards draw a gradient border on hover (D67): blue from the top-left corner along both sides to green at the bottom-right", () => {

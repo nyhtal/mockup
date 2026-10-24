@@ -2,10 +2,10 @@
   name: logo
   purpose: The site's identity lockup: the generated mark beside the wordmark (DESIGN §4, R-ASSET-09).
   anatomy: span[data-component=logo] > svg(mark: rounded tile in brand-600, bottom-end corner cut, the site's initial in inverse ink) + wordmark(ink)
-  variants: none; opts.size sets the mark's height (default size-7 xl:size-8) and the wordmark follows; opts.glint and opts.rare (header only: one clip id per page)
+  variants: none; opts.size sets the mark's height (default size-7 xl:size-8) and the wordmark follows; opts.glint names the clip id's suffix (one per page: "header", "footer") and opts.rare adds the rare sweep (header only)
   states: none
   spacing: gap-2.5 between mark and wordmark
-  motion: none, except the header mark (opts.glint): a band of light glints across the tile once on hover or focus of its link, and with opts.rare 20 s after load, then every 60 s, three times at most (D66)
+  motion: none, except a mark with opts.glint (the header's and the footer's): a band of light glints across the tile once on hover or focus of its link, and with opts.rare 20 s after load, then every 60 s, three times at most (D66)
   keyboard: not focusable (the header and footer wrap it in the home link)
   a11y: the mark is decorative (aria-hidden); the wordmark carries the name as its title
   i18n: the mark is not mirrored in RTL; the initial is the site's name's first character
@@ -15,7 +15,7 @@
 {% macro logo(name, opts={}) %}
 <span class="inline-flex items-center gap-2.5" data-component="logo">
 {%- set tile = "M14 0H50a14 14 0 0 1 14 14V42L42 64H14a14 14 0 0 1 -14 -14V14a14 14 0 0 1 14 -14z" -%}
-<svg aria-hidden="true" class="{{ opts.size or 'size-7 xl:size-8' }} shrink-0" viewBox="0 0 64 64">{% if opts.glint %}<clipPath id="logo-glint"><path d="{{ tile }}"/></clipPath>{% endif %}<path class="fill-brand-600" d="{{ tile }}"/>{% if opts.glint %}<g clip-path="url(#logo-glint)"{% if opts.rare %} class="gesture-glint-rare"{% endif %}><path class="fill-ink-inverse/35 gesture-glint" d="M-26 0h12l-10 64h-12z"/></g>{% endif %}<text class="fill-ink-inverse" x="30" y="33" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">{{ name | trim | first }}</text></svg>
+<svg aria-hidden="true" class="{{ opts.size or 'size-7 xl:size-8' }} shrink-0" viewBox="0 0 64 64">{% if opts.glint %}<clipPath id="logo-glint-{{ opts.glint }}"><path d="{{ tile }}"/></clipPath>{% endif %}<path class="fill-brand-600" d="{{ tile }}"/>{% if opts.glint %}<g clip-path="url(#logo-glint-{{ opts.glint }})"><g{% if opts.rare %} class="gesture-glint-rare"{% endif %}><path class="fill-ink-inverse/35 gesture-glint" d="M-26 0h12l-10 64h-12z"/></g></g>{% endif %}<text class="fill-ink-inverse" x="30" y="33" text-anchor="middle" dominant-baseline="central" font-family="Arial, Helvetica, sans-serif" font-size="38" font-weight="700">{{ name | trim | first }}</text></svg>
 {{ wordmark(name, { size: opts.wordmark or "h-6 xl:h-7", variant: "ink" }) }}
 </span>
 {% endmacro %}

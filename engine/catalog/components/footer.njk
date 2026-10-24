@@ -20,7 +20,7 @@
 <div class="h-px bg-linear-to-r from-brand-600 to-accent-600" aria-hidden="true"></div>
 <div class="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
 <div class="flex flex-wrap items-center justify-between gap-4">
-<a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ logo(site.name, { size: "size-8", wordmark: "h-7" }) }}</a>
+<a href="/{{ locale }}/" class="inline-flex items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus">{{ logo(site.name, { size: "size-8", wordmark: "h-7", glint: "footer" if flair and flair.gesture }) }}</a>
 <div class="flex flex-wrap items-center gap-2">{{ themeToggle({ label: true, class: "text-sm" }) }}{{ soundToggle({ label: true, class: "text-sm" }) }}{{ backToTop() }}</div>
 </div>
 <nav aria-label="{{ 'nav.footer' | t }}" class="mt-12">

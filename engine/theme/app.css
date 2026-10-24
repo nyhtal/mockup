@@ -256,9 +256,9 @@
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
   /* Gestures (D66): once after arrival; the CTA glow's pulse three times. Delays order them: the glow grows from nothing first (owner: "start with none then grow to its full size in a smooth motion"), the arrow nudge as it fills, a trace after its line's 1 200 ms draw. The logo glint plays on hover or focus; its rare form sweeps 20 s after load, then every 60 s, three times at most. */
-  --animate-nudge: nudge 600ms ease-in-out 2000ms 1 none;
-  --animate-glow: glow 2000ms ease-in-out 600ms 1 backwards;
-  --animate-glow-pulse: glow-pulse 24s ease-in-out 2600ms 3 none;
+  --animate-nudge: nudge 600ms ease-in-out 3000ms 1 none;
+  --animate-glow: glow 2600ms ease-in-out 900ms 1 backwards;
+  --animate-glow-pulse: glow-pulse 24s ease-in-out 3500ms 3 none;
   --animate-trace: trace 1200ms ease-in-out 2000ms 1 none;
   --animate-glint: glint 900ms ease-in-out 1 none;
   --animate-glint-rare: glint-rare 60s linear 20s 3 none;
@@ -344,19 +344,30 @@
 /* Gestures (D66, DESIGN §3): add one class to an existing decorative element; it plays once after its section arrives. */
 @utility gesture-nudge {
   --g-dir: 1;
-  &:dir(rtl) {
+  &:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
     --g-dir: -1;
   }
   @variant arrived {
     animation: var(--animate-nudge);
   }
 }
+/* A glow waits hidden until it plays (where it will play: on screen, motion allowed, script running), so a panel already in view at load never shows it, drops it and regrows it. A glow must sit inside an element the script observes (one with a pending: class), or it would wait forever; the gate checks this. */
 @utility gesture-glow {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    &:where([data-js] *):not(:where([data-revealed], [data-revealed] *)) {
+      opacity: 0;
+    }
+  }
   @variant arrived {
     animation: var(--animate-glow);
   }
 }
 @utility gesture-glow-repeat {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    &:where([data-js] *):not(:where([data-revealed], [data-revealed] *)) {
+      opacity: 0;
+    }
+  }
   @variant arrived {
     animation: var(--animate-glow), var(--animate-glow-pulse);
   }
