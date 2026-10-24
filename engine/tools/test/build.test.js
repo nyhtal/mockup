@@ -924,6 +924,7 @@ test("the closing CTA panel comes alive once (D66): its green glow grows and pul
     const home = readFileSync(`dist/reference/${lang}/index.html`, "utf8");
     const band = /<section[^>]*data-component="cta-band"[\s\S]*?<\/section>/.exec(home)[0];
     assert.match(band, /<span aria-hidden="true" class="pointer-events-none absolute -bottom-32 -end-32 -z-10 size-96 rounded-full bg-accent-300\/30 blur-3xl gesture-glow-repeat"><\/span>/, `${lang}: the glow layer in the green corner, repeating (expressive)`);
+    assert.match(band, /<div class="relative isolate overflow-clip rounded-2xl [^"]*pending:visible[^"]*">/, `${lang}: the band has no entrance, so the panel arms its gestures with an invisible pending: marker the script observes`);
     const primary = /<a [^>]*data-variant="inverse"[^>]*>[\s\S]*?<\/a>/.exec(band)[0];
     assert.match(primary, /<svg aria-hidden="true" class="[^"]*rtl:-scale-x-100[^"]* gesture-nudge"><use href="#i-arrow-right">/, `${lang}: the arrow nudges once`);
     const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
