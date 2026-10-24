@@ -357,7 +357,7 @@ export default function (eleventyConfig) {
   const groups = sectionGroups(samples, JSON.parse(readFileSync("engine/catalog/style-guide-sections.json", "utf8")));
   const sg = "/sys/style-guide/";
   const sgPages = [
-    { file: "style-guide-foundations.njk", href: sg, label: "Foundations", title: "Style guide: foundations", summary: "Colour roles in both schemes, the type scale, spacing, radius, shadows and the three motion levels." },
+    { file: "style-guide-foundations.njk", href: sg, label: "Foundations", title: "Style guide: foundations", summary: "Colour roles in both schemes, the type scale, spacing, radius, shadows, the three motion levels and the sound vocabulary." },
     { file: "style-guide-primitives.njk", href: `${sg}primitives/`, label: "Primitives", title: "Style guide: primitives", summary: "Buttons, links, badges, icons and form controls: every primitive in every variant and state." },
     { file: "style-guide-components.njk", href: `${sg}components/`, label: "Content components", title: "Style guide: content components", summary: "Cards, figures, tables, quotes, steps, timelines and disclosure blocks in every variant." },
     { file: "style-guide-controls.njk", href: `${sg}controls/`, label: "Navigation and overlays", title: "Style guide: navigation, overlays and states", summary: "Everything that moves, navigates or reports a state: menus, popovers, dialogs, toasts, notices and empty states." },

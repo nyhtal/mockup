@@ -551,6 +551,16 @@ test("the style guide's entrance demo replays on demand (owner, 2026-10-21): a b
   assert.ok(js.length <= 5120, `enhance.js is ${js.length} B`);
 });
 
+test("the style guide's Sound section auditions every cue (R-SND-11)", () => {
+  const page = readFileSync("dist/reference/sys/style-guide/index.html", "utf8");
+  assert.match(page, /<h2[^>]*>Sound<\/h2>/);
+  const cues = [...page.matchAll(/data-sound-demo="([a-z]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(cues, ["hover", "press", "pop", "unpop", "open", "close", "sheet", "unsheet", "step", "up", "down", "detent", "copy", "submit", "in"]);
+  assert.match(page, /<button type="button" data-sound-demo="hover" class="hidden js:inline-flex [^"]*">[\s\S]*?Play<span class="sr-only"> hover<\/span><\/button>/);
+  const snd = readFileSync("engine/scripts/sound.js", "utf8");
+  for (const c of cues) assert.ok(new RegExp(`\\b${c}:|K\\.${c}=`).test(snd), `sound.js defines ${c}`);
+});
+
 test("HTML element reference (to-do 8): every element of the standard is listed, each linked page really uses it, and every element appears on the site", () => {
   const list = JSON.parse(readFileSync("engine/catalog/html-elements.json", "utf8"));
   assert.ok(list.length >= 110, `${list.length} elements`);

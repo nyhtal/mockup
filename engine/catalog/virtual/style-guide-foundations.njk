@@ -98,4 +98,37 @@ noindex: true
 <figure><div class="flex h-24 items-center justify-center rounded-lg bg-surface-alt"><span class="size-12 rounded-md bg-brand-100{{ pop(demo, 360) }}"></span></div><figcaption class="mt-2 text-sm text-ink-muted">pop</figcaption></figure>
 </div>
 </section>
+<section class="mt-16">
+<h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Sound</h2>
+<p class="mt-4 max-w-prose text-base leading-relaxed">Sound is off until the visitor turns it on with the <strong>Sound effects</strong> button (in the footer, in the header on wide screens and in the menu on phones); the choice lasts for the tab, and the sounds load only then. Each is synthesised from one scale, so two that overlap agree; the quietest answer the pointer, the loudest confirm what the visitor did. A <strong>Play</strong> button plays its sound once without turning sound on. The rules are bylaw 20 (R-SND).</p>
+{%- set sounds = [
+  ["hover", "The mouse rests 100 ms on a link, button or card", "A faint high tick; once per target, at most four a second; never on touch or keyboard focus"],
+  ["press", "A button is pressed", "A short soft tap, falling"],
+  ["pop", "A menu, the language switcher or a tooltip opens", "A small rising pair"],
+  ["unpop", "It closes", "The same pair, falling and shorter; silent when another menu replaces it"],
+  ["open", "An accordion, FAQ answer or tab opens", "A longer rising pair"],
+  ["close", "It closes", "Falling; silent when a sibling in the same group opens"],
+  ["sheet", "A dialog, the drawer or the lightbox opens", "A low rising pair, with a breath of air at the expressive level"],
+  ["unsheet", "It closes", "The low pair, falling"],
+  ["step", "A carousel or the lightbox moves to the next item", "One neutral tick"],
+  ["up", "Sound or the dark theme is switched on", "Two notes, rising"],
+  ["down", "It is switched off", "Two notes, falling"],
+  ["detent", "A slider passes a tenth of its range", "A tiny tick, at most eight a second"],
+  ["copy", "A link was copied", "Two bright notes, only once the copy succeeded"],
+  ["submit", "A form is sent", "Two notes a fifth apart; an invalid form stays silent"],
+  ["in", "A section slides into view", "One soft breath per section, at most one every 1.2 s; none with reduced motion or at the calm level"]
+] -%}
+<div class="mt-8 overflow-x-auto">
+<table class="w-full min-w-xl text-start text-sm">
+<caption class="sr-only">The sound vocabulary</caption>
+<thead><tr class="border-b border-line-strong"><th scope="col" class="py-3 pe-4 text-start font-semibold">Sound</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Plays when</th><th scope="col" class="py-3 pe-4 text-start font-semibold">Character</th><th scope="col" class="py-3 text-start font-semibold"><span class="sr-only">Audition</span></th></tr></thead>
+<tbody>
+{%- for s in sounds %}
+<tr class="border-b border-line"><th scope="row" class="py-3 pe-4 text-start font-medium whitespace-nowrap"><code>{{ s[0] }}</code></th><td class="py-3 pe-4">{{ s[1] }}</td><td class="py-3 pe-4 text-ink-muted">{{ s[2] }}</td><td class="py-2"><button type="button" data-sound-demo="{{ s[0] }}" class="hidden js:inline-flex min-h-9 items-center gap-2 rounded-md border border-line-strong px-3 text-sm font-medium text-ink hover:bg-surface-alt focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"><svg aria-hidden="true" class="size-4"><use href="#i-play"></use></svg>Play<span class="sr-only"> {{ s[0] }}</span></button></td></tr>
+{%- endfor %}
+</tbody>
+</table>
+</div>
+<p class="mt-6 max-w-prose text-sm text-ink-muted">Always silent: a figure counting up, a validation error, page navigation, loading, a toast appearing, a video starting, keyboard focus moving, a disabled control, a tab in the background. At most three sounds play at once; an action cuts a hover or entrance sound short.</p>
+</section>
 </div>
