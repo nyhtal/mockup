@@ -64,6 +64,12 @@ baseTarget: "_self"
 <p class="mt-4 text-sm">With script on, the message above is absent.</p>
 </div>
 
+<div id="live-picture" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
+<h3 class="font-semibold"><code>&lt;picture&gt;</code></h3>
+<p class="mt-2 text-sm text-ink-muted">Art direction: a different crop per viewport, wide from 768 px and square below. The site's pictures come in one format at one crop, so they need only the <code>&lt;img&gt;</code> and its <code>srcset</code> (R-PERF-05).</p>
+<picture><source media="(min-width: 48rem)" srcset="/assets/images/live-picture-21x9-768.avif" width="768" height="329"><img src="/assets/images/live-picture-1x1-480.avif" width="480" height="480" alt="" loading="lazy" decoding="async" class="mt-4 block w-full rounded-md"></picture>
+</div>
+
 <div id="live-canvas" class="min-w-0 scroll-mt-24 rounded-lg border border-line bg-surface-raised p-6">
 <h3 class="font-semibold"><code>&lt;canvas&gt;</code></h3>
 <p class="mt-2 text-sm text-ink-muted">A bitmap that script draws into, with fallback content for browsers without canvas and a text alternative for everyone. Nothing draws into it here; its background is the brand gradient.</p>

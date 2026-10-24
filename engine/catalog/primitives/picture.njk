@@ -1,7 +1,7 @@
 {#
   name: picture
-  purpose: Responsive placeholder image in AVIF + WebP with reserved space (R-HTML-12, R-PERF-05, R-ASSET-06).
-  anatomy: picture > source[avif] + source[webp] + img[width height alt loading|fetchpriority decoding]
+  purpose: Responsive placeholder image in AVIF with reserved space (R-HTML-12, R-PERF-05, R-ASSET-06).
+  anatomy: img[srcset(avif per width) sizes src(480 avif) width height alt loading|fetchpriority decoding]; one format, so no picture element
   variants: priority (the page's LCP image: fetchpriority=high, eager) | default (lazy)
   states: none
   spacing: none; the caller wraps it in an aspect box (R-LAY-10) via opts.class e.g. "aspect-video w-full object-cover rounded-xl"
@@ -18,9 +18,5 @@
 {%- set widths = [480, 768, 1200, 1600] -%}
 {%- set sizes = opts.sizes or "100vw" -%}
 {%- set h = ((max * parts[1]) / parts[0]) | round -%}
-<picture>
-<source type="image/avif" srcset="{% for w in widths %}{% if w <= max %}{% if not loop.first %}, {% endif %}/assets/images/{{ img.slug }}-{{ ratio }}-{{ w }}.avif {{ w }}w{% endif %}{% endfor %}" sizes="{{ sizes }}">
-<source type="image/webp" srcset="{% for w in widths %}{% if w <= max %}{% if not loop.first %}, {% endif %}/assets/images/{{ img.slug }}-{{ ratio }}-{{ w }}.webp {{ w }}w{% endif %}{% endfor %}" sizes="{{ sizes }}">
-<img src="/assets/images/{{ img.slug }}-{{ ratio }}-480.webp" width="{{ max }}" height="{{ h }}" alt="{{ img.alt }}"{% if opts.priority %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async"{% if img.art %} data-art="{{ img.art }}"{% endif %}{% if img.tone %} data-tone="{{ img.tone }}"{% endif %}{% if opts.class %} class="{{ opts.class }}"{% endif %}>
-</picture>
+<img src="/assets/images/{{ img.slug }}-{{ ratio }}-480.avif" srcset="{% for w in widths %}{% if w <= max %}{% if not loop.first %}, {% endif %}/assets/images/{{ img.slug }}-{{ ratio }}-{{ w }}.avif {{ w }}w{% endif %}{% endfor %}" sizes="{{ sizes }}" width="{{ max }}" height="{{ h }}" alt="{{ img.alt }}"{% if opts.priority %} fetchpriority="high"{% else %} loading="lazy"{% endif %} decoding="async"{% if img.art %} data-art="{{ img.art }}"{% endif %}{% if img.tone %} data-tone="{{ img.tone }}"{% endif %}{% if opts.class %} class="{{ opts.class }}"{% endif %}>
 {% endmacro %}

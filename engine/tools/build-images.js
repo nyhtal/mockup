@@ -74,7 +74,7 @@ export async function generateOgImages(distDir, brand = {}) {
 /** The aspect ratios a page may declare (R-LAY-10). */
 export const RATIOS = { "16x9": [16, 9], "4x3": [4, 3], "3x2": [3, 2], "1x1": [1, 1], "21x9": [21, 9], "3x4": [3, 4] };
 export const WIDTHS = [480, 768, 1200, 1600];
-const NAME = /^\/assets\/images\/([a-z0-9]+(?:-[a-z0-9]+)*)-(\d+x\d+)-(\d+)\.(avif|webp)$/;
+const NAME = /^\/assets\/images\/([a-z0-9]+(?:-[a-z0-9]+)*)-(\d+x\d+)-(\d+)\.(avif)$/;
 
 /** /assets/images/<slug>-<WxH>-<width>.<fmt> → { slug, ratio, width, height, format, url } or null. */
 export function parseImageName(url) {
@@ -98,6 +98,8 @@ export function referencedImages(distDir) {
   for (const file of listHtml(distDir)) {
     const html = readFileSync(file, "utf8");
     for (const m of html.matchAll(/\/assets\/images\/[a-z0-9-]+-\d+x\d+-\d+\.(?:avif|webp)/g)) {
+      // One file per width, in one format (R-PERF-05): a WebP reference is a template left behind, not a second copy to render.
+      if (m[0].endsWith(".webp")) throw new Error(`${file}: image "${m[0]}" is WebP; pictures are AVIF only (R-PERF-05)`);
       const parsed = parseImageName(m[0]);
       if (parsed) seen.set(m[0], parsed);
       else throw new Error(`${file}: image "${m[0]}" uses an unknown ratio; allowed: ${Object.keys(RATIOS).join(", ")}`);
@@ -150,7 +152,7 @@ export function promoteLcpImages(distDir, opts = {}) {
 
 /**
  * Render every referenced image that does not exist yet from the art library (R-ASSET-05): the declared piece and tone,
- * or ones seeded by the slug from `brand.art`; recoloured to the brand hues; AVIF q50, WebP q75. Returns counts.
+ * or ones seeded by the slug from `brand.art`; recoloured to the brand hues; AVIF q42 at effort 6, one file per width. Returns counts.
  */
 export async function generateImages(distDir, brand = {}) {
   const out = path.join(distDir, "assets", "images");
@@ -166,8 +168,7 @@ export async function generateImages(distDir, brand = {}) {
     const tone = img.tone ?? pickTone(img.slug);
     if (tone !== "dark" && tone !== "light") throw new Error(`image "${img.slug}": data-tone must be "dark" or "light", not "${tone}"`);
     const pipeline = await renderArt({ library, id, tone, width: img.width, height: img.height, hue, accentHue });
-    const buf = img.format === "avif" ? await pipeline.avif({ quality: 42, effort: 6 }).toBuffer() : await pipeline.webp({ quality: 75 }).toBuffer();
-    writeFileSync(file, buf);
+    writeFileSync(file, await pipeline.avif({ quality: 42, effort: 6 }).toBuffer());
     generated++;
   }
   return { generated, skipped };

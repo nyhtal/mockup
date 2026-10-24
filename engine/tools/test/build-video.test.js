@@ -44,7 +44,7 @@ test("generateVideo writes mp4, webm and a poster, caches them, and skips the en
     const webm = readFileSync(path.join(dir, "out", "clip.webm"));
     assert.equal(mp4.subarray(4, 8).toString(), "ftyp", "mp4 starts with an ftyp box");
     assert.equal(webm.readUInt32BE(0), 0x1a45dfa3, "webm starts with the EBML header");
-    assert.ok(statSync(path.join(dir, "out", "clip-poster.webp")).size > 0);
+    assert.ok(statSync(path.join(dir, "out", "clip-poster.avif")).size > 0);
     assert.ok(existsSync(path.join(dir, "cache", "clip-320x180-6fps-1s-250-160-v2.mp4")), "mp4 cached under a key with every parameter and the generator version");
     assert.deepEqual(readdirSync(path.join(dir, "cache")).filter((f) => f.includes(".tmp")), [], "no temporary files left in the cache");
     const second = await generateVideo(opts);

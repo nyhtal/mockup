@@ -55,7 +55,7 @@ test("schema nodes carry the fields bylaw 13 names for each kind", () => {
   const post = entityNode("posts", { slug: "s", title: "S", excerpt: "X", date: "2026-10-03", modified: "2026-10-05", author: "mei-chen", image: { slug: "i", ratio: "16:9", alt: "" } }, { ...ctx, entities: { people: [{ slug: "mei-chen", name: "Mei Chen", role: "Head of Safety" }] } });
   assert.equal(post["@type"], "BlogPosting");
   assert.deepEqual([post.headline, post.datePublished, post.dateModified, post.publisher], ["S", "2026-10-03", "2026-10-05", org]);
-  assert.equal(post.image, "/assets/images/i-16x9-1200.webp");
+  assert.equal(post.image, "/assets/images/i-16x9-1200.avif");
   assert.deepEqual(post.author, { "@id": "https://example.com/de/about/team/mei-chen/#person" });
   assert.equal(post.schemaNodes[0]["@type"], "Person");
   assert.equal(post.schemaNodes[0]["@id"], "https://example.com/de/about/team/mei-chen/#person");

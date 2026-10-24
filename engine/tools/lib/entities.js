@@ -50,7 +50,7 @@ export function sortEntities(kind, list) {
 }
 
 const orgRef = (site) => ({ "@id": `${site.url}/#organization` });
-const imageUrl = (image) => (image ? `/assets/images/${image.slug}-${image.ratio.replace(":", "x")}-1200.webp` : undefined);
+const imageUrl = (image) => (image ? `/assets/images/${image.slug}-${image.ratio.replace(":", "x")}-1200.avif` : undefined);
 const absId = (site, kind, slug, locale, hash) => `${site.url}${entityUrl(kind, slug, locale)}#${hash}`;
 
 function personNode(p, ctx) {

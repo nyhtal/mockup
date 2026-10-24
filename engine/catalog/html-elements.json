@@ -416,14 +416,13 @@
   {
     "el": "picture",
     "group": "Embedded content",
-    "purpose": "Responsive image sources.",
-    "href": "/en/"
+    "purpose": "Art direction: a different crop per viewport (the site's pictures need none: one AVIF srcset on the img)."
   },
   {
     "el": "source",
     "group": "Embedded content",
-    "purpose": "A media or image source.",
-    "href": "/en/"
+    "purpose": "A media source: the sample clip's MP4 and WebM.",
+    "href": "/en/lp/line-automation-2026/"
   },
   {
     "el": "img",

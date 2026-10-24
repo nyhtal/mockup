@@ -409,13 +409,13 @@ test("locations (0.17.0): image tiles instead of a map; the office map is gone f
   for (const l of ["en", "ar"]) {
     const loc = readFileSync(`dist/reference/${l}/about/locations/index.html`, "utf8");
     assert.doesNotMatch(loc, /data-component="office-map"/, `${l}: no map`);
-    const tiles = [...loc.matchAll(/data-component="card" data-variant="office">[\s\S]*?<img src="\/assets\/images\/office-[a-z]+-card-16x9-480\.webp"[^>]*data-tone="dark"/g)];
+    const tiles = [...loc.matchAll(/data-component="card" data-variant="office">[\s\S]*?<img src="\/assets\/images\/office-[a-z]+-card-16x9-480\.avif"[^>]*data-tone="dark"/g)];
     assert.equal(tiles.length, 4, `${l}: four office tiles, each with a dark-tone library picture`);
     assert.match(loc, /data-component="office-cards"[\s\S]*?<ul class="grid gap-6 md:gap-8 md:grid-cols-2[ "]/, `${l}: two across`);
     // Each detail page opens with the tile's picture (same slug and tone, so the same artwork) in a split header (0.17.1).
     for (const o of ["manchester", "tokyo"]) {
       const detail = readFileSync(`dist/reference/${l}/about/locations/${o}/index.html`, "utf8");
-      assert.match(detail, new RegExp(`data-component="page-header" data-variant="split">[\\s\\S]*?<img src="/assets/images/office-${o}-card-4x3-480\\.webp"[^>]*data-tone="dark"`), `${l}/${o}: the tile's picture heads its page`);
+      assert.match(detail, new RegExp(`data-component="page-header" data-variant="split">[\\s\\S]*?<img src="/assets/images/office-${o}-card-4x3-480\\.avif"[^>]*data-tone="dark"`), `${l}/${o}: the tile's picture heads its page`);
     }
   }
   // The office map is gone (owner, 2026-10-23: "we dont use that map image anymore"): no section, no picture file, no link to one.
@@ -427,8 +427,8 @@ test("locations (0.17.0): image tiles instead of a map; the office map is gone f
   }
   // The native image map (map, area) stays demonstrated, on the home page's art picture: three rectangles, each a link to a real page.
   const guide = readFileSync("dist/reference/sys/style-guide/components/index.html", "utf8");
-  assert.match(guide, /<img src="\/assets\/images\/home-backdrop-16x9-768\.webp" usemap="#sg-image-map" width="768" height="432"/);
-  assert.ok(existsSync("dist/reference/assets/images/home-backdrop-16x9-768.webp"));
+  assert.match(guide, /<img src="\/assets\/images\/home-backdrop-16x9-768\.avif" usemap="#sg-image-map" width="768" height="432"/);
+  assert.ok(existsSync("dist/reference/assets/images/home-backdrop-16x9-768.avif"));
   const areas = [...guide.matchAll(/<area shape="rect" coords="(\d+),0,(\d+),432" href="([^"]+)" alt="([^"]+)">/g)];
   assert.equal(areas.length, 3);
   for (const [, , , href] of areas) assert.ok(existsSync(`dist/reference${href}index.html`), `${href} exists`);
@@ -756,13 +756,13 @@ test("the landing hero plays the generated sample clip in place (cinema, 0.14.0;
   for (const [loc, title] of [["en", "Northwind in eight seconds"], ["de", "Northwind in acht Sekunden"], ["ar", "نورثويند في ثماني ثوانٍ"]]) {
     const html = readFileSync(`dist/reference/${loc}/lp/line-automation-2026/index.html`, "utf8");
     assert.match(html, /data-component="hero" data-variant="cinema"/, `${loc} hero variant`);
-    assert.match(html, /<video class="absolute inset-0 -z-10 size-full bg-brand-950 object-cover" controls playsinline preload="none" poster="\/assets\/video\/northwind-sample-poster\.webp" width="1280" height="720" data-cinema>\n<source src="\/assets\/video\/northwind-sample\.webm" type="video\/webm">\n<source src="\/assets\/video\/northwind-sample\.mp4" type="video\/mp4">/, `${loc} video element, with native controls until the script takes over`);
+    assert.match(html, /<video class="absolute inset-0 -z-10 size-full bg-brand-950 object-cover" controls playsinline preload="none" poster="\/assets\/video\/northwind-sample-poster\.avif" width="1280" height="720" data-cinema>\n<source src="\/assets\/video\/northwind-sample\.webm" type="video\/webm">\n<source src="\/assets\/video\/northwind-sample\.mp4" type="video\/mp4">/, `${loc} video element, with native controls until the script takes over`);
     assert.match(html, new RegExp(`<track kind="captions" src="/assets/video/northwind-sample-${loc}\.vtt" srclang="${loc}" data-cue="[^"]+">`), `${loc} captions track`);
     assert.match(html, new RegExp(`<button type="button" data-play [^>]*>[\\s\\S]*?<span class="sr-only">[^<]*${title}[^<]*0:08[^<]*</span></button>`), `${loc} the play button names the clip and its length`);
     assert.match(html, /group-data-playing\/cinema:invisible/, `${loc} the words step aside while it plays`);
     assert.match(readFileSync(`dist/reference/assets/video/northwind-sample-${loc}.vtt`, "utf8"), /^WEBVTT\n\n00:00\.000 --> 00:08\.000\n.+\n$/, `${loc} vtt`);
   }
-  for (const f of ["northwind-sample.mp4", "northwind-sample.webm", "northwind-sample-poster.webp"]) {
+  for (const f of ["northwind-sample.mp4", "northwind-sample.webm", "northwind-sample-poster.avif"]) {
     const size = statSync(`dist/reference/assets/video/${f}`).size;
     assert.ok(size > 0 && size <= 1.5 * 1024 * 1024, `${f} is ${size} B`);
   }

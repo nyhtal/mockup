@@ -58,7 +58,7 @@ export function pickArt(slug, library, allowed) {
 /** The tone for an image that declares none, seeded by the slug. */
 export const pickTone = (slug) => (seed(`${slug}#tone`) % 2 ? "dark" : "light");
 
-/** A sharp instance holding the recoloured crop, ready for .avif() / .webp(). */
+/** A sharp instance holding the recoloured crop, ready for .avif(). */
 export async function renderArt({ library, id, tone, width, height, hue, accentHue }) {
   const piece = library.pieces.get(id);
   if (!piece) throw new Error(`unknown art "${id}"`);

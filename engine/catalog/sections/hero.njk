@@ -138,7 +138,7 @@
 {% macro cinema(s, ctx) %}
 {%- set v = s.video -%}
 <section class="group/cinema relative isolate overflow-hidden {{ 'py-12 md:py-20' if ctx.density == 'compact' else 'py-16 md:py-28' }} bg-brand-950 text-ink-inverse" data-component="hero" data-variant="cinema"{% if s.anchor %} id="{{ s.anchor }}"{% endif %}>
-<video class="absolute inset-0 -z-10 size-full bg-brand-950 object-cover" controls playsinline preload="none" poster="/assets/video/{{ v.slug }}-poster.webp" width="1280" height="720" data-cinema>
+<video class="absolute inset-0 -z-10 size-full bg-brand-950 object-cover" controls playsinline preload="none" poster="/assets/video/{{ v.slug }}-poster.avif" width="1280" height="720" data-cinema>
 <source src="/assets/video/{{ v.slug }}.webm" type="video/webm">
 <source src="/assets/video/{{ v.slug }}.mp4" type="video/mp4">
 <track kind="captions" src="/assets/video/{{ v.slug }}-{{ locale }}.vtt" srclang="{{ locale }}" data-cue="{{ 'ui.videoCaption' | t }}">

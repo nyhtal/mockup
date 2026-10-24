@@ -58,7 +58,7 @@ Why: Duplicate ids break fragment links and ARIA references silently.
 Gate: consistency/dup-id
 
 ### R-HTML-12 Images
-MUST. Every `img` has `alt` (empty for decorative images), `width`, `height`, and `loading="lazy"` unless it is the page's LCP image, which has `fetchpriority="high"` and no lazy attribute. Raster images sit in `<picture>` with AVIF and WebP sources.
+MUST. Every `img` has `alt` (empty for decorative images), `width`, `height`, and `loading="lazy"` unless it is the page's LCP image, which has `fetchpriority="high"` and no lazy attribute. Raster images are AVIF only, one file per width in the `img` element's own `srcset` (no `<picture>`, no second format).
 Why: Missing dimensions cause layout shift; lazy-loading the hero costs LCP.
 Gate: consistency/img-attrs
 

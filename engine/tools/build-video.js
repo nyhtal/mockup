@@ -82,7 +82,7 @@ async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, 
   if (typeof ffmpeg !== "string" || !ffmpeg) throw new Error(`ffmpeg-static did not provide a binary (was its install script skipped?), so the clip "${slug}" cannot be encoded`);
   const n = seconds * fps;
   const svg = (i) => Buffer.from(videoFrameSvg({ slug, hue, accentHue, width, t: i / n }));
-  writeFileSync(poster, await sharp(svg(0)).webp({ quality: 75 }).toBuffer());
+  writeFileSync(poster, await sharp(svg(0)).avif({ quality: 42, effort: 6 }).toBuffer());
   const args = [
     "-y", "-hide_banner", "-loglevel", "error",
     "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", `${width}x${height}`, "-r", String(fps), "-i", "pipe:0",
@@ -107,7 +107,7 @@ async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, 
 }
 
 /**
- * Write `<slug>.mp4`, `<slug>.webm` and `<slug>-poster.webp` into outDir, encoding only when the cache (keyed by
+ * Write `<slug>.mp4`, `<slug>.webm` and `<slug>-poster.avif` into outDir, encoding only when the cache (keyed by
  * every parameter) lacks them. Returns { generated, files }.
  */
 export async function generateVideo({ slug, hue = 250, accentHue = 160, seconds = SECONDS, fps = FPS, width = WIDTH, outDir, cacheDir = CACHE_DIR, ffmpeg = ffmpegPath }) {
@@ -115,14 +115,14 @@ export async function generateVideo({ slug, hue = 250, accentHue = 160, seconds 
   const key = `${slug}-${width}x${height}-${fps}fps-${seconds}s-${hue}-${accentHue}-v${VERSION}`;
   mkdirSync(outDir, { recursive: true });
   mkdirSync(cacheDir, { recursive: true });
-  const outputs = [[".mp4", `${slug}.mp4`], [".webm", `${slug}.webm`], ["-poster.webp", `${slug}-poster.webp`]];
+  const outputs = [[".mp4", `${slug}.mp4`], [".webm", `${slug}.webm`], ["-poster.avif", `${slug}-poster.avif`]];
   const cached = (ext) => path.join(cacheDir, `${key}${ext}`);
   let generated = false;
   if (!outputs.every(([ext]) => existsSync(cached(ext)))) {
     // Encode to temporary names and rename only when every output is complete, so an interrupted build never leaves a truncated clip that the next build would ship as a cache hit.
     const tmp = (ext) => path.join(cacheDir, `${key}.tmp${ext}`);
     try {
-      await encode({ slug, hue, accentHue, seconds, fps, width, height, mp4: tmp(".mp4"), webm: tmp(".webm"), poster: tmp("-poster.webp"), ffmpeg });
+      await encode({ slug, hue, accentHue, seconds, fps, width, height, mp4: tmp(".mp4"), webm: tmp(".webm"), poster: tmp("-poster.avif"), ffmpeg });
       for (const [ext] of outputs) renameSync(tmp(ext), cached(ext));
     } catch (e) {
       for (const [ext] of outputs) rmSync(tmp(ext), { force: true });

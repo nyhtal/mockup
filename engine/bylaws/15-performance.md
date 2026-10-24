@@ -23,7 +23,7 @@ Why: Fonts are the common cause of CLS and a late LCP.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PERF-05 Images
-MUST. R-HTML-12 and D6: AVIF with WebP fallback in `<picture>`, `width`/`height`, `sizes` that matches the layout (`(min-width: 64rem) 50vw, 100vw` for split heroes, `(min-width: 48rem) 33vw, 100vw` for 3-column cards), lazy except the LCP image, which has `fetchpriority="high"` and is in the first 1 KB of body markup; on a page that opens on a plain page header, whose phone LCP is the first picture of the next section, the build promotes that picture (`promoteLcpImages`).
+MUST. R-HTML-12 and D6: AVIF only, in the `img` element's `srcset` with no second format (owner, 2026-10-23: "i dont want to support multiple images of the same thing"; a browser without AVIF, Safari 15 and older, shows no picture, only the alt text), `width`/`height`, `sizes` that matches the layout (`(min-width: 64rem) 50vw, 100vw` for split heroes, `(min-width: 48rem) 33vw, 100vw` for 3-column cards), lazy except the LCP image, which has `fetchpriority="high"` and is in the first 1 KB of body markup; on a page that opens on a plain page header, whose phone LCP is the first picture of the next section, the build promotes that picture (`promoteLcpImages`).
 Why: LCP and CLS are decided by the hero image.
 Gate: manual: checklists/new-component.md
 
@@ -93,7 +93,7 @@ Gate: manual: checklists/new-page.md
 - [ ] R-PERF-02 one stylesheet
 - [ ] R-PERF-03 one module script
 - [ ] R-PERF-04 fonts ≤ 2, preload, swap, metrics
-- [ ] R-PERF-05 picture, sizes, LCP priority
+- [ ] R-PERF-05 AVIF srcset, sizes, LCP priority
 - [ ] R-PERF-06 no external requests
 - [ ] R-PERF-07 CLS 0
 - [ ] R-PERF-08 no load animation
