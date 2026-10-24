@@ -31,6 +31,7 @@ const FIXTURE = `<!DOCTYPE html><html lang="en" data-motion="standard"><head><me
 <input type="range" id="r" min="0" max="100" value="50">
 <button type="button" data-sound-demo="open" id="demo">play open</button>
 <div class="far pending:translate-y-4" id="far">far</div>
+<p style="margin-top:3000px"><span id="cnt" data-count="120">120</span></p>
 <script type="module" src="/assets/enhance.js"></script></body></html>`;
 
 let dir, server, browser;
@@ -217,6 +218,25 @@ test("entrances: one breath, not under reduced motion; calm drops hover", { skip
   await p2.hover("#l1");
   assert.deepEqual(await take(p2, 300), [], "calm: no hover");
   await p2.close();
+});
+
+test("a counting figure ticks up the scale as it counts, then lands on one note; calm stays silent", { skip }, async () => {
+  const page = await open();
+  await on(page);
+  await page.evaluate(() => document.getElementById("cnt").scrollIntoView({ block: "center" }));
+  const v = await take(page, 2200);
+  const ticks = v.slice(0, -1), ladder = [C5, 587, E5, G5, 880, 1047];
+  assert.ok(ticks.length >= 6 && ticks.length <= 12, `${ticks.length} ticks: ${v}`);
+  assert.ok(ticks.every((x) => ladder.includes(x)), `ticks on the pentatonic ladder: ${v}`);
+  assert.ok(ticks.every((x, i) => !i || x >= ticks[i - 1]), `ticks never fall: ${v}`);
+  assert.equal(v.at(-1), G5, "the landing note last");
+  assert.equal(await page.$eval("#cnt", (e) => e.textContent), "120", "the build-time text is restored");
+  await page.close();
+  const calm = await open();
+  await on(calm);
+  await calm.evaluate(() => { document.documentElement.dataset.motion = "calm"; document.getElementById("cnt").scrollIntoView({ block: "center" }); });
+  assert.deepEqual(await take(calm, 2200), [], "calm: the count is silent");
+  await calm.close();
 });
 
 test("off plays, then silence; an audition plays without turning sound on", { skip }, async () => {

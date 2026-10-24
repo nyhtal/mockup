@@ -28,8 +28,9 @@ MUST. The cues are these and no others. Pitches come from C major pentatonic (C4
 | `copy` | the clipboard write resolved | E5 then G5, 45 ms each, 55 ms apart, .025 |
 | `submit` | a form's `submit` event fires | C5 then G5, 65 ms each, 75 ms apart, .03 |
 | `in` | an entrance starts after the first report (R-MOT-05) | noise bandpassed at 900 Hz (Q .7), 180 ms, .005; at `expressive` a rising group adds sine C5→D5 and a settling one D5→C5, 55 ms, .007 |
+| `count` / `land` | a figure counts up (R-MOT-10 behaviour 3): one tick each time the eased value passes a twelfth of its target / once when it lands | triangle, 18 ms, .008, climbing C5 D5 E5 G5 A5 C6 two ticks a step / sine G5→C6, 70 ms, .01 |
 
-Loudness order, by what the visitor hears (peak gain, length and timbre together): `hover` and `in` are quieter than `detent`; `detent` is quieter than `press` and `step`; those are quieter than `pop`, `open` and `sheet` (and their closes); and those are quieter than `on`, `copy` and `submit`. A change to any recipe MUST be auditioned on laptop speakers, headphones and a phone before it ships.
+Loudness order, by what the visitor hears (peak gain, length and timbre together): `hover`, `in`, `count` and `land` are quieter than `detent`; `detent` is quieter than `press` and `step`; those are quieter than `pop`, `open` and `sheet` (and their closes); and those are quieter than `on`, `copy` and `submit`. A change to any recipe MUST be auditioned on laptop speakers, headphones and a phone before it ships.
 
 Browser gaps: the `toggle` event of a `<dialog>` needs a recent engine (about Chrome 132, Firefox 133, Safari 18); an older one plays no `sheet` or `unsheet` for a `<dialog>`. `scrollsnapchange` is Chromium-only, so a carousel's `step` is silent in other engines.
 
@@ -42,7 +43,7 @@ Why: Two sounds for one click is noise, and a success sound for a failure is a l
 Gate: manual: checklists/new-component.md
 
 ### R-SND-05 Mixer and limits
-MUST. At most three voices sound at once; a two-note cue counts as two. `hover` and `in` are ambient: a direct cue that needs a voice cuts the oldest ambient one with a 5 ms fade, then the oldest voice; an ambient cue that finds no ambient voice to cut is dropped. Rate limits: `hover` one per 250 ms, `in` one per 1.2 s, `step` and `detent` one per 125 ms.
+MUST. At most three voices sound at once; a two-note cue counts as two. `hover`, `in`, `count` and `land` are ambient: a direct cue that needs a voice cuts the oldest ambient one with a 5 ms fade, then the oldest voice; an ambient cue that finds no ambient voice to cut is dropped. Rate limits: `hover` one per 250 ms, `in` one per 1.2 s, `step` and `detent` one per 125 ms, `count` one per 40 ms, `land` one per 150 ms.
 Why: Limits are what keep a sweep across a menu or a page of cards from turning into chatter.
 Gate: manual: checklists/pre-delivery.md
 
@@ -52,17 +53,17 @@ Why: A tick on every Tab is a penalty for keyboard users; hover sounds on touch 
 Gate: manual: checklists/new-component.md
 
 ### R-SND-07 Entrances
-MUST. `enhance.js` asks for `in` for each entrance it reveals after its first report; the module's rate limit turns a section's cascade into one breath. Nothing that is in view at load makes a sound, and no card, item or count has a sound of its own.
+MUST. `enhance.js` asks for `in` for each entrance it reveals after its first report; the module's rate limit turns a section's cascade into one breath. Nothing that is in view at load makes a sound, and no card or item has a sound of its own. A counting figure is the one exception: it ticks as it counts and lands on one note (R-SND-03), because the count is motion the visitor watches, like a dial.
 Why: The breath accompanies the motion the visitor caused by scrolling; per-item sounds would be a xylophone.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SND-08 Reduced motion and the motion level
-MUST. `prefers-reduced-motion: reduce` silences `in` and keeps the action cues (it is a motion preference, not an audio one). The page carries the flair level as `data-motion` on `<html>`: `calm` drops `hover` and `in` and sets the master gain to 1.2; `standard` is the table; `expressive` adds the air layer to `sheet` and the contour to `in`, never more cues (the air layer and the contour are extra voices of a cue that already sounds).
+MUST. `prefers-reduced-motion: reduce` silences `in` and keeps the action cues (it is a motion preference, not an audio one). The page carries the flair level as `data-motion` on `<html>`: `calm` drops `hover`, `in`, `count` and `land` and sets the master gain to 1.2; `standard` is the table; `expressive` adds the air layer to `sheet` and the contour to `in`, never more cues (the air layer and the contour are extra voices of a cue that already sounds).
 Why: Sound scales with the site's motion so a calm brief stays calm in both.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-SND-09 Activation and silence
-MUST. The module creates or resumes its audio context only inside a `pointerdown`, `keydown` or `click` handler, or adopts the one `enhance.js` creates synchronously in the click that turns sound on or auditions a cue; never on load. A cue plays only while the context is `running`; otherwise it is dropped, never queued or replayed, so after a navigation the page stays silent until the first click or key press. A hidden tab, and turning sound off, cut every sounding and scheduled voice at once (`off` itself still plays). A failed import leaves the toggle truthful and the page working. Always silent: a count, a validation error, navigation and view transitions, loading, a toast appearing, a video starting, a disabled control.
+MUST. The module creates or resumes its audio context only inside a `pointerdown`, `keydown` or `click` handler, or adopts the one `enhance.js` creates synchronously in the click that turns sound on or auditions a cue; never on load. A cue plays only while the context is `running`; otherwise it is dropped, never queued or replayed, so after a navigation the page stays silent until the first click or key press. A hidden tab, and turning sound off, cut every sounding and scheduled voice at once (`off` itself still plays). A failed import leaves the toggle truthful and the page working. Always silent: a validation error, navigation and view transitions, loading, a toast appearing, a video starting, a disabled control.
 Why: Browsers do not count hover or scroll as a gesture; a sound that arrives late is worse than none.
 Gate: manual: checklists/pre-delivery.md
 

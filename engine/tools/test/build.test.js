@@ -595,7 +595,7 @@ test("the style guide's Sound section auditions every cue (R-SND-11)", () => {
   const page = readFileSync("dist/reference/sys/style-guide/index.html", "utf8");
   assert.match(page, /<h2[^>]*>Sound<\/h2>/);
   const cues = [...page.matchAll(/data-sound-demo="([a-z]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(cues, ["hover", "press", "pop", "unpop", "open", "close", "sheet", "unsheet", "step", "up", "down", "detent", "copy", "submit", "in"]);
+  assert.deepEqual(cues, ["hover", "press", "pop", "unpop", "open", "close", "sheet", "unsheet", "step", "up", "down", "detent", "copy", "submit", "in", "count", "land"]);
   assert.match(page, /<button type="button" data-sound-demo="hover" class="hidden js:inline-flex [^"]*">[\s\S]*?Play<span class="sr-only"> hover<\/span><\/button>/);
   const snd = readFileSync("engine/scripts/sound.js", "utf8");
   for (const c of cues) assert.ok(new RegExp(`\\b${c}:|K\\.${c}=`).test(snd), `sound.js defines ${c}`);

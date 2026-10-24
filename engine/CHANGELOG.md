@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.23.0 — 2026-10-24
+
+Counting figures sound (owner, 2026-10-24: "the counters should make a sound while counting up also like the measured across customers section"). R-SND-03 gains two ambient cues: `count`, a quiet triangle tick (18 ms, .008) each time a figure's eased value passes a twelfth of its target, climbing C5 D5 E5 G5 A5 C6 two ticks a step, so the ticks crowd at the start and slow as the figure settles; and `land`, one sine G5→C6 (70 ms, .01) when it reaches its value. `enhance.js` asks for both from its count-up (R-MOT-10); rate limits 40 ms and 150 ms keep a stats band of four figures to a ratchet, not a roll; `calm` and reduced motion (which skips the count) stay silent. A count leaves R-SND-09's silent list; R-SND-07 names it as the one item with a sound of its own (D63 updated). The style guide's Sound section gains both rows. Minor by R-PREC-05.
+
 ## 0.22.1 — 2026-10-24
 
 Louder sounds (owner, 2026-10-24: "i can barely hear the sounds. can the code turn up their volume a little"). The master gain of R-SND-03 rises from .6 to 1.5 (about 8 dB) and the `calm` level of R-SND-08 from .48 to 1.2; every recipe keeps its own gain, so the loudness order is unchanged, and three voices at their peaks stay far below clipping. Patch by R-PREC-05.
