@@ -37,6 +37,7 @@ export function motionFindings(root) {
       seen.add(key);
       if (anim && !ANIMATIONS.has(anim)) out.push(`class "${c}" names a keyframe outside R-TOK-13`);
       if (range && !RANGES.has(range)) out.push(`class "${c}" uses a scroll range outside the presets of R-MOT-05`);
+      if (base === "art-flow" && !el.closest('[data-component="hero"][data-variant="backdrop"]')) out.push(`class "${c}" outside a backdrop hero (R-MOT-03, D62)`);
       if (anim && DEPTH.test(anim)) {
         if (!variants.includes("md")) out.push(`class "${c}" moves a depth layer below md (R-MOT-15)`);
         const hero = el.closest('[data-component="hero"]');

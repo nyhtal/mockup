@@ -221,6 +221,28 @@
     outline-offset: 2px;
   }
 }
+/* The flowing art (R-MOT-03, R-MOT-11, D62): planes-flow's twin glides along x, the body as one, the two channel pairs further and a beat behind, so the light trails the bands. Screen and motion allowed only: print and reduced motion keep the composition at rest. The switch in the same hero pauses it. */
+@utility art-flow {
+  @media screen and (prefers-reduced-motion: no-preference) {
+    & [data-flow] {
+      animation: var(--animate-flow);
+    }
+    & [data-flow="body"] {
+      --flow-x: -24px;
+    }
+    & [data-flow="lines"] {
+      --flow-x: -40px;
+      animation-delay: 1.5s;
+    }
+    & [data-flow="trail"] {
+      --flow-x: -40px;
+      animation-delay: 3s;
+    }
+    :where([data-component="hero"]:has([data-flow-pause]:checked)) & [data-flow] {
+      animation-play-state: paused;
+    }
+  }
+}
 @custom-variant sda {
   @supports (animation-timeline: view()) {
     @slot;
@@ -247,6 +269,8 @@
   --animate-drop: drop 200ms var(--ease-smooth) both;
   --animate-scale-in: scale-in 200ms var(--ease-smooth) both;
   --animate-fade: fade 200ms ease-out both;
+  /* The home hero's flowing art (R-MOT-03, D62): the one loop on a page, 30 s, eased both ways, paused by its switch. */
+  --animate-flow: flow 30s ease-in-out infinite;
   /* Section reveals move but never fade: an element partly in view at load would be mid-fade and fail
      contrast checks, and content must stay readable at every scroll position (R-MOT-04, R-MOT-05). */
   @keyframes progress {
@@ -292,6 +316,9 @@
   @keyframes fade {
     from { opacity: 0; }
     to { opacity: 1; }
+  }
+  @keyframes flow {
+    50% { translate: var(--flow-x) 0; }
   }
 }
 
