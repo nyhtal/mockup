@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, copyFileSync, rmSync, statSync } from "node:fs";
 import path from "node:path";
+import { MARK } from "../lib/search-index.js";
 
 function run(env = {}) {
   return execFileSync("node", ["engine/tools/build.js", "--site", "reference"], {
@@ -238,7 +239,7 @@ test("photo galleries open in a lightbox: thumbnails are named buttons with invo
 
 test("search: results from the site's own content, filters that work without script, real paging with rel prev/next, the query in <mark> (to-do 4)", () => {
   const p1 = readFileSync("dist/reference/en/search/index.html", "utf8");
-  const w = /<div data-component="search-results" class="([^"]*)">[\s\S]*?<\/ol>/.exec(p1);
+  const w = /<div data-component="search-results" class="([^"]*)"[^>]*>[\s\S]*?<\/ol>/.exec(p1);
   assert.ok(w, "results render");
   assert.match(w[1], /\[&:has\(#sf\d-jobs:checked\)_li\[data-group\]:not\(\[data-group=jobs\]\)\]:hidden/, "the filter classes reach the HTML unescaped, so Tailwind compiles them");
   assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes(":has(#sf"), "and the CSS has the rules");
@@ -260,12 +261,29 @@ test("search: results from the site's own content, filters that work without scr
   assert.ok(readFileSync("dist/reference/assets/app.css", "utf8").includes(":has([value=cards]:checked) ol{display:grid}"), "the card rules are compiled, once for every instance");
   assert.match(p1, /<input type="radio" name="sf\d" id="sf\d-all" value="all" class="sr-only" checked>/);
   assert.equal((w[0].match(/<li data-group=/g) || []).length, 12);
-  assert.match(w[0], /<mark class="rounded-sm bg-accent-100 px-0\.5 text-ink">[Ss]afety<\/mark>/);
+  assert.match(w[0], /<mark class="rounded-sm bg-accent-100 px-0\.5 text-accent-800">[Ss]afety<\/mark>/);
   assert.match(p1, /<a href="\/en\/search\/page\/2\/" rel="next"/);
   const p3 = readFileSync("dist/reference/de/search/page/3/index.html", "utf8");
   assert.match(p3, /<a href="\/de\/search\/page\/2\/" rel="prev"/);
   assert.match(p3, /Seite 3 von 3/);
   assert.match(readFileSync("dist/reference/ar/search/index.html", "utf8"), /<mark[^>]*>السلامة<\/mark>/, "Arabic matches are marked (all four are on page 1)");
+});
+
+test("search: a query in the address (?q=) is searched in the browser against the locale's index, the matched terms marked as the build marks them", () => {
+  const index = JSON.parse(readFileSync("dist/reference/de/search/index.json", "utf8"));
+  assert.equal(index.length, 31, "the whole German index");
+  assert.deepEqual(Object.keys(index[0]).sort(), ["excerpt", "group", "href", "title"]);
+  assert.ok(index.every((r) => r.href.startsWith("/de/")), "German results link to German pages");
+  const p1 = readFileSync("dist/reference/ar/search/index.html", "utf8");
+  const w = /<div data-component="search-results" class="[^"]*" data-index="\/ar\/search\/index\.json" data-plural="([^"]*)">/.exec(p1);
+  assert.ok(w, "the results know their index");
+  const forms = JSON.parse(w[1].replace(/&quot;/g, '"'));
+  assert.deepEqual(Object.keys(forms).sort(), ["few", "many", "one", "other", "two"], "every Arabic plural form of the count line");
+  assert.match(p1, /<template data-empty><div class="[^"]*" data-component="empty-state">/, "the empty state waits in a template for a query with no match");
+  assert.match(p1, /<script type="module" src="\/assets\/search\.js"><\/script>/);
+  assert.doesNotMatch(readFileSync("dist/reference/en/help/index.html", "utf8"), /search\.js/, "only pages with results load the script");
+  const js = readFileSync("dist/reference/assets/search.js", "utf8");
+  assert.ok(js.includes(MARK), "the script marks a match with the build's classes");
 });
 
 test("in-page links: legal pages carry a table of contents whose links land on heading ids; the FAQ jumps to its groups (to-do 5)", () => {

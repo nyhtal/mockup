@@ -22,11 +22,14 @@ export function searchIndex(entities, ctx) {
 const escapeHtml = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
+/** The classes of a matched term: a fixed pale tint under a fixed dark step, legible in both schemes. engine/scripts/search.js marks with the same string. */
+export const MARK = "rounded-sm bg-accent-100 px-0.5 text-accent-800";
+
 /** HTML-escaped text with every case-insensitive occurrence of the query wrapped in <mark> (the matched term in a result). */
 export function markQuery(text, query) {
   const safe = escapeHtml(text);
   if (!query) return safe;
-  return safe.replace(new RegExp(escapeRe(escapeHtml(query)), "giu"), (m) => `<mark class="rounded-sm bg-accent-100 px-0.5 text-ink">${m}</mark>`);
+  return safe.replace(new RegExp(escapeRe(escapeHtml(query)), "giu"), (m) => `<mark class="${MARK}">${m}</mark>`);
 }
 
 /**

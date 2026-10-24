@@ -263,6 +263,8 @@ export default function (eleventyConfig) {
     if (value == null) throw new Error(`Missing i18n key "${key}" for locale "${lang}"`);
     return value;
   });
+  // Every form of a plural string, for a script that counts in the browser (the search results).
+  eleventyConfig.addFilter("pluralForms", function (key) { return lookupString(this.ctx?.page?.lang || site.defaultLocale, key); });
   eleventyConfig.addFilter("md", renderMarkdown);
   // Fragment ids that keep letters of every script (Eleventy's slugify drops Japanese, leaving "term-" for every glossary entry).
   eleventyConfig.addFilter("anchor", slugify);
@@ -336,7 +338,7 @@ export default function (eleventyConfig) {
     return [{ title: t(locale, "nav.home") || "Home", links: home.map(({ label, href }) => ({ label, href })) }, ...groups];
   });
 
-  eleventyConfig.addPassthroughCopy({ "engine/scripts/enhance.js": "assets/enhance.js" });
+  eleventyConfig.addPassthroughCopy({ "engine/scripts/enhance.js": "assets/enhance.js", "engine/scripts/search.js": "assets/search.js" });
 
   // Engine-owned pages every site ships (R-PAGE-07, R-PAGE-08, R-DEPLOY-04, R-DEPLOY-06, R-SEO-07).
   eleventyConfig.addTemplate("_engine/root.njk", virtual("root.njk"));
@@ -414,6 +416,10 @@ export default function (eleventyConfig) {
     }
     if (pages.sitemap) {
       eleventyConfig.addTemplate(`${locale}/_engine/sitemap-page.njk`, virtual("sitemap-page.njk"), { lang: locale, ...pages.sitemap, permalink: `/${locale}/sitemap/index.html` });
+    }
+    // The search index as a file: the results page searches it in the browser when its address carries a query (?q=).
+    if (entities.searchIndex) {
+      eleventyConfig.addTemplate(`${locale}/_engine/search-index.njk`, "{{ searchJson | safe }}", { eleventyExcludeFromCollections: true, searchJson: JSON.stringify(entities.searchIndex), permalink: `/${locale}/search/index.json` });
     }
     // Atom feed of the blog (R-SEO-08).
     const posts = [...(entities.posts || [])].sort((a, b) => (a.date < b.date ? 1 : -1)).map((p) => ({ ...p, authorName: (entities.people || []).find((x) => x.slug === p.author)?.name }));

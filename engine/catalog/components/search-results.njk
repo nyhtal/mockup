@@ -11,7 +11,8 @@
   i18n: ui.resultsFor (plural), ui.pageOf, ui.filterResults, ui.all, ui.searchGroups.*, ui.resultsView, ui.viewList, ui.viewCards
   content limits: 12 results per page
   note: the filter class list is printed with | safe: Nunjucks would escape its "&" to "&amp;", which browsers decode but Tailwind's scanner does not, so the rules would never be generated
-  data: r = { query, items: [{ href, titleHtml, excerptHtml, group }], total, page, pages, counts, groups }, opts = { level, base (the first page's URL), id }
+  script: with opts.index, a query in the address (?q=) is searched in the browser (engine/scripts/search.js): the index file is fetched, every match shows on one page with its terms marked, the count line and the chip counts follow, the paging goes, and a query with no match shows the empty state kept in a <template>; without a query, or without script, the page stays as built
+  data: r = { query, items: [{ href, titleHtml, excerptHtml, group }], total, page, pages, counts, groups }, opts = { level, base (the first page's URL), id, index (the URL of the locale's search index) }
 #}
 {% from "components/empty-state.njk" import emptyState with context %}
 {% from "components/pagination.njk" import pagination with context %}
@@ -25,7 +26,7 @@
 {%- set cv = "[&:has([value=cards]:checked)_" -%}
 {%- for c in [cv + "ol]:grid", cv + "ol]:max-w-none", cv + "ol]:gap-6", "sm:" + cv + "ol]:grid-cols-2", "lg:" + cv + "ol]:grid-cols-3", cv + "ol>li]:m-0", cv + "ol>li]:rounded-lg", cv + "ol>li]:bg-surface-raised", cv + "ol>li]:p-6", cv + "ol>li]:ring-1", cv + "ol>li]:ring-line"] %}{% set hide = (hide.push(c), hide) %}{% endfor -%}
 {%- set chip = "inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-line-strong px-4 text-sm font-medium text-ink hover:bg-surface-alt has-checked:border-brand-600 has-checked:bg-brand-600 has-checked:text-ink-inverse has-disabled:cursor-not-allowed has-disabled:opacity-60 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus motion-safe:transition-colors motion-safe:duration-150" -%}
-<div data-component="search-results" class="{{ hide | join(' ') | safe }}">
+<div data-component="search-results" class="{{ hide | join(' ') | safe }}"{% if opts.index %} data-index="{{ opts.index }}" data-plural="{{ 'ui.resultsFor' | pluralForms | dump }}"{% endif %}>
 {%- if r.items.length %}
 <p class="text-sm text-ink-muted">{%- set rf = "ui.resultsFor" | t(r.total) -%}{{ rf.split("{query}")[0] }}<bdi>{{ r.query }}</bdi>{{ rf.split("{query}")[1] }}{% if r.pages > 1 %} · {{ "ui.pageOf" | t | replace("{n}", r.page) | replace("{total}", r.pages) }}{% endif %}</p>
 <div class="mt-6 flex flex-wrap items-end justify-between gap-x-8 gap-y-4">
@@ -62,8 +63,10 @@
 {%- for n in range(1, r.pages + 1) %}{% set pageList = (pageList.push({ n: n, url: opts.base if n == 1 else opts.base + "page/" + n + "/" }), pageList) %}{% endfor -%}
 <div class="mt-12">{{ pagination({ current: r.page, total: r.pages, pages: pageList, prev: (pageList[r.page - 2].url if r.page > 1), next: (pageList[r.page].url if r.page < r.pages) }) }}</div>
 {%- endif %}
+{%- if opts.index %}<template data-empty>{{ emptyState({ icon: "search", title: ("ui.noResultsTitle" | t), text: ("ui.noResultsText" | t), cta: r.cta }) | trim | safe }}</template>{% endif %}
 {%- else %}
 {{ emptyState({ icon: "search", title: ("ui.noResultsTitle" | t), text: ("ui.noResultsText" | t), cta: r.cta }) }}
 {%- endif %}
 </div>
+{%- if opts.index %}<script type="module" src="/assets/search.js"></script>{% endif %}
 {% endmacro %}
