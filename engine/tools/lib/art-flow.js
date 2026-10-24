@@ -43,7 +43,7 @@ export function planesFlowSvg({ tones, className = "", shift = {} }) {
     // The dark band: its top rises in an S to meet the mid band, its bottom-start corner rounded.
     `<path d="M992 503C1035 503 1045 563 1095 563H${E}V715H1107A115 115 0 0 1 992 600Z" fill="${dark}"/>`,
   ];
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice"${className ? ` class="${className}"` : ""}>`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1672 941" preserveAspectRatio="xMidYMid slice" aria-hidden="true"${className ? ` class="${className}"` : ""}>`
     + `<rect x="-100" y="-100" width="${E + 200}" height="1141" fill="${ground}"/>`
     + `<g data-flow="lines"${at("lines")}>${lines.join("")}</g>`
     + `<g data-flow="trail"${at("trail")}>${trail.join("")}</g>`

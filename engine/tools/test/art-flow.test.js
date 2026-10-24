@@ -17,6 +17,7 @@ test("the twin is deterministic, carries no style, and groups its moving parts",
   const a = planesFlowSvg({ tones: flowTones(250, 160), className: "x" });
   assert.equal(a, planesFlowSvg({ tones: flowTones(250, 160), className: "x" }));
   assert.doesNotMatch(a, /style/);
+  assert.match(a, /^<svg [^>]*aria-hidden="true"/);
   assert.match(a, /^<svg [^>]*viewBox="0 0 1672 941"[^>]*preserveAspectRatio="xMidYMid slice"[^>]*class="x"/);
   for (const g of ["lines", "trail", "body"]) assert.match(a, new RegExp(`<g data-flow="${g}">`));
 });
