@@ -38,7 +38,7 @@ Why: The whole look must be expressible in utilities so pages stay portable and 
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PREC-08 The JS allowance
-MUST. The only runtime scripts are `engine/scripts/enhance.js`, an ES module of at most 5120 bytes minified with no dependencies, loaded once with `type="module"`, and the opt-in sound module `engine/scripts/sound.js` (≤ 4608 bytes, R-SND-02), which `enhance.js` imports only while sound is on (switched on, or restored for the tab) or when an audition button is pressed. Every behaviour in it is feature-detected and every page works with the script absent (the `cinema` hero, for one, falls back to the native player's controls). It never fetches and never sets a cookie; it stores three choices the visitor makes: the sound choice and a dismissed announcement bar in `sessionStorage` for the tab (D44, to-do 7b) and the theme choice in `localStorage` under the key `theme` (D54). Besides it, one inline script of at most 200 bytes in the head reads the theme choice and the dismissed notice before first paint; the CSP allows exactly that text by its `sha256` hash (`engine/tools/lib/theme-script.js`).
+MUST. The only runtime scripts are `engine/scripts/enhance.js`, an ES module of at most 5632 bytes minified (D55, D65) with no dependencies, loaded once with `type="module"`, and the opt-in sound module `engine/scripts/sound.js` (≤ 4608 bytes, R-SND-02), which `enhance.js` imports only while sound is on (switched on, or restored for the tab) or when an audition button is pressed. Every behaviour in it is feature-detected and every page works with the script absent (the `cinema` hero, for one, falls back to the native player's controls). It never fetches and never sets a cookie; it stores three choices the visitor makes: the sound choice and a dismissed announcement bar in `sessionStorage` for the tab (D44, to-do 7b) and the theme choice in `localStorage` under the key `theme` (D54). Besides it, one inline script of at most 200 bytes in the head reads the theme choice and the dismissed notice before first paint; the CSP allows exactly that text by its `sha256` hash (`engine/tools/lib/theme-script.js`).
 Why: Interaction comes from HTML; the script only smooths what CSS cannot.
 Gate: budget/js
 
@@ -55,5 +55,5 @@ Gate: manual: checklists/pre-delivery.md
 - [ ] R-PREC-05 CHANGELOG bumped when bylaws changed
 - [ ] R-PREC-06 no page carries markup that is not in the catalog
 - [ ] R-PREC-07 app.css diff reviewed against the exception list
-- [ ] R-PREC-08 enhance.js ≤ 5120 B, sound.js ≤ 4608 B on demand, no fetch or cookie, localStorage only for the theme, page usable without it
+- [ ] R-PREC-08 enhance.js ≤ 5632 B, sound.js ≤ 4608 B on demand, no fetch or cookie, localStorage only for the theme, page usable without it
 - [ ] R-PREC-09 sources present for feature-dependent rules

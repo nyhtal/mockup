@@ -43,7 +43,7 @@ Why: WCAG 1.4.3 and 1.4.11; axe cannot read `oklch()` and `light-dark()` yet.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-A11Y-09 Motion
-MUST. R-MOT-02 (all motion under `motion-safe:`), no autoplay (R-MOT-12), no flashing content.
+MUST. R-MOT-02 (all motion under `motion-safe:`), no autoplay (R-MOT-12) except the art clip of D65, which is decorative, silent, plays only under `motion-safe:` and has a pause button since it loops for longer than 5 s (WCAG 2.2.2), no flashing content.
 Why: WCAG 2.2.2, 2.3.1, 2.3.3.
 Gate: manual: checklists/pre-delivery.md
 

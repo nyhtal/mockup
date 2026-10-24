@@ -106,6 +106,7 @@ Conveniences and feedback:
 | Entrance | fade and move into place (the vocabulary above) | 500 / 700 / 800 ms, `ease-reveal` | top crosses 88 % of the window (script), once |
 | Count-up settle (expressive) | the figure scales 1.015 → 1 once it lands | 160 ms | `data-counted` |
 | Page navigation | cross-document view transition, header stable | browser default | navigation |
+| Flowing art (backdrop hero art clip, D65) | notches of light stream along the picture's rails toward the words, the clip fading in over the picture once it plays; a round pause button holds it | 8 s seamless loop, fade 1 200 ms `ease-in-out` | after load, `motion-safe`, on screen (script) |
 
 Rules that hold everything above together: compositor properties only (transform, translate, scale, opacity, colour; transition lists name `translate` and `scale`, since Tailwind's utilities set those, never `transform`), every utility under `motion-safe:`, entrances never over 64 px, depth never over 48 px and never below `md`, nothing animates above the fold at load (whatever is in view when the script starts is shown, not entered), the entrance lives on the wrapper and the hover on the inner element, an entrance's transition exists only once it is revealed (so nothing ever fades out), and reduced motion shows final states (and no count, no hairline). Browsers without scroll-driven animation (Firefox before 161) get every entrance and no depth.
 
@@ -127,7 +128,7 @@ Rules that hold everything above together: compositor properties only (transform
 - **Pictures**: every placeholder in a `rounded-xl` frame with a hairline ring; only the hero media gets the long shadow.
 - **Sound**: one quiet family of synthesised sounds behind a labelled toggle in the footer (also the header at `xl`, the drawer below `lg`; off by default, kept for the tab, loaded only when switched on): a faint tick when the mouse rests on something clickable, a tap on a press, rising and falling pairs as menus, accordions and dialogs open and close, a tick per carousel or lightbox step, two notes for a toggle, a copy and a form sent, and one soft rising note as a section slides in. A counting figure ticks as it counts and lands on one note. Never on an error, navigation or keyboard focus; calm sites have no hover or entrance sounds. The vocabulary and its limits are bylaw 20.
 
-What "pizzazz" is allowed to be: glow, hairlines, gradients on large numerals and panels, the motion table, two layers of depth, the sound family. What it is not: parallax on words or everywhere, auto-playing media, text that fades in word by word, hover-only content, more than one accent, texture, blur, clip-path reveals, magnetic cursors, card flips, digit slot machines, scroll hijacking, marquees. One device is deferred rather than refused: a picture "curtain" (a surface-coloured panel sliding off a picture as it enters); it is evaluated after the devices above are in, because it hides imagery until scrolled.
+What "pizzazz" is allowed to be: glow, hairlines, gradients on large numerals and panels, the motion table, two layers of depth, the sound family. What it is not: parallax on words or everywhere, auto-playing media (the art clip of D65 is the one exception: the picture itself with light on its rails, silent, with a pause button), text that fades in word by word, hover-only content, more than one accent, texture, blur, clip-path reveals, magnetic cursors, card flips, digit slot machines, scroll hijacking, marquees. One device is deferred rather than refused: a picture "curtain" (a surface-coloured panel sliding off a picture as it enters); it is evaluated after the devices above are in, because it hides imagery until scrolled.
 
 ## 5. Art and sample media
 
@@ -135,6 +136,8 @@ Every picture is a crop of the art library (`engine/art/`, R-ASSET-05): sixteen 
 
 
 The reference site ships a generated eight-second clip in the same system: Offset Planes in motion, planes gliding by up to half a module along their own axes on a dark ground while a turning ribbon holds still, the start 40 % empty for the cinema hero's words (1280×720, MP4 and WebM, the poster the composition at rest, flat fills that keep each file small), behind a native `<video>` with `preload="none"` and controls. It proves the video pattern without a third-party player and without a request before play.
+
+The home hero's art flows (D65): an art clip is a piece whose rails were measured off its raster, drawn as video frame by frame from the recoloured picture itself, so its still is the picture and only the rails ever change. Soft notches of light run in along the trail from the end edge, through the joint, and out along the channels to their open end by the words, four to a loop, every eight seconds. It lies over the picture, which stays the LCP image and the poster, and it fades in once it plays; it plays only when the visitor allows motion and while it is on screen, and a round button in the bottom-end corner pauses it.
 
 ## 6. If you start over
 

@@ -1,7 +1,7 @@
 [
   "arrow-right", "arrow-left", "arrow-up", "arrow-up-right", "check", "x", "menu", "search", "list", "layout-grid",
   "chevron-down", "chevron-right", "chevron-left", "chevron-up", "globe", "mail", "phone", "map-pin",
-  "calendar", "clock", "download", "external-link", "play", "file-text", "briefcase", "users",
+  "calendar", "clock", "download", "external-link", "play", "pause", "file-text", "briefcase", "users",
   "building-2", "factory", "shield-check", "zap", "chart-bar", "settings", "cpu", "layers",
   "star", "quote", "info", "circle-alert", "circle-check", "triangle-alert", "loader-circle", "plus",
   "minus", "filter", "share-2", "at-sign", "link", "message-circle", "sun", "moon",

@@ -7,6 +7,7 @@
  */
 import { cardOf, sortEntities } from "./entities.js";
 import { flairFor } from "./theme.js";
+import { FLOWS } from "./art-clip.js";
 
 const MEDIA = new Set(["hero", "cta-band", "page-header", "article-meta", "pagination", "filter-bar", "was-this-helpful"]);
 const STATIC = new Set(["search-box", "search-results", "person-bio", "download-detail", "event-detail", "job-detail", "prose", "confirmation", "error-state"]);
@@ -104,6 +105,10 @@ export function planSections(samples, sections, opts) {
     const raw = typeof item === "string" ? siteSections[item] || samples.byId[item] : item;
     if (!raw) throw new Error(`Unknown section id "${item}"`);
     const s = expand(raw, opts);
+    // The flowing art (D65): a clip of the picture with light on its rails; dark only, and only a backdrop hero plays it behind the words.
+    if (s.image?.video && !(s.type === "hero" && s.variant === "backdrop" && FLOWS[s.image.art ?? "planes-flow"] && !s.light && s.image.tone !== "light")) {
+      throw new Error(`${pageUrl}: image "${s.image.slug}" declares video "${s.image.video}", which only a dark backdrop hero with a flowing art piece (${Object.keys(FLOWS).join(", ")}) supports (D65)`);
+    }
     if (s.skipEmpty && (!s[s.skipEmpty === true ? "items" : s.skipEmpty] || s[s.skipEmpty === true ? "items" : s.skipEmpty].length === 0)) continue;
     delete s.skipEmpty;
     const i = steps.length;

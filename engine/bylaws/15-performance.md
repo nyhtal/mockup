@@ -83,7 +83,7 @@ Why: Performance regressions are cheap to catch and expensive to find later.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PERF-17 Video
-MUST. A page's video elements use `preload="none"` and a poster, so nothing of the clip loads before play; each clip is ≤ 1.5 MB per format at 1280×720 and ≤ 10 seconds for a sample; the budget gate counts the poster, not the clip.
+MUST. A page's video elements use `preload="none"` and a poster, so nothing of the clip loads before play; each clip is ≤ 1.5 MB per format at 1280×720 and ≤ 10 seconds for a sample; the budget gate counts the poster, not the clip. An art clip (D65) has no poster attribute: the picture under it is its poster and the LCP image, and it is 1600×900 like the picture it lies on, ≤ 1.5 MB per format; it loads only when the script plays it, so reduced motion and no script never fetch it.
 Why: A video that loads with the page costs more than every other asset together.
 Gate: manual: checklists/new-page.md
 

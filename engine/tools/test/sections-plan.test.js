@@ -150,3 +150,16 @@ test("brand version (R-SEC-13): a brand bar never joins a page header and restar
   assert.equal(brandHeader[0].s.variant, "brand", "a brand header needs no image");
   assert.equal(brandHeader[0].ctx.joined, undefined, "and keeps its padding");
 });
+
+test("an image's video (D65) is accepted only on a dark backdrop hero with a piece that has a flow", () => {
+  const img = { slug: "home-backdrop", ratio: "16:9", art: "planes-flow", video: "home-flow" };
+  const hero = { type: "hero", variant: "backdrop", image: img };
+  assert.equal(planSections(samples, [hero], opts)[0].s.image.video, "home-flow");
+  assert.equal(planSections(samples, [{ ...hero, image: { ...img, art: undefined } }], opts)[0].s.image.video, "home-flow", "the backdrop's default art is planes-flow");
+  assert.equal(planSections(samples, [{ ...hero, inset: true }], opts)[0].s.image.video, "home-flow", "the inset frame plays it too");
+  assert.throws(() => planSections(samples, [{ ...hero, variant: "split" }], opts), /\/en\/about\/: image "home-backdrop" declares video "home-flow"/);
+  assert.throws(() => planSections(samples, [{ ...hero, image: { ...img, art: "planes-energy" } }], opts), /declares video/);
+  assert.throws(() => planSections(samples, [{ type: "feature-rows", image: img }], opts), /declares video/);
+  assert.throws(() => planSections(samples, [{ ...hero, light: true }], opts), /declares video/, "the clip is dark only");
+  assert.throws(() => planSections(samples, [{ ...hero, image: { ...img, tone: "light" } }], opts), /declares video/);
+});

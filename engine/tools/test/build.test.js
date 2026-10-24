@@ -86,9 +86,10 @@ test("the shell has one header with labelled navigation, a drawer trigger, one m
   assert.match(readFileSync("dist/reference/en/customers/index.html", "utf8"), /<a href="\/en\/customers\/"[^>]*aria-current="page"/);
 });
 
-test("enhance.js ships under 5 KB (D55) and only does what bylaw 06 allows", () => {
+test("enhance.js ships under 5.5 KB (D55, D65) and only does what bylaw 06 allows", () => {
   const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
-  assert.ok(Buffer.byteLength(js) <= 5120, `${Buffer.byteLength(js)} B`);
+  assert.ok(Buffer.byteLength(js) <= 5632, `${Buffer.byteLength(js)} B`);
+  assert.match(js, /\[data-flow\][\s\S]*M\.matches\?v\.pause\(\):v\.play\(\)/,"the art clip plays only under motion-safe, on screen and unpaused (R-MOT-10 behaviour 5)");
   assert.match(js, /IntersectionObserver/);
   assert.match(js, /pending:/, "entrances are triggered by the script, once, as each element crosses 88 % of the viewport (R-MOT-10 behaviour 1)");
   assert.match(js, /innerHeight\*\.88/, "elements already in view at load are revealed before the pending: state can apply (R-MOT-11)");
@@ -500,7 +501,7 @@ test("widgets (to-do 7b, part two): copy and share buttons report into a live to
   const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
   assert.match(js, /data-copy/);
   assert.match(js, /sessionStorage\.notice=1/);
-  assert.ok(Buffer.byteLength(js) <= 5120, "enhance.js within 5 KB (D55)");
+  assert.ok(Buffer.byteLength(js) <= 5632, "enhance.js within 5.5 KB (D55, D65)");
 });
 
 test("widgets (to-do 7b, part three): a carousel, a sticky phone CTA, a contact launcher, a before/after slider", () => {
@@ -569,7 +570,7 @@ test("the style guide's entrance demo replays on demand (owner, 2026-10-21): a b
   assert.match(page, /<button type="button" data-replay aria-controls="motion-demo" class="hidden js:inline-flex [^"]*">[\s\S]*?Play again<\/button>/);
   const js = readFileSync("dist/reference/assets/enhance.js", "utf8");
   assert.match(js, /\[data-replay\]/);
-  assert.ok(js.length <= 5120, `enhance.js is ${js.length} B`);
+  assert.ok(js.length <= 5632, `enhance.js is ${js.length} B`);
 });
 
 test("the style guide's Sound section auditions every cue (R-SND-11)", () => {
@@ -893,4 +894,26 @@ test("a person's profile lists what they wrote: posts and press releases, each l
     assert.match(priya, new RegExp(`data-component="related-articles"[\\s\\S]*href="/${loc}/blog/sensor-logic-at-the-edge/"`), `${loc} Priya lists her post`);
     assert.doesNotMatch(priya, /data-component="press-cards"/, `${loc} Priya wrote no press releases`);
   }
+});
+
+test("the home hero's art flows (D65): the picture stays the LCP image, a looping clip of it plays over it with a pause button", () => {
+  for (const lang of ["en", "de", "ar", "ja"]) {
+    const home = readFileSync(`dist/reference/${lang}/index.html`, "utf8");
+    const hero = /<section[^>]*data-component="hero"[\s\S]*?<\/section>/.exec(home)[0];
+    const layer = /<div aria-hidden="true" class="absolute inset-0 -z-10 overflow-clip rtl:-scale-x-100">([\s\S]*?)<\/div>/.exec(hero)[1];
+    assert.match(layer, /^<img [^>]*fetchpriority="high"[^>]*>\s*<video /,`${lang}: the picture first, then the clip over it, in the mirrored art layer`);
+    const video = /<video [^>]*>/.exec(layer)[0];
+    for (const attr of ["muted", "loop", "playsinline", 'preload="none"', 'data-art="planes-flow"', "data-flow", 'width="1600"', 'height="900"']) assert.ok(video.includes(attr), `${lang}: the clip has ${attr}`);
+    assert.doesNotMatch(video, /autoplay|controls|poster=/, `${lang}: the script starts it, only under motion-safe and on screen; the picture is its poster`);
+    assert.match(video, /class="[^"]*opacity-0 data-playing:opacity-100[^"]*motion-reduce:hidden/, `${lang}: the light fades in once it plays, and reduced motion never shows it`);
+    assert.match(layer, /<source src="\/assets\/video\/home-flow\.webm" type="video\/webm"><source src="\/assets\/video\/home-flow\.mp4" type="video\/mp4">/);
+    const pause = /<button [^>]*data-flow-pause[^>]*>[\s\S]*?<\/button>/.exec(hero)?.[0];
+    assert.ok(pause, `${lang}: a pause button (WCAG 2.2.2: the loop runs over 5 s)`);
+    assert.match(pause, /type="button"/);
+    assert.match(pause, /aria-pressed="false"/);
+    assert.match(pause, /class="[^"]*hidden js:motion-safe:flex/, `${lang}: shown only when the script can play the clip`);
+    assert.match(pause, /<span class="sr-only">[^<]+<\/span>/, `${lang}: a translated label`);
+  }
+  assert.match(readFileSync("dist/reference/en/index.html", "utf8"), /data-flow-pause[\s\S]*?<span class="sr-only">Pause animation<\/span>/);
+  for (const ext of ["mp4", "webm"]) assert.ok(statSync(`dist/reference/assets/video/home-flow.${ext}`).size < 1.5 * 1024 * 1024, `the ${ext} clip is built and within R-PERF-17`);
 });

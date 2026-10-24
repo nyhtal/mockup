@@ -1,9 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync, readFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { mkdtempSync, rmSync, readFileSync, readdirSync, statSync, existsSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { videoFrameSvg, captionsVtt, generateVideo } from "../build-video.js";
+import { videoFrameSvg, captionsVtt, generateVideo, referencedVideos } from "../build-video.js";
 
 const frame = (over = {}) => videoFrameSvg({ slug: "one", hue: 250, accentHue: 160, width: 320, t: 0, ...over });
 
@@ -62,6 +62,32 @@ test("generateVideo leaves nothing in the cache when the encoder fails or is mis
     await assert.rejects(generateVideo({ ...opts, ffmpeg: path.join(dir, "no-such-ffmpeg.exe") }), /ffmpeg/);
     assert.deepEqual(readdirSync(path.join(dir, "cache")), [], "a failed encode leaves no cache files, truncated or otherwise");
     await assert.rejects(generateVideo({ ...opts, ffmpeg: null }), /ffmpeg-static/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("generateVideo with an art draws the art clip (D65): the picture with light on its rails, cached under a key naming the art", { timeout: 180000 }, async () => {
+  const dir = mkdtempSync(path.join(tmpdir(), "video-"));
+  try {
+    const opts = { slug: "flow", art: "planes-flow", hue: 250, accentHue: 160, seconds: 1, fps: 4, width: 320, outDir: path.join(dir, "out"), cacheDir: path.join(dir, "cache") };
+    assert.equal((await generateVideo(opts)).generated, true);
+    assert.equal(readFileSync(path.join(dir, "out", "flow.mp4")).subarray(4, 8).toString(), "ftyp");
+    assert.ok(existsSync(path.join(dir, "cache", "flow-planes-flow-320x180-4fps-1s-250-160-a1.mp4")), "the key names the art and the art clip's version");
+    assert.equal((await generateVideo(opts)).generated, false, "a rerun copies from the cache");
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("referencedVideos reads each clip's art from data-art on its video", () => {
+  const dir = mkdtempSync(path.join(tmpdir(), "video-"));
+  try {
+    writeFileSync(path.join(dir, "index.html"), '<video data-art="planes-flow"><source src="/assets/video/home-flow.webm" type="video/webm"><source src="/assets/video/home-flow.mp4" type="video/mp4"></video><video><source src="/assets/video/sample.mp4" type="video/mp4"></video>');
+    const { slugs, arts } = referencedVideos(dir);
+    assert.deepEqual([...slugs].sort(), ["home-flow", "sample"]);
+    assert.equal(arts.get("home-flow"), "planes-flow");
+    assert.equal(arts.has("sample"), false, "a clip without data-art is the sample clip");
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }

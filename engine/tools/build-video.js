@@ -2,6 +2,7 @@
  * The sample clip (R-ASSET-13, R-PERF-17, DESIGN §5): Offset Planes in motion, the art library's system, rendered frame by frame from SVG
  * through sharp and piped raw into ffmpeg-static, which writes H.264 (MP4) and VP9 (WebM) in one pass. The first
  * frame is the poster. Every parameter is in the cache key, so a rebuild copies and an unchanged clip never re-encodes.
+ * A <video data-art> is an art clip instead (D65): the piece's picture with light running along its rails (lib/art-clip.js).
  */
 import { spawn } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, renameSync, rmSync, writeFileSync } from "node:fs";
@@ -10,7 +11,8 @@ import sharp from "sharp";
 import ffmpegPath from "ffmpeg-static";
 import { listHtml, parse } from "./lib/html.js";
 import { seed, rng } from "./lib/placeholder.js";
-import { ramp } from "./lib/art.js";
+import { loadLibrary, ramp } from "./lib/art.js";
+import { artClip } from "./lib/art-clip.js";
 
 /** Clip length in seconds for every generated sample (DESIGN §5; R-PERF-17 allows up to 10). */
 export const SECONDS = 8;
@@ -18,6 +20,10 @@ export const FPS = 24;
 export const WIDTH = 1280;
 /** Bump when videoFrameSvg or the encoder arguments change, so cached clips are re-encoded. */
 export const VERSION = 2;
+/** Bump when an art clip's frames (lib/art-clip.js) change. */
+export const ART_VERSION = 1;
+/** An art clip is drawn at the art library's largest width (R-ASSET-05), so it is as sharp as the picture under it. */
+export const ART_WIDTH = 1600;
 const CACHE_DIR = "engine/.cache/video";
 
 const TAU = Math.PI * 2;
@@ -78,11 +84,20 @@ export function captionsVtt(seconds, text) {
   return `WEBVTT\n\n${stamp(0)} --> ${stamp(seconds)}\n${text}\n`;
 }
 
-async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, webm, poster, ffmpeg }) {
+/** Raw RGB frames for frame index i of n: the art clip of `art` (D65), else the sample clip seeded by the slug. */
+async function frameSource({ slug, art, hue, accentHue, width, height }) {
+  if (art) {
+    const clip = await artClip({ library: loadLibrary(), art, hue, accentHue, width, height });
+    return (i, n) => clip.frame(i / n);
+  }
+  return (i, n) => sharp(Buffer.from(videoFrameSvg({ slug, hue, accentHue, width, t: i / n }))).flatten({ background: "#ffffff" }).raw().toBuffer();
+}
+
+async function encode({ slug, art, hue, accentHue, seconds, fps, width, height, mp4, webm, poster, ffmpeg }) {
   if (typeof ffmpeg !== "string" || !ffmpeg) throw new Error(`ffmpeg-static did not provide a binary (was its install script skipped?), so the clip "${slug}" cannot be encoded`);
   const n = seconds * fps;
-  const svg = (i) => Buffer.from(videoFrameSvg({ slug, hue, accentHue, width, t: i / n }));
-  writeFileSync(poster, await sharp(svg(0)).avif({ quality: 42, effort: 6 }).toBuffer());
+  const frame = await frameSource({ slug, art, hue, accentHue, width, height });
+  writeFileSync(poster, await sharp(await frame(0, n), { raw: { width, height, channels: 3 } }).avif({ quality: 42, effort: 6 }).toBuffer());
   const args = [
     "-y", "-hide_banner", "-loglevel", "error",
     "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", `${width}x${height}`, "-r", String(fps), "-i", "pipe:0",
@@ -98,8 +113,7 @@ async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, 
     p.on("close", (code) => (code === 0 ? resolve() : reject(new Error(`ffmpeg exited with ${code}: ${err.trim()}`))));
     (async () => {
       for (let i = 0; i < n; i++) {
-        const frame = await sharp(svg(i)).flatten({ background: "#ffffff" }).raw().toBuffer();
-        if (!p.stdin.write(frame)) await new Promise((r) => p.stdin.once("drain", r));
+        if (!p.stdin.write(await frame(i, n))) await new Promise((r) => p.stdin.once("drain", r));
       }
       p.stdin.end();
     })().catch(reject);
@@ -108,11 +122,13 @@ async function encode({ slug, hue, accentHue, seconds, fps, width, height, mp4, 
 
 /**
  * Write `<slug>.mp4`, `<slug>.webm` and `<slug>-poster.avif` into outDir, encoding only when the cache (keyed by
- * every parameter) lacks them. Returns { generated, files }.
+ * every parameter) lacks them. With `art`, the clip is that piece's art clip (D65). Returns { generated, files }.
  */
-export async function generateVideo({ slug, hue = 250, accentHue = 160, seconds = SECONDS, fps = FPS, width = WIDTH, outDir, cacheDir = CACHE_DIR, ffmpeg = ffmpegPath }) {
+export async function generateVideo({ slug, art, hue = 250, accentHue = 160, seconds = SECONDS, fps = FPS, width = WIDTH, outDir, cacheDir = CACHE_DIR, ffmpeg = ffmpegPath }) {
   const height = Math.round((width * 9) / 16);
-  const key = `${slug}-${width}x${height}-${fps}fps-${seconds}s-${hue}-${accentHue}-v${VERSION}`;
+  const key = art
+    ? `${slug}-${art}-${width}x${height}-${fps}fps-${seconds}s-${hue}-${accentHue}-a${ART_VERSION}`
+    : `${slug}-${width}x${height}-${fps}fps-${seconds}s-${hue}-${accentHue}-v${VERSION}`;
   mkdirSync(outDir, { recursive: true });
   mkdirSync(cacheDir, { recursive: true });
   const outputs = [[".mp4", `${slug}.mp4`], [".webm", `${slug}.webm`], ["-poster.avif", `${slug}-poster.avif`]];
@@ -122,7 +138,7 @@ export async function generateVideo({ slug, hue = 250, accentHue = 160, seconds 
     // Encode to temporary names and rename only when every output is complete, so an interrupted build never leaves a truncated clip that the next build would ship as a cache hit.
     const tmp = (ext) => path.join(cacheDir, `${key}.tmp${ext}`);
     try {
-      await encode({ slug, hue, accentHue, seconds, fps, width, height, mp4: tmp(".mp4"), webm: tmp(".webm"), poster: tmp("-poster.avif"), ffmpeg });
+      await encode({ slug, art, hue, accentHue, seconds, fps, width, height, mp4: tmp(".mp4"), webm: tmp(".webm"), poster: tmp("-poster.avif"), ffmpeg });
       for (const [ext] of outputs) renameSync(tmp(ext), cached(ext));
     } catch (e) {
       for (const [ext] of outputs) rmSync(tmp(ext), { force: true });
@@ -134,15 +150,18 @@ export async function generateVideo({ slug, hue = 250, accentHue = 160, seconds 
   return { generated, files };
 }
 
-/** Every clip and captions track the built pages reference: { slugs: Set, tracks: Map<file, cue> }. */
+/** Every clip and captions track the built pages reference: { slugs: Set, arts: Map<slug, art> (from data-art), tracks: Map<file, cue> }. */
 export function referencedVideos(distDir) {
-  const slugs = new Set(), tracks = new Map();
+  const slugs = new Set(), arts = new Map(), tracks = new Map();
   for (const file of listHtml(distDir)) {
     const { root } = parse(file);
     for (const video of root.querySelectorAll("video")) {
       for (const source of video.querySelectorAll("source[src]")) {
         const m = /^\/assets\/video\/([a-z0-9]+(?:-[a-z0-9]+)*)\.mp4$/.exec(source.getAttribute("src"));
-        if (m) slugs.add(m[1]);
+        if (m) {
+          slugs.add(m[1]);
+          if (video.getAttribute("data-art")) arts.set(m[1], video.getAttribute("data-art"));
+        }
       }
       for (const track of video.querySelectorAll("track[src]")) {
         const src = track.getAttribute("src");
@@ -150,17 +169,18 @@ export function referencedVideos(distDir) {
       }
     }
   }
-  return { slugs, tracks };
+  return { slugs, arts, tracks };
 }
 
 /** Generate every referenced clip into dist/assets/video and write its captions files. Returns counts. */
 export async function generateVideos(distDir, brand = {}) {
-  const { slugs, tracks } = referencedVideos(distDir);
+  const { slugs, arts, tracks } = referencedVideos(distDir);
   if (slugs.size === 0 && tracks.size === 0) return { clips: 0, encoded: 0, tracks: 0 };
   const outDir = path.join(distDir, "assets", "video");
   let encoded = 0;
   for (const slug of slugs) {
-    const { generated } = await generateVideo({ slug, hue: brand.hue ?? 250, accentHue: brand.accentHue ?? brand.hue ?? 250, outDir });
+    const art = arts.get(slug);
+    const { generated } = await generateVideo({ slug, art, ...(art && { width: ART_WIDTH }), hue: brand.hue ?? 250, accentHue: brand.accentHue ?? brand.hue ?? 250, outDir });
     if (generated) encoded++;
   }
   mkdirSync(outDir, { recursive: true });
