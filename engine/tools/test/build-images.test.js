@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, existsSync
 import { tmpdir } from "node:os";
 import path from "node:path";
 import sharp from "sharp";
-import { parseImageName, referencedImages, generateImages } from "../build-images.js";
+import { parseImageName, referencedImages, generateImages, generateOgImages, promoteLcpImages } from "../build-images.js";
 
 // sharp's operation cache keeps file handles open, which blocks temp-dir removal on Windows.
 sharp.cache(false);
@@ -107,5 +107,38 @@ test("a declared dark tone renders a dark picture, a light tone a light one", { 
     const mean = async (f) => { const s = await sharp(readFileSync(path.join(d, "assets", "images", f))).png().toBuffer(); return (await sharp(s).greyscale().stats()).channels[0].mean; };
     assert.ok((await mean("night-16x9-480.webp")) < 90);
     assert.ok((await mean("day-16x9-480.webp")) > 180);
+  } finally { drop(d); }
+});
+
+test("promoteLcpImages gives a plain page header's next section its first picture as the LCP image, and leaves other pages alone", () => {
+  const d = mkdtempSync(path.join(tmpdir(), "lcp-"));
+  try {
+    const img = (n) => `<img src="/assets/images/${n}-4x3-480.webp" width="768" height="576" alt="" loading="lazy" decoding="async">`;
+    const pages = {
+      "plain.html": page(`<main><section data-component="page-header"><h1>A</h1></section><section data-component="feature-rows">${img("a")}${img("b")}</section><section data-component="cta">${img("c")}</section></main>`),
+      "hero.html": page(`<main><section data-component="page-header"><img src="/x.webp" alt="" fetchpriority="high"></section><section data-component="cards">${img("a")}</section></main>`),
+      "late.html": page(`<main><section data-component="page-header"><h1>A</h1></section><section data-component="prose"><p>x</p></section><section data-component="cards">${img("a")}</section></main>`),
+      "nohead.html": page(`<main><section data-component="hero"><h1>A</h1></section><section data-component="cards">${img("a")}</section></main>`),
+    };
+    for (const [n, html] of Object.entries(pages)) writeFileSync(path.join(d, n), html);
+    assert.deepEqual(promoteLcpImages(d), { pages: 1 });
+    const plain = readFileSync(path.join(d, "plain.html"), "utf8");
+    assert.match(plain, /a-4x3-480\.webp" width="768" height="576" alt="" fetchpriority="high" decoding="async">/);
+    assert.equal(plain.match(/fetchpriority/g).length, 1, "only the first picture is promoted");
+    for (const n of ["hero.html", "late.html", "nohead.html"]) assert.equal(readFileSync(path.join(d, n), "utf8"), pages[n], n);
+  } finally { rmSync(d, { recursive: true, force: true }); }
+});
+
+test("generateOgImages renders a social image only for pages whose head names one, and consumes the manifest", { timeout: 60000 }, async () => {
+  const d = mkdtempSync(path.join(tmpdir(), "og-"));
+  try {
+    mkdirSync(path.join(d, "en", "news"), { recursive: true });
+    writeFileSync(path.join(d, "en", "news", "index.html"), page('<meta property="og:image" content="https://x.test/assets/og/en-news.png">'));
+    writeFileSync(path.join(d, "en", "issue.html"), page("<p>a framed newsletter issue, no Open Graph tags</p>"));
+    writeFileSync(path.join(d, "og-manifest.json"), JSON.stringify([{ slug: "en-news", title: "News", site: "S" }, { slug: "en-issue", title: "Issue", site: "S" }]));
+    assert.deepEqual(await generateOgImages(d, { hue: 250 }), { generated: 1 });
+    assert.ok(existsSync(path.join(d, "assets", "og", "en-news.png")));
+    assert.ok(!existsSync(path.join(d, "assets", "og", "en-issue.png")), "no image nothing points at");
+    assert.ok(!existsSync(path.join(d, "og-manifest.json")));
   } finally { drop(d); }
 });

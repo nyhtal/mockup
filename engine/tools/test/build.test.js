@@ -392,7 +392,7 @@ test("new pages (to-do 7a): a changelog of release articles, a podcast episode w
   assert.match(footer, /<a href="\/de\/resources\/podcast\/"[^>]*>Podcast<\/a>/);
 });
 
-test("locations (0.17.0): image tiles instead of a map; the catalog's office map scales to its column with links; the image map lives on in the style guide", () => {
+test("locations (0.17.0): image tiles instead of a map; the office map is gone from the catalog (0.19.0); the style guide's image map uses an art picture the site already has", () => {
   // The locations page shows the offices as image tiles, two across; the map is gone from the site (owner: "too data specific").
   for (const l of ["en", "ar"]) {
     const loc = readFileSync(`dist/reference/${l}/about/locations/index.html`, "utf8");
@@ -406,24 +406,20 @@ test("locations (0.17.0): image tiles instead of a map; the catalog's office map
       assert.match(detail, new RegExp(`data-component="page-header" data-variant="split">[\\s\\S]*?<img src="/assets/images/office-${o}-card-4x3-480\\.webp"[^>]*data-tone="dark"`), `${l}/${o}: the tile's picture heads its page`);
     }
   }
-  // The office-map section stays in the catalog, inline and scaling (shown in the style guide).
-  const page = readFileSync("dist/reference/sys/style-guide/sections/company/index.html", "utf8");
-  const svg = /<figure class="[^"]*">(<svg viewBox="0 0 640 200" width="640" height="200" class="block h-auto w-full" role="group" aria-label="([^"]+)">[\s\S]*?<\/svg>)<\/figure>/.exec(page);
-  assert.ok(svg, "an inline svg that scales to its column");
-  const section = /data-component="office-map"[\s\S]*?<\/section>/.exec(page)[0];
-  assert.doesNotMatch(section, /overflow-x-auto/, "no scrolling region around the map");
-  const links = [...svg[1].matchAll(/<a href="([^"]+)" aria-label="([^"]+)"[^>]*><circle cx="(\d+)" cy="(\d+)" r="22" fill="transparent"\/><circle cx="\3" cy="\4" r="9"[^>]*\/><text [^>]*>([^<]+)<\/text><\/a>/g)];
-  assert.ok(links.length >= 3, "each office a link around its hit area, dot and label");
-  for (const [, href, name] of links) {
-    assert.ok(existsSync(`dist/reference${href}index.html`), `${href} exists`);
-    assert.ok(name.length > 2, `${href} has an accessible name`);
+  // The office map is gone (owner, 2026-10-23: "we dont use that map image anymore"): no section, no picture file, no link to one.
+  const company = readFileSync("dist/reference/sys/style-guide/sections/company/index.html", "utf8");
+  assert.doesNotMatch(company, /data-component="office-map"/);
+  for (const l of ["en", "de", "ar", "ja"]) {
+    assert.ok(!existsSync(`dist/reference/assets/files/${l}/office-map.svg`), `${l}: no office map picture`);
+    assert.doesNotMatch(readFileSync(`dist/reference/${l}/sys/index.html`, "utf8"), /office-map/, `${l}: the system page lists no map`);
   }
+  // The native image map (map, area) stays demonstrated, on the home page's art picture: three rectangles, each a link to a real page.
   const guide = readFileSync("dist/reference/sys/style-guide/components/index.html", "utf8");
-  assert.match(guide, /<img src="\/assets\/files\/en\/office-map\.svg" usemap="#sg-office-map" width="640" height="200"/, "the style guide keeps a native image map");
-  const file = readFileSync("dist/reference/assets/files/en/office-map.svg", "utf8");
-  const areas = [...guide.matchAll(/<area shape="circle" coords="(\d+),(\d+),18"/g)];
-  assert.equal(areas.length, 4);
-  for (const [, x, y] of areas) assert.ok(file.includes(`<circle cx="${x}" cy="${y}" r="8"/>`), "its hot spots sit on the dots");
+  assert.match(guide, /<img src="\/assets\/images\/home-backdrop-16x9-768\.webp" usemap="#sg-image-map" width="768" height="432"/);
+  assert.ok(existsSync("dist/reference/assets/images/home-backdrop-16x9-768.webp"));
+  const areas = [...guide.matchAll(/<area shape="rect" coords="(\d+),0,(\d+),432" href="([^"]+)" alt="([^"]+)">/g)];
+  assert.equal(areas.length, 3);
+  for (const [, , , href] of areas) assert.ok(existsSync(`dist/reference${href}index.html`), `${href} exists`);
 });
 
 test("frames and objects (to-do 7c): a same-origin iframe of a newsletter issue, PDF previews in object and embed, a CSP that allows only the site itself", () => {
@@ -515,14 +511,12 @@ test("selects draw their own chevron clear of the end edge (owner, 2026-10-21): 
   }
 });
 
-test("the widgets test page is gone and the HTML element reference lives under /sys/ (owner, 2026-10-21): old URLs redirect, the style guide nav and the system page link the new one", () => {
+test("the widgets test page is gone and the HTML element reference lives under /sys/ (owner, 2026-10-21): old URLs are not redirected (2026-10-23), the style guide nav and the system page link the new one", () => {
   assert.ok(!existsSync("dist/reference/en/qa"), "no /en/qa/ pages");
   assert.ok(existsSync("dist/reference/sys/html/index.html"));
   assert.ok(!existsSync("dist/reference/sys/style-guide/widgets"));
-  const redirects = readFileSync("dist/reference/_redirects", "utf8");
-  for (const line of ["/en/qa/html/  /en/sys/html/  301","/en/style-guide/html/  /en/sys/html/  301", "/en/qa/*  /en/sys/  301", "/en/style-guide/widgets/  /en/sys/  301"]) assert.ok(redirects.includes(line + "\n"), line);
-  const json = JSON.parse(readFileSync("dist/reference/redirects.json", "utf8"));
-  assert.deepEqual(json.filter((r) => r.from.includes("qa") || r.from.includes("widgets")).map((r) => r.to), ["/en/sys/", "/en/sys/html/", "/en/sys/"]);
+  assert.equal(readFileSync("dist/reference/_redirects", "utf8").trim(), "/  /en/  301", "only the root redirects (R-DEPLOY-05)");
+  assert.deepEqual(JSON.parse(readFileSync("dist/reference/redirects.json", "utf8")), [{ from: "/", to: "/en/", status: 301 }]);
   const guide = readFileSync("dist/reference/sys/style-guide/index.html", "utf8");
   assert.match(guide, /href="\/en\/sys\/html\/"/);
   assert.doesNotMatch(guide, /widgets/i);
@@ -610,15 +604,17 @@ test("the stylesheet is compiled from the built pages only, not from docs or byl
   assert.match(css, /\.text-4xl\{/, "classes used on the page are present");
 });
 
-test("three locales: alternates pair the same slug per locale, Arabic pages preload the Arabic face, the style guide exists in the default locale only", () => {
+test("three locales: alternates pair the same slug per locale, Arabic pages preload the Arabic face and then the Latin one, the style guide exists in the default locale only", () => {
   const html = readFileSync("dist/reference/de/about/team/mei-chen/index.html", "utf8");
   assert.match(html, /<link rel="alternate" hreflang="en" href="https:\/\/example\.com\/en\/about\/team\/mei-chen\/">/);
   assert.match(html, /<link rel="alternate" hreflang="ar" href="https:\/\/example\.com\/ar\/about\/team\/mei-chen\/">/);
   assert.doesNotMatch(html, /hreflang="en" href="https:\/\/example\.com\/en\/about\/team\/priya/);
   const ar = readFileSync("dist/reference/ar/index.html", "utf8");
   assert.match(ar, /<html lang="ar" dir="rtl"/);
-  assert.match(ar, /<link rel="preload" href="\/assets\/fonts\/noto-sans-arabic-arabic-wght-normal\.woff2"/);
-  assert.match(readFileSync("dist/reference/en/index.html", "utf8"), /<link rel="preload" href="\/assets\/fonts\/inter-latin-wght-normal\.woff2"/);
+  assert.match(ar, /<link rel="preload" href="\/assets\/fonts\/noto-sans-arabic-arabic-wght-normal\.woff2" as="font" type="font\/woff2" crossorigin>\n<link rel="preload" href="\/assets\/fonts\/inter-latin-wght-normal\.woff2"/);
+  const en = readFileSync("dist/reference/en/index.html", "utf8");
+  assert.match(en, /<link rel="preload" href="\/assets\/fonts\/inter-latin-wght-normal\.woff2"/);
+  assert.equal(en.match(/rel="preload"[^>]*as="font"/g).length, 1, "a Latin page preloads one font");
   // Language names in the switcher render in the system font so no page downloads another script's face for one word (R-PERF-01).
   assert.match(ar, /lang="de"[^>]*class="[^"]*font-system/);
   assert.ok(existsSync("dist/reference/sys/style-guide/index.html"));

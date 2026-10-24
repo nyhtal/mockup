@@ -1,4 +1,4 @@
-{#- Head contents in the fixed order of R-HTML-02. Included by base.njk; expects page data (title, description, canonical, noindex, ogImage, ogType, feedUrl) and globals (site, themeColors, fontPreload). -#}
+{#- Head contents in the fixed order of R-HTML-02. Included by base.njk; expects page data (title, description, canonical, noindex, ogImage, ogType, feedUrl) and globals (site, themeColors, fontPreloads). -#}
 {%- set alternates = page.url | allAlternates -%}
 {%- set xDefault = page.url | xDefaultUrl -%}
 <meta charset="utf-8">
@@ -27,9 +27,9 @@
 <link rel="icon" href="/favicon.ico" sizes="32x32">
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-{%- if fontPreload %}
-<link rel="preload" href="{{ fontPreload }}" as="font" type="font/woff2" crossorigin>
-{%- endif %}
+{%- for font in fontPreloads %}
+<link rel="preload" href="{{ font }}" as="font" type="font/woff2" crossorigin>
+{%- endfor %}
 <link rel="stylesheet" href="/assets/app.css">
 <meta property="og:type" content="{{ ogType or 'website' }}">
 <meta property="og:title" content="{{ title if pageType != 'home' else site.name }}">

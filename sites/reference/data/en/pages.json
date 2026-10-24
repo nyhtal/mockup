@@ -1140,6 +1140,7 @@
       "type": "media-contact",
       "title": "Press contact",
       "name": "Sofia Lindqvist",
+      "href": "/en/about/team/sofia-lindqvist/",
       "role": "Head of Communications",
       "email": "press@northwind-dynamics.com",
       "phone": "+44 20 7946 0001"
@@ -1478,12 +1479,6 @@
         ]
       }
     },
-    "office-map": {
-      "type": "office-map",
-      "title": "Where we are",
-      "lede": "Select an office on the map, or in the list, for its address and hours.",
-      "from": "offices"
-    },
     "newsletter-preview": {
       "type": "newsletter-preview",
       "title": "See a recent issue",
@@ -1667,6 +1662,15 @@
             "author": "{e.slug}"
           },
           "skipEmpty": true
+        },
+        {
+          "type": "press-cards",
+          "title": "Press releases by {e.name}",
+          "from": "press",
+          "filter": {
+            "author": "{e.slug}"
+          },
+          "skipEmpty": true
         }
       ]
     },
@@ -1830,40 +1834,6 @@
           "from": "posts",
           "filter": {
             "tags": "{e.slug}"
-          }
-        }
-      ]
-    },
-    "author": {
-      "each": "people",
-      "kind": "authors",
-      "where": {
-        "posts": true
-      },
-      "conversion": "none",
-      "title": "Posts by {e.name}",
-      "description": "{e.authorDescription}",
-      "sections": [
-        {
-          "type": "page-header",
-          "eyebrow": "Author",
-          "title": "{e.name}",
-          "lede": "{e.role}"
-        },
-        {
-          "type": "person-bio",
-          "label": "About the author",
-          "name": "{e.name}",
-          "role": "{e.role}",
-          "md": "e.bio",
-          "into": "bio"
-        },
-        {
-          "type": "article-cards",
-          "title": "Posts",
-          "from": "posts",
-          "filter": {
-            "author": "{e.slug}"
           }
         }
       ]

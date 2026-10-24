@@ -65,6 +65,14 @@ function placeNode(o, ctx) {
   });
 }
 
+/** An article's author: the Person the byline names, added to the page's graph, or the organization when it names none. */
+function withAuthor(node, e, c) {
+  const author = (c.entities?.people || []).find((p) => p.slug === e.author);
+  if (!author) return { ...node, author: orgRef(c.site) };
+  const p = personNode(author, c);
+  return { ...node, author: { "@id": p["@id"] }, schemaNodes: [p] };
+}
+
 const NODES = {
   services: (e, c) => ({ "@type": "Service", name: e.title, description: e.description || e.lede, provider: orgRef(c.site), serviceType: e.serviceType, areaServed: e.areaServed, url: entityUrl("services", e.slug, c.locale) }),
   industries: (e, c) => ({ "@type": "Service", name: e.title, description: e.description || e.lede, provider: orgRef(c.site), serviceType: e.serviceType, url: entityUrl("industries", e.slug, c.locale) }),
@@ -89,17 +97,12 @@ const NODES = {
     };
   },
   downloads: (e, c) => ({ "@type": "Article", headline: e.title, description: e.description || e.summary, author: orgRef(c.site), publisher: orgRef(c.site), url: entityUrl("downloads", e.slug, c.locale) }),
-  posts: (e, c) => {
-    const author = (c.entities?.people || []).find((p) => p.slug === e.author);
-    const node = {
-      "@type": "BlogPosting", headline: e.title, description: e.description || e.excerpt, datePublished: e.date, dateModified: e.modified || e.date, image: imageUrl(e.image),
-      publisher: orgRef(c.site), url: entityUrl("posts", e.slug, c.locale), inLanguage: c.locale,
-    };
-    if (author) { const p = personNode(author, c); node.author = { "@id": p["@id"] }; node.schemaNodes = [p]; }
-    else node.author = orgRef(c.site);
-    return node;
-  },
-  press: (e, c) => ({ "@type": "NewsArticle", headline: e.title, description: e.description || e.excerpt, datePublished: e.date, dateModified: e.modified || e.date, author: orgRef(c.site), publisher: orgRef(c.site), url: entityUrl("press", e.slug, c.locale), inLanguage: c.locale }),
+  posts: (e, c) => withAuthor({
+    "@type": "BlogPosting", headline: e.title, description: e.description || e.excerpt, datePublished: e.date, dateModified: e.modified || e.date, image: imageUrl(e.image),
+    publisher: orgRef(c.site), url: entityUrl("posts", e.slug, c.locale), inLanguage: c.locale,
+  }, e, c),
+  // The byline names a person, so the graph does too (R-SCH-06: every value in the graph is visible on the page).
+  press: (e, c) => withAuthor({ "@type": "NewsArticle", headline: e.title, description: e.description || e.excerpt, datePublished: e.date, dateModified: e.modified || e.date, publisher: orgRef(c.site), url: entityUrl("press", e.slug, c.locale), inLanguage: c.locale }, e, c),
   cases: (e, c) => ({ "@type": "Article", headline: e.title, description: e.description || e.excerpt, author: orgRef(c.site), publisher: orgRef(c.site), url: entityUrl("cases", e.slug, c.locale), about: e.company ? { "@type": "Organization", name: e.company } : undefined }),
   docs: (e, c) => ({ "@type": "Article", headline: e.title, description: e.description || e.summary, author: orgRef(c.site), publisher: orgRef(c.site), url: entityUrl("docs", e.slug, c.locale) }),
   authors: (e, c) => personNode(e, c),

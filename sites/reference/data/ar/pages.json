@@ -1117,6 +1117,7 @@
       "type": "media-contact",
       "title": "جهة الاتصال الصحفية",
       "name": "صوفيا ليندكفيست",
+      "href": "/ar/about/team/sofia-lindqvist/",
       "role": "رئيسة الاتصال",
       "email": "press@northwind-dynamics.com",
       "phone": "+44 20 7946 0001"
@@ -1455,12 +1456,6 @@
         ]
       }
     },
-    "office-map": {
-      "type": "office-map",
-      "title": "أين نحن",
-      "lede": "اختر مكتبًا على الخريطة أو في القائمة لترى عنوانه ومواعيده.",
-      "from": "offices"
-    },
     "newsletter-preview": {
       "type": "newsletter-preview",
       "title": "اطّلع على عدد حديث",
@@ -1644,6 +1639,15 @@
             "author": "{e.slug}"
           },
           "skipEmpty": true
+        },
+        {
+          "type": "press-cards",
+          "title": "البيانات الصحفية لـ{e.name}",
+          "from": "press",
+          "filter": {
+            "author": "{e.slug}"
+          },
+          "skipEmpty": true
         }
       ]
     },
@@ -1807,40 +1811,6 @@
           "from": "posts",
           "filter": {
             "tags": "{e.slug}"
-          }
-        }
-      ]
-    },
-    "author": {
-      "each": "people",
-      "kind": "authors",
-      "where": {
-        "posts": true
-      },
-      "conversion": "none",
-      "title": "تدوينات {e.name}",
-      "description": "{e.authorDescription}",
-      "sections": [
-        {
-          "type": "page-header",
-          "eyebrow": "الكاتب",
-          "title": "{e.name}",
-          "lede": "{e.role}"
-        },
-        {
-          "type": "person-bio",
-          "label": "عن الكاتب",
-          "name": "{e.name}",
-          "role": "{e.role}",
-          "md": "e.bio",
-          "into": "bio"
-        },
-        {
-          "type": "article-cards",
-          "title": "التدوينات",
-          "from": "posts",
-          "filter": {
-            "author": "{e.slug}"
           }
         }
       ]

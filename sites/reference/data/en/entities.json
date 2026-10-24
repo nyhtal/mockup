@@ -808,16 +808,13 @@
       "slug": "priya-natarajan",
       "name": "Priya Natarajan",
       "role": "Chief Technology Officer",
-      "posts": true,
       "bio": "Priya has led controls teams in food, pharma and automotive plants for sixteen years. She founded Northwind after one too many weekends rewriting ladder logic that a line lead could have described in a sentence.\n\nShe speaks about safety-rated generated code at industry events and still commissions one line a year herself.",
-      "description": "Priya Natarajan, Chief Technology Officer of Northwind Dynamics: sixteen years leading controls teams, founder, and still commissioning one line a year.",
-      "authorDescription": "Blog posts by Priya Natarajan, Chief Technology Officer of Northwind Dynamics, on generated PLC logic, the edge runtime and safety-rated code."
+      "description": "Priya Natarajan, Chief Technology Officer of Northwind Dynamics: sixteen years leading controls teams, founder, and still commissioning one line a year."
     },
     {
       "slug": "jonas-weber",
       "name": "Jonas Weber",
       "role": "Chief Executive",
-      "posts": false,
       "bio": "Jonas ran a packaging plant in Hamburg before joining Northwind, and he still visits one customer plant every week.\n\nHe is responsible for the company, the support promise and the decision that every office answers the phone in its own language.",
       "description": "Jonas Weber, Chief Executive of Northwind Dynamics: a former plant manager in Hamburg who still visits one customer plant every week."
     },
@@ -825,25 +822,20 @@
       "slug": "mei-chen",
       "name": "Mei Chen",
       "role": "Head of Safety",
-      "posts": true,
       "bio": "Mei spent a decade assessing functional safety on assembly lines before building Northwind's safety review practice.\n\nShe wrote the interlock walk-down method every review follows and trains the assessors who run it.",
-      "description": "Mei Chen, Head of Safety at Northwind Dynamics: a decade assessing functional safety, author of the interlock walk-down method every review follows.",
-      "authorDescription": "Blog posts by Mei Chen, Head of Safety at Northwind Dynamics, on reviewing generated PLC code, interlock walk-downs and what assessors ask."
+      "description": "Mei Chen, Head of Safety at Northwind Dynamics: a decade assessing functional safety, author of the interlock walk-down method every review follows."
     },
     {
       "slug": "alex-morgan",
       "name": "Alex Morgan",
       "role": "Head of Delivery",
-      "posts": true,
       "bio": "Alex leads the standing teams that describe, generate and commission lines on plant programmes.\n\nBefore Northwind, Alex commissioned filling lines in four countries and kept a notebook of every stoppage; that notebook became the commissioning checklist.",
-      "description": "Alex Morgan, Head of Delivery at Northwind Dynamics: leads the standing teams that describe, generate and commission lines on plant programmes.",
-      "authorDescription": "Blog posts by Alex Morgan, Head of Delivery at Northwind Dynamics, on commissioning lines, recipe limits and what the change log shows."
+      "description": "Alex Morgan, Head of Delivery at Northwind Dynamics: leads the standing teams that describe, generate and commission lines on plant programmes."
     },
     {
       "slug": "sofia-lindqvist",
       "name": "Sofia Lindqvist",
       "role": "Head of Communications",
-      "posts": false,
       "bio": "Sofia handles press, the newsletter and the words on this site.\n\nShe joined from a trade publication where she covered automation for eight years.",
       "description": "Sofia Lindqvist, Head of Communications at Northwind Dynamics: press, the newsletter and the words on this site, after eight years in trade press."
     }

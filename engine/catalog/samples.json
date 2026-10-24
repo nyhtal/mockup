@@ -2151,43 +2151,6 @@
       }
     },
     {
-      "id": "office-map",
-      "type": "office-map",
-      "title": "Where we are",
-      "items": [
-        {
-          "title": "Manchester",
-          "slug": "manchester",
-          "href": "/en/about/locations/manchester/",
-          "address": "4 Canal Street, Manchester M1 3HE",
-          "geo": {
-            "lat": 53.4794,
-            "lng": -2.2453
-          }
-        },
-        {
-          "title": "Hamburg",
-          "slug": "hamburg",
-          "href": "/en/about/locations/hamburg/",
-          "address": "Speicherstadt 12, 20457 Hamburg",
-          "geo": {
-            "lat": 53.5438,
-            "lng": 9.9861
-          }
-        },
-        {
-          "title": "Riyadh",
-          "slug": "riyadh",
-          "href": "/en/about/locations/riyadh/",
-          "address": "King Fahd Road, Riyadh",
-          "geo": {
-            "lat": 24.7136,
-            "lng": 46.6753
-          }
-        }
-      ]
-    },
-    {
       "id": "newsletter-preview",
       "type": "newsletter-preview",
       "title": "See a recent issue",
@@ -2460,6 +2423,7 @@
       "type": "media-contact",
       "title": "Press contact",
       "name": "Sofia Lindqvist",
+      "href": "/en/about/team/sofia-lindqvist/",
       "role": "Head of Communications",
       "email": "press@northwind-dynamics.com",
       "phone": "+44 20 7946 0001"

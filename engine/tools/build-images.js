@@ -41,11 +41,16 @@ function wrap(text, max) {
   return lines.slice(0, 2).map((l, i) => (i === 1 && lines.length > 2 ? l.slice(0, max - 1) + "…" : l));
 }
 
-/** 1200×630 social image per page from dist/og-manifest.json: gradient, title (≤ 2 lines), site name (R-SEO-06, R-ASSET-10). */
+/**
+ * 1200×630 social image per page from dist/og-manifest.json: gradient, title (≤ 2 lines), site name (R-SEO-06, R-ASSET-10).
+ * Only for pages whose head names one: a newsletter issue (email.njk) carries no Open Graph tags, so it gets no image.
+ */
 export async function generateOgImages(distDir, brand = {}) {
   const manifest = path.join(distDir, "og-manifest.json");
   if (!existsSync(manifest)) return { generated: 0 };
-  const pages = JSON.parse(readFileSync(manifest, "utf8"));
+  const referenced = new Set();
+  for (const file of listHtml(distDir)) for (const m of readFileSync(file, "utf8").matchAll(/\/assets\/og\/([a-z0-9-]+)\.png/g)) referenced.add(m[1]);
+  const pages = JSON.parse(readFileSync(manifest, "utf8")).filter((p) => referenced.has(p.slug));
   const out = path.join(distDir, "assets", "og");
   mkdirSync(out, { recursive: true });
   let generated = 0;
@@ -116,6 +121,31 @@ export function referencedImages(distDir) {
     const d = declared.get(img.slug);
     return d && (d.art || d.tone) ? { ...img, art: d.art, tone: d.tone } : img;
   });
+}
+
+/**
+ * A page that opens on a plain page header has no picture in its opening, so its LCP element on a phone is the first
+ * picture of the next section, just under the header. That picture is promoted from lazy to `fetchpriority="high"`
+ * (R-PERF-05, R-HTML-12); a page with a priority picture already is left alone. Returns the pages changed.
+ */
+export function promoteLcpImages(distDir, opts = {}) {
+  const files = opts.only ? opts.only.map((f) => path.join(distDir, f)) : listHtml(distDir);
+  let pages = 0;
+  for (const file of files) {
+    const html = readFileSync(file, "utf8");
+    const main = html.indexOf("<main");
+    if (main < 0 || html.includes('fetchpriority="high"')) continue;
+    const sections = [...html.slice(main).matchAll(/<section\b[^>]*\sdata-component="([^"]+)"/g)];
+    if (sections[0]?.[1] !== "page-header" || !sections[1]) continue;
+    const start = main + sections[1].index;
+    const end = sections[2] ? main + sections[2].index : html.length;
+    const img = /<img\s[^>]*\sloading="lazy"[^>]*>/.exec(html.slice(start, end));
+    if (!img) continue;
+    const at = start + img.index;
+    writeFileSync(file, html.slice(0, at) + img[0].replace(' loading="lazy"', ' fetchpriority="high"') + html.slice(at + img[0].length));
+    pages++;
+  }
+  return { pages };
 }
 
 /**

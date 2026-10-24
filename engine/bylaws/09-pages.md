@@ -71,7 +71,7 @@ Title patterns use `{T}` = page title, `{S}` = site name, `{C}` = company name f
 | home | core | `/` | `{S} · {Tagline}` | hero, logo-cloud, feature-grid, feature-rows, stats, testimonials, cta-band | case-study-cards, resources-latest, newsletter | home |
 | about | core | `/about/` | `About · {S}` | page-header, feature-rows, stats, team-preview, cta-band | timeline, values-grid, awards | about |
 | team | core | `/about/team/` | `Leadership · {S}` | page-header, team-grid | cta-band | team |
-| person | optional | `/about/team/<slug>/` | `{Name} · {S}` | page-header, person-bio | related-articles | person |
+| person | optional | `/about/team/<slug>/` | `{Name} · {S}` | page-header, person-bio | related-articles, press-cards (what the person wrote; the one profile of anyone on the team, which bylines link) | person |
 | history | optional | `/about/history/` | `Our history · {S}` | page-header, timeline | cta-band | about |
 | values | optional | `/about/values/` | `Mission and values · {S}` | page-header, values-grid | cta-band | about |
 | locations | core | `/about/locations/` | `Locations · {S}` | page-header, office-cards | map-facade | locations |
@@ -90,7 +90,7 @@ Title patterns use `{T}` = page title, `{S}` = site name, `{C}` = company name f
 | blog | core | `/blog/` | `Blog · {S}` | page-header, article-cards, pagination | filter-bar, newsletter | blog |
 | post | core | `/blog/<slug>/` | `{T} · {S}` | page-header, article-meta, prose, author-box, related-items | toc, share-links | post |
 | archive | optional | `/blog/tag/<slug>/` | `{Tag} · Blog · {S}` | page-header, article-cards, pagination | — | collection |
-| author | optional | `/blog/author/<slug>/` | `{Name} · {S}` | page-header, person-bio, article-cards | — | person |
+| author | optional | `/blog/author/<slug>/` | `{Name} · {S}` | page-header, person-bio, article-cards (only for authors with no person page: a person has one profile) | — | person |
 | downloads | optional | `/resources/downloads/` | `Downloads · {S}` | page-header, download-cards | filter-bar | collection |
 | download | optional | `/resources/downloads/<slug>/` | `{T} · {S}` | page-header, download-detail, gated-form | related-items | article |
 | events | optional | `/events/` | `Events · {S}` | page-header, event-cards | newsletter | collection |

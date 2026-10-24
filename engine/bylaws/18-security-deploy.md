@@ -23,7 +23,7 @@ Why: Hosts look for root error pages by name.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-DEPLOY-05 Redirects
-MUST. `_redirects` (and `redirects.json`) map `/` → `/<default-locale>/` (301 where the host supports it; the root HTML page from R-PAGE-08 covers hosts that do not), non-slash URLs to slash URLs, and nothing else.
+MUST. `_redirects` (and `redirects.json`) hold one rule, `/` → `/<default-locale>/` (301 where the host supports it; the root HTML page from R-PAGE-08 covers hosts that do not), and nothing else. A page that moves is not redirected from its old URL: the site is always its first version and not public, so no old address has to keep working (owner, 2026-10-23: "dont redirect urls, pretend this site is always v1 and not public i dont need to backward support things"). `engine/tools/serve.js` answers `/` with that rule as a host would, so the gates measure the 301 a visitor gets there.
 Why: Clean URLs without redirect chains.
 Gate: manual: checklists/pre-delivery.md
 

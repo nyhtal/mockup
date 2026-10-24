@@ -29,7 +29,7 @@ noindex: true
 <section id="sys-files" class="mt-16 scroll-mt-24" aria-labelledby="sys-files-h">
 <h2 id="sys-files-h" class="text-2xl font-semibold tracking-tight">Files in this language</h2>
 <ul class="mt-4 divide-y divide-line rounded-lg border border-line bg-surface-raised">
-{%- for f in [["/" + locale + "/feed.xml", "Atom feed"], ["/assets/files/" + locale + "/office-map.svg", "Office map picture"], ["/assets/files/" + locale + "/line-notes-12.vtt", "Podcast captions"], ["/assets/files/" + locale + "/hamburg.vcf", "Contact card, Hamburg"]] %}
+{%- for f in [["/" + locale + "/feed.xml", "Atom feed"], ["/assets/files/" + locale + "/line-notes-12.vtt", "Podcast captions"], ["/assets/files/" + locale + "/hamburg.vcf", "Contact card, Hamburg"]] %}
 <li class="{{ row }}"><a href="{{ f[0] }}" class="font-medium {{ link }}">{{ f[1] }}</a><code class="text-sm text-ink-muted">{{ f[0] }}</code></li>
 {%- endfor %}
 </ul>

@@ -61,6 +61,7 @@ function facesFrom(pkg, subsets) {
 /**
  * Which font files a site ships and the @font-face CSS for them (R-TYPO-01, R-TYPO-02, R-I18N-11).
  * Latin + Latin-ext always; other scripts by locale. Returns { faces, preload, preloadFor, scriptFamilies, localeFamilies, css };
+ * preloadFor(locale) lists the files a page of that locale preloads.
  * localeFamilies maps a locale to the system families its pages add to the stack (SYSTEM_SCRIPTS).
  */
 export function fontPlan(brand, locales) {
@@ -70,7 +71,7 @@ export function fontPlan(brand, locales) {
     const sys = SYSTEM_SCRIPTS.find(([re]) => re.test(l));
     if (sys) localeFamilies[l] = sys[1];
   }
-  if (!main) return { faces: [], preload: null, preloadFor: () => null, scriptFamilies: [], localeFamilies, css: "" };
+  if (!main) return { faces: [], preload: null, preloadFor: () => [], scriptFamilies: [], localeFamilies, css: "" };
   const faces = facesFrom(main.pkg, ["latin", "latin-ext"]);
   for (const [re, subset, pkg] of SCRIPT_SUBSETS) {
     if (!locales.some((l) => re.test(l))) continue;
@@ -89,11 +90,13 @@ export function fontPlan(brand, locales) {
   const scriptFamilies = families.filter((pkg) => pkg !== main.pkg).map((pkg) => FONTS[pkg].family);
   const latin = faces.find((f) => f.pkg === main.pkg && f.subset === "latin");
   const fileOf = (f) => (f ? `/assets/fonts/${f.file}` : null);
-  // The one file a page preloads: its own script's face (R-I18N-11), Latin elsewhere.
+  // The files a page preloads (R-I18N-11): its own script's face first, then Latin, which the brand name, numerals and
+  // Latin terms on the first screen of every page use. Left to the stylesheet, the Latin file is found late, loads at the
+  // highest priority and holds back first paint, and its swap shifts a short page (Lighthouse 13 on the Arabic pages).
   const preloadFor = (locale) => {
     const script = SCRIPT_SUBSETS.find(([re]) => re.test(locale || ""));
     const face = script && faces.find((f) => f.subset === script[1]);
-    return fileOf(face || latin);
+    return [face, latin].filter(Boolean).map(fileOf);
   };
   return { faces, preload: fileOf(latin), preloadFor, scriptFamilies, localeFamilies, css: [...faceCss, ...fallbackCss].join("\n") + "\n" };
 }

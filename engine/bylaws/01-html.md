@@ -8,7 +8,7 @@ Why: Language and direction drive hyphenation, screen-reader voice and layout mi
 Gate: i18n/lang-attr
 
 ### R-HTML-02 Head order
-MUST. `<head>` children appear in this order and nothing else: charset, viewport, title, description, canonical, hreflang alternates (including `x-default`), feed link (where a feed exists), robots (only when `noindex`), theme-color (light and dark via `media`), icon links, font preload, stylesheet, Open Graph and Twitter meta, the JSON-LD script. The module script is the last child of `body`, not in `head`.
+MUST. `<head>` children appear in this order and nothing else: charset, viewport, title, description, canonical, hreflang alternates (including `x-default`), feed link (where a feed exists), robots (only when `noindex`), theme-color (light and dark via `media`), icon links, font preloads, stylesheet, Open Graph and Twitter meta, the JSON-LD script. The module script is the last child of `body`, not in `head`.
 Why: A fixed order makes diffs readable, puts render-critical tags first and keeps the single JSON-LD block findable.
 Gate: consistency/head-order
 

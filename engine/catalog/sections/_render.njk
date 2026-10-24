@@ -76,7 +76,6 @@
 {% from "sections/unsubscribe-form.njk" import render as unsubscribeForm with context %}
 {% from "sections/changelog.njk" import render as changelog with context %}
 {% from "sections/podcast-episode.njk" import render as podcastEpisode with context %}
-{% from "sections/office-map.njk" import render as officeMap with context %}
 {% from "sections/newsletter-preview.njk" import render as newsletterPreview with context %}
 {% from "sections/before-after.njk" import render as beforeAfter with context %}
 {% macro section(s, ctx) %}
@@ -131,7 +130,6 @@
 {%- elif t == "glossary-list" %}{{ glossaryList(s, ctx) }}
 {%- elif t == "changelog" %}{{ changelog(s, ctx) }}
 {%- elif t == "podcast-episode" %}{{ podcastEpisode(s, ctx) }}
-{%- elif t == "office-map" %}{{ officeMap(s, ctx) }}
 {%- elif t == "newsletter-preview" %}{{ newsletterPreview(s, ctx) }}
 {%- elif t == "before-after" %}{{ beforeAfter(s, ctx) }}
 {%- elif t == "help-categories" %}{{ helpCategories(s, ctx) }}

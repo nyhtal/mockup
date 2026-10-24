@@ -25,12 +25,22 @@ const TYPES = {
   ".woff2": "font/woff2",
 };
 
-/** Static server for a built site: directory URLs → index.html, misses → 404.html with status 404. */
+/**
+ * Static server for a built site: `/` → its redirect, directory URLs → index.html, misses → 404.html with status 404.
+ */
 export function startServer(distDir, port = 0, { noCache = false } = {}) {
   const root = path.resolve(distDir);
+  // A host answers `/` with the 301 of `_redirects` (R-DEPLOY-05), not the root HTML page that stands in for hosts
+  // without redirects, so Lighthouse measures the redirect visitors get (a meta refresh costs a full page load more).
+  const rulesFile = path.join(root, "redirects.json");
+  const rootRule = existsSync(rulesFile) ? JSON.parse(readFileSync(rulesFile, "utf8")).find((r) => r.from === "/") : null;
   const server = createServer((req, res) => {
     let urlPath;
     try { urlPath = decodeURIComponent(new URL(req.url, "http://x").pathname); } catch { urlPath = "/"; }
+    if (rootRule && urlPath === "/") {
+      res.writeHead(rootRule.status || 301, { Location: rootRule.to });
+      return res.end();
+    }
     let file = path.resolve(root, "." + urlPath);
     if (!file.startsWith(root + path.sep) && file !== root) return send(res, 404, root);
     if (existsSync(file) && statSync(file).isDirectory()) file = path.join(file, "index.html");

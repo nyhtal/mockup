@@ -25,7 +25,7 @@
     "title": "Company, people and places",
     "summary": "Who the company is and where: team listings and profiles, values, history, awards and trust marks, benefits, the gallery, offices with maps, and press and named contacts.",
     "description": "Company sections of the catalog: team and profiles, values, timeline, awards, badges, benefits, gallery, offices and maps, press and contact blocks.",
-    "sections": ["team-grid", "team-preview", "person-bio", "values-grid", "timeline", "awards", "badges", "benefits-grid", "image-gallery", "office-cards", "office-detail", "office-map", "map-facade", "contact-card", "media-contact", "media-kit-cta"]
+    "sections": ["team-grid", "team-preview", "person-bio", "values-grid", "timeline", "awards", "badges", "benefits-grid", "image-gallery", "office-cards", "office-detail", "map-facade", "contact-card", "media-contact", "media-kit-cta"]
   },
   {
     "slug": "content",

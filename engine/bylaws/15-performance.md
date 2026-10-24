@@ -18,12 +18,12 @@ Why: Zero main-thread work before first paint.
 Gate: budget/js
 
 ### R-PERF-04 Fonts
-MUST. At most two font files per page (one per script); the primary file is preloaded with `crossorigin`; `font-display: swap` plus metric overrides (R-TYPO-02); subsets per locale; the `system` option ships none.
+MUST. At most two font files per page (one per script); each is preloaded with `crossorigin`, the page's own script first (R-I18N-11): a Latin file left for the stylesheet to find loads late at the highest priority, holds back first paint and shifts a short page when it swaps; `font-display: swap` plus metric overrides (R-TYPO-02); subsets per locale; the `system` option ships none.
 Why: Fonts are the common cause of CLS and a late LCP.
 Gate: manual: checklists/pre-delivery.md
 
 ### R-PERF-05 Images
-MUST. R-HTML-12 and D6: AVIF with WebP fallback in `<picture>`, `width`/`height`, `sizes` that matches the layout (`(min-width: 64rem) 50vw, 100vw` for split heroes, `(min-width: 48rem) 33vw, 100vw` for 3-column cards), lazy except the LCP image, which has `fetchpriority="high"` and is in the first 1 KB of body markup.
+MUST. R-HTML-12 and D6: AVIF with WebP fallback in `<picture>`, `width`/`height`, `sizes` that matches the layout (`(min-width: 64rem) 50vw, 100vw` for split heroes, `(min-width: 48rem) 33vw, 100vw` for 3-column cards), lazy except the LCP image, which has `fetchpriority="high"` and is in the first 1 KB of body markup; on a page that opens on a plain page header, whose phone LCP is the first picture of the next section, the build promotes that picture (`promoteLcpImages`).
 Why: LCP and CLS are decided by the hero image.
 Gate: manual: checklists/new-component.md
 

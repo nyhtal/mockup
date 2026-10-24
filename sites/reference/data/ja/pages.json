@@ -1140,6 +1140,7 @@
       "type": "media-contact",
       "title": "報道関係者の窓口",
       "name": "ソフィア・リンドクヴィスト",
+      "href": "/ja/about/team/sofia-lindqvist/",
       "role": "広報責任者",
       "email": "press@northwind-dynamics.com",
       "phone": "+44 20 7946 0001"
@@ -1478,12 +1479,6 @@
         ]
       }
     },
-    "office-map": {
-      "type": "office-map",
-      "title": "拠点所在地",
-      "lede": "地図または一覧から拠点を選ぶと、住所と営業時間が表示されます。",
-      "from": "offices"
-    },
     "newsletter-preview": {
       "type": "newsletter-preview",
       "title": "最新号を見る",
@@ -1667,6 +1662,15 @@
             "author": "{e.slug}"
           },
           "skipEmpty": true
+        },
+        {
+          "type": "press-cards",
+          "title": "{e.name}のプレスリリース",
+          "from": "press",
+          "filter": {
+            "author": "{e.slug}"
+          },
+          "skipEmpty": true
         }
       ]
     },
@@ -1830,40 +1834,6 @@
           "from": "posts",
           "filter": {
             "tags": "{e.slug}"
-          }
-        }
-      ]
-    },
-    "author": {
-      "each": "people",
-      "kind": "authors",
-      "where": {
-        "posts": true
-      },
-      "conversion": "none",
-      "title": "{e.name}の記事",
-      "description": "{e.authorDescription}",
-      "sections": [
-        {
-          "type": "page-header",
-          "eyebrow": "執筆者",
-          "title": "{e.name}",
-          "lede": "{e.role}"
-        },
-        {
-          "type": "person-bio",
-          "label": "執筆者について",
-          "name": "{e.name}",
-          "role": "{e.role}",
-          "md": "e.bio",
-          "into": "bio"
-        },
-        {
-          "type": "article-cards",
-          "title": "記事",
-          "from": "posts",
-          "filter": {
-            "author": "{e.slug}"
           }
         }
       ]

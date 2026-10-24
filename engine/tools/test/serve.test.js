@@ -13,6 +13,8 @@ before(async () => {
   writeFileSync(path.join(dir, "en", "index.html"), "<!DOCTYPE html><title>en</title>");
   writeFileSync(path.join(dir, "404.html"), "<!DOCTYPE html><title>missing</title>");
   writeFileSync(path.join(dir, "assets", "app.css"), "a{}");
+  writeFileSync(path.join(dir, "index.html"), '<!DOCTYPE html><meta http-equiv="refresh" content="0; url=/en/">');
+  writeFileSync(path.join(dir, "redirects.json"), JSON.stringify([{ from: "/", to: "/en/", status: 301 }]));
   server = await startServer(dir);
 });
 after(async () => { await server.close(); rmSync(dir, { recursive: true, force: true }); });
@@ -50,4 +52,11 @@ test("returns the 404 page with status 404 for a missing path", async () => {
 test("refuses paths that escape the root", async () => {
   const res = await fetch(`${server.url}/../package.json`);
   assert.equal(res.status, 404);
+});
+
+test("answers the root with the site's 301, as a host would, not its meta-refresh stand-in", async () => {
+  const res = await fetch(`${server.url}/`, { redirect: "manual" });
+  assert.equal(res.status, 301);
+  assert.equal(res.headers.get("location"), "/en/");
+  assert.equal((await fetch(`${server.url}/en/`, { redirect: "manual" })).status, 200);
 });

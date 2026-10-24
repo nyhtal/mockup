@@ -127,13 +127,16 @@ noindex: true
 
 <section class="mt-16">
 <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-balance">Image map</h2>
-<p class="mt-4 max-w-2xl text-lg text-ink-muted">The native image map (<code>&lt;img usemap&gt;</code>, <code>&lt;map&gt;</code>, <code>&lt;area&gt;</code>): hot spots in the picture's own pixels, so the picture keeps its size and scrolls in a narrow column. The locations page draws the same frame as an inline SVG with links instead, which scales.</p>
-{%- set sgOffices = [{ title: "Manchester", href: "/en/about/locations/manchester/", geo: { lat: 53.4794, lng: -2.2453 } }, { title: "Hamburg", href: "/en/about/locations/hamburg/", geo: { lat: 53.5438, lng: 9.9861 } }, { title: "Riyadh", href: "/en/about/locations/riyadh/", geo: { lat: 24.7136, lng: 46.6753 } }, { title: "Tokyo", href: "/en/about/locations/tokyo/", geo: { lat: 35.6223, lng: 139.7505 } }] %}
+<p class="mt-4 max-w-2xl text-lg text-ink-muted">The native image map (<code>&lt;img usemap&gt;</code>, <code>&lt;map&gt;</code>, <code>&lt;area&gt;</code>): hot spots in the picture's own pixels, so the picture keeps its size and scrolls in a narrow column. Here the home page's art picture is cut into three linked regions, one per style guide page.</p>
+{%- set sgRegions = [{ label: "Foundations", href: "/sys/style-guide/" }, { label: "Primitives", href: "/sys/style-guide/primitives/" }, { label: "Navigation and overlays", href: "/sys/style-guide/controls/" }] %}
 <div class="mt-8 w-fit max-w-full overflow-x-auto rounded-xl border border-line" tabindex="0" role="region" aria-label="Image map demo">
-<img src="/assets/files/en/office-map.svg" usemap="#sg-office-map" width="{{ officeMapFrame.width }}" height="{{ officeMapFrame.height }}" alt="Office map: Manchester, Hamburg, Riyadh and Tokyo" loading="lazy" decoding="async" class="block max-w-none">
-<map name="sg-office-map">
-{%- for o in sgOffices %}{% set p = o.geo | mapPoint %}
-<area shape="circle" coords="{{ p.x }},{{ p.y }},18" href="{{ o.href }}" alt="Office in {{ o.title }}">
+<picture>
+<source type="image/avif" srcset="/assets/images/home-backdrop-16x9-768.avif">
+<img src="/assets/images/home-backdrop-16x9-768.webp" usemap="#sg-image-map" width="768" height="432" alt="An art-library picture in three linked regions: Foundations, Primitives, Navigation and overlays" loading="lazy" decoding="async" class="block max-w-none">
+</picture>
+<map name="sg-image-map">
+{%- for r in sgRegions %}
+<area shape="rect" coords="{{ loop.index0 * 256 }},0,{{ loop.index * 256 }},432" href="{{ r.href }}" alt="{{ r.label }}">
 {%- endfor %}
 </map>
 </div>

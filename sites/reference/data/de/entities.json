@@ -808,16 +808,13 @@
       "slug": "priya-natarajan",
       "name": "Priya Natarajan",
       "role": "Technische Leiterin (CTO)",
-      "posts": true,
       "description": "Priya Natarajan, Technische Leiterin von Northwind Dynamics: sechzehn Jahre Leitung von Steuerungsteams, Gründerin, nimmt jedes Jahr eine Linie in Betrieb.",
-      "authorDescription": "Blogbeiträge von Priya Natarajan, Technischer Leiterin von Northwind Dynamics, über generierte SPS-Logik, die Edge-Laufzeit und sicheren Code.",
       "bio": "Priya hat sechzehn Jahre lang Steuerungsteams in Lebensmittel-, Pharma- und Automobilwerken geleitet. Sie gründete Northwind nach einem Wochenende zu viel, an dem sie Kontaktplanlogik umschrieb, die ein Linienleiter in einem Satz hätte beschreiben können.\n\nSie spricht auf Branchenveranstaltungen über sicherheitsgerichteten generierten Code und nimmt weiterhin jedes Jahr eine Linie selbst in Betrieb."
     },
     {
       "slug": "jonas-weber",
       "name": "Jonas Weber",
       "role": "Geschäftsführer",
-      "posts": false,
       "description": "Jonas Weber, Geschäftsführer von Northwind Dynamics: ein ehemaliger Werksleiter aus Hamburg, der weiterhin jede Woche ein Kundenwerk besucht.",
       "bio": "Jonas leitete ein Verpackungswerk in Hamburg, bevor er zu Northwind kam, und besucht weiterhin jede Woche ein Kundenwerk.\n\nEr verantwortet das Unternehmen, das Support-Versprechen und die Entscheidung, dass jedes Büro das Telefon in seiner eigenen Sprache beantwortet."
     },
@@ -825,25 +822,20 @@
       "slug": "mei-chen",
       "name": "Mei Chen",
       "role": "Leiterin Sicherheit",
-      "posts": true,
       "description": "Mei Chen, Leiterin Sicherheit bei Northwind Dynamics: ein Jahrzehnt funktionale Sicherheit, Autorin der Verriegelungsbegehung, der jede Prüfung folgt.",
-      "authorDescription": "Blogbeiträge von Mei Chen, Leiterin Sicherheit bei Northwind Dynamics, über die Prüfung generierten SPS-Codes, Begehungen und die Fragen der Prüfer.",
       "bio": "Mei hat ein Jahrzehnt lang funktionale Sicherheit an Montagelinien bewertet, bevor sie die Sicherheitsprüfungspraxis von Northwind aufbaute.\n\nSie hat die Methode der Verriegelungsbegehung geschrieben, der jede Prüfung folgt, und bildet die Prüfer aus, die sie durchführen."
     },
     {
       "slug": "alex-morgan",
       "name": "Alex Morgan",
       "role": "Leitung Delivery",
-      "posts": true,
       "description": "Alex Morgan, Leitung Delivery bei Northwind Dynamics: führt die festen Teams, die Linien in Werksprogrammen beschreiben, generieren und in Betrieb nehmen.",
-      "authorDescription": "Blogbeiträge von Alex Morgan, Leitung Delivery bei Northwind Dynamics, über Inbetriebnahmen, Rezeptgrenzen und das, was das Änderungsprotokoll zeigt.",
       "bio": "Alex führt die festen Teams, die in Werksprogrammen Linien beschreiben, generieren und in Betrieb nehmen.\n\nVor Northwind nahm Alex Abfülllinien in vier Ländern in Betrieb und führte ein Notizbuch über jeden Stillstand; aus dem Notizbuch wurde die Inbetriebnahme-Checkliste."
     },
     {
       "slug": "sofia-lindqvist",
       "name": "Sofia Lindqvist",
       "role": "Leiterin Kommunikation",
-      "posts": false,
       "description": "Sofia Lindqvist, Leiterin Kommunikation bei Northwind Dynamics: Presse, Newsletter und die Texte auf dieser Website, nach acht Jahren in der Fachpresse.",
       "bio": "Sofia kümmert sich um Presse, den Newsletter und die Texte auf dieser Website.\n\nSie kam von einer Fachzeitschrift, bei der sie acht Jahre lang über Automatisierung berichtete."
     }

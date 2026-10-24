@@ -8,6 +8,9 @@
 <title>{{ title }} · {{ site.name }}</title>
 <meta name="description" content="{{ description }}">
 <meta name="robots" content="noindex">
+{%- for font in fontPreloads %}
+<link rel="preload" href="{{ font }}" as="font" type="font/woff2" crossorigin>
+{%- endfor %}
 <link rel="stylesheet" href="/assets/app.css">
 <script type="application/ld+json">{{ schemaJson | safe }}</script>
 </head>

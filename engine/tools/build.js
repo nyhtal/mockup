@@ -6,7 +6,7 @@ import { loadSite } from "./lib/site.js";
 import { brandTokens } from "./lib/theme.js";
 import { fontPlan, copyFonts } from "./build-fonts.js";
 import { injectSprites } from "./build-icons.js";
-import { generateImages, generateFavicons, generateOgImages } from "./build-images.js";
+import { generateImages, generateFavicons, generateOgImages, promoteLcpImages } from "./build-images.js";
 import { generateVideos } from "./build-video.js";
 import { generateFiles } from "./build-files.js";
 
@@ -54,6 +54,7 @@ export async function build({ site }) {
   await copyFonts(fonts, dist);
   // Sprites go in before Tailwind runs so the sprite's `hidden` class is part of the compiled CSS.
   injectSprites(dist);
+  promoteLcpImages(dist);
   const css = readFileSync("engine/theme/app.css", "utf8")
     .replaceAll("__SITE__", site)
     .replace("/* @brand */", brandTokens(siteConfig.brand || {}, { scriptFamilies: fonts.scriptFamilies, localeFamilies: fonts.localeFamilies }))

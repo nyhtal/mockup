@@ -9,7 +9,6 @@ import { planSections, fillPlaceholders } from "./engine/tools/lib/sections.js";
 import { renderMarkdown, renderInline, tocOf, readingMinutes, headingIds, slugify } from "./engine/tools/lib/markdown.js";
 import { semantics } from "./engine/tools/lib/markdown-semantics.js";
 import { wordBreaks } from "./engine/tools/lib/word-breaks.js";
-import { project, officeMapInline, MAP as OFFICE_MAP } from "./engine/tools/lib/office-map.js";
 import { ENTITY_INDEX, entityUrl, entityNode, pageEntities } from "./engine/tools/lib/entities.js";
 import { parseFigure } from "./engine/tools/lib/figures.js";
 import { THEME_SCRIPT } from "./engine/tools/lib/theme-script.js";
@@ -161,7 +160,6 @@ export default function (eleventyConfig) {
   const samples = JSON.parse(readFileSync(path.join("engine", "catalog", "samples.json"), "utf8"));
   samples.byId = Object.fromEntries(samples.sections.map((s) => [s.id, s]));
   eleventyConfig.addGlobalData("samples", samples);
-  eleventyConfig.addGlobalData("officeMapFrame", { width: OFFICE_MAP.width, height: OFFICE_MAP.height });
   // A Nunjucks global, not global data: Eleventy would call a function-valued global datum to compute its value.
   eleventyConfig.addNunjucksGlobal("unknownSection", (type) => { throw new Error(`Unknown section type "${type}" (R-SEC-12): add it to engine/catalog/sections and the dispatcher`); });
 
@@ -187,8 +185,8 @@ export default function (eleventyConfig) {
     dir: (data) => ((site.rtl || []).includes(data.page.lang) ? "rtl" : "ltr"),
     canonical: (data) => site.url + data.page.url,
     ogImage: (data) => `/assets/og/${ogSlug(data.page.url)}.png`,
-    // Only the page's own script is preloaded (R-I18N-11).
-    fontPreload: (data) => fonts.preloadFor(data.page.lang || site.defaultLocale),
+    // The page's own script face, then Latin (R-I18N-11).
+    fontPreloads: (data) => fonts.preloadFor(data.page.lang || site.defaultLocale),
     feedUrl: (data) => {
       const lang = data.page.lang || site.defaultLocale;
       return ["blog", "post", "archive", "author"].includes(data.pageType) && (siteData[lang]?.entities?.posts || []).length ? `/${lang}/feed.xml` : undefined;
@@ -210,10 +208,12 @@ export default function (eleventyConfig) {
       const lang = data.page.lang || site.defaultLocale;
       const person = (siteData[lang]?.entities?.people || []).find((p) => p.slug === data.e.author);
       if (!person) throw new Error(`${data.page.url}: author "${data.e.author}" is not in data/${lang}/entities.json people`);
-      const recipe = detailRecipes(lang).author;
-      const hasPage = recipe && (!recipe.where || Object.entries(recipe.where).every(([k, v]) => person[k] === v));
+      const recipes = detailRecipes(lang);
+      const hasPage = (recipe) => recipe && (!recipe.where || Object.entries(recipe.where).every(([k, v]) => person[k] === v));
+      // The name links to the author's archive where they have one (people who write posts), else to their bio page (R-SCH-07).
+      const href = hasPage(recipes.author) ? entityUrl("authors", person.slug, lang) : hasPage(recipes.person) ? entityUrl("people", person.slug, lang) : undefined;
       // The author box takes a short plain-text bio (≤ 40 words, R-SEC-04): the first paragraph of the person's Markdown bio, which the profile page renders in full.
-      return { name: person.name, role: person.role, bio: person.bio ? person.bio.split(/\n\s*\n/)[0].trim() : undefined, href: hasPage ? entityUrl("authors", person.slug, lang) : undefined };
+      return { name: person.name, role: person.role, bio: person.bio ? person.bio.split(/\n\s*\n/)[0].trim() : undefined, href };
     },
     tags: (data) => {
       if (data.tags || !data.e?.tags) return data.tags;
@@ -267,10 +267,6 @@ export default function (eleventyConfig) {
   // Fragment ids that keep letters of every script (Eleventy's slugify drops Japanese, leaving "term-" for every glossary entry).
   eleventyConfig.addFilter("anchor", slugify);
   eleventyConfig.addFilter("mdInline", renderInline);
-  // The office map's frame: { x, y } in the picture for a { lat, lng } (to-do 7).
-  eleventyConfig.addFilter("mapPoint", (geo) => (geo ? project(geo) : null));
-  // The locations page map, inline so it scales to its column with its links (office-map section).
-  eleventyConfig.addFilter("officeMapInline", (items, linkPattern, label) => officeMapInline(items, { linkLabel: (o) => linkPattern.replace("{city}", o.title), label }));
   // Headings: escaped text with <wbr> at the joints of long compounds in the page's language (site.json wordBreaks).
   eleventyConfig.addFilter("wbr", function (text) { return wordBreaks(text, site.wordBreaks?.[this.ctx?.page?.lang]); });
   // The tagline in the page's language: the site's string overlay (site.tagline) or site.json's tagline.
