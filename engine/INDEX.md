@@ -18,7 +18,7 @@ Read the files in the order listed. Bylaws are numbered rule files in `bylaws/`;
 - `sites/<name>/site.json`: name, locales, nav, footer, brand, contact; UI labels are keys.
 - `sites/<name>/i18n/<locale>.json`: site-specific UI strings, merged over `engine/i18n/<locale>.json` (same keys in every locale).
 - `sites/<name>/data/<locale>/entities.json`: services, products, industries, people, offices, jobs, events, downloads, posts, press, cases, docs, tags and the small lists (testimonials, customers, stats, faq groups, glossary…); same slugs in every locale.
-- `sites/<name>/data/<locale>/pages.json`: `sections` (site section definitions, referenced by id from pages; `from: "<kind>"` expands entities into cards), `detail` (recipes that generate one page per entity: `each`, `layout`, `sections` with `{e.field}` placeholders), `thankYou`, `sitemap`, `feedTitle`.
+- `sites/<name>/data/<locale>/pages.json`: `sections` (site section definitions, referenced by id from pages; `from: "<kind>"` expands entities into cards), `detail` (recipes that generate one page per entity: `each`, `layout`, `sections` with `{e.field}` placeholders), `thankYou` (a form with `steps` and `stepPath` also gets a page per later step, D68), `sitemap`, `feedTitle`.
 - `sites/<name>/content/<locale>/*.md`: one front-matter file per singular page (`pageType`, `title`, `description`, `eyebrow`, `lede`, `sections`); legal pages carry their markdown body. No markup anywhere in a site.
 - Engine code behind it: `tools/lib/site.js` (loading), `tools/lib/sections.js` (resolver), `tools/lib/entities.js` (cards and schema nodes), `tools/lib/markdown.js`, `tools/lib/sampling.js` (Lighthouse coverage), `catalog/virtual/{entity,thank-you,sitemap-page,feed}.njk`.
 

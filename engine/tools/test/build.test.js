@@ -534,6 +534,21 @@ test("widgets (to-do 7b, part four): native date, time and range inputs; progres
   assert.match(demo, /<input type="time" id="d-time" [^>]*min="08:00" max="17:00" step="1800"/);
   assert.match(demo, /<input type="range" id="d-lines" [^>]*min="1" max="40"[^>]* value="4" data-estimate="\{n\}"><output for="d-lines"[^>]*>4<\/output>/);
   assert.match(read("en/careers/technical-writer"), /<div class="mb-8">\s*<div data-component="progress">[\s\S]*?<progress value="1" max="3"/);
+  // The application is a three-step mock wizard (owner, 2026-10-24: "make it multi step but fake each step ... put the file upload on the last screen anyway, collect contact info first"): each step submits to the next step's page.
+  const job = read("en/careers/technical-writer");
+  assert.match(job, /<form method="get" action="\/en\/careers\/apply\/2\/"/, "step 1 on the job page sends to step 2");
+  assert.match(job, /id="a-name"[\s\S]*id="a-email"/, "contact details come first");
+  assert.doesNotMatch(job, /id="a-cv"|id="a-note"/, "the later steps' fields are not on the job page");
+  assert.match(job, />Continue</);
+  const two = read("en/careers/apply/2"), three = read("en/careers/apply/3");
+  for (const page of [two, three]) assert.match(page, /<meta name="robots" content="noindex">/);
+  assert.match(two, /<progress value="2" max="3"/);
+  assert.match(two, /<form method="get" action="\/en\/careers\/apply\/3\/"[\s\S]*id="a-note"/);
+  assert.match(three, /<progress value="3" max="3"/);
+  assert.match(three, /<form method="get" action="\/en\/careers\/thank-you\/"[\s\S]*<input type="file"[^>]*id="a-cv"/, "the file comes last and sends to the thank-you page");
+  assert.doesNotMatch(three, /<input type="file"[^>]*required/, "the CV is optional: a real wizard would have stored the earlier steps already");
+  assert.match(three, />Send application</);
+  for (const l of ["de", "ar", "ja"]) assert.match(read(`${l}/careers/apply/3`), new RegExp(`action="/${l}/careers/thank-you/"`));
   const nl = read("ar/newsletter");
   assert.match(nl, /<div class="relative">\n<div class="absolute inset-0[^"]*">\s*<div aria-hidden="true" class="motion-safe:animate-pulse" data-component="skeleton"[\s\S]*?<iframe /);
 });

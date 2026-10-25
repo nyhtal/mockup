@@ -483,49 +483,63 @@
         "action": "/ar/careers/thank-you/",
         "submit": "أرسل الطلب",
         "privacyHref": "/ar/legal/privacy/",
-        "fields": [
+        "stepPath": "/ar/careers/apply/",
+        "steps": [
           {
-            "pair": [
+            "label": "بياناتك",
+            "fields": [
               {
-                "type": "text",
-                "name": "name",
-                "id": "a-name",
-                "label": "الاسم الكامل",
-                "required": true,
-                "autocomplete": "name"
-              },
-              {
-                "type": "email",
-                "name": "email",
-                "id": "a-email",
-                "label": "البريد الإلكتروني",
-                "required": true,
-                "autocomplete": "email"
+                "pair": [
+                  {
+                    "type": "text",
+                    "name": "name",
+                    "id": "a-name",
+                    "label": "الاسم الكامل",
+                    "required": true,
+                    "autocomplete": "name"
+                  },
+                  {
+                    "type": "email",
+                    "name": "email",
+                    "id": "a-email",
+                    "label": "البريد الإلكتروني",
+                    "required": true,
+                    "autocomplete": "email"
+                  }
+                ]
               }
             ]
           },
           {
-            "type": "file",
-            "name": "cv",
-            "id": "a-cv",
-            "label": "السيرة الذاتية",
-            "required": true,
-            "accept": ".pdf,.doc,.docx",
-            "help": "PDF أو Word، حتى 5 ميغابايت."
+            "label": "ملاحظتك",
+            "title": "أضف ملاحظة إلى طلبك",
+            "description": "الخطوة الثانية من ثلاث في طلبك للعمل لدى Northwind Dynamics: أخبر فريق التوظيف بكل ما تريد أن يعرفه قبل أن يقرأ سيرتك الذاتية.",
+            "fields": [
+              {
+                "type": "textarea",
+                "name": "note",
+                "id": "a-note",
+                "label": "أي شيء تريد أن نعرفه",
+                "rows": 3
+              }
+            ]
           },
           {
-            "type": "textarea",
-            "name": "note",
-            "id": "a-note",
-            "label": "أي شيء تريد أن نعرفه",
-            "rows": 3
+            "label": "سيرتك الذاتية",
+            "title": "أرفق سيرتك الذاتية",
+            "description": "الخطوة الثالثة من ثلاث في طلبك للعمل لدى Northwind Dynamics: أرفق سيرتك الذاتية بصيغة PDF أو Word حتى 5 ميغابايت، ثم أرسل الطلب.",
+            "fields": [
+              {
+                "type": "file",
+                "name": "cv",
+                "id": "a-cv",
+                "label": "السيرة الذاتية",
+                "accept": ".pdf,.doc,.docx",
+                "help": "PDF أو Word، حتى 5 ميغابايت."
+              }
+            ]
           }
         ]
-      },
-      "progress": {
-        "value": 1,
-        "max": 3,
-        "label": "بياناتك"
       }
     },
     "preferences-form": {

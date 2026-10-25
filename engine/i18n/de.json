@@ -106,6 +106,7 @@
     "articleDetails": "Artikeldetails",
     "filters": "Filter",
     "stepOf": "Schritt {n} von {max}",
+    "continue": "Weiter",
     "readingTime": {
       "one": "{n} Min. Lesezeit",
       "two": "{n} Min. Lesezeit",

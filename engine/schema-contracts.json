@@ -81,6 +81,14 @@
       "BreadcrumbList"
     ]
   },
+  "form-step": {
+    "required": [
+      "Organization",
+      "WebSite",
+      "WebPage",
+      "BreadcrumbList"
+    ]
+  },
   "sitemap": {
     "required": [
       "Organization",

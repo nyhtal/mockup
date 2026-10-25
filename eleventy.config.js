@@ -415,6 +415,17 @@ export default function (eleventyConfig) {
         sections: [{ type: "page-header", eyebrow: ty.eyebrow, title: ty.title, lede: ty.lede }, { type: "confirmation", title: ty.heading, text: ty.text, next: ty.next, cta: ty.cta }],
       });
     }
+    // Later steps of a stepped form, one page each at `${stepPath}<n>/` (R-FORM-07): step 1 sits on the page that carries the form.
+    for (const [id, sec] of Object.entries(pages.sections || {})) {
+      (sec.form?.steps || []).slice(1).forEach((st, i) => {
+        const step = i + 2;
+        eleventyConfig.addTemplate(`${locale}/_engine/form-step-${id}-${step}.njk`, virtual("form-step.njk"), {
+          lang: locale, title: st.title, description: st.description, permalink: `${sec.form.stepPath}${step}/index.html`,
+          // The form's own title heads the page and the step's title heads the form, as the job page's h2 does for step 1.
+          sections: [{ type: "page-header", title: sec.title }, { ...sec, title: st.title, lede: undefined, step }],
+        });
+      });
+    }
     if (pages.sitemap) {
       eleventyConfig.addTemplate(`${locale}/_engine/sitemap-page.njk`, virtual("sitemap-page.njk"), { lang: locale, ...pages.sitemap, permalink: `/${locale}/sitemap/index.html` });
     }

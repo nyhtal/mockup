@@ -483,49 +483,63 @@
         "action": "/en/careers/thank-you/",
         "submit": "Send application",
         "privacyHref": "/en/legal/privacy/",
-        "fields": [
+        "stepPath": "/en/careers/apply/",
+        "steps": [
           {
-            "pair": [
+            "label": "Your details",
+            "fields": [
               {
-                "type": "text",
-                "name": "name",
-                "id": "a-name",
-                "label": "Full name",
-                "required": true,
-                "autocomplete": "name"
-              },
-              {
-                "type": "email",
-                "name": "email",
-                "id": "a-email",
-                "label": "Email",
-                "required": true,
-                "autocomplete": "email"
+                "pair": [
+                  {
+                    "type": "text",
+                    "name": "name",
+                    "id": "a-name",
+                    "label": "Full name",
+                    "required": true,
+                    "autocomplete": "name"
+                  },
+                  {
+                    "type": "email",
+                    "name": "email",
+                    "id": "a-email",
+                    "label": "Email",
+                    "required": true,
+                    "autocomplete": "email"
+                  }
+                ]
               }
             ]
           },
           {
-            "type": "file",
-            "name": "cv",
-            "id": "a-cv",
-            "label": "CV or résumé",
-            "required": true,
-            "accept": ".pdf,.doc,.docx",
-            "help": "PDF or Word, up to 5 MB."
+            "label": "A note",
+            "title": "Add a note to your application",
+            "description": "Step two of three in your application to Northwind Dynamics: tell the hiring team anything you want them to know before they read your CV.",
+            "fields": [
+              {
+                "type": "textarea",
+                "name": "note",
+                "id": "a-note",
+                "label": "Anything you want us to know",
+                "rows": 3
+              }
+            ]
           },
           {
-            "type": "textarea",
-            "name": "note",
-            "id": "a-note",
-            "label": "Anything you want us to know",
-            "rows": 3
+            "label": "Your CV",
+            "title": "Attach your CV",
+            "description": "Step three of three in your application to Northwind Dynamics: attach your CV or résumé, as PDF or Word up to 5 MB, and send the application.",
+            "fields": [
+              {
+                "type": "file",
+                "name": "cv",
+                "id": "a-cv",
+                "label": "CV or résumé",
+                "accept": ".pdf,.doc,.docx",
+                "help": "PDF or Word, up to 5 MB."
+              }
+            ]
           }
         ]
-      },
-      "progress": {
-        "value": 1,
-        "max": 3,
-        "label": "Your details"
       }
     },
     "preferences-form": {

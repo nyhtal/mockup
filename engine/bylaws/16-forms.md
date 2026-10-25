@@ -33,7 +33,7 @@ Why: WCAG 3.3.1 and 3.3.3; users must find every error.
 Gate: manual: checklists/new-component.md
 
 ### R-FORM-07 Preserved input
-MUST. Multi-step forms pass values forward as GET parameters and prefill via `value` attributes at build time for the mock flow; nothing already entered is asked again (R-A11Y-11).
+MUST. Multi-step forms pass values forward as GET parameters and prefill via `value` attributes at build time for the mock flow; nothing already entered is asked again (R-A11Y-11). A stepped form declares `steps` and `stepPath`: each step submits to the next step's page, which the engine builds, and only the last goes to the thank-you page; a file field goes on the last step, since a file cannot travel in a GET URL (D68).
 Why: WCAG 3.3.7.
 Gate: manual: checklists/pre-delivery.md
 

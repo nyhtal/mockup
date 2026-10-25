@@ -106,6 +106,7 @@
     "articleDetails": "記事の詳細",
     "filters": "絞り込み",
     "stepOf": "ステップ{n}／{max}",
+    "continue": "次へ",
     "readingTime": {
       "one": "{n}分で読めます",
       "two": "{n}分で読めます",

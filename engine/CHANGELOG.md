@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.26.2 — 2026-10-24
+
+The job application goes through its steps (D68; owner, 2026-10-24: "the form on this page is a wizard but it doesnt go through steps when sumbitting it just submits"). It showed "Step 1 of 3" over a single form; now a form may declare `steps` and `stepPath`, step 1 sends to step 2's page with a Continue button, and the engine builds one noindex `form-step` page per later step (schema contract as a thank-you page). The application asks for contact details, then a note, then the CV, which is optional now. New: `ui.continue`, the `form-step` page type. R-PAGE-12, R-FORM-07 and the page inventory follow. Patch by R-PREC-05: no gate changes.
+
 ## 0.26.1 — 2026-10-24
 
 The card border ring is 2 px, not 1.5 (D67; owner, 2026-10-24: "the bottom right corner of the tiles dont color in on hover"). At 1.5 px the ring's curved corners anti-aliased away wherever the card sits on a fractional pixel (the right edge of a grid column, the 0.5 px hover lift), and the bottom-right corner, the lighter green end, read as unfilled. R-MOT-01 follows. Patch by R-PREC-05: no gate changes.

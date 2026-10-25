@@ -58,7 +58,7 @@ Why: Keeps index pages light and avoids duplicate-content archives.
 Gate: manual: checklists/new-page.md
 
 ### R-PAGE-12 Noindex set
-MUST. These pages carry `<meta name="robots" content="noindex">` and are excluded from the sitemap: root redirect, style guide, thank-you pages, search results, tag archives, 404, 500, maintenance, coming soon. Lighthouse's SEO category is not scored for them (its is-crawlable audit fails by design); the other three categories still must reach 100 (R-GATE-10).
+MUST. These pages carry `<meta name="robots" content="noindex">` and are excluded from the sitemap: root redirect, style guide, thank-you pages, the later steps of a stepped form, search results, tag archives, 404, 500, maintenance, coming soon. Lighthouse's SEO category is not scored for them (its is-crawlable audit fails by design); the other three categories still must reach 100 (R-GATE-10).
 Why: Utility pages must not compete in search.
 Gate: manual: checklists/pre-delivery.md
 
@@ -115,6 +115,7 @@ Title patterns use `{T}` = page title, `{S}` = site name, `{C}` = company name f
 | unsubscribe | optional | `/newsletter/unsubscribe/` | `Unsubscribe · {S}` | page-header, unsubscribe-form | — | generic |
 | landing | optional | `/lp/<slug>/` | `{T} · {S}` | hero, logo-cloud, feature-grid, testimonials, contact-form | stats, faq | generic |
 | thank-you | core | `/<form>/thank-you/` | `Thank you · {S}` | page-header, confirmation | related-items | generic |
+| form-step | core (with a stepped form) | `/<form>/apply/<n>/` (the form's `stepPath`), steps 2 onwards | `{Step title} · {S}` | page-header, the form section at that step | — | generic |
 | search | core | `/search/` | `Search · {S}` | page-header, search-box, search-results | — | search |
 | sitemap | core | `/sitemap/` | `Site map · {S}` | page-header, sitemap-list | — | generic |
 | style-guide | core | `/sys/style-guide/` (outside any locale) | `Style guide · {S}` | page-header, style-guide-sections | — | generic |

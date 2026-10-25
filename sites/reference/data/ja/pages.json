@@ -483,49 +483,63 @@
         "action": "/ja/careers/thank-you/",
         "submit": "応募する",
         "privacyHref": "/ja/legal/privacy/",
-        "fields": [
+        "stepPath": "/ja/careers/apply/",
+        "steps": [
           {
-            "pair": [
+            "label": "基本情報",
+            "fields": [
               {
-                "type": "text",
-                "name": "name",
-                "id": "a-name",
-                "label": "氏名",
-                "required": true,
-                "autocomplete": "name"
-              },
-              {
-                "type": "email",
-                "name": "email",
-                "id": "a-email",
-                "label": "メールアドレス",
-                "required": true,
-                "autocomplete": "email"
+                "pair": [
+                  {
+                    "type": "text",
+                    "name": "name",
+                    "id": "a-name",
+                    "label": "氏名",
+                    "required": true,
+                    "autocomplete": "name"
+                  },
+                  {
+                    "type": "email",
+                    "name": "email",
+                    "id": "a-email",
+                    "label": "メールアドレス",
+                    "required": true,
+                    "autocomplete": "email"
+                  }
+                ]
               }
             ]
           },
           {
-            "type": "file",
-            "name": "cv",
-            "id": "a-cv",
-            "label": "履歴書・職務経歴書",
-            "required": true,
-            "accept": ".pdf,.doc,.docx",
-            "help": "PDFまたはWord形式、5MBまで。"
+            "label": "メッセージ",
+            "title": "応募にメッセージを添える",
+            "description": "Northwind Dynamicsへの応募、3ステップ中の2つ目です。採用チームが履歴書を読む前に知っておいてほしいことを、自由に書いてください。",
+            "fields": [
+              {
+                "type": "textarea",
+                "name": "note",
+                "id": "a-note",
+                "label": "その他、お伝えしたいこと",
+                "rows": 3
+              }
+            ]
           },
           {
-            "type": "textarea",
-            "name": "note",
-            "id": "a-note",
-            "label": "その他、お伝えしたいこと",
-            "rows": 3
+            "label": "履歴書",
+            "title": "履歴書を添付する",
+            "description": "Northwind Dynamicsへの応募、3ステップ中の3つ目です。PDFまたはWord形式、5MBまでの履歴書・職務経歴書を添付して、応募を送信してください。",
+            "fields": [
+              {
+                "type": "file",
+                "name": "cv",
+                "id": "a-cv",
+                "label": "履歴書・職務経歴書",
+                "accept": ".pdf,.doc,.docx",
+                "help": "PDFまたはWord形式、5MBまで。"
+              }
+            ]
           }
         ]
-      },
-      "progress": {
-        "value": 1,
-        "max": 3,
-        "label": "基本情報"
       }
     },
     "preferences-form": {
