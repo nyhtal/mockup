@@ -1011,6 +1011,7 @@ test("cards draw a gradient border on hover (D67): blue from the top-left corner
   const before = /\.border-draw:before\{([^}]*)\}/.exec(css)?.[1] || "";
   assert.match(before, /linear-gradient\(to bottom right, ?var\(--color-brand-600\), ?var\(--color-accent-500\)\)/,"blue at the top-left, green at the bottom-right");
   assert.match(before, /conic-gradient\(from 315deg/, "the draw starts at the top-left corner");
+  assert.match(before, /padding:2px/, "a 2 px ring: at 1.5 px the curved corners faded out on fractional pixels and the bottom-right looked unfilled (owner: 'the bottom right corner of the tiles dont color in on hover')");
   assert.match(before, /mask-composite:intersect,exclude/, "the conic sweep is cut to the border ring");
   assert.match(css, /\.border-draw:is\(:hover,:focus-within\):before\{--border-draw:180deg\}/, "hover or keyboard focus inside the card completes the ring: 180 degrees each way");
   assert.match(css, /@media \(prefers-reduced-motion: ?no-preference\)\{\.border-draw:before\{transition:--border-draw \.8s ease-in-out/,"it draws over 0.8 s, evenly, only with motion allowed; reduced motion shows the ring at once");

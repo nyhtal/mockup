@@ -2,6 +2,10 @@
 
 Semver per R-PREC-05: major = a previously green site now fails a gate; minor = new rule with a new gate; patch = wording.
 
+## 0.26.1 — 2026-10-24
+
+The card border ring is 2 px, not 1.5 (D67; owner, 2026-10-24: "the bottom right corner of the tiles dont color in on hover"). At 1.5 px the ring's curved corners anti-aliased away wherever the card sits on a fractional pixel (the right edge of a grid column, the 0.5 px hover lift), and the bottom-right corner, the lighter green end, read as unfilled. R-MOT-01 follows. Patch by R-PREC-05: no gate changes.
+
 ## 0.26.0 — 2026-10-24
 
 Gestures (D66, new R-MOT-17), the CTA sheen and the card border (D67). Eight generic utilities make small decorations come alive, opted into with one class and gated by the flair dial (`gesture` from standard, `gestureRepeat` in expressive), with no script change: `gesture-nudge`, `gesture-glow`, `gesture-glow-repeat`, `gesture-trace`, `gesture-glint`, `gesture-glint-rare`, `gesture-shine`, `gesture-shine-rare`. The closing CTA panel's gradient now fills in: the panel is blue and its green half grows in from the bottom-right corner over 2.6 s (in expressive it then pulses three times, 24 s apart), the primary arrow nudges once, and the button shines. Filled CTA buttons (and the header CTA) sweep a sheen on hover; in expressive the header CTA and the closing CTA's button also shine every 30 s, four times. The timeline's line carries a band of light once. Both logos glint on hover; the header's also every 60 s, three times, in expressive. Cards draw a blue-to-green border from the top-left corner to the bottom-right on hover (`border-draw`, R-MOT-01's second exception). The consistency gate flags an unknown `gesture-*` class, a self-starting one in the hero, and an arrival gesture with nothing observing it. Budgets: CSS 112 KB (0.25.0 had already passed 105 KB by 102 B), the English home page 83 KB, the German pricing page 76 KB. Changed: R-PREC-07, R-TOK-11, R-TOK-12, R-TOK-13, R-MOT-01, R-MOT-03, R-MOT-07, R-MOT-11, R-A11Y-09, R-PERF-01.

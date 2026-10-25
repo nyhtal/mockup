@@ -418,7 +418,7 @@
   }
 }
 
-/* The card hover of D67 (R-MOT-07): a blue-to-green border draws itself from the top-left corner along both sides and meets at the bottom-right. The angle is registered so it can transition; the ring is the ::before, cut to the border by a mask, so the per-frame paint is that thin ring only (R-MOT-01's exception). Reduced motion shows the finished ring at once. */
+/* The card hover of D67 (R-MOT-07): a blue-to-green border draws itself from the top-left corner along both sides and meets at the bottom-right. The angle is registered so it can transition; the ring is the ::before, cut to the border by a mask, so the per-frame paint is that thin ring only (R-MOT-01's exception). The ring is 2 px: at 1.5 px its curved corners came out faint wherever the card sits on a fractional pixel (the right column edge, the 0.5 px hover lift), and the bottom-right one, the lighter green end, looked unfilled. Reduced motion shows the finished ring at once. */
 @property --border-draw {
   syntax: "<angle>";
   inherits: false;
@@ -430,7 +430,7 @@
     position: absolute;
     inset: -1px;
     border-radius: inherit;
-    padding: 1.5px;
+    padding: 2px;
     pointer-events: none;
     background: linear-gradient(to bottom right, var(--color-brand-600), var(--color-accent-500));
     mask: conic-gradient(from 315deg, #000 var(--border-draw), #0000 var(--border-draw) calc(360deg - var(--border-draw)), #000 calc(360deg - var(--border-draw))), linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
